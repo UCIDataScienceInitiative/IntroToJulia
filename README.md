@@ -8,13 +8,13 @@ Repository for the workshop *A Nontrivial Introduction to Julia for Data Science
 ## <a name="Repository Contents"></a>Repository Contents
 
 * Slides
-  * IntroToJulia.pdf, the slides for the workshop
+  * [IntroToJulia.pdf](Slides/IntroToJulia.pdf), the slides for the workshop
 * Example Code
-  * juliaIntroCode.jl, code for introducing Julia constructs
-  * scoping.jl, code for detailing Julia's scoping behavior
-  * jobScript.sh, an example job script for SGE clusters (UCI's)
-  * test.jl, small Julia script for testing multi-node parallelism
-  * animateExample.jl, a script for producing an animation.
+  * [juliaIntroCode.jl](ExampleCode/juliaIntroCode.jl), code for introducing Julia constructs
+  * [scoping.jl](ExampleCode/scoping.jl), code for detailing Julia's scoping behavior
+  * [jobScript.sh](ExampleCode/jobScript.sh), an example job script for SGE clusters (UCI's)
+  * [test.jl](ExampleCode/test.jl), small Julia script for testing multi-node parallelism
+  * [animateExample.jl](ExampleCode/animateExample.jl), a script for producing an animation.
 
 
 
