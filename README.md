@@ -8,7 +8,7 @@ Repository for the workshop *A Nontrivial Introduction to Julia for Data Science
 ## <a name="Repository Contents"></a>Repository Contents
 
 * Slides
-  * [IntroToJulia.pdf](Slides/IntroToJulia.pdf), the slides for the workshop
+  * [introToJulia.pdf](Slides/introToJulia.pdf), the slides for the workshop
 * Example Code
   * [juliaIntroCode.jl](ExampleCode/juliaIntroCode.jl), code for introducing Julia constructs
   * [scoping.jl](ExampleCode/scoping.jl), code for detailing Julia's scoping behavior
