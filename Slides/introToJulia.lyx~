@@ -3464,10 +3464,6 @@ https://github.com/timholy/gadfly/blob/master/demo.md
 
 \end_layout
 
-\begin_layout Standard
-Or try Plots.jl, PyPlot.jl, or Plotly.jl.
-\end_layout
-
 \end_deeper
 \begin_layout Frame
 
