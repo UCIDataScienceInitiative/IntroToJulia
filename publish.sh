@@ -2,7 +2,7 @@
 
 # Generate the Slides and Pages
 jupyter-nbconvert --to slides Notebooks/ArraysAndMatrices.ipynb --reveal-prefix=reveal.js
-mv ArraysAndMatrices.slides.html  Slides/ArraysAndMatrices.html
+mv Notebooks/ArraysAndMatrices.slides.html  Slides/ArraysAndMatrices.html
 #jupyter-nbconvert --to slides ArraysAndMatrices.ipynb --reveal-prefix=reveal.js
 #mv ArraysAndMatrices.slides.html  ArraysAndMatrices.html
 
