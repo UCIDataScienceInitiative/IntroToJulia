@@ -1,6 +1,9 @@
 !/bin/bash
 
 # Generate the Slides and Pages
+jupyter-nbconvert Notebooks/Index.ipynb --reveal-prefix=reveal.js
+mv Notebooks/Index.html  index.html
+
 jupyter-nbconvert --to slides Notebooks/ArraysAndMatrices.ipynb --reveal-prefix=reveal.js
 mv Notebooks/ArraysAndMatrices.slides.html  Slides/ArraysAndMatrices.html
 #jupyter-nbconvert --to slides ArraysAndMatrices.ipynb --reveal-prefix=reveal.js
