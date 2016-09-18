@@ -5,17 +5,18 @@ jupyter-nbconvert Notebooks/Index.ipynb --reveal-prefix=reveal.js
 mv Notebooks/Index.html  index.html
 
 cd Notebooks
-declare -a arr=(*.ipynb)
-echo $arr
-#declare -a arr=("ArraysAndMatrices" "GithubForJulia")
+arr=(*.ipynb)
 cd ..
-for i in "${arr[@]}"
-do
-  jupyter-nbconvert --to slides Notebooks/"$i".ipynb --reveal-prefix=reveal.js
-  mv Notebooks/"$i".slides.html  Slides/"$i".html
+for f in "${arr[@]}"; do
+   # Chop off the extension
+   filename=$(basename "$f")
+   extension="${filename##*.}"
+   filename="${filename%.*}"
+   # Convert the Notebook to slides
+   jupyter-nbconvert --to slides Notebooks/"$filename".ipynb --reveal-prefix=reveal.js
+   # Move to the slides directory
+   mv Notebooks/"$filename".slides.html  Slides/"$filename".html
 done
-#jupyter-nbconvert --to slides GithubForJulia.ipynb --reveal-prefix=reveal.js
-#mv GithubForJulia.slides.html  GithubForJulia.html
 
 # Push the updates to gh-pages
 mkdir -p /tmp/workspace
