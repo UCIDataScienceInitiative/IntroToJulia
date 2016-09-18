@@ -5,6 +5,7 @@ jupyter-nbconvert Notebooks/Index.ipynb --reveal-prefix=reveal.js
 mv Notebooks/Index.html  index.html
 
 arr=(/Notebooks/*.ipynb)
+echo $arr
 #echo $arr2
 #declare -a arr=("ArraysAndMatrices" "GithubForJulia")
 for i in "${arr[@]}"
