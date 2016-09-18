@@ -4,9 +4,11 @@
 jupyter-nbconvert Notebooks/Index.ipynb --reveal-prefix=reveal.js
 mv Notebooks/Index.html  index.html
 
-declare -a arr=(Notebooks/*.ipynb)
+cd Notebooks
+declare -a arr=(*.ipynb)
 echo $arr
 #declare -a arr=("ArraysAndMatrices" "GithubForJulia")
+cd ..
 for i in "${arr[@]}"
 do
   jupyter-nbconvert --to slides Notebooks/"$i".ipynb --reveal-prefix=reveal.js
