@@ -12,6 +12,10 @@ for f in "${arr[@]}"; do
    filename=$(basename "$f")
    extension="${filename##*.}"
    filename="${filename%.*}"
+   # Convert the Notebook to HTML
+   jupyter-nbconvert --to html Notebooks/"$filename".ipynb
+   # Move to the slides directory
+   mv Notebooks/"$filename".html  html/"$filename".html
    # Convert the Notebook to slides
    jupyter-nbconvert --to slides Notebooks/"$filename".ipynb --reveal-prefix=reveal.js
    # Move to the slides directory
