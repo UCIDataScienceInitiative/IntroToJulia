@@ -24,9 +24,14 @@ for f in "${arr[@]}"; do
    mv Notebooks/"$filename".slides.html  Slides/"$filename".html
 
    # Convert the Notebook to Markdown
-   jupyter-nbconvert --to md Notebooks/"$filename".ipynb
+   jupyter-nbconvert --to markdown Notebooks/"$filename".ipynb
    # Move to the html directory
    mv Notebooks/"$filename".md  Markdown/"$filename".md
+
+   # Convert the Notebook to PDF
+   jupyter-nbconvert --to pdf Notebooks/"$filename".ipynb
+   # Move to the html directory
+   mv Notebooks/"$filename".pdf  Pdfs/"$filename".pdf
 done
 
 # Push the updates to gh-pages
