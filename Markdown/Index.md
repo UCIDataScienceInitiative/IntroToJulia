@@ -43,7 +43,7 @@ To get started, see the [Tooling, Documentation, and Community notebook](http://
 - [Type-Stability Experiment](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/TypeStabilityExperiment)
 - [Scoping Experiment](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ScopingExperiment)
 - [HPC Julia](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/HPCProject)
-- [Logistic Bifurcation Diagram](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/LogisticPlot)
+- [Logistic Bifurcation Diagram](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/LogisticProject)
 
 
 ---------------------------
@@ -75,7 +75,7 @@ To get started, see the [Tooling, Documentation, and Community notebook](http://
 - [Type-Stability Experiment](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/TypeStabilityExperiment)
 - [Scoping Experiment](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ScopingExperiment)
 - [HPC Julia](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/HPCProject)
-- [Logistic Bifurcation Diagram](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/LogisticPlot)
+- [Logistic Bifurcation Diagram](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/LogisticProject)
 
 ## How These Were Made
 

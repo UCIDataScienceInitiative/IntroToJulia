@@ -134,7 +134,7 @@ What happens when we don't have type stability? Let's inspect this code:
 
 
 ```julia
-@code_native 2^5
+@code_native ^(2,5)
 ```
 
     WARNING: Could not determine size of symbol

@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-<title>LogisticProject slides</title>
+<title>PackageDevelopment slides</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -11827,66 +11827,12 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Logistic-Map-Bifurcation-Diagram">Logistic Map Bifurcation Diagram<a class="anchor-link" href="#Logistic-Map-Bifurcation-Diagram">&#182;</a></h1>
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The logistic difference equation is defined by the recursion</p>
-$$ b_{n+1}=r*b_{n}(1-b_{n}) $$<p>where $b_{n}$ is the number of bunnies at time $n$. Starting with $b_{0}=.25$, by around $400$ iterations this will reach a steady state. This steady state (or steady periodic state) is dependent on $r$. Write a function which solves for the steady state(s) for each given $r$, and plot every state in the steady attractor for each $r$ (x-axis is $r$, $y$=value seen in the attractor) using PyPlot. Take $r\in\left(2.9,4\right)$</p>
-<p>Optimize this function.</p>
+<h1 id="Package-Development">Package Development<a class="anchor-link" href="#Package-Development">&#182;</a></h1><p>Follow the tutorial in the following link to setup a Julia package Github repository, complete with documentation and CI testing.</p>
+<p><a href="http://www.stochasticlifestyle.com/finalizing-julia-package-documentation-testing-coverage-publishing/">http://www.stochasticlifestyle.com/finalizing-julia-package-documentation-testing-coverage-publishing/</a></p>
 
 </div>
 </div>
-</div></div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Old-Solution">Old Solution<a class="anchor-link" href="#Old-Solution">&#182;</a></h2><p>Please try solving this yourself first! Use this one as a hint if you get stuck.</p>
-
-</div>
-</div>
-</div><div class="fragment">
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre>## Produces the logstic plot
-# Requires PyPlot
-
-function logisticPlot()
-  tic()
-  r = 2.9:.00005:4; numAttract = 100;
-  steady = ones(length(r),1)*.25;
-  for i=1:400 ## Get to steady state
-    @devec steady = r.*steady.*(1-steady);
-  end
-  x = zeros(length(steady),numAttract);
-  x[:,1] = steady;
-  @simd for i=2:numAttract ## Grab values at the attractor
-    @inbounds @fastmath x[:,i] = r.*x[:,i-1].*(1-x[:,i-1]);
-  end
-  toc()
-  fig = figure(figsize=(20,10));
-  plot(collect(r),x,&quot;b.&quot;,markersize=.06)
-  savefig(&quot;plot.png&quot;,dpi=300);
-end
-using PyPlot
-@time logisticPlot()
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div></div></section></section>
+</div></section></section>
 </div>
 </div>
 

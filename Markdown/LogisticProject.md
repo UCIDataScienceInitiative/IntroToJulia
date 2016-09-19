@@ -1,6 +1,18 @@
 
 # Logistic Map Bifurcation Diagram
 
+The logistic difference equation is defined by the recursion
+
+$$ b_{n+1}=r*b_{n}(1-b_{n}) $$
+
+where $b_{n}$ is the number of bunnies at time $n$. Starting with $b_{0}=.25$, by around $400$ iterations this will reach a steady state. This steady state (or steady periodic state) is dependent on $r$. Write a function which solves for the steady state(s) for each given $r$, and plot every state in the steady attractor for each $r$ (x-axis is $r$, $y$=value seen in the attractor) using PyPlot. Take $r\in\left(2.9,4\right)$
+
+Optimize this function.
+
+## Old Solution
+
+Please try solving this yourself first! Use this one as a hint if you get stuck.
+
 
 ```julia
 ## Produces the logstic plot
