@@ -140,7 +140,7 @@
     \def\gt{>}
     \def\lt{<}
     % Document parameters
-    \title{QuickIntroduction}
+    \title{BasicIntroduction}
     
     
     
@@ -266,8 +266,8 @@
     
 
     
-    \subsection{A Quick Introduction to Basic
-Julia}\label{a-quick-introduction-to-basic-julia}
+    \subsection{An Introduction to Basic
+Julia}\label{an-introduction-to-basic-julia}
 
 This quick introduction assumes that you have basic knowledge of some
 scripting language and provides an example of the Julia syntax. So
@@ -1366,9 +1366,9 @@ Another common type is the Dictionary. It allows you to access
 (key,value) pairs in a named manner. For example:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}76}]:} d = Dict(:test=>2,"silly"=>:suit)
-         println(d[:test])
-         println(d["silly"])
+{\color{incolor}In [{\color{incolor}1}]:} d = Dict(:test=>2,"silly"=>:suit)
+        println(d[:test])
+        println(d["silly"])
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
@@ -1377,6 +1377,22 @@ suit
 
     \end{Verbatim}
 
+    \subsubsection{Tuples}\label{tuples}
+
+Tuples are immutable arrays. That means they can't be changed. However,
+they are super fast. They are made with the \texttt{(x,y,z,...)} syntax
+and are the standard return type of functions which return more than one
+object.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} tup = (2.,3) \PYZsh{} Don't have to match types
+        x,y = (3.0,"hi") \PYZsh{} Can separate a tuple to multiple variables
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}4}]:} (3.0,"hi")
+\end{Verbatim}
+        
     \subsection{Package Management}\label{package-management}
 
 Julia's package system is similar to R/Python in that a large number of
@@ -1469,7 +1485,7 @@ statement will import the package without exporting the functions to the
 namespace. For example:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}2}]:} using Plots
+{\color{incolor}In [{\color{incolor}2}]:} import Plots
         Plots.plot(rand(4,4))
 \end{Verbatim}
 
@@ -1570,7 +1586,7 @@ Thus you can think of metaprogramming as ``code which takes in code and
 outputs code''. One basic example is the \texttt{@time} macro:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}85}]:} macro time(ex)
+{\color{incolor}In [{\color{incolor}85}]:} macro my\PYZus{}time(ex)
            return quote
              local t0 = time()
              local val = \PYZdl{}ex

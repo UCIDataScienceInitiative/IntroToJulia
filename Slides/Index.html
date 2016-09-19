@@ -11830,13 +11830,114 @@ a.anchor-link {
 <h1 id="A-Nontrivial-Introduction-to-Julia-for-Data-Science-and-Scientific-Computing">A Nontrivial Introduction to Julia for Data Science and Scientific Computing<a class="anchor-link" href="#A-Nontrivial-Introduction-to-Julia-for-Data-Science-and-Scientific-Computing">&#182;</a></h1>
 </div>
 </div>
-</div>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ArraysAndMatrices.html">http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ArraysAndMatrices.html</a></p>
+<h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><p>This workshop is put together by Chris Rackauckas as part of the UC Irvine Data Science Initiative. This workshop is made to teach people who are experienced with other scripting languages the relatively new language Julia. Unlike the other Data Science Initiative workshops, this workshop assumes prior knowledge of some form of programming in a language such as Python, R, or MATLAB.</p>
+<p>We will start by introducing the basic syntax of the language, and quickly move into the details of how Julia is different from other scripting languages and how to exploit Julia's type system + multiple dispatch to be able to achieve C/Fortran-like performance while maintaining the concise syntax of a scripting language. Large parts of the package ecosystem will be explored and some information on implementation details will be highlighted in order for the participants to learn how to design Julia projects.</p>
+<p>The ideal participant is anyone who is interested in Julia. There are many groups of people interested in using Julia. One large fraction come with a strong software development background and C/Fortran knowledge, and are looking to learn Julia as a tool to create packages with enhanced productivity while not losing performance. On the other side, there are users who are interested in the growing package ecosystem of Julia and would like to add Julia to their knowledge-base. And then there's everything in between. One major goal of this workshop is to use Julia's language and syntax to bridge the gap between "package users" and "package developers" in the way that Julia has done.</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Introduction-to-the-Author">Introduction to the Author<a class="anchor-link" href="#Introduction-to-the-Author">&#182;</a></h2><p>Chris is a PhD student in Mathematics from the Mathematical, Computational, and Systems Biology (MCSB) Gateway program and is an active part of the Julia community. He runs the blog, <a href="http://www.stochasticlifestyle.com/">http://www.stochasticlifestyle.com/</a>, where he write tutorials on using the Julia languages covering many topics, such as high-performance and GPGPU computing, package development, and Julia tips. He is part of the JuliaMath and JuliaDiffEq communities for curating the Julia libraries for mathematics and differential equations respectively. Chris is the developer of many Julia packages, the most prominent being <a href="https://github.com/JuliaDiffEq/DifferentialEquations.jl">DifferentialEquations.jl</a>, a Julia library with the large goal of being a standard solver for many forms of differential equations.</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Installation-and-Setup">Installation and Setup<a class="anchor-link" href="#Installation-and-Setup">&#182;</a></h2><p>To get started, see the <a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ToolingDocumentationCommunity">Tooling, Documentation, and Community notebook</a>.</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Jupyter-Notebooks">Jupyter Notebooks<a class="anchor-link" href="#Jupyter-Notebooks">&#182;</a></h2><h3 id="Basics">Basics<a class="anchor-link" href="#Basics">&#182;</a></h3><ul>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ToolingDocumentationCommunity">Tooling, Documentation, and Community</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/GithubIntroduction">A Very Quick Introduction to Git/Github for Julia Users</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicIntroduction">An Introduction to Basic Julia</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/WhyJulia">Why Julia?</a></li>
+</ul>
+<h3 id="Detailed-Usage">Detailed Usage<a class="anchor-link" href="#Detailed-Usage">&#182;</a></h3><ul>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArraysAndMatrices">More Details on Arrays and Matrices</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PackageEcosystem">Overview of the Package Ecosystem</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PlotsJL">An In-Depth Look at Plots.jl</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Parallelism">Parallelism</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces">Array and Iterator Interfaces</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Metaprogramming">Metaprogramming</a></li>
+</ul>
+<h3 id="Projects-/-Experiments">Projects / Experiments<a class="anchor-link" href="#Projects-/-Experiments">&#182;</a></h3><ul>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/TypeStabilityExperiment">Type-Stability Experiment</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ScopingExperiment">Scoping Experiment</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/HPCProject">HPC Julia</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/LogisticPlot">Logistic Bifurcation Diagram</a></li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h1 id="Extras">Extras<a class="anchor-link" href="#Extras">&#182;</a></h1><hr>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Slides">Slides<a class="anchor-link" href="#Slides">&#182;</a></h2><h3 id="Basics">Basics<a class="anchor-link" href="#Basics">&#182;</a></h3><ul>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ToolingDocumentationCommunity">Tooling, Documentation, and Community</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/GithubIntroduction">A Very Quick Introduction to Git/Github for Julia Users</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/BasicIntroduction">An Introduction to Basic Julia</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/WhyJulia">Why Julia?</a></li>
+</ul>
+<h3 id="Detailed-Usage">Detailed Usage<a class="anchor-link" href="#Detailed-Usage">&#182;</a></h3><ul>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ArraysAndMatrices">More Details on Arrays and Matrices</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/PackageEcosystem">Overview of the Package Ecosystem</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/PlotsJL">An In-Depth Look at Plots.jl</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/Parallelism">Parallelism</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ArrayIteratorInterfaces">Array and Iterator Interfaces</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/Metaprogramming">Metaprogramming</a></li>
+</ul>
+<h3 id="Projects-/-Experiments">Projects / Experiments<a class="anchor-link" href="#Projects-/-Experiments">&#182;</a></h3><ul>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/TypeStabilityExperiment">Type-Stability Experiment</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ScopingExperiment">Scoping Experiment</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/HPCProject">HPC Julia</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/LogisticPlot">Logistic Bifurcation Diagram</a></li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="How-These-Were-Made">How These Were Made<a class="anchor-link" href="#How-These-Were-Made">&#182;</a></h2><p>This entire repository is made using Jupyter notebooks using the template from the <a href="https://github.com/ChrisRackauckas/JupyterSite">JupyterSite</a> repository.</p>
 
 </div>
 </div>

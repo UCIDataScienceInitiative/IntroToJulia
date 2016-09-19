@@ -16,13 +16,16 @@ Because of this, it's very useful for everyone using Julia to know a little bit 
 
 - Git is a common Version Control System (VCS)
 - A project is a **repository** (repos)
-- After one makes changes to a project, **commit** the changes
+- After one makes changes to a project, they **commit** the changes
 - Changes are **pulled** to the main repository hosted online
 - To download the code, you **clone** the repository
 - Instead of editing the main repository, one edits a **branch**
-- To get the changes of the main branch in yours, you **fetch**
+- To get the changes of the main branch in yours, you **fetch**, **pull**, or **rebase**
 - One asks the owner of the repository to add their changes via a **pull request**
 - Stable versions are cut to **releases**
+
+## Github Basics
+
 - The major online server for git repositories is Github
 - Github is a free service
 - Anyone can get a Github account
