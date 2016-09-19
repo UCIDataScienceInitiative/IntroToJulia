@@ -1,0 +1,1032 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font than Computer Modern for most use cases
+    \usepackage{palatino}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{ArraysAndMatrices}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\def\PY@tok@gd{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\def\PY@tok@gu{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\def\PY@tok@gt{\def\PY@tc##1{\textcolor[rgb]{0.00,0.25,0.82}{##1}}}
+\def\PY@tok@gs{\let\PY@bf=\textbf}
+\def\PY@tok@gr{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\def\PY@tok@cm{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\def\PY@tok@vg{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\def\PY@tok@m{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\def\PY@tok@mh{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\def\PY@tok@go{\def\PY@tc##1{\textcolor[rgb]{0.50,0.50,0.50}{##1}}}
+\def\PY@tok@ge{\let\PY@it=\textit}
+\def\PY@tok@vc{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\def\PY@tok@il{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\def\PY@tok@cs{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\def\PY@tok@cp{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\def\PY@tok@gi{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\def\PY@tok@gh{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\def\PY@tok@ni{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\def\PY@tok@nl{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\def\PY@tok@nn{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\def\PY@tok@no{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\def\PY@tok@na{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\def\PY@tok@nb{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@nc{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\def\PY@tok@nd{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\def\PY@tok@ne{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\def\PY@tok@nf{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\def\PY@tok@si{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\def\PY@tok@s2{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\def\PY@tok@vi{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\def\PY@tok@nt{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@nv{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\def\PY@tok@s1{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\def\PY@tok@sh{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\def\PY@tok@sc{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\def\PY@tok@sx{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@bp{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@c1{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\def\PY@tok@kc{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@c{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\def\PY@tok@mf{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\def\PY@tok@err{\def\PY@bc##1{\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{##1}}}
+\def\PY@tok@kd{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@ss{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\def\PY@tok@sr{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\def\PY@tok@mo{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\def\PY@tok@kn{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@mi{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\def\PY@tok@gp{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\def\PY@tok@o{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\def\PY@tok@kr{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@s{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\def\PY@tok@kp{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@w{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\def\PY@tok@kt{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\def\PY@tok@ow{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\def\PY@tok@sb{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\def\PY@tok@k{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@se{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\def\PY@tok@sd{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{More Details on Arrays and
+Matrices}\label{more-details-on-arrays-and-matrices}
+
+    \subsection{Array Operations}\label{array-operations}
+
+    One key feature for doing math in Julia are the \texttt{broadcast} and
+\texttt{map} operations. The \texttt{map} operation is like an R or
+MATLAB \texttt{apply} which applies a function to each element of an
+array. For example, we can apply the anonymous function
+\texttt{(x)-\textgreater{}x\^{}2} to each element via:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} map((x)->x\PYZca{}2,1:5)
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}5}]:} 5-element Array\{Int64,1\}:
+          1
+          4
+          9
+         16
+         25
+\end{Verbatim}
+        
+    The \texttt{broadcast} operation is similar except it is for ``elements
+which have a shape'' and it will ``broadcast the shaped objects to a
+common size by expanding singleton dimensions''. For example, the
+following broadcast's \texttt{+} onto \texttt{A} and \texttt{B}:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} A = 1:5 \PYZsh{} Acts like a column vector, Julia is "column-major" so columns come first
+        B = [1 2
+             3 4
+             5 6
+             7 8
+             9 10]
+        broadcast(+,A,B)
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}8}]:} 5×2 Array\{Int64,2\}:
+          2   3
+          5   6
+          8   9
+         11  12
+         14  15
+\end{Verbatim}
+        
+    If \texttt{A} and \texttt{B} are the same size, then broadcasting is the
+same as mapping.
+
+    \subsubsection{In-Depth Julia 1: Special Broadcasting
+Syntax}\label{in-depth-julia-1-special-broadcasting-syntax}
+
+One major area (which is under a lot of active development) is the
+specialized broadcasting syntax. The short summary is, putting a
+\texttt{.} with a function or operator causes it to broadcast. For
+example, we can broadcast any function with the syntax \texttt{f.(x)},
+and broadcast operators by \texttt{.+} and related. For example:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} A = 1:5
+        B = [2;3;4;5;6]
+        A.*B
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}2}]:} 5-element Array\{Int64,1\}:
+          2
+          6
+         12
+         20
+         30
+\end{Verbatim}
+        
+    People coming from MATLAB might recognize this as ``element-wise
+multiplication''. If this was a basic introduction to Julia, I'd say
+this was element-wise multiplication and be done with it. However, this
+is the non-trivial introduction. {[}Note: Some of this is not true right
+now (v0.5) but is becoming true\ldots{}{]}.
+
+While it looks the same to the user, the implementation is very
+different In MATLAB and earlier versions of Julia, \texttt{.*} was an
+operator. In Julia's more refined world, we can explain this as
+\texttt{.*\{T\textless{}:Number,N\}(x::Array\{T,N\},y::Array\{T,N\})}
+being a function, and \texttt{A.*B} calling this function. However, if
+\texttt{.*} is just a function, then
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} C = [3;4;5;2;1]
+        A.*B.*C
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:} 5-element Array\{Int64,1\}:
+          6
+         24
+         60
+         40
+         30
+\end{Verbatim}
+        
+    the operation \texttt{A.*B.*C} actually expands into
+\texttt{.*(A,.*(B,C))}. Let's think of how we'd implement \texttt{.*}.
+
+\begin{center}\rule{3in}{0.4pt}\end{center}
+
+\paragraph{Question 1}\label{question-1}
+
+How would you implement \texttt{.*} as a function (not using broadcast)?
+Don't peak below!
+
+\begin{center}\rule{3in}{0.4pt}\end{center}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} function .*\PYZob{}T<:Number,N\PYZcb{}(x::Array\PYZob{}T,N\PYZcb{},y::Array\PYZob{}T,N\PYZcb{})
+             output = similar(x) \PYZsh{} Makes an array of similar size and shape as x
+             for i in eachindex(x) \PYZsh{} Let the iterator choose the fast linear indexing for x
+                 output[i] = x[i]*y[i]
+             end
+             output
+         end
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        LoadError: error in method definition: function Base..* must be explicitly imported to be extended
+    while loading In[13], in expression starting on line 1
+
+        
+
+    \end{Verbatim}
+
+    Notice that \texttt{.*} creates an array every time it is called.
+Therefore a naive approach where \texttt{.*} is a function creates two
+arrays in the call \texttt{A.*B.*C}. We saw earlier that reducing memory
+allocations leads to vastly improved performance, so a better
+implementation would be to do this all together as one loop:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} function .*\PYZob{}T<:Number,N\PYZcb{}(x::Array\PYZob{}T,N\PYZcb{},y::Array\PYZob{}T,N\PYZcb{},z::Array\PYZob{}T,N\PYZcb{})
+             output = similar(x) \PYZsh{} Makes an array of similar size and shape as x
+             for i in eachindex(x) \PYZsh{} Let the iterator choose the fast linear indexing for x
+                 output[i] = x[i]*y[i]*z[i]
+             end
+             output
+         end
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        LoadError: error in method definition: function Base..* must be explicitly imported to be extended
+    while loading In[16], in expression starting on line 1
+
+        
+
+    \end{Verbatim}
+
+    (but notice this doesn't really work because now \texttt{.*} isn't a
+binary operator and therefore the inline syntax won't work). This
+optimization is known as ``loop fusing''. Julia does this by searching
+for all of the broadcasts in a line and putting them together into one
+broadcast statement during parsing time. Therefore, in Julia
+\texttt{A.*B.*C} creates an anonymous function and broadcasts on it,
+like
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} broadcast((x,y,z)->x*y*z,A,B,C)
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}17}]:} 5-element Array\{Int64,1\}:
+           6
+          24
+          60
+          40
+          30
+\end{Verbatim}
+        
+    Notice that this is equivalent to our 1-loop solution. However, because
+all array-based math uses this broadcasting syntax with a \texttt{.},
+Julia can fuse the broadcasts on all sorts of mathematical expressions
+on arrays:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} A.*B.*sin.(C)
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:} 5-element Array\{Float64,1\}:
+           0.28224
+          -4.54081
+         -11.5071 
+          18.1859 
+          25.2441 
+\end{Verbatim}
+        
+    One last thing to note is that we can also broadcast \texttt{=}. This
+would be the same thing is as the loop \texttt{A{[}i{]} = ...} and thus
+requires the array \texttt{A} to already be define. Thus for example, if
+we let
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} D = similar(C)
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} 5-element Array\{Int64,1\}:
+          140539342502768
+          140539342502832
+          140539342502896
+          140539342502672
+          140539342537392
+\end{Verbatim}
+        
+    then the operation
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} @time D.=A.*B.*C
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+  0.000008 seconds (10 allocations: 512 bytes)
+
+    \end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}16}]:} 5-element Array\{Int64,1\}:
+           6
+          24
+          60
+          40
+          30
+\end{Verbatim}
+        
+    does not allocate any arrays. Reducing temporary array allocations is
+one way Julia outperforms other scientific computing languages.
+
+Summary: \texttt{.} makes operations element-wise, but in a very smart
+way.
+
+    \subsection{Vectors, Matrices, and Linear
+Algebra}\label{vectors-matrices-and-linear-algebra}
+
+Julia's linear algebra syntax follows MATLAB's to a large extent (it's
+just about the only thing MATLAB got right!). We already saw this a
+little bit by seeing Julia's array indexing syntax. For example, we can
+get the first three elements by \texttt{1:3}:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} A = rand(4,4) \PYZsh{} Generate a 4x4 random matrix
+         A[1:3,1:3] \PYZsh{} Take the top left 3-3 matrix
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}20}]:} 3×3 Array\{Float64,2\}:
+          0.168453  0.121436  0.395455
+          0.531294  0.545059  0.08028 
+          0.813272  0.732868  0.336742
+\end{Verbatim}
+        
+    Note that Julia is column-major, meaning that columns come first in both
+indexing order and in the computer's internal representation.
+
+    \subsubsection{In-Depth Julia 2: Views}\label{in-depth-julia-2-views}
+
+Notice that \texttt{A{[}1:3,1:3{]}} returned an array. Where did this
+array come from? Well, since there was no 3x3 array before,
+\texttt{A{[}1:3,1:3{]}} created an array (i.e.~it had to allocate
+memory)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} @time A[1:3,1:3]
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+  0.000005 seconds (8 allocations: 416 bytes)
+
+    \end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}22}]:} 3×3 Array\{Float64,2\}:
+          0.168453  0.121436  0.395455
+          0.531294  0.545059  0.08028 
+          0.813272  0.732868  0.336742
+\end{Verbatim}
+        
+    Do you always have to allocate memory when making new arrays? We saw
+before this wasn't the case when dealing with references. Recall the
+example where modifying one array modified another:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} a = [1;3;5]
+         @time b = a
+         a[2] = 10
+         a
+         @time c = copy(a)
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+  0.000001 seconds (3 allocations: 144 bytes)
+  0.000004 seconds (6 allocations: 320 bytes)
+
+    \end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}26}]:} 3-element Array\{Int64,1\}:
+           1
+          10
+           5
+\end{Verbatim}
+        
+    Notice that in the first case making \texttt{b} didn't allocate an
+array: it just made an object with a pointer (an Int64), and had that
+pointer point to the same array as \texttt{a}. To better understand this
+behavior and exploit to for major performance gains, we need to make a
+distinction. The array itself is the memory layout. For Julia arrays,
+this is actually a C-pointer to a contiguous 1-dimensional slot of
+memory. The \texttt{Array} type in Julia (and thus \texttt{Vector} and
+\texttt{Matrix} which are type-alises for \texttt{Array\{T,1\}} and
+\texttt{Array\{T,2\}} respectively) is a ``view'' to to that actual
+array. A view is a type which points to an array, and has a
+compatibility layer that changes how things like the indexing works. For
+example: if we define the matrix
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} A = rand(4,4)
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}28}]:} 4×4 Array\{Float64,2\}:
+          0.348922   0.716248  0.960668  0.952156
+          0.795233   0.888537  0.728711  0.655722
+          0.0666479  0.396674  0.462853  0.738748
+          0.191717   0.941639  0.112687  0.946103
+\end{Verbatim}
+        
+    then the array that we made is actually a 16-number long sequence (of
+64-bit Floats) in memory, and \texttt{A} is a view to that array which
+makes it index ``like'' it was 2-dimensional (reading down the columns).
+This tells us one thing already: looping through the columns is faster
+than looping through the rows. Indeed we can easily test this:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}47}]:} function testloops()
+             b = rand(1000,1000)
+             c = 0 \PYZsh{} Need this so that way the compiler doesn't optimize away the loop!
+             @time for i in 1:1000, j in 1:1000
+                 c+=b[i,j]
+             end
+             @time for j in 1:1000, i in 1:1000
+                 c+=b[i,j]
+             end
+             bidx = eachindex(b)
+             @time for i in bidx
+                 c+=b[i]
+             end
+         end
+         testloops()
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+  0.037648 seconds (3.00 M allocations: 45.776 MB, 9.13\% gc time)
+  0.028310 seconds (3.00 M allocations: 45.776 MB, 15.80\% gc time)
+  0.026682 seconds (3.00 M allocations: 45.776 MB, 11.06\% gc time)
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+WARNING: Method definition testloops() in module Main at In[46]:2 overwritten at In[47]:2.
+
+    \end{Verbatim}
+
+    One should normally use the \texttt{eachindex} function since this will
+return the indices in the ``fast'' order for general iterator types.
+
+In this terminology \texttt{A{[}1:3,1:3{]}} isn't a view to the same
+memory. We can check this by noticing that it doesn't mutate the
+original array:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}49}]:} println(A)
+         B = A[1:3,1:3]
+         B[1,1]=100
+         println(A)
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[0.348922 0.716248 0.960668 0.952156; 0.795233 0.888537 0.728711 0.655722; 0.0666479 0.396674 0.462853 0.738748; 0.191717 0.941639 0.112687 0.946103]
+[0.348922 0.716248 0.960668 0.952156; 0.795233 0.888537 0.728711 0.655722; 0.0666479 0.396674 0.462853 0.738748; 0.191717 0.941639 0.112687 0.946103]
+
+    \end{Verbatim}
+
+    If we instead want a view, then we can use the \texttt{view} function:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}51}]:} B = view(A,1:3,1:3) \PYZsh{} No copy involved
+         B[1,1] = 100 \PYZsh{} Will mutate A
+         println(A)
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[100.0 0.716248 0.960668 0.952156; 0.795233 0.888537 0.728711 0.655722; 0.0666479 0.396674 0.462853 0.738748; 0.191717 0.941639 0.112687 0.946103]
+
+    \end{Verbatim}
+
+    There are many cases where you might want to use a view. For example, if
+a function needs the \texttt{i}th column, you may naively think of doing
+\texttt{f(A{[}i,:{]})}. But, if \texttt{A} won't be changed in the loop,
+we can avoid the memory allocation (and thus make things faster) by
+sending a view to the original array which is simply the column:
+\texttt{f(view(A,i,:))}. Two functions can be used to give common views.
+\texttt{vec} gives a view of the array as a Vector and \texttt{reshape}
+builds a view in a different shape. For example:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}55}]:} C = vec(A)
+         println(C)
+         C = reshape(A,8,2) \PYZsh{} C is an 8x2 matrix
+         C
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[100.0,0.795233,0.0666479,0.191717,0.716248,0.888537,0.396674,0.941639,0.960668,0.728711,0.462853,0.112687,0.952156,0.655722,0.738748,0.946103]
+
+    \end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}55}]:} 8×2 Array\{Float64,2\}:
+          100.0        0.960668
+            0.795233   0.728711
+            0.0666479  0.462853
+            0.191717   0.112687
+            0.716248   0.952156
+            0.888537   0.655722
+            0.396674   0.738748
+            0.941639   0.946103
+\end{Verbatim}
+        
+    Since these operations do not copy the array, they are very cheap and
+can be used without worrying about performance issues.
+
+    \subsubsection{Back to Linear Algebra}\label{back-to-linear-algebra}
+
+Julia performs functions on matrices by default for dispatches on
+matrices. For example, \texttt{+} is the matrix addition, while
+\texttt{*} is matrix multiplication. Julia's \texttt{*} calls into a
+program known as OpenBLAS so that way \texttt{*} is an optimized
+multithreaded operation. For example:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}57}]:} A = rand(4,4); B = rand(4,4)
+         C = A*B \PYZsh{} Matrix Multiplication
+         D = A.*B \PYZsh{} Element-wise Multiplication
+         C-D \PYZsh{} Not zero 
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}57}]:} 4×4 Array\{Float64,2\}:
+          0.906899  1.09457   1.13941   0.673966
+          0.663752  0.397312  0.515964  0.442822
+          1.12845   1.27351   0.972741  0.140849
+          0.956337  1.03546   0.662021  0.720551
+\end{Verbatim}
+        
+    A common operation is to solve the linear system \texttt{Ax=b}. In Julia
+this is done by \texttt{A\textbackslash{}b}:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}59}]:} b = 1:4
+         A\PYZbs{}b
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}59}]:} 4-element Array\{Float64,1\}:
+           10.2694
+          -45.8265
+           70.7536
+          -63.3756
+\end{Verbatim}
+        
+    Note that this uses a direct solver. Iterative solvers for linear
+equations can be found in IterativeSolvers.jl hosted by the JuliaMath
+organization.
+
+    \subsection{A note about
+``Vectorization''}\label{a-note-about-vectorization}
+
+In MATLAB/Python/R you're told to ``vectorize'' your options, i.e.~use
+\texttt{apply} or these \texttt{.*} operations, in order to speed up
+computations. This is because these operations call C programs which
+will be faster than any interpreted MATLAB/Python/R loop. In Julia,
+that's not the case: as long as your functions are type-stable, you will
+get maximal performance. Thus vectorization does not improve
+performance.
+
+In fact, vectorization can reduce performance by creating ``temporary
+arrays''. Those are the intermediate array allocations that come up with
+doing operations like \texttt{C{[}i,:{]} = A{[}i,:{]} .* B{[}i,:{]}}. In
+general, for the best performance one should avoid vectorized calls or
+be careful to use the broadcast/view syntax to define a statement
+without temporaries:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} C[i,:] .= view(A,i,:) .* view(B,i,:)
+\end{Verbatim}
+
+    Note the odd quirk: array indexing is a view when on the left-hand side
+
+\paragraph{Discussion: why is this the
+case?}\label{discussion-why-is-this-the-case}
+
+    \subsection{Sprase Matrices}\label{sprase-matrices}
+
+Sprase Matrix capabilities are provided by SuiteSparse. Note that these
+are saved in a table format, where there are triplets (i,j,value) which
+denote the existance of a non-zero element at \texttt{(i,j)} of value
+\texttt{value}. A sparse matrix can be created through the
+\texttt{sparse} command:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} A = sparse([1;2;3],[2;2;1],[3;4;5])
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}14}]:} 3×2 sparse matrix with 3 Int64 nonzero entries:
+         	[3, 1]  =  5
+         	[1, 2]  =  3
+         	[2, 2]  =  4
+\end{Verbatim}
+        
+    They can be converted into a dense matrix with the \texttt{full} command
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} full(A)
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}15}]:} 3×2 Array\{Int64,2\}:
+          0  3
+          0  4
+          5  0
+\end{Verbatim}
+        
+    The documentation shows a lot more that you can do.
+
+    \subsection{Special Matrix Types}\label{special-matrix-types}
+
+    Like the rest of Julia, types and multiple dispatch is used to
+``secretly enhance performance''. There are many matrix types, so I will
+just show a few and leave the rest to the documentation.
+
+\subsubsection{Matrix Forms}\label{matrix-forms}
+
+Many matrices follow specific forms: diagonal, tridiagonal, etc. Julia
+has special types for these common matrix forms. For example, we can
+define a \texttt{Tridiagonal} by giving it three vectors:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} A = Tridiagonal(2:5,1:5,1:4)
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}17}]:} 5×5 Tridiagonal\{Int64\}:
+          1  1  ⋅  ⋅  ⋅
+          2  2  2  ⋅  ⋅
+          ⋅  3  3  3  ⋅
+          ⋅  ⋅  4  4  4
+          ⋅  ⋅  ⋅  5  5
+\end{Verbatim}
+        
+    We can inspect it to see its internal form:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} fieldnames(A)
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}19}]:} 4-element Array\{Symbol,1\}:
+          :dl 
+          :d  
+          :du 
+          :du2
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} A.d
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}21}]:} 5-element Array\{Int64,1\}:
+          1
+          2
+          3
+          4
+          5
+\end{Verbatim}
+        
+    Notice that what the array stores is the vectors for the diagonals
+themselves. It's clear to see that this gives a memory enhancement over
+a dense matrix, and it gives a performance advantage because a dense
+matrix would have an extra operation for each \texttt{0}. However, it's
+also faster than a sprase matrix since a sparse matrix is stored as a
+table \texttt{(i,j,value)} and retriving from the table has a bit of
+overhead, while this is stored as 3 (actually 4\ldots{}) contiguous
+arrays. Therefore you get a performance boost by using a special matrix
+form like \texttt{Tridiagonal} whenever one is available. Note that
+these special matrix forms are outfitted with dispatches so that
+operations on them work seamlessly like with normal matrices. For
+example, we can multiply a Tridiagonal by a dense matrix:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} A*rand(5,5)
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}23}]:} 5×5 Array\{Float64,2\}:
+          0.780741  0.74277  0.193545  0.675908  1.248  
+          3.30878   3.08334  1.79876   2.54081   3.93285
+          5.81165   5.22405  4.35947   3.73634   6.53809
+          7.1226    4.86664  5.38682   6.70923   7.78302
+          4.535     2.08879  3.20436   5.41406   6.13665
+\end{Verbatim}
+        
+    \subsubsection{The UniformScaling
+Operator}\label{the-uniformscaling-operator}
+
+One interesting type is the \texttt{UniformScaling} operator \texttt{I}.
+Essentially, I uses dispatches to cleverly act like the identity matrix
+without ever forming a matrix. For example, to mathematically subtract a
+scalar \texttt{λ} from a matrix \texttt{A} we use the notation
+\[ A - \lambda I\]
+
+We can do this naturally with the \texttt{I} operator:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} λ = 2
+         A - λ*I
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}31}]:} 5×5 Tridiagonal\{Int64\}:
+          -1  1  ⋅  ⋅  ⋅
+           2  0  2  ⋅  ⋅
+           ⋅  3  1  3  ⋅
+           ⋅  ⋅  4  2  4
+           ⋅  ⋅  ⋅  5  3
+\end{Verbatim}
+        
+    The MATLAB or NumPy way would be to create the identity matrix via a
+command like \texttt{eye(5)}, but notice this prevents the allocation of
+a 5x5 array. For large matrices, this operation is huge and thus this
+could lead to some good performance improvements.
+
+    \subsubsection{Factorization Forms}\label{factorization-forms}
+
+One last type of interest are the factorization forms. In many cases,
+you factorize a matrix using some factorization command in order to
+speed up subsequence \texttt{A\textbackslash{}b} calls. Normally you
+have to remember how this is done. For example, we can use a QR
+factorization to solve a linear system like:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}42}]:} b = 1:5
+         A = rand(5,5)
+         Q,R = qr(A)
+         println(A\PYZbs{}b)
+         println(inv(R)*Q'*b)
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[76.7207,-41.2925,10.9053,24.3147,-27.5507]
+[76.7207,-41.2925,10.9053,24.3147,-27.5507]
+
+    \end{Verbatim}
+
+    Thus we can save the variables \texttt{Q} and \texttt{R} and use
+\texttt{inv(R)*Q'*b} instead of \texttt{A\textbackslash{}b} and get
+better performance. This is the NumPy/MATLAB way. However, that requires
+remembering the details of the factorization. Instead, we can have Julia
+return a factorization type:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}44}]:} q = qrfact(A)
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}44}]:} Base.LinAlg.QRCompactWY\{Float64,Array\{Float64,2\}\}([-0.59303 -0.936694 -1.45618 -1.1015 -1.56616; 0.175783 -0.424785 0.173332 -0.556283 0.156938; 0.144953 0.12557 0.387682 0.385917 0.496761; 0.245034 -0.697802 -0.470008 -0.372761 -0.333139; 0.354059 -0.029529 -0.000566456 -0.459193 -0.127657],[1.61641 -0.0269726 -0.0582957 -0.295851 0.0; 6.91248e-310 1.33017 -0.988298 0.736517 0.0; 6.91248e-310 0.0 1.63813 1.27101 0.0; 6.91248e-310 0.0 6.91249e-310 1.65172 0.0; 6.91248e-310 0.0 6.91249e-310 6.91249e-310 0.0])
+\end{Verbatim}
+        
+    What this does is it internally stores \texttt{Qt} (\texttt{Qt = Q'})
+and \texttt{Rinv} (\texttt{Rinv = inv(R)}). There is a dispatch defined
+for this type on ~which makes the \texttt{QRCompactWY} type perform the
+fast algorithm \texttt{Rinv*Qt*b}, giving you the performance without
+having to remember anything:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}46}]:} q\PYZbs{}b
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}46}]:} 5-element Array\{Float64,1\}:
+           76.7207
+          -41.2925
+           10.9053
+           24.3147
+          -27.5507
+\end{Verbatim}
+        
+    The result is fast algorithms with clean code.
+
+    \subsection{Random Numbers}\label{random-numbers}
+
+One last little detail is for random numbers. Uniform random numbers are
+generated by the \texttt{rand} function, while normal random numbers are
+generated by the \texttt{randn} function.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} rand(5)
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}6}]:} 5-element Array\{Float64,1\}:
+         0.308529
+         0.427921
+         0.196477
+         0.297359
+         0.128141
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} randn(5,5)
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}8}]:} 5×5 Array\{Float64,2\}:
+         -0.239053  -1.08253   -0.648596   0.167503   2.22728 
+          0.557901  -0.312473   1.29566    0.264857  -0.232809
+          0.172738  -1.58695   -0.180161  -2.93838    0.787948
+         -0.258095  -0.775395   1.67288   -0.641336   1.0621  
+          0.805768   1.29153   -0.50146    0.276417  -0.601687
+\end{Verbatim}
+        
+    The argument is the size of the array. You can make random numbers which
+match another array with the \texttt{size} function:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} a = [1 2
+              3 4]
+         randn(size(a))
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}11}]:} 2×2 Array\{Float64,2\}:
+          -0.291548   0.193372
+           1.53665   -0.830749
+\end{Verbatim}
+        
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

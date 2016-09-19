@@ -1,0 +1,1612 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font than Computer Modern for most use cases
+    \usepackage{palatino}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{QuickIntroduction}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\def\PY@tok@gd{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\def\PY@tok@gu{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\def\PY@tok@gt{\def\PY@tc##1{\textcolor[rgb]{0.00,0.25,0.82}{##1}}}
+\def\PY@tok@gs{\let\PY@bf=\textbf}
+\def\PY@tok@gr{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\def\PY@tok@cm{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\def\PY@tok@vg{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\def\PY@tok@m{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\def\PY@tok@mh{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\def\PY@tok@go{\def\PY@tc##1{\textcolor[rgb]{0.50,0.50,0.50}{##1}}}
+\def\PY@tok@ge{\let\PY@it=\textit}
+\def\PY@tok@vc{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\def\PY@tok@il{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\def\PY@tok@cs{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\def\PY@tok@cp{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\def\PY@tok@gi{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\def\PY@tok@gh{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\def\PY@tok@ni{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\def\PY@tok@nl{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\def\PY@tok@nn{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\def\PY@tok@no{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\def\PY@tok@na{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\def\PY@tok@nb{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@nc{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\def\PY@tok@nd{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\def\PY@tok@ne{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\def\PY@tok@nf{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\def\PY@tok@si{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\def\PY@tok@s2{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\def\PY@tok@vi{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\def\PY@tok@nt{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@nv{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\def\PY@tok@s1{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\def\PY@tok@sh{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\def\PY@tok@sc{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\def\PY@tok@sx{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@bp{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@c1{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\def\PY@tok@kc{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@c{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\def\PY@tok@mf{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\def\PY@tok@err{\def\PY@bc##1{\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{##1}}}
+\def\PY@tok@kd{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@ss{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\def\PY@tok@sr{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\def\PY@tok@mo{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\def\PY@tok@kn{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@mi{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\def\PY@tok@gp{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\def\PY@tok@o{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\def\PY@tok@kr{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@s{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\def\PY@tok@kp{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@w{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\def\PY@tok@kt{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\def\PY@tok@ow{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\def\PY@tok@sb{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\def\PY@tok@k{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@se{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\def\PY@tok@sd{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \subsection{A Quick Introduction to Basic
+Julia}\label{a-quick-introduction-to-basic-julia}
+
+This quick introduction assumes that you have basic knowledge of some
+scripting language and provides an example of the Julia syntax. So
+before we explain anything, let's just treat it like a scripting
+language, take a head-first dive into Julia, and see what happens.
+
+You'll notice that, given the right syntax, almost everything will
+``just work''. There will be some peculiarities, and these we will be
+the facts which we will study in much more depth. Usually, these
+oddies/differences from other scripting languages are ``the source of
+Julia's power''.
+
+    \subsubsection{Array Syntax}\label{array-syntax}
+
+The array syntax is similar to MATLAB's conventions.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} a = Vector\PYZob{}Float64\PYZcb{}(5) \PYZsh{} Create a length 5 Vector (dimension 1 array) of Float64's
+         
+         a = [1;2;3;4;5] \PYZsh{} Create the column vector [1 2 3 4 5]
+         
+         a = [1 2 3 4] \PYZsh{} Create the row vector [1 2 3 4]
+         
+         a[3] = 2 \PYZsh{} Change the third element of a (using linear indexing) to 2
+         
+         b = Matrix\PYZob{}Float64\PYZcb{}(4,2) \PYZsh{} Define a Matrix of Float64's of size (4,2)
+         
+         c = Array\PYZob{}Float64,4\PYZcb{}((4,5,6,7)) \PYZsh{} Define a (4,5,6,7) array of Float64's 
+         
+         mat    = [1 2 3 4
+                   3 4 5 6
+                   4 4 4 6
+                   3 3 3 3] \PYZsh{}Define the matrix inline 
+         
+         mat[1,2] = 4 \PYZsh{} Set element (1,2) (row 1, column 2) to 4
+         
+         mat
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}11}]:} 4×4 Array\{Int64,2\}:
+          1  4  3  4
+          3  4  5  6
+          4  4  4  6
+          3  3  3  3
+\end{Verbatim}
+        
+    Note that, in the console (called the REPL), you can use \texttt{;} to
+surpress the output. In a script this is done automatically. Note that
+the ``value'' of an array is its pointer to the memory location. This
+means that arrays which are set equal affect the same values:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} a = [1;3;4]
+         b = a
+         b[1] = 10
+         a
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} 3-element Array\{Int64,1\}:
+          10
+           3
+           4
+\end{Verbatim}
+        
+    To set an array equal to the values to another array, use copy
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} a = [1;4;5]
+         b = copy(a)
+         b[1] = 10
+         a
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}13}]:} 3-element Array\{Int64,1\}:
+          1
+          4
+          5
+\end{Verbatim}
+        
+    We can also make an array of a similar size and shape via the function
+\texttt{similar}, or make an array of zeros/ones with \texttt{zeros} or
+\texttt{ones} respectively:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} c = similar(a)
+         d = zeros(a)
+         e = ones(a)
+         println(c); println(d); println(e)
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[786432,0,0]
+[0,0,0]
+[1,1,1]
+
+    \end{Verbatim}
+
+    Note that arrays can be index'd by arrays:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} a[1:2]
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}15}]:} 2-element Array\{Int64,1\}:
+          1
+          4
+\end{Verbatim}
+        
+    Arrays can be of any type, specified by the type parameter. One
+interesting thing is that this means that arrays can be of arrays:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} a = Vector\PYZob{}Vector\PYZob{}Float64\PYZcb{}\PYZcb{}(3)
+         a[1] = [1;2;3]
+         a[2] = [1;2]
+         a[3] = [3;4;5]
+         a
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} 3-element Array\{Array\{Float64,1\},1\}:
+          [1.0,2.0,3.0]
+          [1.0,2.0]    
+          [3.0,4.0,5.0]
+\end{Verbatim}
+        
+    \begin{center}\rule{3in}{0.4pt}\end{center}
+
+\paragraph{Question 1}\label{question-1}
+
+Can you explain the following behavior? Julia's community values
+consistancy of the rules, so all of the behavior is deducible from
+simple rules. (Hint: I have noted all of the rules involved here).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} b = a
+         b[1] = [1;4;5]
+         a
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}14}]:} 3-element Array\{Array\{Float64,1\},1\}:
+          [1.0,4.0,5.0]
+          [1.0,2.0]    
+          [3.0,4.0,5.0]
+\end{Verbatim}
+        
+    \begin{center}\rule{3in}{0.4pt}\end{center}
+
+To fix this, there is a recursive copy function: \texttt{deepcopy}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} b = deepcopy(a)
+         b[1] = [1;2;3]
+         a
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}16}]:} 3-element Array\{Array\{Float64,1\},1\}:
+          [1.0,4.0,5.0]
+          [1.0,2.0]    
+          [3.0,4.0,5.0]
+\end{Verbatim}
+        
+    For high performance, Julia provides mutating functions. These functions
+change the input values that are passed in, instead of returning a new
+value. By convention, mutating functions tend to be defined with a
+\texttt{!} at the end and tend to mutate their first argument. An
+example of a mutating function in \texttt{scale!} which scales an array
+by a scalar (or array)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} a = [1;6;8]
+         scale!(a,2) \PYZsh{} a changes
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}19}]:} 3-element Array\{Int64,1\}:
+           2
+          12
+          16
+\end{Verbatim}
+        
+    The purpose of mutating functions is that they allow one to reduce the
+number of memory allocations which is crucial for achiving high
+performance.
+
+    \subsection{Control Flow}\label{control-flow}
+
+Control flow in Julia is pretty standard. You have your basic for and
+while loops, and your if statements. There's more in the documentation.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} for i=1:5 \PYZsh{}for i goes from 1 to 5
+             println(i)
+         end
+         
+         t = 0
+         while t<5
+             println(t)
+             t+=1 \PYZsh{} t = t + 1
+         end
+         
+         school = :UCI
+         
+         if school==:UCI
+             println("ZotZotZot")
+         else
+             println("Not even worth discussing.")
+         end
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+1
+2
+3
+4
+5
+0
+1
+2
+3
+4
+ZotZotZot
+
+    \end{Verbatim}
+
+    One interesting feature about Julia control flow is that we can write
+multiple loops in one line:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} for i=1:2,j=2:4
+             println(i*j)
+         end
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+2
+3
+4
+4
+6
+8
+
+    \end{Verbatim}
+
+    \subsection{Function Syntax}\label{function-syntax}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} f(x,y) = 2x+y \PYZsh{} Create an inline function
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}20}]:} f (generic function with 1 method)
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} f(1,2) \PYZsh{} Call the function
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}22}]:} 4
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} function f(x)
+           x+2  
+         end \PYZsh{} Long form definition
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+WARNING: Method definition f(Any) in module Main at In[23]:2 overwritten at In[24]:2.
+
+    \end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}24}]:} f (generic function with 2 methods)
+\end{Verbatim}
+        
+    By default, Julia functions return the last value computed within them.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} f(2)
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}26}]:} 4
+\end{Verbatim}
+        
+    A key feature of Julia is multiple dispatch. Notice here that there is
+``one function'', \texttt{f}, with two methods. Methods are the
+actionable parts of a function. Here, there is one method defined as
+\texttt{(::Any,::Any)} and \texttt{(::Any)}, meaning that if you give
+\texttt{f} two values then it will call the first method, and if you
+give it one value then it will call the second method.
+
+Multiple dispatch works on types. To define a dispatch on a type, use
+the \texttt{::Type} signifier:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} f(x::Int,y::Int) = 3x+2y
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+WARNING: Method definition f(Int64, Int64) in module Main at In[28]:1 overwritten at In[35]:1.
+
+    \end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}35}]:} f (generic function with 4 methods)
+\end{Verbatim}
+        
+    Julia will dispatch onto the strictest acceptible type signature.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} f(2,3) \PYZsh{} 3x+2y
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}30}]:} 12
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} f(2.0,3) \PYZsh{} 2x+y since 2.0 is not an Int
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}32}]:} 7.0
+\end{Verbatim}
+        
+    Types in signatures can be parametric. For example, we can define a
+method for ``two values are passed in, both Numbers and having the same
+type''. Note that \texttt{\textless{}:} means ``a subtype of''.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} f\PYZob{}T<:Number\PYZcb{}(x::T,y::T) = 4x+10y
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:} f (generic function with 1 method)
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} f(2,3) \PYZsh{} 3x+2y since (::Int,::Int) is stricter
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}37}]:} 12
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} f(2.0,3.0) \PYZsh{} 4x+10y
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}4}]:} 38.0
+\end{Verbatim}
+        
+    Note that type parameterizations can have as many types as possible, and
+do not need to declare a supertype. For example, we can say that there
+is an \texttt{x} which must be a Number, while \texttt{y} and \texttt{z}
+must match types:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} f\PYZob{}T<:Number,T2\PYZcb{}(x::T,y::T2,z::T2) = 5x + 5y + 5z
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}5}]:} f (generic function with 2 methods)
+\end{Verbatim}
+        
+    We will go into more depth on multiple dispatch later since this is the
+core design feature of Julia. The key feature is that Julia functions
+specialize on the types of their arguments. This means that \texttt{f}
+is a separately compiled function for each method (and for parametric
+types, each possible method). The first time it is called it will
+compile.
+
+\begin{center}\rule{3in}{0.4pt}\end{center}
+
+\paragraph{Question 2}\label{question-2}
+
+Can you explain these timings?
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} f(x,y,z,w) = x+y+z+w
+         @time f(1,1,1,1)
+         @time f(1,1,1,1)
+         @time f(1,1,1,1)
+         @time f(1,1,1,1.0)
+         @time f(1,1,1,1.0)
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+  0.003228 seconds (257 allocations: 13.354 KB)
+  0.000001 seconds (3 allocations: 144 bytes)
+  0.000001 seconds (3 allocations: 144 bytes)
+  0.002551 seconds (274 allocations: 14.007 KB)
+  0.000001 seconds (4 allocations: 160 bytes)
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+WARNING: Method definition f(Any, Any, Any, Any) in module Main at In[12]:1 overwritten at In[13]:1.
+
+    \end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}13}]:} 4.0
+\end{Verbatim}
+        
+    \begin{center}\rule{3in}{0.4pt}\end{center}
+
+Note that functions can also feature optional arguments:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}42}]:} function test\PYZus{}function(x,y;z=0) \PYZsh{}z is an optional argument
+           if z==0
+             return x+y,x*y \PYZsh{}Return a tuple
+           else
+           return x*y*z,x+y+z \PYZsh{}Return a different tuple
+           \PYZsh{}whitespace is optional
+           end \PYZsh{}End if statement
+         end \PYZsh{}End function definition
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}42}]:} test\_function (generic function with 1 method)
+\end{Verbatim}
+        
+    Here, if z is not specified, then it's 0.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}45}]:} x,y = test\PYZus{}function(1,2)
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}45}]:} (3,2)
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}46}]:} x,y = test\PYZus{}function(1,2;z=3)
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}46}]:} (6,6)
+\end{Verbatim}
+        
+    Notice that we also featured multiple return values.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}47}]:} println(x); println(y)
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+6
+6
+
+    \end{Verbatim}
+
+    The return type for multiple return values is a Tuple. The syntax for a
+tuple is \texttt{(x,y,z,...)} or inside of functions you can use the
+shorthand \texttt{x,y,z,...} as shown.
+
+Note that functions in Julia are ``first-class''. This means that
+functions are just a type themselves. Therefore functions can make
+functions, you can store functions as variables, pass them as variables,
+etc. For example:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} function function\PYZus{}playtime(x) \PYZsh{}z is an optional argument
+            y = 2+x
+            function test()
+                2y \PYZsh{} y is defined in the previous scope, so it's available here
+            end
+            z = test() * test()
+            return z,test
+        end \PYZsh{}End function definition
+        z,test = function\PYZus{}playtime(2)
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+WARNING: Method definition function\_playtime(Any) in module Main at In[6]:2 overwritten at In[7]:2.
+
+    \end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:} (64,test)
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} test()
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}14}]:} 8
+\end{Verbatim}
+        
+    Notice that \texttt{test()} does not get passed in \texttt{y} but knows
+what \texttt{y} is. This is due to the function scoping rules: an inner
+function can know the variables defined in the same scope as the
+function. This rule is recursive, leading us to the conclusion that the
+top level scope is global. Yes, that means
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} a = 2
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}18}]:} 2
+\end{Verbatim}
+        
+    defines a global variable. We will go into more detail on this.
+
+Lastly we show the anonymous function syntax. This allows you to define
+a function inline.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} g = (x,y) -> 2x+y
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}20}]:} (::\#5) (generic function with 1 method)
+\end{Verbatim}
+        
+    Unlike named functions, \texttt{g} is simply a function in a variable
+and can be overwritten at any time:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} g = (x) -> 2x
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}21}]:} (::\#7) (generic function with 1 method)
+\end{Verbatim}
+        
+    An anonymous function cannot have more than 1 dispatch. However, as of
+v0.5, they are compiled and thus do not have any performance
+disadvantages from named functions.
+
+    \subsection{Type Declaration Syntax}\label{type-declaration-syntax}
+
+A type is what in many other languages is an ``object''. If that is a
+foreign concept, thing of a type as a thing which has named components.
+A type is the idea for what the thing is, while an instantiation of the
+type is a specific one. For example, you can think of a car as having an
+make and a model. So that means a Toyota RAV4 is an instantiation of the
+car type.
+
+In Julia, we would define the car type as follows:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}48}]:} type Car
+             make
+             model
+         end
+\end{Verbatim}
+
+    We could then make the instance of a car as follows:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}49}]:} mycar = Car("Toyota","Rav4")
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}49}]:} Car("Toyota","Rav4")
+\end{Verbatim}
+        
+    Here I introduced the string syntax for Julia which uses ``\ldots{}''
+(like most other languages, I'm glaring at you MATLAB). I can grab the
+``fields'' of my type using the \texttt{.} syntax:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}51}]:} mycar.make
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}51}]:} "Toyota"
+\end{Verbatim}
+        
+    To ``enhance Julia's performance'', one usually likes to make the typing
+stricter. For example, we can define a WorkshopParticipant (notice the
+convention for types is capital letters, CamelCase) as having a name and
+a field. The name will be a string and the field will be a Symbol type,
+(defined by :Symbol, which we will go into plenty more detail later).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}52}]:} type WorkshopParticipant
+             name::String
+             field::Symbol
+         end
+         tony = WorkshopParticipant("Tony",:physics)
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}52}]:} WorkshopParticipant("Tony",:physics)
+\end{Verbatim}
+        
+    As with functions, types can be set ``parametrically''. For example, we
+can have an StaffMember have a name and a field, but also an age. We can
+allow this age to be any Number type as follows:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} type StaffMember\PYZob{}T<:Number\PYZcb{}
+            name::String
+            field::Symbol
+            age::T
+        end
+        ter = StaffMember("Terry",:football,17)
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}1}]:} StaffMember\{Int64\}("Terry",:football,17)
+\end{Verbatim}
+        
+    The rules for parametric typing is the same as for functions. Note that
+most of Julia's types, like Float64 and Int, are natively defined in
+Julia in this manner. This means that there's no limit for user defined
+types, only your imagination. Indeed, many of Julia's features first
+start out as a prototyping package before it's ever moved into Base (the
+Julia library that ships as the Base module in every installation).
+
+Lastly, there exist abstract types. These types cannot be instantiated
+but are used to build the type hierarchy. You've already seen one
+abstract type, Number. We can define one for Person using the Abstract
+keyword
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} abstract Person
+\end{Verbatim}
+
+    Then we can set types as a subtype of person
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} type Student <: Person
+             grade
+         end
+\end{Verbatim}
+
+    \begin{center}\rule{3in}{0.4pt}\end{center}
+
+\paragraph{Question 3}\label{question-3}
+
+Can you make a function \texttt{k(x)} where \texttt{x} has to be a
+Person?
+
+\begin{center}\rule{3in}{0.4pt}\end{center}
+
+Another ``version'' of type is \texttt{immutable}. When one uses
+\texttt{immutable}, the fields of the type cannot be changed. However,
+Julia will automatically stack allocate immutable types, whereas
+standard types are heap allocated. If this is unfamiliar terminology,
+then think of this as meaning that immutable types are able to be stored
+closer to the CPU and have less cost for memory access (this is a detail
+not present in many scripting languages). Many things like Julia's
+built-in Number types are defined as \texttt{immutable} in order to give
+good performance.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}63}]:} immutable Field
+             name
+             school
+         end
+         ds = Field(:DataScience,[:PhysicalScience;:ComputerScience])
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+WARNING: Method definition (::Type\{Main.Field\})(Any, Any) in module Main at In[58]:2 overwritten at In[63]:2.
+
+    \end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}63}]:} Field(:DataScience,Symbol[:PhysicalScience,:ComputerScience])
+\end{Verbatim}
+        
+    \begin{center}\rule{3in}{0.4pt}\end{center}
+
+\paragraph{Question 4}\label{question-4}
+
+Can you explain this interesting quirk? Thus Field is immutable, meaning
+that \texttt{ds.name} and \texttt{ds.school} cannot be changed:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}64}]:} ds.name = :ComputationalStatistics
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        LoadError: type Field is immutable
+    while loading In[64], in expression starting on line 1
+
+        
+
+    \end{Verbatim}
+
+    However, the following is allowed:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}65}]:} push!(ds.school,:BiologicalScience)
+         ds.school
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}65}]:} 3-element Array\{Symbol,1\}:
+          :PhysicalScience  
+          :ComputerScience  
+          :BiologicalScience
+\end{Verbatim}
+        
+    (Hint: recall that an array is not the values itself, but a pointer to
+the memory of the values)
+
+\begin{center}\rule{3in}{0.4pt}\end{center}
+
+    One important detail in Julia is that everything is a type (and every
+piece of code is an Expression type, more on this later). Thus functions
+are also types, which we can access the fields of. Not only is
+everything compiled down to C, but all of the ``C parts'' are always
+accessible. For example, we can, if we so choose, get a function
+pointer:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}46}]:} foo(x) = 2x
+         first(methods(foo)).lambda\PYZus{}template.fptr
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}46}]:} Ptr\{Void\} @0x0000000000000000
+\end{Verbatim}
+        
+    \subsection{Documentation and
+``Hunting''}\label{documentation-and-hunting}
+
+The main source of information is the
+\href{http://docs.julialang.org/en/latest/manual/}{Julia Documentation}.
+Julia also provides lots of built-in documentation and ways to find out
+what's going on. The number of tools for ``hunting down what's going on
+/ available'' is too numerous to explain in full detail here, so instead
+this will just touch on what's important. For example, the ? gets you to
+the documentation for a type, function, etc.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} ?copy
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+search: copy copy! copysign deepcopy unsafe\_copy! cospi complex Complex
+
+
+    \end{Verbatim}
+\texttt{\color{outcolor}Out[{\color{outcolor}23}]:}
+    
+    \begin{verbatim}
+copy(x)
+\end{verbatim}
+
+Create a shallow copy of \texttt{x}: the outer structure is copied, but
+not all internal values. For example, copying an array produces a new
+array with identically-same elements as the original.
+
+    
+
+    To find out what methods are available, we can use the \texttt{methods}
+function. For example, let's see how \texttt{+} is defined:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} methods(+)
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}25}]:} \# 163 methods for generic function "+":
+         +(x::Bool, z::Complex\{Bool\}) at complex.jl:136
+         +(x::Bool, y::Bool) at bool.jl:48
+         +(x::Bool) at bool.jl:45
+         +\{T<:AbstractFloat\}(x::Bool, y::T) at bool.jl:55
+         +(x::Bool, z::Complex) at complex.jl:143
+         +(x::Bool, A::AbstractArray\{Bool,N<:Any\}) at arraymath.jl:91
+         +(x::Float32, y::Float32) at float.jl:239
+         +(x::Float64, y::Float64) at float.jl:240
+         +(z::Complex\{Bool\}, x::Bool) at complex.jl:137
+         +(z::Complex\{Bool\}, x::Real) at complex.jl:151
+         +(a::Float16, b::Float16) at float16.jl:136
+         +(x::Char, y::Integer) at char.jl:40
+         +(c::BigInt, x::BigFloat) at mpfr.jl:240
+         +(a::BigInt, b::BigInt, c::BigInt, d::BigInt, e::BigInt) at gmp.jl:298
+         +(a::BigInt, b::BigInt, c::BigInt, d::BigInt) at gmp.jl:291
+         +(a::BigInt, b::BigInt, c::BigInt) at gmp.jl:285
+         +(x::BigInt, y::BigInt) at gmp.jl:255
+         +(x::BigInt, c::Union\{UInt16,UInt32,UInt64,UInt8\}) at gmp.jl:310
+         +(x::BigInt, c::Union\{Int16,Int32,Int64,Int8\}) at gmp.jl:326
+         +(a::BigFloat, b::BigFloat, c::BigFloat, d::BigFloat, e::BigFloat) at mpfr.jl:388
+         +(a::BigFloat, b::BigFloat, c::BigFloat, d::BigFloat) at mpfr.jl:381
+         +(a::BigFloat, b::BigFloat, c::BigFloat) at mpfr.jl:375
+         +(x::BigFloat, c::BigInt) at mpfr.jl:236
+         +(x::BigFloat, y::BigFloat) at mpfr.jl:205
+         +(x::BigFloat, c::Union\{UInt16,UInt32,UInt64,UInt8\}) at mpfr.jl:212
+         +(x::BigFloat, c::Union\{Int16,Int32,Int64,Int8\}) at mpfr.jl:220
+         +(x::BigFloat, c::Union\{Float16,Float32,Float64\}) at mpfr.jl:228
+         +\{T\}(B::BitArray\{2\}, J::UniformScaling\{T\}) at linalg/uniformscaling.jl:38
+         +(a::Base.Pkg.Resolve.VersionWeights.VWPreBuildItem, b::Base.Pkg.Resolve.VersionWeights.VWPreBuildItem) at pkg/resolve/versionweight.jl:85
+         +(a::Base.Pkg.Resolve.VersionWeights.VWPreBuild, b::Base.Pkg.Resolve.VersionWeights.VWPreBuild) at pkg/resolve/versionweight.jl:131
+         +(a::Base.Pkg.Resolve.VersionWeights.VersionWeight, b::Base.Pkg.Resolve.VersionWeights.VersionWeight) at pkg/resolve/versionweight.jl:185
+         +(a::Base.Pkg.Resolve.MaxSum.FieldValues.FieldValue, b::Base.Pkg.Resolve.MaxSum.FieldValues.FieldValue) at pkg/resolve/fieldvalue.jl:44
+         +(x::Base.Dates.CompoundPeriod, y::Base.Dates.CompoundPeriod) at dates/periods.jl:314
+         +(x::Base.Dates.CompoundPeriod, y::Base.Dates.Period) at dates/periods.jl:312
+         +(x::Base.Dates.CompoundPeriod, y::Base.Dates.TimeType) at dates/periods.jl:359
+         +(dt::DateTime, z::Base.Dates.Month) at dates/arithmetic.jl:37
+         +(dt::DateTime, y::Base.Dates.Year) at dates/arithmetic.jl:13
+         +(x::DateTime, y::Base.Dates.Period) at dates/arithmetic.jl:64
+         +(x::Date, y::Base.Dates.Day) at dates/arithmetic.jl:62
+         +(x::Date, y::Base.Dates.Week) at dates/arithmetic.jl:60
+         +(dt::Date, z::Base.Dates.Month) at dates/arithmetic.jl:43
+         +(dt::Date, y::Base.Dates.Year) at dates/arithmetic.jl:17
+         +(y::AbstractFloat, x::Bool) at bool.jl:57
+         +\{T<:Union\{Int128,Int16,Int32,Int64,Int8,UInt128,UInt16,UInt32,UInt64,UInt8\}\}(x::T, y::T) at int.jl:32
+         +(x::Integer, y::Ptr) at pointer.jl:108
+         +(z::Complex, w::Complex) at complex.jl:125
+         +(z::Complex, x::Bool) at complex.jl:144
+         +(x::Real, z::Complex\{Bool\}) at complex.jl:150
+         +(x::Real, z::Complex) at complex.jl:162
+         +(z::Complex, x::Real) at complex.jl:163
+         +(x::Rational, y::Rational) at rational.jl:199
+         +(x::Integer, y::Char) at char.jl:41
+         +\{N\}(i::Integer, index::CartesianIndex\{N\}) at multidimensional.jl:58
+         +(c::Union\{UInt16,UInt32,UInt64,UInt8\}, x::BigInt) at gmp.jl:314
+         +(c::Union\{Int16,Int32,Int64,Int8\}, x::BigInt) at gmp.jl:327
+         +(c::Union\{UInt16,UInt32,UInt64,UInt8\}, x::BigFloat) at mpfr.jl:216
+         +(c::Union\{Int16,Int32,Int64,Int8\}, x::BigFloat) at mpfr.jl:224
+         +(c::Union\{Float16,Float32,Float64\}, x::BigFloat) at mpfr.jl:232
+         +(x::Irrational, y::Irrational) at irrationals.jl:88
+         +(x::Number) at operators.jl:115
+         +\{T<:Number\}(x::T, y::T) at promotion.jl:255
+         +(x::Number, y::Number) at promotion.jl:190
+         +(r1::OrdinalRange, r2::OrdinalRange) at operators.jl:505
+         +\{T<:AbstractFloat\}(r1::FloatRange\{T\}, r2::FloatRange\{T\}) at operators.jl:512
+         +\{T<:AbstractFloat\}(r1::LinSpace\{T\}, r2::LinSpace\{T\}) at operators.jl:531
+         +(r1::Union\{FloatRange,LinSpace,OrdinalRange\}, r2::Union\{FloatRange,LinSpace,OrdinalRange\}) at operators.jl:544
+         +(x::Ptr, y::Integer) at pointer.jl:106
+         +(A::BitArray, B::BitArray) at bitarray.jl:1042
+         +(A::Array\{T<:Any,2\}, B::Diagonal) at linalg/special.jl:121
+         +(A::Array\{T<:Any,2\}, B::Bidiagonal) at linalg/special.jl:121
+         +(A::Array\{T<:Any,2\}, B::Tridiagonal) at linalg/special.jl:121
+         +(A::Array\{T<:Any,2\}, B::SymTridiagonal) at linalg/special.jl:130
+         +(A::Array\{T<:Any,2\}, B::Base.LinAlg.AbstractTriangular) at linalg/special.jl:158
+         +(A::Array, B::SparseMatrixCSC) at sparse/sparsematrix.jl:1711
+         +\{P<:Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}\}(x::Union\{Base.ReshapedArray\{P,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\{P,N<:Any\},SubArray\{P,N<:Any,A<:Union\{Base.ReshapedArray\{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\},I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex,Colon,Int64,Range\{Int64\}\},N<:Any\}\},L<:Any\}\}) at dates/periods.jl:323
+         +(A::AbstractArray\{Bool,N<:Any\}, x::Bool) at arraymath.jl:90
+         +(A::SymTridiagonal, B::SymTridiagonal) at linalg/tridiag.jl:96
+         +(A::Tridiagonal, B::Tridiagonal) at linalg/tridiag.jl:494
+         +(A::UpperTriangular, B::UpperTriangular) at linalg/triangular.jl:357
+         +(A::LowerTriangular, B::LowerTriangular) at linalg/triangular.jl:358
+         +(A::UpperTriangular, B::Base.LinAlg.UnitUpperTriangular) at linalg/triangular.jl:359
+         +(A::LowerTriangular, B::Base.LinAlg.UnitLowerTriangular) at linalg/triangular.jl:360
+         +(A::Base.LinAlg.UnitUpperTriangular, B::UpperTriangular) at linalg/triangular.jl:361
+         +(A::Base.LinAlg.UnitLowerTriangular, B::LowerTriangular) at linalg/triangular.jl:362
+         +(A::Base.LinAlg.UnitUpperTriangular, B::Base.LinAlg.UnitUpperTriangular) at linalg/triangular.jl:363
+         +(A::Base.LinAlg.UnitLowerTriangular, B::Base.LinAlg.UnitLowerTriangular) at linalg/triangular.jl:364
+         +(A::Base.LinAlg.AbstractTriangular, B::Base.LinAlg.AbstractTriangular) at linalg/triangular.jl:365
+         +(Da::Diagonal, Db::Diagonal) at linalg/diagonal.jl:110
+         +(A::Bidiagonal, B::Bidiagonal) at linalg/bidiag.jl:256
+         +(UL::UpperTriangular, J::UniformScaling) at linalg/uniformscaling.jl:55
+         +(UL::Base.LinAlg.UnitUpperTriangular, J::UniformScaling) at linalg/uniformscaling.jl:58
+         +(UL::LowerTriangular, J::UniformScaling) at linalg/uniformscaling.jl:55
+         +(UL::Base.LinAlg.UnitLowerTriangular, J::UniformScaling) at linalg/uniformscaling.jl:58
+         +(A::Diagonal, B::Bidiagonal) at linalg/special.jl:120
+         +(A::Bidiagonal, B::Diagonal) at linalg/special.jl:121
+         +(A::Diagonal, B::Tridiagonal) at linalg/special.jl:120
+         +(A::Tridiagonal, B::Diagonal) at linalg/special.jl:121
+         +(A::Diagonal, B::Array\{T<:Any,2\}) at linalg/special.jl:120
+         +(A::Bidiagonal, B::Tridiagonal) at linalg/special.jl:120
+         +(A::Tridiagonal, B::Bidiagonal) at linalg/special.jl:121
+         +(A::Bidiagonal, B::Array\{T<:Any,2\}) at linalg/special.jl:120
+         +(A::Tridiagonal, B::Array\{T<:Any,2\}) at linalg/special.jl:120
+         +(A::SymTridiagonal, B::Tridiagonal) at linalg/special.jl:129
+         +(A::Tridiagonal, B::SymTridiagonal) at linalg/special.jl:130
+         +(A::SymTridiagonal, B::Array\{T<:Any,2\}) at linalg/special.jl:129
+         +(A::Diagonal, B::SymTridiagonal) at linalg/special.jl:138
+         +(A::SymTridiagonal, B::Diagonal) at linalg/special.jl:139
+         +(A::Bidiagonal, B::SymTridiagonal) at linalg/special.jl:138
+         +(A::SymTridiagonal, B::Bidiagonal) at linalg/special.jl:139
+         +(A::Diagonal, B::UpperTriangular) at linalg/special.jl:150
+         +(A::UpperTriangular, B::Diagonal) at linalg/special.jl:151
+         +(A::Diagonal, B::Base.LinAlg.UnitUpperTriangular) at linalg/special.jl:150
+         +(A::Base.LinAlg.UnitUpperTriangular, B::Diagonal) at linalg/special.jl:151
+         +(A::Diagonal, B::LowerTriangular) at linalg/special.jl:150
+         +(A::LowerTriangular, B::Diagonal) at linalg/special.jl:151
+         +(A::Diagonal, B::Base.LinAlg.UnitLowerTriangular) at linalg/special.jl:150
+         +(A::Base.LinAlg.UnitLowerTriangular, B::Diagonal) at linalg/special.jl:151
+         +(A::Base.LinAlg.AbstractTriangular, B::SymTridiagonal) at linalg/special.jl:157
+         +(A::SymTridiagonal, B::Base.LinAlg.AbstractTriangular) at linalg/special.jl:158
+         +(A::Base.LinAlg.AbstractTriangular, B::Tridiagonal) at linalg/special.jl:157
+         +(A::Tridiagonal, B::Base.LinAlg.AbstractTriangular) at linalg/special.jl:158
+         +(A::Base.LinAlg.AbstractTriangular, B::Bidiagonal) at linalg/special.jl:157
+         +(A::Bidiagonal, B::Base.LinAlg.AbstractTriangular) at linalg/special.jl:158
+         +(A::Base.LinAlg.AbstractTriangular, B::Array\{T<:Any,2\}) at linalg/special.jl:157
+         +\{P<:Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}\}(Y::Union\{Base.ReshapedArray\{P,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\{P,N<:Any\},SubArray\{P,N<:Any,A<:Union\{Base.ReshapedArray\{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\},I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex,Colon,Int64,Range\{Int64\}\},N<:Any\}\},L<:Any\}\}, x::Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}) at dates/periods.jl:337
+         +\{P<:Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\},Q<:Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}\}(X::Union\{Base.ReshapedArray\{P,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\{P,N<:Any\},SubArray\{P,N<:Any,A<:Union\{Base.ReshapedArray\{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\},I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex,Colon,Int64,Range\{Int64\}\},N<:Any\}\},L<:Any\}\}, Y::Union\{Base.ReshapedArray\{Q,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\{Q,N<:Any\},SubArray\{Q,N<:Any,A<:Union\{Base.ReshapedArray\{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\},I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex,Colon,Int64,Range\{Int64\}\},N<:Any\}\},L<:Any\}\}) at dates/periods.jl:338
+         +\{T<:Base.Dates.TimeType,P<:Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}\}(x::Union\{Base.ReshapedArray\{P,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\{P,N<:Any\},SubArray\{P,N<:Any,A<:Union\{Base.ReshapedArray\{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\},I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex,Colon,Int64,Range\{Int64\}\},N<:Any\}\},L<:Any\}\}, y::T) at dates/arithmetic.jl:83
+         +\{T<:Base.Dates.TimeType\}(r::Range\{T\}, x::Base.Dates.Period) at dates/ranges.jl:39
+         +\{Tv1,Ti1,Tv2,Ti2\}(A\_1::SparseMatrixCSC\{Tv1,Ti1\}, A\_2::SparseMatrixCSC\{Tv2,Ti2\}) at sparse/sparsematrix.jl:1697
+         +(A::SparseMatrixCSC, B::Array) at sparse/sparsematrix.jl:1709
+         +(A::SparseMatrixCSC, J::UniformScaling) at sparse/sparsematrix.jl:3811
+         +(x::AbstractSparseArray\{Tv<:Any,Ti<:Any,1\}, y::AbstractSparseArray\{Tv<:Any,Ti<:Any,1\}) at sparse/sparsevector.jl:1179
+         +(x::Union\{Base.ReshapedArray\{T<:Any,1,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\{T<:Any,1\},SubArray\{T<:Any,1,A<:Union\{Base.ReshapedArray\{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\},I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex,Colon,Int64,Range\{Int64\}\},N<:Any\}\},L<:Any\}\}, y::AbstractSparseArray\{Tv<:Any,Ti<:Any,1\}) at sparse/sparsevector.jl:1180
+         +(x::AbstractSparseArray\{Tv<:Any,Ti<:Any,1\}, y::Union\{Base.ReshapedArray\{T<:Any,1,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\{T<:Any,1\},SubArray\{T<:Any,1,A<:Union\{Base.ReshapedArray\{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\},I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex,Colon,Int64,Range\{Int64\}\},N<:Any\}\},L<:Any\}\}) at sparse/sparsevector.jl:1181
+         +\{T<:Number\}(x::AbstractArray\{T,N<:Any\}) at abstractarraymath.jl:91
+         +\{R,S\}(A::AbstractArray\{R,N<:Any\}, B::AbstractArray\{S,N<:Any\}) at arraymath.jl:49
+         +(A::AbstractArray, x::Number) at arraymath.jl:94
+         +(x::Number, A::AbstractArray) at arraymath.jl:95
+         +\{N\}(index1::CartesianIndex\{N\}, index2::CartesianIndex\{N\}) at multidimensional.jl:52
+         +\{N\}(index::CartesianIndex\{N\}, i::Integer) at multidimensional.jl:57
+         +(J1::UniformScaling, J2::UniformScaling) at linalg/uniformscaling.jl:37
+         +(J::UniformScaling, B::BitArray\{2\}) at linalg/uniformscaling.jl:39
+         +(J::UniformScaling, A::AbstractArray\{T<:Any,2\}) at linalg/uniformscaling.jl:40
+         +(J::UniformScaling, x::Number) at linalg/uniformscaling.jl:41
+         +(x::Number, J::UniformScaling) at linalg/uniformscaling.jl:42
+         +\{TA,TJ\}(A::AbstractArray\{TA,2\}, J::UniformScaling\{TJ\}) at linalg/uniformscaling.jl:102
+         +\{T\}(a::Base.Pkg.Resolve.VersionWeights.HierarchicalValue\{T\}, b::Base.Pkg.Resolve.VersionWeights.HierarchicalValue\{T\}) at pkg/resolve/versionweight.jl:23
+         +\{P<:Base.Dates.Period\}(x::P, y::P) at dates/periods.jl:70
+         +(x::Base.Dates.Period, y::Base.Dates.Period) at dates/periods.jl:311
+         +(y::Base.Dates.Period, x::Base.Dates.CompoundPeriod) at dates/periods.jl:313
+         +(y::Base.Dates.Period, x::Base.Dates.TimeType) at dates/arithmetic.jl:66
+         +\{T<:Base.Dates.TimeType\}(x::Base.Dates.Period, r::Range\{T\}) at dates/ranges.jl:40
+         +(x::Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}) at dates/periods.jl:322
+         +\{P<:Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}\}(x::Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}, Y::Union\{Base.ReshapedArray\{P,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\{P,N<:Any\},SubArray\{P,N<:Any,A<:Union\{Base.ReshapedArray\{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\},I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex,Colon,Int64,Range\{Int64\}\},N<:Any\}\},L<:Any\}\}) at dates/periods.jl:336
+         +(x::Base.Dates.TimeType) at dates/arithmetic.jl:8
+         +(a::Base.Dates.TimeType, b::Base.Dates.Period, c::Base.Dates.Period) at dates/periods.jl:348
+         +(a::Base.Dates.TimeType, b::Base.Dates.Period, c::Base.Dates.Period, d::Base.Dates.Period{\ldots}) at dates/periods.jl:350
+         +(x::Base.Dates.TimeType, y::Base.Dates.CompoundPeriod) at dates/periods.jl:354
+         +(x::Base.Dates.Instant) at dates/arithmetic.jl:4
+         +\{T<:Base.Dates.TimeType\}(x::AbstractArray\{T,N<:Any\}, y::Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}) at dates/arithmetic.jl:76
+         +\{T<:Base.Dates.TimeType\}(y::Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}, x::AbstractArray\{T,N<:Any\}) at dates/arithmetic.jl:77
+         +\{P<:Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}\}(y::Base.Dates.TimeType, x::Union\{Base.ReshapedArray\{P,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\{P,N<:Any\},SubArray\{P,N<:Any,A<:Union\{Base.ReshapedArray\{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\},I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex,Colon,Int64,Range\{Int64\}\},N<:Any\}\},L<:Any\}\}) at dates/arithmetic.jl:84
+         +(a, b, c, xs{\ldots}) at operators.jl:138
+\end{Verbatim}
+        
+    We can inspect a type by finding its fields with \texttt{fieldnames}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} fieldnames(LinSpace)
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}40}]:} 4-element Array\{Symbol,1\}:
+          :start  
+          :stop   
+          :len    
+          :divisor
+\end{Verbatim}
+        
+    and find out which method was used with the \texttt{@which} macro:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}43}]:} @which copy([1,2,3])
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}43}]:} copy\{T<:Array\{T,N\}\}(a::T) at array.jl:70
+\end{Verbatim}
+        
+    Notice that this gives you a link to the source code where the function
+is defined.
+
+    Lastly, we can find out what type a variable is with the \texttt{typeof}
+function:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}44}]:} a = [1;2;3]
+         typeof(a)
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}44}]:} Array\{Int64,1\}
+\end{Verbatim}
+        
+    \subsection{Some Basic Types}\label{some-basic-types}
+
+Julia provides many basic types. Indeed, you will come to know Julia as
+a system of multiple dispatch on types, meaning that the interaction of
+types with functions is core to the design.
+
+\subsubsection{Lazy Iterator Types}\label{lazy-iterator-types}
+
+While MATLAB or Python has easy functions for building arrays, Julia
+tends to side-step the actual ``array'' part with specially made types.
+One such example are ranges. To define a range, use the
+\texttt{start:stepsize:end} syntax. For example:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}45}]:} a = 1:5
+         println(a)
+         b = 1:2:10
+         println(b)
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+1:5
+1:2:9
+
+    \end{Verbatim}
+
+    We can use them like any array. For example:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}47}]:} println(a[2]); println(b[3])
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+2
+5
+
+    \end{Verbatim}
+
+    But what is \texttt{b}?
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}50}]:} println(typeof(b))
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+StepRange\{Int64,Int64\}
+
+    \end{Verbatim}
+
+    \texttt{b} isn't an array, it's a StepRange. A StepRange has the ability
+to act like an array using its fields:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}52}]:} fieldnames(StepRange)
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}52}]:} 3-element Array\{Symbol,1\}:
+          :start
+          :step 
+          :stop 
+\end{Verbatim}
+        
+    \paragraph{Question 4}\label{question-4}
+
+If you know \texttt{start}, \texttt{step}, and \texttt{stop}, how do you
+calculate the \texttt{i}th value? Can you create a function MyRange
+which where for \texttt{a} being a \texttt{MyRange},
+\texttt{value(a,i) == a{[}i{]}} for \texttt{a} a \texttt{StepRange}? (I
+will show you how to make the \texttt{a{[}i{]}} syntax available for
+your own types later. As noted before, all of these Julia types are
+implemented in Julia, and therefore you have the power to implement it
+yourself).
+
+Note that at any time we can get the array from these kinds of type via
+the \texttt{collect} function:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}55}]:} c = collect(a)
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}55}]:} 5-element Array\{Int64,1\}:
+          1
+          2
+          3
+          4
+          5
+\end{Verbatim}
+        
+    The reason why lazy iterator types are preferred is that they do not do
+the computations until it's absolutely necessary, and they take up much
+less space. We can check this with \texttt{@time}:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}73}]:} @time a = 1:100000
+         @time a = 1:100
+         @time b = collect(1:100000);
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+  0.000003 seconds (5 allocations: 192 bytes)
+  0.000001 seconds (5 allocations: 192 bytes)
+  0.000076 seconds (8 allocations: 781.547 KB)
+
+    \end{Verbatim}
+
+    Notice that the amount of time the range takes is much shorter. This is
+mostly because there is a lot less memory allocation needed: only a
+\texttt{StepRange} is built, and all that holds is the three numbers.
+However, \texttt{b} has to hold \texttt{100000} numbers, leading to the
+huge difference.
+
+\subsubsection{Dictionaries}\label{dictionaries}
+
+Another common type is the Dictionary. It allows you to access
+(key,value) pairs in a named manner. For example:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}76}]:} d = Dict(:test=>2,"silly"=>:suit)
+         println(d[:test])
+         println(d["silly"])
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+2
+suit
+
+    \end{Verbatim}
+
+    \subsection{Package Management}\label{package-management}
+
+Julia's package system is similar to R/Python in that a large number of
+packages are freely available. You search for them in places like
+\href{http://genieframework.com/packages}{Julia's Package Genie}, or
+from the \href{http://pkg.julialang.org/}{Julia Package Listing}. Let's
+take a look at the \href{https://github.com/tbreloff/Plots.jl}{Plots.jl
+package by Tom Breloff}. This is a highly reguarded plotting package
+which we will make extensive use of later in this workshop. To add a
+package, use \texttt{Pkg.add}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} Pkg.update() \PYZsh{} You may need to update your local packages first
+        Pkg.add("Plots")
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+INFO: Initializing package repository /home/juser/.julia/v0.5
+INFO: Cloning METADATA from https://github.com/JuliaLang/METADATA.jl
+INFO: Cloning cache of ColorTypes from https://github.com/JuliaGraphics/ColorTypes.jl.git
+INFO: Cloning cache of Colors from https://github.com/JuliaGraphics/Colors.jl.git
+INFO: Cloning cache of Compat from https://github.com/JuliaLang/Compat.jl.git
+INFO: Cloning cache of FixedPointNumbers from https://github.com/JeffBezanson/FixedPointNumbers.jl.git
+INFO: Cloning cache of FixedSizeArrays from https://github.com/SimonDanisch/FixedSizeArrays.jl.git
+INFO: Cloning cache of Iterators from https://github.com/JuliaLang/Iterators.jl.git
+INFO: Cloning cache of Measures from https://github.com/dcjones/Measures.jl.git
+INFO: Cloning cache of PlotUtils from https://github.com/JuliaPlots/PlotUtils.jl.git
+INFO: Cloning cache of Plots from https://github.com/tbreloff/Plots.jl.git
+INFO: Cloning cache of RecipesBase from https://github.com/JuliaPlots/RecipesBase.jl.git
+INFO: Cloning cache of Reexport from https://github.com/simonster/Reexport.jl.git
+INFO: Cloning cache of Showoff from https://github.com/JuliaGraphics/Showoff.jl.git
+INFO: Installing ColorTypes v0.2.6
+INFO: Installing Colors v0.6.7
+INFO: Installing Compat v0.9.2
+INFO: Installing FixedPointNumbers v0.1.6
+INFO: Installing FixedSizeArrays v0.2.3
+INFO: Installing Iterators v0.1.10
+INFO: Installing Measures v0.0.3
+INFO: Installing PlotUtils v0.0.4
+INFO: Installing Plots v0.9.1
+INFO: Installing RecipesBase v0.0.6
+INFO: Installing Reexport v0.0.3
+INFO: Installing Showoff v0.0.7
+INFO: Building Plots
+INFO: Cannot find deps/plotly-latest.min.js{\ldots} downloading latest version.
+  \% Total    \% Received \% Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 1746k  100 1746k    0     0  9420k      0 --:--:-- --:--:-- --:--:-- 9439k
+INFO: Package database updated
+
+    \end{Verbatim}
+
+    This will install the package to your local system. However, this will
+only work for registered packages. To add a non-registered package, go
+to the Github repository to find the clone URL and use
+\texttt{Pkg.clone}. For example, to install the
+\texttt{ParameterizedFunctions} package, we can use:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} Pkg.clone("https://github.com/JuliaDiffEq/ParameterizedFunctions.jl")
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+INFO: Cloning ParameterizedFunctions from https://github.com/JuliaDiffEq/ParameterizedFunctions.jl
+INFO: Computing changes{\ldots}
+WARNING: julia is fixed at 0.5.0-rc4+0 conflicting with requirement for ParameterizedFunctions: [0.5.0,∞)
+INFO: Cloning cache of BinDeps from https://github.com/JuliaLang/BinDeps.jl.git
+INFO: Cloning cache of Conda from https://github.com/JuliaPy/Conda.jl.git
+INFO: Cloning cache of JSON from https://github.com/JuliaLang/JSON.jl.git
+INFO: Cloning cache of MacroTools from https://github.com/MikeInnes/MacroTools.jl.git
+INFO: Cloning cache of PyCall from https://github.com/JuliaPy/PyCall.jl.git
+INFO: Cloning cache of SHA from https://github.com/staticfloat/SHA.jl.git
+INFO: Cloning cache of SymPy from https://github.com/JuliaPy/SymPy.jl.git
+INFO: Cloning cache of URIParser from https://github.com/JuliaWeb/URIParser.jl.git
+INFO: Installing BinDeps v0.4.5
+INFO: Installing Conda v0.3.2
+INFO: Installing JSON v0.7.0
+INFO: Installing MacroTools v0.3.2
+INFO: Installing PyCall v1.7.2
+INFO: Installing SHA v0.2.1
+INFO: Installing SymPy v0.3.1
+INFO: Installing URIParser v0.1.6
+INFO: Building PyCall
+INFO: PyCall is using python (Python 2.7.6) at /usr/bin/python, libpython = libpython2.7
+
+    \end{Verbatim}
+
+    To use a package, you have to import the package. The \texttt{import}
+statement will import the package without exporting the functions to the
+namespace. For example:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} using Plots
+        Plots.plot(rand(4,4))
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+INFO: Precompiling module Plots.
+WARNING: Method definition cgrad(Any, Any) in module PlotUtils at /home/juser/.julia/v0.5/PlotUtils/src/color\_gradients.jl:82 overwritten at /home/juser/.julia/v0.5/PlotUtils/src/color\_gradients.jl:99.
+WARNING: Method definition \#cgrad(Array\{Any, 1\}, PlotUtils.\#cgrad, Any, Any) in module PlotUtils overwritten.
+
+    \end{Verbatim}
+
+    
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+[Plots.jl] Initializing backend: plotly
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+WARNING: Method definition show(IO, Base.Multimedia.MIME\{:text/plain\}, Plots.Plot) in module Plots at /home/juser/.julia/v0.5/Plots/src/output.jl:168 overwritten at /home/juser/.julia/v0.5/Plots/src/output.jl:241.
+
+    \end{Verbatim}
+
+    (Note that the first time a package is run, it will precompile a lot of
+the functionality.) To instead export the functions (of the developers
+choosing) to the namespace, we can use the \texttt{using} statement.
+Since Plots.jl exports the \texttt{plot} command, we can then use it
+without reference to the package that it came from:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} using Plots
+        plot(rand(4,4))
+\end{Verbatim}
+
+    What really makes this possible in Julia but not something like Python
+is that namespace clashes are usually avoided by multiple dispatch. Most
+packages will define their own types in order to use dispatches, and so
+when they export the functionality, the methods are only for their own
+types and thus do not clash with other packages. Therefore it's common
+in Julia for concise syntax like \texttt{plot} to be part of packages,
+all without fear of clashing.
+
+Since Julia is currently under lots of development, you may wish to
+checkout newer versions. By default, \texttt{Pkg.add} is the ``latest
+release'', meaning the latest tagged version. However, the main version
+shown in the Github repository is usually the ``master'' branch. It's
+good development practice that the latest release is kept ``stable'',
+while the ``master'' branch is kept ``working'', and development takes
+place in another branch (many times labelled ``dev''). You can choose
+which branch your local repository takes from. For example, to checkout
+the master branch, we can use:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} Pkg.checkout("Plots")
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+INFO: Checking out Plots master{\ldots}
+INFO: Pulling Plots latest master{\ldots}
+INFO: No packages to install, update or remove
+
+    \end{Verbatim}
+
+    This will usually gives us pretty up to date features (if you are using
+a ``unreleased version of Julia'' like building from the source of the
+Julia nightly, you may need to checkout master in order to get some
+packages working). However, to go to a specific branch we can give the
+branch as another argument:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} Pkg.checkout("Plots","dev")
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+INFO: Checking out Plots dev{\ldots}
+INFO: Pulling Plots latest dev{\ldots}
+INFO: No packages to install, update or remove
+
+    \end{Verbatim}
+
+    This is not advised if you don't know what you're doing (i.e.~talk to
+the developer or read the pull requests (PR)), but this is common if you
+talk to a developer and they say ``yes, I already implemented that.
+Checkout the dev branch and use \texttt{plot(...)}.
+
+    \subsection{Metaprogramming}\label{metaprogramming}
+
+Metaprogramming is a huge feature of Julia. The key idea is that every
+statement in Julia is of the type \texttt{Expression}. Julia operators
+by building an Abstract Syntax Tree (AST) from the Expressions. You've
+already been exposed to this a little bit: a \texttt{Symbol} (like
+\texttt{:PhysicalSciences} is not a string because it is part of the
+AST, and thus is part of the parsing/expression structure. One
+interesting thing is that symbol comparisons are O(1) while string
+comparisons, like always, are O(n)) is part of this, and macros (the
+weird functions with an \texttt{@}) are functions on expressions.
+
+Thus you can think of metaprogramming as ``code which takes in code and
+outputs code''. One basic example is the \texttt{@time} macro:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}85}]:} macro time(ex)
+           return quote
+             local t0 = time()
+             local val = \PYZdl{}ex
+             local t1 = time()
+             println("elapsed time: ", t1-t0, " seconds")
+             val
+           end
+         end
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        LoadError: error in method definition: function Base.@time must be explicitly imported to be extended
+    while loading In[85], in expression starting on line 1
+
+        
+
+    \end{Verbatim}
+
+    This takes in an expression \texttt{ex}, gets the time before and after
+evaluation, and prints the elapsed time between (the real time macro
+also calculates the allocations as seen earlier). Note that
+\texttt{\$ex} ``interpolates'' the expression into the macro. Going into
+detail on metaprogramming is a large step from standard scripting and
+will be a later session.
+
+Why macros? One reason is because it lets you define any syntax you
+want. Since it operates on the expressions themselves, as long as you
+know how to parse the expression into working code, you can ``choose any
+syntax'' to be your syntax. A case study will be shown later. Another
+reason is because these are done at ``parse time'' and those are only
+called once (before the function compilation).
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

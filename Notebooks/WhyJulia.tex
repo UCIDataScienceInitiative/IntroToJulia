@@ -1,0 +1,1104 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font than Computer Modern for most use cases
+    \usepackage{palatino}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{WhyJulia}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\def\PY@tok@gd{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\def\PY@tok@gu{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\def\PY@tok@gt{\def\PY@tc##1{\textcolor[rgb]{0.00,0.25,0.82}{##1}}}
+\def\PY@tok@gs{\let\PY@bf=\textbf}
+\def\PY@tok@gr{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\def\PY@tok@cm{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\def\PY@tok@vg{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\def\PY@tok@m{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\def\PY@tok@mh{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\def\PY@tok@go{\def\PY@tc##1{\textcolor[rgb]{0.50,0.50,0.50}{##1}}}
+\def\PY@tok@ge{\let\PY@it=\textit}
+\def\PY@tok@vc{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\def\PY@tok@il{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\def\PY@tok@cs{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\def\PY@tok@cp{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\def\PY@tok@gi{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\def\PY@tok@gh{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\def\PY@tok@ni{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\def\PY@tok@nl{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\def\PY@tok@nn{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\def\PY@tok@no{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\def\PY@tok@na{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\def\PY@tok@nb{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@nc{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\def\PY@tok@nd{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\def\PY@tok@ne{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\def\PY@tok@nf{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\def\PY@tok@si{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\def\PY@tok@s2{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\def\PY@tok@vi{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\def\PY@tok@nt{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@nv{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\def\PY@tok@s1{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\def\PY@tok@sh{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\def\PY@tok@sc{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\def\PY@tok@sx{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@bp{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@c1{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\def\PY@tok@kc{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@c{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\def\PY@tok@mf{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\def\PY@tok@err{\def\PY@bc##1{\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{##1}}}
+\def\PY@tok@kd{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@ss{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\def\PY@tok@sr{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\def\PY@tok@mo{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\def\PY@tok@kn{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@mi{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\def\PY@tok@gp{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\def\PY@tok@o{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\def\PY@tok@kr{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@s{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\def\PY@tok@kp{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@w{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\def\PY@tok@kt{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\def\PY@tok@ow{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\def\PY@tok@sb{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\def\PY@tok@k{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\def\PY@tok@se{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\def\PY@tok@sd{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Why Does Julia Work So
+Well?}\label{why-does-julia-work-so-well}
+
+There is an obvious reason to choose Julia:
+
+\begin{quote}
+it's faster than other scripting languages, allowing you to have the
+rapid development of Python/MATLAB/R while producing code that is as
+fast as C/Fortran
+\end{quote}
+
+Newcommers to Julia might be a little weary of that statement.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Why not just make other scripting languages faster? If Julia can do
+  it, why can't others?
+\item
+  How do you interpert Julia benchmarks to confirm this? (This is
+  surprisingly difficult for many!)
+\item
+  That sounds like it violates the No-Free-Lunch heuristic. Is there
+  really nothing lost?
+\end{enumerate}
+
+Many people believe Julia is fast \textbf{because it is Just-In-Time
+(JIT) compiled} (i.e.~every statement is run using compiled functions
+which are either compiled right before they are used, or cached
+compilations from before). This leads to questions about what Julia
+gives over JIT'd implementations of Python/R (and MATLAB by default uses
+a JIT). These JIT compilers have been optimized for far longer than
+Julia, so why should we be crazy and believe that somehow Julia quickly
+out-optimized all of them? However, that is a complete misunderstanding
+of Julia. What I want show, in a very visual way, is that Julia is fast
+because of its design decisions. The core design decision,
+\textbf{type-stability through specialization via multiple-dispatch} is
+what allows Julia to be very easy for a compiler to make into efficient
+code, but also allow the code to be very concise and ``look like a
+scripting language''. This will lead to some very clear performance
+gains.
+
+But what we will see in this example is that Julia does not always act
+like other scripting languages. There are some ``lunches lost'' that we
+will have to understand. Understanding how this design decision effects
+the way you must code is crucial to producing efficient Julia code.
+
+To see the difference, we only need to go as far as basic math.
+
+    \subsection{Arithmetic in Julia}\label{arithmetic-in-julia}
+
+In general, math in Julia looks the same as in other scripting
+languages. One detail to note is that the numbers are ``true numbers'',
+as in a \texttt{Float64} is truly the same thing as a 64-bit floating
+point number or a ``double'' in C. A \texttt{Vector\{Float64\}} is the
+same memory layout as an array of doubles in C, both making interop with
+C easy (indeed, in some sense ``Julia is a layer on top of C'') and it
+leads to high performance (the same is true for NumPy arrays).
+
+Some math in Julia:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} a = 2+2
+        b = a/3
+        c = a÷3 \PYZsh{}\PYZbs{}div tab completion, means integer division
+        d = 4*5
+        println([a;b;c;d])
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[4.0,1.33333,1.0,20.0]
+
+    \end{Verbatim}
+
+    Note here that I showed off Julia's unicode tab completion. Julia allows
+for unicode characters, and these can be used by tab completing
+Latex-like statements. Also, multiplication by a number is allowed
+without the * if followed by a variable. For example, the following is
+allowed Julia code:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} α = 0.5
+        ∇f(u) = α*u; ∇f(2)
+        sin(2π)
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+WARNING: Method definition ∇f(Any) in module Main at In[2]:2 overwritten at In[4]:2.
+
+    \end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}4}]:} -2.4492935982947064e-16
+\end{Verbatim}
+        
+    \subsection{Type-stability and Code
+Introspection}\label{type-stability-and-code-introspection}
+
+Type stability is the idea that there is only 1 possible type which can
+be outputtted from a method. For example, the reasonable type to output
+from \texttt{*(::Float64,::Float64)} is a \texttt{Float64}. No matter
+what you give it, it will spit out a \texttt{Float64}. This right here
+is multiple-dispatch: the \texttt{*} operator calls a different method
+depending on the types that it sees. When it sees floats, it will spit
+out floats. Julia provides code introspection macros so that way you can
+see what your code actually compiles to. Thus Julia is not just a
+scripting language, it's a scripting language which lets you deal with
+assembly! If we check the LLVM-compiled code (LLVM is the Julia
+compiler)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} @code\PYZus{}llvm 2*5
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+define i64 @"jlsys\_*\_49090"(i64, i64) \#0 \{
+top:
+  \%2 = mul i64 \%1, \%0
+  ret i64 \%2
+\}
+
+    \end{Verbatim}
+
+    This output is saying that a floating point multiplication operation is
+performed and the answer is returned. We can even look at the assembly
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} @code\PYZus{}native 2*5
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+	.text
+Filename: int.jl
+	pushq	\%rbp
+	movq	\%rsp, \%rbp
+Source line: 33
+	imulq	\%rsi, \%rdi
+	movq	\%rdi, \%rax
+	popq	\%rbp
+	retq
+	nopl	(\%rax)
+
+    \end{Verbatim}
+
+    This shows us that the \texttt{*} function has compiled down to exactly
+the same operation as what happens in C/Fortran, meaning it achieves the
+same performance (even though it's defined in Julia). Thus it is
+possible to not just get ``close'' to C, but actually get the same C
+code out. In what cases does this happen?
+
+The interesting thing about Julia is that, asking which cases this
+happens is not the right question. the right question is, in what cases
+does the code not compile to something as efficient as C/Fortran? The
+key here is type-stability. If a function is type-stable, then the
+compiler can know what the type will be at all points in the function
+and smartly optimize it to the same assembly as C/Fortran. If it is not
+type-stable, Julia has to add expensive ``boxing'' to ensure types are
+found/known before operations.
+
+\paragraph{This is the key difference between Julia and other scripting
+languages}\label{this-is-the-key-difference-between-julia-and-other-scripting-languages}
+
+The upside is that Julia's functions, when type stable, are essentially
+C/Fortran functions. Thus \texttt{\^{}} (exponentiation) is fast.
+However, \texttt{\^{}(::Int64,::Int64)} is type-stable, so what type
+should it output?
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} 2\PYZca{}5
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:} 32
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} 2\PYZca{}-5
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        LoadError: DomainError:
+    Cannot raise an integer x to a negative power -n. 
+    Make x a float by adding a zero decimal (e.g. 2.0\^{}-n instead of 2\^{}-n), or write 1/x\^{}n, float(x)\^{}-n, or (x//1)\^{}-n.
+    while loading In[8], in expression starting on line 1
+
+        
+
+         in power\_by\_squaring(::Int64, ::Int64) at ./intfuncs.jl:118
+
+         in \^{}(::Int64, ::Int64) at ./intfuncs.jl:142
+
+    \end{Verbatim}
+
+    Here we get an error. In order to guarantee to the compiler that
+\texttt{\^{}} will give an Int64 back, it has to throw an error. If you
+do this in MATLAB, Python, or R, it will not throw an error. That is
+because those languages do not have their entire language built around
+type stability.
+
+What happens when we don't have type stability? Let's inspect this code:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} @code\PYZus{}native 2\PYZca{}5
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+	.text
+Filename: intfuncs.jl
+	pushq	\%rbp
+	movq	\%rsp, \%rbp
+Source line: 142
+	callq	power\_by\_squaring
+	popq	\%rbp
+	retq
+	nopl	(\%rax,\%rax)
+
+    \end{Verbatim}
+
+    Now let's define our own exponentiation on integers. Let's make it
+``safe'' like the form seen in other scripting languages:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} function expo(x,y)
+            if y>0
+                return x\PYZca{}y
+            else
+                x = convert(Float64,x)
+                return x\PYZca{}y
+            end
+        end
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:} expo (generic function with 1 method)
+\end{Verbatim}
+        
+    Let's make sure it works:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} println(expo(2,5))
+         expo(2,-5)
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+32
+
+    \end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} 0.03125
+\end{Verbatim}
+        
+    What happens if we inspect this code?
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} @code\PYZus{}native expo(2,5)
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+	.text
+Filename: In[10]
+	pushq	\%rbp
+	movq	\%rsp, \%rbp
+	pushq	\%r15
+	pushq	\%r14
+	pushq	\%r12
+	pushq	\%rbx
+	subq	\$64, \%rsp
+	movq	\%rsi, \%rbx
+	movq	\%fs:0, \%r14
+	addq	\$-2672, \%r14            \# imm = 0xFFFFFFFFFFFFF590
+	xorps	\%xmm0, \%xmm0
+	movups	\%xmm0, -48(\%rbp)
+	movups	\%xmm0, -64(\%rbp)
+	movq	\$8, -80(\%rbp)
+	movq	(\%r14), \%rax
+	movq	\%rax, -72(\%rbp)
+	leaq	-80(\%rbp), \%rax
+	movq	\%rax, (\%r14)
+Source line: 2
+	movabsq	\$jl\_box\_int64, \%r15
+	callq	*\%r15
+	movq	\%rax, -64(\%rbp)
+	testq	\%rbx, \%rbx
+	jle	L137
+Source line: 3
+	movq	\%rax, -56(\%rbp)
+	movq	(\%rax), \%rdi
+	movabsq	\$power\_by\_squaring, \%rax
+	movq	\%rbx, \%rsi
+	callq	*\%rax
+	movq	\%rax, \%rdi
+	callq	*\%r15
+	movq	-72(\%rbp), \%rcx
+	movq	\%rcx, (\%r14)
+	addq	\$64, \%rsp
+	popq	\%rbx
+	popq	\%r12
+	popq	\%r14
+	popq	\%r15
+	popq	\%rbp
+	retq
+L137:
+	movabsq	\$140082976556080, \%r15  \# imm = 0x7F679C0E8430
+Source line: 5
+	movq	\%rax, -48(\%rbp)
+	movq	(\%rax), \%rax
+Source line: 6
+	cvtsi2sdq	\%rax, \%xmm0
+Source line: 5
+	movsd	\%xmm0, -88(\%rbp)
+	movabsq	\$jl\_gc\_pool\_alloc, \%r12
+	movl	\$1432, \%esi             \# imm = 0x598
+	movl	\$16, \%edx
+	movq	\%r14, \%rdi
+	callq	*\%r12
+	movsd	-88(\%rbp), \%xmm0        \# xmm0 = mem[0],zero
+	movq	\%r15, -8(\%rax)
+	movsd	\%xmm0, (\%rax)
+	movq	\%rax, -64(\%rbp)
+Source line: 6
+	movq	\%rax, -40(\%rbp)
+	movslq	\%ebx, \%rax
+	cmpq	\%rbx, \%rax
+	jne	L287
+	movabsq	\$\_\_powidf2, \%rax
+	movl	\%ebx, \%edi
+	callq	*\%rax
+	movsd	\%xmm0, -88(\%rbp)
+	movl	\$1432, \%esi             \# imm = 0x598
+	movl	\$16, \%edx
+	movq	\%r14, \%rdi
+	callq	*\%r12
+	movq	\%r15, -8(\%rax)
+	movsd	-88(\%rbp), \%xmm0        \# xmm0 = mem[0],zero
+	movsd	\%xmm0, (\%rax)
+	movq	-72(\%rbp), \%rcx
+	movq	\%rcx, (\%r14)
+	addq	\$64, \%rsp
+	popq	\%rbx
+	popq	\%r12
+	popq	\%r14
+	popq	\%r15
+	popq	\%rbp
+	retq
+L287:
+	addq	\$-479504, \%r15          \# imm = 0xFFFFFFFFFFF8AEF0
+	movabsq	\$jl\_throw, \%rax
+	movq	\%r15, \%rdi
+	callq	*\%rax
+	nopw	\%cs:(\%rax,\%rax)
+
+    \end{Verbatim}
+
+    That's a very visual demonstration on why Julia achieves such higher
+performance than other scripting languages.
+
+    \section{Core Idea: Multiple Dispatch + Type Stability =\textgreater{}
+Speed +
+Readibility}\label{core-idea-multiple-dispatch-type-stability-speed-readibility}
+
+Type stability is one crucial feature which separates Julia apart from
+other scripting languages. In fact, the core idea of Julia is the
+following statement:
+
+\paragraph{Multiple dispatch allows for a language to dispatch function
+calls onto type-stable
+functions.}\label{multiple-dispatch-allows-for-a-language-to-dispatch-function-calls-onto-type-stable-functions.}
+
+This is what Julia is all about, so let's take some time to dig into
+it.If you have type stability inside of a function (meaning, any
+function call within the function is also type-stable), then the
+compiler can know the types of the variables at every step. Therefore it
+can compile the function with the full amount of optimizations since at
+this point the code is essentially the same as C/Fortran code.
+Multiple-dispatch works into this story because it means that \texttt{*}
+can be a type-stable function: it just means different things for
+different inputs. But if the compiler can know the types of \texttt{a}
+and \texttt{b} before calling \texttt{*}, then it knows which \texttt{*}
+method to use, and therefore it knows the output type of \texttt{c=a*b}.
+Thus it can propogate the type information all the way down, knowing all
+of the types along the way, allowing for full optimiziations. Multiple
+dispatch allows \texttt{*} to mean the ``right thing'' every time you
+use it, almost magically allowing this optimization.
+
+There are a few things we learn from this. For one, in order to achieve
+this level of optimization, you must have type-stability. This is not
+featured in the standard libraries of most languages, and was choice
+that was made to make the experience a little easier for users.
+Secondly, multiple dispatch was required to be able to specialize the
+functions for types which allows for the scripting language syntax to be
+``more explicit than meets the eye''. Lastly, a robust type system is
+required. In order to build the type-unstable exponentiation (which may
+be needed) we needed functionalities like convert. Thus the language
+must be designed to be type-stable with multiple dispatch and centered
+around a robust type system in order to achieve this raw performance
+while maintaining the syntax/ease-of-use of a scripting language. You
+can put a JIT on Python, but to really make it Julia, you would have to
+design it to be Julia.
+
+    \subsection{The Julia Benchmarks}\label{the-julia-benchmarks}
+
+The Julia benchmarks, featured on \href{http://julialang.org/}{the Julia
+website}, test components of the programming language for speed.
+\textbf{This doesn't mean it's testing the fastest implemention}. That
+is where a major misconception occurs. You'll have an R programmer look
+at the R code for the Fibonacci calculator and say ``wow, that's
+terrible R code. You're not supposed to use recursion in R. Of course
+it's slow''. However, the Fibonacci problem is designed to test
+recursion, not the fastest implementation to the the ith Fibonacci
+number. The other problems are the same way: testing basic components of
+the langauge to see how fast they are.
+
+Julia is built up using multiple-dispatch on type-stable functions. As a
+result, even the earliest versions of Julia were easy for compilers to
+optimize to C/Fortran efficiency. It's clear that in almost every case
+Julia is close to C. Where it is not close to C actually has a few
+details. The first is the Fibonacci problem where Julia is 2.11x from C.
+This is because it is a test of recursion, and Julia does not fully
+optimize recursion (but still does very well on this problem!). The
+optimization which is used to receive the fastest times for this type of
+problem is known as Tail-Call Optimization. Julia can at any time add
+this optimization, though
+\href{https://github.com/JuliaLang/julia/issues/4964}{there are reasons}
+why
+\href{https://groups.google.com/forum/?fromgroups=\#!searchin/julia-users/tail\$20call/julia-users/qHRDj80rIvA/T3AylpjsASEJ}{they
+choose not to}. The main reason is: any case where tail-call
+optimization is possible, a loop can also be used. But a loop is also
+more robust for optimizations (there are many recursive calls which will
+fail to tail-call optimize) and thus they want to just recommend using
+loops instead of using fragile TCO.
+
+The other cases where Julia doesn't do as well are the
+\texttt{rand\_mat\_stat} and the \texttt{parse\_int} tests. However,
+this is largely due to a feature known as bounds checking. In most
+scripting languages, you will receive an error if you try to index an
+array outside of its bounds. Julia will do this by default:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} function test1()
+             a = zeros(3)
+             for i=1:4
+                 a[i] = i
+             end
+         end
+         test1()
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        LoadError: BoundsError: attempt to access 3-element Array\{Float64,1\} at index [4]
+    while loading In[28], in expression starting on line 7
+
+        
+
+         in test1() at ./In[28]:4
+
+    \end{Verbatim}
+
+    However, Julia allows you to turn this off using the \texttt{@inbounds}
+macro:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} function test2()
+             a = zeros(3)
+             @inbounds for i=1:4
+                 a[i] = i
+             end
+         end
+         test2()
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+WARNING: Method definition test2() in module Main at In[29]:2 overwritten at In[30]:2.
+
+    \end{Verbatim}
+
+    This gives you the same unsafe behavior as C/Fortran, but also the same
+speed (indeed, if you add these to the benchmarks they will speed up
+close to C). This is another interesting feature of Julia: it lets you
+\textbf{by default have the safety of a scripting language, but turn off
+these features when necessary (/after testing and debugging) to get full
+performance.}
+
+    \section{Small Expansion of the Idea: Strict
+Typing}\label{small-expansion-of-the-idea-strict-typing}
+
+    Type-stability is not the only necessity. You also need strict typing.
+In Python you can put anything into an array. In Julia, you can only put
+types of \texttt{T} into a \texttt{Vector\{T\}}. To give generality,
+Julia offers various non-strict forms of types. The biggest example is
+\texttt{Any}. Anything satisfies \texttt{T:\textless{}Any} (hence the
+name). Therefore, if you need it, you can create a
+\texttt{Vector\{Any\}}. For example:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} a = Vector\PYZob{}Any\PYZcb{}(3)
+        a[1] = 1.0
+        a[2] = "hi!"
+        a[3] = :Symbolic
+        a
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:} 3-element Array\{Any,1\}:
+         1.0       
+          "hi!"    
+          :Symbolic
+\end{Verbatim}
+        
+    A less extreme form of an abstract type is a Union type, which is just
+what it sounds like. For example:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} a = Vector\PYZob{}Union\PYZob{}Float64,Int\PYZcb{}\PYZcb{}(3)
+        a[1] = 1.0
+        a[2] = 3
+        a[3] = 1/4
+        a
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}2}]:} 3-element Array\{Union\{Float64,Int64\},1\}:
+         1.0 
+         3   
+         0.25
+\end{Verbatim}
+        
+    This will only accept floating point numbers and integers. However, it
+is still an abstract type. A function which is called on an abstract
+type cannot know the type of any element (since, in this example, any
+element can be either a float or an integer). Thus the optimization that
+was achieved by multiple-dispatch, knowing the type each step of the
+way, is no longer present. Therefore the optimizations are gone and
+Julia will slow down to the speed of other scripting languages.
+
+This leads to the performance principle: use strict typing whenever
+possible. There are other advantages: a strictly typed
+\texttt{Vector\{Float64\}} is actually byte-compatible with C/Fortran,
+and so it can be used directly by C/Fortran programs without conversion.
+
+    \section{Lunch Money}\label{lunch-money}
+
+It's clear that Julia made clever design decisions in order to achieve
+its performance goals while still being a scripting language. However,
+what exactly is lost? Next I will show you a few pecularities of Julia
+that come from this design decision, and the tools Julia gives you to
+handle them.
+
+    \subsection{Performance as Optional}\label{performance-as-optional}
+
+One thing I already showed is that Julia gives many ways to achieve high
+performance (like \texttt{@inbounds}), but they don't have to be used.
+You can write type-unstable functions. It will be as slow as
+MATLAB/R/Python, but you can do it. In places where you don't need the
+best performance, it's nice to have this as an option.
+
+    \subsection{Checking for
+Type-Stability}\label{checking-for-type-stability}
+
+Since type-stability is so essential, Julia gives you tools to check
+that your functions are type stable. The most important is the
+\texttt{@code\_warntype} macro. Let's use it to check a type-stable
+function:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} @code\PYZus{}warntype 2\PYZca{}5
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Variables:
+  \#self\#::Base.\#\^{}
+  x::Int64
+  p::Int64
+
+Body:
+  begin 
+      return \$(Expr(:invoke, LambdaInfo for power\_by\_squaring(::Int64, ::Int64), :(Base.power\_by\_squaring), :(x), :(p)))
+  end::Int64
+
+    \end{Verbatim}
+
+    Notice that it shows all of the variables in the function as strictly
+typed. What about in our \texttt{expo}?
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} @code\PYZus{}warntype expo(2,5)
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Variables:
+  \#self\#::\#expo
+  x@\_2::Int64
+  y::Int64
+  x@\_4::ANY
+
+Body:
+  begin 
+      x@\_4::ANY = x@\_2::Int64
+      unless (Base.slt\_int)(0,y::Int64)::Bool goto 5 \# line 3:
+      return \$(Expr(:invoke, LambdaInfo for power\_by\_squaring(::Int64, ::Int64), :(Base.power\_by\_squaring), :(x@\_4::Int64), :(y)))
+      5:  \# line 5:
+      x@\_4::ANY = (Base.box)(Float64,(Base.sitofp)(Float64,x@\_4::Int64)) \# line 6:
+      return (Base.Math.box)(Base.Math.Float64,(Base.Math.powi\_llvm)(x@\_4::Float64,(Base.box)(Int32,(Base.checked\_trunc\_sint)(Int32,y::Int64))))::Float64
+  end::UNION\{FLOAT64,INT64\}
+
+    \end{Verbatim}
+
+    Notice that it has to make a temporary variable \texttt{x@\_4} which is
+translates our int at the beginning of the function, and then do
+type-checking in order to find the write function, and then its output
+type is the non-strict \texttt{Union\{Float64,Int64\}}. The quick way to
+read this is to see that \texttt{x@\_4::ANY} has a non-strict type,
+indicating a type-instability. This gives you a tool to know how to
+optimize.
+
+    \subsection{Dealing With Necessary
+Type-Instabilities}\label{dealing-with-necessary-type-instabilities}
+
+For one, I already showed that some functions will error while in other
+scripting languages they will ``read your mind''. In many cases you will
+realize that you could've just used a different type from the start and
+achieved type-stability (why not just do \texttt{2.0\^{}-5}?). However,
+there are some cases where you won't find an appropriate type. This can
+be easily fixed by conversions, though you then lose type stability.
+Instead you have to think about your design and cleverly use multiple
+dispatch.
+
+So let's say that we have \texttt{a} as a
+\texttt{Vector\{Union\{Float64,Int\}\}}. We may run into a case where we
+have to use \texttt{a}. Assume that on each element of \texttt{a} we
+have to perform a lot of operations. In this case, knowing the type of a
+given element will lead to massive performance gains, but since it's in
+a \texttt{Vector\{Union\{Float64,Int\}\}}, they will not be known in a
+function like:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} function foo\PYZob{}T,N\PYZcb{}(array::Array\PYZob{}T,N\PYZcb{})
+           for i in eachindex(array)
+             val = array[i]
+             \PYZsh{} do algorithm X on val
+           end
+         end
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}10}]:} foo (generic function with 1 method)
+\end{Verbatim}
+        
+    However, we can fix this with multiple dispatch. We can write a dispatch
+on elements:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} function inner\PYZus{}foo\PYZob{}T<:Number\PYZcb{}(val::T)
+           \PYZsh{} Do algorithm X on val
+         end
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}11}]:} inner\_foo (generic function with 1 method)
+\end{Verbatim}
+        
+    and instead define foo as:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} function foo2\PYZob{}T,N\PYZcb{}(array::Array\PYZob{}T,N\PYZcb{})
+           for i in eachindex(array)
+             inner\PYZus{}foo(array[i])
+           end
+         end
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} foo2 (generic function with 1 method)
+\end{Verbatim}
+        
+    Since types are checked for dispatch, the function \texttt{inner\_foo}
+is strictly typed. Thus if \texttt{inner\_foo} is type-stable, then we
+can achieve high performance by allowing it to specialize within
+\texttt{inner\_foo}. This leads to a general design principle that, if
+you're dealing with odd/non-strict types, you can use an outer function
+to handle the type logic while using an inner function for all of the
+hard calculations and achieve close to optimal performance while still
+having the generic abilities of a scripting language.
+
+    \subsection{REPL ``Globals'' Have Bad
+Performance}\label{repl-globals-have-bad-performance}
+
+    Globals in Julia have awful performance. Not using globals is
+\href{http://docs.julialang.org/en/release-0.5/manual/performance-tips/}{the
+first fact in the Performance Tips}. However, what newcommers don't
+realize is that the REPL is the global scope. To see why, recall that
+Julia has nested scopes. For example, if you have a function inside of a
+function, then the inner function has all of the variables of the outer
+function.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} function test(x)
+             y = x+2
+             function test2()
+                 y+3
+             end
+             test2()
+         end
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}13}]:} test (generic function with 1 method)
+\end{Verbatim}
+        
+    In \texttt{test2}, \texttt{y} is known because it is defined in
+\texttt{test}. This will all work to give something performant if
+\texttt{y} is type-stable since \texttt{test2} could then assume that
+\texttt{y} is always an integer. But now look at what happens at the
+highest scope (and thus effectively the global scope):
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} a = 3
+         function badidea()
+             a + 2
+         end
+         a = 3.0
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+WARNING: Method definition badidea() in module Main at In[14]:3 overwritten at In[15]:3.
+
+    \end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}15}]:} 3.0
+\end{Verbatim}
+        
+    Because no dispatch is used to specialize \texttt{badidea}, and we can
+change the type of \texttt{a} at any time, and therefore
+\texttt{badidea} cannot add optimizations when compiling since the type
+of \texttt{a} is unknown during compile time. However, Julia allows us
+to specify variables as constant:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} const a = 3
+         function badidea()
+             a + 2
+         end
+         a = 4 \PYZsh{} Works
+         a = 3.0 \PYZsh{} Fails
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        LoadError: cannot declare a constant; it already has a value
+    while loading In[16], in expression starting on line 1
+
+        
+
+    \end{Verbatim}
+
+    Because \texttt{const} is about types, it acts slightly differently than
+one would expect. \texttt{const} is a declaration that the type of
+\texttt{a} will be constant, not the value. Therefore we can change
+\texttt{a} from 3 to 4 since it goes from an \texttt{Int} to an
+\texttt{Int}. However, trying to change \texttt{a} to \texttt{3.0} fails
+because it cannot change to a Float64.
+
+This will show up when trying to do benchmarks. The most common human
+error to see is for newcommers to benchmark Julia like:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} a = 3.0
+         @time for i = 1:4
+             a += i
+         end
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+  0.000005 seconds (4 allocations: 64 bytes)
+
+    \end{Verbatim}
+
+    However, if we put this in a function, it will optimize (in fact, it
+will optimize away the loop and stick in the answer)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} function timetest()
+             a = 3.0
+             @time for i = 1:4
+                 a += i
+             end
+         end
+         timetest() \PYZsh{} First time compiles
+         timetest()
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+  0.000000 seconds
+  0.000000 seconds
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+WARNING: Method definition timetest() in module Main at In[27]:2 overwritten at In[28]:2.
+
+    \end{Verbatim}
+
+    This is a very easy problem to fall for: don't benchmark or time things
+in the REPL's global scope. Always wrap things in a function or declare
+them as const. There is a developer thread
+\href{https://github.com/JuliaLang/julia/issues/8870}{to make the global
+performance less awful} but, given the information from this notebook,
+you can already see that it will never be ``not awful'', it will just be
+``less awful''.
+
+    \section{Conclusion}\label{conclusion}
+
+Julia is fast by design. Type stability and multiple dispatch is
+necessary to do the specialization that is involved in Julia's
+compilation to make it work so well. The robust type system is required
+to make working with types at such a fine level in order to effectively
+achieve type-stability whenever possible, and manage optimizations when
+it's not totally possible.
+
+\subsection{Discussion / Project}\label{discussion-project}
+
+Here's a good learning project: how would you design a new type
+\texttt{EasyFloats} to build MATLAB/Python/R arithmetic into Julia? Time
+the results and see what the difference from optimal is.
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
