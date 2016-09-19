@@ -11588,8 +11588,10 @@ ul.typeahead-list > li > a {
 .highlight .err { border: 1px solid #FF0000 } /* Error */
 .highlight .k { color: #008000; font-weight: bold } /* Keyword */
 .highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
 .highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
 .highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
 .highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
 .highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
 .highlight .gd { color: #A00000 } /* Generic.Deleted */
@@ -11597,11 +11599,11 @@ ul.typeahead-list > li > a {
 .highlight .gr { color: #FF0000 } /* Generic.Error */
 .highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
 .highlight .gi { color: #00A000 } /* Generic.Inserted */
-.highlight .go { color: #808080 } /* Generic.Output */
+.highlight .go { color: #888888 } /* Generic.Output */
 .highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
 .highlight .gs { font-weight: bold } /* Generic.Strong */
 .highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
-.highlight .gt { color: #0040D0 } /* Generic.Traceback */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
 .highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
 .highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
 .highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
@@ -11624,6 +11626,7 @@ ul.typeahead-list > li > a {
 .highlight .nv { color: #19177C } /* Name.Variable */
 .highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
 .highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
 .highlight .mf { color: #666666 } /* Literal.Number.Float */
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
@@ -11758,13 +11761,13 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>x=5; y=7; #Defined globally
-function scopeTest(z)
-  x += z #Changes global value
-  y = Vector{Float64}(1) #Declares a variable, local scope
-  y[1] = 2
-  return x + y + z
-end
+<div class=" highlight hl-julia"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span> <span class="n">y</span><span class="o">=</span><span class="mi">7</span><span class="p">;</span> <span class="c">#Defined globally</span>
+<span class="k">function</span><span class="nf"> scopeTest</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+  <span class="n">x</span> <span class="o">+=</span> <span class="n">z</span> <span class="c">#Changes global value</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="mi">1</span><span class="p">)</span> <span class="c">#Declares a variable, local scope</span>
+  <span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+  <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">+</span> <span class="n">z</span>
+<span class="k">end</span>
 </pre></div>
 
 </div>
@@ -11803,18 +11806,18 @@ end
 <div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>addprocs(1)
-function f1()
-  @parallel for i = 1:100
-    x = 10
-    if x &lt; 100
-      x = x + 1
-    end
-  end
-  x = x + 100 + 10
-  return x
-end
-f1()
+<div class=" highlight hl-julia"><pre><span></span><span class="n">addprocs</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">function</span><span class="nf"> f1</span><span class="p">()</span>
+  <span class="p">@</span><span class="n">parallel</span> <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">100</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">100</span>
+      <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">10</span>
+  <span class="k">return</span> <span class="n">x</span>
+<span class="k">end</span>
+<span class="n">f1</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -11854,16 +11857,16 @@ while loading In[37], in expression starting on line 12
 <div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>function f2()
-  @parallel for i = 1:100
-    x = 10
-    if x &lt; 100
-      x = x + 1
-    end
-  end
-  return x
-end
-f2()
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span><span class="nf"> f2</span><span class="p">()</span>
+  <span class="p">@</span><span class="n">parallel</span> <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">100</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">100</span>
+      <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+  <span class="k">return</span> <span class="n">x</span>
+<span class="k">end</span>
+<span class="n">f2</span><span class="p">()</span>
 </pre></div>
 
 </div>

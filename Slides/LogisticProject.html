@@ -11642,8 +11642,10 @@ ul.typeahead-list > li > a {
 .highlight .err { border: 1px solid #FF0000 } /* Error */
 .highlight .k { color: #008000; font-weight: bold } /* Keyword */
 .highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
 .highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
 .highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
 .highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
 .highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
 .highlight .gd { color: #A00000 } /* Generic.Deleted */
@@ -11651,11 +11653,11 @@ ul.typeahead-list > li > a {
 .highlight .gr { color: #FF0000 } /* Generic.Error */
 .highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
 .highlight .gi { color: #00A000 } /* Generic.Inserted */
-.highlight .go { color: #808080 } /* Generic.Output */
+.highlight .go { color: #888888 } /* Generic.Output */
 .highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
 .highlight .gs { font-weight: bold } /* Generic.Strong */
 .highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
-.highlight .gt { color: #0040D0 } /* Generic.Traceback */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
 .highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
 .highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
 .highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
@@ -11678,6 +11680,7 @@ ul.typeahead-list > li > a {
 .highlight .nv { color: #19177C } /* Name.Variable */
 .highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
 .highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
 .highlight .mf { color: #666666 } /* Literal.Number.Float */
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
@@ -11858,28 +11861,28 @@ $$ b_{n+1}=r*b_{n}(1-b_{n}) $$<p>where $b_{n}$ is the number of bunnies at time 
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>## Produces the logstic plot
-# Requires PyPlot
+<div class=" highlight hl-julia"><pre><span></span><span class="c">## Produces the logstic plot</span>
+<span class="c"># Requires PyPlot</span>
 
-function logisticPlot()
-  tic()
-  r = 2.9:.00005:4; numAttract = 100;
-  steady = ones(length(r),1)*.25;
-  for i=1:400 ## Get to steady state
-    @devec steady = r.*steady.*(1-steady);
-  end
-  x = zeros(length(steady),numAttract);
-  x[:,1] = steady;
-  @simd for i=2:numAttract ## Grab values at the attractor
-    @inbounds @fastmath x[:,i] = r.*x[:,i-1].*(1-x[:,i-1]);
-  end
-  toc()
-  fig = figure(figsize=(20,10));
-  plot(collect(r),x,&quot;b.&quot;,markersize=.06)
-  savefig(&quot;plot.png&quot;,dpi=300);
-end
-using PyPlot
-@time logisticPlot()
+<span class="k">function</span><span class="nf"> logisticPlot</span><span class="p">()</span>
+  <span class="n">tic</span><span class="p">()</span>
+  <span class="n">r</span> <span class="o">=</span> <span class="mf">2.9</span><span class="p">:</span><span class="o">.</span><span class="mi">00005</span><span class="p">:</span><span class="mi">4</span><span class="p">;</span> <span class="n">numAttract</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+  <span class="n">steady</span> <span class="o">=</span> <span class="n">ones</span><span class="p">(</span><span class="n">length</span><span class="p">(</span><span class="n">r</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span><span class="o">*.</span><span class="mi">25</span><span class="p">;</span>
+  <span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="mi">400</span> <span class="c">## Get to steady state</span>
+    <span class="p">@</span><span class="n">devec</span> <span class="n">steady</span> <span class="o">=</span> <span class="n">r</span><span class="o">.*</span><span class="n">steady</span><span class="o">.*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">steady</span><span class="p">);</span>
+  <span class="k">end</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">length</span><span class="p">(</span><span class="n">steady</span><span class="p">),</span><span class="n">numAttract</span><span class="p">);</span>
+  <span class="n">x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">steady</span><span class="p">;</span>
+  <span class="p">@</span><span class="n">simd</span> <span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">:</span><span class="n">numAttract</span> <span class="c">## Grab values at the attractor</span>
+    <span class="p">@</span><span class="n">inbounds</span> <span class="p">@</span><span class="n">fastmath</span> <span class="n">x</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="o">.*</span><span class="n">x</span><span class="p">[:,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="p">[:,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
+  <span class="k">end</span>
+  <span class="n">toc</span><span class="p">()</span>
+  <span class="n">fig</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">10</span><span class="p">));</span>
+  <span class="n">plot</span><span class="p">(</span><span class="n">collect</span><span class="p">(</span><span class="n">r</span><span class="p">),</span><span class="n">x</span><span class="p">,</span><span class="s">&quot;b.&quot;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=.</span><span class="mi">06</span><span class="p">)</span>
+  <span class="n">savefig</span><span class="p">(</span><span class="s">&quot;plot.png&quot;</span><span class="p">,</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">);</span>
+<span class="k">end</span>
+<span class="k">using</span> <span class="n">PyPlot</span>
+<span class="p">@</span><span class="n">time</span> <span class="n">logisticPlot</span><span class="p">()</span>
 </pre></div>
 
 </div>

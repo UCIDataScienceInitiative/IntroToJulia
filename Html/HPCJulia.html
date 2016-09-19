@@ -11588,8 +11588,10 @@ ul.typeahead-list > li > a {
 .highlight .err { border: 1px solid #FF0000 } /* Error */
 .highlight .k { color: #008000; font-weight: bold } /* Keyword */
 .highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
 .highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
 .highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
 .highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
 .highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
 .highlight .gd { color: #A00000 } /* Generic.Deleted */
@@ -11597,11 +11599,11 @@ ul.typeahead-list > li > a {
 .highlight .gr { color: #FF0000 } /* Generic.Error */
 .highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
 .highlight .gi { color: #00A000 } /* Generic.Inserted */
-.highlight .go { color: #808080 } /* Generic.Output */
+.highlight .go { color: #888888 } /* Generic.Output */
 .highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
 .highlight .gs { font-weight: bold } /* Generic.Strong */
 .highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
-.highlight .gt { color: #0040D0 } /* Generic.Traceback */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
 .highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
 .highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
 .highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
@@ -11624,6 +11626,7 @@ ul.typeahead-list > li > a {
 .highlight .nv { color: #19177C } /* Name.Variable */
 .highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
 .highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
 .highlight .mf { color: #666666 } /* Literal.Number.Float */
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
@@ -11776,18 +11779,18 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>#!/bin/bash
+<div class=" highlight hl-julia"><pre><span></span><span class="c">#!/bin/bash</span>
 
-#$ -N jbtest
-#$ -q &lt;Queue&gt;
-#$ -pe mpich 128
-#$ -cwd            		# run the job out of the current directory
-#$ -m beas
-#$ -ckpt blcr
-#$ -o output/
-#$ -e output/
-module load julia/0.4.3
-julia --machinefile jbtest-pe_hostfile_mpich.$JOB_ID test.jl
+<span class="c">#$ -N jbtest</span>
+<span class="c">#$ -q &lt;Queue&gt;</span>
+<span class="c">#$ -pe mpich 128</span>
+<span class="c">#$ -cwd            		# run the job out of the current directory</span>
+<span class="c">#$ -m beas</span>
+<span class="c">#$ -ckpt blcr</span>
+<span class="c">#$ -o output/</span>
+<span class="c">#$ -e output/</span>
+<span class="k">module</span> <span class="nb">load</span> <span class="n">julia</span><span class="o">/</span><span class="mf">0.4</span><span class="o">.</span><span class="mi">3</span>
+<span class="n">julia</span> <span class="o">--</span><span class="n">machinefile</span> <span class="n">jbtest</span><span class="o">-</span><span class="n">pe_hostfile_mpich</span><span class="o">.$</span><span class="n">JOB_ID</span> <span class="n">test</span><span class="o">.</span><span class="n">jl</span>
 </pre></div>
 
 </div>
@@ -11810,12 +11813,12 @@ julia --machinefile jbtest-pe_hostfile_mpich.$JOB_ID test.jl
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>## Script which prints out the hostnames of the worker processes
-# Used in conjunction with a job script to ensure multi-node parallelism
+<div class=" highlight hl-julia"><pre><span></span><span class="c">## Script which prints out the hostnames of the worker processes</span>
+<span class="c"># Used in conjunction with a job script to ensure multi-node parallelism</span>
 
-hosts = @parallel for i=1:120
-       run(`hostname`) end
-println(hosts)
+<span class="n">hosts</span> <span class="o">=</span> <span class="p">@</span><span class="n">parallel</span> <span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="mi">120</span>
+       <span class="n">run</span><span class="p">(</span><span class="sb">`hostname`</span><span class="p">)</span> <span class="k">end</span>
+<span class="n">println</span><span class="p">(</span><span class="n">hosts</span><span class="p">)</span>
 </pre></div>
 
 </div>

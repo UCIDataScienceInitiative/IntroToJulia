@@ -11642,8 +11642,10 @@ ul.typeahead-list > li > a {
 .highlight .err { border: 1px solid #FF0000 } /* Error */
 .highlight .k { color: #008000; font-weight: bold } /* Keyword */
 .highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
 .highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
 .highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
 .highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
 .highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
 .highlight .gd { color: #A00000 } /* Generic.Deleted */
@@ -11651,11 +11653,11 @@ ul.typeahead-list > li > a {
 .highlight .gr { color: #FF0000 } /* Generic.Error */
 .highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
 .highlight .gi { color: #00A000 } /* Generic.Inserted */
-.highlight .go { color: #808080 } /* Generic.Output */
+.highlight .go { color: #888888 } /* Generic.Output */
 .highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
 .highlight .gs { font-weight: bold } /* Generic.Strong */
 .highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
-.highlight .gt { color: #0040D0 } /* Generic.Traceback */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
 .highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
 .highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
 .highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
@@ -11678,6 +11680,7 @@ ul.typeahead-list > li > a {
 .highlight .nv { color: #19177C } /* Name.Variable */
 .highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
 .highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
 .highlight .mf { color: #666666 } /* Literal.Number.Float */
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
@@ -11827,64 +11830,64 @@ a.anchor-link {
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>const N = 100000
-function typeunstable(x::Number)
-  for i=1:N
-    x += rand()
-  end
-  x
-end
-x = 1
-@time typeunstable(x)
-x = 1.0
-@time typeunstable(x)
+<div class=" highlight hl-julia"><pre><span></span><span class="kd">const</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="k">function</span><span class="nf"> typeunstable</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">Number</span><span class="p">)</span>
+  <span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span>
+    <span class="n">x</span> <span class="o">+=</span> <span class="n">rand</span><span class="p">()</span>
+  <span class="k">end</span>
+  <span class="n">x</span>
+<span class="k">end</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="p">@</span><span class="n">time</span> <span class="n">typeunstable</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="p">@</span><span class="n">time</span> <span class="n">typeunstable</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-function typeunstable2(x::Number)
-  float(x)
-  function wrapped()
-    for i=1:N
-      x += rand()
-    end
-    x
-  end
-  wrapped()
-end
-x=1
-@time typeunstable2(x)
-x = 1.0
-@time typeunstable2(x)
+<span class="k">function</span><span class="nf"> typeunstable2</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">Number</span><span class="p">)</span>
+  <span class="n">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+  <span class="k">function</span><span class="nf"> wrapped</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span>
+      <span class="n">x</span> <span class="o">+=</span> <span class="n">rand</span><span class="p">()</span>
+    <span class="k">end</span>
+    <span class="n">x</span>
+  <span class="k">end</span>
+  <span class="n">wrapped</span><span class="p">()</span>
+<span class="k">end</span>
+<span class="n">x</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">@</span><span class="n">time</span> <span class="n">typeunstable2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="p">@</span><span class="n">time</span> <span class="n">typeunstable2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
 
-function typestable(x::Number)
-  function wrapped(x::Float64)
-    for i=1:N
-      x += rand()
-    end
-    x
-  end
-  wrapped(x::Int) = wrapped(float(x))
-  wrapped(x)
-end
-x=1
-@time typestable(x)
-x = 1.0
-@time typestable(x)
+<span class="k">function</span><span class="nf"> typestable</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">Number</span><span class="p">)</span>
+  <span class="k">function</span><span class="nf"> wrapped</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="kt">Float64</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span>
+      <span class="n">x</span> <span class="o">+=</span> <span class="n">rand</span><span class="p">()</span>
+    <span class="k">end</span>
+    <span class="n">x</span>
+  <span class="k">end</span>
+  <span class="n">wrapped</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="kt">Int</span><span class="p">)</span> <span class="o">=</span> <span class="n">wrapped</span><span class="p">(</span><span class="n">float</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+  <span class="n">wrapped</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="k">end</span>
+<span class="n">x</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">@</span><span class="n">time</span> <span class="n">typestable</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="p">@</span><span class="n">time</span> <span class="n">typestable</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-function wrapped2(x::Float64)
-  for i=1:N
-    x += rand()
-  end
-  x
-end
-wrapped2(x::Int) = wrapped2(float(x))
-function typestable2(x::Number)
-  wrapped2(x)
-end
+<span class="k">function</span><span class="nf"> wrapped2</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="kt">Float64</span><span class="p">)</span>
+  <span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span>
+    <span class="n">x</span> <span class="o">+=</span> <span class="n">rand</span><span class="p">()</span>
+  <span class="k">end</span>
+  <span class="n">x</span>
+<span class="k">end</span>
+<span class="n">wrapped2</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="kt">Int</span><span class="p">)</span> <span class="o">=</span> <span class="n">wrapped2</span><span class="p">(</span><span class="n">float</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="k">function</span><span class="nf"> typestable2</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">Number</span><span class="p">)</span>
+  <span class="n">wrapped2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="k">end</span>
 
-x=1
-@time typestable2(x)
-x = 1.0
-@time typestable2(x)
+<span class="n">x</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">@</span><span class="n">time</span> <span class="n">typestable2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="p">@</span><span class="n">time</span> <span class="n">typestable2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 
 </div>

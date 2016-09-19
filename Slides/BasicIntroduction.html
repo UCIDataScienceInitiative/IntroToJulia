@@ -11642,8 +11642,10 @@ ul.typeahead-list > li > a {
 .highlight .err { border: 1px solid #FF0000 } /* Error */
 .highlight .k { color: #008000; font-weight: bold } /* Keyword */
 .highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
 .highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
 .highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
 .highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
 .highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
 .highlight .gd { color: #A00000 } /* Generic.Deleted */
@@ -11651,11 +11653,11 @@ ul.typeahead-list > li > a {
 .highlight .gr { color: #FF0000 } /* Generic.Error */
 .highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
 .highlight .gi { color: #00A000 } /* Generic.Inserted */
-.highlight .go { color: #808080 } /* Generic.Output */
+.highlight .go { color: #888888 } /* Generic.Output */
 .highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
 .highlight .gs { font-weight: bold } /* Generic.Strong */
 .highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
-.highlight .gt { color: #0040D0 } /* Generic.Traceback */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
 .highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
 .highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
 .highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
@@ -11678,6 +11680,7 @@ ul.typeahead-list > li > a {
 .highlight .nv { color: #19177C } /* Name.Variable */
 .highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
 .highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
 .highlight .mf { color: #666666 } /* Literal.Number.Float */
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
@@ -11848,26 +11851,26 @@ a.anchor-link {
 <div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>a = Vector{Float64}(5) # Create a length 5 Vector (dimension 1 array) of Float64&#39;s
+<div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="mi">5</span><span class="p">)</span> <span class="c"># Create a length 5 Vector (dimension 1 array) of Float64&#39;s</span>
 
-a = [1;2;3;4;5] # Create the column vector [1 2 3 4 5]
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">3</span><span class="p">;</span><span class="mi">4</span><span class="p">;</span><span class="mi">5</span><span class="p">]</span> <span class="c"># Create the column vector [1 2 3 4 5]</span>
 
-a = [1 2 3 4] # Create the row vector [1 2 3 4]
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">]</span> <span class="c"># Create the row vector [1 2 3 4]</span>
 
-a[3] = 2 # Change the third element of a (using linear indexing) to 2
+<span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="c"># Change the third element of a (using linear indexing) to 2</span>
 
-b = Matrix{Float64}(4,2) # Define a Matrix of Float64&#39;s of size (4,2)
+<span class="n">b</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="c"># Define a Matrix of Float64&#39;s of size (4,2)</span>
 
-c = Array{Float64,4}((4,5,6,7)) # Define a (4,5,6,7) array of Float64&#39;s 
+<span class="n">c</span> <span class="o">=</span> <span class="n">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">4</span><span class="p">}((</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span> <span class="c"># Define a (4,5,6,7) array of Float64&#39;s </span>
 
-mat    = [1 2 3 4
-          3 4 5 6
-          4 4 4 6
-          3 3 3 3] #Define the matrix inline 
+<span class="n">mat</span>    <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span>
+          <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span>
+          <span class="mi">4</span> <span class="mi">4</span> <span class="mi">4</span> <span class="mi">6</span>
+          <span class="mi">3</span> <span class="mi">3</span> <span class="mi">3</span> <span class="mi">3</span><span class="p">]</span> <span class="c">#Define the matrix inline </span>
 
-mat[1,2] = 4 # Set element (1,2) (row 1, column 2) to 4
+<span class="n">mat</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span> <span class="c"># Set element (1,2) (row 1, column 2) to 4</span>
 
-mat
+<span class="n">mat</span>
 </pre></div>
 
 </div>
@@ -11910,10 +11913,10 @@ mat
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>a = [1;3;4]
-b = a
-b[1] = 10
-a
+<div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span><span class="mi">3</span><span class="p">;</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
+<span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">a</span>
 </pre></div>
 
 </div>
@@ -11955,10 +11958,10 @@ a
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>a = [1;4;5]
-b = copy(a)
-b[1] = 10
-a
+<div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span><span class="mi">4</span><span class="p">;</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">a</span>
 </pre></div>
 
 </div>
@@ -12000,10 +12003,10 @@ a
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>c = similar(a)
-d = zeros(a)
-e = ones(a)
-println(c); println(d); println(e)
+<div class=" highlight hl-julia"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">similar</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">ones</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="n">c</span><span class="p">);</span> <span class="n">println</span><span class="p">(</span><span class="n">d</span><span class="p">);</span> <span class="n">println</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12042,7 +12045,7 @@ println(c); println(d); println(e)
 <div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>a[1:2]
+<div class=" highlight hl-julia"><pre><span></span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
 </pre></div>
 
 </div>
@@ -12083,11 +12086,11 @@ println(c); println(d); println(e)
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>a = Vector{Vector{Float64}}(3)
-a[1] = [1;2;3]
-a[2] = [1;2]
-a[3] = [3;4;5]
-a
+<div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">{</span><span class="n">Vector</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}}(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">;</span><span class="mi">4</span><span class="p">;</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">a</span>
 </pre></div>
 
 </div>
@@ -12130,9 +12133,9 @@ a
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>b = a
-b[1] = [1;4;5]
-a
+<div class=" highlight hl-julia"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
+<span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span><span class="mi">4</span><span class="p">;</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">a</span>
 </pre></div>
 
 </div>
@@ -12175,9 +12178,9 @@ a
 <div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>b = deepcopy(a)
-b[1] = [1;2;3]
-a
+<div class=" highlight hl-julia"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">a</span>
 </pre></div>
 
 </div>
@@ -12219,8 +12222,8 @@ a
 <div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>a = [1;6;8]
-scale!(a,2) # a changes
+<div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span><span class="mi">6</span><span class="p">;</span><span class="mi">8</span><span class="p">]</span>
+<span class="n">scale!</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="c"># a changes</span>
 </pre></div>
 
 </div>
@@ -12272,23 +12275,23 @@ scale!(a,2) # a changes
 <div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>for i=1:5 #for i goes from 1 to 5
-    println(i)
-end
+<div class=" highlight hl-julia"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span> <span class="c">#for i goes from 1 to 5</span>
+    <span class="n">println</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="k">end</span>
 
-t = 0
-while t&lt;5
-    println(t)
-    t+=1 # t = t + 1
-end
+<span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">t</span><span class="o">&lt;</span><span class="mi">5</span>
+    <span class="n">println</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">t</span><span class="o">+=</span><span class="mi">1</span> <span class="c"># t = t + 1</span>
+<span class="k">end</span>
 
-school = :UCI
+<span class="n">school</span> <span class="o">=</span> <span class="p">:</span><span class="n">UCI</span>
 
-if school==:UCI
-    println(&quot;ZotZotZot&quot;)
-else
-    println(&quot;Not even worth discussing.&quot;)
-end
+<span class="k">if</span> <span class="n">school</span><span class="o">==</span><span class="p">:</span><span class="n">UCI</span>
+    <span class="n">println</span><span class="p">(</span><span class="s">&quot;ZotZotZot&quot;</span><span class="p">)</span>
+<span class="k">else</span>
+    <span class="n">println</span><span class="p">(</span><span class="s">&quot;Not even worth discussing.&quot;</span><span class="p">)</span>
+<span class="k">end</span>
 </pre></div>
 
 </div>
@@ -12335,9 +12338,9 @@ ZotZotZot
 <div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>for i=1:2,j=2:4
-    println(i*j)
-end
+<div class=" highlight hl-julia"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="n">j</span><span class="o">=</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span>
+    <span class="n">println</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">j</span><span class="p">)</span>
+<span class="k">end</span>
 </pre></div>
 
 </div>
@@ -12378,7 +12381,7 @@ end
 <div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>f(x,y) = 2x+y # Create an inline function
+<div class=" highlight hl-julia"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2</span><span class="n">x</span><span class="o">+</span><span class="n">y</span> <span class="c"># Create an inline function</span>
 </pre></div>
 
 </div>
@@ -12407,7 +12410,7 @@ end
 <div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>f(1,2) # Call the function
+<div class=" highlight hl-julia"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="c"># Call the function</span>
 </pre></div>
 
 </div>
@@ -12436,9 +12439,9 @@ end
 <div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>function f(x)
-  x+2  
-end # Long form definition
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span><span class="nf"> f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+  <span class="n">x</span><span class="o">+</span><span class="mi">2</span>  
+<span class="k">end</span> <span class="c"># Long form definition</span>
 </pre></div>
 
 </div>
@@ -12484,7 +12487,7 @@ end # Long form definition
 <div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>f(2)
+<div class=" highlight hl-julia"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12524,7 +12527,7 @@ end # Long form definition
 <div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>f(x::Int,y::Int) = 3x+2y
+<div class=" highlight hl-julia"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="kt">Int</span><span class="p">,</span><span class="n">y</span><span class="p">::</span><span class="kt">Int</span><span class="p">)</span> <span class="o">=</span> <span class="mi">3</span><span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="n">y</span>
 </pre></div>
 
 </div>
@@ -12570,7 +12573,7 @@ end # Long form definition
 <div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>f(2,3) # 3x+2y
+<div class=" highlight hl-julia"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c"># 3x+2y</span>
 </pre></div>
 
 </div>
@@ -12599,7 +12602,7 @@ end # Long form definition
 <div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>f(2.0,3) # 2x+y since 2.0 is not an Int
+<div class=" highlight hl-julia"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c"># 2x+y since 2.0 is not an Int</span>
 </pre></div>
 
 </div>
@@ -12638,7 +12641,7 @@ end # Long form definition
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>f{T&lt;:Number}(x::T,y::T) = 4x+10y
+<div class=" highlight hl-julia"><pre><span></span><span class="n">f</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Number</span><span class="p">}(</span><span class="n">x</span><span class="p">::</span><span class="n">T</span><span class="p">,</span><span class="n">y</span><span class="p">::</span><span class="n">T</span><span class="p">)</span> <span class="o">=</span> <span class="mi">4</span><span class="n">x</span><span class="o">+</span><span class="mi">10</span><span class="n">y</span>
 </pre></div>
 
 </div>
@@ -12667,7 +12670,7 @@ end # Long form definition
 <div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>f(2,3) # 3x+2y since (::Int,::Int) is stricter
+<div class=" highlight hl-julia"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c"># 3x+2y since (::Int,::Int) is stricter</span>
 </pre></div>
 
 </div>
@@ -12696,7 +12699,7 @@ end # Long form definition
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>f(2.0,3.0) # 4x+10y
+<div class=" highlight hl-julia"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">)</span> <span class="c"># 4x+10y</span>
 </pre></div>
 
 </div>
@@ -12735,7 +12738,7 @@ end # Long form definition
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>f{T&lt;:Number,T2}(x::T,y::T2,z::T2) = 5x + 5y + 5z
+<div class=" highlight hl-julia"><pre><span></span><span class="n">f</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Number</span><span class="p">,</span><span class="n">T2</span><span class="p">}(</span><span class="n">x</span><span class="p">::</span><span class="n">T</span><span class="p">,</span><span class="n">y</span><span class="p">::</span><span class="n">T2</span><span class="p">,</span><span class="n">z</span><span class="p">::</span><span class="n">T2</span><span class="p">)</span> <span class="o">=</span> <span class="mi">5</span><span class="n">x</span> <span class="o">+</span> <span class="mi">5</span><span class="n">y</span> <span class="o">+</span> <span class="mi">5</span><span class="n">z</span>
 </pre></div>
 
 </div>
@@ -12785,12 +12788,12 @@ end # Long form definition
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>f(x,y,z,w) = x+y+z+w
-@time f(1,1,1,1)
-@time f(1,1,1,1)
-@time f(1,1,1,1)
-@time f(1,1,1,1.0)
-@time f(1,1,1,1.0)
+<div class=" highlight hl-julia"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">w</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">+</span><span class="n">z</span><span class="o">+</span><span class="n">w</span>
+<span class="p">@</span><span class="n">time</span> <span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">@</span><span class="n">time</span> <span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">@</span><span class="n">time</span> <span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">@</span><span class="n">time</span> <span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="p">@</span><span class="n">time</span> <span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12850,14 +12853,14 @@ end # Long form definition
 <div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>function test_function(x,y;z=0) #z is an optional argument
-  if z==0
-    return x+y,x*y #Return a tuple
-  else
-  return x*y*z,x+y+z #Return a different tuple
-  #whitespace is optional
-  end #End if statement
-end #End function definition
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span><span class="nf"> test_function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">;</span><span class="n">z</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c">#z is an optional argument</span>
+  <span class="k">if</span> <span class="n">z</span><span class="o">==</span><span class="mi">0</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="c">#Return a tuple</span>
+  <span class="k">else</span>
+  <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="o">*</span><span class="n">z</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">+</span><span class="n">z</span> <span class="c">#Return a different tuple</span>
+  <span class="c">#whitespace is optional</span>
+  <span class="k">end</span> <span class="c">#End if statement</span>
+<span class="k">end</span> <span class="c">#End function definition</span>
 </pre></div>
 
 </div>
@@ -12896,7 +12899,7 @@ end #End function definition
 <div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>x,y = test_function(1,2)
+<div class=" highlight hl-julia"><pre><span></span><span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">test_function</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12925,7 +12928,7 @@ end #End function definition
 <div class="prompt input_prompt">In&nbsp;[46]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>x,y = test_function(1,2;z=3)
+<div class=" highlight hl-julia"><pre><span></span><span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">test_function</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">;</span><span class="n">z</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12964,7 +12967,7 @@ end #End function definition
 <div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>println(x); println(y)
+<div class=" highlight hl-julia"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="n">x</span><span class="p">);</span> <span class="n">println</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -13003,15 +13006,15 @@ end #End function definition
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>function function_playtime(x) #z is an optional argument
-    y = 2+x
-    function test()
-        2y # y is defined in the previous scope, so it&#39;s available here
-    end
-    z = test() * test()
-    return z,test
-end #End function definition
-z,test = function_playtime(2)
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span><span class="nf"> function_playtime</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c">#z is an optional argument</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">2</span><span class="o">+</span><span class="n">x</span>
+    <span class="k">function</span><span class="nf"> test</span><span class="p">()</span>
+        <span class="mi">2</span><span class="n">y</span> <span class="c"># y is defined in the previous scope, so it&#39;s available here</span>
+    <span class="k">end</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">test</span><span class="p">()</span> <span class="o">*</span> <span class="n">test</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">z</span><span class="p">,</span><span class="n">test</span>
+<span class="k">end</span> <span class="c">#End function definition</span>
+<span class="n">z</span><span class="p">,</span><span class="n">test</span> <span class="o">=</span> <span class="n">function_playtime</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -13047,7 +13050,7 @@ z,test = function_playtime(2)
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>test()
+<div class=" highlight hl-julia"><pre><span></span><span class="n">test</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -13086,7 +13089,7 @@ z,test = function_playtime(2)
 <div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>a = 2
+<div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
 </pre></div>
 
 </div>
@@ -13135,7 +13138,7 @@ z,test = function_playtime(2)
 <div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>g = (x,y) -&gt; 2x+y
+<div class=" highlight hl-julia"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="mi">2</span><span class="n">x</span><span class="o">+</span><span class="n">y</span>
 </pre></div>
 
 </div>
@@ -13174,7 +13177,7 @@ z,test = function_playtime(2)
 <div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>g = (x) -&gt; 2x
+<div class=" highlight hl-julia"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="mi">2</span><span class="n">x</span>
 </pre></div>
 
 </div>
@@ -13224,10 +13227,10 @@ z,test = function_playtime(2)
 <div class="prompt input_prompt">In&nbsp;[48]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>type Car
-    make
-    model
-end
+<div class=" highlight hl-julia"><pre><span></span><span class="k">type</span><span class="nc"> Car</span>
+    <span class="n">make</span>
+    <span class="n">model</span>
+<span class="k">end</span>
 </pre></div>
 
 </div>
@@ -13250,7 +13253,7 @@ end
 <div class="prompt input_prompt">In&nbsp;[49]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>mycar = Car(&quot;Toyota&quot;,&quot;Rav4&quot;)
+<div class=" highlight hl-julia"><pre><span></span><span class="n">mycar</span> <span class="o">=</span> <span class="n">Car</span><span class="p">(</span><span class="s">&quot;Toyota&quot;</span><span class="p">,</span><span class="s">&quot;Rav4&quot;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -13289,7 +13292,7 @@ end
 <div class="prompt input_prompt">In&nbsp;[51]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>mycar.make
+<div class=" highlight hl-julia"><pre><span></span><span class="n">mycar</span><span class="o">.</span><span class="n">make</span>
 </pre></div>
 
 </div>
@@ -13328,11 +13331,11 @@ end
 <div class="prompt input_prompt">In&nbsp;[52]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>type WorkshopParticipant
-    name::String
-    field::Symbol
-end
-tony = WorkshopParticipant(&quot;Tony&quot;,:physics)
+<div class=" highlight hl-julia"><pre><span></span><span class="k">type</span><span class="nc"> WorkshopParticipant</span>
+    <span class="n">name</span><span class="p">::</span><span class="n">String</span>
+    <span class="n">field</span><span class="p">::</span><span class="n">Symbol</span>
+<span class="k">end</span>
+<span class="n">tony</span> <span class="o">=</span> <span class="n">WorkshopParticipant</span><span class="p">(</span><span class="s">&quot;Tony&quot;</span><span class="p">,:</span><span class="n">physics</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -13371,12 +13374,12 @@ tony = WorkshopParticipant(&quot;Tony&quot;,:physics)
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>type StaffMember{T&lt;:Number}
-    name::String
-    field::Symbol
-    age::T
-end
-ter = StaffMember(&quot;Terry&quot;,:football,17)
+<div class=" highlight hl-julia"><pre><span></span><span class="k">type</span><span class="nc"> StaffMember</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Number</span><span class="p">}</span>
+    <span class="n">name</span><span class="p">::</span><span class="n">String</span>
+    <span class="n">field</span><span class="p">::</span><span class="n">Symbol</span>
+    <span class="n">age</span><span class="p">::</span><span class="n">T</span>
+<span class="k">end</span>
+<span class="n">ter</span> <span class="o">=</span> <span class="n">StaffMember</span><span class="p">(</span><span class="s">&quot;Terry&quot;</span><span class="p">,:</span><span class="n">football</span><span class="p">,</span><span class="mi">17</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -13416,7 +13419,7 @@ ter = StaffMember(&quot;Terry&quot;,:football,17)
 <div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>abstract Person
+<div class=" highlight hl-julia"><pre><span></span><span class="k">abstract</span><span class="nc"> Person</span>
 </pre></div>
 
 </div>
@@ -13439,9 +13442,9 @@ ter = StaffMember(&quot;Terry&quot;,:football,17)
 <div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>type Student &lt;: Person
-    grade
-end
+<div class=" highlight hl-julia"><pre><span></span><span class="k">type</span><span class="nc"> Student</span> <span class="o">&lt;:</span> <span class="n">Person</span>
+    <span class="n">grade</span>
+<span class="k">end</span>
 </pre></div>
 
 </div>
@@ -13476,11 +13479,11 @@ end
 <div class="prompt input_prompt">In&nbsp;[63]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>immutable Field
-    name
-    school
-end
-ds = Field(:DataScience,[:PhysicalScience;:ComputerScience])
+<div class=" highlight hl-julia"><pre><span></span><span class="k">immutable</span> <span class="n">Field</span>
+    <span class="n">name</span>
+    <span class="n">school</span>
+<span class="k">end</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(:</span><span class="n">DataScience</span><span class="p">,[:</span><span class="n">PhysicalScience</span><span class="p">;:</span><span class="n">ComputerScience</span><span class="p">])</span>
 </pre></div>
 
 </div>
@@ -13527,7 +13530,7 @@ ds = Field(:DataScience,[:PhysicalScience;:ComputerScience])
 <div class="prompt input_prompt">In&nbsp;[64]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>ds.name = :ComputationalStatistics
+<div class=" highlight hl-julia"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="p">:</span><span class="n">ComputationalStatistics</span>
 </pre></div>
 
 </div>
@@ -13566,8 +13569,8 @@ while loading In[64], in expression starting on line 1
 <div class="prompt input_prompt">In&nbsp;[65]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>push!(ds.school,:BiologicalScience)
-ds.school
+<div class=" highlight hl-julia"><pre><span></span><span class="n">push!</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">school</span><span class="p">,:</span><span class="n">BiologicalScience</span><span class="p">)</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">school</span>
 </pre></div>
 
 </div>
@@ -13620,8 +13623,8 @@ ds.school
 <div class="prompt input_prompt">In&nbsp;[46]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>foo(x) = 2x
-first(methods(foo)).lambda_template.fptr
+<div class=" highlight hl-julia"><pre><span></span><span class="n">foo</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2</span><span class="n">x</span>
+<span class="n">first</span><span class="p">(</span><span class="n">methods</span><span class="p">(</span><span class="n">foo</span><span class="p">))</span><span class="o">.</span><span class="n">lambda_template</span><span class="o">.</span><span class="n">fptr</span>
 </pre></div>
 
 </div>
@@ -13660,7 +13663,7 @@ first(methods(foo)).lambda_template.fptr
 <div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>?copy
+<div class=" highlight hl-julia"><pre><span></span><span class="o">?</span><span class="n">copy</span>
 </pre></div>
 
 </div>
@@ -13709,7 +13712,7 @@ first(methods(foo)).lambda_template.fptr
 <div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>methods(+)
+<div class=" highlight hl-julia"><pre><span></span><span class="n">methods</span><span class="p">(</span><span class="o">+</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -13747,7 +13750,7 @@ first(methods(foo)).lambda_template.fptr
 <div class="prompt input_prompt">In&nbsp;[40]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>fieldnames(LinSpace)
+<div class=" highlight hl-julia"><pre><span></span><span class="n">fieldnames</span><span class="p">(</span><span class="n">LinSpace</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -13790,7 +13793,7 @@ first(methods(foo)).lambda_template.fptr
 <div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>@which copy([1,2,3])
+<div class=" highlight hl-julia"><pre><span></span><span class="p">@</span><span class="n">which</span> <span class="n">copy</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
 </pre></div>
 
 </div>
@@ -13838,8 +13841,8 @@ copy<i>{T<:Array{T,N}}</i>(a::<b>T</b>) at <a href="https://github.com/JuliaLang
 <div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>a = [1;2;3]
-typeof(a)
+<div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">3</span><span class="p">]</span>
+<span class="nb">typeof</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -13879,10 +13882,10 @@ typeof(a)
 <div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>a = 1:5
-println(a)
-b = 1:2:10
-println(b)
+<div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">5</span>
+<span class="n">println</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">10</span>
+<span class="n">println</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -13920,7 +13923,7 @@ println(b)
 <div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>println(a[2]); println(b[3])
+<div class=" highlight hl-julia"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span> <span class="n">println</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
 </pre></div>
 
 </div>
@@ -13958,7 +13961,7 @@ println(b)
 <div class="prompt input_prompt">In&nbsp;[50]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>println(typeof(b))
+<div class=" highlight hl-julia"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="nb">typeof</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -13995,7 +13998,7 @@ println(b)
 <div class="prompt input_prompt">In&nbsp;[52]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>fieldnames(StepRange)
+<div class=" highlight hl-julia"><pre><span></span><span class="n">fieldnames</span><span class="p">(</span><span class="n">StepRange</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -14037,7 +14040,7 @@ println(b)
 <div class="prompt input_prompt">In&nbsp;[55]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>c = collect(a)
+<div class=" highlight hl-julia"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">collect</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -14081,9 +14084,9 @@ println(b)
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>@time a = 1:100000
-@time a = 1:100
-@time b = collect(1:100000);
+<div class=" highlight hl-julia"><pre><span></span><span class="p">@</span><span class="n">time</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">100000</span>
+<span class="p">@</span><span class="n">time</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">100</span>
+<span class="p">@</span><span class="n">time</span> <span class="n">b</span> <span class="o">=</span> <span class="n">collect</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">100000</span><span class="p">);</span>
 </pre></div>
 
 </div>
@@ -14142,9 +14145,9 @@ println(b)
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>d = Dict(:test=&gt;2,&quot;silly&quot;=&gt;:suit)
-println(d[:test])
-println(d[&quot;silly&quot;])
+<div class=" highlight hl-julia"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(:</span><span class="n">test</span><span class="o">=&gt;</span><span class="mi">2</span><span class="p">,</span><span class="s">&quot;silly&quot;</span><span class="o">=&gt;</span><span class="p">:</span><span class="n">suit</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="n">d</span><span class="p">[:</span><span class="n">test</span><span class="p">])</span>
+<span class="n">println</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s">&quot;silly&quot;</span><span class="p">])</span>
 </pre></div>
 
 </div>
@@ -14182,8 +14185,8 @@ suit
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>tup = (2.,3) # Don&#39;t have to match types
-x,y = (3.0,&quot;hi&quot;) # Can separate a tuple to multiple variables
+<div class=" highlight hl-julia"><pre><span></span><span class="n">tup</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c"># Don&#39;t have to match types</span>
+<span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="mf">3.0</span><span class="p">,</span><span class="s">&quot;hi&quot;</span><span class="p">)</span> <span class="c"># Can separate a tuple to multiple variables</span>
 </pre></div>
 
 </div>
@@ -14223,15 +14226,15 @@ x,y = (3.0,&quot;hi&quot;) # Can separate a tuple to multiple variables
 <div class="prompt input_prompt">In&nbsp;[85]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre>macro my_time(ex)
-  return quote
-    local t0 = time()
-    local val = $ex
-    local t1 = time()
-    println(&quot;elapsed time: &quot;, t1-t0, &quot; seconds&quot;)
-    val
-  end
-end
+<div class=" highlight hl-julia"><pre><span></span><span class="k">macro</span> <span class="n">my_time</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span>
+  <span class="k">return</span> <span class="k">quote</span>
+    <span class="kd">local</span> <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+    <span class="kd">local</span> <span class="n">val</span> <span class="o">=</span> <span class="o">$</span><span class="n">ex</span>
+    <span class="kd">local</span> <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+    <span class="n">println</span><span class="p">(</span><span class="s">&quot;elapsed time: &quot;</span><span class="p">,</span> <span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">,</span> <span class="s">&quot; seconds&quot;</span><span class="p">)</span>
+    <span class="n">val</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 </pre></div>
 
 </div>
