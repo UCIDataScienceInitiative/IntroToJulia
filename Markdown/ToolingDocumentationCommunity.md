@@ -19,6 +19,8 @@ Jupyter notebooks do not easily show code from multiple files, do not have a deb
 
 Go to www.juliabox.com and sign in to start using Julia on a cloud-based Jupyter notebook. (Note: you may need to use `Pkg.update()` to update your local package database ("METADATA") on first use).
 
+To setup the workshop notebooks in JuliaBox, click on the "Sync" tab and under "Git Repositories" paste in https://github.com/UCIDataScienceInitiative/IntroToJulia for the "Git Clone URL", and click the +. Upon refreshing the homepage you should see the IntroToJulia folder appear. Click into this folder, and click into the Notebooks folder.
+
 ### Installing Julia
 
 Unless you're a serious hacker, I recommend installing Julia by downloading one of the binaries from http://julialang.org/downloads/. There are ready-to-use binaries for most operating systems. Just download, run the installer, and use Julia.
@@ -32,9 +34,10 @@ To install Jupyter notebooks (IJulia), use the following commands in the REPL:
 
 ```julia
 Pkg.add("IJulia") # This will install the package
+Pkg.clone("https://github.com/UCIDataScienceInitiative/IntroToJulia") # Clone the IntroToJulia Repo
 ### Next commands you run each time you open the REPL
 using IJulia
-notebook()
+notebook(detached=true,dir=Pkg.dir("IntroToJulia"))
 ```
 
 ### Installing Juno

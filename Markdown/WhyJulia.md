@@ -117,15 +117,15 @@ The upside is that Julia's functions, when type stable, are essentially C/Fortra
 
 
     LoadError: DomainError:
-    Cannot raise an integer x to a negative power -n. 
-    Make x a float by adding a zero decimal (e.g. 2.0^-n instead of 2^-n), or write 1/x^n, float(x)^-n, or (x//1)^-n.
-    while loading In[8], in expression starting on line 1
+    while loading In[1], in expression starting on line 1
 
     
 
-     in power_by_squaring(::Int64, ::Int64) at ./intfuncs.jl:118
+     in execute_request(::ZMQ.Socket, ::IJulia.Msg) at /home/crackauc/.julia/v0.5/IJulia/src/execute_request.jl:169
 
-     in ^(::Int64, ::Int64) at ./intfuncs.jl:142
+     in eventloop(::ZMQ.Socket) at /home/crackauc/.julia/v0.5/IJulia/src/eventloop.jl:8
+
+     in (::IJulia.##9#15)() at ./task.jl:360
 
 
 Here we get an error. In order to guarantee to the compiler that `^` will give an Int64 back, it has to throw an error. If you do this in MATLAB, Python, or R, it will not throw an error. That is because those languages do not have their entire language built around type stability.
@@ -137,15 +137,7 @@ What happens when we don't have type stability? Let's inspect this code:
 @code_native 2^5
 ```
 
-    	.text
-    Filename: intfuncs.jl
-    	pushq	%rbp
-    	movq	%rsp, %rbp
-    Source line: 142
-    	callq	power_by_squaring
-    	popq	%rbp
-    	retq
-    	nopl	(%rax,%rax)
+    WARNING: Could not determine size of symbol
 
 
 Now let's define our own exponentiation on integers. Let's make it "safe" like the form seen in other scripting languages:
@@ -615,4 +607,4 @@ Julia is fast by design. Type stability and multiple dispatch is necessary to do
 
 ## Discussion / Project
 
-Here's a good learning project: how would you design a new type `EasyFloats` to build MATLAB/Python/R arithmetic into Julia? Time the results and see what the difference from optimal is.
+Here's a good learning project: how would you design a new type `EasyFloats` to build MATLAB/Python/R arithmetic into Julia? How would you designed "arrays with NAs" to mimic R? Time the results and see what the difference from optimal is.

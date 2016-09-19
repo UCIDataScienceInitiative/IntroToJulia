@@ -31,6 +31,7 @@ To get started, see the [Tooling, Documentation, and Community notebook](http://
 ### Detailed Usage
 
 - [More Details on Arrays and Matrices](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArraysAndMatrices)
+- [Call Overloading](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading)
 - [Overview of the Package Ecosystem](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PackageEcosystem)
 - [An In-Depth Look at Plots.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PlotsJL)
 - [Parallelism](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Parallelism)
@@ -63,6 +64,7 @@ To get started, see the [Tooling, Documentation, and Community notebook](http://
 ### Detailed Usage
 
 - [More Details on Arrays and Matrices](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ArraysAndMatrices)
+- [Call Overloading](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/CallOverloading)
 - [Overview of the Package Ecosystem](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/PackageEcosystem)
 - [An In-Depth Look at Plots.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/PlotsJL)
 - [Parallelism](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/Parallelism)

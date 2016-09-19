@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>ToolingDocumentationCommunity</title>
+<title>CallOverloading</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -11748,119 +11748,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Tooling,-Documentation,-and-Community">Tooling, Documentation, and Community<a class="anchor-link" href="#Tooling,-Documentation,-and-Community">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Tooling">Tooling<a class="anchor-link" href="#Tooling">&#182;</a></h2><p>The two most commons tools for coding in Julia are:</p>
-<ol>
-<li>The Julia REPL (the terminal)</li>
-<li>Juno, the IDE in Atom</li>
-<li>Jupyter notebooks</li>
-</ol>
-<p>Other solutions exist (SublimeText, Emacs, etc.). The general mantra is:</p>
-<blockquote><p>Jupyter notebooks are for code, Juno is for data. (Mike Innes, developer of Juno)</p>
-</blockquote>
-<p>Jupyter notebooks do not easily show code from multiple files, do not have a debugging GUI, and it doesn't have as easy access to a console, making it less friendly for developing large projects (like packages). However, Jupyter notebooks store their outputs in a convenient form, which is good for saving and sharing results. I suggest that you learn both and use the right tool for the right job.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Jupyter-Notebooks-with-no-Install">Jupyter Notebooks with no Install<a class="anchor-link" href="#Jupyter-Notebooks-with-no-Install">&#182;</a></h3><p>Go to www.juliabox.com and sign in to start using Julia on a cloud-based Jupyter notebook. (Note: you may need to use <code>Pkg.update()</code> to update your local package database ("METADATA") on first use).</p>
-<p>To setup the workshop notebooks in JuliaBox, click on the "Sync" tab and under "Git Repositories" paste in <a href="https://github.com/UCIDataScienceInitiative/IntroToJulia">https://github.com/UCIDataScienceInitiative/IntroToJulia</a> for the "Git Clone URL", and click the +. Upon refreshing the homepage you should see the IntroToJulia folder appear. Click into this folder, and click into the Notebooks folder.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Installing-Julia">Installing Julia<a class="anchor-link" href="#Installing-Julia">&#182;</a></h3><p>Unless you're a serious hacker, I recommend installing Julia by downloading one of the binaries from <a href="http://julialang.org/downloads/">http://julialang.org/downloads/</a>. There are ready-to-use binaries for most operating systems. Just download, run the installer, and use Julia.</p>
-<p>If you want to build from the source, the repository along with the build instructions are at <a href="https://github.com/JuliaLang/julia">https://github.com/JuliaLang/julia</a>.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Installing-Jupyter-Notebooks">Installing Jupyter Notebooks<a class="anchor-link" href="#Installing-Jupyter-Notebooks">&#182;</a></h3><p>To install Jupyter notebooks (IJulia), use the following commands in the REPL:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre>Pkg.add(&quot;IJulia&quot;) # This will install the package
-Pkg.clone(&quot;https://github.com/UCIDataScienceInitiative/IntroToJulia&quot;) # Clone the IntroToJulia Repo
-### Next commands you run each time you open the REPL
-using IJulia
-notebook(detached=true,dir=Pkg.dir(&quot;IntroToJulia&quot;))
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Installing-Juno">Installing Juno<a class="anchor-link" href="#Installing-Juno">&#182;</a></h3><p>To install Juno, use the installation instructions from here: <a href="https://github.com/JunoLab/uber-juno/blob/master/setup.md">https://github.com/JunoLab/uber-juno/blob/master/setup.md</a></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Documentation">Documentation<a class="anchor-link" href="#Documentation">&#182;</a></h2><p>The Julia documentation can be found at <a href="http://docs.julialang.org/en/latest/manual/">http://docs.julialang.org/en/latest/manual/</a></p>
-<p>Documentation can be found from the REPL by using <code>?</code> in front of a command.</p>
-<h3 id="Good-Pages-to-Read">Good Pages to Read<a class="anchor-link" href="#Good-Pages-to-Read">&#182;</a></h3><p>The following documentation pages are good pages to read in full:</p>
-<ul>
-<li><a href="http://docs.julialang.org/en/release-0.5/manual/noteworthy-differences/">Noteworthy Differences from Other Languages</a></li>
-<li><a href="http://docs.julialang.org/en/release-0.5/manual/performance-tips/">Performance Tips</a></li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Community">Community<a class="anchor-link" href="#Community">&#182;</a></h2><p>Julia is changing fast: there are updates every few months which bring in loads of new features, packages are updating all of the time, and the documentation, while good, is not entirely complete. The best fix for these problems is to be engaged in the Julia community.</p>
-<h4 id="I-would-highly-recommend-finding-a-good-online-community-while-learning-Julia">I would highly recommend finding a good online community while learning Julia<a class="anchor-link" href="#I-would-highly-recommend-finding-a-good-online-community-while-learning-Julia">&#182;</a></h4><p>The main Julia community resources are:</p>
-<ul>
-<li><a href="https://gitter.im/JuliaLang/julia">The JuliaLang Gitter</a> - A chatroom for Julia users</li>
-<li><a href="https://groups.google.com/forum/#!forum/julia-users">julia-users Google group</a> - A mailing list for Julia users. Frequented by core developers.</li>
-<li><a href="https://github.com/JuliaLang/julia">The JuliaLang Github Repository</a> - The issues/PRs document everything changing in Julia</li>
-<li><a href="http://www.juliabloggers.com/">JuliaBloggers</a> - A blog aggregator for Julia</li>
-<li><a href="https://www.reddit.com/r/Julia/">r/Julia</a> - A subreddit for Julia</li>
-<li><a href="http://stackoverflow.com/questions/tagged/julia-lang">StackOverflow tag:julia-lang</a> - Q&amp;A site for Julia</li>
-</ul>
+<h2 id="Project">Project<a class="anchor-link" href="#Project">&#182;</a></h2><p>Overload the call on the UnitStepRange to give an interpolated value at intermediate points, i.e. if <code>a=1:2:10</code>, then <code>a(1.5)=2</code>.</p>
 
 </div>
 </div>

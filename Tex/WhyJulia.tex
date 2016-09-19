@@ -444,21 +444,21 @@ should it output?
 \end{Verbatim}
         
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}8}]:} 2\PYZca{}-5
+{\color{incolor}In [{\color{incolor}1}]:} 2\PYZca{}-5
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
 
         LoadError: DomainError:
-    Cannot raise an integer x to a negative power -n. 
-    Make x a float by adding a zero decimal (e.g. 2.0\^{}-n instead of 2\^{}-n), or write 1/x\^{}n, float(x)\^{}-n, or (x//1)\^{}-n.
-    while loading In[8], in expression starting on line 1
+    while loading In[1], in expression starting on line 1
 
         
 
-         in power\_by\_squaring(::Int64, ::Int64) at ./intfuncs.jl:118
+         in execute\_request(::ZMQ.Socket, ::IJulia.Msg) at /home/crackauc/.julia/v0.5/IJulia/src/execute\_request.jl:169
 
-         in \^{}(::Int64, ::Int64) at ./intfuncs.jl:142
+         in eventloop(::ZMQ.Socket) at /home/crackauc/.julia/v0.5/IJulia/src/eventloop.jl:8
+
+         in (::IJulia.\#\#9\#15)() at ./task.jl:360
 
     \end{Verbatim}
 
@@ -468,22 +468,14 @@ do this in MATLAB, Python, or R, it will not throw an error. That is
 because those languages do not have their entire language built around
 type stability.
 
-What happens when we don't have type stability? Let's inspect this code:
+    What happens when we don't have type stability? Let's inspect this code:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}9}]:} @code\PYZus{}native 2\PYZca{}5
+{\color{incolor}In [{\color{incolor}2}]:} @code\PYZus{}native 2\PYZca{}5
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-	.text
-Filename: intfuncs.jl
-	pushq	\%rbp
-	movq	\%rsp, \%rbp
-Source line: 142
-	callq	power\_by\_squaring
-	popq	\%rbp
-	retq
-	nopl	(\%rax,\%rax)
+WARNING: Could not determine size of symbol
 
     \end{Verbatim}
 
@@ -1093,8 +1085,9 @@ it's not totally possible.
 \subsection{Discussion / Project}\label{discussion-project}
 
 Here's a good learning project: how would you design a new type
-\texttt{EasyFloats} to build MATLAB/Python/R arithmetic into Julia? Time
-the results and see what the difference from optimal is.
+\texttt{EasyFloats} to build MATLAB/Python/R arithmetic into Julia? How
+would you designed ``arrays with NAs'' to mimic R? Time the results and
+see what the difference from optimal is.
 
 
     % Add a bibliography block to the postdoc
