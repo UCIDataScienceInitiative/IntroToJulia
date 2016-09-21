@@ -5,7 +5,7 @@ There is an obvious reason to choose Julia:
 
 >it's faster than other scripting languages, allowing you to have the rapid development of Python/MATLAB/R while producing code that is as fast as C/Fortran
 
-Newcommers to Julia might be a little weary of that statement. 
+Newcomers to Julia might be a little wary of that statement.
 
 1. Why not just make other scripting languages faster? If Julia can do it, why can't others? 
 2. How do you interpert Julia benchmarks to confirm this? (This is surprisingly difficult for many!)
@@ -56,7 +56,7 @@ sin(2π)
 
 ## Type-stability and Code Introspection
 
-Type stability is the idea that there is only 1 possible type which can be outputtted from a method. For example, the reasonable type to output from `*(::Float64,::Float64)` is a `Float64`. No matter what you give it, it will spit out a `Float64`. This right here is multiple-dispatch: the `*` operator calls a different method depending on the types that it sees. When it sees floats, it will spit out floats. Julia provides code introspection macros so that way you can see what your code actually compiles to. Thus Julia is not just a scripting language, it's a scripting language which lets you deal with assembly! If we check the LLVM-compiled code (LLVM is the Julia compiler)
+Type stability is the idea that there is only 1 possible type which can be outputtted from a method. For example, the reasonable type to output from `*(::Float64,::Float64)` is a `Float64`. No matter what you give it, it will spit out a `Float64`. This right here is multiple-dispatch: the `*` operator calls a different method depending on the types that it sees. When it sees floats, it will spit out floats. Julia provides code introspection macros so that way you can see what your code actually compiles to. Thus Julia is not just a scripting language, it's a scripting language which lets you deal with assembly! Julia, like many languages, compiles to LLVM (LLVM is a type of portable assembly language).
 
 
 ```julia
@@ -439,7 +439,7 @@ Notice that it shows all of the variables in the function as strictly typed. Wha
       end::UNION{FLOAT64,INT64}
 
 
-Notice that it has to make a temporary variable `x@_4` which is translates our int at the beginning of the function, and then do type-checking in order to find the write function, and then its output type is the non-strict `Union{Float64,Int64}`. The quick way to read this is to see that `x@_4::ANY` has a non-strict type, indicating a type-instability. This gives you a tool to know how to optimize.
+Notice that it has to make a temporary variable `x@_4` which is translates our int at the beginning of the function, and then do type-checking in order to find the right function, and then its output type is the non-strict `Union{Float64,Int64}`. The quick way to read this is to see that `x@_4::ANY` has a non-strict type, indicating a type-instability. This gives you a tool to know how to optimize.
 
 ## Dealing With Necessary Type-Instabilities
 
@@ -564,7 +564,7 @@ a = 3.0 # Fails
 
 Because `const` is about types, it acts slightly differently than one would expect. `const` is a declaration that the type of `a` will be constant, not the value. Therefore we can change `a` from 3 to 4 since it goes from an `Int` to an `Int`. However, trying to change `a` to `3.0` fails because it cannot change to a Float64.
 
-This will show up when trying to do benchmarks. The most common human error to see is for newcommers to benchmark Julia like:
+This will show up when trying to do benchmarks. The most common human error to see is for newcomers to benchmark Julia like:
 
 
 ```julia

@@ -286,7 +286,7 @@ rapid development of Python/MATLAB/R while producing code that is as
 fast as C/Fortran
 \end{quote}
 
-Newcommers to Julia might be a little weary of that statement.
+Newcomers to Julia might be a little wary of that statement.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -383,8 +383,8 @@ depending on the types that it sees. When it sees floats, it will spit
 out floats. Julia provides code introspection macros so that way you can
 see what your code actually compiles to. Thus Julia is not just a
 scripting language, it's a scripting language which lets you deal with
-assembly! If we check the LLVM-compiled code (LLVM is the Julia
-compiler)
+assembly! Julia, like many languages, compiles to LLVM (LLVM is a type
+of portable assembly language).
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}5}]:} \PY{p}{@}\PY{n}{code\PYZus{}llvm} \PY{l+m+mi}{2}\PY{o}{*}\PY{l+m+mi}{5}
@@ -880,7 +880,7 @@ Body:
 
     Notice that it has to make a temporary variable \texttt{x@\_4} which is
 translates our int at the beginning of the function, and then do
-type-checking in order to find the write function, and then its output
+type-checking in order to find the right function, and then its output
 type is the non-strict \texttt{Union\{Float64,Int64\}}. The quick way to
 read this is to see that \texttt{x@\_4::ANY} has a non-strict type,
 indicating a type-instability. This gives you a tool to know how to
@@ -1035,7 +1035,7 @@ one would expect. \texttt{const} is a declaration that the type of
 because it cannot change to a Float64.
 
 This will show up when trying to do benchmarks. The most common human
-error to see is for newcommers to benchmark Julia like:
+error to see is for newcomers to benchmark Julia like:
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}24}]:} \PY{n}{a} \PY{o}{=} \PY{l+m+mf}{3.0}

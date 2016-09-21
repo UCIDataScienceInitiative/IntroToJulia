@@ -11754,7 +11754,7 @@ div#notebook {
 <h1 id="Why-Does-Julia-Work-So-Well?">Why Does Julia Work So Well?<a class="anchor-link" href="#Why-Does-Julia-Work-So-Well?">&#182;</a></h1><p>There is an obvious reason to choose Julia:</p>
 <blockquote><p>it's faster than other scripting languages, allowing you to have the rapid development of Python/MATLAB/R while producing code that is as fast as C/Fortran</p>
 </blockquote>
-<p>Newcommers to Julia might be a little weary of that statement.</p>
+<p>Newcomers to Julia might be a little wary of that statement.</p>
 <ol>
 <li>Why not just make other scripting languages faster? If Julia can do it, why can't others? </li>
 <li>How do you interpert Julia benchmarks to confirm this? (This is surprisingly difficult for many!)</li>
@@ -11862,7 +11862,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Type-stability-and-Code-Introspection">Type-stability and Code Introspection<a class="anchor-link" href="#Type-stability-and-Code-Introspection">&#182;</a></h2><p>Type stability is the idea that there is only 1 possible type which can be outputtted from a method. For example, the reasonable type to output from <code>*(::Float64,::Float64)</code> is a <code>Float64</code>. No matter what you give it, it will spit out a <code>Float64</code>. This right here is multiple-dispatch: the <code>*</code> operator calls a different method depending on the types that it sees. When it sees floats, it will spit out floats. Julia provides code introspection macros so that way you can see what your code actually compiles to. Thus Julia is not just a scripting language, it's a scripting language which lets you deal with assembly! If we check the LLVM-compiled code (LLVM is the Julia compiler)</p>
+<h2 id="Type-stability-and-Code-Introspection">Type-stability and Code Introspection<a class="anchor-link" href="#Type-stability-and-Code-Introspection">&#182;</a></h2><p>Type stability is the idea that there is only 1 possible type which can be outputtted from a method. For example, the reasonable type to output from <code>*(::Float64,::Float64)</code> is a <code>Float64</code>. No matter what you give it, it will spit out a <code>Float64</code>. This right here is multiple-dispatch: the <code>*</code> operator calls a different method depending on the types that it sees. When it sees floats, it will spit out floats. Julia provides code introspection macros so that way you can see what your code actually compiles to. Thus Julia is not just a scripting language, it's a scripting language which lets you deal with assembly! Julia, like many languages, compiles to LLVM (LLVM is a type of portable assembly language).</p>
 
 </div>
 </div>
@@ -12642,7 +12642,7 @@ Body:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Notice that it has to make a temporary variable <code>x@_4</code> which is translates our int at the beginning of the function, and then do type-checking in order to find the write function, and then its output type is the non-strict <code>Union{Float64,Int64}</code>. The quick way to read this is to see that <code>x@_4::ANY</code> has a non-strict type, indicating a type-instability. This gives you a tool to know how to optimize.</p>
+<p>Notice that it has to make a temporary variable <code>x@_4</code> which is translates our int at the beginning of the function, and then do type-checking in order to find the right function, and then its output type is the non-strict <code>Union{Float64,Int64}</code>. The quick way to read this is to see that <code>x@_4::ANY</code> has a non-strict type, indicating a type-instability. This gives you a tool to know how to optimize.</p>
 
 </div>
 </div>
@@ -12940,7 +12940,7 @@ while loading In[16], in expression starting on line 1
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Because <code>const</code> is about types, it acts slightly differently than one would expect. <code>const</code> is a declaration that the type of <code>a</code> will be constant, not the value. Therefore we can change <code>a</code> from 3 to 4 since it goes from an <code>Int</code> to an <code>Int</code>. However, trying to change <code>a</code> to <code>3.0</code> fails because it cannot change to a Float64.</p>
-<p>This will show up when trying to do benchmarks. The most common human error to see is for newcommers to benchmark Julia like:</p>
+<p>This will show up when trying to do benchmarks. The most common human error to see is for newcomers to benchmark Julia like:</p>
 
 </div>
 </div>
