@@ -402,6 +402,27 @@ repo. From left to right:
   Docs Badges: Click on these to go to the package documentation.
 \end{itemize}
 
+    \subsection{Github Organizations}\label{github-organizations}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  A (mostly complete) list of Julia organizations can be found at
+  http://julialang.org/community/
+\item
+  Organizations manage large domains of packages and ensure that they
+  work well together
+\item
+  Examples: JuliaStats, JuliaMath, JuliaDiffEq
+\item
+  Organizations are informal but have been ``unusually effective''
+\item
+  Packages from the main Julia organizations can be considered official
+\item
+  Some functionality which used to be in the Base language now exists in
+  organization packages
+\end{itemize}
+
     \subsection{Using Julia's Package
 Manager}\label{using-julias-package-manager}
 
@@ -493,6 +514,20 @@ branch as another argument:
 the developer or read the pull requests (PR)), but this is common if you
 talk to a developer and they say ``yes, I already implemented that.
 Checkout the dev branch and use \texttt{plot(...)}).
+
+    \subsection{Easter Egg Hunt}\label{easter-egg-hunt}
+
+There is an Easter egg hidden in the repository. To find it, checkout
+the ``dev'' branch of the workshop repository
+(https://github.com/UCIDataScienceInitiative/IntroToJulia) and use the
+commands:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k}{using} \PY{n}{IntroToJulia}
+        \PY{n}{find\PYZus{}easter}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    This will give you instructions for how to hunt down the Easter egg.
 
 
     % Add a bibliography block to the postdoc

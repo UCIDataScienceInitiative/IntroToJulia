@@ -1,5 +1,5 @@
 
-# A Nontrivial Introduction to Julia for Data Science and Scientific Computing
+# A Deep Introduction to Julia for Data Science and Scientific Computing
 
 ## Introduction
 
@@ -24,8 +24,9 @@ To get started, see the [Tooling, Documentation, and Community notebook](http://
 ### Basics
 
 - [Tooling, Documentation, and Community](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ToolingDocumentationCommunity)
+- [A Mental Model for Julia](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/JuliaMentalModel)
 - [A Very Quick Introduction to Git/Github for Julia Users](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/GithubIntroduction)
-- [An Introduction to Basic Julia](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicIntroduction)
+- [A Basic Introduction to Julia](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicIntroduction)
 - [Why Julia?](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/WhyJulia)
 
 ### Detailed Usage
@@ -57,6 +58,7 @@ To get started, see the [Tooling, Documentation, and Community notebook](http://
 ### Basics
 
 - [Tooling, Documentation, and Community](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ToolingDocumentationCommunity)
+- [A Mental Model for Julia](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/JuliaMentalModel)
 - [A Very Quick Introduction to Git/Github for Julia Users](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/GithubIntroduction)
 - [An Introduction to Basic Julia](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/BasicIntroduction)
 - [Why Julia?](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/WhyJulia)

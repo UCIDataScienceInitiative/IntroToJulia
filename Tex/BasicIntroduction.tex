@@ -275,8 +275,8 @@
     
 
     
-    \subsection{An Introduction to Basic
-Julia}\label{an-introduction-to-basic-julia}
+    \subsection{A Basic Introduction to
+Julia}\label{a-basic-introduction-to-julia}
 
 This quick introduction assumes that you have basic knowledge of some
 scripting language and provides an example of the Julia syntax. So
@@ -304,7 +304,7 @@ The array syntax is similar to MATLAB's conventions.
          
          \PY{n}{b} \PY{o}{=} \PY{n}{Matrix}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)} \PY{c}{\PYZsh{} Define a Matrix of Float64\PYZsq{}s of size (4,2)}
          
-         \PY{n}{c} \PY{o}{=} \PY{n}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)} \PY{c}{\PYZsh{} Define a (4,5,6,7) array of Float64\PYZsq{}s }
+         \PY{n}{c} \PY{o}{=} \PY{n}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{)} \PY{c}{\PYZsh{} Define a (4,5,6,7) array of Float64\PYZsq{}s }
          
          \PY{n}{mat}    \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1} \PY{l+m+mi}{2} \PY{l+m+mi}{3} \PY{l+m+mi}{4}
                    \PY{l+m+mi}{3} \PY{l+m+mi}{4} \PY{l+m+mi}{5} \PY{l+m+mi}{6}
@@ -526,6 +526,59 @@ multiple loops in one line:
 8
 
     \end{Verbatim}
+
+    \subsubsection{Problems}\label{problems}
+
+Time to start using your noggin. Here are some problems to get you using
+the language. Many of the details for solving these problems have been
+covered, some have not. You may need to use some external resources:
+
+http://docs.julialang.org/en/release-0.5/manual/
+
+https://gitter.im/JuliaLang/julia
+
+Solve as many or as few problems as you can during these times. Please
+work at your own pace, or with others if that's how you're comfortable!
+
+    \paragraph{Problem 1}\label{problem-1}
+
+Use Julia's array and control flow syntax in order to define the NxN
+Strang matrix:
+
+\[ \left[\begin{array}{ccccc}
+-2 & 1\\
+1 & -2 & 1\\
+ & \ddots & \ddots & \ddots\\
+ &  & \ddots & \ddots & 1\\
+ &  &  & 1 & -2
+\end{array}\right] \]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{} Prepare Data}
+        
+        \PY{n}{X} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}               \PY{c}{\PYZsh{} feature matrix}
+        \PY{n}{a0} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}                    \PY{c}{\PYZsh{} ground truths}
+        \PY{n}{y} \PY{o}{=} \PY{n}{X} \PY{o}{*} \PY{n}{a0} \PY{o}{+} \PY{l+m+mf}{0.1} \PY{o}{*} \PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{;}  \PY{c}{\PYZsh{} generate response}
+\end{Verbatim}
+
+    \paragraph{Problem 2}\label{problem-2}
+
+Given an Nx3 array of data (\texttt{randn(N,3)}) and a Nx1 array of
+outcomes, produce the data matrix \texttt{X} which appends a column of
+1's to the data matrix, and solve for the 4x1 array \texttt{β} via
+\texttt{βX = b} using \texttt{qrfact} or \texttt{\textbackslash{}}.
+(Note: This is linear regression)
+
+\paragraph{Problem 3}\label{problem-3}
+
+Compare your results to that of using \texttt{llsq} from
+\texttt{MultivariateStats.jl} (note: you need to go find the
+documentation to find out how to use this!)
+
+\paragraph{Problem 4}\label{problem-4}
+
+Compare your results to that of using ordinary least squares regression
+from GLM.jl
 
     \subsection{Function Syntax}\label{function-syntax}
 

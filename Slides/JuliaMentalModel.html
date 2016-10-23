@@ -1,10 +1,64 @@
+
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8" />
-<title>BasicIntroduction</title>
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<title>JuliaMentalModel slides</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<!-- General and theme style sheets -->
+<link rel="stylesheet" href="reveal.js/css/reveal.css">
+<link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+}
+
+</script>
+
+<!--[if lt IE 9]>
+<script src="reveal.js/lib/js/html5shiv.js"></script>
+<![endif]-->
+
+<!-- Loading the mathjax macro -->
+<!-- Load mathjax -->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    <!-- End of mathjax configuration -->
+
+<!-- Get Font-awesome from cdn -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css">
 
 <style type="text/css">
     /*!
@@ -11691,2564 +11745,278 @@ ul.typeahead-list > li > a {
 
 <style type="text/css">
 /* Overrides of notebook CSS for static HTML export */
-body {
-  overflow: visible;
-  padding: 8px;
+.reveal {
+  font-size: 160%;
+  overflow-y: scroll;
 }
-
-div#notebook {
-  overflow: visible;
-  border-top: none;
+.reveal pre {
+  width: inherit;
+  padding: 0.4em;
+  margin: 0px;
+  font-family: monospace, sans-serif;
+  font-size: 80%;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
 }
-
-@media print {
-  div.cell {
-    display: block;
-    page-break-inside: avoid;
-  } 
-  div.output_wrapper { 
-    display: block;
-    page-break-inside: avoid; 
-  }
-  div.output { 
-    display: block;
-    page-break-inside: avoid; 
-  }
+.reveal pre code {
+  padding: 0px;
+}
+.reveal section img {
+  border: 0px solid black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+}
+.reveal i {
+  font-style: normal;
+  font-family: FontAwesome;
+  font-size: 2em;
+}
+.reveal .slides {
+  text-align: left;
+}
+.reveal.fade {
+  opacity: 1;
+}
+.reveal .progress {
+  position: static;
+}
+div.input_area {
+  padding: 0.06em;
+}
+div.code_cell {
+  background-color: transparent;
+}
+div.prompt {
+  width: 11ex;
+  padding: 0.4em;
+  margin: 0px;
+  font-family: monospace, sans-serif;
+  font-size: 80%;
+  text-align: right;
+}
+div.output_area pre {
+  font-family: monospace, sans-serif;
+  font-size: 80%;
+}
+div.output_prompt {
+  /* 5px right shift to account for margin in parent container */
+  margin: 5px 5px 0 0;
+}
+div.text_cell.rendered .rendered_html {
+  /* The H1 height seems miscalculated, we are just hidding the scrollbar */
+  overflow-y: hidden;
+}
+a.anchor-link {
+  /* There is still an anchor, we are only hidding it */
+  display: none;
+}
+.rendered_html p {
+  text-align: inherit;
 }
 </style>
 
 <!-- Custom stylesheet, it must be in the same directory as the html file -->
 <link rel="stylesheet" href="custom.css">
 
-<!-- Loading mathjax macro -->
-<!-- Load mathjax -->
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
-    <!-- MathJax configuration -->
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-            processEscapes: true,
-            processEnvironments: true
-        },
-        // Center justify equations in code and markdown cells. Elsewhere
-        // we use CSS to left justify single line equations in code cells.
-        displayAlign: 'center',
-        "HTML-CSS": {
-            styles: {'.MathJax_Display': {"margin": 0}},
-            linebreaks: { automatic: true }
-        }
-    });
-    </script>
-    <!-- End of mathjax configuration --></head>
+</head>
+
+
 <body>
-  <div tabindex="-1" id="notebook" class="border-box-sizing">
-    <div class="container" id="notebook-container">
 
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="A-Basic-Introduction-to--Julia">A Basic Introduction to  Julia<a class="anchor-link" href="#A-Basic-Introduction-to--Julia">&#182;</a></h2><p>This quick introduction assumes that you have basic knowledge of some scripting language and provides an example of the Julia syntax. So before we explain anything, let's just treat it like a scripting language, take a head-first dive into Julia, and see what happens.</p>
-<p>You'll notice that, given the right syntax, almost everything will "just work". There will be some peculiarities, and these we will be the facts which we will study in much more depth. Usually, these oddies/differences from other scripting languages are "the source of Julia's power".</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Array-Syntax">Array Syntax<a class="anchor-link" href="#Array-Syntax">&#182;</a></h3><p>The array syntax is similar to MATLAB's conventions.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="mi">5</span><span class="p">)</span> <span class="c"># Create a length 5 Vector (dimension 1 array) of Float64&#39;s</span>
-
-<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">3</span><span class="p">;</span><span class="mi">4</span><span class="p">;</span><span class="mi">5</span><span class="p">]</span> <span class="c"># Create the column vector [1 2 3 4 5]</span>
-
-<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">]</span> <span class="c"># Create the row vector [1 2 3 4]</span>
-
-<span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="c"># Change the third element of a (using linear indexing) to 2</span>
-
-<span class="n">b</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="c"># Define a Matrix of Float64&#39;s of size (4,2)</span>
-
-<span class="n">c</span> <span class="o">=</span> <span class="n">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">4</span><span class="p">}(</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span> <span class="c"># Define a (4,5,6,7) array of Float64&#39;s </span>
-
-<span class="n">mat</span>    <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span>
-          <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span>
-          <span class="mi">4</span> <span class="mi">4</span> <span class="mi">4</span> <span class="mi">6</span>
-          <span class="mi">3</span> <span class="mi">3</span> <span class="mi">3</span> <span class="mi">3</span><span class="p">]</span> <span class="c">#Define the matrix inline </span>
-
-<span class="n">mat</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span> <span class="c"># Set element (1,2) (row 1, column 2) to 4</span>
-
-<span class="n">mat</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>4×4 Array{Int64,2}:
- 1  4  3  4
- 3  4  5  6
- 4  4  4  6
- 3  3  3  3</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Note that, in the console (called the REPL), you can use <code>;</code> to surpress the output. In a script this is done automatically. Note that the "value" of an array is its pointer to the memory location. This means that arrays which are set equal affect the same values:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span><span class="mi">3</span><span class="p">;</span><span class="mi">4</span><span class="p">]</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
-<span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">a</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[12]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>3-element Array{Int64,1}:
- 10
-  3
-  4</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>To set an array equal to the values to another array, use copy</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span><span class="mi">4</span><span class="p">;</span><span class="mi">5</span><span class="p">]</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">a</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>3-element Array{Int64,1}:
- 1
- 4
- 5</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We can also make an array of a similar size and shape via the function <code>similar</code>, or make an array of zeros/ones with <code>zeros</code> or <code>ones</code> respectively:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">similar</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="n">d</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="n">e</span> <span class="o">=</span> <span class="n">ones</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="n">println</span><span class="p">(</span><span class="n">c</span><span class="p">);</span> <span class="n">println</span><span class="p">(</span><span class="n">d</span><span class="p">);</span> <span class="n">println</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[786432,0,0]
-[0,0,0]
-[1,1,1]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Note that arrays can be index'd by arrays:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[15]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>2-element Array{Int64,1}:
- 1
- 4</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Arrays can be of any type, specified by the type parameter. One interesting thing is that this means that arrays can be of arrays:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">Vector</span><span class="p">{</span><span class="n">Vector</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}}(</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">3</span><span class="p">]</span>
-<span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span><span class="mi">2</span><span class="p">]</span>
-<span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">;</span><span class="mi">4</span><span class="p">;</span><span class="mi">5</span><span class="p">]</span>
-<span class="n">a</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[12]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>3-element Array{Array{Float64,1},1}:
- [1.0,2.0,3.0]
- [1.0,2.0]    
- [3.0,4.0,5.0]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<h4 id="Question-1">Question 1<a class="anchor-link" href="#Question-1">&#182;</a></h4><p>Can you explain the following behavior? Julia's community values consistancy of the rules, so all of the behavior is deducible from simple rules. (Hint: I have noted all of the rules involved here).</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
-<span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span><span class="mi">4</span><span class="p">;</span><span class="mi">5</span><span class="p">]</span>
-<span class="n">a</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>3-element Array{Array{Float64,1},1}:
- [1.0,4.0,5.0]
- [1.0,2.0]    
- [3.0,4.0,5.0]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<p>To fix this, there is a recursive copy function: <code>deepcopy</code></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">3</span><span class="p">]</span>
-<span class="n">a</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[16]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>3-element Array{Array{Float64,1},1}:
- [1.0,4.0,5.0]
- [1.0,2.0]    
- [3.0,4.0,5.0]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>For high performance, Julia provides mutating functions. These functions change the input values that are passed in, instead of returning a new value. By convention, mutating functions tend to be defined with a <code>!</code> at the end and tend to mutate their first argument. An example of a mutating function in <code>scale!</code> which scales an array by a scalar (or array)</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span><span class="mi">6</span><span class="p">;</span><span class="mi">8</span><span class="p">]</span>
-<span class="n">scale!</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="c"># a changes</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[19]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>3-element Array{Int64,1}:
-  2
- 12
- 16</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The purpose of mutating functions is that they allow one to reduce the number of memory allocations which is crucial for achiving high performance.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Control-Flow">Control Flow<a class="anchor-link" href="#Control-Flow">&#182;</a></h2><p>Control flow in Julia is pretty standard. You have your basic for and while loops, and your if statements. There's more in the documentation.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span> <span class="c">#for i goes from 1 to 5</span>
-    <span class="n">println</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-<span class="k">end</span>
-
-<span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">while</span> <span class="n">t</span><span class="o">&lt;</span><span class="mi">5</span>
-    <span class="n">println</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-    <span class="n">t</span><span class="o">+=</span><span class="mi">1</span> <span class="c"># t = t + 1</span>
-<span class="k">end</span>
-
-<span class="n">school</span> <span class="o">=</span> <span class="p">:</span><span class="n">UCI</span>
-
-<span class="k">if</span> <span class="n">school</span><span class="o">==</span><span class="p">:</span><span class="n">UCI</span>
-    <span class="n">println</span><span class="p">(</span><span class="s">&quot;ZotZotZot&quot;</span><span class="p">)</span>
-<span class="k">else</span>
-    <span class="n">println</span><span class="p">(</span><span class="s">&quot;Not even worth discussing.&quot;</span><span class="p">)</span>
-<span class="k">end</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>1
-2
-3
-4
-5
-0
-1
-2
-3
-4
-ZotZotZot
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>One interesting feature about Julia control flow is that we can write multiple loops in one line:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="n">j</span><span class="o">=</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span>
-    <span class="n">println</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">j</span><span class="p">)</span>
-<span class="k">end</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>2
-3
-4
-4
-6
-8
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Problems">Problems<a class="anchor-link" href="#Problems">&#182;</a></h3><p>Time to start using your noggin. Here are some problems to get you using the language. Many of the details for solving these problems have been covered, some have not. You may need to use some external resources:</p>
-<p><a href="http://docs.julialang.org/en/release-0.5/manual/">http://docs.julialang.org/en/release-0.5/manual/</a></p>
-<p><a href="https://gitter.im/JuliaLang/julia">https://gitter.im/JuliaLang/julia</a></p>
-<p>Solve as many or as few problems as you can during these times. Please work at your own pace, or with others if that's how you're comfortable!</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Problem-1">Problem 1<a class="anchor-link" href="#Problem-1">&#182;</a></h4><p>Use Julia's array and control flow syntax in order to define the NxN Strang matrix:</p>
-$$ \left[\begin{array}{ccccc}
--2 & 1\\
-1 & -2 & 1\\
- & \ddots & \ddots & \ddots\\
- &  & \ddots & \ddots & 1\\
- &  &  & 1 & -2
-\end{array}\right] $$
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="c">#### Prepare Data</span>
-
-<span class="n">X</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>               <span class="c"># feature matrix</span>
-<span class="n">a0</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>                    <span class="c"># ground truths</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">X</span> <span class="o">*</span> <span class="n">a0</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>  <span class="c"># generate response</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Problem-2">Problem 2<a class="anchor-link" href="#Problem-2">&#182;</a></h4><p>Given an Nx3 array of data (<code>randn(N,3)</code>) and a Nx1 array of outcomes, produce the data matrix <code>X</code> which appends a column of 1's to the data matrix, and solve for the 4x1 array <code>β</code> via <code>βX = b</code> using <code>qrfact</code> or <code>\</code>. (Note: This is linear regression)</p>
-<h4 id="Problem-3">Problem 3<a class="anchor-link" href="#Problem-3">&#182;</a></h4><p>Compare your results to that of using <code>llsq</code> from <code>MultivariateStats.jl</code> (note: you need to go find the documentation to find out how to use this!)</p>
-<h4 id="Problem-4">Problem 4<a class="anchor-link" href="#Problem-4">&#182;</a></h4><p>Compare your results to that of using ordinary least squares regression from GLM.jl</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Function-Syntax">Function Syntax<a class="anchor-link" href="#Function-Syntax">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2</span><span class="n">x</span><span class="o">+</span><span class="n">y</span> <span class="c"># Create an inline function</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[20]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>f (generic function with 1 method)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="c"># Call the function</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[22]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>4</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span><span class="nf"> f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-  <span class="n">x</span><span class="o">+</span><span class="mi">2</span>  
-<span class="k">end</span> <span class="c"># Long form definition</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>WARNING: Method definition f(Any) in module Main at In[23]:2 overwritten at In[24]:2.
-</pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt output_prompt">Out[24]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>f (generic function with 2 methods)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>By default, Julia functions return the last value computed within them.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[26]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>4</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>A key feature of Julia is multiple dispatch. Notice here that there is "one function", <code>f</code>, with two methods. Methods are the actionable parts of a function. Here, there is one method defined as <code>(::Any,::Any)</code> and <code>(::Any)</code>, meaning that if you give <code>f</code> two values then it will call the first method, and if you give it one value then it will call the second method.</p>
-<p>Multiple dispatch works on types. To define a dispatch on a type, use the <code>::Type</code> signifier:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="kt">Int</span><span class="p">,</span><span class="n">y</span><span class="p">::</span><span class="kt">Int</span><span class="p">)</span> <span class="o">=</span> <span class="mi">3</span><span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="n">y</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>WARNING: Method definition f(Int64, Int64) in module Main at In[28]:1 overwritten at In[35]:1.
-</pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt output_prompt">Out[35]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>f (generic function with 4 methods)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Julia will dispatch onto the strictest acceptible type signature.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c"># 3x+2y</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[30]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>12</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c"># 2x+y since 2.0 is not an Int</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[32]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>7.0</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Types in signatures can be parametric. For example, we can define a method for "two values are passed in, both Numbers and having the same type". Note that <code>&lt;:</code> means "a subtype of".</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">f</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Number</span><span class="p">}(</span><span class="n">x</span><span class="p">::</span><span class="n">T</span><span class="p">,</span><span class="n">y</span><span class="p">::</span><span class="n">T</span><span class="p">)</span> <span class="o">=</span> <span class="mi">4</span><span class="n">x</span><span class="o">+</span><span class="mi">10</span><span class="n">y</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>f (generic function with 1 method)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[37]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c"># 3x+2y since (::Int,::Int) is stricter</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[37]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>12</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">)</span> <span class="c"># 4x+10y</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>38.0</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Note that type parameterizations can have as many types as possible, and do not need to declare a supertype. For example, we can say that there is an <code>x</code> which must be a Number, while <code>y</code> and <code>z</code> must match types:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">f</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Number</span><span class="p">,</span><span class="n">T2</span><span class="p">}(</span><span class="n">x</span><span class="p">::</span><span class="n">T</span><span class="p">,</span><span class="n">y</span><span class="p">::</span><span class="n">T2</span><span class="p">,</span><span class="n">z</span><span class="p">::</span><span class="n">T2</span><span class="p">)</span> <span class="o">=</span> <span class="mi">5</span><span class="n">x</span> <span class="o">+</span> <span class="mi">5</span><span class="n">y</span> <span class="o">+</span> <span class="mi">5</span><span class="n">z</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>f (generic function with 1 method)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We will go into more depth on multiple dispatch later since this is the core design feature of Julia. The key feature is that Julia functions specialize on the types of their arguments. This means that <code>f</code> is a separately compiled function for each method (and for parametric types, each possible method). The first time it is called it will compile.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<h4 id="Question-2">Question 2<a class="anchor-link" href="#Question-2">&#182;</a></h4><p>Can you explain these timings?</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">w</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">+</span><span class="n">z</span><span class="o">+</span><span class="n">w</span>
-<span class="p">@</span><span class="n">time</span> <span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="p">@</span><span class="n">time</span> <span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="p">@</span><span class="n">time</span> <span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="p">@</span><span class="n">time</span> <span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
-<span class="p">@</span><span class="n">time</span> <span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>  0.003880 seconds (387 allocations: 21.150 KB)
-  0.000002 seconds (4 allocations: 160 bytes)
-  0.000001 seconds (3 allocations: 144 bytes)
-  0.002570 seconds (1.33 k allocations: 69.866 KB)
-  0.000001 seconds (4 allocations: 160 bytes)
-</pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>4.0</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Note that functions can also feature optional arguments:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[42]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span><span class="nf"> test_function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">;</span><span class="n">z</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c">#z is an optional argument</span>
-  <span class="k">if</span> <span class="n">z</span><span class="o">==</span><span class="mi">0</span>
-    <span class="k">return</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="c">#Return a tuple</span>
-  <span class="k">else</span>
-  <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="o">*</span><span class="n">z</span><span class="p">,</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="o">+</span><span class="n">z</span> <span class="c">#Return a different tuple</span>
-  <span class="c">#whitespace is optional</span>
-  <span class="k">end</span> <span class="c">#End if statement</span>
-<span class="k">end</span> <span class="c">#End function definition</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[42]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>test_function (generic function with 1 method)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Here, if z is not specified, then it's 0.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[45]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">test_function</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[45]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(3,2)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[46]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">test_function</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">;</span><span class="n">z</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[46]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(6,6)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Notice that we also featured multiple return values.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[47]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="n">x</span><span class="p">);</span> <span class="n">println</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>6
-6
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The return type for multiple return values is a Tuple. The syntax for a tuple is <code>(x,y,z,...)</code> or inside of functions you can use the shorthand <code>x,y,z,...</code> as shown.</p>
-<p>Note that functions in Julia are "first-class". This means that functions are just a type themselves. Therefore functions can make functions, you can store functions as variables, pass them as variables, etc. For example:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span><span class="nf"> function_playtime</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c">#z is an optional argument</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="mi">2</span><span class="o">+</span><span class="n">x</span>
-    <span class="k">function</span><span class="nf"> test</span><span class="p">()</span>
-        <span class="mi">2</span><span class="n">y</span> <span class="c"># y is defined in the previous scope, so it&#39;s available here</span>
-    <span class="k">end</span>
-    <span class="n">z</span> <span class="o">=</span> <span class="n">test</span><span class="p">()</span> <span class="o">*</span> <span class="n">test</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">z</span><span class="p">,</span><span class="n">test</span>
-<span class="k">end</span> <span class="c">#End function definition</span>
-<span class="n">z</span><span class="p">,</span><span class="n">test</span> <span class="o">=</span> <span class="n">function_playtime</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>WARNING: Method definition function_playtime(Any) in module Main at In[6]:2 overwritten at In[7]:2.
-</pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(64,test)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">test</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>8</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Notice that <code>test()</code> does not get passed in <code>y</code> but knows what <code>y</code> is. This is due to the function scoping rules: an inner function can know the variables defined in the same scope as the function. This rule is recursive, leading us to the conclusion that the top level scope is global. Yes, that means</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[18]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>2</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>defines a global variable. We will go into more detail on this.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Lastly we show the anonymous function syntax. This allows you to define a function inline.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="mi">2</span><span class="n">x</span><span class="o">+</span><span class="n">y</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[20]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(::#5) (generic function with 1 method)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Unlike named functions, <code>g</code> is simply a function in a variable and can be overwritten at any time:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="mi">2</span><span class="n">x</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[21]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(::#7) (generic function with 1 method)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>An anonymous function cannot have more than 1 dispatch. However, as of v0.5, they are compiled and thus do not have any performance disadvantages from named functions.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Type-Declaration-Syntax">Type Declaration Syntax<a class="anchor-link" href="#Type-Declaration-Syntax">&#182;</a></h2><p>A type is what in many other languages is an "object". If that is a foreign concept, thing of a type as a thing which has named components. A type is the idea for what the thing is, while an instantiation of the type is a specific one. For example, you can think of a car as having an make and a model. So that means a Toyota RAV4 is an instantiation of the car type.</p>
-<p>In Julia, we would define the car type as follows:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[48]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">type</span><span class="nc"> Car</span>
-    <span class="n">make</span>
-    <span class="n">model</span>
-<span class="k">end</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We could then make the instance of a car as follows:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[49]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">mycar</span> <span class="o">=</span> <span class="n">Car</span><span class="p">(</span><span class="s">&quot;Toyota&quot;</span><span class="p">,</span><span class="s">&quot;Rav4&quot;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[49]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>Car(&#34;Toyota&#34;,&#34;Rav4&#34;)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Here I introduced the string syntax for Julia which uses "..." (like most other languages, I'm glaring at you MATLAB). I can grab the "fields" of my type using the <code>.</code> syntax:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[51]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">mycar</span><span class="o">.</span><span class="n">make</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[51]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#34;Toyota&#34;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>To "enhance Julia's performance", one usually likes to make the typing stricter. For example, we can define a WorkshopParticipant (notice the convention for types is capital letters, CamelCase) as having a name and a field. The name will be a string and the field will be a Symbol type, (defined by :Symbol, which we will go into plenty more detail later).</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[52]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">type</span><span class="nc"> WorkshopParticipant</span>
-    <span class="n">name</span><span class="p">::</span><span class="n">String</span>
-    <span class="n">field</span><span class="p">::</span><span class="n">Symbol</span>
-<span class="k">end</span>
-<span class="n">tony</span> <span class="o">=</span> <span class="n">WorkshopParticipant</span><span class="p">(</span><span class="s">&quot;Tony&quot;</span><span class="p">,:</span><span class="n">physics</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[52]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>WorkshopParticipant(&#34;Tony&#34;,:physics)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>As with functions, types can be set "parametrically". For example, we can have an StaffMember have a name and a field, but also an age. We can allow this age to be any Number type as follows:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">type</span><span class="nc"> StaffMember</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Number</span><span class="p">}</span>
-    <span class="n">name</span><span class="p">::</span><span class="n">String</span>
-    <span class="n">field</span><span class="p">::</span><span class="n">Symbol</span>
-    <span class="n">age</span><span class="p">::</span><span class="n">T</span>
-<span class="k">end</span>
-<span class="n">ter</span> <span class="o">=</span> <span class="n">StaffMember</span><span class="p">(</span><span class="s">&quot;Terry&quot;</span><span class="p">,:</span><span class="n">football</span><span class="p">,</span><span class="mi">17</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[1]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>StaffMember{Int64}(&#34;Terry&#34;,:football,17)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The rules for parametric typing is the same as for functions. Note that most of Julia's types, like Float64 and Int, are natively defined in Julia in this manner. This means that there's no limit for user defined types, only your imagination. Indeed, many of Julia's features first start out as a prototyping package before it's ever moved into Base (the Julia library that ships as the Base module in every installation).</p>
-<p>Lastly, there exist abstract types. These types cannot be instantiated but are used to build the type hierarchy. You've already seen one abstract type, Number. We can define one for Person using the Abstract keyword</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">abstract</span><span class="nc"> Person</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Then we can set types as a subtype of person</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">type</span><span class="nc"> Student</span> <span class="o">&lt;:</span> <span class="n">Person</span>
-    <span class="n">grade</span>
-<span class="k">end</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<h4 id="Question-3">Question 3<a class="anchor-link" href="#Question-3">&#182;</a></h4><p>Can you make a function <code>k(x)</code> where <code>x</code> has to be a Person?</p>
-<hr>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Another "version" of type is <code>immutable</code>. When one uses <code>immutable</code>, the fields of the type cannot be changed. However, Julia will automatically stack allocate immutable types, whereas standard types are heap allocated. If this is unfamiliar terminology, then think of this as meaning that immutable types are able to be stored closer to the CPU and have less cost for memory access (this is a detail not present in many scripting languages). Many things like Julia's built-in Number types are defined as <code>immutable</code> in order to give good performance.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[63]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">immutable</span> <span class="n">Field</span>
-    <span class="n">name</span>
-    <span class="n">school</span>
-<span class="k">end</span>
-<span class="n">ds</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(:</span><span class="n">DataScience</span><span class="p">,[:</span><span class="n">PhysicalScience</span><span class="p">;:</span><span class="n">ComputerScience</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>WARNING: Method definition (::Type{Main.Field})(Any, Any) in module Main at In[58]:2 overwritten at In[63]:2.
-</pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt output_prompt">Out[63]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>Field(:DataScience,Symbol[:PhysicalScience,:ComputerScience])</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<h4 id="Question-4">Question 4<a class="anchor-link" href="#Question-4">&#182;</a></h4><p>Can you explain this interesting quirk? Thus Field is immutable, meaning that <code>ds.name</code> and <code>ds.school</code> cannot be changed:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[64]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="p">:</span><span class="n">ComputationalStatistics</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_error">
-<pre>
-LoadError: type Field is immutable
-while loading In[64], in expression starting on line 1
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>However, the following is allowed:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[65]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">push!</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">school</span><span class="p">,:</span><span class="n">BiologicalScience</span><span class="p">)</span>
-<span class="n">ds</span><span class="o">.</span><span class="n">school</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[65]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>3-element Array{Symbol,1}:
- :PhysicalScience  
- :ComputerScience  
- :BiologicalScience</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>(Hint: recall that an array is not the values itself, but a pointer to the memory of the values)</p>
-<hr>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>One important detail in Julia is that everything is a type (and every piece of code is an Expression type, more on this later). Thus functions are also types, which we can access the fields of. Not only is everything compiled down to C, but all of the "C parts" are always accessible. For example, we can, if we so choose, get a function pointer:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[46]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">foo</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2</span><span class="n">x</span>
-<span class="n">first</span><span class="p">(</span><span class="n">methods</span><span class="p">(</span><span class="n">foo</span><span class="p">))</span><span class="o">.</span><span class="n">lambda_template</span><span class="o">.</span><span class="n">fptr</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[46]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>Ptr{Void} @0x0000000000000000</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Documentation-and-&quot;Hunting&quot;">Documentation and "Hunting"<a class="anchor-link" href="#Documentation-and-&quot;Hunting&quot;">&#182;</a></h2><p>The main source of information is the <a href="http://docs.julialang.org/en/latest/manual/">Julia Documentation</a>. Julia also provides lots of built-in documentation and ways to find out what's going on. The number of tools for "hunting down what's going on / available" is too numerous to explain in full detail here, so instead this will just touch on what's important. For example, the ? gets you to the documentation for a type, function, etc.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="o">?</span><span class="n">copy</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>search: copy copy! copysign deepcopy unsafe_copy! cospi complex Complex
-
-</pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt output_prompt">Out[23]:</div>
-
-<div class="output_markdown rendered_html output_subarea output_execute_result">
-
-<pre><code>copy(x)</code></pre>
-<p>Create a shallow copy of <code>x</code>: the outer structure is copied, but not all internal values. For example, copying an array produces a new array with identically-same elements as the original.</p>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>To find out what methods are available, we can use the <code>methods</code> function. For example, let's see how <code>+</code> is defined:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">methods</span><span class="p">(</span><span class="o">+</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[25]:</div>
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-163 methods for generic function <b>+</b>:<ul><li> +(x::<b>Bool</b>, z::<b>Complex{Bool}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/complex.jl#L136" target="_blank">complex.jl:136</a></li> <li> +(x::<b>Bool</b>, y::<b>Bool</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/bool.jl#L48" target="_blank">bool.jl:48</a></li> <li> +(x::<b>Bool</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/bool.jl#L45" target="_blank">bool.jl:45</a></li> <li> +<i>{T<:AbstractFloat}</i>(x::<b>Bool</b>, y::<b>T</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/bool.jl#L55" target="_blank">bool.jl:55</a></li> <li> +(x::<b>Bool</b>, z::<b>Complex</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/complex.jl#L143" target="_blank">complex.jl:143</a></li> <li> +(x::<b>Bool</b>, A::<b>AbstractArray{Bool,N<:Any}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/arraymath.jl#L91" target="_blank">arraymath.jl:91</a></li> <li> +(x::<b>Float32</b>, y::<b>Float32</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/float.jl#L239" target="_blank">float.jl:239</a></li> <li> +(x::<b>Float64</b>, y::<b>Float64</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/float.jl#L240" target="_blank">float.jl:240</a></li> <li> +(z::<b>Complex{Bool}</b>, x::<b>Bool</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/complex.jl#L137" target="_blank">complex.jl:137</a></li> <li> +(z::<b>Complex{Bool}</b>, x::<b>Real</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/complex.jl#L151" target="_blank">complex.jl:151</a></li> <li> +(a::<b>Float16</b>, b::<b>Float16</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/float16.jl#L136" target="_blank">float16.jl:136</a></li> <li> +(x::<b>Char</b>, y::<b>Integer</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/char.jl#L40" target="_blank">char.jl:40</a></li> <li> +(c::<b>BigInt</b>, x::<b>BigFloat</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/mpfr.jl#L240" target="_blank">mpfr.jl:240</a></li> <li> +(a::<b>BigInt</b>, b::<b>BigInt</b>, c::<b>BigInt</b>, d::<b>BigInt</b>, e::<b>BigInt</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/gmp.jl#L298" target="_blank">gmp.jl:298</a></li> <li> +(a::<b>BigInt</b>, b::<b>BigInt</b>, c::<b>BigInt</b>, d::<b>BigInt</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/gmp.jl#L291" target="_blank">gmp.jl:291</a></li> <li> +(a::<b>BigInt</b>, b::<b>BigInt</b>, c::<b>BigInt</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/gmp.jl#L285" target="_blank">gmp.jl:285</a></li> <li> +(x::<b>BigInt</b>, y::<b>BigInt</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/gmp.jl#L255" target="_blank">gmp.jl:255</a></li> <li> +(x::<b>BigInt</b>, c::<b>Union{UInt16,UInt32,UInt64,UInt8}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/gmp.jl#L310" target="_blank">gmp.jl:310</a></li> <li> +(x::<b>BigInt</b>, c::<b>Union{Int16,Int32,Int64,Int8}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/gmp.jl#L326" target="_blank">gmp.jl:326</a></li> <li> +(a::<b>BigFloat</b>, b::<b>BigFloat</b>, c::<b>BigFloat</b>, d::<b>BigFloat</b>, e::<b>BigFloat</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/mpfr.jl#L388" target="_blank">mpfr.jl:388</a></li> <li> +(a::<b>BigFloat</b>, b::<b>BigFloat</b>, c::<b>BigFloat</b>, d::<b>BigFloat</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/mpfr.jl#L381" target="_blank">mpfr.jl:381</a></li> <li> +(a::<b>BigFloat</b>, b::<b>BigFloat</b>, c::<b>BigFloat</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/mpfr.jl#L375" target="_blank">mpfr.jl:375</a></li> <li> +(x::<b>BigFloat</b>, c::<b>BigInt</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/mpfr.jl#L236" target="_blank">mpfr.jl:236</a></li> <li> +(x::<b>BigFloat</b>, y::<b>BigFloat</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/mpfr.jl#L205" target="_blank">mpfr.jl:205</a></li> <li> +(x::<b>BigFloat</b>, c::<b>Union{UInt16,UInt32,UInt64,UInt8}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/mpfr.jl#L212" target="_blank">mpfr.jl:212</a></li> <li> +(x::<b>BigFloat</b>, c::<b>Union{Int16,Int32,Int64,Int8}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/mpfr.jl#L220" target="_blank">mpfr.jl:220</a></li> <li> +(x::<b>BigFloat</b>, c::<b>Union{Float16,Float32,Float64}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/mpfr.jl#L228" target="_blank">mpfr.jl:228</a></li> <li> +<i>{T}</i>(B::<b>BitArray{2}</b>, J::<b>UniformScaling{T}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/uniformscaling.jl#L38" target="_blank">linalg/uniformscaling.jl:38</a></li> <li> +(a::<b>Base.Pkg.Resolve.VersionWeights.VWPreBuildItem</b>, b::<b>Base.Pkg.Resolve.VersionWeights.VWPreBuildItem</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/pkg/resolve/versionweight.jl#L85" target="_blank">pkg/resolve/versionweight.jl:85</a></li> <li> +(a::<b>Base.Pkg.Resolve.VersionWeights.VWPreBuild</b>, b::<b>Base.Pkg.Resolve.VersionWeights.VWPreBuild</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/pkg/resolve/versionweight.jl#L131" target="_blank">pkg/resolve/versionweight.jl:131</a></li> <li> +(a::<b>Base.Pkg.Resolve.VersionWeights.VersionWeight</b>, b::<b>Base.Pkg.Resolve.VersionWeights.VersionWeight</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/pkg/resolve/versionweight.jl#L185" target="_blank">pkg/resolve/versionweight.jl:185</a></li> <li> +(a::<b>Base.Pkg.Resolve.MaxSum.FieldValues.FieldValue</b>, b::<b>Base.Pkg.Resolve.MaxSum.FieldValues.FieldValue</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/pkg/resolve/fieldvalue.jl#L44" target="_blank">pkg/resolve/fieldvalue.jl:44</a></li> <li> +(x::<b>Base.Dates.CompoundPeriod</b>, y::<b>Base.Dates.CompoundPeriod</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/periods.jl#L314" target="_blank">dates/periods.jl:314</a></li> <li> +(x::<b>Base.Dates.CompoundPeriod</b>, y::<b>Base.Dates.Period</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/periods.jl#L312" target="_blank">dates/periods.jl:312</a></li> <li> +(x::<b>Base.Dates.CompoundPeriod</b>, y::<b>Base.Dates.TimeType</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/periods.jl#L359" target="_blank">dates/periods.jl:359</a></li> <li> +(dt::<b>DateTime</b>, z::<b>Base.Dates.Month</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/arithmetic.jl#L37" target="_blank">dates/arithmetic.jl:37</a></li> <li> +(dt::<b>DateTime</b>, y::<b>Base.Dates.Year</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/arithmetic.jl#L13" target="_blank">dates/arithmetic.jl:13</a></li> <li> +(x::<b>DateTime</b>, y::<b>Base.Dates.Period</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/arithmetic.jl#L64" target="_blank">dates/arithmetic.jl:64</a></li> <li> +(x::<b>Date</b>, y::<b>Base.Dates.Day</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/arithmetic.jl#L62" target="_blank">dates/arithmetic.jl:62</a></li> <li> +(x::<b>Date</b>, y::<b>Base.Dates.Week</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/arithmetic.jl#L60" target="_blank">dates/arithmetic.jl:60</a></li> <li> +(dt::<b>Date</b>, z::<b>Base.Dates.Month</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/arithmetic.jl#L43" target="_blank">dates/arithmetic.jl:43</a></li> <li> +(dt::<b>Date</b>, y::<b>Base.Dates.Year</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/arithmetic.jl#L17" target="_blank">dates/arithmetic.jl:17</a></li> <li> +(y::<b>AbstractFloat</b>, x::<b>Bool</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/bool.jl#L57" target="_blank">bool.jl:57</a></li> <li> +<i>{T<:Union{Int128,Int16,Int32,Int64,Int8,UInt128,UInt16,UInt32,UInt64,UInt8}}</i>(x::<b>T</b>, y::<b>T</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/int.jl#L32" target="_blank">int.jl:32</a></li> <li> +(x::<b>Integer</b>, y::<b>Ptr</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/pointer.jl#L108" target="_blank">pointer.jl:108</a></li> <li> +(z::<b>Complex</b>, w::<b>Complex</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/complex.jl#L125" target="_blank">complex.jl:125</a></li> <li> +(z::<b>Complex</b>, x::<b>Bool</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/complex.jl#L144" target="_blank">complex.jl:144</a></li> <li> +(x::<b>Real</b>, z::<b>Complex{Bool}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/complex.jl#L150" target="_blank">complex.jl:150</a></li> <li> +(x::<b>Real</b>, z::<b>Complex</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/complex.jl#L162" target="_blank">complex.jl:162</a></li> <li> +(z::<b>Complex</b>, x::<b>Real</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/complex.jl#L163" target="_blank">complex.jl:163</a></li> <li> +(x::<b>Rational</b>, y::<b>Rational</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/rational.jl#L199" target="_blank">rational.jl:199</a></li> <li> +(x::<b>Integer</b>, y::<b>Char</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/char.jl#L41" target="_blank">char.jl:41</a></li> <li> +<i>{N}</i>(i::<b>Integer</b>, index::<b>CartesianIndex{N}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/multidimensional.jl#L58" target="_blank">multidimensional.jl:58</a></li> <li> +(c::<b>Union{UInt16,UInt32,UInt64,UInt8}</b>, x::<b>BigInt</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/gmp.jl#L314" target="_blank">gmp.jl:314</a></li> <li> +(c::<b>Union{Int16,Int32,Int64,Int8}</b>, x::<b>BigInt</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/gmp.jl#L327" target="_blank">gmp.jl:327</a></li> <li> +(c::<b>Union{UInt16,UInt32,UInt64,UInt8}</b>, x::<b>BigFloat</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/mpfr.jl#L216" target="_blank">mpfr.jl:216</a></li> <li> +(c::<b>Union{Int16,Int32,Int64,Int8}</b>, x::<b>BigFloat</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/mpfr.jl#L224" target="_blank">mpfr.jl:224</a></li> <li> +(c::<b>Union{Float16,Float32,Float64}</b>, x::<b>BigFloat</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/mpfr.jl#L232" target="_blank">mpfr.jl:232</a></li> <li> +(x::<b>Irrational</b>, y::<b>Irrational</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/irrationals.jl#L88" target="_blank">irrationals.jl:88</a></li> <li> +(x::<b>Number</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/operators.jl#L115" target="_blank">operators.jl:115</a></li> <li> +<i>{T<:Number}</i>(x::<b>T</b>, y::<b>T</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/promotion.jl#L255" target="_blank">promotion.jl:255</a></li> <li> +(x::<b>Number</b>, y::<b>Number</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/promotion.jl#L190" target="_blank">promotion.jl:190</a></li> <li> +(r1::<b>OrdinalRange</b>, r2::<b>OrdinalRange</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/operators.jl#L505" target="_blank">operators.jl:505</a></li> <li> +<i>{T<:AbstractFloat}</i>(r1::<b>FloatRange{T}</b>, r2::<b>FloatRange{T}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/operators.jl#L512" target="_blank">operators.jl:512</a></li> <li> +<i>{T<:AbstractFloat}</i>(r1::<b>LinSpace{T}</b>, r2::<b>LinSpace{T}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/operators.jl#L531" target="_blank">operators.jl:531</a></li> <li> +(r1::<b>Union{FloatRange,LinSpace,OrdinalRange}</b>, r2::<b>Union{FloatRange,LinSpace,OrdinalRange}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/operators.jl#L544" target="_blank">operators.jl:544</a></li> <li> +(x::<b>Ptr</b>, y::<b>Integer</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/pointer.jl#L106" target="_blank">pointer.jl:106</a></li> <li> +(A::<b>BitArray</b>, B::<b>BitArray</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/bitarray.jl#L1042" target="_blank">bitarray.jl:1042</a></li> <li> +(A::<b>Array{T<:Any,2}</b>, B::<b>Diagonal</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L121" target="_blank">linalg/special.jl:121</a></li> <li> +(A::<b>Array{T<:Any,2}</b>, B::<b>Bidiagonal</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L121" target="_blank">linalg/special.jl:121</a></li> <li> +(A::<b>Array{T<:Any,2}</b>, B::<b>Tridiagonal</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L121" target="_blank">linalg/special.jl:121</a></li> <li> +(A::<b>Array{T<:Any,2}</b>, B::<b>SymTridiagonal</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L130" target="_blank">linalg/special.jl:130</a></li> <li> +(A::<b>Array{T<:Any,2}</b>, B::<b>Base.LinAlg.AbstractTriangular</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L158" target="_blank">linalg/special.jl:158</a></li> <li> +(A::<b>Array</b>, B::<b>SparseMatrixCSC</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/sparse/sparsematrix.jl#L1711" target="_blank">sparse/sparsematrix.jl:1711</a></li> <li> +<i>{P<:Union{Base.Dates.CompoundPeriod,Base.Dates.Period}}</i>(x::<b>Union{Base.ReshapedArray{P,N<:Any,A<:DenseArray,MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N<:Any}}},DenseArray{P,N<:Any},SubArray{P,N<:Any,A<:Union{Base.ReshapedArray{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N<:Any}}},DenseArray},I<:Tuple{Vararg{Union{Base.AbstractCartesianIndex,Colon,Int64,Range{Int64}},N<:Any}},L<:Any}}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/periods.jl#L323" target="_blank">dates/periods.jl:323</a></li> <li> +(A::<b>AbstractArray{Bool,N<:Any}</b>, x::<b>Bool</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/arraymath.jl#L90" target="_blank">arraymath.jl:90</a></li> <li> +(A::<b>SymTridiagonal</b>, B::<b>SymTridiagonal</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/tridiag.jl#L96" target="_blank">linalg/tridiag.jl:96</a></li> <li> +(A::<b>Tridiagonal</b>, B::<b>Tridiagonal</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/tridiag.jl#L494" target="_blank">linalg/tridiag.jl:494</a></li> <li> +(A::<b>UpperTriangular</b>, B::<b>UpperTriangular</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/triangular.jl#L357" target="_blank">linalg/triangular.jl:357</a></li> <li> +(A::<b>LowerTriangular</b>, B::<b>LowerTriangular</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/triangular.jl#L358" target="_blank">linalg/triangular.jl:358</a></li> <li> +(A::<b>UpperTriangular</b>, B::<b>Base.LinAlg.UnitUpperTriangular</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/triangular.jl#L359" target="_blank">linalg/triangular.jl:359</a></li> <li> +(A::<b>LowerTriangular</b>, B::<b>Base.LinAlg.UnitLowerTriangular</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/triangular.jl#L360" target="_blank">linalg/triangular.jl:360</a></li> <li> +(A::<b>Base.LinAlg.UnitUpperTriangular</b>, B::<b>UpperTriangular</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/triangular.jl#L361" target="_blank">linalg/triangular.jl:361</a></li> <li> +(A::<b>Base.LinAlg.UnitLowerTriangular</b>, B::<b>LowerTriangular</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/triangular.jl#L362" target="_blank">linalg/triangular.jl:362</a></li> <li> +(A::<b>Base.LinAlg.UnitUpperTriangular</b>, B::<b>Base.LinAlg.UnitUpperTriangular</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/triangular.jl#L363" target="_blank">linalg/triangular.jl:363</a></li> <li> +(A::<b>Base.LinAlg.UnitLowerTriangular</b>, B::<b>Base.LinAlg.UnitLowerTriangular</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/triangular.jl#L364" target="_blank">linalg/triangular.jl:364</a></li> <li> +(A::<b>Base.LinAlg.AbstractTriangular</b>, B::<b>Base.LinAlg.AbstractTriangular</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/triangular.jl#L365" target="_blank">linalg/triangular.jl:365</a></li> <li> +(Da::<b>Diagonal</b>, Db::<b>Diagonal</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/diagonal.jl#L110" target="_blank">linalg/diagonal.jl:110</a></li> <li> +(A::<b>Bidiagonal</b>, B::<b>Bidiagonal</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/bidiag.jl#L256" target="_blank">linalg/bidiag.jl:256</a></li> <li> +(UL::<b>UpperTriangular</b>, J::<b>UniformScaling</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/uniformscaling.jl#L55" target="_blank">linalg/uniformscaling.jl:55</a></li> <li> +(UL::<b>Base.LinAlg.UnitUpperTriangular</b>, J::<b>UniformScaling</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/uniformscaling.jl#L58" target="_blank">linalg/uniformscaling.jl:58</a></li> <li> +(UL::<b>LowerTriangular</b>, J::<b>UniformScaling</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/uniformscaling.jl#L55" target="_blank">linalg/uniformscaling.jl:55</a></li> <li> +(UL::<b>Base.LinAlg.UnitLowerTriangular</b>, J::<b>UniformScaling</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/uniformscaling.jl#L58" target="_blank">linalg/uniformscaling.jl:58</a></li> <li> +(A::<b>Diagonal</b>, B::<b>Bidiagonal</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L120" target="_blank">linalg/special.jl:120</a></li> <li> +(A::<b>Bidiagonal</b>, B::<b>Diagonal</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L121" target="_blank">linalg/special.jl:121</a></li> <li> +(A::<b>Diagonal</b>, B::<b>Tridiagonal</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L120" target="_blank">linalg/special.jl:120</a></li> <li> +(A::<b>Tridiagonal</b>, B::<b>Diagonal</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L121" target="_blank">linalg/special.jl:121</a></li> <li> +(A::<b>Diagonal</b>, B::<b>Array{T<:Any,2}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L120" target="_blank">linalg/special.jl:120</a></li> <li> +(A::<b>Bidiagonal</b>, B::<b>Tridiagonal</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L120" target="_blank">linalg/special.jl:120</a></li> <li> +(A::<b>Tridiagonal</b>, B::<b>Bidiagonal</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L121" target="_blank">linalg/special.jl:121</a></li> <li> +(A::<b>Bidiagonal</b>, B::<b>Array{T<:Any,2}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L120" target="_blank">linalg/special.jl:120</a></li> <li> +(A::<b>Tridiagonal</b>, B::<b>Array{T<:Any,2}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L120" target="_blank">linalg/special.jl:120</a></li> <li> +(A::<b>SymTridiagonal</b>, B::<b>Tridiagonal</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L129" target="_blank">linalg/special.jl:129</a></li> <li> +(A::<b>Tridiagonal</b>, B::<b>SymTridiagonal</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L130" target="_blank">linalg/special.jl:130</a></li> <li> +(A::<b>SymTridiagonal</b>, B::<b>Array{T<:Any,2}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L129" target="_blank">linalg/special.jl:129</a></li> <li> +(A::<b>Diagonal</b>, B::<b>SymTridiagonal</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L138" target="_blank">linalg/special.jl:138</a></li> <li> +(A::<b>SymTridiagonal</b>, B::<b>Diagonal</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L139" target="_blank">linalg/special.jl:139</a></li> <li> +(A::<b>Bidiagonal</b>, B::<b>SymTridiagonal</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L138" target="_blank">linalg/special.jl:138</a></li> <li> +(A::<b>SymTridiagonal</b>, B::<b>Bidiagonal</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L139" target="_blank">linalg/special.jl:139</a></li> <li> +(A::<b>Diagonal</b>, B::<b>UpperTriangular</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L150" target="_blank">linalg/special.jl:150</a></li> <li> +(A::<b>UpperTriangular</b>, B::<b>Diagonal</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L151" target="_blank">linalg/special.jl:151</a></li> <li> +(A::<b>Diagonal</b>, B::<b>Base.LinAlg.UnitUpperTriangular</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L150" target="_blank">linalg/special.jl:150</a></li> <li> +(A::<b>Base.LinAlg.UnitUpperTriangular</b>, B::<b>Diagonal</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L151" target="_blank">linalg/special.jl:151</a></li> <li> +(A::<b>Diagonal</b>, B::<b>LowerTriangular</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L150" target="_blank">linalg/special.jl:150</a></li> <li> +(A::<b>LowerTriangular</b>, B::<b>Diagonal</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L151" target="_blank">linalg/special.jl:151</a></li> <li> +(A::<b>Diagonal</b>, B::<b>Base.LinAlg.UnitLowerTriangular</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L150" target="_blank">linalg/special.jl:150</a></li> <li> +(A::<b>Base.LinAlg.UnitLowerTriangular</b>, B::<b>Diagonal</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L151" target="_blank">linalg/special.jl:151</a></li> <li> +(A::<b>Base.LinAlg.AbstractTriangular</b>, B::<b>SymTridiagonal</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L157" target="_blank">linalg/special.jl:157</a></li> <li> +(A::<b>SymTridiagonal</b>, B::<b>Base.LinAlg.AbstractTriangular</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L158" target="_blank">linalg/special.jl:158</a></li> <li> +(A::<b>Base.LinAlg.AbstractTriangular</b>, B::<b>Tridiagonal</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L157" target="_blank">linalg/special.jl:157</a></li> <li> +(A::<b>Tridiagonal</b>, B::<b>Base.LinAlg.AbstractTriangular</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L158" target="_blank">linalg/special.jl:158</a></li> <li> +(A::<b>Base.LinAlg.AbstractTriangular</b>, B::<b>Bidiagonal</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L157" target="_blank">linalg/special.jl:157</a></li> <li> +(A::<b>Bidiagonal</b>, B::<b>Base.LinAlg.AbstractTriangular</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L158" target="_blank">linalg/special.jl:158</a></li> <li> +(A::<b>Base.LinAlg.AbstractTriangular</b>, B::<b>Array{T<:Any,2}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/special.jl#L157" target="_blank">linalg/special.jl:157</a></li> <li> +<i>{P<:Union{Base.Dates.CompoundPeriod,Base.Dates.Period}}</i>(Y::<b>Union{Base.ReshapedArray{P,N<:Any,A<:DenseArray,MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N<:Any}}},DenseArray{P,N<:Any},SubArray{P,N<:Any,A<:Union{Base.ReshapedArray{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N<:Any}}},DenseArray},I<:Tuple{Vararg{Union{Base.AbstractCartesianIndex,Colon,Int64,Range{Int64}},N<:Any}},L<:Any}}</b>, x::<b>Union{Base.Dates.CompoundPeriod,Base.Dates.Period}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/periods.jl#L337" target="_blank">dates/periods.jl:337</a></li> <li> +<i>{P<:Union{Base.Dates.CompoundPeriod,Base.Dates.Period},Q<:Union{Base.Dates.CompoundPeriod,Base.Dates.Period}}</i>(X::<b>Union{Base.ReshapedArray{P,N<:Any,A<:DenseArray,MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N<:Any}}},DenseArray{P,N<:Any},SubArray{P,N<:Any,A<:Union{Base.ReshapedArray{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N<:Any}}},DenseArray},I<:Tuple{Vararg{Union{Base.AbstractCartesianIndex,Colon,Int64,Range{Int64}},N<:Any}},L<:Any}}</b>, Y::<b>Union{Base.ReshapedArray{Q,N<:Any,A<:DenseArray,MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N<:Any}}},DenseArray{Q,N<:Any},SubArray{Q,N<:Any,A<:Union{Base.ReshapedArray{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N<:Any}}},DenseArray},I<:Tuple{Vararg{Union{Base.AbstractCartesianIndex,Colon,Int64,Range{Int64}},N<:Any}},L<:Any}}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/periods.jl#L338" target="_blank">dates/periods.jl:338</a></li> <li> +<i>{T<:Base.Dates.TimeType,P<:Union{Base.Dates.CompoundPeriod,Base.Dates.Period}}</i>(x::<b>Union{Base.ReshapedArray{P,N<:Any,A<:DenseArray,MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N<:Any}}},DenseArray{P,N<:Any},SubArray{P,N<:Any,A<:Union{Base.ReshapedArray{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N<:Any}}},DenseArray},I<:Tuple{Vararg{Union{Base.AbstractCartesianIndex,Colon,Int64,Range{Int64}},N<:Any}},L<:Any}}</b>, y::<b>T</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/arithmetic.jl#L83" target="_blank">dates/arithmetic.jl:83</a></li> <li> +<i>{T<:Base.Dates.TimeType}</i>(r::<b>Range{T}</b>, x::<b>Base.Dates.Period</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/ranges.jl#L39" target="_blank">dates/ranges.jl:39</a></li> <li> +<i>{Tv1,Ti1,Tv2,Ti2}</i>(A_1::<b>SparseMatrixCSC{Tv1,Ti1}</b>, A_2::<b>SparseMatrixCSC{Tv2,Ti2}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/sparse/sparsematrix.jl#L1697" target="_blank">sparse/sparsematrix.jl:1697</a></li> <li> +(A::<b>SparseMatrixCSC</b>, B::<b>Array</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/sparse/sparsematrix.jl#L1709" target="_blank">sparse/sparsematrix.jl:1709</a></li> <li> +(A::<b>SparseMatrixCSC</b>, J::<b>UniformScaling</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/sparse/sparsematrix.jl#L3811" target="_blank">sparse/sparsematrix.jl:3811</a></li> <li> +(x::<b>AbstractSparseArray{Tv<:Any,Ti<:Any,1}</b>, y::<b>AbstractSparseArray{Tv<:Any,Ti<:Any,1}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/sparse/sparsevector.jl#L1179" target="_blank">sparse/sparsevector.jl:1179</a></li> <li> +(x::<b>Union{Base.ReshapedArray{T<:Any,1,A<:DenseArray,MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N<:Any}}},DenseArray{T<:Any,1},SubArray{T<:Any,1,A<:Union{Base.ReshapedArray{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N<:Any}}},DenseArray},I<:Tuple{Vararg{Union{Base.AbstractCartesianIndex,Colon,Int64,Range{Int64}},N<:Any}},L<:Any}}</b>, y::<b>AbstractSparseArray{Tv<:Any,Ti<:Any,1}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/sparse/sparsevector.jl#L1180" target="_blank">sparse/sparsevector.jl:1180</a></li> <li> +(x::<b>AbstractSparseArray{Tv<:Any,Ti<:Any,1}</b>, y::<b>Union{Base.ReshapedArray{T<:Any,1,A<:DenseArray,MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N<:Any}}},DenseArray{T<:Any,1},SubArray{T<:Any,1,A<:Union{Base.ReshapedArray{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N<:Any}}},DenseArray},I<:Tuple{Vararg{Union{Base.AbstractCartesianIndex,Colon,Int64,Range{Int64}},N<:Any}},L<:Any}}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/sparse/sparsevector.jl#L1181" target="_blank">sparse/sparsevector.jl:1181</a></li> <li> +<i>{T<:Number}</i>(x::<b>AbstractArray{T,N<:Any}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/abstractarraymath.jl#L91" target="_blank">abstractarraymath.jl:91</a></li> <li> +<i>{R,S}</i>(A::<b>AbstractArray{R,N<:Any}</b>, B::<b>AbstractArray{S,N<:Any}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/arraymath.jl#L49" target="_blank">arraymath.jl:49</a></li> <li> +(A::<b>AbstractArray</b>, x::<b>Number</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/arraymath.jl#L94" target="_blank">arraymath.jl:94</a></li> <li> +(x::<b>Number</b>, A::<b>AbstractArray</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/arraymath.jl#L95" target="_blank">arraymath.jl:95</a></li> <li> +<i>{N}</i>(index1::<b>CartesianIndex{N}</b>, index2::<b>CartesianIndex{N}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/multidimensional.jl#L52" target="_blank">multidimensional.jl:52</a></li> <li> +<i>{N}</i>(index::<b>CartesianIndex{N}</b>, i::<b>Integer</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/multidimensional.jl#L57" target="_blank">multidimensional.jl:57</a></li> <li> +(J1::<b>UniformScaling</b>, J2::<b>UniformScaling</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/uniformscaling.jl#L37" target="_blank">linalg/uniformscaling.jl:37</a></li> <li> +(J::<b>UniformScaling</b>, B::<b>BitArray{2}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/uniformscaling.jl#L39" target="_blank">linalg/uniformscaling.jl:39</a></li> <li> +(J::<b>UniformScaling</b>, A::<b>AbstractArray{T<:Any,2}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/uniformscaling.jl#L40" target="_blank">linalg/uniformscaling.jl:40</a></li> <li> +(J::<b>UniformScaling</b>, x::<b>Number</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/uniformscaling.jl#L41" target="_blank">linalg/uniformscaling.jl:41</a></li> <li> +(x::<b>Number</b>, J::<b>UniformScaling</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/uniformscaling.jl#L42" target="_blank">linalg/uniformscaling.jl:42</a></li> <li> +<i>{TA,TJ}</i>(A::<b>AbstractArray{TA,2}</b>, J::<b>UniformScaling{TJ}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/linalg/uniformscaling.jl#L102" target="_blank">linalg/uniformscaling.jl:102</a></li> <li> +<i>{T}</i>(a::<b>Base.Pkg.Resolve.VersionWeights.HierarchicalValue{T}</b>, b::<b>Base.Pkg.Resolve.VersionWeights.HierarchicalValue{T}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/pkg/resolve/versionweight.jl#L23" target="_blank">pkg/resolve/versionweight.jl:23</a></li> <li> +<i>{P<:Base.Dates.Period}</i>(x::<b>P</b>, y::<b>P</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/periods.jl#L70" target="_blank">dates/periods.jl:70</a></li> <li> +(x::<b>Base.Dates.Period</b>, y::<b>Base.Dates.Period</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/periods.jl#L311" target="_blank">dates/periods.jl:311</a></li> <li> +(y::<b>Base.Dates.Period</b>, x::<b>Base.Dates.CompoundPeriod</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/periods.jl#L313" target="_blank">dates/periods.jl:313</a></li> <li> +(y::<b>Base.Dates.Period</b>, x::<b>Base.Dates.TimeType</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/arithmetic.jl#L66" target="_blank">dates/arithmetic.jl:66</a></li> <li> +<i>{T<:Base.Dates.TimeType}</i>(x::<b>Base.Dates.Period</b>, r::<b>Range{T}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/ranges.jl#L40" target="_blank">dates/ranges.jl:40</a></li> <li> +(x::<b>Union{Base.Dates.CompoundPeriod,Base.Dates.Period}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/periods.jl#L322" target="_blank">dates/periods.jl:322</a></li> <li> +<i>{P<:Union{Base.Dates.CompoundPeriod,Base.Dates.Period}}</i>(x::<b>Union{Base.Dates.CompoundPeriod,Base.Dates.Period}</b>, Y::<b>Union{Base.ReshapedArray{P,N<:Any,A<:DenseArray,MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N<:Any}}},DenseArray{P,N<:Any},SubArray{P,N<:Any,A<:Union{Base.ReshapedArray{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N<:Any}}},DenseArray},I<:Tuple{Vararg{Union{Base.AbstractCartesianIndex,Colon,Int64,Range{Int64}},N<:Any}},L<:Any}}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/periods.jl#L336" target="_blank">dates/periods.jl:336</a></li> <li> +(x::<b>Base.Dates.TimeType</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/arithmetic.jl#L8" target="_blank">dates/arithmetic.jl:8</a></li> <li> +(a::<b>Base.Dates.TimeType</b>, b::<b>Base.Dates.Period</b>, c::<b>Base.Dates.Period</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/periods.jl#L348" target="_blank">dates/periods.jl:348</a></li> <li> +(a::<b>Base.Dates.TimeType</b>, b::<b>Base.Dates.Period</b>, c::<b>Base.Dates.Period</b>, d::<b>Base.Dates.Period...</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/periods.jl#L350" target="_blank">dates/periods.jl:350</a></li> <li> +(x::<b>Base.Dates.TimeType</b>, y::<b>Base.Dates.CompoundPeriod</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/periods.jl#L354" target="_blank">dates/periods.jl:354</a></li> <li> +(x::<b>Base.Dates.Instant</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/arithmetic.jl#L4" target="_blank">dates/arithmetic.jl:4</a></li> <li> +<i>{T<:Base.Dates.TimeType}</i>(x::<b>AbstractArray{T,N<:Any}</b>, y::<b>Union{Base.Dates.CompoundPeriod,Base.Dates.Period}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/arithmetic.jl#L76" target="_blank">dates/arithmetic.jl:76</a></li> <li> +<i>{T<:Base.Dates.TimeType}</i>(y::<b>Union{Base.Dates.CompoundPeriod,Base.Dates.Period}</b>, x::<b>AbstractArray{T,N<:Any}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/arithmetic.jl#L77" target="_blank">dates/arithmetic.jl:77</a></li> <li> +<i>{P<:Union{Base.Dates.CompoundPeriod,Base.Dates.Period}}</i>(y::<b>Base.Dates.TimeType</b>, x::<b>Union{Base.ReshapedArray{P,N<:Any,A<:DenseArray,MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N<:Any}}},DenseArray{P,N<:Any},SubArray{P,N<:Any,A<:Union{Base.ReshapedArray{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple{Vararg{Base.MultiplicativeInverses.SignedMultiplicativeInverse{Int64},N<:Any}}},DenseArray},I<:Tuple{Vararg{Union{Base.AbstractCartesianIndex,Colon,Int64,Range{Int64}},N<:Any}},L<:Any}}</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/dates/arithmetic.jl#L84" target="_blank">dates/arithmetic.jl:84</a></li> <li> +(a, b, c, xs...) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/operators.jl#L138" target="_blank">operators.jl:138</a></li> </ul>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We can inspect a type by finding its fields with <code>fieldnames</code></p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[40]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">fieldnames</span><span class="p">(</span><span class="n">LinSpace</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[40]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>4-element Array{Symbol,1}:
- :start  
- :stop   
- :len    
- :divisor</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>and find out which method was used with the <code>@which</code> macro:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[43]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="p">@</span><span class="n">which</span> <span class="n">copy</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[43]:</div>
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-copy<i>{T<:Array{T,N}}</i>(a::<b>T</b>) at <a href="https://github.com/JuliaLang/julia/tree/9c76c3e89a8c384f324c2e0b84ad28ceef9ab69d/base/array.jl#L70" target="_blank">array.jl:70</a>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Notice that this gives you a link to the source code where the function is defined.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Lastly, we can find out what type a variable is with the <code>typeof</code> function:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[44]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">3</span><span class="p">]</span>
-<span class="nb">typeof</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[44]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>Array{Int64,1}</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Some-Basic-Types">Some Basic Types<a class="anchor-link" href="#Some-Basic-Types">&#182;</a></h2><p>Julia provides many basic types. Indeed, you will come to know Julia as a system of multiple dispatch on types, meaning that the interaction of types with functions is core to the design.</p>
-<h3 id="Lazy-Iterator-Types">Lazy Iterator Types<a class="anchor-link" href="#Lazy-Iterator-Types">&#182;</a></h3><p>While MATLAB or Python has easy functions for building arrays, Julia tends to side-step the actual "array" part with specially made types. One such example are ranges. To define a range, use the <code>start:stepsize:end</code> syntax. For example:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[45]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">5</span>
-<span class="n">println</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">10</span>
-<span class="n">println</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>1:5
-1:2:9
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We can use them like any array. For example:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[47]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span> <span class="n">println</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>2
-5
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
+<div class="reveal">
+<div class="slides">
+<section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>But what is <code>b</code>?</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[50]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="nb">typeof</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>StepRange{Int64,Int64}
-</pre>
-</div>
-</div>
+<h2 id="A-Mental-Model-for-Julia">A Mental Model for Julia<a class="anchor-link" href="#A-Mental-Model-for-Julia">&#182;</a></h2><p>Julia, while being "a scripting language", it is far more complex than other scripting languages. The goal for these slides is to give a proper mental model for approaching Julia</p>
 
-</div>
 </div>
-
 </div>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><code>b</code> isn't an array, it's a StepRange. A StepRange has the ability to act like an array using its fields:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[52]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">fieldnames</span><span class="p">(</span><span class="n">StepRange</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[52]:</div>
-
+<h2 id="The-Julia-Community:-Who-is-a-user?">The Julia Community: Who is a user?<a class="anchor-link" href="#The-Julia-Community:-Who-is-a-user?">&#182;</a></h2><ul>
+<li>Julia, being high performance and equipped with heavy "CS" features, all while a scripting language, has attracted a diverse audience.</li>
+<li>A large group of Julia users are ex-MATLAB users interested in using Julia for faster numerical linear algebra applications.</li>
+<li>Another significant group are the machine learning and statistics users from R/Python looking to solve the "two-language" problem.</li>
+<li>Another group (a lot of Base contributors) are C/Fortran developers who are looking to increase productivity without sacrificing speed.</li>
+<li>Another group are "general-purpose" users: using Julia to develop faster web frameworks, compilers, and anyting else you can think of! </li>
+<li>Another group is from functional programming languages (Haskell) and Lisps (Clojure, Femtolisp) interested in Julia's metaprogramming and parallelism.</li>
+</ul>
+<p>Julia combines the interests, features, and libraries of all of these groups. To which group(s) do you belong?</p>
 
-<div class="output_text output_subarea output_execute_result">
-<pre>3-element Array{Symbol,1}:
- :start
- :step 
- :stop </pre>
 </div>
-
-</div>
-
-</div>
 </div>
-
-</div>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Note that at any time we can get the array from these kinds of type via the <code>collect</code> function:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[55]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">collect</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
+<p>We want a language that’s open source, with a liberal license. We want the speed of C with the dynamism of Ruby. We want a language that’s homoiconic, with true macros like Lisp, but with obvious, familiar mathematical notation like Matlab. We want something as usable for general programming as Python, as easy for statistics as R, as natural for string processing as Perl, as powerful for linear algebra as Matlab, as good at gluing programs together as the shell. Something that is dirt simple to learn, yet keeps the most serious hackers happy. We want it interactive and we want it compiled.</p>
+<p>(Did we mention it should be as fast as C?)</p>
+<p>While we’re being demanding, we want something that provides the distributed power of Hadoop — without the kilobytes of boilerplate Java and XML; without being forced to sift through gigabytes of log files on hundreds of machines to find our bugs. We want the power without the layers of impenetrable complexity. We want to write simple scalar loops that compile down to tight machine code using just the registers on a single CPU. We want to write A*B and launch a thousand computations on a thousand machines, calculating a vast matrix product together.</p>
 
-
-<div class="output_area"><div class="prompt output_prompt">Out[55]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>5-element Array{Int64,1}:
- 1
- 2
- 3
- 4
- 5</pre>
-</div>
-
-</div>
-
-</div>
 </div>
-
 </div>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The reason why lazy iterator types are preferred is that they do not do the computations until it's absolutely necessary, and they take up much less space. We can check this with <code>@time</code>:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="p">@</span><span class="n">time</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">100000</span>
-<span class="p">@</span><span class="n">time</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">100</span>
-<span class="p">@</span><span class="n">time</span> <span class="n">b</span> <span class="o">=</span> <span class="n">collect</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">100000</span><span class="p">);</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
+<h2 id="Who-Julia-is-Developed-For">Who Julia is Developed For<a class="anchor-link" href="#Who-Julia-is-Developed-For">&#182;</a></h2><ul>
+<li>The Julia project has one of the largest numbers of contributors of any open-source language.<ul>
+<li>There have been 500+ contributors, with 100+ having made more than 10 commits.</li>
+</ul>
+</li>
+<li>Julia is created by people spanning these groups.</li>
+<li>Julia is made to have innovative design, but not syntax.</li>
+</ul>
+<p>Julia's syntax is pulled from places considered "best-in-class":</p>
+<ul>
+<li>The statistics looks like R.</li>
+<li>The linear algebra looks like MATLAB.</li>
+<li>The general-purpose parts look like Python.</li>
+<li>The macros work like Lisp (they can look like it using LispSyntax.jl!).</li>
+<li>The fast devectorized code acts like C/Fortran.</li>
+<li>Built-in support for piping and first-class functions lets some people program Julia functionally.</li>
+</ul>
+<p>No matter who you are, some of the terminology will be familiar, while other parts will be pulled from a domain you may have never heard of.</p>
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>  0.000005 seconds (6 allocations: 240 bytes)
-  0.000003 seconds (5 allocations: 192 bytes)
-  0.007849 seconds (189 allocations: 792.844 KB)
-</pre>
-</div>
-</div>
-
-</div>
 </div>
-
 </div>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Notice that the amount of time the range takes is much shorter. This is mostly because there is a lot less memory allocation needed: only a <code>StepRange</code> is built, and all that holds is the three numbers. However, <code>b</code> has to hold <code>100000</code> numbers, leading to the huge difference.</p>
+<h2 id="A-Mental-Model-for-Python/R/MATLAB:-Talking-to-a-Politician">A Mental Model for Python/R/MATLAB: Talking to a Politician<a class="anchor-link" href="#A-Mental-Model-for-Python/R/MATLAB:-Talking-to-a-Politician">&#182;</a></h2><ul>
+<li>These scripting languages were developed to "be easy".</li>
+<li>You tell them something, and they try to give you want you want.</li>
+<li>There may be some things hidden behind the scenes to make everything "work better".</li>
+<li>They may not give you the fastest reply.</li>
+</ul>
 
-</div>
 </div>
 </div>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Question-4">Question 4<a class="anchor-link" href="#Question-4">&#182;</a></h4><p>If you know <code>start</code>, <code>step</code>, and <code>stop</code>, how do you calculate the <code>i</code>th value? Can you create a function MyRange which where for <code>a</code> being a <code>MyRange</code>, <code>value(a,i) == a[i]</code> for <code>a</code> a <code>StepRange</code>? (I will show you how to make the <code>a[i]</code> syntax available for your own types later. As noted before, all of these Julia types are implemented in Julia, and therefore you have the power to implement it yourself).</p>
+<h2 id="A-Mental-Model-for-C/Fortran:-Talking-to-a-Philosopher">A Mental Model for C/Fortran: Talking to a Philosopher<a class="anchor-link" href="#A-Mental-Model-for-C/Fortran:-Talking-to-a-Philosopher">&#182;</a></h2><ul>
+<li>You say something, and they want something more specific.</li>
+<li>You spend hours digging deep into the specifics of something. </li>
+<li>After finally getting it right, you know how to quickly get a specific answer from them.</li>
+<li>Everytime you want to talk about something new, you have to start all the way at the basics again.</li>
+</ul>
 
 </div>
 </div>
-</div>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Dictionaries">Dictionaries<a class="anchor-link" href="#Dictionaries">&#182;</a></h3><p>Another common type is the Dictionary. It allows you to access (key,value) pairs in a named manner. For example:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">(:</span><span class="n">test</span><span class="o">=&gt;</span><span class="mi">2</span><span class="p">,</span><span class="s">&quot;silly&quot;</span><span class="o">=&gt;</span><span class="p">:</span><span class="n">suit</span><span class="p">)</span>
-<span class="n">println</span><span class="p">(</span><span class="n">d</span><span class="p">[:</span><span class="n">test</span><span class="p">])</span>
-<span class="n">println</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s">&quot;silly&quot;</span><span class="p">])</span>
-</pre></div>
+<h2 id="A-Mental-Model-for-Julia:-Talking-to-a-Scientist">A Mental Model for Julia: Talking to a Scientist<a class="anchor-link" href="#A-Mental-Model-for-Julia:-Talking-to-a-Scientist">&#182;</a></h2><ul>
+<li>When you're talking, everything looks general. However, you really mean very specific details determined by context.</li>
+<li>You can quickly dig deep into a subject, assuming many rules, theories, and terminology.</li>
+<li>Nothing is hidden: if you ever want to hear about every little detail, you can ask.</li>
+<li>They will get mad (and throw errors at you) if you begin to be loose with the specific details.</li>
+</ul>
+<p>Conclusion: While Julia looks at the surface like R/Python/MATLAB, what's actually happening under the hood is very different. It is this design difference which is essential to getting the full performance out of Julia while not sacrificing readability. The goal of the workshop is to show you how this works, and how to make it work to your advantage.</p>
 
 </div>
 </div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>2
-suit
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Tuples">Tuples<a class="anchor-link" href="#Tuples">&#182;</a></h3><p>Tuples are immutable arrays. That means they can't be changed. However, they are super fast. They are made with the <code>(x,y,z,...)</code> syntax and are the standard return type of functions which return more than one object.</p>
+<h2 id="The-Rabbit-Hole-and-Misconceptions">The Rabbit Hole and Misconceptions<a class="anchor-link" href="#The-Rabbit-Hole-and-Misconceptions">&#182;</a></h2><p>Since Julia has so many different influences meshed together, there is a "rabbit hole" of features to explore, designs to investigate, and performance tricks to exploit. We will be peaking into the rabbit hole. Here's a good snippet of a podcast that addresses some misconceptions.</p>
+<p><a href="http://www.rce-cast.com/">http://www.rce-cast.com/</a></p>
+<p>Karpinski: The syntax is superficially similar to MATLAB, so you can often translate MATLAB
+code to Julia just by changing a few parenthesis to square brackets for indexing
+into arrays and not really changing too much else. But the symantics are closest
+probably to Python: it's [a] very straightforward dynamic language to write use.
+But then there's sort of this rabbit hole of advanced features that you can go
+down that you don't need to know about right away to write useful programs, but
+which can help you as you find yourself doing harder and harder things.</p>
+<p>Edelman: What happens when you start to go down this rabbit hole is you become
+programmer, something for when you used these other languages you never knew you
+were missing, and never knew you wanted to be. But then when you do it, you wonder
+how you lived without it.</p>
+<p>Listen to 5:50 - 17:00</p>
 
-</div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">tup</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c"># Don&#39;t have to match types</span>
-<span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="mf">3.0</span><span class="p">,</span><span class="s">&quot;hi&quot;</span><span class="p">)</span> <span class="c"># Can separate a tuple to multiple variables</span>
-</pre></div>
-
+</div></section></section>
 </div>
 </div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
 
+<script>
 
-<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
+require(
+    {
+      // it makes sense to wait a little bit when you are loading
+      // reveal from a cdn in a slow connection environment
+      waitSeconds: 15
+    },
+    [
+      "reveal.js/lib/js/head.min.js",
+      "reveal.js/js/reveal.js"
+    ],
 
+    function(head, Reveal){
 
-<div class="output_text output_subarea output_execute_result">
-<pre>(3.0,&#34;hi&#34;)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Metaprogramming">Metaprogramming<a class="anchor-link" href="#Metaprogramming">&#182;</a></h2><p>Metaprogramming is a huge feature of Julia. The key idea is that every statement in Julia is of the type <code>Expression</code>. Julia operators by building an Abstract Syntax Tree (AST) from the Expressions. You've already been exposed to this a little bit: a <code>Symbol</code> (like <code>:PhysicalSciences</code> is not a string because it is part of the AST, and thus is part of the parsing/expression structure. One interesting thing is that symbol comparisons are O(1) while string comparisons, like always, are O(n)) is part of this, and macros (the weird functions with an <code>@</code>) are functions on expressions.</p>
-<p>Thus you can think of metaprogramming as "code which takes in code and outputs code". One basic example is the <code>@time</code> macro:</p>
+        // Full list of configuration options available here: https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[85]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">macro</span> <span class="n">my_time</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span>
-  <span class="k">return</span> <span class="k">quote</span>
-    <span class="kd">local</span> <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
-    <span class="kd">local</span> <span class="n">val</span> <span class="o">=</span> <span class="o">$</span><span class="n">ex</span>
-    <span class="kd">local</span> <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
-    <span class="n">println</span><span class="p">(</span><span class="s">&quot;elapsed time: &quot;</span><span class="p">,</span> <span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">,</span> <span class="s">&quot; seconds&quot;</span><span class="p">)</span>
-    <span class="n">val</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</pre></div>
+            theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+            transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/none
 
-</div>
-</div>
-</div>
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: "reveal.js/lib/js/classList.js",
+                  condition: function() { return !document.body.classList; } },
+                { src: "reveal.js/plugin/notes/notes.js",
+                  async: true,
+                  condition: function() { return !!document.body.classList; } }
+            ]
+        });
 
-<div class="output_wrapper">
-<div class="output">
+        var update = function(event){
+          if(MathJax.Hub.getAllJax(Reveal.getCurrentSlide())){
+            MathJax.Hub.Rerender(Reveal.getCurrentSlide());
+          }
+        };
 
+        Reveal.addEventListener('slidechanged', update);
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_error">
-<pre>
-LoadError: error in method definition: function Base.@time must be explicitly imported to be extended
-while loading In[85], in expression starting on line 1
-</pre>
-</div>
-</div>
+        var update_scroll = function(event){
+          $(".reveal").scrollTop(0);
+        };
 
-</div>
-</div>
+        Reveal.addEventListener('slidechanged', update_scroll);
 
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This takes in an expression <code>ex</code>, gets the time before and after evaluation, and prints the elapsed time between (the real time macro also calculates the allocations as seen earlier). Note that <code>$ex</code> "interpolates" the expression into the macro. Going into detail on metaprogramming is a large step from standard scripting and will be a later session.</p>
-<p>Why macros? One reason is because it lets you define any syntax you want. Since it operates on the expressions themselves, as long as you know how to parse the expression into working code, you can "choose any syntax" to be your syntax. A case study will be shown later. Another reason is because these are done at "parse time" and those are only called once (before the function compilation).</p>
+    }
+);
+</script>
 
-</div>
-</div>
-</div>
-    </div>
-  </div>
 </body>
+
+
 </html>

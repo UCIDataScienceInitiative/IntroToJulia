@@ -37,7 +37,7 @@ Pkg.add("IJulia") # This will install the package
 Pkg.clone("https://github.com/UCIDataScienceInitiative/IntroToJulia") # Clone the IntroToJulia Repo
 ### Next commands you run each time you open the REPL
 using IJulia
-notebook(detached=true,dir=Pkg.dir("IntroToJulia"))
+notebook(detached=true,dir=Pkg.dir("IntroToJulia/notebooks"))
 ```
 
 ### Installing Juno
@@ -50,7 +50,9 @@ The Julia documentation can be found at http://docs.julialang.org/en/latest/manu
 
 Documentation can be found from the REPL by using `?` in front of a command.
 
-###Good Pages to Read
+The Juno documentation can be found at https://chrisrackauckas.github.io/JunoDocs.jl/latest/
+
+### Good Pages to Read
 
 The following documentation pages are good pages to read in full:
 

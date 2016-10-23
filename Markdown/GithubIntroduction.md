@@ -58,6 +58,15 @@ The badges on a Github repository show you the current state of the repo. From l
 - Coverage: This tells you the percentage of the code that the tests cover. If coverage is low, parts of the package may not work even if the CI tests pass.
 - Docs Badges: Click on these to go to the package documentation.
 
+## Github Organizations
+
+- A (mostly complete) list of Julia organizations can be found at http://julialang.org/community/
+- Organizations manage large domains of packages and ensure that they work well together
+- Examples: JuliaStats, JuliaMath, JuliaDiffEq
+- Organizations are informal but have been "unusually effective"
+- Packages from the main Julia organizations can be considered official
+  - Some functionality which used to be in the Base language now exists in organization packages
+
 ## Using Julia's Package Manager
 
 ### Adding a Package
@@ -130,3 +139,15 @@ Pkg.checkout("Plots","dev")
 ```
 
 This is not advised if you don't know what you're doing (i.e. talk to the developer or read the pull requests (PR)), but this is common if you talk to a developer and they say "yes, I already implemented that. Checkout the dev branch and use `plot(...)`).
+
+## Easter Egg Hunt
+
+There is an Easter egg hidden in the repository. To find it, checkout the "dev" branch of the workshop repository (https://github.com/UCIDataScienceInitiative/IntroToJulia) and use the commands:
+
+
+```julia
+using IntroToJulia
+find_easter()
+```
+
+This will give you instructions for how to hunt down the Easter egg.
