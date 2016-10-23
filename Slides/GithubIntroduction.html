@@ -11921,6 +11921,25 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Github-Organizations">Github Organizations<a class="anchor-link" href="#Github-Organizations">&#182;</a></h2><ul>
+<li>A (mostly complete) list of Julia organizations can be found at <a href="http://julialang.org/community/">http://julialang.org/community/</a></li>
+<li>Organizations manage large domains of packages and ensure that they work well together</li>
+<li>Examples: JuliaStats, JuliaMath, JuliaDiffEq</li>
+<li>Organizations are informal but have been "unusually effective"</li>
+<li>Packages from the main Julia organizations can be considered official<ul>
+<li>Some functionality which used to be in the Base language now exists in organization packages</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Using-Julia's-Package-Manager">Using Julia's Package Manager<a class="anchor-link" href="#Using-Julia's-Package-Manager">&#182;</a></h2><h3 id="Adding-a-Package">Adding a Package<a class="anchor-link" href="#Adding-a-Package">&#182;</a></h3><p>Julia's package manager functions are mirror the Git functions. Julia's package system is similar to R/Python in that a large number of packages are freely available. You search for them in places like <a href="http://genieframework.com/packages">Julia's Package Genie</a>, or from the <a href="http://pkg.julialang.org/">Julia Package Listing</a>. Let's take a look at the <a href="https://github.com/tbreloff/Plots.jl">Plots.jl package by Tom Breloff</a>. To add a package, use <code>Pkg.add</code></p>
 
 </div>
@@ -12096,13 +12115,47 @@ a.anchor-link {
 </div>
 </div>
 
-</div>
+</div></div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This is not advised if you don't know what you're doing (i.e. talk to the developer or read the pull requests (PR)), but this is common if you talk to a developer and they say "yes, I already implemented that. Checkout the dev branch and use <code>plot(...)</code>).</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Easter-Egg-Hunt">Easter Egg Hunt<a class="anchor-link" href="#Easter-Egg-Hunt">&#182;</a></h2><p>There is an Easter egg hidden in the repository. To find it, checkout the "dev" branch of the workshop repository (<a href="https://github.com/UCIDataScienceInitiative/IntroToJulia">https://github.com/UCIDataScienceInitiative/IntroToJulia</a>) and use the commands:</p>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">IntroToJulia</span>
+<span class="n">find_easter</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This will give you instructions for how to hunt down the Easter egg.</p>
 
 </div>
 </div>

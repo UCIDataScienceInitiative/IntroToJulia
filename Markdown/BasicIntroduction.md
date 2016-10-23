@@ -1,5 +1,5 @@
 
-## An Introduction to Basic Julia
+## A Basic Introduction to  Julia
 
 This quick introduction assumes that you have basic knowledge of some scripting language and provides an example of the Julia syntax. So before we explain anything, let's just treat it like a scripting language, take a head-first dive into Julia, and see what happens.
 
@@ -21,7 +21,7 @@ a[3] = 2 # Change the third element of a (using linear indexing) to 2
 
 b = Matrix{Float64}(4,2) # Define a Matrix of Float64's of size (4,2)
 
-c = Array{Float64,4}((4,5,6,7)) # Define a (4,5,6,7) array of Float64's 
+c = Array{Float64,4}(4,5,6,7) # Define a (4,5,6,7) array of Float64's 
 
 mat    = [1 2 3 4
           3 4 5 6
@@ -255,6 +255,50 @@ end
     6
     8
 
+
+### Problems
+
+Time to start using your noggin. Here are some problems to get you using the language. Many of the details for solving these problems have been covered, some have not. You may need to use some external resources:
+
+http://docs.julialang.org/en/release-0.5/manual/
+
+https://gitter.im/JuliaLang/julia
+
+Solve as many or as few problems as you can during these times. Please work at your own pace, or with others if that's how you're comfortable!
+
+#### Problem 1
+
+Use Julia's array and control flow syntax in order to define the NxN Strang matrix:
+
+$$ \left[\begin{array}{ccccc}
+-2 & 1\\
+1 & -2 & 1\\
+ & \ddots & \ddots & \ddots\\
+ &  & \ddots & \ddots & 1\\
+ &  &  & 1 & -2
+\end{array}\right] $$
+
+
+
+```julia
+#### Prepare Data
+
+X = rand(1000, 3)               # feature matrix
+a0 = rand(3)                    # ground truths
+y = X * a0 + 0.1 * randn(1000);  # generate response
+```
+
+#### Problem 2
+
+Given an Nx3 array of data (`randn(N,3)`) and a Nx1 array of outcomes, produce the data matrix `X` which appends a column of 1's to the data matrix, and solve for the 4x1 array `β` via `βX = b` using `qrfact` or `\`. (Note: This is linear regression)
+       
+#### Problem 3
+
+Compare your results to that of using `llsq` from `MultivariateStats.jl` (note: you need to go find the documentation to find out how to use this!)
+
+#### Problem 4
+
+Compare your results to that of using ordinary least squares regression from GLM.jl
 
 ## Function Syntax
 
