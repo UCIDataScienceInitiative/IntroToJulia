@@ -1,6 +1,6 @@
 # IntroToJulia
 
-[![Join the chat at https://gitter.im/JuliaLang/julia](https://gitter.im/JuliaLang/julia.svg)](https://gitter.im/JuliaLang/julia)
+[![Join the chat at https://gitter.im/JuliaLang/julia](https://badges.gitter.im/JuliaLang/julia.svg)](https://gitter.im/JuliaLang/julia)
 
 *A Deep Introduction to Julia for Data Science and Scientific Computing* by Chris Rackauckas.
 
