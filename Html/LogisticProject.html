@@ -11760,9 +11760,6 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The logistic difference equation is defined by the recursion</p>
-$$ b_{n+1}=r*b_{n}(1-b_{n}) $$<p>where $b_{n}$ is the number of bunnies at time $n$. Starting with $b_{0}=.25$, by around $400$ iterations this will reach a steady state. This steady state (or steady periodic state) is dependent on $r$. Write a function which solves for the steady state(s) for each given $r$, and plot every state in the steady attractor for each $r$ (x-axis is $r$, $y$=value seen in the attractor) using PyPlot. Take $r\in\left(2.9,4\right)$</p>
-<p>Optimize this function.</p>
 
 </div>
 </div>
@@ -11782,28 +11779,7 @@ $$ b_{n+1}=r*b_{n}(1-b_{n}) $$<p>where $b_{n}$ is the number of bunnies at time 
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="c">## Produces the logstic plot</span>
-<span class="c"># Requires PyPlot</span>
-
-<span class="k">function</span><span class="nf"> logisticPlot</span><span class="p">()</span>
-  <span class="n">tic</span><span class="p">()</span>
-  <span class="n">r</span> <span class="o">=</span> <span class="mf">2.9</span><span class="p">:</span><span class="o">.</span><span class="mi">00005</span><span class="p">:</span><span class="mi">4</span><span class="p">;</span> <span class="n">numAttract</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
-  <span class="n">steady</span> <span class="o">=</span> <span class="n">ones</span><span class="p">(</span><span class="n">length</span><span class="p">(</span><span class="n">r</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span><span class="o">*.</span><span class="mi">25</span><span class="p">;</span>
-  <span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="mi">400</span> <span class="c">## Get to steady state</span>
-    <span class="p">@</span><span class="n">devec</span> <span class="n">steady</span> <span class="o">=</span> <span class="n">r</span><span class="o">.*</span><span class="n">steady</span><span class="o">.*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">steady</span><span class="p">);</span>
-  <span class="k">end</span>
-  <span class="n">x</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">length</span><span class="p">(</span><span class="n">steady</span><span class="p">),</span><span class="n">numAttract</span><span class="p">);</span>
-  <span class="n">x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">steady</span><span class="p">;</span>
-  <span class="p">@</span><span class="n">simd</span> <span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">:</span><span class="n">numAttract</span> <span class="c">## Grab values at the attractor</span>
-    <span class="p">@</span><span class="n">inbounds</span> <span class="p">@</span><span class="n">fastmath</span> <span class="n">x</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="o">.*</span><span class="n">x</span><span class="p">[:,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="p">[:,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
-  <span class="k">end</span>
-  <span class="n">toc</span><span class="p">()</span>
-  <span class="n">fig</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">10</span><span class="p">));</span>
-  <span class="n">plot</span><span class="p">(</span><span class="n">collect</span><span class="p">(</span><span class="n">r</span><span class="p">),</span><span class="n">x</span><span class="p">,</span><span class="s">&quot;b.&quot;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=.</span><span class="mi">06</span><span class="p">)</span>
-  <span class="n">savefig</span><span class="p">(</span><span class="s">&quot;plot.png&quot;</span><span class="p">,</span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">);</span>
-<span class="k">end</span>
-<span class="k">using</span> <span class="n">PyPlot</span>
-<span class="p">@</span><span class="n">time</span> <span class="n">logisticPlot</span><span class="p">()</span>
+<div class=" highlight hl-julia"><pre><span></span>
 </pre></div>
 
 </div>

@@ -12,7 +12,7 @@ The ideal participant is anyone who is interested in Julia. There are many group
 
 ## Introduction to the Author
 
-Chris is a PhD student in Mathematics from the Mathematical, Computational, and Systems Biology (MCSB) Gateway program and is an active part of the Julia community. He runs the blog, http://www.stochasticlifestyle.com/, where he write tutorials on using the Julia languages covering many topics, such as high-performance and GPGPU computing, package development, and Julia tips. He is part of the JuliaMath and JuliaDiffEq communities for curating the Julia libraries for mathematics and differential equations respectively. Chris is the developer of many Julia packages, the most prominent being [DifferentialEquations.jl](https://github.com/JuliaDiffEq/DifferentialEquations.jl), a Julia library with the large goal of being a standard solver for many forms of differential equations.
+Chris is a PhD student in Mathematics from the Mathematical, Computational, and Systems Biology (MCSB) Gateway program and is an active part of the Julia community. He runs the blog, http://www.stochasticlifestyle.com/, where he write tutorials on using the Julia languages covering many topics, such as high-performance and GPGPU computing, package development, and Julia tips. He is part of the JuliaMath and JuliaDiffEq communities for curating the Julia libraries for mathematics and differential equations respectively. Chris is the developer of many Julia packages, the most prominent being [DifferentialEquations.jl](https://github.com/JuliaDiffEq/DifferentialEquations.jl), a Julia library which become a standard solver for many forms of differential equations.
 
 ## Installation and Setup
 
@@ -20,31 +20,36 @@ To get started, see the [Tooling, Documentation, and Community notebook](http://
 
 ## Jupyter Notebooks
 
-
-### Basics
+### Introduction
 
 - [Tooling, Documentation, and Community](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ToolingDocumentationCommunity)
 - [A Mental Model for Julia](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/JuliaMentalModel)
 - [A Very Quick Introduction to Git/Github for Julia Users](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/GithubIntroduction)
+
+
+### Basics
+
 - [A Basic Introduction to Julia](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicIntroduction)
 - [Why Julia?](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/WhyJulia)
 
-### Detailed Usage
+### Detailed Usage: A Peak Into "the Rabbit Hole"
 
-- [More Details on Arrays and Matrices](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArraysAndMatrices)
-- [Call Overloading](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading)
-- [Overview of the Package Ecosystem](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PackageEcosystem)
-- [An In-Depth Look at Plots.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PlotsJL)
-- [Parallelism](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Parallelism)
-- [Array and Iterator Interfaces](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces)
 - [Metaprogramming](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Metaprogramming)
+- [Call Overloading](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading)
+- [More Details on Arrays and Matrices - How to get Fortran Speeds in Linear Algebra](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArraysAndMatrices)
+- [Array and Iterator Interfaces](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces)
+
+### Packages to Explore
+
+- [Overview of the Package Ecosystem](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PackageEcosystem)
+- [Data Visualization: Plots.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PlotsJL)
+- [Differential Equations: DifferentialEquations.jl]()
 
 ### Projects / Experiments
 
 - [Type-Stability Experiment](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/TypeStabilityExperiment)
 - [Scoping Experiment](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ScopingExperiment)
-- [HPC Julia](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/HPCProject)
-- [Logistic Bifurcation Diagram](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/LogisticProject)
+- [Parallelism and HPC](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/HPCProject)
 
 
 ---------------------------
@@ -54,30 +59,35 @@ To get started, see the [Tooling, Documentation, and Community notebook](http://
 
 ## Slides
 
-
-### Basics
+### Introduction
 
 - [Tooling, Documentation, and Community](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ToolingDocumentationCommunity)
 - [A Mental Model for Julia](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/JuliaMentalModel)
 - [A Very Quick Introduction to Git/Github for Julia Users](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/GithubIntroduction)
+
+### Basics
+
 - [An Introduction to Basic Julia](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/BasicIntroduction)
 - [Why Julia?](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/WhyJulia)
 
-### Detailed Usage
+### Detailed Usage: A Peak Into "the Rabbit Hole"
 
-- [More Details on Arrays and Matrices](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ArraysAndMatrices)
+- [Metaprogramming](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/Metaprogramming)
 - [Call Overloading](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/CallOverloading)
+- [Array and Iterator Interfaces](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ArrayIteratorInterfaces)
+- [More Details on Arrays and Matrices - How to get Fortran Speeds from Linear Algebra](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ArraysAndMatrices)
+
+
+
+### Packages to Explore
+
 - [Overview of the Package Ecosystem](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/PackageEcosystem)
 - [An In-Depth Look at Plots.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/PlotsJL)
-- [Parallelism](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/Parallelism)
-- [Array and Iterator Interfaces](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ArrayIteratorInterfaces)
-- [Metaprogramming](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/Metaprogramming)
 
 ### Projects / Experiments
 - [Type-Stability Experiment](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/TypeStabilityExperiment)
 - [Scoping Experiment](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ScopingExperiment)
-- [HPC Julia](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/HPCProject)
-- [Logistic Bifurcation Diagram](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/LogisticProject)
+- [Parallelism and HPC](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/HPCProject)
 
 ## How These Were Made
 

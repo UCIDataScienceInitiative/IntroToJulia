@@ -278,19 +278,7 @@
     \section{Logistic Map Bifurcation
 Diagram}\label{logistic-map-bifurcation-diagram}
 
-    The logistic difference equation is defined by the recursion
-
-\[ b_{n+1}=r*b_{n}(1-b_{n}) \]
-
-where $b_{n}$ is the number of bunnies at time $n$. Starting with
-$b_{0}=.25$, by around $400$ iterations this will reach a steady state.
-This steady state (or steady periodic state) is dependent on $r$. Write
-a function which solves for the steady state(s) for each given $r$, and
-plot every state in the steady attractor for each $r$ (x-axis is $r$,
-$y$=value seen in the attractor) using PyPlot. Take
-$r\in\left(2.9,4\right)$
-
-Optimize this function.
+    
 
     \subsection{Old Solution}\label{old-solution}
 
@@ -298,28 +286,7 @@ Please try solving this yourself first! Use this one as a hint if you
 get stuck.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{c}{\PYZsh{}\PYZsh{} Produces the logstic plot}
-        \PY{c}{\PYZsh{} Requires PyPlot}
-        
-        \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{logisticPlot}\PY{p}{(}\PY{p}{)}
-          \PY{n}{tic}\PY{p}{(}\PY{p}{)}
-          \PY{n}{r} \PY{o}{=} \PY{l+m+mf}{2.9}\PY{p}{:}\PY{o}{.}\PY{l+m+mi}{00005}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{;} \PY{n}{numAttract} \PY{o}{=} \PY{l+m+mi}{100}\PY{p}{;}
-          \PY{n}{steady} \PY{o}{=} \PY{n}{ones}\PY{p}{(}\PY{n}{length}\PY{p}{(}\PY{n}{r}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{o}{.}\PY{l+m+mi}{25}\PY{p}{;}
-          \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{400} \PY{c}{\PYZsh{}\PYZsh{} Get to steady state}
-            \PY{p}{@}\PY{n}{devec} \PY{n}{steady} \PY{o}{=} \PY{n}{r}\PY{o}{.}\PY{o}{*}\PY{n}{steady}\PY{o}{.}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{steady}\PY{p}{)}\PY{p}{;}
-          \PY{k}{end}
-          \PY{n}{x} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{n}{length}\PY{p}{(}\PY{n}{steady}\PY{p}{)}\PY{p}{,}\PY{n}{numAttract}\PY{p}{)}\PY{p}{;}
-          \PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{steady}\PY{p}{;}
-          \PY{p}{@}\PY{n}{simd} \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{:}\PY{n}{numAttract} \PY{c}{\PYZsh{}\PYZsh{} Grab values at the attractor}
-            \PY{p}{@}\PY{n}{inbounds} \PY{p}{@}\PY{n}{fastmath} \PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{r}\PY{o}{.}\PY{o}{*}\PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{;}
-          \PY{k}{end}
-          \PY{n}{toc}\PY{p}{(}\PY{p}{)}
-          \PY{n}{fig} \PY{o}{=} \PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}\PY{p}{;}
-          \PY{n}{plot}\PY{p}{(}\PY{n}{collect}\PY{p}{(}\PY{n}{r}\PY{p}{)}\PY{p}{,}\PY{n}{x}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{b.}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{n}{markersize}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{06}\PY{p}{)}
-          \PY{n}{savefig}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{plot.png}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{300}\PY{p}{)}\PY{p}{;}
-        \PY{k}{end}
-        \PY{k}{using} \PY{n}{PyPlot}
-        \PY{p}{@}\PY{n}{time} \PY{n}{logisticPlot}\PY{p}{(}\PY{p}{)}
+{\color{incolor}In [{\color{incolor} }]:} 
 \end{Verbatim}
 
 

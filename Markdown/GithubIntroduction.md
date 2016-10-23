@@ -142,7 +142,7 @@ This is not advised if you don't know what you're doing (i.e. talk to the develo
 
 ## Easter Egg Hunt
 
-There is an Easter egg hidden in the repository. To find it, checkout the "dev" branch of the workshop repository (https://github.com/UCIDataScienceInitiative/IntroToJulia) and use the commands:
+There is an Easter egg hidden in the repository. To find it, checkout the "Easter" branch of the workshop repository (https://github.com/UCIDataScienceInitiative/IntroToJulia) and use the commands:
 
 
 ```julia

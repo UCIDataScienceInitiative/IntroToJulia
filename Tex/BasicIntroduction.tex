@@ -289,6 +289,265 @@ the facts which we will study in much more depth. Usually, these
 oddies/differences from other scripting languages are ``the source of
 Julia's power''.
 
+    \subsubsection{Problems}\label{problems}
+
+Time to start using your noggin. Scattered in this document are problems
+for you to solve using Julia. Many of the details for solving these
+problems have been covered, some have not. You may need to use some
+external resources:
+
+http://docs.julialang.org/en/release-0.5/manual/
+
+https://gitter.im/JuliaLang/julia
+
+Solve as many or as few problems as you can during these times. Please
+work at your own pace, or with others if that's how you're comfortable!
+
+    \subsection{Documentation and
+``Hunting''}\label{documentation-and-hunting}
+
+The main source of information is the
+\href{http://docs.julialang.org/en/latest/manual/}{Julia Documentation}.
+Julia also provides lots of built-in documentation and ways to find out
+what's going on. The number of tools for ``hunting down what's going on
+/ available'' is too numerous to explain in full detail here, so instead
+this will just touch on what's important. For example, the ? gets you to
+the documentation for a type, function, etc.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{o}{?}\PY{n}{copy}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+search: copy copy! copysign deepcopy unsafe\_copy! cospi complex Complex
+
+
+    \end{Verbatim}
+\texttt{\color{outcolor}Out[{\color{outcolor}23}]:}
+    
+    \begin{verbatim}
+copy(x)
+\end{verbatim}
+
+Create a shallow copy of \texttt{x}: the outer structure is copied, but
+not all internal values. For example, copying an array produces a new
+array with identically-same elements as the original.
+
+    
+
+    To find out what methods are available, we can use the \texttt{methods}
+function. For example, let's see how \texttt{+} is defined:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{methods}\PY{p}{(}\PY{o}{+}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}25}]:} \# 163 methods for generic function "+":
+         +(x::Bool, z::Complex\{Bool\}) at complex.jl:136
+         +(x::Bool, y::Bool) at bool.jl:48
+         +(x::Bool) at bool.jl:45
+         +\{T<:AbstractFloat\}(x::Bool, y::T) at bool.jl:55
+         +(x::Bool, z::Complex) at complex.jl:143
+         +(x::Bool, A::AbstractArray\{Bool,N<:Any\}) at arraymath.jl:91
+         +(x::Float32, y::Float32) at float.jl:239
+         +(x::Float64, y::Float64) at float.jl:240
+         +(z::Complex\{Bool\}, x::Bool) at complex.jl:137
+         +(z::Complex\{Bool\}, x::Real) at complex.jl:151
+         +(a::Float16, b::Float16) at float16.jl:136
+         +(x::Char, y::Integer) at char.jl:40
+         +(c::BigInt, x::BigFloat) at mpfr.jl:240
+         +(a::BigInt, b::BigInt, c::BigInt, d::BigInt, e::BigInt) at gmp.jl:298
+         +(a::BigInt, b::BigInt, c::BigInt, d::BigInt) at gmp.jl:291
+         +(a::BigInt, b::BigInt, c::BigInt) at gmp.jl:285
+         +(x::BigInt, y::BigInt) at gmp.jl:255
+         +(x::BigInt, c::Union\{UInt16,UInt32,UInt64,UInt8\}) at gmp.jl:310
+         +(x::BigInt, c::Union\{Int16,Int32,Int64,Int8\}) at gmp.jl:326
+         +(a::BigFloat, b::BigFloat, c::BigFloat, d::BigFloat, e::BigFloat) at mpfr.jl:388
+         +(a::BigFloat, b::BigFloat, c::BigFloat, d::BigFloat) at mpfr.jl:381
+         +(a::BigFloat, b::BigFloat, c::BigFloat) at mpfr.jl:375
+         +(x::BigFloat, c::BigInt) at mpfr.jl:236
+         +(x::BigFloat, y::BigFloat) at mpfr.jl:205
+         +(x::BigFloat, c::Union\{UInt16,UInt32,UInt64,UInt8\}) at mpfr.jl:212
+         +(x::BigFloat, c::Union\{Int16,Int32,Int64,Int8\}) at mpfr.jl:220
+         +(x::BigFloat, c::Union\{Float16,Float32,Float64\}) at mpfr.jl:228
+         +\{T\}(B::BitArray\{2\}, J::UniformScaling\{T\}) at linalg/uniformscaling.jl:38
+         +(a::Base.Pkg.Resolve.VersionWeights.VWPreBuildItem, b::Base.Pkg.Resolve.VersionWeights.VWPreBuildItem) at pkg/resolve/versionweight.jl:85
+         +(a::Base.Pkg.Resolve.VersionWeights.VWPreBuild, b::Base.Pkg.Resolve.VersionWeights.VWPreBuild) at pkg/resolve/versionweight.jl:131
+         +(a::Base.Pkg.Resolve.VersionWeights.VersionWeight, b::Base.Pkg.Resolve.VersionWeights.VersionWeight) at pkg/resolve/versionweight.jl:185
+         +(a::Base.Pkg.Resolve.MaxSum.FieldValues.FieldValue, b::Base.Pkg.Resolve.MaxSum.FieldValues.FieldValue) at pkg/resolve/fieldvalue.jl:44
+         +(x::Base.Dates.CompoundPeriod, y::Base.Dates.CompoundPeriod) at dates/periods.jl:314
+         +(x::Base.Dates.CompoundPeriod, y::Base.Dates.Period) at dates/periods.jl:312
+         +(x::Base.Dates.CompoundPeriod, y::Base.Dates.TimeType) at dates/periods.jl:359
+         +(dt::DateTime, z::Base.Dates.Month) at dates/arithmetic.jl:37
+         +(dt::DateTime, y::Base.Dates.Year) at dates/arithmetic.jl:13
+         +(x::DateTime, y::Base.Dates.Period) at dates/arithmetic.jl:64
+         +(x::Date, y::Base.Dates.Day) at dates/arithmetic.jl:62
+         +(x::Date, y::Base.Dates.Week) at dates/arithmetic.jl:60
+         +(dt::Date, z::Base.Dates.Month) at dates/arithmetic.jl:43
+         +(dt::Date, y::Base.Dates.Year) at dates/arithmetic.jl:17
+         +(y::AbstractFloat, x::Bool) at bool.jl:57
+         +\{T<:Union\{Int128,Int16,Int32,Int64,Int8,UInt128,UInt16,UInt32,UInt64,UInt8\}\}(x::T, y::T) at int.jl:32
+         +(x::Integer, y::Ptr) at pointer.jl:108
+         +(z::Complex, w::Complex) at complex.jl:125
+         +(z::Complex, x::Bool) at complex.jl:144
+         +(x::Real, z::Complex\{Bool\}) at complex.jl:150
+         +(x::Real, z::Complex) at complex.jl:162
+         +(z::Complex, x::Real) at complex.jl:163
+         +(x::Rational, y::Rational) at rational.jl:199
+         +(x::Integer, y::Char) at char.jl:41
+         +\{N\}(i::Integer, index::CartesianIndex\{N\}) at multidimensional.jl:58
+         +(c::Union\{UInt16,UInt32,UInt64,UInt8\}, x::BigInt) at gmp.jl:314
+         +(c::Union\{Int16,Int32,Int64,Int8\}, x::BigInt) at gmp.jl:327
+         +(c::Union\{UInt16,UInt32,UInt64,UInt8\}, x::BigFloat) at mpfr.jl:216
+         +(c::Union\{Int16,Int32,Int64,Int8\}, x::BigFloat) at mpfr.jl:224
+         +(c::Union\{Float16,Float32,Float64\}, x::BigFloat) at mpfr.jl:232
+         +(x::Irrational, y::Irrational) at irrationals.jl:88
+         +(x::Number) at operators.jl:115
+         +\{T<:Number\}(x::T, y::T) at promotion.jl:255
+         +(x::Number, y::Number) at promotion.jl:190
+         +(r1::OrdinalRange, r2::OrdinalRange) at operators.jl:505
+         +\{T<:AbstractFloat\}(r1::FloatRange\{T\}, r2::FloatRange\{T\}) at operators.jl:512
+         +\{T<:AbstractFloat\}(r1::LinSpace\{T\}, r2::LinSpace\{T\}) at operators.jl:531
+         +(r1::Union\{FloatRange,LinSpace,OrdinalRange\}, r2::Union\{FloatRange,LinSpace,OrdinalRange\}) at operators.jl:544
+         +(x::Ptr, y::Integer) at pointer.jl:106
+         +(A::BitArray, B::BitArray) at bitarray.jl:1042
+         +(A::Array\{T<:Any,2\}, B::Diagonal) at linalg/special.jl:121
+         +(A::Array\{T<:Any,2\}, B::Bidiagonal) at linalg/special.jl:121
+         +(A::Array\{T<:Any,2\}, B::Tridiagonal) at linalg/special.jl:121
+         +(A::Array\{T<:Any,2\}, B::SymTridiagonal) at linalg/special.jl:130
+         +(A::Array\{T<:Any,2\}, B::Base.LinAlg.AbstractTriangular) at linalg/special.jl:158
+         +(A::Array, B::SparseMatrixCSC) at sparse/sparsematrix.jl:1711
+         +\{P<:Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}\}(x::Union\{Base.ReshapedArray\{P,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\{P,N<:Any\},SubArray\{P,N<:Any,A<:Union\{Base.ReshapedArray\{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\},I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex,Colon,Int64,Range\{Int64\}\},N<:Any\}\},L<:Any\}\}) at dates/periods.jl:323
+         +(A::AbstractArray\{Bool,N<:Any\}, x::Bool) at arraymath.jl:90
+         +(A::SymTridiagonal, B::SymTridiagonal) at linalg/tridiag.jl:96
+         +(A::Tridiagonal, B::Tridiagonal) at linalg/tridiag.jl:494
+         +(A::UpperTriangular, B::UpperTriangular) at linalg/triangular.jl:357
+         +(A::LowerTriangular, B::LowerTriangular) at linalg/triangular.jl:358
+         +(A::UpperTriangular, B::Base.LinAlg.UnitUpperTriangular) at linalg/triangular.jl:359
+         +(A::LowerTriangular, B::Base.LinAlg.UnitLowerTriangular) at linalg/triangular.jl:360
+         +(A::Base.LinAlg.UnitUpperTriangular, B::UpperTriangular) at linalg/triangular.jl:361
+         +(A::Base.LinAlg.UnitLowerTriangular, B::LowerTriangular) at linalg/triangular.jl:362
+         +(A::Base.LinAlg.UnitUpperTriangular, B::Base.LinAlg.UnitUpperTriangular) at linalg/triangular.jl:363
+         +(A::Base.LinAlg.UnitLowerTriangular, B::Base.LinAlg.UnitLowerTriangular) at linalg/triangular.jl:364
+         +(A::Base.LinAlg.AbstractTriangular, B::Base.LinAlg.AbstractTriangular) at linalg/triangular.jl:365
+         +(Da::Diagonal, Db::Diagonal) at linalg/diagonal.jl:110
+         +(A::Bidiagonal, B::Bidiagonal) at linalg/bidiag.jl:256
+         +(UL::UpperTriangular, J::UniformScaling) at linalg/uniformscaling.jl:55
+         +(UL::Base.LinAlg.UnitUpperTriangular, J::UniformScaling) at linalg/uniformscaling.jl:58
+         +(UL::LowerTriangular, J::UniformScaling) at linalg/uniformscaling.jl:55
+         +(UL::Base.LinAlg.UnitLowerTriangular, J::UniformScaling) at linalg/uniformscaling.jl:58
+         +(A::Diagonal, B::Bidiagonal) at linalg/special.jl:120
+         +(A::Bidiagonal, B::Diagonal) at linalg/special.jl:121
+         +(A::Diagonal, B::Tridiagonal) at linalg/special.jl:120
+         +(A::Tridiagonal, B::Diagonal) at linalg/special.jl:121
+         +(A::Diagonal, B::Array\{T<:Any,2\}) at linalg/special.jl:120
+         +(A::Bidiagonal, B::Tridiagonal) at linalg/special.jl:120
+         +(A::Tridiagonal, B::Bidiagonal) at linalg/special.jl:121
+         +(A::Bidiagonal, B::Array\{T<:Any,2\}) at linalg/special.jl:120
+         +(A::Tridiagonal, B::Array\{T<:Any,2\}) at linalg/special.jl:120
+         +(A::SymTridiagonal, B::Tridiagonal) at linalg/special.jl:129
+         +(A::Tridiagonal, B::SymTridiagonal) at linalg/special.jl:130
+         +(A::SymTridiagonal, B::Array\{T<:Any,2\}) at linalg/special.jl:129
+         +(A::Diagonal, B::SymTridiagonal) at linalg/special.jl:138
+         +(A::SymTridiagonal, B::Diagonal) at linalg/special.jl:139
+         +(A::Bidiagonal, B::SymTridiagonal) at linalg/special.jl:138
+         +(A::SymTridiagonal, B::Bidiagonal) at linalg/special.jl:139
+         +(A::Diagonal, B::UpperTriangular) at linalg/special.jl:150
+         +(A::UpperTriangular, B::Diagonal) at linalg/special.jl:151
+         +(A::Diagonal, B::Base.LinAlg.UnitUpperTriangular) at linalg/special.jl:150
+         +(A::Base.LinAlg.UnitUpperTriangular, B::Diagonal) at linalg/special.jl:151
+         +(A::Diagonal, B::LowerTriangular) at linalg/special.jl:150
+         +(A::LowerTriangular, B::Diagonal) at linalg/special.jl:151
+         +(A::Diagonal, B::Base.LinAlg.UnitLowerTriangular) at linalg/special.jl:150
+         +(A::Base.LinAlg.UnitLowerTriangular, B::Diagonal) at linalg/special.jl:151
+         +(A::Base.LinAlg.AbstractTriangular, B::SymTridiagonal) at linalg/special.jl:157
+         +(A::SymTridiagonal, B::Base.LinAlg.AbstractTriangular) at linalg/special.jl:158
+         +(A::Base.LinAlg.AbstractTriangular, B::Tridiagonal) at linalg/special.jl:157
+         +(A::Tridiagonal, B::Base.LinAlg.AbstractTriangular) at linalg/special.jl:158
+         +(A::Base.LinAlg.AbstractTriangular, B::Bidiagonal) at linalg/special.jl:157
+         +(A::Bidiagonal, B::Base.LinAlg.AbstractTriangular) at linalg/special.jl:158
+         +(A::Base.LinAlg.AbstractTriangular, B::Array\{T<:Any,2\}) at linalg/special.jl:157
+         +\{P<:Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}\}(Y::Union\{Base.ReshapedArray\{P,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\{P,N<:Any\},SubArray\{P,N<:Any,A<:Union\{Base.ReshapedArray\{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\},I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex,Colon,Int64,Range\{Int64\}\},N<:Any\}\},L<:Any\}\}, x::Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}) at dates/periods.jl:337
+         +\{P<:Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\},Q<:Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}\}(X::Union\{Base.ReshapedArray\{P,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\{P,N<:Any\},SubArray\{P,N<:Any,A<:Union\{Base.ReshapedArray\{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\},I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex,Colon,Int64,Range\{Int64\}\},N<:Any\}\},L<:Any\}\}, Y::Union\{Base.ReshapedArray\{Q,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\{Q,N<:Any\},SubArray\{Q,N<:Any,A<:Union\{Base.ReshapedArray\{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\},I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex,Colon,Int64,Range\{Int64\}\},N<:Any\}\},L<:Any\}\}) at dates/periods.jl:338
+         +\{T<:Base.Dates.TimeType,P<:Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}\}(x::Union\{Base.ReshapedArray\{P,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\{P,N<:Any\},SubArray\{P,N<:Any,A<:Union\{Base.ReshapedArray\{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\},I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex,Colon,Int64,Range\{Int64\}\},N<:Any\}\},L<:Any\}\}, y::T) at dates/arithmetic.jl:83
+         +\{T<:Base.Dates.TimeType\}(r::Range\{T\}, x::Base.Dates.Period) at dates/ranges.jl:39
+         +\{Tv1,Ti1,Tv2,Ti2\}(A\_1::SparseMatrixCSC\{Tv1,Ti1\}, A\_2::SparseMatrixCSC\{Tv2,Ti2\}) at sparse/sparsematrix.jl:1697
+         +(A::SparseMatrixCSC, B::Array) at sparse/sparsematrix.jl:1709
+         +(A::SparseMatrixCSC, J::UniformScaling) at sparse/sparsematrix.jl:3811
+         +(x::AbstractSparseArray\{Tv<:Any,Ti<:Any,1\}, y::AbstractSparseArray\{Tv<:Any,Ti<:Any,1\}) at sparse/sparsevector.jl:1179
+         +(x::Union\{Base.ReshapedArray\{T<:Any,1,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\{T<:Any,1\},SubArray\{T<:Any,1,A<:Union\{Base.ReshapedArray\{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\},I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex,Colon,Int64,Range\{Int64\}\},N<:Any\}\},L<:Any\}\}, y::AbstractSparseArray\{Tv<:Any,Ti<:Any,1\}) at sparse/sparsevector.jl:1180
+         +(x::AbstractSparseArray\{Tv<:Any,Ti<:Any,1\}, y::Union\{Base.ReshapedArray\{T<:Any,1,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\{T<:Any,1\},SubArray\{T<:Any,1,A<:Union\{Base.ReshapedArray\{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\},I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex,Colon,Int64,Range\{Int64\}\},N<:Any\}\},L<:Any\}\}) at sparse/sparsevector.jl:1181
+         +\{T<:Number\}(x::AbstractArray\{T,N<:Any\}) at abstractarraymath.jl:91
+         +\{R,S\}(A::AbstractArray\{R,N<:Any\}, B::AbstractArray\{S,N<:Any\}) at arraymath.jl:49
+         +(A::AbstractArray, x::Number) at arraymath.jl:94
+         +(x::Number, A::AbstractArray) at arraymath.jl:95
+         +\{N\}(index1::CartesianIndex\{N\}, index2::CartesianIndex\{N\}) at multidimensional.jl:52
+         +\{N\}(index::CartesianIndex\{N\}, i::Integer) at multidimensional.jl:57
+         +(J1::UniformScaling, J2::UniformScaling) at linalg/uniformscaling.jl:37
+         +(J::UniformScaling, B::BitArray\{2\}) at linalg/uniformscaling.jl:39
+         +(J::UniformScaling, A::AbstractArray\{T<:Any,2\}) at linalg/uniformscaling.jl:40
+         +(J::UniformScaling, x::Number) at linalg/uniformscaling.jl:41
+         +(x::Number, J::UniformScaling) at linalg/uniformscaling.jl:42
+         +\{TA,TJ\}(A::AbstractArray\{TA,2\}, J::UniformScaling\{TJ\}) at linalg/uniformscaling.jl:102
+         +\{T\}(a::Base.Pkg.Resolve.VersionWeights.HierarchicalValue\{T\}, b::Base.Pkg.Resolve.VersionWeights.HierarchicalValue\{T\}) at pkg/resolve/versionweight.jl:23
+         +\{P<:Base.Dates.Period\}(x::P, y::P) at dates/periods.jl:70
+         +(x::Base.Dates.Period, y::Base.Dates.Period) at dates/periods.jl:311
+         +(y::Base.Dates.Period, x::Base.Dates.CompoundPeriod) at dates/periods.jl:313
+         +(y::Base.Dates.Period, x::Base.Dates.TimeType) at dates/arithmetic.jl:66
+         +\{T<:Base.Dates.TimeType\}(x::Base.Dates.Period, r::Range\{T\}) at dates/ranges.jl:40
+         +(x::Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}) at dates/periods.jl:322
+         +\{P<:Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}\}(x::Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}, Y::Union\{Base.ReshapedArray\{P,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\{P,N<:Any\},SubArray\{P,N<:Any,A<:Union\{Base.ReshapedArray\{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\},I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex,Colon,Int64,Range\{Int64\}\},N<:Any\}\},L<:Any\}\}) at dates/periods.jl:336
+         +(x::Base.Dates.TimeType) at dates/arithmetic.jl:8
+         +(a::Base.Dates.TimeType, b::Base.Dates.Period, c::Base.Dates.Period) at dates/periods.jl:348
+         +(a::Base.Dates.TimeType, b::Base.Dates.Period, c::Base.Dates.Period, d::Base.Dates.Period{\ldots}) at dates/periods.jl:350
+         +(x::Base.Dates.TimeType, y::Base.Dates.CompoundPeriod) at dates/periods.jl:354
+         +(x::Base.Dates.Instant) at dates/arithmetic.jl:4
+         +\{T<:Base.Dates.TimeType\}(x::AbstractArray\{T,N<:Any\}, y::Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}) at dates/arithmetic.jl:76
+         +\{T<:Base.Dates.TimeType\}(y::Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}, x::AbstractArray\{T,N<:Any\}) at dates/arithmetic.jl:77
+         +\{P<:Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}\}(y::Base.Dates.TimeType, x::Union\{Base.ReshapedArray\{P,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\{P,N<:Any\},SubArray\{P,N<:Any,A<:Union\{Base.ReshapedArray\{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\},I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex,Colon,Int64,Range\{Int64\}\},N<:Any\}\},L<:Any\}\}) at dates/arithmetic.jl:84
+         +(a, b, c, xs{\ldots}) at operators.jl:138
+\end{Verbatim}
+        
+    We can inspect a type by finding its fields with \texttt{fieldnames}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} \PY{n}{fieldnames}\PY{p}{(}\PY{n}{LinSpace}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}40}]:} 4-element Array\{Symbol,1\}:
+          :start  
+          :stop   
+          :len    
+          :divisor
+\end{Verbatim}
+        
+    and find out which method was used with the \texttt{@which} macro:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}43}]:} \PY{p}{@}\PY{n}{which} \PY{n}{copy}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}43}]:} copy\{T<:Array\{T,N\}\}(a::T) at array.jl:70
+\end{Verbatim}
+        
+    Notice that this gives you a link to the source code where the function
+is defined.
+
+    Lastly, we can find out what type a variable is with the \texttt{typeof}
+function:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}44}]:} \PY{n}{a} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{;}\PY{l+m+mi}{2}\PY{p}{;}\PY{l+m+mi}{3}\PY{p}{]}
+         \PY{n+nb}{typeof}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}44}]:} Array\{Int64,1\}
+\end{Verbatim}
+        
     \subsubsection{Array Syntax}\label{array-syntax}
 
 The array syntax is similar to MATLAB's conventions.
@@ -527,19 +786,6 @@ multiple loops in one line:
 
     \end{Verbatim}
 
-    \subsubsection{Problems}\label{problems}
-
-Time to start using your noggin. Here are some problems to get you using
-the language. Many of the details for solving these problems have been
-covered, some have not. You may need to use some external resources:
-
-http://docs.julialang.org/en/release-0.5/manual/
-
-https://gitter.im/JuliaLang/julia
-
-Solve as many or as few problems as you can during these times. Please
-work at your own pace, or with others if that's how you're comfortable!
-
     \paragraph{Problem 1}\label{problem-1}
 
 Use Julia's array and control flow syntax in order to define the NxN
@@ -578,7 +824,21 @@ documentation to find out how to use this!)
 \paragraph{Problem 4}\label{problem-4}
 
 Compare your results to that of using ordinary least squares regression
-from GLM.jl
+from \texttt{GLM.jl}
+
+\paragraph{Problem 5}\label{problem-5}
+
+The logistic difference equation is defined by the recursion
+
+\[ b_{n+1}=r*b_{n}(1-b_{n}) \]
+
+where $b_{n}$ is the number of bunnies at time $n$. Starting with
+$b_{0}=.25$, by around $400$ iterations this will reach a steady state.
+This steady state (or steady periodic state) is dependent on $r$. Write
+a function which solves for the steady state(s) for each given $r$, and
+plot ``every state'' in the steady attractor for each $r$ (x-axis is
+$r$, $y$=value seen in the attractor) using Plots.jl. Take
+$r\in\left(2.9,4\right)$
 
     \subsection{Function Syntax}\label{function-syntax}
 
@@ -964,18 +1224,18 @@ keyword
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}16}]:} \PY{k}{type}\PY{n+nc}{ }\PY{n+nc}{Student} \PY{o}{\PYZlt{}:} \PY{n}{Person}
+             \PY{n}{name}
              \PY{n}{grade}
          \PY{k}{end}
 \end{Verbatim}
 
-    \begin{center}\rule{3in}{0.4pt}\end{center}
+    You can define type heirarchies on abstract types. See the beautiful
+explanation at:
+http://docs.julialang.org/en/release-0.5/manual/types/\#abstract-types
 
-\paragraph{Question 3}\label{question-3}
-
-Can you make a function \texttt{k(x)} where \texttt{x} has to be a
-Person?
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k}{abstract}\PY{n+nc}{ }\PY{n+nc}{AbstractStudent} \PY{o}{\PYZlt{}:} \PY{n}{AbstractPerson}
+\end{Verbatim}
 
     Another ``version'' of type is \texttt{immutable}. When one uses
 \texttt{immutable}, the fields of the type cannot be changed. However,
@@ -1059,251 +1319,68 @@ pointer:
 {\color{outcolor}Out[{\color{outcolor}46}]:} Ptr\{Void\} @0x0000000000000000
 \end{Verbatim}
         
-    \subsection{Documentation and
-``Hunting''}\label{documentation-and-hunting}
+    \begin{center}\rule{3in}{0.4pt}\end{center}
 
-The main source of information is the
-\href{http://docs.julialang.org/en/latest/manual/}{Julia Documentation}.
-Julia also provides lots of built-in documentation and ways to find out
-what's going on. The number of tools for ``hunting down what's going on
-/ available'' is too numerous to explain in full detail here, so instead
-this will just touch on what's important. For example, the ? gets you to
-the documentation for a type, function, etc.
+\paragraph{Problem 6}\label{problem-6}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}23}]:} \PY{o}{?}\PY{n}{copy}
-\end{Verbatim}
+Make a function \texttt{person\_info(x)} where, if \texttt{x} is a any
+type of person, print their name. However, if \texttt{x} is a student,
+print their name and their grade. Make a new type which is a graduate
+student, and have it print their name and grade as well. If \texttt{x}
+is anything else, throw an error. Do not using branching (\texttt{if}),
+use multiple dispatch to solve the problem!
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-search: copy copy! copysign deepcopy unsafe\_copy! cospi complex Complex
+Note that in order to do this you will need to re-structure the type
+hierarchy. Make an AbstractPerson and AbstractStudent type, define the
+subclassing structure, and write dispatches on these abstract types.
+Note that you cannot define subclasses of concrete types!
 
+(Not only is the multiple-dispatch way more Julian, we will see later
+that it also has a lot of performance enhancements due to how it
+interacts with the compiler).
 
-    \end{Verbatim}
-\texttt{\color{outcolor}Out[{\color{outcolor}23}]:}
-    
-    \begin{verbatim}
-copy(x)
-\end{verbatim}
+\paragraph{Problem 7}\label{problem-7}
 
-Create a shallow copy of \texttt{x}: the outer structure is copied, but
-not all internal values. For example, copying an array produces a new
-array with identically-same elements as the original.
+In mathematics, a matrix is known to be a linear operator. In many
+cases, this can have huge performance advantages because, if you know a
+function which ``acts like a matrix'' but does not form the matrix
+itself, you can save the time that it takes to allocate the matrix
+(sometimes the matrix may not fit in memory!)
 
-    
+Therefore, instead of solving regressions on matrices, let's be brave
+and generalize our regression algorithm to work on any operator, and
+make it solve the problem for the Laplacian operator. Here are the steps
+that are required to do this:
 
-    To find out what methods are available, we can use the \texttt{methods}
-function. For example, let's see how \texttt{+} is defined:
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Make an abstract type \texttt{AbstractOperator}
+\item
+  Re-define AbstractMatrix as a subtype
+\item
+  Define a concrete type \texttt{LaplacianOperator} which holds a
+  function. This function \texttt{f(x)} should calculate the discrete
+  Laplacian of \texttt{x} (i.e.~multiply it on the left by the Strang
+  matrix, but without forming the matrix!)
+\item
+  Write dispatches for \texttt{*(::LaplacianOperator,::Vector)},
+  \texttt{eltype(::LaplacianOperator)},
+  \texttt{size(::LaplacianOperator,d::Integer)}.
+\item
+  Write \texttt{least\_square(::Operator,::Vector)} to solve the
+  least-square approximation problem \texttt{Ax=b} for any operator.
+  Note that since you do not have a matrix, you cannot use
+  \texttt{\textbackslash{}} or factorizations like \texttt{qrfact}.
+  Instead, take a look at \texttt{cg} in IterativeSolvers.jl
+\item
+  Test your least\_square function vs \texttt{llsq} and \texttt{lm}
+  (where you use the data matrix as a Strang matrix). Do you get the
+  same result?
+\end{itemize}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{methods}\PY{p}{(}\PY{o}{+}\PY{p}{)}
-\end{Verbatim}
+\begin{center}\rule{3in}{0.4pt}\end{center}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}25}]:} \# 163 methods for generic function "+":
-         +(x::Bool, z::Complex\{Bool\}) at complex.jl:136
-         +(x::Bool, y::Bool) at bool.jl:48
-         +(x::Bool) at bool.jl:45
-         +\{T<:AbstractFloat\}(x::Bool, y::T) at bool.jl:55
-         +(x::Bool, z::Complex) at complex.jl:143
-         +(x::Bool, A::AbstractArray\{Bool,N<:Any\}) at arraymath.jl:91
-         +(x::Float32, y::Float32) at float.jl:239
-         +(x::Float64, y::Float64) at float.jl:240
-         +(z::Complex\{Bool\}, x::Bool) at complex.jl:137
-         +(z::Complex\{Bool\}, x::Real) at complex.jl:151
-         +(a::Float16, b::Float16) at float16.jl:136
-         +(x::Char, y::Integer) at char.jl:40
-         +(c::BigInt, x::BigFloat) at mpfr.jl:240
-         +(a::BigInt, b::BigInt, c::BigInt, d::BigInt, e::BigInt) at gmp.jl:298
-         +(a::BigInt, b::BigInt, c::BigInt, d::BigInt) at gmp.jl:291
-         +(a::BigInt, b::BigInt, c::BigInt) at gmp.jl:285
-         +(x::BigInt, y::BigInt) at gmp.jl:255
-         +(x::BigInt, c::Union\{UInt16,UInt32,UInt64,UInt8\}) at gmp.jl:310
-         +(x::BigInt, c::Union\{Int16,Int32,Int64,Int8\}) at gmp.jl:326
-         +(a::BigFloat, b::BigFloat, c::BigFloat, d::BigFloat, e::BigFloat) at mpfr.jl:388
-         +(a::BigFloat, b::BigFloat, c::BigFloat, d::BigFloat) at mpfr.jl:381
-         +(a::BigFloat, b::BigFloat, c::BigFloat) at mpfr.jl:375
-         +(x::BigFloat, c::BigInt) at mpfr.jl:236
-         +(x::BigFloat, y::BigFloat) at mpfr.jl:205
-         +(x::BigFloat, c::Union\{UInt16,UInt32,UInt64,UInt8\}) at mpfr.jl:212
-         +(x::BigFloat, c::Union\{Int16,Int32,Int64,Int8\}) at mpfr.jl:220
-         +(x::BigFloat, c::Union\{Float16,Float32,Float64\}) at mpfr.jl:228
-         +\{T\}(B::BitArray\{2\}, J::UniformScaling\{T\}) at linalg/uniformscaling.jl:38
-         +(a::Base.Pkg.Resolve.VersionWeights.VWPreBuildItem, b::Base.Pkg.Resolve.VersionWeights.VWPreBuildItem) at pkg/resolve/versionweight.jl:85
-         +(a::Base.Pkg.Resolve.VersionWeights.VWPreBuild, b::Base.Pkg.Resolve.VersionWeights.VWPreBuild) at pkg/resolve/versionweight.jl:131
-         +(a::Base.Pkg.Resolve.VersionWeights.VersionWeight, b::Base.Pkg.Resolve.VersionWeights.VersionWeight) at pkg/resolve/versionweight.jl:185
-         +(a::Base.Pkg.Resolve.MaxSum.FieldValues.FieldValue, b::Base.Pkg.Resolve.MaxSum.FieldValues.FieldValue) at pkg/resolve/fieldvalue.jl:44
-         +(x::Base.Dates.CompoundPeriod, y::Base.Dates.CompoundPeriod) at dates/periods.jl:314
-         +(x::Base.Dates.CompoundPeriod, y::Base.Dates.Period) at dates/periods.jl:312
-         +(x::Base.Dates.CompoundPeriod, y::Base.Dates.TimeType) at dates/periods.jl:359
-         +(dt::DateTime, z::Base.Dates.Month) at dates/arithmetic.jl:37
-         +(dt::DateTime, y::Base.Dates.Year) at dates/arithmetic.jl:13
-         +(x::DateTime, y::Base.Dates.Period) at dates/arithmetic.jl:64
-         +(x::Date, y::Base.Dates.Day) at dates/arithmetic.jl:62
-         +(x::Date, y::Base.Dates.Week) at dates/arithmetic.jl:60
-         +(dt::Date, z::Base.Dates.Month) at dates/arithmetic.jl:43
-         +(dt::Date, y::Base.Dates.Year) at dates/arithmetic.jl:17
-         +(y::AbstractFloat, x::Bool) at bool.jl:57
-         +\{T<:Union\{Int128,Int16,Int32,Int64,Int8,UInt128,UInt16,UInt32,UInt64,UInt8\}\}(x::T, y::T) at int.jl:32
-         +(x::Integer, y::Ptr) at pointer.jl:108
-         +(z::Complex, w::Complex) at complex.jl:125
-         +(z::Complex, x::Bool) at complex.jl:144
-         +(x::Real, z::Complex\{Bool\}) at complex.jl:150
-         +(x::Real, z::Complex) at complex.jl:162
-         +(z::Complex, x::Real) at complex.jl:163
-         +(x::Rational, y::Rational) at rational.jl:199
-         +(x::Integer, y::Char) at char.jl:41
-         +\{N\}(i::Integer, index::CartesianIndex\{N\}) at multidimensional.jl:58
-         +(c::Union\{UInt16,UInt32,UInt64,UInt8\}, x::BigInt) at gmp.jl:314
-         +(c::Union\{Int16,Int32,Int64,Int8\}, x::BigInt) at gmp.jl:327
-         +(c::Union\{UInt16,UInt32,UInt64,UInt8\}, x::BigFloat) at mpfr.jl:216
-         +(c::Union\{Int16,Int32,Int64,Int8\}, x::BigFloat) at mpfr.jl:224
-         +(c::Union\{Float16,Float32,Float64\}, x::BigFloat) at mpfr.jl:232
-         +(x::Irrational, y::Irrational) at irrationals.jl:88
-         +(x::Number) at operators.jl:115
-         +\{T<:Number\}(x::T, y::T) at promotion.jl:255
-         +(x::Number, y::Number) at promotion.jl:190
-         +(r1::OrdinalRange, r2::OrdinalRange) at operators.jl:505
-         +\{T<:AbstractFloat\}(r1::FloatRange\{T\}, r2::FloatRange\{T\}) at operators.jl:512
-         +\{T<:AbstractFloat\}(r1::LinSpace\{T\}, r2::LinSpace\{T\}) at operators.jl:531
-         +(r1::Union\{FloatRange,LinSpace,OrdinalRange\}, r2::Union\{FloatRange,LinSpace,OrdinalRange\}) at operators.jl:544
-         +(x::Ptr, y::Integer) at pointer.jl:106
-         +(A::BitArray, B::BitArray) at bitarray.jl:1042
-         +(A::Array\{T<:Any,2\}, B::Diagonal) at linalg/special.jl:121
-         +(A::Array\{T<:Any,2\}, B::Bidiagonal) at linalg/special.jl:121
-         +(A::Array\{T<:Any,2\}, B::Tridiagonal) at linalg/special.jl:121
-         +(A::Array\{T<:Any,2\}, B::SymTridiagonal) at linalg/special.jl:130
-         +(A::Array\{T<:Any,2\}, B::Base.LinAlg.AbstractTriangular) at linalg/special.jl:158
-         +(A::Array, B::SparseMatrixCSC) at sparse/sparsematrix.jl:1711
-         +\{P<:Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}\}(x::Union\{Base.ReshapedArray\{P,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\{P,N<:Any\},SubArray\{P,N<:Any,A<:Union\{Base.ReshapedArray\{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\},I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex,Colon,Int64,Range\{Int64\}\},N<:Any\}\},L<:Any\}\}) at dates/periods.jl:323
-         +(A::AbstractArray\{Bool,N<:Any\}, x::Bool) at arraymath.jl:90
-         +(A::SymTridiagonal, B::SymTridiagonal) at linalg/tridiag.jl:96
-         +(A::Tridiagonal, B::Tridiagonal) at linalg/tridiag.jl:494
-         +(A::UpperTriangular, B::UpperTriangular) at linalg/triangular.jl:357
-         +(A::LowerTriangular, B::LowerTriangular) at linalg/triangular.jl:358
-         +(A::UpperTriangular, B::Base.LinAlg.UnitUpperTriangular) at linalg/triangular.jl:359
-         +(A::LowerTriangular, B::Base.LinAlg.UnitLowerTriangular) at linalg/triangular.jl:360
-         +(A::Base.LinAlg.UnitUpperTriangular, B::UpperTriangular) at linalg/triangular.jl:361
-         +(A::Base.LinAlg.UnitLowerTriangular, B::LowerTriangular) at linalg/triangular.jl:362
-         +(A::Base.LinAlg.UnitUpperTriangular, B::Base.LinAlg.UnitUpperTriangular) at linalg/triangular.jl:363
-         +(A::Base.LinAlg.UnitLowerTriangular, B::Base.LinAlg.UnitLowerTriangular) at linalg/triangular.jl:364
-         +(A::Base.LinAlg.AbstractTriangular, B::Base.LinAlg.AbstractTriangular) at linalg/triangular.jl:365
-         +(Da::Diagonal, Db::Diagonal) at linalg/diagonal.jl:110
-         +(A::Bidiagonal, B::Bidiagonal) at linalg/bidiag.jl:256
-         +(UL::UpperTriangular, J::UniformScaling) at linalg/uniformscaling.jl:55
-         +(UL::Base.LinAlg.UnitUpperTriangular, J::UniformScaling) at linalg/uniformscaling.jl:58
-         +(UL::LowerTriangular, J::UniformScaling) at linalg/uniformscaling.jl:55
-         +(UL::Base.LinAlg.UnitLowerTriangular, J::UniformScaling) at linalg/uniformscaling.jl:58
-         +(A::Diagonal, B::Bidiagonal) at linalg/special.jl:120
-         +(A::Bidiagonal, B::Diagonal) at linalg/special.jl:121
-         +(A::Diagonal, B::Tridiagonal) at linalg/special.jl:120
-         +(A::Tridiagonal, B::Diagonal) at linalg/special.jl:121
-         +(A::Diagonal, B::Array\{T<:Any,2\}) at linalg/special.jl:120
-         +(A::Bidiagonal, B::Tridiagonal) at linalg/special.jl:120
-         +(A::Tridiagonal, B::Bidiagonal) at linalg/special.jl:121
-         +(A::Bidiagonal, B::Array\{T<:Any,2\}) at linalg/special.jl:120
-         +(A::Tridiagonal, B::Array\{T<:Any,2\}) at linalg/special.jl:120
-         +(A::SymTridiagonal, B::Tridiagonal) at linalg/special.jl:129
-         +(A::Tridiagonal, B::SymTridiagonal) at linalg/special.jl:130
-         +(A::SymTridiagonal, B::Array\{T<:Any,2\}) at linalg/special.jl:129
-         +(A::Diagonal, B::SymTridiagonal) at linalg/special.jl:138
-         +(A::SymTridiagonal, B::Diagonal) at linalg/special.jl:139
-         +(A::Bidiagonal, B::SymTridiagonal) at linalg/special.jl:138
-         +(A::SymTridiagonal, B::Bidiagonal) at linalg/special.jl:139
-         +(A::Diagonal, B::UpperTriangular) at linalg/special.jl:150
-         +(A::UpperTriangular, B::Diagonal) at linalg/special.jl:151
-         +(A::Diagonal, B::Base.LinAlg.UnitUpperTriangular) at linalg/special.jl:150
-         +(A::Base.LinAlg.UnitUpperTriangular, B::Diagonal) at linalg/special.jl:151
-         +(A::Diagonal, B::LowerTriangular) at linalg/special.jl:150
-         +(A::LowerTriangular, B::Diagonal) at linalg/special.jl:151
-         +(A::Diagonal, B::Base.LinAlg.UnitLowerTriangular) at linalg/special.jl:150
-         +(A::Base.LinAlg.UnitLowerTriangular, B::Diagonal) at linalg/special.jl:151
-         +(A::Base.LinAlg.AbstractTriangular, B::SymTridiagonal) at linalg/special.jl:157
-         +(A::SymTridiagonal, B::Base.LinAlg.AbstractTriangular) at linalg/special.jl:158
-         +(A::Base.LinAlg.AbstractTriangular, B::Tridiagonal) at linalg/special.jl:157
-         +(A::Tridiagonal, B::Base.LinAlg.AbstractTriangular) at linalg/special.jl:158
-         +(A::Base.LinAlg.AbstractTriangular, B::Bidiagonal) at linalg/special.jl:157
-         +(A::Bidiagonal, B::Base.LinAlg.AbstractTriangular) at linalg/special.jl:158
-         +(A::Base.LinAlg.AbstractTriangular, B::Array\{T<:Any,2\}) at linalg/special.jl:157
-         +\{P<:Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}\}(Y::Union\{Base.ReshapedArray\{P,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\{P,N<:Any\},SubArray\{P,N<:Any,A<:Union\{Base.ReshapedArray\{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\},I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex,Colon,Int64,Range\{Int64\}\},N<:Any\}\},L<:Any\}\}, x::Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}) at dates/periods.jl:337
-         +\{P<:Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\},Q<:Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}\}(X::Union\{Base.ReshapedArray\{P,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\{P,N<:Any\},SubArray\{P,N<:Any,A<:Union\{Base.ReshapedArray\{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\},I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex,Colon,Int64,Range\{Int64\}\},N<:Any\}\},L<:Any\}\}, Y::Union\{Base.ReshapedArray\{Q,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\{Q,N<:Any\},SubArray\{Q,N<:Any,A<:Union\{Base.ReshapedArray\{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\},I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex,Colon,Int64,Range\{Int64\}\},N<:Any\}\},L<:Any\}\}) at dates/periods.jl:338
-         +\{T<:Base.Dates.TimeType,P<:Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}\}(x::Union\{Base.ReshapedArray\{P,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\{P,N<:Any\},SubArray\{P,N<:Any,A<:Union\{Base.ReshapedArray\{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\},I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex,Colon,Int64,Range\{Int64\}\},N<:Any\}\},L<:Any\}\}, y::T) at dates/arithmetic.jl:83
-         +\{T<:Base.Dates.TimeType\}(r::Range\{T\}, x::Base.Dates.Period) at dates/ranges.jl:39
-         +\{Tv1,Ti1,Tv2,Ti2\}(A\_1::SparseMatrixCSC\{Tv1,Ti1\}, A\_2::SparseMatrixCSC\{Tv2,Ti2\}) at sparse/sparsematrix.jl:1697
-         +(A::SparseMatrixCSC, B::Array) at sparse/sparsematrix.jl:1709
-         +(A::SparseMatrixCSC, J::UniformScaling) at sparse/sparsematrix.jl:3811
-         +(x::AbstractSparseArray\{Tv<:Any,Ti<:Any,1\}, y::AbstractSparseArray\{Tv<:Any,Ti<:Any,1\}) at sparse/sparsevector.jl:1179
-         +(x::Union\{Base.ReshapedArray\{T<:Any,1,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\{T<:Any,1\},SubArray\{T<:Any,1,A<:Union\{Base.ReshapedArray\{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\},I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex,Colon,Int64,Range\{Int64\}\},N<:Any\}\},L<:Any\}\}, y::AbstractSparseArray\{Tv<:Any,Ti<:Any,1\}) at sparse/sparsevector.jl:1180
-         +(x::AbstractSparseArray\{Tv<:Any,Ti<:Any,1\}, y::Union\{Base.ReshapedArray\{T<:Any,1,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\{T<:Any,1\},SubArray\{T<:Any,1,A<:Union\{Base.ReshapedArray\{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\},I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex,Colon,Int64,Range\{Int64\}\},N<:Any\}\},L<:Any\}\}) at sparse/sparsevector.jl:1181
-         +\{T<:Number\}(x::AbstractArray\{T,N<:Any\}) at abstractarraymath.jl:91
-         +\{R,S\}(A::AbstractArray\{R,N<:Any\}, B::AbstractArray\{S,N<:Any\}) at arraymath.jl:49
-         +(A::AbstractArray, x::Number) at arraymath.jl:94
-         +(x::Number, A::AbstractArray) at arraymath.jl:95
-         +\{N\}(index1::CartesianIndex\{N\}, index2::CartesianIndex\{N\}) at multidimensional.jl:52
-         +\{N\}(index::CartesianIndex\{N\}, i::Integer) at multidimensional.jl:57
-         +(J1::UniformScaling, J2::UniformScaling) at linalg/uniformscaling.jl:37
-         +(J::UniformScaling, B::BitArray\{2\}) at linalg/uniformscaling.jl:39
-         +(J::UniformScaling, A::AbstractArray\{T<:Any,2\}) at linalg/uniformscaling.jl:40
-         +(J::UniformScaling, x::Number) at linalg/uniformscaling.jl:41
-         +(x::Number, J::UniformScaling) at linalg/uniformscaling.jl:42
-         +\{TA,TJ\}(A::AbstractArray\{TA,2\}, J::UniformScaling\{TJ\}) at linalg/uniformscaling.jl:102
-         +\{T\}(a::Base.Pkg.Resolve.VersionWeights.HierarchicalValue\{T\}, b::Base.Pkg.Resolve.VersionWeights.HierarchicalValue\{T\}) at pkg/resolve/versionweight.jl:23
-         +\{P<:Base.Dates.Period\}(x::P, y::P) at dates/periods.jl:70
-         +(x::Base.Dates.Period, y::Base.Dates.Period) at dates/periods.jl:311
-         +(y::Base.Dates.Period, x::Base.Dates.CompoundPeriod) at dates/periods.jl:313
-         +(y::Base.Dates.Period, x::Base.Dates.TimeType) at dates/arithmetic.jl:66
-         +\{T<:Base.Dates.TimeType\}(x::Base.Dates.Period, r::Range\{T\}) at dates/ranges.jl:40
-         +(x::Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}) at dates/periods.jl:322
-         +\{P<:Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}\}(x::Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}, Y::Union\{Base.ReshapedArray\{P,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\{P,N<:Any\},SubArray\{P,N<:Any,A<:Union\{Base.ReshapedArray\{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\},I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex,Colon,Int64,Range\{Int64\}\},N<:Any\}\},L<:Any\}\}) at dates/periods.jl:336
-         +(x::Base.Dates.TimeType) at dates/arithmetic.jl:8
-         +(a::Base.Dates.TimeType, b::Base.Dates.Period, c::Base.Dates.Period) at dates/periods.jl:348
-         +(a::Base.Dates.TimeType, b::Base.Dates.Period, c::Base.Dates.Period, d::Base.Dates.Period{\ldots}) at dates/periods.jl:350
-         +(x::Base.Dates.TimeType, y::Base.Dates.CompoundPeriod) at dates/periods.jl:354
-         +(x::Base.Dates.Instant) at dates/arithmetic.jl:4
-         +\{T<:Base.Dates.TimeType\}(x::AbstractArray\{T,N<:Any\}, y::Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}) at dates/arithmetic.jl:76
-         +\{T<:Base.Dates.TimeType\}(y::Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}, x::AbstractArray\{T,N<:Any\}) at dates/arithmetic.jl:77
-         +\{P<:Union\{Base.Dates.CompoundPeriod,Base.Dates.Period\}\}(y::Base.Dates.TimeType, x::Union\{Base.ReshapedArray\{P,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\{P,N<:Any\},SubArray\{P,N<:Any,A<:Union\{Base.ReshapedArray\{T<:Any,N<:Any,A<:DenseArray,MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N<:Any\}\}\},DenseArray\},I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex,Colon,Int64,Range\{Int64\}\},N<:Any\}\},L<:Any\}\}) at dates/arithmetic.jl:84
-         +(a, b, c, xs{\ldots}) at operators.jl:138
-\end{Verbatim}
-        
-    We can inspect a type by finding its fields with \texttt{fieldnames}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}40}]:} \PY{n}{fieldnames}\PY{p}{(}\PY{n}{LinSpace}\PY{p}{)}
-\end{Verbatim}
-
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}40}]:} 4-element Array\{Symbol,1\}:
-          :start  
-          :stop   
-          :len    
-          :divisor
-\end{Verbatim}
-        
-    and find out which method was used with the \texttt{@which} macro:
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}43}]:} \PY{p}{@}\PY{n}{which} \PY{n}{copy}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}
-\end{Verbatim}
-
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}43}]:} copy\{T<:Array\{T,N\}\}(a::T) at array.jl:70
-\end{Verbatim}
-        
-    Notice that this gives you a link to the source code where the function
-is defined.
-
-    Lastly, we can find out what type a variable is with the \texttt{typeof}
-function:
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}44}]:} \PY{n}{a} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{;}\PY{l+m+mi}{2}\PY{p}{;}\PY{l+m+mi}{3}\PY{p}{]}
-         \PY{n+nb}{typeof}\PY{p}{(}\PY{n}{a}\PY{p}{)}
-\end{Verbatim}
-
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}44}]:} Array\{Int64,1\}
-\end{Verbatim}
-        
     \subsection{Some Basic Types}\label{some-basic-types}
 
 Julia provides many basic types. Indeed, you will come to know Julia as
@@ -1406,16 +1483,27 @@ mostly because there is a lot less memory allocation needed: only a
 However, \texttt{b} has to hold \texttt{100000} numbers, leading to the
 huge difference.
 
-    \paragraph{Question 4}\label{question-4}
+    \paragraph{Problem 8}\label{problem-8}
 
 If you know \texttt{start}, \texttt{step}, and \texttt{stop}, how do you
 calculate the \texttt{i}th value? Can you create a function MyRange
-which where for \texttt{a} being a \texttt{MyRange},
-\texttt{value(a,i) == a{[}i{]}} for \texttt{a} a \texttt{StepRange}? (I
-will show you how to make the \texttt{a{[}i{]}} syntax available for
-your own types later. As noted before, all of these Julia types are
-implemented in Julia, and therefore you have the power to implement it
-yourself).
+which where for \texttt{a} being a \texttt{MyRange}, and
+\texttt{a{[}i{]}} is the correct value? Use the Julia array interface in
+order to define the function for the \texttt{a{[}i{]}} syntax on your
+type.
+
+\paragraph{Problem 9}\label{problem-9}
+
+Do ?linspace. Make your own LinSpace object using the array interface.
+Do your implementations obay dimensional analysis? Try using the package
+\texttt{Unitful} to build arrays of numbers with units (i.e.~an array of
+numbers who have values of Newtons), and see if you can make your
+LinSpace not give errors.
+
+\paragraph{Problem 10}\label{problem-10}
+
+Check your implementation vs the source code of Ranges.jl. Tim Holy is
+the master of Julia arrays, learn from him!
 
     \subsubsection{Dictionaries}\label{dictionaries}
 

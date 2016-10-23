@@ -302,7 +302,7 @@
 \end{Verbatim}
         
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}14}]:} \PY{c}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{} Prepare Data}
+{\color{incolor}In [{\color{incolor}17}]:} \PY{c}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{} Prepare Data}
          
          \PY{n}{X} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}               \PY{c}{\PYZsh{} feature matrix}
          \PY{n}{a0} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}                    \PY{c}{\PYZsh{} ground truths}
@@ -310,84 +310,155 @@
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}14}]:} 1000-element Array\{Float64,1\}:
-          1.0737  
-          0.617939
-          0.941093
-          0.142068
-          0.6174  
-          0.361449
-          0.657612
-          0.571313
-          0.310871
-          0.407938
-          0.330809
-          0.263355
-          0.949922
-          ⋮       
-          0.223555
-          0.41471 
-          0.29676 
-          0.991029
-          0.395745
-          0.947528
-          0.835744
-          0.669867
-          0.836518
-          0.393077
-          0.543453
-          0.5212  
+{\color{outcolor}Out[{\color{outcolor}17}]:} 1000-element Array\{Float64,1\}:
+           0.245515 
+           0.213645 
+           0.179037 
+          -0.0252645
+           0.327495 
+           0.1073   
+           0.284771 
+           0.134653 
+           0.32761  
+           0.139108 
+           0.321555 
+           0.192148 
+           0.124061 
+           ⋮        
+           0.173127 
+           0.203367 
+           0.183517 
+           0.107017 
+           0.290129 
+           0.203007 
+           0.261345 
+           0.205973 
+           0.194457 
+           0.0825708
+           0.180052 
+           0.0156171
 \end{Verbatim}
         
     \subsection{Problem 2}\label{problem-2}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{X2} \PY{o}{=} \PY{n}{hcat}\PY{p}{(}\PY{n}{X}\PY{p}{,}\PY{n}{ones}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{X2} \PY{o}{=} \PY{n}{hcat}\PY{p}{(}\PY{n}{X}\PY{p}{,}\PY{n}{ones}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{)}
          \PY{n}{println}\PY{p}{(}\PY{n}{X2}\PYZbs{}\PY{n}{y}\PY{p}{)}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-[0.120512,0.0732871,0.954649,0.00897003]
+[0.219939,0.0336012,0.090267,0.00117261]
 
     \end{Verbatim}
 
     \subsection{Problem 3}\label{problem-3}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}16}]:} \PY{k}{using} \PY{n}{MultivariateStats}
+{\color{incolor}In [{\color{incolor}19}]:} \PY{k}{using} \PY{n}{MultivariateStats}
          \PY{n}{llsq}\PY{p}{(}\PY{n}{X}\PY{p}{,}\PY{n}{y}\PY{p}{)}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}16}]:} 4-element Array\{Float64,1\}:
-          0.120512  
-          0.0732871 
-          0.954649  
-          0.00897003
+{\color{outcolor}Out[{\color{outcolor}19}]:} 4-element Array\{Float64,1\}:
+          0.219939  
+          0.0336012 
+          0.090267  
+          0.00117261
 \end{Verbatim}
         
     \subsection{Problem 4}\label{problem-4}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}23}]:} \PY{k}{using} \PY{n}{DataFrames}\PY{p}{,} \PY{n}{GLM}
+{\color{incolor}In [{\color{incolor}20}]:} \PY{k}{using} \PY{n}{DataFrames}\PY{p}{,} \PY{n}{GLM}
          \PY{n}{data} \PY{o}{=} \PY{n}{DataFrame}\PY{p}{(}\PY{n}{X1}\PY{o}{=}\PY{n}{X}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{X2}\PY{o}{=}\PY{n}{X}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{n}{X3}\PY{o}{=}\PY{n}{X}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{,}\PY{n}{Y}\PY{o}{=}\PY{n}{y}\PY{p}{)}
          \PY{n}{OLS} \PY{o}{=} \PY{n}{lm}\PY{p}{(}\PY{n}{Y} \PY{o}{\PYZti{}} \PY{n}{X1} \PY{o}{+} \PY{n}{X2} \PY{o}{+} \PY{n}{X3}\PY{p}{,} \PY{n}{data}\PY{p}{)}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}23}]:} DataFrames.DataFrameRegressionModel\{GLM.LinearModel\{GLM.LmResp\{Array\{Float64,1\}\},GLM.DensePredQR\{Float64\}\},Array\{Float64,2\}\}
+{\color{outcolor}Out[{\color{outcolor}20}]:} DataFrames.DataFrameRegressionModel\{GLM.LinearModel\{GLM.LmResp\{Array\{Float64,1\}\},GLM.DensePredQR\{Float64\}\},Array\{Float64,2\}\}
          
          Formula: Y \textasciitilde{} 1 + X1 + X2 + X3
          
          Coefficients:
-                        Estimate  Std.Error  t value Pr(>|t|)
-         (Intercept)  0.00897003 0.00960328 0.934059   0.3505
-         X1             0.120512  0.0106063  11.3623   <1e-27
-         X2            0.0732871   0.010627   6.8963   <1e-11
-         X3             0.954649  0.0106649  89.5128   <1e-99
+                        Estimate Std.Error  t value Pr(>|t|)
+         (Intercept)  0.00117261  0.010462 0.112083   0.9108
+         X1             0.219939 0.0113648  19.3526   <1e-70
+         X2            0.0336012 0.0111465  3.01451   0.0026
+         X3             0.090267 0.0108559    8.315   <1e-15
          
 \end{Verbatim}
         
+    \subsection{Problem 5}\label{problem-5}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{r} \PY{o}{=} \PY{l+m+mf}{2.9}\PY{p}{:}\PY{o}{.}\PY{l+m+mi}{00005}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{;} \PY{n}{numAttract} \PY{o}{=} \PY{l+m+mi}{150}
+         \PY{n}{steady} \PY{o}{=} \PY{n}{ones}\PY{p}{(}\PY{n}{length}\PY{p}{(}\PY{n}{r}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{o}{.}\PY{l+m+mi}{25}
+         \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{400} \PY{c}{\PYZsh{}\PYZsh{} Get to steady state}
+           \PY{n}{steady} \PY{o}{.}\PY{o}{=} \PY{n}{r}\PY{o}{.}\PY{o}{*}\PY{n}{steady}\PY{o}{.}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{steady}\PY{p}{)}
+         \PY{k}{end}
+         \PY{n}{x} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{n}{length}\PY{p}{(}\PY{n}{steady}\PY{p}{)}\PY{p}{,}\PY{n}{numAttract}\PY{p}{)}
+         \PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{steady}
+         \PY{p}{@}\PY{n}{inbounds} \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{:}\PY{n}{numAttract} \PY{c}{\PYZsh{}\PYZsh{} Grab values at the attractor}
+           \PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{r}\PY{o}{.}\PY{o}{*}\PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{k}{end}
+         \PY{k}{using} \PY{n}{Plots}
+         \PY{n}{plot}\PY{p}{(}\PY{n}{collect}\PY{p}{(}\PY{n}{r}\PY{p}{)}\PY{p}{,}\PY{n}{x}\PY{p}{,}\PY{n}{seriestype}\PY{o}{=}\PY{p}{:}\PY{n}{scatter}\PY{p}{,}\PY{n}{markersize}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{002}\PY{p}{,}\PY{n}{legend}\PY{o}{=}\PY{n}{false}\PY{p}{)}
+\end{Verbatim}
+
+    \subsection{Metaprogramming Project}\label{metaprogramming-project}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{k}{macro} \PY{o}{\PYZti{}}\PY{p}{(}\PY{n}{y}\PY{p}{,}\PY{n}{ex}\PY{p}{)}
+           \PY{n}{new\PYZus{}ex} \PY{o}{=} \PY{n}{Meta}\PY{o}{.}\PY{n}{quot}\PY{p}{(}\PY{n}{ex}\PY{p}{)}
+           \PY{k}{quote}
+             \PY{n}{inner\PYZus{}ex} \PY{o}{=} \PY{o}{\PYZdl{}}\PY{p}{(}\PY{n}{esc}\PY{p}{(}\PY{n}{new\PYZus{}ex}\PY{p}{)}\PY{p}{)}
+             \PY{n}{data\PYZus{}name} \PY{o}{=} \PY{n}{symbol}\PY{p}{(}\PY{n}{string}\PY{p}{(}\PY{n}{inner\PYZus{}ex}\PY{o}{.}\PY{n}{args}\PY{p}{[}\PY{k}{end}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+             \PY{n}{eval\PYZus{}ex} \PY{o}{=} \PY{n}{Expr}\PY{p}{(}\PY{p}{:}\PY{p}{(}\PY{o}{=}\PY{p}{)}\PY{p}{,}\PY{p}{:}\PY{n}{data}\PY{p}{,}\PY{n}{data\PYZus{}name}\PY{p}{)}
+             \PY{n}{eval}\PY{p}{(}\PY{n}{Main}\PY{p}{,}\PY{n}{eval\PYZus{}ex}\PY{p}{)}
+             \PY{n}{new\PYZus{}X} \PY{o}{=} \PY{n}{Matrix}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{size}\PY{p}{(}\PY{n}{data}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,}\PY{n}{length}\PY{p}{(}\PY{n}{inner\PYZus{}ex}\PY{o}{.}\PY{n}{args}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+             \PY{n}{cur\PYZus{}spot} \PY{o}{=} \PY{l+m+mi}{0}
+             \PY{k}{for} \PY{n}{i} \PY{k}{in} \PY{l+m+mi}{2}\PY{p}{:}\PY{n}{length}\PY{p}{(}\PY{n}{inner\PYZus{}ex}\PY{o}{.}\PY{n}{args}\PY{p}{)}
+               \PY{k}{if} \PY{n}{inner\PYZus{}ex}\PY{o}{.}\PY{n}{args}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{1}
+                 \PY{n}{new\PYZus{}X}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{ones}\PY{p}{(}\PY{n}{size}\PY{p}{(}\PY{n}{data}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+               \PY{k}{else}
+                 \PY{n}{col} \PY{o}{=} \PY{n}{parse}\PY{p}{(}\PY{k+kt}{Int}\PY{p}{,}\PY{n}{string}\PY{p}{(}\PY{n}{string}\PY{p}{(}\PY{n}{inner\PYZus{}ex}\PY{o}{.}\PY{n}{args}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{new\PYZus{}X}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{col}\PY{p}{]}
+               \PY{k}{end}
+             \PY{k}{end}
+             \PY{o}{\PYZdl{}}\PY{p}{(}\PY{n}{esc}\PY{p}{(}\PY{n}{y}\PY{p}{)}\PY{p}{)}\PY{p}{,}\PY{n}{new\PYZus{}X}
+           \PY{k}{end}
+         \PY{k}{end}
+         
+         \PY{n}{y} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{X} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}
+         \PY{n}{y}\PY{o}{\PYZti{}}\PY{l+m+mi}{1}\PY{o}{+}\PY{n}{X1}\PY{o}{+}\PY{n}{X2}\PY{o}{+}\PY{n}{X4}
+         
+         \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{solve\PYZus{}least\PYZus{}squares}\PY{p}{(}\PY{n}{y}\PY{p}{,}\PY{n}{X}\PY{p}{)}
+           \PY{n}{X}\PYZbs{}\PY{n}{y}
+         \PY{k}{end}
+         \PY{n}{solve\PYZus{}least\PYZus{}squares}\PY{p}{(}\PY{n}{tup}\PY{p}{:}\PY{p}{:}\PY{n}{Tuple}\PY{p}{)} \PY{o}{=} \PY{n}{solve\PYZus{}least\PYZus{}squares}\PY{p}{(}\PY{n}{tup}\PY{o}{.}\PY{o}{.}\PY{o}{.}\PY{p}{)}
+         \PY{n}{solve\PYZus{}least\PYZus{}squares}\PY{p}{(}\PY{n}{y}\PY{o}{\PYZti{}}\PY{l+m+mi}{1}\PY{o}{+}\PY{n}{X1}\PY{o}{+}\PY{n}{X2}\PY{o}{+}\PY{n}{X4}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+WARNING: Method definition @\textasciitilde{}(
+    \end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}10}]:} 4-element Array\{Float64,1\}:
+           0.529064 
+           0.55191  
+          -0.52334  
+           0.0513438
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+ANY<:Any, ANY<:Any) in module Main at In[9]:2 overwritten at In[10]:2.
+WARNING: Method definition solve\_least\_squares(Any, Any) in module Main at In[4]:27 overwritten at In[10]:27.
+WARNING: Method definition solve\_least\_squares(Tuple) in module Main at In[4]:29 overwritten at In[10]:29.
+
+    \end{Verbatim}
+
 
     % Add a bibliography block to the postdoc
     
