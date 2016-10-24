@@ -3,6 +3,23 @@
 
 Julia, while being "a scripting language", it is far more complex than other scripting languages. The goal for these slides is to give a proper mental model for approaching Julia
 
+## Main Reasons to Use Julia
+
+- You want to write code which is "slick" and readable
+  - Code is read more than code is written!
+- You want that same code to be fast
+- You prefer to write everything in one language
+- You are a developer: you want to write packages really fast which are really fast!
+- You are a package user: you heard about some really cool Julia packages (JuMP, Plots, DifferentialEquations), and want to use Julia
+- Calling C, Fortran, Python, R, and MATLAB libraries, likely a combination of them, is necessary for your work
+- You want built-in and easy native parallelism
+- You want to build your own Domain-Specific Language (DSL), compiler, etc.
+
+## Main Reasons to Not Use Julia
+
+- You need low latency (game programming)
+- You need stability. I.e. you are a company and need a large code-base to run without modifications next year
+
 ## The Julia Community: Who is a user?
 
 - Julia, being high performance and equipped with heavy "CS" features, all while a scripting language, has attracted a diverse audience.

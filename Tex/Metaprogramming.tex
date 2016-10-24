@@ -275,8 +275,162 @@
     
 
     
+    \subsection{Why Metaprogramming?}\label{why-metaprogramming}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Metaprogramming is used to write code at parsing time in order to help
+  the compiler achieve good performance
+\item
+  Metaprogramming is used to write Domain-Specific Languages (DSLs) to
+  make easy syntax for complicated functions
+\end{itemize}
+
+    \subsection{Examples of Improving
+Performance}\label{examples-of-improving-performance}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  \texttt{@fastmath 3*5}
+\item
+  ParallelAccelerator's \texttt{@acc}
+\item
+  \texttt{@simd}
+\item
+  \texttt{@parallel}
+\item
+  \texttt{Threads.@threads}
+\item
+  Even DSLs will use symbolic mathematics to automatically simplify a
+  problem for you!
+\end{itemize}
+
+    \subsection{Examples of Domain-Specific
+Languages:}\label{examples-of-domain-specific-languages}
+
+\subsubsection{JuliaStats}\label{juliastats}
+
+\texttt{\textasciitilde{}} for Formulas was actually in in-place macro!
+
+\subsubsection{DifferentialEquations.jl}\label{differentialequations.jl}
+
+For differential equations packages, the standard way to define a
+differential equation like the Lorenz equation:
+
+\[
+\begin{align}
+x\prime &= \sigma (y-x)\\
+y\prime &= x (\rho - z) - y\\
+z\prime &= xy - \beta z\\
+\end{align}
+\]
+
+is the following:
+
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} 
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{f} \PY{o}{=} \PY{p}{(}\PY{n}{t}\PY{p}{,}\PY{n}{u}\PY{p}{,}\PY{n}{du}\PY{p}{)} \PY{o}{\PYZhy{}\PYZgt{}} \PY{k}{begin}
+         \PY{n}{du}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{l+m+mf}{10.0}\PY{p}{(}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n}{du}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{=} \PY{n}{u}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{p}{(}\PY{l+m+mf}{28.0}\PY{o}{\PYZhy{}}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{u}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+         \PY{n}{du}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]} \PY{o}{=} \PY{n}{u}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{p}{(}\PY{l+m+mi}{8}\PY{o}{/}\PY{l+m+mi}{3}\PY{p}{)}\PY{o}{*}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}
+        \PY{k}{end}
+\end{Verbatim}
+
+    However, we can define a DSL to make this easier to do:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{g} \PY{o}{=} \PY{p}{@}\PY{n}{ode\PYZus{}def} \PY{k}{begin}
+          \PY{n}{dx} \PY{o}{=} \PY{n}{σ}\PY{o}{*}\PY{p}{(}\PY{n}{y}\PY{o}{\PYZhy{}}\PY{n}{x}\PY{p}{)}
+          \PY{n}{dy} \PY{o}{=} \PY{n}{x}\PY{o}{*}\PY{p}{(}\PY{n}{ρ}\PY{o}{\PYZhy{}}\PY{n}{z}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{y}
+          \PY{n}{dz} \PY{o}{=} \PY{n}{x}\PY{o}{*}\PY{n}{y} \PY{o}{\PYZhy{}} \PY{n}{β}\PY{o}{*}\PY{n}{z}
+        \PY{k}{end} \PY{n}{σ}\PY{o}{=}\PY{o}{\PYZgt{}}\PY{l+m+mf}{10.} \PY{n}{ρ}\PY{o}{=}\PY{o}{\PYZgt{}}\PY{l+m+mf}{28.} \PY{n}{β}\PY{o}{=}\PY{o}{\PYZgt{}}\PY{l+m+mf}{2.66}
+\end{Verbatim}
+
+    \subsubsection{JuMP.jl}\label{jump.jl}
+
+JuMP has a DSL which allows you to define constrainted optimization
+problems without reference to the package or type of equation which is
+being solved. You can then swap out different optimization packages to
+use as the solver without care.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k}{using} \PY{n}{JuMP}
+        
+        \PY{n}{m} \PY{o}{=} \PY{n}{Model}\PY{p}{(}\PY{p}{)}
+        \PY{p}{@}\PY{n}{variable}\PY{p}{(}\PY{n}{m}\PY{p}{,} \PY{l+m+mi}{0} \PY{o}{\PYZlt{}=} \PY{n}{x} \PY{o}{\PYZlt{}=} \PY{l+m+mi}{2} \PY{p}{)}
+        \PY{p}{@}\PY{n}{variable}\PY{p}{(}\PY{n}{m}\PY{p}{,} \PY{l+m+mi}{0} \PY{o}{\PYZlt{}=} \PY{n}{y} \PY{o}{\PYZlt{}=} \PY{l+m+mi}{30} \PY{p}{)}
+        
+        \PY{p}{@}\PY{n}{objective}\PY{p}{(}\PY{n}{m}\PY{p}{,} \PY{n}{Max}\PY{p}{,} \PY{l+m+mi}{5}\PY{n}{x} \PY{o}{+} \PY{l+m+mi}{3}\PY{o}{*}\PY{n}{y} \PY{p}{)}
+        \PY{p}{@}\PY{n}{constraint}\PY{p}{(}\PY{n}{m}\PY{p}{,} \PY{l+m+mi}{1}\PY{n}{x} \PY{o}{+} \PY{l+m+mi}{5}\PY{n}{y} \PY{o}{\PYZlt{}=} \PY{l+m+mf}{3.0} \PY{p}{)}
+        
+        \PY{n}{print}\PY{p}{(}\PY{n}{m}\PY{p}{)}
+        
+        \PY{n}{status} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{n}{m}\PY{p}{)}
+        
+        \PY{n}{println}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Objective value: }\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{getobjectivevalue}\PY{p}{(}\PY{n}{m}\PY{p}{)}\PY{p}{)}
+        \PY{n}{println}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{x = }\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{getvalue}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
+        \PY{n}{println}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{y = }\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{getvalue}\PY{p}{(}\PY{n}{y}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \subsection{Writing Your Own Macros}\label{writing-your-own-macros}
+
+An easy way to write macros is the ``QuoteLater'' method:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Write a macro, make it work (in the REPL)
+\item
+  Later, quote it and interpolate in the value
+\end{itemize}
+
+The Julia manual is very complete on Metaprogramming:
+http://docs.julialang.org/en/release-0.5/manual/metaprogramming/
+
+One fact that it misses: How to interpolate an expression as an
+expression (not as a value) into another expression.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{ex\PYZus{}new} \PY{o}{=} \PY{n}{Meta}\PY{o}{.}\PY{n}{quot}\PY{p}{(}\PY{n}{ex}\PY{p}{)}
+        \PY{k}{quote}
+            \PY{n}{still\PYZus{}expression} \PY{o}{=} \PY{o}{\PYZdl{}}\PY{p}{(}\PY{n}{esc}\PY{p}{(}\PY{n}{ex\PYZus{}new}\PY{p}{)}\PY{p}{)} 
+        \PY{k}{end}
+\end{Verbatim}
+
+    \subsubsection{Metaprogramming Project}\label{metaprogramming-project}
+
+You have a way to compute least squares, how about letting it work like
+an \texttt{R} function? Define your own version
+\texttt{solve\_least\_squares(Y,X)} using your previous result, and
+define the \texttt{@\textasciitilde{}} macro so that way
+\texttt{solve\_least\_squares(Y\textasciitilde{}1+X1+X2+X4)} solves the
+least square problem on the data matrix \texttt{X} on its columns 1, 2,
+and 4.
+
+Metaprogramming is hard the first few times you do it. You might want to
+work in pairs!
+
+Hints:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  You cannot ``get a character'' from a symbol
+\item
+  You can use \texttt{string} to change a symbol to a string
+\item
+  You can \texttt{parse} a string to a number
+\item
+  Check out the \texttt{args} field of an expression: it's an array that
+  holds a bunch of goodies!
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{y} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+        \PY{n}{X} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}
+        \PY{n}{y}\PY{o}{\PYZti{}}\PY{l+m+mi}{1}\PY{o}{+}\PY{n}{X1}\PY{o}{+}\PY{n}{X2}\PY{o}{+}\PY{n}{X4} \PY{c}{\PYZsh{} Make a tuple}
+        \PY{n}{solve\PYZus{}least\PYZus{}squares}\PY{p}{(}\PY{n}{y}\PY{o}{\PYZti{}}\PY{l+m+mi}{1}\PY{o}{+}\PY{n}{X1}\PY{o}{+}\PY{n}{X2}\PY{o}{+}\PY{n}{X4}\PY{p}{)} \PY{c}{\PYZsh{} Solve the least square problem on a tuple}
 \end{Verbatim}
 
 

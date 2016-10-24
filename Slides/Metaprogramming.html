@@ -11825,19 +11825,202 @@ a.anchor-link {
 <div class="reveal">
 <div class="slides">
 <section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Why-Metaprogramming?">Why Metaprogramming?<a class="anchor-link" href="#Why-Metaprogramming?">&#182;</a></h2><ul>
+<li>Metaprogramming is used to write code at parsing time in order to help the compiler achieve good performance</li>
+<li>Metaprogramming is used to write Domain-Specific Languages (DSLs) to make easy syntax for complicated functions</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Examples-of-Improving-Performance">Examples of Improving Performance<a class="anchor-link" href="#Examples-of-Improving-Performance">&#182;</a></h2><ul>
+<li><code>@fastmath 3*5</code></li>
+<li>ParallelAccelerator's <code>@acc</code></li>
+<li><code>@simd</code></li>
+<li><code>@parallel</code></li>
+<li><code>Threads.@threads</code></li>
+<li>Even DSLs will use symbolic mathematics to automatically simplify a problem for you!</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Examples-of-Domain-Specific-Languages:">Examples of Domain-Specific Languages:<a class="anchor-link" href="#Examples-of-Domain-Specific-Languages:">&#182;</a></h2><h3 id="JuliaStats">JuliaStats<a class="anchor-link" href="#JuliaStats">&#182;</a></h3><p><code>~</code> for Formulas was actually in in-place macro!</p>
+<h3 id="DifferentialEquations.jl">DifferentialEquations.jl<a class="anchor-link" href="#DifferentialEquations.jl">&#182;</a></h3><p>For differential equations packages, the standard way to define a differential equation like the Lorenz equation:</p>
+$$
+\begin{align}
+x\prime &= \sigma (y-x)\\
+y\prime &= x (\rho - z) - y\\
+z\prime &= xy - \beta z\\
+\end{align}
+$$<p>is the following:</p>
+
+</div>
+</div>
+</div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">du</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">begin</span>
+ <span class="n">du</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+ <span class="n">du</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mf">28.0</span><span class="o">-</span><span class="n">u</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="o">-</span> <span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+ <span class="n">du</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="mi">8</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="k">end</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
-</div></section></section>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>However, we can define a DSL to make this easier to do:</p>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="p">@</span><span class="n">ode_def</span> <span class="k">begin</span>
+  <span class="n">dx</span> <span class="o">=</span> <span class="n">σ</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
+  <span class="n">dy</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="n">ρ</span><span class="o">-</span><span class="n">z</span><span class="p">)</span> <span class="o">-</span> <span class="n">y</span>
+  <span class="n">dz</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="n">β</span><span class="o">*</span><span class="n">z</span>
+<span class="k">end</span> <span class="n">σ</span><span class="o">=&gt;</span><span class="mf">10.</span> <span class="n">ρ</span><span class="o">=&gt;</span><span class="mf">28.</span> <span class="n">β</span><span class="o">=&gt;</span><span class="mf">2.66</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="JuMP.jl">JuMP.jl<a class="anchor-link" href="#JuMP.jl">&#182;</a></h3><p>JuMP has a DSL which allows you to define constrainted optimization problems without reference to the package or type of equation which is being solved. You can then swap out different optimization packages to use as the solver without care.</p>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">JuMP</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">Model</span><span class="p">()</span>
+<span class="p">@</span><span class="n">variable</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="mi">2</span> <span class="p">)</span>
+<span class="p">@</span><span class="n">variable</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="mi">30</span> <span class="p">)</span>
+
+<span class="p">@</span><span class="n">objective</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">Max</span><span class="p">,</span> <span class="mi">5</span><span class="n">x</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">y</span> <span class="p">)</span>
+<span class="p">@</span><span class="n">constraint</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">1</span><span class="n">x</span> <span class="o">+</span> <span class="mi">5</span><span class="n">y</span> <span class="o">&lt;=</span> <span class="mf">3.0</span> <span class="p">)</span>
+
+<span class="n">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+<span class="n">status</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Objective value: &quot;</span><span class="p">,</span> <span class="n">getobjectivevalue</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;x = &quot;</span><span class="p">,</span> <span class="n">getvalue</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;y = &quot;</span><span class="p">,</span> <span class="n">getvalue</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Writing-Your-Own-Macros">Writing Your Own Macros<a class="anchor-link" href="#Writing-Your-Own-Macros">&#182;</a></h2><p>An easy way to write macros is the "QuoteLater" method:</p>
+<ul>
+<li>Write a macro, make it work (in the REPL)</li>
+<li>Later, quote it and interpolate in the value</li>
+</ul>
+<p>The Julia manual is very complete on Metaprogramming: <a href="http://docs.julialang.org/en/release-0.5/manual/metaprogramming/">http://docs.julialang.org/en/release-0.5/manual/metaprogramming/</a></p>
+<p>One fact that it misses: How to interpolate an expression as an expression (not as a value) into another expression.</p>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">ex_new</span> <span class="o">=</span> <span class="n">Meta</span><span class="o">.</span><span class="n">quot</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span>
+<span class="k">quote</span>
+    <span class="n">still_expression</span> <span class="o">=</span> <span class="o">$</span><span class="p">(</span><span class="n">esc</span><span class="p">(</span><span class="n">ex_new</span><span class="p">))</span> 
+<span class="k">end</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Metaprogramming-Project">Metaprogramming Project<a class="anchor-link" href="#Metaprogramming-Project">&#182;</a></h3><p>You have a way to compute least squares, how about letting it work like an <code>R</code> function? Define your own version <code>solve_least_squares(Y,X)</code> using your previous result, and define the <code>@~</code> macro so that way <code>solve_least_squares(Y~1+X1+X2+X4)</code> solves the least square problem on the data matrix <code>X</code> on its columns 1, 2, and 4.</p>
+<p>Metaprogramming is hard the first few times you do it. You might want to work in pairs!</p>
+<p>Hints:</p>
+<ul>
+<li>You cannot "get a character" from a symbol</li>
+<li>You can use <code>string</code> to change a symbol to a string</li>
+<li>You can <code>parse</code> a string to a number</li>
+<li>Check out the <code>args</code> field of an expression: it's an array that holds a bunch of goodies!</li>
+</ul>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">y</span><span class="o">~</span><span class="mi">1</span><span class="o">+</span><span class="n">X1</span><span class="o">+</span><span class="n">X2</span><span class="o">+</span><span class="n">X4</span> <span class="c"># Make a tuple</span>
+<span class="n">solve_least_squares</span><span class="p">(</span><span class="n">y</span><span class="o">~</span><span class="mi">1</span><span class="o">+</span><span class="n">X1</span><span class="o">+</span><span class="n">X2</span><span class="o">+</span><span class="n">X4</span><span class="p">)</span> <span class="c"># Solve the least square problem on a tuple</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div></div></section></section>
 </div>
 </div>
 
