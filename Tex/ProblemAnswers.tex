@@ -459,6 +459,34 @@ WARNING: Method definition solve\_least\_squares(Tuple) in module Main at In[4]:
 
     \end{Verbatim}
 
+    \subsection{Distribution Dispatch
+Problem}\label{distribution-dispatch-problem}
+
+This is from Josh Day's talk:
+https://www.youtube.com/watch?v=EwcTNzpQ6Sc
+
+Solution is from:
+https://github.com/joshday/Talks/blob/master/SLG2016\_IntroToJulia/Slides.ipynb
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{myquantile}\PY{p}{(}\PY{n}{d}\PY{p}{:}\PY{p}{:}\PY{n}{UnivariateDistribution}\PY{p}{,} \PY{n}{q}\PY{p}{:}\PY{p}{:}\PY{n}{Number}\PY{p}{)}
+            \PY{n}{θ} \PY{o}{=} \PY{n}{mean}\PY{p}{(}\PY{n}{d}\PY{p}{)}
+            \PY{n}{tol} \PY{o}{=} \PY{n+nb}{Inf}
+            \PY{k}{while} \PY{n}{tol} \PY{o}{\PYZgt{}} \PY{l+m+mf}{1e\PYZhy{}5}
+                \PY{n}{θold} \PY{o}{=} \PY{n}{θ}
+                \PY{n}{θ} \PY{o}{=} \PY{n}{θ} \PY{o}{\PYZhy{}} \PY{p}{(}\PY{n}{cdf}\PY{p}{(}\PY{n}{d}\PY{p}{,} \PY{n}{θ}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{q}\PY{p}{)} \PY{o}{/} \PY{n}{pdf}\PY{p}{(}\PY{n}{d}\PY{p}{,} \PY{n}{θ}\PY{p}{)}
+                \PY{n}{tol} \PY{o}{=} \PY{n}{abs}\PY{p}{(}\PY{n}{θold} \PY{o}{\PYZhy{}} \PY{n}{θ}\PY{p}{)}
+            \PY{k}{end}
+            \PY{n}{θ}
+        \PY{k}{end}
+        
+        \PY{k}{for} \PY{n}{dist} \PY{k}{in} \PY{p}{[}\PY{n}{Gamma}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{Normal}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{Beta}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{]}
+            \PY{p}{@}\PY{n}{show} \PY{n}{myquantile}\PY{p}{(}\PY{n}{dist}\PY{p}{,} \PY{o}{.}\PY{l+m+mi}{75}\PY{p}{)}
+            \PY{p}{@}\PY{n}{show} \PY{n}{quantile}\PY{p}{(}\PY{n}{dist}\PY{p}{,} \PY{o}{.}\PY{l+m+mi}{75}\PY{p}{)}
+            \PY{n}{println}\PY{p}{(}\PY{p}{)}
+        \PY{k}{end}
+\end{Verbatim}
+
 
     % Add a bibliography block to the postdoc
     

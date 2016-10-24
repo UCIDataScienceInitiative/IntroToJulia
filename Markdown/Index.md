@@ -14,6 +14,16 @@ The ideal participant is anyone who is interested in Julia. There are many group
 
 Chris is a PhD student in Mathematics from the Mathematical, Computational, and Systems Biology (MCSB) Gateway program and is an active part of the Julia community. He runs the blog, http://www.stochasticlifestyle.com/, where he write tutorials on using the Julia languages covering many topics, such as high-performance and GPGPU computing, package development, and Julia tips. He is part of the JuliaMath and JuliaDiffEq communities for curating the Julia libraries for mathematics and differential equations respectively. Chris is the developer of many Julia packages, the most prominent being [DifferentialEquations.jl](https://github.com/JuliaDiffEq/DifferentialEquations.jl), a Julia library which has become a standard solver for many forms of differential equations.
 
+### Remote Instructors
+
+You are highly encouraged to use the [Julia Gitter chat channel](https://gitter.im/JuliaLang/julia) to ask your Julia-related questions, both during the workshop and after the workshop! There are a few "remote instructors" who will be available through this chat channel at different times throughout the workshop:
+
+- Lyndon White (@oxinabox): University of Western Australia
+- Fengyang Wang (@TotalVerb): University of Waterloo
+- Ismael Venegas Castelló (@Ismael-VC): Data Analyst at Rich IT
+
+Others will also be available. Please do not be afraid to use this resource!
+
 ## Notes Before We Get Started
 
 - Please install some version of IJulia/Jupyter to follow along. I also recommend working through longer problems using the Juno IDE.
@@ -51,8 +61,10 @@ To get started, see the [Tooling, Documentation, and Community notebook](http://
 
 - [Overview of the Package Ecosystem](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PackageEcosystem)
 - [Data Visualization: Plots.jl]
+- Juno, the Julia IDE (Debugging, Progress Bars, etc.): JunoLab
 - Differential Equations: DifferentialEquations.jl
 - Dimensional Reduction: MultivariateStats.jl
+- Mathematical Programming / Optimization: JuMP and Optim.jl
 - Solving Nonlinear Equations: NLsolve.jl
 - Forward-mode Autodifferentiation: ForwardDiff.jl
 - Robust Benchmarking: BenchmarkTools.jl
@@ -64,12 +76,14 @@ To get started, see the [Tooling, Documentation, and Community notebook](http://
 ### Extra Projects
 
 - [Using External Languages from Julia (Interop)](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Interop)
-- [Parallelism and HPC](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/HPCProject)
+- [Parallelism and HPC](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/HPCJulia)
 - [Work in Progress: JuliaML for Machine Learning] - Include Roadmap and Tom's post
 - Package Development, Documentation, and Testing
 - Tools for Faster Code: InplaceOps.jl, CatViews.jl, and VML.jl
 
 ### Experiments
+
+Probe around and understand the following results:
 
 - [Type-Stability Experiment](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/TypeStabilityExperiment)
 - [Scoping Experiment](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ScopingExperiment)

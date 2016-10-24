@@ -906,7 +906,17 @@ Note that in order to do this you will need to re-structure the type hierarchy. 
 
 (Not only is the multiple-dispatch way more Julian, we will see later that it also has a lot of performance enhancements due to how it interacts with the compiler).
 
-#### Problem 7
+#### Distribution Quantile Problem (From Josh Day)
+
+To find the quantile of a number `q` in a distribution, one can use a Newton method 
+
+$$ \theta_{n+1} = \theta_{n} - \frac{cdf(\theta)-q}{pdf(\theta)} $$
+
+to have $\theta_{n} \rightarrow$ the value of for the `q`th quantile. Use multiple dispatch to write a generic algorithm for which calculates the `q`th quantile of any `UnivariateDistribution` in Distributions.jl, and test your result against the `quantile(d::UnivariateDistribution,q::Number` function.
+
+Hint: Use $\theta_{0} = $ mean of the distribution
+
+#### Operator Problem
 
 In mathematics, a matrix is known to be a linear operator. In many cases, this can have huge performance advantages because, if you  know a function which "acts like a matrix" but does not form the matrix itself, you can save the time that it takes to allocate the matrix (sometimes the matrix may not fit in memory!)
 

@@ -31,9 +31,13 @@ https://github.com/Keno/Cxx.jl
 
 https://github.com/JuliaInterop/RCall.jl
 
+https://github.com/joshday/Talks/blob/master/SLG2016_IntroToJulia/Slides.ipynb
+
 #### PyCall
 
 https://github.com/JuliaPy/PyCall.jl
+
+https://github.com/joshday/Talks/blob/master/SLG2016_IntroToJulia/Slides.ipynb
 
 #### MATLAB.jl
 
