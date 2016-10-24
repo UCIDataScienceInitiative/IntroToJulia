@@ -20,6 +20,8 @@ Julia, while being "a scripting language", it is far more complex than other scr
 - You need low latency (game programming)
 - You need stability. I.e. you are a company and need a large code-base to run without modifications next year
 
+![Interop](https://github.com/UCIDataScienceInitiative/IntroToJulia/raw/master/assets/Julia_Interop_Test.jpg-large)
+
 ## The Julia Community: Who is a user?
 
 - Julia, being high performance and equipped with heavy "CS" features, all while a scripting language, has attracted a diverse audience.
