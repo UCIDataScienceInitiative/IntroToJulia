@@ -140,7 +140,7 @@
     \def\gt{>}
     \def\lt{<}
     % Document parameters
-    \title{HPCJulia}
+    \title{Interop}
     
     
     
@@ -275,150 +275,35 @@
     
 
     
-    \section{Parallelism and HPC Julia}\label{parallelism-and-hpc-julia}
+    \section{Interop}\label{interop}
 
-Julia's documentation:
-http://docs.julialang.org/en/release-0.5/manual/parallel-computing/
+\subsubsection{ccall}\label{ccall}
 
-    In this notebook we will go over the different aspects of parallelism
-present in Julia.
+While not technically a package because it's built into Julia,
+\texttt{ccall} is very important to know. The documentation page for
+\texttt{ccall} is:
+http://docs.julialang.org/en/release-0.4/manual/calling-c-and-fortran-code/.
+I wrote a tutorial for using ccall:
+http://www.stochasticlifestyle.com/using-julias-c-interface-utilize-c-libraries/
 
-    \subsection{SIMD}\label{simd}
+\paragraph{Xeon Phi}\label{xeon-phi}
 
-SIMD, Single Instruction Multiple Data, is a form of parallelism from
-executing multiple similar commands at once using specialized
-instructions in the processor. Julia applies SIMD automatically to loops
-and some functions due to the \texttt{-O3} optimization in its JIT
-compilation. However, SIMD can be explicitly added to a loop by using
-the \texttt{@simd} macro (note, this may slow down the calcuation. It is
-wise to let the auto-optimizer apply SIMD, and finer control of SIMD can
-be achieved using the SIMD.jl library.
+Note that you can use ccall to control Xeon Phi acceleration cards:
+http://www.stochasticlifestyle.com/interfacing-xeon-phi-via-julia/
 
-Another form of multiple instruction is fused multiply add for
-calculations of type \texttt{a*b+c}. There are two forms present in
-Julia. The first is \texttt{muladd}. This is the recommended form for
-performance. \texttt{muladd(a,b,c)} will only apply a fused
-multiplication/addition if it will help with performance. On the
-otherhand, \texttt{fma(a,b,c)} will always apply fused
-multiplication/addition.
+\subsubsection{Cxx.jl}\label{cxx.jl}
 
-    \subsection{Multithreading}\label{multithreading}
+\subsubsection{RCall}\label{rcall}
 
-As of Julia v0.5, experimental multithreading is native to Julia via the
-\texttt{Threads.@threads} macro.
+\subsubsection{PyCall}\label{pycall}
 
-    \subsection{Distributed Parallelism}\label{distributed-parallelism}
+\subsubsection{MATLAB.jl}\label{matlab.jl}
 
-Julia's native parallelism is a distributed form of parallelism through
-TCPIP/ssh.
+\subsubsection{CUDArt.jl}\label{cudart.jl}
 
-\subsubsection{Libraries}\label{libraries}
+http://www.stochasticlifestyle.com/julia-on-the-hpc-with-gpus/
 
-The following libraries are helpful for solving parallel problems:
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  DistributedArrays.jl
-\item
-  ParallelDataTransfer.jl
-\end{itemize}
-
-    \section{Projects}\label{projects}
-
-\subsection{Project 1: Getting Started with Distributed
-Parallelism}\label{project-1-getting-started-with-distributed-parallelism}
-
-Use the following tutorial to test Julia's distributed parallelism:
-
-http://www.stochasticlifestyle.com/multi-node-parallelism-in-julia-on-an-hpc/
-
-    \subsection{Project 2: Coding a Distributed
-Algorithm}\label{project-2-coding-a-distributed-algorithm}
-
-Extend your \texttt{least\_squares} implementation to a distributed
-algorithm.
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  Now generate a much larger \texttt{X} and \texttt{y}
-\item
-  Use DistributedArrays.jl or ParallelDataTransfer.jl to evenly split
-  the data amongst worker processes
-\item
-  Apply the \texttt{@spawnat} macro to use the \texttt{least\_squares}
-  function on the remote processes
-\item
-  Retrive the results of the \texttt{least\_squares} algorithm, and
-  average them together
-\item
-  Now try a different approach using \texttt{pmap}
-\end{itemize}
-
-    \subsubsection{Benchmarks}\label{benchmarks}
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  Benchmark the two codes on your computer (or cluster!). How does the
-  performance scale with the number of processes? Look at
-  http://www.stochasticlifestyle.com/236-2/
-\item
-  Try to make a multithreaded version of the algorithm. How well does it
-  benchmark? Check for type instabilities!
-\end{itemize}
-
-    \begin{center}\rule{3in}{0.4pt}\end{center}
-
-\section{Extras}\label{extras}
-
-\subsection{Job Scripts}\label{job-scripts}
-
-    \subsubsection{UC Irvine Cluster (SGE)}\label{uc-irvine-cluster-sge}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{c}{\PYZsh{}!/bin/bash}
-        
-        \PY{c}{\PYZsh{}\PYZdl{} \PYZhy{}N jbtest}
-        \PY{c}{\PYZsh{}\PYZdl{} \PYZhy{}q \PYZlt{}Queue\PYZgt{}}
-        \PY{c}{\PYZsh{}\PYZdl{} \PYZhy{}pe mpich 128}
-        \PY{c}{\PYZsh{}\PYZdl{} \PYZhy{}cwd            		\PYZsh{} run the job out of the current directory}
-        \PY{c}{\PYZsh{}\PYZdl{} \PYZhy{}m beas}
-        \PY{c}{\PYZsh{}\PYZdl{} \PYZhy{}ckpt blcr}
-        \PY{c}{\PYZsh{}\PYZdl{} \PYZhy{}o output/}
-        \PY{c}{\PYZsh{}\PYZdl{} \PYZhy{}e output/}
-        \PY{k}{module} \PY{n+nb}{load} \PY{n}{julia}\PY{o}{/}\PY{l+m+mf}{0.4}\PY{o}{.}\PY{l+m+mi}{3}
-        \PY{n}{julia} \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{machinefile} \PY{n}{jbtest}\PY{o}{\PYZhy{}}\PY{n}{pe\PYZus{}hostfile\PYZus{}mpich}\PY{o}{.}\PY{o}{\PYZdl{}}\PY{n}{JOB\PYZus{}ID} \PY{n}{test}\PY{o}{.}\PY{n}{jl}
-\end{Verbatim}
-
-    \subsubsection{XSEDE Comet (Slurm) Job
-Script}\label{xsede-comet-slurm-job-script}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{c}{\PYZsh{}!/bin/bash}
-        \PY{c}{\PYZsh{}SBATCH \PYZhy{}A \PYZlt{}account\PYZgt{}}
-        \PY{c}{\PYZsh{}SBATCH \PYZhy{}\PYZhy{}job\PYZhy{}name=\PYZdq{}juliaTest\PYZdq{}}
-        \PY{c}{\PYZsh{}SBATCH \PYZhy{}\PYZhy{}output=\PYZdq{}juliaTest.\PYZpc{}j.\PYZpc{}N.out\PYZdq{}}
-        \PY{c}{\PYZsh{}SBATCH \PYZhy{}\PYZhy{}partition=compute}
-        \PY{c}{\PYZsh{}SBATCH \PYZhy{}\PYZhy{}nodes=8}
-        \PY{c}{\PYZsh{}SBATCH \PYZhy{}\PYZhy{}export=ALL}
-        \PY{c}{\PYZsh{}SBATCH \PYZhy{}\PYZhy{}ntasks\PYZhy{}per\PYZhy{}node=24}
-        \PY{c}{\PYZsh{}SBATCH \PYZhy{}t 01:00:00}
-        \PY{k}{export} \PY{n}{SLURM\PYZus{}NODEFILE}\PY{o}{=}\PY{l+s+sb}{`generate\PYZus{}pbs\PYZus{}nodefile`}
-        \PY{o}{.}\PY{o}{/}\PY{n}{julia} \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{machinefile} \PY{o}{\PYZdl{}}\PY{n}{SLURM\PYZus{}NODEFILE} \PY{o}{/}\PY{n}{home}\PY{o}{/}\PY{n}{crackauc}\PY{o}{/}\PY{n}{test}\PY{o}{.}\PY{n}{jl}
-\end{Verbatim}
-
-    \subsection{Test function}\label{test-function}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{c}{\PYZsh{}\PYZsh{} Script which prints out the hostnames of the worker processes}
-        \PY{c}{\PYZsh{} Used in conjunction with a job script to ensure multi\PYZhy{}node parallelism}
-        
-        \PY{n}{hosts} \PY{o}{=} \PY{p}{@}\PY{n}{parallel} \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{120}
-               \PY{n}{run}\PY{p}{(}\PY{l+s+sb}{`hostname`}\PY{p}{)} \PY{k}{end}
-        \PY{n}{println}\PY{p}{(}\PY{n}{hosts}\PY{p}{)}
-\end{Verbatim}
+http://www.stochasticlifestyle.com/multiple-gpu-on-the-hpc-with-julia/
 
 
     % Add a bibliography block to the postdoc
