@@ -38,6 +38,7 @@ To get started, see the [Tooling, Documentation, and Community notebook](http://
 
 - [A Basic Introduction to Julia](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicIntroduction)
 - [Why Julia?](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/WhyJulia)
+- [7 Julia Gotchas and How to Handle Them](http://www.stochasticlifestyle.com/7-julia-gotchas-handle/)
 
 ### Detailed Usage: A Peak Into "the Rabbit Hole"
 
@@ -49,14 +50,29 @@ To get started, see the [Tooling, Documentation, and Community notebook](http://
 ### Packages to Explore
 
 - [Overview of the Package Ecosystem](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PackageEcosystem)
-- [Data Visualization: Plots.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PlotsJL)
-- [Differential Equations: DifferentialEquations.jl]()
+- [Data Visualization: Plots.jl]
+- Differential Equations: DifferentialEquations.jl
+- Dimensional Reduction: MultivariateStats.jl
+- Solving Nonlinear Equations: NLsolve.jl
+- Forward-mode Autodifferentiation: ForwardDiff.jl
+- Robust Benchmarking: BenchmarkTools.jl
+- Bioinformatics: Bio.jl
+- Deep Learning: Mocha.jl, TensorFlow.jl, or MXNet.jl
+- Symbolic Mathematics: Symata.jl, SymEngine.jl, and SymPy.jl
 
-### Projects / Experiments
+
+### Extra Projects
+
+- [Using External Languages from Julia (Interop)](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Interop)
+- [Parallelism and HPC](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/HPCProject)
+- [Work in Progress: JuliaML for Machine Learning] - Include Roadmap and Tom's post
+- Package Development, Documentation, and Testing
+- Tools for Faster Code: InplaceOps.jl, CatViews.jl, and VML.jl
+
+### Experiments
 
 - [Type-Stability Experiment](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/TypeStabilityExperiment)
 - [Scoping Experiment](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ScopingExperiment)
-- [Parallelism and HPC](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/HPCProject)
 
 
 ---------------------------

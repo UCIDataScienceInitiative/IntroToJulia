@@ -275,31 +275,60 @@
     
 
     
-    \section{Interop}\label{interop}
+    \section{Interop Project}\label{interop-project}
 
-\subsubsection{ccall}\label{ccall}
+Please choose a project and a form of interop that appeals to you and
+your background.
 
-While not technically a package because it's built into Julia,
-\texttt{ccall} is very important to know. The documentation page for
-\texttt{ccall} is:
+\subsection{Project 1: Interfacing with your own
+scripts}\label{project-1-interfacing-with-your-own-scripts}
+
+Choose a script from your own work. Modify it so that way it requires
+and input, and spits out a sensible output. Use Julia's interop
+functionalities to call this script and retrieve the answer.
+
+\subsection{Project 2: Wrapped Least
+Squares}\label{project-2-wrapped-least-squares}
+
+Use Julia's interop capabilities to solve the least squares problem
+using your language of choice and retreve the answer back to Julia.
+
+\subsection{Tools}\label{tools}
+
+These are mature interop libraries provided by Julia:
+
+\paragraph{ccall}\label{ccall}
+
+The documentation page for \texttt{ccall} is:
 http://docs.julialang.org/en/release-0.4/manual/calling-c-and-fortran-code/.
-I wrote a tutorial for using ccall:
+Since I found that slightly opaque on my first read, I wrote a tutorial
+for using ccall to call compile your C-code for usage with
+\texttt{ccall} and writing the wrapper code:
 http://www.stochasticlifestyle.com/using-julias-c-interface-utilize-c-libraries/
 
-\paragraph{Xeon Phi}\label{xeon-phi}
+\subparagraph{Xeon Phi}\label{xeon-phi}
 
-Note that you can use ccall to control Xeon Phi acceleration cards:
+While not technically supported, note that you can use ccall to control
+Xeon Phi acceleration cards:
 http://www.stochasticlifestyle.com/interfacing-xeon-phi-via-julia/
 
-\subsubsection{Cxx.jl}\label{cxx.jl}
+\paragraph{Cxx.jl}\label{cxx.jl}
 
-\subsubsection{RCall}\label{rcall}
+https://github.com/Keno/Cxx.jl
 
-\subsubsection{PyCall}\label{pycall}
+\paragraph{RCall}\label{rcall}
 
-\subsubsection{MATLAB.jl}\label{matlab.jl}
+https://github.com/JuliaInterop/RCall.jl
 
-\subsubsection{CUDArt.jl}\label{cudart.jl}
+\paragraph{PyCall}\label{pycall}
+
+https://github.com/JuliaPy/PyCall.jl
+
+\paragraph{MATLAB.jl}\label{matlab.jl}
+
+https://github.com/JuliaInterop/MATLAB.jl
+
+\paragraph{CUDArt.jl}\label{cudart.jl}
 
 http://www.stochasticlifestyle.com/julia-on-the-hpc-with-gpus/
 
