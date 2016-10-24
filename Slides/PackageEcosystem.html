@@ -11830,28 +11830,226 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Overview-of-the-Package-Ecosystem">Overview of the Package Ecosystem<a class="anchor-link" href="#Overview-of-the-Package-Ecosystem">&#182;</a></h1>
+<h1 id="Overview-of-the-Package-Ecosystem">Overview of the Package Ecosystem<a class="anchor-link" href="#Overview-of-the-Package-Ecosystem">&#182;</a></h1><p>Julia's package ecosystem is organized in terms of Github organizations. While this is informal, many of the main packages (but not all!) can be found in the various organizations.</p>
+<p><a href="http://julialang.org/community/">http://julialang.org/community/</a></p>
+<p>A useful source on the the changing package ecosystem (might be) found here:</p>
+<p><a href="http://www.pkgupdate.com/">http://www.pkgupdate.com/</a></p>
+
 </div>
 </div>
-</div>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Good-Packages-to-Know">Good Packages to Know<a class="anchor-link" href="#Good-Packages-to-Know">&#182;</a></h1>
+<h2 id="A-Quick-Look-At-Some-Organizations">A Quick Look At Some Organizations<a class="anchor-link" href="#A-Quick-Look-At-Some-Organizations">&#182;</a></h2><p>Let's take a quick look at some organizations which provide important functionality to Julia. I will go through some of the most well-developed and "ready for use orgs". Of course, there are more that I will be leaving off the list.</p>
+
 </div>
 </div>
-</div>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Interop">Interop<a class="anchor-link" href="#Interop">&#182;</a></h1><h3 id="ccall">ccall<a class="anchor-link" href="#ccall">&#182;</a></h3><p>While not technically a package because it's built into Julia, <code>ccall</code> is very important to know. The documentation page for <code>ccall</code> is: <a href="http://docs.julialang.org/en/release-0.4/manual/calling-c-and-fortran-code/">http://docs.julialang.org/en/release-0.4/manual/calling-c-and-fortran-code/</a>. I wrote a tutorial for using ccall: <a href="http://www.stochasticlifestyle.com/using-julias-c-interface-utilize-c-libraries/">http://www.stochasticlifestyle.com/using-julias-c-interface-utilize-c-libraries/</a></p>
-<h4 id="Xeon-Phi">Xeon Phi<a class="anchor-link" href="#Xeon-Phi">&#182;</a></h4><p>Note that you can use ccall to control Xeon Phi acceleration cards: <a href="http://www.stochasticlifestyle.com/interfacing-xeon-phi-via-julia/">http://www.stochasticlifestyle.com/interfacing-xeon-phi-via-julia/</a></p>
-<h3 id="Cxx.jl">Cxx.jl<a class="anchor-link" href="#Cxx.jl">&#182;</a></h3><h3 id="RCall">RCall<a class="anchor-link" href="#RCall">&#182;</a></h3><h3 id="PyCall">PyCall<a class="anchor-link" href="#PyCall">&#182;</a></h3><h3 id="MATLAB.jl">MATLAB.jl<a class="anchor-link" href="#MATLAB.jl">&#182;</a></h3><h3 id="CUDArt.jl">CUDArt.jl<a class="anchor-link" href="#CUDArt.jl">&#182;</a></h3><p><a href="http://www.stochasticlifestyle.com/julia-on-the-hpc-with-gpus/">http://www.stochasticlifestyle.com/julia-on-the-hpc-with-gpus/</a></p>
-<p><a href="http://www.stochasticlifestyle.com/multiple-gpu-on-the-hpc-with-julia/">http://www.stochasticlifestyle.com/multiple-gpu-on-the-hpc-with-julia/</a></p>
+<h3 id="JuliaLang">JuliaLang<a class="anchor-link" href="#JuliaLang">&#182;</a></h3><ul>
+<li>JuliaLang is the Base organization</li>
+<li>It holds the Julia language itself</li>
+<li>Other core pacakges exist in JuliaLang<ul>
+<li>PkgDev for package development</li>
+<li>IJulia</li>
+<li>Compat for version compatibility</li>
+</ul>
+</li>
+<li>There is a general trend of "slimming Base" to lower the Travis load on JuliaLang</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="JuliaStats">JuliaStats<a class="anchor-link" href="#JuliaStats">&#182;</a></h3><ul>
+<li>Hosts Dataframes.jl, the data frame implementation of Julia</li>
+<li>Distributions.jl holds probability distributions and methods for generating random numbers according to specific distributions</li>
+<li>The standard regression and hypothesis testing libraries are held here</li>
+<li>Klara.jl is a native MCMC engine</li>
+<li>One of the main R linear model library developers, Douglas Bates, is a heavy contributor</li>
+</ul>
+<p>Note, Dataframes used to be slow. A very large change is coming in the next week. To understand it in detail, read: <a href="http://www.johnmyleswhite.com/notebook/2015/11/28/why-julias-dataframes-are-still-slow/">http://www.johnmyleswhite.com/notebook/2015/11/28/why-julias-dataframes-are-still-slow/</a></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="JuliaOpt">JuliaOpt<a class="anchor-link" href="#JuliaOpt">&#182;</a></h2><ul>
+<li>Julia for Mathematical Programming (JuMP) is one of the premire Julia libraries. It implements a DSL for interfacing with many commercial and non-commercial mathematical optimization (linear, mixed-integer, conic, semidefinite, nonlinear) algorithms. Most of JuliaOpt can be used through JuMP</li>
+<li>Optim.jl are a set of native Julia optimization algorithms</li>
+<li>An interesting fact is that the creator of NLopt is a heavy contributor to Julia and JuliaOpt</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="JuliaParallel">JuliaParallel<a class="anchor-link" href="#JuliaParallel">&#182;</a></h2><p>Bindings to many popular parallel libraries / APIs are found in JuliaParallel:</p>
+<ul>
+<li>DistributedArrays.jl: A distributed array implmentation</li>
+<li>PETSc.jl</li>
+<li>MPI.jl</li>
+<li>ScaLAPACK.jl</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="JuliaGPU">JuliaGPU<a class="anchor-link" href="#JuliaGPU">&#182;</a></h2><p>Bindings for common GPU libraries:</p>
+<ul>
+<li>ArrayFire.jl</li>
+<li>CUDArt.jl</li>
+<li>CUSPARSE.jl</li>
+<li>CUDNN.jl</li>
+<li>CUFFT.jl</li>
+<li>CUBLAS.jl</li>
+</ul>
+<p>JuliaGPU is also developing a framework for easy GPU usage:</p>
+<ul>
+<li>CUDAnative.jl</li>
+<li>GPUArrays.jl</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="JuliaDiff">JuliaDiff<a class="anchor-link" href="#JuliaDiff">&#182;</a></h2><p>JuliaDiff holds libraries for differentiation in Julia</p>
+<ul>
+<li>ForwardDiff.jl: A robust implementation of forward-mode autodifferentiation</li>
+<li>ReverseDiffSource.jl: A newer library for reverse-mode autodifferentiation (backwards propogation)</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="JuliaGraphs">JuliaGraphs<a class="anchor-link" href="#JuliaGraphs">&#182;</a></h2><p>JuliaGraphs is built around LightGraphs.jl, a fast and performant implementation of graph algorithms in Julia</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="JuliaMath">JuliaMath<a class="anchor-link" href="#JuliaMath">&#182;</a></h2><p>JuliaMath holds basic mathematical libraries.</p>
+<ul>
+<li>IterativeSolvers.jl: Iterative methods for <code>Ax=b</code>, Krylov subspace methods, etc.</li>
+<li>Roots.jl: Root-finding algorithms</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="JuliaDiffEq">JuliaDiffEq<a class="anchor-link" href="#JuliaDiffEq">&#182;</a></h2><p>JuliaDiffEq holds the packages for solving differential equations.</p>
+<ul>
+<li>DifferentialEquations.jl: The core package for solving ODEs, SDEs, PDEs, DAEs, (hopefully DDEs soon...). Also wraps ODE.jl, Sundials.jl, and ODEInterface.jl into one convenient API.</li>
+<li>Sundials.jl: Wrappers for the Sundials ODE/DAE solvers</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="JuliaPlots">JuliaPlots<a class="anchor-link" href="#JuliaPlots">&#182;</a></h2><p>JuliaPlots is the organization for plotting and visualization.</p>
+<ul>
+<li>Plots.jl is a metapackage for plotting. It is the main plotting library in Julia.</li>
+<li>GGPlots.jl is a Grammar of Graphics (GoG) API for Plots.jl</li>
+<li>StatPlots.jl provides plotting recipes for statistics in Plots.jl</li>
+<li>PlotRecipes.jl is a random assortment of plotting recipes</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="JuliaInterop">JuliaInterop<a class="anchor-link" href="#JuliaInterop">&#182;</a></h2><p>Interoperability of Julia with other languages.</p>
+<ul>
+<li>MATLAB.jl</li>
+<li>RCall.jl</li>
+<li>Mathematica.jl</li>
+<li>JavaCall.jl</li>
+<li>CxxWrap.jl</li>
+<li>ObjectiveC.jl</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="JuliaPy">JuliaPy<a class="anchor-link" href="#JuliaPy">&#182;</a></h2><p>Julia interop with Python</p>
+<ul>
+<li>PyPlot.jl: A wrapper for the Python matplotlib library</li>
+<li>SymPy.jl</li>
+<li>PyCall.jl</li>
+<li>pyjulia</li>
+<li>Pandas.jl</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Misc">Misc<a class="anchor-link" href="#Misc">&#182;</a></h2><ul>
+<li>JLD.jl: An HDF5-based saving format for Julia</li>
+<li>Bio.jl: A huge library for bioinformatics in Julia</li>
+</ul>
 
 </div>
 </div>
@@ -11861,126 +12059,7 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Plotting">Plotting<a class="anchor-link" href="#Plotting">&#182;</a></h1><p>Visualizations are provided by external packages. The standard package for plotting is Plots.jl.</p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Statistics">Statistics<a class="anchor-link" href="#Statistics">&#182;</a></h1><p>Statistical libraries in Julia are curated by JuliaStats. Their website can be found here: <a href="http://juliastats.github.io/">http://juliastats.github.io/</a> (old). Some packages of note are:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="DataArrays.jl">DataArrays.jl<a class="anchor-link" href="#DataArrays.jl">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="GLM.jl">GLM.jl<a class="anchor-link" href="#GLM.jl">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="RDatasets.jl">RDatasets.jl<a class="anchor-link" href="#RDatasets.jl">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="StatPlots.jl">StatPlots.jl<a class="anchor-link" href="#StatPlots.jl">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="DataFrames.jl">DataFrames.jl<a class="anchor-link" href="#DataFrames.jl">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Distributions.jl">Distributions.jl<a class="anchor-link" href="#Distributions.jl">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="DataFramesMeta.jl">DataFramesMeta.jl<a class="anchor-link" href="#DataFramesMeta.jl">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="HypothesisTests.jl">HypothesisTests.jl<a class="anchor-link" href="#HypothesisTests.jl">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Differential-Equations">Differential Equations<a class="anchor-link" href="#Differential-Equations">&#182;</a></h1><h3 id="DifferentialEquations.jl">DifferentialEquations.jl<a class="anchor-link" href="#DifferentialEquations.jl">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="ParameterizedFunctions.jl">ParameterizedFunctions.jl<a class="anchor-link" href="#ParameterizedFunctions.jl">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Optimization">Optimization<a class="anchor-link" href="#Optimization">&#182;</a></h1><h3 id="JuMP">JuMP<a class="anchor-link" href="#JuMP">&#182;</a></h3><h3 id="Optim.jl">Optim.jl<a class="anchor-link" href="#Optim.jl">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Misc">Misc<a class="anchor-link" href="#Misc">&#182;</a></h1><h3 id="ForwardDiff.jl">ForwardDiff.jl<a class="anchor-link" href="#ForwardDiff.jl">&#182;</a></h3><h3 id="JLD.jl">JLD.jl<a class="anchor-link" href="#JLD.jl">&#182;</a></h3><h3 id="IterativeSolvers.jl">IterativeSolvers.jl<a class="anchor-link" href="#IterativeSolvers.jl">&#182;</a></h3>
 </div>
 </div>
 </div></section></section>

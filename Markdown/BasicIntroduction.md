@@ -429,9 +429,6 @@ function f(x)
 end # Long form definition
 ```
 
-    WARNING: Method definition f(Any) in module Main at In[23]:2 overwritten at In[24]:2.
-
-
 
 
 
@@ -462,13 +459,10 @@ Multiple dispatch works on types. To define a dispatch on a type, use the `::Typ
 f(x::Int,y::Int) = 3x+2y
 ```
 
-    WARNING: Method definition f(Int64, Int64) in module Main at In[28]:1 overwritten at In[35]:1.
 
 
 
-
-
-    f (generic function with 4 methods)
+    f (generic function with 3 methods)
 
 
 
@@ -508,7 +502,7 @@ f{T<:Number}(x::T,y::T) = 4x+10y
 
 
 
-    f (generic function with 1 method)
+    f (generic function with 4 methods)
 
 
 
@@ -546,7 +540,7 @@ f{T<:Number,T2}(x::T,y::T2,z::T2) = 5x + 5y + 5z
 
 
 
-    f (generic function with 1 method)
+    f (generic function with 5 methods)
 
 
 
@@ -659,9 +653,6 @@ function function_playtime(x) #z is an optional argument
 end #End function definition
 z,test = function_playtime(2)
 ```
-
-    WARNING: Method definition function_playtime(Any) in module Main at In[6]:2 overwritten at In[7]:2.
-
 
 
 
@@ -844,9 +835,6 @@ end
 ds = Field(:DataScience,[:PhysicalScience;:ComputerScience])
 ```
 
-    WARNING: Method definition (::Type{Main.Field})(Any, Any) in module Main at In[58]:2 overwritten at In[63]:2.
-
-
 
 
 
@@ -855,7 +843,7 @@ ds = Field(:DataScience,[:PhysicalScience;:ComputerScience])
 
 
 ----
-#### Question 4
+#### Question 3
 
 Can you explain this interesting quirk? Thus Field is immutable, meaning that `ds.name` and `ds.school` cannot be changed:
 
@@ -1032,11 +1020,23 @@ If you know `start`, `step`, and `stop`, how do you calculate the `i`th value? C
 
 #### Problem 9
 
-Do ?linspace. Make your own LinSpace object using the array interface. Do your implementations obay dimensional analysis? Try using the package `Unitful` to build arrays of numbers with units (i.e. an array of numbers who have values of Newtons), and see if you can make your LinSpace not give errors.
+Do ?linspace. Make your own LinSpace object using the array interface. 
+
+http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces
+
+Do your implementations obay dimensional analysis? Try using the package `Unitful` to build arrays of numbers with units (i.e. an array of numbers who have values of Newtons), and see if you can make your LinSpace not give errors.
 
 #### Problem 10
 
 Check your implementation vs the source code of Ranges.jl. Tim Holy is the master of Julia arrays, learn from him!
+
+#### Problem 11
+
+Check out the call overloading notebook:
+
+http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading
+
+Overload the call on the UnitStepRange to give an interpolated value at intermediate points, i.e. if `a=1:2:10`, then `a(1.5)=2`.
 
 ### Dictionaries 
 

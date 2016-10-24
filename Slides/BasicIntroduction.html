@@ -12656,7 +12656,7 @@ $$ b_{n+1}=r*b_{n}(1-b_{n}) $$<p>where $b_{n}$ is the number of bunnies at time 
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2</span><span class="n">x</span><span class="o">+</span><span class="n">y</span> <span class="c"># Create an inline function</span>
@@ -12670,7 +12670,7 @@ $$ b_{n+1}=r*b_{n}(1-b_{n}) $$<p>where $b_{n}$ is the number of bunnies at time 
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[20]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[1]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12714,7 +12714,7 @@ $$ b_{n+1}=r*b_{n}(1-b_{n}) $$<p>where $b_{n}$ is the number of bunnies at time 
 </div></div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="k">function</span><span class="nf"> f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -12730,14 +12730,7 @@ $$ b_{n+1}=r*b_{n}(1-b_{n}) $$<p>where $b_{n}$ is the number of bunnies at time 
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>WARNING: Method definition f(Any) in module Main at In[23]:2 overwritten at In[24]:2.
-</pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt output_prompt">Out[24]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[2]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12802,7 +12795,7 @@ $$ b_{n+1}=r*b_{n}(1-b_{n}) $$<p>where $b_{n}$ is the number of bunnies at time 
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="kt">Int</span><span class="p">,</span><span class="n">y</span><span class="p">::</span><span class="kt">Int</span><span class="p">)</span> <span class="o">=</span> <span class="mi">3</span><span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="n">y</span>
@@ -12816,18 +12809,11 @@ $$ b_{n+1}=r*b_{n}(1-b_{n}) $$<p>where $b_{n}$ is the number of bunnies at time 
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>WARNING: Method definition f(Int64, Int64) in module Main at In[28]:1 overwritten at In[35]:1.
-</pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt output_prompt">Out[35]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>f (generic function with 4 methods)</pre>
+<pre>f (generic function with 3 methods)</pre>
 </div>
 
 </div>
@@ -12916,7 +12902,7 @@ $$ b_{n+1}=r*b_{n}(1-b_{n}) $$<p>where $b_{n}$ is the number of bunnies at time 
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">f</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Number</span><span class="p">}(</span><span class="n">x</span><span class="p">::</span><span class="n">T</span><span class="p">,</span><span class="n">y</span><span class="p">::</span><span class="n">T</span><span class="p">)</span> <span class="o">=</span> <span class="mi">4</span><span class="n">x</span><span class="o">+</span><span class="mi">10</span><span class="n">y</span>
@@ -12930,11 +12916,11 @@ $$ b_{n+1}=r*b_{n}(1-b_{n}) $$<p>where $b_{n}$ is the number of bunnies at time 
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>f (generic function with 1 method)</pre>
+<pre>f (generic function with 4 methods)</pre>
 </div>
 
 </div>
@@ -13031,7 +13017,7 @@ $$ b_{n+1}=r*b_{n}(1-b_{n}) $$<p>where $b_{n}$ is the number of bunnies at time 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>f (generic function with 1 method)</pre>
+<pre>f (generic function with 5 methods)</pre>
 </div>
 
 </div>
@@ -13281,7 +13267,7 @@ $$ b_{n+1}=r*b_{n}(1-b_{n}) $$<p>where $b_{n}$ is the number of bunnies at time 
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="k">function</span><span class="nf"> function_playtime</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c">#z is an optional argument</span>
@@ -13303,14 +13289,7 @@ $$ b_{n+1}=r*b_{n}(1-b_{n}) $$<p>where $b_{n}$ is the number of bunnies at time 
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>WARNING: Method definition function_playtime(Any) in module Main at In[6]:2 overwritten at In[7]:2.
-</pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -13766,7 +13745,7 @@ $$ b_{n+1}=r*b_{n}(1-b_{n}) $$<p>where $b_{n}$ is the number of bunnies at time 
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[63]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="k">immutable</span> <span class="n">Field</span>
@@ -13784,14 +13763,7 @@ $$ b_{n+1}=r*b_{n}(1-b_{n}) $$<p>where $b_{n}$ is the number of bunnies at time 
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>WARNING: Method definition (::Type{Main.Field})(Any, Any) in module Main at In[58]:2 overwritten at In[63]:2.
-</pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt output_prompt">Out[63]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -13810,7 +13782,7 @@ $$ b_{n+1}=r*b_{n}(1-b_{n}) $$<p>where $b_{n}$ is the number of bunnies at time 
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<h4 id="Question-4">Question 4<a class="anchor-link" href="#Question-4">&#182;</a></h4><p>Can you explain this interesting quirk? Thus Field is immutable, meaning that <code>ds.name</code> and <code>ds.school</code> cannot be changed:</p>
+<h4 id="Question-3">Question 3<a class="anchor-link" href="#Question-3">&#182;</a></h4><p>Can you explain this interesting quirk? Thus Field is immutable, meaning that <code>ds.name</code> and <code>ds.school</code> cannot be changed:</p>
 
 </div>
 </div>
@@ -14222,8 +14194,13 @@ while loading In[64], in expression starting on line 1
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Problem-8">Problem 8<a class="anchor-link" href="#Problem-8">&#182;</a></h4><p>If you know <code>start</code>, <code>step</code>, and <code>stop</code>, how do you calculate the <code>i</code>th value? Can you create a function MyRange which where for <code>a</code> being a <code>MyRange</code>, and <code>a[i]</code> is the correct value? Use the Julia array interface in order to define the function for the <code>a[i]</code> syntax on your type.</p>
-<h4 id="Problem-9">Problem 9<a class="anchor-link" href="#Problem-9">&#182;</a></h4><p>Do ?linspace. Make your own LinSpace object using the array interface. Do your implementations obay dimensional analysis? Try using the package <code>Unitful</code> to build arrays of numbers with units (i.e. an array of numbers who have values of Newtons), and see if you can make your LinSpace not give errors.</p>
+<h4 id="Problem-9">Problem 9<a class="anchor-link" href="#Problem-9">&#182;</a></h4><p>Do ?linspace. Make your own LinSpace object using the array interface.</p>
+<p><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces">http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces</a></p>
+<p>Do your implementations obay dimensional analysis? Try using the package <code>Unitful</code> to build arrays of numbers with units (i.e. an array of numbers who have values of Newtons), and see if you can make your LinSpace not give errors.</p>
 <h4 id="Problem-10">Problem 10<a class="anchor-link" href="#Problem-10">&#182;</a></h4><p>Check your implementation vs the source code of Ranges.jl. Tim Holy is the master of Julia arrays, learn from him!</p>
+<h4 id="Problem-11">Problem 11<a class="anchor-link" href="#Problem-11">&#182;</a></h4><p>Check out the call overloading notebook:</p>
+<p><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading">http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading</a></p>
+<p>Overload the call on the UnitStepRange to give an interpolated value at intermediate points, i.e. if <code>a=1:2:10</code>, then <code>a(1.5)=2</code>.</p>
 
 </div>
 </div>

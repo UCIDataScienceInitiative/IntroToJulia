@@ -278,16 +278,57 @@
     \subsection{Call Overloading}\label{call-overloading}
 
 Call overloading is a fairly new feature to Julia. The idea is that a
-function is also just a type: it's a type which is ``callable''
+function is also just a type: it's a type which is ``callable'',
+i.e.~the instance of the type acts like a function. These functions
+compile and thus are as fast as any other function. As of v0.5,
+anonymous functions are now instances of callable types which are
+generated as needed.
+
+To make a callable type, first make a type:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} 
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{type}\PY{n+nc}{ }\PY{n+nc}{CallTest}
+            \PY{n}{a}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Float64} 
+        \PY{k}{end}
 \end{Verbatim}
 
-    \subsection{Project}\label{project}
+    Then define its call as follows:
 
-Overload the call on the UnitStepRange to give an interpolated value at
-intermediate points, i.e.~if \texttt{a=1:2:10}, then \texttt{a(1.5)=2}.
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{p}{(}\PY{n}{c}\PY{p}{:}\PY{p}{:}\PY{n}{CallTest}\PY{p}{)}\PY{p}{(}\PY{n}{b}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Float64}\PY{p}{)} \PY{o}{=} \PY{n}{c}\PY{o}{.}\PY{n}{a}\PY{o}{*}\PY{n}{b}
+\end{Verbatim}
+
+    Note that the fields of the \texttt{CallTest} from which the function is
+defined are available from within the function (this can be used to
+store model parameters, see
+\href{https://github.com/JuliaDiffEq/ParameterizedFunctions.jl}{ParameterizedFunctions.jl}).
+Now if you make an instance of \texttt{CallTest}, it will both act like
+your type an the function you described. For example:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{c} \PY{o}{=} \PY{n}{CallTest}\PY{p}{(}\PY{l+m+mf}{2.0}\PY{p}{)}
+        \PY{n}{c}\PY{p}{(}\PY{l+m+mf}{3.0}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:} 6.0
+\end{Verbatim}
+        
+    You can add extra dispatches to the function on your type:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{p}{(}\PY{n}{c}\PY{p}{:}\PY{p}{:}\PY{n}{CallTest}\PY{p}{)}\PY{p}{(}\PY{n}{b}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int}\PY{p}{)} \PY{o}{=} \PY{n}{c}\PY{o}{.}\PY{n}{a}\PY{o}{/}\PY{n}{b}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{c}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}5}]:} 1.0
+\end{Verbatim}
+        
+    
 
 
     % Add a bibliography block to the postdoc

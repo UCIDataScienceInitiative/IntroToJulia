@@ -12,13 +12,20 @@ The ideal participant is anyone who is interested in Julia. There are many group
 
 ## Introduction to the Author
 
-Chris is a PhD student in Mathematics from the Mathematical, Computational, and Systems Biology (MCSB) Gateway program and is an active part of the Julia community. He runs the blog, http://www.stochasticlifestyle.com/, where he write tutorials on using the Julia languages covering many topics, such as high-performance and GPGPU computing, package development, and Julia tips. He is part of the JuliaMath and JuliaDiffEq communities for curating the Julia libraries for mathematics and differential equations respectively. Chris is the developer of many Julia packages, the most prominent being [DifferentialEquations.jl](https://github.com/JuliaDiffEq/DifferentialEquations.jl), a Julia library which become a standard solver for many forms of differential equations.
+Chris is a PhD student in Mathematics from the Mathematical, Computational, and Systems Biology (MCSB) Gateway program and is an active part of the Julia community. He runs the blog, http://www.stochasticlifestyle.com/, where he write tutorials on using the Julia languages covering many topics, such as high-performance and GPGPU computing, package development, and Julia tips. He is part of the JuliaMath and JuliaDiffEq communities for curating the Julia libraries for mathematics and differential equations respectively. Chris is the developer of many Julia packages, the most prominent being [DifferentialEquations.jl](https://github.com/JuliaDiffEq/DifferentialEquations.jl), a Julia library which has become a standard solver for many forms of differential equations.
+
+## Notes Before We Get Started
+
+- Please install some version of IJulia/Jupyter to follow along. I also recommend working through longer problems using the Juno IDE.
+- The start of the course will be on developing general performant Julia code. After lunch it will be about the package ecosystem. This understanding of Julia will be useful even for "Julia users" (i.e. non package developers) to use packages effectively, but don't worry we will get to packages. 
+- Please do the problems/projects at your own pace. Not everyone is expected to complete all of the material in the allotted time. Instead, this is supposed to be a resource to introduce you to a large amount of Julia, and the material may take awhile to fully be digested. That's okay!
+- During the basic introduction, there will be information that is not included in these notebooks. That is intentional. One major hurdle for learning a language is learning how to find out more about the language. Please use the manual, chatrooms, StackExchange, etc. If these aren't working for you, ask for help.
 
 ## Installation and Setup
 
 To get started, see the [Tooling, Documentation, and Community notebook](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ToolingDocumentationCommunity).
 
-## Jupyter Notebooks
+## Rendered Jupyter Notebooks
 
 ### Introduction
 

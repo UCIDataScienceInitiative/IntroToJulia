@@ -357,18 +357,13 @@ without the * if followed by a variable. For example, the following is
 allowed Julia code:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{α} \PY{o}{=} \PY{l+m+mf}{0.5}
+{\color{incolor}In [{\color{incolor}1}]:} \PY{n}{α} \PY{o}{=} \PY{l+m+mf}{0.5}
         \PY{n}{∇f}\PY{p}{(}\PY{n}{u}\PY{p}{)} \PY{o}{=} \PY{n}{α}\PY{o}{*}\PY{n}{u}\PY{p}{;} \PY{n}{∇f}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
         \PY{n}{sin}\PY{p}{(}\PY{l+m+mi}{2}\PY{n}{π}\PY{p}{)}
 \end{Verbatim}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-WARNING: Method definition ∇f(Any) in module Main at In[2]:2 overwritten at In[4]:2.
-
-    \end{Verbatim}
-
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}4}]:} -2.4492935982947064e-16
+{\color{outcolor}Out[{\color{outcolor}1}]:} -2.4492935982947064e-16
 \end{Verbatim}
         
     \subsection{Type-stability and Code
@@ -387,12 +382,13 @@ assembly! Julia, like many languages, compiles to LLVM (LLVM is a type
 of portable assembly language).
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}5}]:} \PY{p}{@}\PY{n}{code\PYZus{}llvm} \PY{l+m+mi}{2}\PY{o}{*}\PY{l+m+mi}{5}
+{\color{incolor}In [{\color{incolor}9}]:} \PY{p}{@}\PY{n}{code\PYZus{}llvm} \PY{l+m+mi}{2}\PY{o}{*}\PY{l+m+mi}{5}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
 
-define i64 @"jlsys\_*\_49090"(i64, i64) \#0 \{
+; Function Attrs: uwtable
+define i64 @"jlsys\_*\_43301"(i64, i64) \#0 \{
 top:
   \%2 = mul i64 \%1, \%0
   ret i64 \%2
@@ -445,29 +441,29 @@ However, \texttt{\^{}(::Int64,::Int64)} is type-stable, so what type
 should it output?
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}7}]:} \PY{l+m+mi}{2}\PY{o}{\PYZca{}}\PY{l+m+mi}{5}
+{\color{incolor}In [{\color{incolor}3}]:} \PY{l+m+mi}{2}\PY{o}{\PYZca{}}\PY{l+m+mi}{5}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}7}]:} 32
+{\color{outcolor}Out[{\color{outcolor}3}]:} 32
 \end{Verbatim}
         
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}1}]:} \PY{l+m+mi}{2}\PY{o}{\PYZca{}}\PY{o}{\PYZhy{}}\PY{l+m+mi}{5}
+{\color{incolor}In [{\color{incolor}4}]:} \PY{l+m+mi}{2}\PY{o}{\PYZca{}}\PY{o}{\PYZhy{}}\PY{l+m+mi}{5}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
 
         LoadError: DomainError:
-    while loading In[1], in expression starting on line 1
+    Cannot raise an integer x to a negative power -n. 
+    Make x a float by adding a zero decimal (e.g. 2.0\^{}-n instead of 2\^{}-n), or write 1/x\^{}n, float(x)\^{}-n, or (x//1)\^{}-n.
+    while loading In[4], in expression starting on line 1
 
         
 
-         in execute\_request(::ZMQ.Socket, ::IJulia.Msg) at /home/crackauc/.julia/v0.5/IJulia/src/execute\_request.jl:169
+         in power\_by\_squaring(::Int64, ::Int64) at .\textbackslash{}intfuncs.jl:118
 
-         in eventloop(::ZMQ.Socket) at /home/crackauc/.julia/v0.5/IJulia/src/eventloop.jl:8
-
-         in (::IJulia.\#\#9\#15)() at ./task.jl:360
+         in \^{}(::Int64, ::Int64) at .\textbackslash{}intfuncs.jl:142
 
     \end{Verbatim}
 
@@ -480,11 +476,22 @@ type stability.
     What happens when we don't have type stability? Let's inspect this code:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}32}]:} \PY{p}{@}\PY{n}{code\PYZus{}native} \PY{o}{\PYZca{}}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}5}]:} \PY{p}{@}\PY{n}{code\PYZus{}native} \PY{o}{\PYZca{}}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-WARNING: Could not determine size of symbol
+	.text
+Filename: intfuncs.jl
+	pushq	\%rbp
+Source line: 142
+	subq	\$32, \%rsp
+	leaq	32(\%rsp), \%rbp
+	callq	power\_by\_squaring
+	nop
+	addq	\$32, \%rsp
+	popq	\%rbp
+	retq
+	nopw	\%cs:(\%rax,\%rax)
 
     \end{Verbatim}
 
@@ -492,7 +499,7 @@ WARNING: Could not determine size of symbol
 ``safe'' like the form seen in other scripting languages:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}7}]:} \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{expo}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}6}]:} \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{expo}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{)}
             \PY{k}{if} \PY{n}{y}\PY{o}{\PYZgt{}}\PY{l+m+mi}{0}
                 \PY{k}{return} \PY{n}{x}\PY{o}{\PYZca{}}\PY{n}{y}
             \PY{k}{else}
@@ -503,14 +510,14 @@ WARNING: Could not determine size of symbol
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}7}]:} expo (generic function with 1 method)
+{\color{outcolor}Out[{\color{outcolor}6}]:} expo (generic function with 1 method)
 \end{Verbatim}
         
     Let's make sure it works:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{println}\PY{p}{(}\PY{n}{expo}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
-         \PY{n}{expo}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{5}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{println}\PY{p}{(}\PY{n}{expo}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+        \PY{n}{expo}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{5}\PY{p}{)}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
@@ -519,107 +526,112 @@ WARNING: Could not determine size of symbol
     \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}12}]:} 0.03125
+{\color{outcolor}Out[{\color{outcolor}7}]:} 0.03125
 \end{Verbatim}
         
     What happens if we inspect this code?
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}14}]:} \PY{p}{@}\PY{n}{code\PYZus{}native} \PY{n}{expo}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}8}]:} \PY{p}{@}\PY{n}{code\PYZus{}native} \PY{n}{expo}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
 	.text
-Filename: In[10]
+Filename: In[6]
 	pushq	\%rbp
 	movq	\%rsp, \%rbp
-	pushq	\%r15
 	pushq	\%r14
-	pushq	\%r12
+	pushq	\%rsi
+	pushq	\%rdi
 	pushq	\%rbx
-	subq	\$64, \%rsp
-	movq	\%rsi, \%rbx
-	movq	\%fs:0, \%r14
-	addq	\$-2672, \%r14            \# imm = 0xFFFFFFFFFFFFF590
-	xorps	\%xmm0, \%xmm0
-	movups	\%xmm0, -48(\%rbp)
-	movups	\%xmm0, -64(\%rbp)
-	movq	\$8, -80(\%rbp)
-	movq	(\%r14), \%rax
-	movq	\%rax, -72(\%rbp)
-	leaq	-80(\%rbp), \%rax
-	movq	\%rax, (\%r14)
-Source line: 2
-	movabsq	\$jl\_box\_int64, \%r15
-	callq	*\%r15
-	movq	\%rax, -64(\%rbp)
-	testq	\%rbx, \%rbx
-	jle	L137
-Source line: 3
-	movq	\%rax, -56(\%rbp)
-	movq	(\%rax), \%rdi
-	movabsq	\$power\_by\_squaring, \%rax
-	movq	\%rbx, \%rsi
+	subq	\$96, \%rsp
+	movaps	\%xmm6, -48(\%rbp)
+	movq	\%rdx, \%rdi
+	movq	\%rcx, \%rbx
+	movabsq	\$jl\_get\_ptls\_states, \%rax
 	callq	*\%rax
-	movq	\%rax, \%rdi
-	callq	*\%r15
-	movq	-72(\%rbp), \%rcx
-	movq	\%rcx, (\%r14)
-	addq	\$64, \%rsp
+	movq	\%rax, \%rsi
+	xorps	\%xmm0, \%xmm0
+	movups	\%xmm0, -64(\%rbp)
+	movups	\%xmm0, -80(\%rbp)
+	movq	\$8, -96(\%rbp)
+	movq	(\%rsi), \%rax
+	movq	\%rax, -88(\%rbp)
+	leaq	-96(\%rbp), \%rax
+	movq	\%rax, (\%rsi)
+Source line: 2
+	movabsq	\$jl\_box\_int64, \%r14
+	movq	\%rbx, \%rcx
+	callq	*\%r14
+	movq	\%rax, -80(\%rbp)
+	testq	\%rdi, \%rdi
+	jle	L146
+Source line: 3
+	movq	\%rax, -72(\%rbp)
+	movq	(\%rax), \%rcx
+	movabsq	\$power\_by\_squaring, \%rax
+	movq	\%rdi, \%rdx
+	callq	*\%rax
+	movq	\%rax, \%rcx
+	callq	*\%r14
+	movq	-88(\%rbp), \%rcx
+	movq	\%rcx, (\%rsi)
+	movaps	-48(\%rbp), \%xmm6
+	addq	\$96, \%rsp
 	popq	\%rbx
-	popq	\%r12
+	popq	\%rdi
+	popq	\%rsi
 	popq	\%r14
-	popq	\%r15
 	popq	\%rbp
 	retq
-L137:
-	movabsq	\$140082976556080, \%r15  \# imm = 0x7F679C0E8430
+L146:
+	movl	\$2148805808, \%ebx       \# imm = 0x80142CB0
 Source line: 5
-	movq	\%rax, -48(\%rbp)
+	movq	\%rax, -64(\%rbp)
 	movq	(\%rax), \%rax
 Source line: 6
-	cvtsi2sdq	\%rax, \%xmm0
+	cvtsi2sdq	\%rax, \%xmm6
 Source line: 5
-	movsd	\%xmm0, -88(\%rbp)
-	movabsq	\$jl\_gc\_pool\_alloc, \%r12
-	movl	\$1432, \%esi             \# imm = 0x598
-	movl	\$16, \%edx
-	movq	\%r14, \%rdi
-	callq	*\%r12
-	movsd	-88(\%rbp), \%xmm0        \# xmm0 = mem[0],zero
-	movq	\%r15, -8(\%rax)
-	movsd	\%xmm0, (\%rax)
-	movq	\%rax, -64(\%rbp)
+	movabsq	\$jl\_gc\_pool\_alloc, \%r14
+	movl	\$1488, \%edx             \# imm = 0x5D0
+	movl	\$16, \%r8d
+	movq	\%rsi, \%rcx
+	callq	*\%r14
+	movq	\%rbx, -8(\%rax)
+	movsd	\%xmm6, (\%rax)
+	movq	\%rax, -80(\%rbp)
 Source line: 6
-	movq	\%rax, -40(\%rbp)
-	movslq	\%ebx, \%rax
-	cmpq	\%rbx, \%rax
-	jne	L287
-	movabsq	\$\_\_powidf2, \%rax
-	movl	\%ebx, \%edi
+	movq	\%rax, -56(\%rbp)
+	movslq	\%edi, \%rax
+	cmpq	\%rdi, \%rax
+	jne	L283
+	movabsq	\$\_powidf2, \%rax
+	movapd	\%xmm6, \%xmm0
+	movl	\%edi, \%edx
 	callq	*\%rax
-	movsd	\%xmm0, -88(\%rbp)
-	movl	\$1432, \%esi             \# imm = 0x598
-	movl	\$16, \%edx
-	movq	\%r14, \%rdi
-	callq	*\%r12
-	movq	\%r15, -8(\%rax)
-	movsd	-88(\%rbp), \%xmm0        \# xmm0 = mem[0],zero
-	movsd	\%xmm0, (\%rax)
-	movq	-72(\%rbp), \%rcx
-	movq	\%rcx, (\%r14)
-	addq	\$64, \%rsp
+	movapd	\%xmm0, \%xmm6
+	movl	\$1488, \%edx             \# imm = 0x5D0
+	movl	\$16, \%r8d
+	movq	\%rsi, \%rcx
+	callq	*\%r14
+	movq	\%rbx, -8(\%rax)
+	movsd	\%xmm6, (\%rax)
+	movq	-88(\%rbp), \%rcx
+	movq	\%rcx, (\%rsi)
+	movaps	-48(\%rbp), \%xmm6
+	addq	\$96, \%rsp
 	popq	\%rbx
-	popq	\%r12
+	popq	\%rdi
+	popq	\%rsi
 	popq	\%r14
-	popq	\%r15
 	popq	\%rbp
 	retq
-L287:
-	addq	\$-479504, \%r15          \# imm = 0xFFFFFFFFFFF8AEF0
+L283:
+	addq	\$45616, \%rbx            \# imm = 0xB230
 	movabsq	\$jl\_throw, \%rax
-	movq	\%r15, \%rdi
+	movq	\%rbx, \%rcx
 	callq	*\%rax
+	ud2
 	nopw	\%cs:(\%rax,\%rax)
 
     \end{Verbatim}
@@ -733,7 +745,7 @@ array outside of its bounds. Julia will do this by default:
 macro:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}30}]:} \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{test2}\PY{p}{(}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}10}]:} \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{test2}\PY{p}{(}\PY{p}{)}
              \PY{n}{a} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}
              \PY{p}{@}\PY{n}{inbounds} \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{4}
                  \PY{n}{a}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{i}
@@ -741,11 +753,6 @@ macro:
          \PY{k}{end}
          \PY{n}{test2}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-WARNING: Method definition test2() in module Main at In[29]:2 overwritten at In[30]:2.
-
-    \end{Verbatim}
 
     This gives you the same unsafe behavior as C/Fortran, but also the same
 speed (indeed, if you add these to the benchmarks they will speed up
@@ -987,20 +994,15 @@ function.
 highest scope (and thus effectively the global scope):
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{3}
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{3}
          \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{badidea}\PY{p}{(}\PY{p}{)}
              \PY{n}{a} \PY{o}{+} \PY{l+m+mi}{2}
          \PY{k}{end}
          \PY{n}{a} \PY{o}{=} \PY{l+m+mf}{3.0}
 \end{Verbatim}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-WARNING: Method definition badidea() in module Main at In[14]:3 overwritten at In[15]:3.
-
-    \end{Verbatim}
-
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}15}]:} 3.0
+{\color{outcolor}Out[{\color{outcolor}11}]:} 3.0
 \end{Verbatim}
         
     Because no dispatch is used to specialize \texttt{badidea}, and we can
@@ -1010,18 +1012,23 @@ of \texttt{a} is unknown during compile time. However, Julia allows us
 to specify variables as constant:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}16}]:} \PY{k+kd}{const} \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{3}
-         \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{badidea}\PY{p}{(}\PY{p}{)}
-             \PY{n}{a} \PY{o}{+} \PY{l+m+mi}{2}
-         \PY{k}{end}
-         \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{4} \PY{c}{\PYZsh{} Works}
-         \PY{n}{a} \PY{o}{=} \PY{l+m+mf}{3.0} \PY{c}{\PYZsh{} Fails}
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kd}{const} \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{3}
+        \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{badidea}\PY{p}{(}\PY{p}{)}
+            \PY{n}{a} \PY{o}{+} \PY{l+m+mi}{2}
+        \PY{k}{end}
+        \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{4} \PY{c}{\PYZsh{} Works}
+        \PY{n}{a} \PY{o}{=} \PY{l+m+mf}{3.0} \PY{c}{\PYZsh{} Fails}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
+WARNING: redefining constant a
 
-        LoadError: cannot declare a constant; it already has a value
-    while loading In[16], in expression starting on line 1
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        LoadError: invalid redefinition of constant a
+    while loading In[1], in expression starting on line 6
 
         
 
@@ -1053,24 +1060,19 @@ error to see is for newcomers to benchmark Julia like:
 will optimize away the loop and stick in the answer)
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}28}]:} \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{timetest}\PY{p}{(}\PY{p}{)}
-             \PY{n}{a} \PY{o}{=} \PY{l+m+mf}{3.0}
-             \PY{p}{@}\PY{n}{time} \PY{k}{for} \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{4}
-                 \PY{n}{a} \PY{o}{+}\PY{o}{=} \PY{n}{i}
-             \PY{k}{end}
-         \PY{k}{end}
-         \PY{n}{timetest}\PY{p}{(}\PY{p}{)} \PY{c}{\PYZsh{} First time compiles}
-         \PY{n}{timetest}\PY{p}{(}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}2}]:} \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{timetest}\PY{p}{(}\PY{p}{)}
+            \PY{n}{a} \PY{o}{=} \PY{l+m+mf}{3.0}
+            \PY{p}{@}\PY{n}{time} \PY{k}{for} \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{4}
+                \PY{n}{a} \PY{o}{+}\PY{o}{=} \PY{n}{i}
+            \PY{k}{end}
+        \PY{k}{end}
+        \PY{n}{timetest}\PY{p}{(}\PY{p}{)} \PY{c}{\PYZsh{} First time compiles}
+        \PY{n}{timetest}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
   0.000000 seconds
   0.000000 seconds
-
-    \end{Verbatim}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-WARNING: Method definition timetest() in module Main at In[27]:2 overwritten at In[28]:2.
 
     \end{Verbatim}
 

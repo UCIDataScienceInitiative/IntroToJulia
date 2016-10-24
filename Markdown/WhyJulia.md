@@ -44,9 +44,6 @@ Note here that I showed off Julia's unicode tab completion. Julia allows for uni
 sin(2π)
 ```
 
-    WARNING: Method definition ∇f(Any) in module Main at In[2]:2 overwritten at In[4]:2.
-
-
 
 
 
@@ -64,7 +61,8 @@ Type stability is the idea that there is only 1 possible type which can be outpu
 ```
 
     
-    define i64 @"jlsys_*_49090"(i64, i64) #0 {
+    ; Function Attrs: uwtable
+    define i64 @"jlsys_*_43301"(i64, i64) #0 {
     top:
       %2 = mul i64 %1, %0
       ret i64 %2
@@ -117,15 +115,15 @@ The upside is that Julia's functions, when type stable, are essentially C/Fortra
 
 
     LoadError: DomainError:
-    while loading In[1], in expression starting on line 1
+    Cannot raise an integer x to a negative power -n. 
+    Make x a float by adding a zero decimal (e.g. 2.0^-n instead of 2^-n), or write 1/x^n, float(x)^-n, or (x//1)^-n.
+    while loading In[4], in expression starting on line 1
 
     
 
-     in execute_request(::ZMQ.Socket, ::IJulia.Msg) at /home/crackauc/.julia/v0.5/IJulia/src/execute_request.jl:169
+     in power_by_squaring(::Int64, ::Int64) at .\intfuncs.jl:118
 
-     in eventloop(::ZMQ.Socket) at /home/crackauc/.julia/v0.5/IJulia/src/eventloop.jl:8
-
-     in (::IJulia.##9#15)() at ./task.jl:360
+     in ^(::Int64, ::Int64) at .\intfuncs.jl:142
 
 
 Here we get an error. In order to guarantee to the compiler that `^` will give an Int64 back, it has to throw an error. If you do this in MATLAB, Python, or R, it will not throw an error. That is because those languages do not have their entire language built around type stability.
@@ -137,7 +135,18 @@ What happens when we don't have type stability? Let's inspect this code:
 @code_native ^(2,5)
 ```
 
-    WARNING: Could not determine size of symbol
+    	.text
+    Filename: intfuncs.jl
+    	pushq	%rbp
+    Source line: 142
+    	subq	$32, %rsp
+    	leaq	32(%rsp), %rbp
+    	callq	power_by_squaring
+    	nop
+    	addq	$32, %rsp
+    	popq	%rbp
+    	retq
+    	nopw	%cs:(%rax,%rax)
 
 
 Now let's define our own exponentiation on integers. Let's make it "safe" like the form seen in other scripting languages:
@@ -188,96 +197,101 @@ What happens if we inspect this code?
 ```
 
     	.text
-    Filename: In[10]
+    Filename: In[6]
     	pushq	%rbp
     	movq	%rsp, %rbp
-    	pushq	%r15
     	pushq	%r14
-    	pushq	%r12
+    	pushq	%rsi
+    	pushq	%rdi
     	pushq	%rbx
-    	subq	$64, %rsp
-    	movq	%rsi, %rbx
-    	movq	%fs:0, %r14
-    	addq	$-2672, %r14            # imm = 0xFFFFFFFFFFFFF590
-    	xorps	%xmm0, %xmm0
-    	movups	%xmm0, -48(%rbp)
-    	movups	%xmm0, -64(%rbp)
-    	movq	$8, -80(%rbp)
-    	movq	(%r14), %rax
-    	movq	%rax, -72(%rbp)
-    	leaq	-80(%rbp), %rax
-    	movq	%rax, (%r14)
-    Source line: 2
-    	movabsq	$jl_box_int64, %r15
-    	callq	*%r15
-    	movq	%rax, -64(%rbp)
-    	testq	%rbx, %rbx
-    	jle	L137
-    Source line: 3
-    	movq	%rax, -56(%rbp)
-    	movq	(%rax), %rdi
-    	movabsq	$power_by_squaring, %rax
-    	movq	%rbx, %rsi
+    	subq	$96, %rsp
+    	movaps	%xmm6, -48(%rbp)
+    	movq	%rdx, %rdi
+    	movq	%rcx, %rbx
+    	movabsq	$jl_get_ptls_states, %rax
     	callq	*%rax
-    	movq	%rax, %rdi
-    	callq	*%r15
-    	movq	-72(%rbp), %rcx
-    	movq	%rcx, (%r14)
-    	addq	$64, %rsp
+    	movq	%rax, %rsi
+    	xorps	%xmm0, %xmm0
+    	movups	%xmm0, -64(%rbp)
+    	movups	%xmm0, -80(%rbp)
+    	movq	$8, -96(%rbp)
+    	movq	(%rsi), %rax
+    	movq	%rax, -88(%rbp)
+    	leaq	-96(%rbp), %rax
+    	movq	%rax, (%rsi)
+    Source line: 2
+    	movabsq	$jl_box_int64, %r14
+    	movq	%rbx, %rcx
+    	callq	*%r14
+    	movq	%rax, -80(%rbp)
+    	testq	%rdi, %rdi
+    	jle	L146
+    Source line: 3
+    	movq	%rax, -72(%rbp)
+    	movq	(%rax), %rcx
+    	movabsq	$power_by_squaring, %rax
+    	movq	%rdi, %rdx
+    	callq	*%rax
+    	movq	%rax, %rcx
+    	callq	*%r14
+    	movq	-88(%rbp), %rcx
+    	movq	%rcx, (%rsi)
+    	movaps	-48(%rbp), %xmm6
+    	addq	$96, %rsp
     	popq	%rbx
-    	popq	%r12
+    	popq	%rdi
+    	popq	%rsi
     	popq	%r14
-    	popq	%r15
     	popq	%rbp
     	retq
-    L137:
-    	movabsq	$140082976556080, %r15  # imm = 0x7F679C0E8430
+    L146:
+    	movl	$2148805808, %ebx       # imm = 0x80142CB0
     Source line: 5
-    	movq	%rax, -48(%rbp)
+    	movq	%rax, -64(%rbp)
     	movq	(%rax), %rax
     Source line: 6
-    	cvtsi2sdq	%rax, %xmm0
+    	cvtsi2sdq	%rax, %xmm6
     Source line: 5
-    	movsd	%xmm0, -88(%rbp)
-    	movabsq	$jl_gc_pool_alloc, %r12
-    	movl	$1432, %esi             # imm = 0x598
-    	movl	$16, %edx
-    	movq	%r14, %rdi
-    	callq	*%r12
-    	movsd	-88(%rbp), %xmm0        # xmm0 = mem[0],zero
-    	movq	%r15, -8(%rax)
-    	movsd	%xmm0, (%rax)
-    	movq	%rax, -64(%rbp)
+    	movabsq	$jl_gc_pool_alloc, %r14
+    	movl	$1488, %edx             # imm = 0x5D0
+    	movl	$16, %r8d
+    	movq	%rsi, %rcx
+    	callq	*%r14
+    	movq	%rbx, -8(%rax)
+    	movsd	%xmm6, (%rax)
+    	movq	%rax, -80(%rbp)
     Source line: 6
-    	movq	%rax, -40(%rbp)
-    	movslq	%ebx, %rax
-    	cmpq	%rbx, %rax
-    	jne	L287
-    	movabsq	$__powidf2, %rax
-    	movl	%ebx, %edi
+    	movq	%rax, -56(%rbp)
+    	movslq	%edi, %rax
+    	cmpq	%rdi, %rax
+    	jne	L283
+    	movabsq	$_powidf2, %rax
+    	movapd	%xmm6, %xmm0
+    	movl	%edi, %edx
     	callq	*%rax
-    	movsd	%xmm0, -88(%rbp)
-    	movl	$1432, %esi             # imm = 0x598
-    	movl	$16, %edx
-    	movq	%r14, %rdi
-    	callq	*%r12
-    	movq	%r15, -8(%rax)
-    	movsd	-88(%rbp), %xmm0        # xmm0 = mem[0],zero
-    	movsd	%xmm0, (%rax)
-    	movq	-72(%rbp), %rcx
-    	movq	%rcx, (%r14)
-    	addq	$64, %rsp
+    	movapd	%xmm0, %xmm6
+    	movl	$1488, %edx             # imm = 0x5D0
+    	movl	$16, %r8d
+    	movq	%rsi, %rcx
+    	callq	*%r14
+    	movq	%rbx, -8(%rax)
+    	movsd	%xmm6, (%rax)
+    	movq	-88(%rbp), %rcx
+    	movq	%rcx, (%rsi)
+    	movaps	-48(%rbp), %xmm6
+    	addq	$96, %rsp
     	popq	%rbx
-    	popq	%r12
+    	popq	%rdi
+    	popq	%rsi
     	popq	%r14
-    	popq	%r15
     	popq	%rbp
     	retq
-    L287:
-    	addq	$-479504, %r15          # imm = 0xFFFFFFFFFFF8AEF0
+    L283:
+    	addq	$45616, %rbx            # imm = 0xB230
     	movabsq	$jl_throw, %rax
-    	movq	%r15, %rdi
+    	movq	%rbx, %rcx
     	callq	*%rax
+    	ud2
     	nopw	%cs:(%rax,%rax)
 
 
@@ -333,9 +347,6 @@ function test2()
 end
 test2()
 ```
-
-    WARNING: Method definition test2() in module Main at In[29]:2 overwritten at In[30]:2.
-
 
 This gives you the same unsafe behavior as C/Fortran, but also the same speed (indeed, if you add these to the benchmarks they will speed up close to C). This is another interesting feature of Julia: it lets you **by default have the safety of a scripting language, but turn off these features when necessary (/after testing and debugging) to get full performance.**
 
@@ -533,9 +544,6 @@ end
 a = 3.0
 ```
 
-    WARNING: Method definition badidea() in module Main at In[14]:3 overwritten at In[15]:3.
-
-
 
 
 
@@ -555,9 +563,12 @@ a = 4 # Works
 a = 3.0 # Fails
 ```
 
+    WARNING: redefining constant a
 
-    LoadError: cannot declare a constant; it already has a value
-    while loading In[16], in expression starting on line 1
+
+
+    LoadError: invalid redefinition of constant a
+    while loading In[1], in expression starting on line 6
 
     
 
@@ -593,9 +604,6 @@ timetest()
 
       0.000000 seconds
       0.000000 seconds
-
-
-    WARNING: Method definition timetest() in module Main at In[27]:2 overwritten at In[28]:2.
 
 
 This is a very easy problem to fall for: don't benchmark or time things in the REPL's global scope. Always wrap things in a function or declare them as const. There is a developer thread [to make the global performance less awful](https://github.com/JuliaLang/julia/issues/8870) but, given the information from this notebook, you can already see that it will never be "not awful", it will just be "less awful".

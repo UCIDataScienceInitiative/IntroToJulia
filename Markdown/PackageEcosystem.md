@@ -1,73 +1,129 @@
 
 # Overview of the Package Ecosystem
 
-# Good Packages to Know
+Julia's package ecosystem is organized in terms of Github organizations. While this is informal, many of the main packages (but not all!) can be found in the various organizations.
 
-# Interop
+http://julialang.org/community/
 
-### ccall
+A useful source on the the changing package ecosystem (might be) found here:
 
-While not technically a package because it's built into Julia, `ccall` is very important to know. The documentation page for `ccall` is: http://docs.julialang.org/en/release-0.4/manual/calling-c-and-fortran-code/. I wrote a tutorial for using ccall: http://www.stochasticlifestyle.com/using-julias-c-interface-utilize-c-libraries/
+http://www.pkgupdate.com/
 
-#### Xeon Phi
+## A Quick Look At Some Organizations
 
-Note that you can use ccall to control Xeon Phi acceleration cards: http://www.stochasticlifestyle.com/interfacing-xeon-phi-via-julia/
+Let's take a quick look at some organizations which provide important functionality to Julia. I will go through some of the most well-developed and "ready for use orgs". Of course, there are more that I will be leaving off the list.
 
-### Cxx.jl
 
-### RCall
 
-### PyCall
+### JuliaLang
 
-### MATLAB.jl
+- JuliaLang is the Base organization
+- It holds the Julia language itself
+- Other core pacakges exist in JuliaLang
+  - PkgDev for package development
+  - IJulia
+  - Compat for version compatibility
+- There is a general trend of "slimming Base" to lower the Travis load on JuliaLang
 
-### CUDArt.jl
+### JuliaStats
 
-http://www.stochasticlifestyle.com/julia-on-the-hpc-with-gpus/
+- Hosts Dataframes.jl, the data frame implementation of Julia
+- Distributions.jl holds probability distributions and methods for generating random numbers according to specific distributions
+- The standard regression and hypothesis testing libraries are held here
+- Klara.jl is a native MCMC engine
+- One of the main R linear model library developers, Douglas Bates, is a heavy contributor
 
-http://www.stochasticlifestyle.com/multiple-gpu-on-the-hpc-with-julia/
+Note, Dataframes used to be slow. A very large change is coming in the next week. To understand it in detail, read: http://www.johnmyleswhite.com/notebook/2015/11/28/why-julias-dataframes-are-still-slow/
 
-# Plotting
+## JuliaOpt
 
-Visualizations are provided by external packages. The standard package for plotting is Plots.jl. 
+- Julia for Mathematical Programming (JuMP) is one of the premire Julia libraries. It implements a DSL for interfacing with many commercial and non-commercial mathematical optimization (linear, mixed-integer, conic, semidefinite, nonlinear) algorithms. Most of JuliaOpt can be used through JuMP
+- Optim.jl are a set of native Julia optimization algorithms
+- An interesting fact is that the creator of NLopt is a heavy contributor to Julia and JuliaOpt
 
-# Statistics
+## JuliaParallel
 
-Statistical libraries in Julia are curated by JuliaStats. Their website can be found here: http://juliastats.github.io/ (old). Some packages of note are:
+Bindings to many popular parallel libraries / APIs are found in JuliaParallel:
 
-### DataArrays.jl
+- DistributedArrays.jl: A distributed array implmentation
+- PETSc.jl
+- MPI.jl
+- ScaLAPACK.jl
 
-### GLM.jl
+## JuliaGPU
 
-### RDatasets.jl
+Bindings for common GPU libraries:
 
-### StatPlots.jl
+- ArrayFire.jl
+- CUDArt.jl
+- CUSPARSE.jl
+- CUDNN.jl
+- CUFFT.jl
+- CUBLAS.jl
 
-### DataFrames.jl
+JuliaGPU is also developing a framework for easy GPU usage:
 
-### Distributions.jl
+- CUDAnative.jl
+- GPUArrays.jl
 
-### DataFramesMeta.jl
+## JuliaDiff
 
-### HypothesisTests.jl
+JuliaDiff holds libraries for differentiation in Julia
 
-# Differential Equations
+- ForwardDiff.jl: A robust implementation of forward-mode autodifferentiation
+- ReverseDiffSource.jl: A newer library for reverse-mode autodifferentiation (backwards propogation)
 
-### DifferentialEquations.jl
+## JuliaGraphs
 
-### ParameterizedFunctions.jl
+JuliaGraphs is built around LightGraphs.jl, a fast and performant implementation of graph algorithms in Julia
 
-# Optimization
+## JuliaMath
 
-### JuMP
+JuliaMath holds basic mathematical libraries.
 
-### Optim.jl
+- IterativeSolvers.jl: Iterative methods for `Ax=b`, Krylov subspace methods, etc.
+- Roots.jl: Root-finding algorithms
 
-# Misc
+## JuliaDiffEq
 
-### ForwardDiff.jl
+JuliaDiffEq holds the packages for solving differential equations.
 
-### JLD.jl
+- DifferentialEquations.jl: The core package for solving ODEs, SDEs, PDEs, DAEs, (hopefully DDEs soon...). Also wraps ODE.jl, Sundials.jl, and ODEInterface.jl into one convenient API.
+- Sundials.jl: Wrappers for the Sundials ODE/DAE solvers
 
-### IterativeSolvers.jl
+## JuliaPlots
+
+JuliaPlots is the organization for plotting and visualization.
+
+- Plots.jl is a metapackage for plotting. It is the main plotting library in Julia.
+- GGPlots.jl is a Grammar of Graphics (GoG) API for Plots.jl
+- StatPlots.jl provides plotting recipes for statistics in Plots.jl
+- PlotRecipes.jl is a random assortment of plotting recipes
+
+## JuliaInterop
+
+Interoperability of Julia with other languages.
+
+- MATLAB.jl
+- RCall.jl
+- Mathematica.jl
+- JavaCall.jl
+- CxxWrap.jl
+- ObjectiveC.jl
+
+## JuliaPy
+
+Julia interop with Python
+
+- PyPlot.jl: A wrapper for the Python matplotlib library
+- SymPy.jl
+- PyCall.jl
+- pyjulia
+- Pandas.jl
+
+## Misc
+
+- JLD.jl: An HDF5-based saving format for Julia
+- Bio.jl: A huge library for bioinformatics in Julia
+
 

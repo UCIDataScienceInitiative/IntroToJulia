@@ -843,11 +843,11 @@ $r\in\left(2.9,4\right)$
     \subsection{Function Syntax}\label{function-syntax}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{)} \PY{o}{=} \PY{l+m+mi}{2}\PY{n}{x}\PY{o}{+}\PY{n}{y} \PY{c}{\PYZsh{} Create an inline function}
+{\color{incolor}In [{\color{incolor}1}]:} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{)} \PY{o}{=} \PY{l+m+mi}{2}\PY{n}{x}\PY{o}{+}\PY{n}{y} \PY{c}{\PYZsh{} Create an inline function}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}20}]:} f (generic function with 1 method)
+{\color{outcolor}Out[{\color{outcolor}1}]:} f (generic function with 1 method)
 \end{Verbatim}
         
     \begin{Verbatim}[commandchars=\\\{\}]
@@ -859,18 +859,13 @@ $r\in\left(2.9,4\right)$
 \end{Verbatim}
         
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}24}]:} \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)}
-           \PY{n}{x}\PY{o}{+}\PY{l+m+mi}{2}  
-         \PY{k}{end} \PY{c}{\PYZsh{} Long form definition}
+{\color{incolor}In [{\color{incolor}2}]:} \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+          \PY{n}{x}\PY{o}{+}\PY{l+m+mi}{2}  
+        \PY{k}{end} \PY{c}{\PYZsh{} Long form definition}
 \end{Verbatim}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-WARNING: Method definition f(Any) in module Main at In[23]:2 overwritten at In[24]:2.
-
-    \end{Verbatim}
-
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}24}]:} f (generic function with 2 methods)
+{\color{outcolor}Out[{\color{outcolor}2}]:} f (generic function with 2 methods)
 \end{Verbatim}
         
     By default, Julia functions return the last value computed within them.
@@ -894,16 +889,11 @@ Multiple dispatch works on types. To define a dispatch on a type, use
 the \texttt{::Type} signifier:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}35}]:} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int}\PY{p}{,}\PY{n}{y}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int}\PY{p}{)} \PY{o}{=} \PY{l+m+mi}{3}\PY{n}{x}\PY{o}{+}\PY{l+m+mi}{2}\PY{n}{y}
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int}\PY{p}{,}\PY{n}{y}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int}\PY{p}{)} \PY{o}{=} \PY{l+m+mi}{3}\PY{n}{x}\PY{o}{+}\PY{l+m+mi}{2}\PY{n}{y}
 \end{Verbatim}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-WARNING: Method definition f(Int64, Int64) in module Main at In[28]:1 overwritten at In[35]:1.
-
-    \end{Verbatim}
-
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}35}]:} f (generic function with 4 methods)
+{\color{outcolor}Out[{\color{outcolor}3}]:} f (generic function with 3 methods)
 \end{Verbatim}
         
     Julia will dispatch onto the strictest acceptible type signature.
@@ -929,11 +919,11 @@ method for ``two values are passed in, both Numbers and having the same
 type''. Note that \texttt{\textless{}:} means ``a subtype of''.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{f}\PY{p}{\PYZob{}}\PY{n}{T}\PY{o}{\PYZlt{}:}\PY{n}{Number}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{x}\PY{p}{:}\PY{p}{:}\PY{n}{T}\PY{p}{,}\PY{n}{y}\PY{p}{:}\PY{p}{:}\PY{n}{T}\PY{p}{)} \PY{o}{=} \PY{l+m+mi}{4}\PY{n}{x}\PY{o}{+}\PY{l+m+mi}{10}\PY{n}{y}
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{f}\PY{p}{\PYZob{}}\PY{n}{T}\PY{o}{\PYZlt{}:}\PY{n}{Number}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{x}\PY{p}{:}\PY{p}{:}\PY{n}{T}\PY{p}{,}\PY{n}{y}\PY{p}{:}\PY{p}{:}\PY{n}{T}\PY{p}{)} \PY{o}{=} \PY{l+m+mi}{4}\PY{n}{x}\PY{o}{+}\PY{l+m+mi}{10}\PY{n}{y}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}3}]:} f (generic function with 1 method)
+{\color{outcolor}Out[{\color{outcolor}4}]:} f (generic function with 4 methods)
 \end{Verbatim}
         
     \begin{Verbatim}[commandchars=\\\{\}]
@@ -962,7 +952,7 @@ must match types:
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}5}]:} f (generic function with 1 method)
+{\color{outcolor}Out[{\color{outcolor}5}]:} f (generic function with 5 methods)
 \end{Verbatim}
         
     We will go into more depth on multiple dispatch later since this is the
@@ -1059,7 +1049,7 @@ functions, you can store functions as variables, pass them as variables,
 etc. For example:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}7}]:} \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{function\PYZus{}playtime}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{c}{\PYZsh{}z is an optional argument}
+{\color{incolor}In [{\color{incolor}6}]:} \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{function\PYZus{}playtime}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{c}{\PYZsh{}z is an optional argument}
             \PY{n}{y} \PY{o}{=} \PY{l+m+mi}{2}\PY{o}{+}\PY{n}{x}
             \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{test}\PY{p}{(}\PY{p}{)}
                 \PY{l+m+mi}{2}\PY{n}{y} \PY{c}{\PYZsh{} y is defined in the previous scope, so it\PYZsq{}s available here}
@@ -1070,13 +1060,8 @@ etc. For example:
         \PY{n}{z}\PY{p}{,}\PY{n}{test} \PY{o}{=} \PY{n}{function\PYZus{}playtime}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
 \end{Verbatim}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-WARNING: Method definition function\_playtime(Any) in module Main at In[6]:2 overwritten at In[7]:2.
-
-    \end{Verbatim}
-
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}7}]:} (64,test)
+{\color{outcolor}Out[{\color{outcolor}6}]:} (64,test)
 \end{Verbatim}
         
     \begin{Verbatim}[commandchars=\\\{\}]
@@ -1248,25 +1233,20 @@ built-in Number types are defined as \texttt{immutable} in order to give
 good performance.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}63}]:} \PY{k}{immutable} \PY{n}{Field}
-             \PY{n}{name}
-             \PY{n}{school}
-         \PY{k}{end}
-         \PY{n}{ds} \PY{o}{=} \PY{n}{Field}\PY{p}{(}\PY{p}{:}\PY{n}{DataScience}\PY{p}{,}\PY{p}{[}\PY{p}{:}\PY{n}{PhysicalScience}\PY{p}{;}\PY{p}{:}\PY{n}{ComputerScience}\PY{p}{]}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}7}]:} \PY{k}{immutable} \PY{n}{Field}
+            \PY{n}{name}
+            \PY{n}{school}
+        \PY{k}{end}
+        \PY{n}{ds} \PY{o}{=} \PY{n}{Field}\PY{p}{(}\PY{p}{:}\PY{n}{DataScience}\PY{p}{,}\PY{p}{[}\PY{p}{:}\PY{n}{PhysicalScience}\PY{p}{;}\PY{p}{:}\PY{n}{ComputerScience}\PY{p}{]}\PY{p}{)}
 \end{Verbatim}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-WARNING: Method definition (::Type\{Main.Field\})(Any, Any) in module Main at In[58]:2 overwritten at In[63]:2.
-
-    \end{Verbatim}
-
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}63}]:} Field(:DataScience,Symbol[:PhysicalScience,:ComputerScience])
+{\color{outcolor}Out[{\color{outcolor}7}]:} Field(:DataScience,Symbol[:PhysicalScience,:ComputerScience])
 \end{Verbatim}
         
     \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\paragraph{Question 4}\label{question-4}
+\paragraph{Question 3}\label{question-3}
 
 Can you explain this interesting quirk? Thus Field is immutable, meaning
 that \texttt{ds.name} and \texttt{ds.school} cannot be changed:
@@ -1495,6 +1475,9 @@ type.
 \paragraph{Problem 9}\label{problem-9}
 
 Do ?linspace. Make your own LinSpace object using the array interface.
+
+http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces
+
 Do your implementations obay dimensional analysis? Try using the package
 \texttt{Unitful} to build arrays of numbers with units (i.e.~an array of
 numbers who have values of Newtons), and see if you can make your
@@ -1504,6 +1487,15 @@ LinSpace not give errors.
 
 Check your implementation vs the source code of Ranges.jl. Tim Holy is
 the master of Julia arrays, learn from him!
+
+\paragraph{Problem 11}\label{problem-11}
+
+Check out the call overloading notebook:
+
+http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading
+
+Overload the call on the UnitStepRange to give an interpolated value at
+intermediate points, i.e.~if \texttt{a=1:2:10}, then \texttt{a(1.5)=2}.
 
     \subsubsection{Dictionaries}\label{dictionaries}
 

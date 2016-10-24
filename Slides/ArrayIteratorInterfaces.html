@@ -11825,19 +11825,167 @@ a.anchor-link {
 <div class="reveal">
 <div class="slides">
 <section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="The-Array-and-Iterator-Interface">The Array and Iterator Interface<a class="anchor-link" href="#The-Array-and-Iterator-Interface">&#182;</a></h2><p>Julia has a few "informal" interfaces. The idea is that, if you subclass a given abstract type and implement a few methods, then by multiple dispatch the type will now "act like" whatever you want it to act like, in any instance you would like.</p>
+<p>One example is the array interface. The methods to implement are:</p>
+<ul>
+<li><code>size(A)</code></li>
+<li><code>getindex(A, i::Int)</code></li>
+<li><code>getindex(A, I::Vararg{Int, N})</code></li>
+<li><code>setindex!(A, v, i::Int)</code></li>
+<li><code>setindex!(A, v, I::Vararg{Int, N})</code></li>
+</ul>
+<p><code>size(A)</code> returns what the size of the array is as a tuple. For example, a 3-dimensional "array" (remember, it can be anything, we are just saying it acts like an array!) would have <code>size(A)</code> return a tuple <code>(dim1,dim2,dim3)</code> for the sizes along each dimension. <code>getindex</code> is the function that is used by <code>A[i]</code>, and <code>setindex!</code> is the function for mutating <code>A</code> via <code>A[i]=</code>.</p>
+<p>The <code>Vararg{Int, N}</code> just means variable numbers of arguments, so for example <code>getindex(A,i1,i2)</code> is what is called by <code>A[i1,i2]</code>. More generally, using slurping you can define <code>getindex(A,I...)</code> and the function for <code>A[i1,i2,...,in]</code>, and <code>I</code> will be a tuple of <code>(i1,i2,...,in)</code>.</p>
+<p>Reference: <a href="http://docs.julialang.org/en/release-0.5/manual/interfaces/">http://docs.julialang.org/en/release-0.5/manual/interfaces/</a></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Usage-Example">Usage Example<a class="anchor-link" href="#Usage-Example">&#182;</a></h2><p>One usage example is in DifferentialEquations.jl. When you solve a differential equation, the solution returns a specialized solution type.</p>
+
+</div>
+</div>
+</div></section></section><section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span>
+<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">DifferentialEquations</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">prob_ode_linear</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
-</div></section></section>
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>DifferentialEquations.ODESolution, 4 timesteps, final value 1.372803219752981</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>While there are many fields that the type could hold, such as the errors of a given analytical solution:</p>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>DifferentialEquations.ODESolution with 4 timesteps. Analytical solution is known.
+u: 1.372803219752981
+errors: Dict(:l∞=&gt;2.71224e-6,:final=&gt;2.71224e-6,:l2=&gt;1.57376e-6)
+t: [0.0,0.146343,0.643575,1.0]
+timeseries: [0.5,0.579644,0.957782,1.3728]
+timeseries_analytic: [0.5,0.579644,0.957781,1.3728]
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>An array interface is provided so that the solution "acts" like a traditional solution: i.e. as an array of the numerically computed values:</p>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="c"># The third timestep</span>
+<span class="n">sol</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="c"># The value at the third timestep</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0.6435749072667494
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.9577822179420759</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>An entire Julia organization, JuliaArrays, is devoted to making fast, interesting, and easy to use arrays. It's an odd concept: arrays are just arrays, right? However, Julia's genericism makes it so that way this now works in any place which accepts an <code>AbstractVector</code> output, so the solution is directly usable in numerical optimization algorithms, regressions, etc.</p>
+
+</div>
+</div>
+</div></div></section></section>
 </div>
 </div>
 

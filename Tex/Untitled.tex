@@ -140,7 +140,7 @@
     \def\gt{>}
     \def\lt{<}
     % Document parameters
-    \title{PackageEcosystem}
+    \title{Untitled}
     
     
     
@@ -275,247 +275,35 @@
     
 
     
-    \section{Overview of the Package
-Ecosystem}\label{overview-of-the-package-ecosystem}
+    \section{Interop}\label{interop}
 
-Julia's package ecosystem is organized in terms of Github organizations.
-While this is informal, many of the main packages (but not all!) can be
-found in the various organizations.
+\subsubsection{ccall}\label{ccall}
 
-http://julialang.org/community/
+While not technically a package because it's built into Julia,
+\texttt{ccall} is very important to know. The documentation page for
+\texttt{ccall} is:
+http://docs.julialang.org/en/release-0.4/manual/calling-c-and-fortran-code/.
+I wrote a tutorial for using ccall:
+http://www.stochasticlifestyle.com/using-julias-c-interface-utilize-c-libraries/
 
-A useful source on the the changing package ecosystem (might be) found
-here:
+\paragraph{Xeon Phi}\label{xeon-phi}
 
-http://www.pkgupdate.com/
+Note that you can use ccall to control Xeon Phi acceleration cards:
+http://www.stochasticlifestyle.com/interfacing-xeon-phi-via-julia/
 
-    \subsection{A Quick Look At Some
-Organizations}\label{a-quick-look-at-some-organizations}
+\subsubsection{Cxx.jl}\label{cxx.jl}
 
-Let's take a quick look at some organizations which provide important
-functionality to Julia. I will go through some of the most
-well-developed and ``ready for use orgs''. Of course, there are more
-that I will be leaving off the list.
+\subsubsection{RCall}\label{rcall}
 
-    \subsubsection{JuliaLang}\label{julialang}
+\subsubsection{PyCall}\label{pycall}
 
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  JuliaLang is the Base organization
-\item
-  It holds the Julia language itself
-\item
-  Other core pacakges exist in JuliaLang
-\item
-  PkgDev for package development
-\item
-  IJulia
-\item
-  Compat for version compatibility
-\item
-  There is a general trend of ``slimming Base'' to lower the Travis load
-  on JuliaLang
-\end{itemize}
+\subsubsection{MATLAB.jl}\label{matlab.jl}
 
-    \subsubsection{JuliaStats}\label{juliastats}
+\subsubsection{CUDArt.jl}\label{cudart.jl}
 
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  Hosts Dataframes.jl, the data frame implementation of Julia
-\item
-  Distributions.jl holds probability distributions and methods for
-  generating random numbers according to specific distributions
-\item
-  The standard regression and hypothesis testing libraries are held here
-\item
-  Klara.jl is a native MCMC engine
-\item
-  One of the main R linear model library developers, Douglas Bates, is a
-  heavy contributor
-\end{itemize}
+http://www.stochasticlifestyle.com/julia-on-the-hpc-with-gpus/
 
-Note, Dataframes used to be slow. A very large change is coming in the
-next week. To understand it in detail, read:
-http://www.johnmyleswhite.com/notebook/2015/11/28/why-julias-dataframes-are-still-slow/
-
-    \subsection{JuliaOpt}\label{juliaopt}
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  Julia for Mathematical Programming (JuMP) is one of the premire Julia
-  libraries. It implements a DSL for interfacing with many commercial
-  and non-commercial mathematical optimization (linear, mixed-integer,
-  conic, semidefinite, nonlinear) algorithms. Most of JuliaOpt can be
-  used through JuMP
-\item
-  Optim.jl are a set of native Julia optimization algorithms
-\item
-  An interesting fact is that the creator of NLopt is a heavy
-  contributor to Julia and JuliaOpt
-\end{itemize}
-
-    \subsection{JuliaParallel}\label{juliaparallel}
-
-Bindings to many popular parallel libraries / APIs are found in
-JuliaParallel:
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  DistributedArrays.jl: A distributed array implmentation
-\item
-  PETSc.jl
-\item
-  MPI.jl
-\item
-  ScaLAPACK.jl
-\end{itemize}
-
-    \subsection{JuliaGPU}\label{juliagpu}
-
-Bindings for common GPU libraries:
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  ArrayFire.jl
-\item
-  CUDArt.jl
-\item
-  CUSPARSE.jl
-\item
-  CUDNN.jl
-\item
-  CUFFT.jl
-\item
-  CUBLAS.jl
-\end{itemize}
-
-JuliaGPU is also developing a framework for easy GPU usage:
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  CUDAnative.jl
-\item
-  GPUArrays.jl
-\end{itemize}
-
-    \subsection{JuliaDiff}\label{juliadiff}
-
-JuliaDiff holds libraries for differentiation in Julia
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  ForwardDiff.jl: A robust implementation of forward-mode
-  autodifferentiation
-\item
-  ReverseDiffSource.jl: A newer library for reverse-mode
-  autodifferentiation (backwards propogation)
-\end{itemize}
-
-    \subsection{JuliaGraphs}\label{juliagraphs}
-
-JuliaGraphs is built around LightGraphs.jl, a fast and performant
-implementation of graph algorithms in Julia
-
-    \subsection{JuliaMath}\label{juliamath}
-
-JuliaMath holds basic mathematical libraries.
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  IterativeSolvers.jl: Iterative methods for \texttt{Ax=b}, Krylov
-  subspace methods, etc.
-\item
-  Roots.jl: Root-finding algorithms
-\end{itemize}
-
-    \subsection{JuliaDiffEq}\label{juliadiffeq}
-
-JuliaDiffEq holds the packages for solving differential equations.
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  DifferentialEquations.jl: The core package for solving ODEs, SDEs,
-  PDEs, DAEs, (hopefully DDEs soon\ldots{}). Also wraps ODE.jl,
-  Sundials.jl, and ODEInterface.jl into one convenient API.
-\item
-  Sundials.jl: Wrappers for the Sundials ODE/DAE solvers
-\end{itemize}
-
-    \subsection{JuliaPlots}\label{juliaplots}
-
-JuliaPlots is the organization for plotting and visualization.
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  Plots.jl is a metapackage for plotting. It is the main plotting
-  library in Julia.
-\item
-  GGPlots.jl is a Grammar of Graphics (GoG) API for Plots.jl
-\item
-  StatPlots.jl provides plotting recipes for statistics in Plots.jl
-\item
-  PlotRecipes.jl is a random assortment of plotting recipes
-\end{itemize}
-
-    \subsection{JuliaInterop}\label{juliainterop}
-
-Interoperability of Julia with other languages.
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  MATLAB.jl
-\item
-  RCall.jl
-\item
-  Mathematica.jl
-\item
-  JavaCall.jl
-\item
-  CxxWrap.jl
-\item
-  ObjectiveC.jl
-\end{itemize}
-
-    \subsection{JuliaPy}\label{juliapy}
-
-Julia interop with Python
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  PyPlot.jl: A wrapper for the Python matplotlib library
-\item
-  SymPy.jl
-\item
-  PyCall.jl
-\item
-  pyjulia
-\item
-  Pandas.jl
-\end{itemize}
-
-    \subsection{Misc}\label{misc}
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  JLD.jl: An HDF5-based saving format for Julia
-\item
-  Bio.jl: A huge library for bioinformatics in Julia
-\end{itemize}
-
-    
+http://www.stochasticlifestyle.com/multiple-gpu-on-the-hpc-with-julia/
 
 
     % Add a bibliography block to the postdoc

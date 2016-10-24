@@ -275,9 +275,103 @@
     
 
     
+    \subsection{The Array and Iterator
+Interface}\label{the-array-and-iterator-interface}
+
+Julia has a few ``informal'' interfaces. The idea is that, if you
+subclass a given abstract type and implement a few methods, then by
+multiple dispatch the type will now ``act like'' whatever you want it to
+act like, in any instance you would like.
+
+One example is the array interface. The methods to implement are:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  \texttt{size(A)}
+\item
+  \texttt{getindex(A, i::Int)}
+\item
+  \texttt{getindex(A, I::Vararg\{Int, N\})}
+\item
+  \texttt{setindex!(A, v, i::Int)}
+\item
+  \texttt{setindex!(A, v, I::Vararg\{Int, N\})}
+\end{itemize}
+
+\texttt{size(A)} returns what the size of the array is as a tuple. For
+example, a 3-dimensional ``array'' (remember, it can be anything, we are
+just saying it acts like an array!) would have \texttt{size(A)} return a
+tuple \texttt{(dim1,dim2,dim3)} for the sizes along each dimension.
+\texttt{getindex} is the function that is used by \texttt{A{[}i{]}}, and
+\texttt{setindex!} is the function for mutating \texttt{A} via
+\texttt{A{[}i{]}=}.
+
+The \texttt{Vararg\{Int, N\}} just means variable numbers of arguments,
+so for example \texttt{getindex(A,i1,i2)} is what is called by
+\texttt{A{[}i1,i2{]}}. More generally, using slurping you can define
+\texttt{getindex(A,I...)} and the function for
+\texttt{A{[}i1,i2,...,in{]}}, and \texttt{I} will be a tuple of
+\texttt{(i1,i2,...,in)}.
+
+Reference: http://docs.julialang.org/en/release-0.5/manual/interfaces/
+
+    \subsection{Usage Example}\label{usage-example}
+
+One usage example is in DifferentialEquations.jl. When you solve a
+differential equation, the solution returns a specialized solution type.
+
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} 
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k}{using} \PY{n}{DifferentialEquations}
+        \PY{n}{sol} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{n}{prob\PYZus{}ode\PYZus{}linear}\PY{p}{)}
 \end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:} DifferentialEquations.ODESolution, 4 timesteps, final value 1.372803219752981
+\end{Verbatim}
+        
+    While there are many fields that the type could hold, such as the errors
+of a given analytical solution:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{println}\PY{p}{(}\PY{n}{sol}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+DifferentialEquations.ODESolution with 4 timesteps. Analytical solution is known.
+u: 1.372803219752981
+errors: Dict(:l∞=>2.71224e-6,:final=>2.71224e-6,:l2=>1.57376e-6)
+t: [0.0,0.146343,0.643575,1.0]
+timeseries: [0.5,0.579644,0.957782,1.3728]
+timeseries\_analytic: [0.5,0.579644,0.957781,1.3728]
+
+
+    \end{Verbatim}
+
+    An array interface is provided so that the solution ``acts'' like a
+traditional solution: i.e.~as an array of the numerically computed
+values:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{println}\PY{p}{(}\PY{n}{sol}\PY{o}{.}\PY{n}{t}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)} \PY{c}{\PYZsh{} The third timestep}
+        \PY{n}{sol}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]} \PY{c}{\PYZsh{} The value at the third timestep}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0.6435749072667494
+
+    \end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:} 0.9577822179420759
+\end{Verbatim}
+        
+    An entire Julia organization, JuliaArrays, is devoted to making fast,
+interesting, and easy to use arrays. It's an odd concept: arrays are
+just arrays, right? However, Julia's genericism makes it so that way
+this now works in any place which accepts an \texttt{AbstractVector}
+output, so the solution is directly usable in numerical optimization
+algorithms, regressions, etc.
 
 
     % Add a bibliography block to the postdoc

@@ -11830,17 +11830,20 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Call-Overloading">Call Overloading<a class="anchor-link" href="#Call-Overloading">&#182;</a></h2><p>Call overloading is a fairly new feature to Julia. The idea is that a function is also just a type: it's a type which is "callable"</p>
+<h2 id="Call-Overloading">Call Overloading<a class="anchor-link" href="#Call-Overloading">&#182;</a></h2><p>Call overloading is a fairly new feature to Julia. The idea is that a function is also just a type: it's a type which is "callable", i.e. the instance of the type acts like a function. These functions compile and thus are as fast as any other function. As of v0.5, anonymous functions are now instances of callable types which are generated as needed.</p>
+<p>To make a callable type, first make a type:</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span>
+<div class=" highlight hl-julia"><pre><span></span><span class="k">type</span><span class="nc"> CallTest</span>
+    <span class="n">a</span><span class="p">::</span><span class="kt">Float64</span> 
+<span class="k">end</span>
 </pre></div>
 
 </div>
@@ -11853,7 +11856,121 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Project">Project<a class="anchor-link" href="#Project">&#182;</a></h2><p>Overload the call on the UnitStepRange to give an interpolated value at intermediate points, i.e. if <code>a=1:2:10</code>, then <code>a(1.5)=2</code>.</p>
+<p>Then define its call as follows:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="p">(</span><span class="n">c</span><span class="p">::</span><span class="n">CallTest</span><span class="p">)(</span><span class="n">b</span><span class="p">::</span><span class="kt">Float64</span><span class="p">)</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">a</span><span class="o">*</span><span class="n">b</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that the fields of the <code>CallTest</code> from which the function is defined are available from within the function (this can be used to store model parameters, see <a href="https://github.com/JuliaDiffEq/ParameterizedFunctions.jl">ParameterizedFunctions.jl</a>). Now if you make an instance of <code>CallTest</code>, it will both act like your type an the function you described. For example:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">CallTest</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="n">c</span><span class="p">(</span><span class="mf">3.0</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>6.0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can add extra dispatches to the function on your type:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="p">(</span><span class="n">c</span><span class="p">::</span><span class="n">CallTest</span><span class="p">)(</span><span class="n">b</span><span class="p">::</span><span class="kt">Int</span><span class="p">)</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">a</span><span class="o">/</span><span class="n">b</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">c</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1.0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 
 </div>
 </div>
