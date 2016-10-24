@@ -205,3 +205,29 @@ solve_least_squares(y~1+X1+X2+X4)
     WARNING: Method definition solve_least_squares(Any, Any) in module Main at In[4]:27 overwritten at In[10]:27.
     WARNING: Method definition solve_least_squares(Tuple) in module Main at In[4]:29 overwritten at In[10]:29.
 
+
+## Distribution Dispatch Problem
+
+This is from Josh Day's talk: https://www.youtube.com/watch?v=EwcTNzpQ6Sc
+
+Solution is from: https://github.com/joshday/Talks/blob/master/SLG2016_IntroToJulia/Slides.ipynb
+
+
+```julia
+function myquantile(d::UnivariateDistribution, q::Number)
+    θ = mean(d)
+    tol = Inf
+    while tol > 1e-5
+        θold = θ
+        θ = θ - (cdf(d, θ) - q) / pdf(d, θ)
+        tol = abs(θold - θ)
+    end
+    θ
+end
+
+for dist in [Gamma(5, 1), Normal(0, 1), Beta(2, 4)]
+    @show myquantile(dist, .75)
+    @show quantile(dist, .75)
+    println()
+end
+```

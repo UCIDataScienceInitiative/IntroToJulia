@@ -12201,6 +12201,45 @@ WARNING: Method definition solve_least_squares(Tuple) in module Main at In[4]:29
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Distribution-Dispatch-Problem">Distribution Dispatch Problem<a class="anchor-link" href="#Distribution-Dispatch-Problem">&#182;</a></h2><p>This is from Josh Day's talk: <a href="https://www.youtube.com/watch?v=EwcTNzpQ6Sc">https://www.youtube.com/watch?v=EwcTNzpQ6Sc</a></p>
+<p>Solution is from: <a href="https://github.com/joshday/Talks/blob/master/SLG2016_IntroToJulia/Slides.ipynb">https://github.com/joshday/Talks/blob/master/SLG2016_IntroToJulia/Slides.ipynb</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span><span class="nf"> myquantile</span><span class="p">(</span><span class="n">d</span><span class="p">::</span><span class="n">UnivariateDistribution</span><span class="p">,</span> <span class="n">q</span><span class="p">::</span><span class="n">Number</span><span class="p">)</span>
+    <span class="n">θ</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+    <span class="n">tol</span> <span class="o">=</span> <span class="nb">Inf</span>
+    <span class="k">while</span> <span class="n">tol</span> <span class="o">&gt;</span> <span class="mf">1e-5</span>
+        <span class="n">θold</span> <span class="o">=</span> <span class="n">θ</span>
+        <span class="n">θ</span> <span class="o">=</span> <span class="n">θ</span> <span class="o">-</span> <span class="p">(</span><span class="n">cdf</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">θ</span><span class="p">)</span> <span class="o">-</span> <span class="n">q</span><span class="p">)</span> <span class="o">/</span> <span class="n">pdf</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">θ</span><span class="p">)</span>
+        <span class="n">tol</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">θold</span> <span class="o">-</span> <span class="n">θ</span><span class="p">)</span>
+    <span class="k">end</span>
+    <span class="n">θ</span>
+<span class="k">end</span>
+
+<span class="k">for</span> <span class="n">dist</span> <span class="k">in</span> <span class="p">[</span><span class="n">Gamma</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">Normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">Beta</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)]</span>
+    <span class="p">@</span><span class="n">show</span> <span class="n">myquantile</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="o">.</span><span class="mi">75</span><span class="p">)</span>
+    <span class="p">@</span><span class="n">show</span> <span class="n">quantile</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="o">.</span><span class="mi">75</span><span class="p">)</span>
+    <span class="n">println</span><span class="p">()</span>
+<span class="k">end</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
 </div></section></section>
 </div>
 </div>

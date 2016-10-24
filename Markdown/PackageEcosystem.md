@@ -33,6 +33,8 @@ Let's take a quick look at some organizations which provide important functional
 - Klara.jl is a native MCMC engine
 - One of the main R linear model library developers, Douglas Bates, is a heavy contributor
 
+>As some of you may know, I have had a (rather late) mid-life crisis and run off with another language called Julia. (http://julialang.org)
+
 Note, Dataframes used to be slow. A very large change is coming in the next week. To understand it in detail, read: http://www.johnmyleswhite.com/notebook/2015/11/28/why-julias-dataframes-are-still-slow/
 
 ## JuliaOpt
@@ -125,5 +127,3 @@ Julia interop with Python
 
 - JLD.jl: An HDF5-based saving format for Julia
 - Bio.jl: A huge library for bioinformatics in Julia
-
-

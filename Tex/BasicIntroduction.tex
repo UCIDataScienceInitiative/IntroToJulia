@@ -1319,7 +1319,24 @@ Note that you cannot define subclasses of concrete types!
 that it also has a lot of performance enhancements due to how it
 interacts with the compiler).
 
-\paragraph{Problem 7}\label{problem-7}
+\paragraph{Distribution Quantile Problem (From Josh
+Day)}\label{distribution-quantile-problem-from-josh-day}
+
+To find the quantile of a number \texttt{q} in a distribution, one can
+use a Newton method
+
+\[ \theta_{n+1} = \theta_{n} - \frac{cdf(\theta)-q}{pdf(\theta)} \]
+
+to have $\theta_{n} \rightarrow$ the value of for the \texttt{q}th
+quantile. Use multiple dispatch to write a generic algorithm for which
+calculates the \texttt{q}th quantile of any
+\texttt{UnivariateDistribution} in Distributions.jl, and test your
+result against the \texttt{quantile(d::UnivariateDistribution,q::Number}
+function.
+
+Hint: Use $\theta_{0} = $ mean of the distribution
+
+\paragraph{Operator Problem}\label{operator-problem}
 
 In mathematics, a matrix is known to be a linear operator. In many
 cases, this can have huge performance advantages because, if you know a
