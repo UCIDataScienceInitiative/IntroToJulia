@@ -1024,30 +1024,6 @@ The reason why lazy iterator types are preferred is that they do not do the comp
 
 Notice that the amount of time the range takes is much shorter. This is mostly because there is a lot less memory allocation needed: only a `StepRange` is built, and all that holds is the three numbers. However, `b` has to hold `100000` numbers, leading to the huge difference.
 
-#### Problem 8
-
-If you know `start`, `step`, and `stop`, how do you calculate the `i`th value? Can you create a function MyRange which where for `a` being a `MyRange`, and `a[i]` is the correct value? Use the Julia array interface in order to define the function for the `a[i]` syntax on your type.
-
-#### Problem 9
-
-Do ?linspace. Make your own LinSpace object using the array interface. 
-
-http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces
-
-Do your implementations obay dimensional analysis? Try using the package `Unitful` to build arrays of numbers with units (i.e. an array of numbers who have values of Newtons), and see if you can make your LinSpace not give errors.
-
-#### Problem 10
-
-Check your implementation vs the source code of Ranges.jl. Tim Holy is the master of Julia arrays, learn from him!
-
-#### Problem 11
-
-Check out the call overloading notebook:
-
-http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading
-
-Overload the call on the UnitStepRange to give an interpolated value at intermediate points, i.e. if `a=1:2:10`, then `a(1.5)=2`.
-
 ### Dictionaries 
 
 Another common type is the Dictionary. It allows you to access (key,value) pairs in a named manner. For example:
@@ -1080,6 +1056,30 @@ x,y = (3.0,"hi") # Can separate a tuple to multiple variables
 
 
 
+#### Problem 8
+
+If you know `start`, `step`, and `stop`, how do you calculate the `i`th value? Can you create a function MyRange which where for `a` being a `MyRange`, and `a[i]` is the correct value? Use the Julia array interface in order to define the function for the `a[i]` syntax on your type.
+
+#### Problem 9
+
+Do ?linspace. Make your own LinSpace object using the array interface. 
+
+http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces
+
+Do your implementations obay dimensional analysis? Try using the package `Unitful` to build arrays of numbers with units (i.e. an array of numbers who have values of Newtons), and see if you can make your LinSpace not give errors.
+
+#### Problem 10
+
+Check your implementation vs the source code of Ranges.jl. Tim Holy is the master of Julia arrays, learn from him!
+
+#### Problem 11
+
+Check out the call overloading notebook:
+
+http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading
+
+Overload the call on the UnitStepRange to give an interpolated value at intermediate points, i.e. if `a=1:2:10`, then `a(1.5)=2`.
+
 ## Metaprogramming
 
 Metaprogramming is a huge feature of Julia. The key idea is that every statement in Julia is of the type `Expression`. Julia operators by building an Abstract Syntax Tree (AST) from the Expressions. You've already been exposed to this a little bit: a `Symbol` (like `:PhysicalSciences` is not a string because it is part of the AST, and thus is part of the parsing/expression structure. One interesting thing is that symbol comparisons are O(1) while string comparisons, like always, are O(n)) is part of this, and macros (the weird functions with an `@`) are functions on expressions.
@@ -1109,3 +1109,11 @@ end
 This takes in an expression `ex`, gets the time before and after evaluation, and prints the elapsed time between (the real time macro also calculates the allocations as seen earlier). Note that `$ex` "interpolates" the expression into the macro. Going into detail on metaprogramming is a large step from standard scripting and will be a later session. 
 
 Why macros? One reason is because it lets you define any syntax you want. Since it operates on the expressions themselves, as long as you know how to parse the expression into working code, you can "choose any syntax" to be your syntax. A case study will be shown later. Another reason is because these are done at "parse time" and those are only called once (before the function compilation).
+
+## Steps for Julia Parsing and Execution
+
+1. The AST after parsing <- Macros
+2. The AST after lowering (@code_typed)
+3. The AST after type inference and optimization <- Generated Functions (@code_lowered) 
+4. The LLVM IR <- Functions (@code_llvm)
+5. The assembly code (@code_native)
