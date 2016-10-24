@@ -11751,26 +11751,114 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="HPC-Julia">HPC Julia<a class="anchor-link" href="#HPC-Julia">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="UC-Irvine-Cluster-(SGE)">UC Irvine Cluster (SGE)<a class="anchor-link" href="#UC-Irvine-Cluster-(SGE)">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Job Script</p>
+<h1 id="Parallelism-and-HPC-Julia">Parallelism and HPC Julia<a class="anchor-link" href="#Parallelism-and-HPC-Julia">&#182;</a></h1><p>Julia's documentation: <a href="http://docs.julialang.org/en/release-0.5/manual/parallel-computing/">http://docs.julialang.org/en/release-0.5/manual/parallel-computing/</a></p>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this notebook we will go over the different aspects of parallelism present in Julia.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="SIMD">SIMD<a class="anchor-link" href="#SIMD">&#182;</a></h2><p>SIMD, Single Instruction Multiple Data, is a form of parallelism from executing multiple similar commands at once using specialized instructions in the processor. Julia applies SIMD automatically to loops and some functions due to the <code>-O3</code> optimization in its JIT compilation. However, SIMD can be explicitly added to a loop by using the <code>@simd</code> macro (note, this may slow down the calcuation. It is wise to let the auto-optimizer apply SIMD, and finer control of SIMD can be achieved using the SIMD.jl library.</p>
+<p>Another form of multiple instruction is fused multiply add for calculations of type <code>a*b+c</code>. There are two forms present in Julia. The first is <code>muladd</code>. This is the recommended form for performance. <code>muladd(a,b,c)</code> will only apply a fused multiplication/addition if it will help with performance. On the otherhand, <code>fma(a,b,c)</code> will always apply fused multiplication/addition.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Multithreading">Multithreading<a class="anchor-link" href="#Multithreading">&#182;</a></h2><p>As of Julia v0.5, experimental multithreading is native to Julia via the <code>Threads.@threads</code> macro.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Distributed-Parallelism">Distributed Parallelism<a class="anchor-link" href="#Distributed-Parallelism">&#182;</a></h2><p>Julia's native parallelism is a distributed form of parallelism through TCPIP/ssh.</p>
+<h3 id="Libraries">Libraries<a class="anchor-link" href="#Libraries">&#182;</a></h3><p>The following libraries are helpful for solving parallel problems:</p>
+<ul>
+<li>DistributedArrays.jl</li>
+<li>ParallelDataTransfer.jl</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Projects">Projects<a class="anchor-link" href="#Projects">&#182;</a></h1><h2 id="Project-1:-Getting-Started-with-Distributed-Parallelism">Project 1: Getting Started with Distributed Parallelism<a class="anchor-link" href="#Project-1:-Getting-Started-with-Distributed-Parallelism">&#182;</a></h2><p>Use the following tutorial to test Julia's distributed parallelism:</p>
+<p><a href="http://www.stochasticlifestyle.com/multi-node-parallelism-in-julia-on-an-hpc/">http://www.stochasticlifestyle.com/multi-node-parallelism-in-julia-on-an-hpc/</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Project-2:-Coding-a-Distributed-Algorithm">Project 2: Coding a Distributed Algorithm<a class="anchor-link" href="#Project-2:-Coding-a-Distributed-Algorithm">&#182;</a></h2><p>Extend your <code>least_squares</code> implementation to a distributed algorithm.</p>
+<ul>
+<li>Now generate a much larger <code>X</code> and <code>y</code></li>
+<li>Use DistributedArrays.jl or ParallelDataTransfer.jl to evenly split the data amongst worker processes</li>
+<li>Apply the <code>@spawnat</code> macro to use the <code>least_squares</code> function on the remote processes</li>
+<li>Retrive the results of the <code>least_squares</code> algorithm, and average them together</li>
+<li>Now try a different approach using <code>pmap</code></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Benchmarks">Benchmarks<a class="anchor-link" href="#Benchmarks">&#182;</a></h3><ul>
+<li>Benchmark the two codes on your computer (or cluster!). How does the performance scale with the number of processes? Look at <a href="http://www.stochasticlifestyle.com/236-2/">http://www.stochasticlifestyle.com/236-2/</a></li>
+<li>Try to make a multithreaded version of the algorithm. How well does it benchmark? Check for type instabilities!</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h1 id="Extras">Extras<a class="anchor-link" href="#Extras">&#182;</a></h1><h2 id="Job-Scripts">Job Scripts<a class="anchor-link" href="#Job-Scripts">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="UC-Irvine-Cluster-(SGE)">UC Irvine Cluster (SGE)<a class="anchor-link" href="#UC-Irvine-Cluster-(SGE)">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -11803,8 +11891,39 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Test function</p>
+<h3 id="XSEDE-Comet-(Slurm)-Job-Script">XSEDE Comet (Slurm) Job Script<a class="anchor-link" href="#XSEDE-Comet-(Slurm)-Job-Script">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="c">#!/bin/bash</span>
+<span class="c">#SBATCH -A &lt;account&gt;</span>
+<span class="c">#SBATCH --job-name=&quot;juliaTest&quot;</span>
+<span class="c">#SBATCH --output=&quot;juliaTest.%j.%N.out&quot;</span>
+<span class="c">#SBATCH --partition=compute</span>
+<span class="c">#SBATCH --nodes=8</span>
+<span class="c">#SBATCH --export=ALL</span>
+<span class="c">#SBATCH --ntasks-per-node=24</span>
+<span class="c">#SBATCH -t 01:00:00</span>
+<span class="k">export</span> <span class="n">SLURM_NODEFILE</span><span class="o">=</span><span class="sb">`generate_pbs_nodefile`</span>
+<span class="o">./</span><span class="n">julia</span> <span class="o">--</span><span class="n">machinefile</span> <span class="o">$</span><span class="n">SLURM_NODEFILE</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">crackauc</span><span class="o">/</span><span class="n">test</span><span class="o">.</span><span class="n">jl</span>
+</pre></div>
 
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Test-function">Test function<a class="anchor-link" href="#Test-function">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -11825,15 +11944,6 @@ div#notebook {
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="XSEDE-Comet-(Slurm)">XSEDE Comet (Slurm)<a class="anchor-link" href="#XSEDE-Comet-(Slurm)">&#182;</a></h2>
-</div>
-</div>
 </div>
     </div>
   </div>

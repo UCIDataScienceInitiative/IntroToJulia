@@ -1,64 +1,10 @@
-
 <!DOCTYPE html>
 <html>
-<head>
-
-<meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="chrome=1" />
-
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
-<title>HPCJulia slides</title>
+<head><meta charset="utf-8" />
+<title>Interop</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<!-- General and theme style sheets -->
-<link rel="stylesheet" href="reveal.js/css/reveal.css">
-<link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
-
-<!-- If the query includes 'print-pdf', include the PDF print sheet -->
-<script>
-if( window.location.search.match( /print-pdf/gi ) ) {
-        var link = document.createElement( 'link' );
-        link.rel = 'stylesheet';
-        link.type = 'text/css';
-        link.href = 'reveal.js/css/print/pdf.css';
-        document.getElementsByTagName( 'head' )[0].appendChild( link );
-}
-
-</script>
-
-<!--[if lt IE 9]>
-<script src="reveal.js/lib/js/html5shiv.js"></script>
-<![endif]-->
-
-<!-- Loading the mathjax macro -->
-<!-- Load mathjax -->
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
-    <!-- MathJax configuration -->
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-            processEscapes: true,
-            processEnvironments: true
-        },
-        // Center justify equations in code and markdown cells. Elsewhere
-        // we use CSS to left justify single line equations in code cells.
-        displayAlign: 'center',
-        "HTML-CSS": {
-            styles: {'.MathJax_Display': {"margin": 0}},
-            linebreaks: { automatic: true }
-        }
-    });
-    </script>
-    <!-- End of mathjax configuration -->
-
-<!-- Get Font-awesome from cdn -->
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css">
 
 <style type="text/css">
     /*!
@@ -11745,341 +11691,75 @@ ul.typeahead-list > li > a {
 
 <style type="text/css">
 /* Overrides of notebook CSS for static HTML export */
-.reveal {
-  font-size: 160%;
-  overflow-y: scroll;
+body {
+  overflow: visible;
+  padding: 8px;
 }
-.reveal pre {
-  width: inherit;
-  padding: 0.4em;
-  margin: 0px;
-  font-family: monospace, sans-serif;
-  font-size: 80%;
-  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+
+div#notebook {
+  overflow: visible;
+  border-top: none;
 }
-.reveal pre code {
-  padding: 0px;
-}
-.reveal section img {
-  border: 0px solid black;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0);
-}
-.reveal i {
-  font-style: normal;
-  font-family: FontAwesome;
-  font-size: 2em;
-}
-.reveal .slides {
-  text-align: left;
-}
-.reveal.fade {
-  opacity: 1;
-}
-.reveal .progress {
-  position: static;
-}
-div.input_area {
-  padding: 0.06em;
-}
-div.code_cell {
-  background-color: transparent;
-}
-div.prompt {
-  width: 11ex;
-  padding: 0.4em;
-  margin: 0px;
-  font-family: monospace, sans-serif;
-  font-size: 80%;
-  text-align: right;
-}
-div.output_area pre {
-  font-family: monospace, sans-serif;
-  font-size: 80%;
-}
-div.output_prompt {
-  /* 5px right shift to account for margin in parent container */
-  margin: 5px 5px 0 0;
-}
-div.text_cell.rendered .rendered_html {
-  /* The H1 height seems miscalculated, we are just hidding the scrollbar */
-  overflow-y: hidden;
-}
-a.anchor-link {
-  /* There is still an anchor, we are only hidding it */
-  display: none;
-}
-.rendered_html p {
-  text-align: inherit;
+
+@media print {
+  div.cell {
+    display: block;
+    page-break-inside: avoid;
+  } 
+  div.output_wrapper { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+  div.output { 
+    display: block;
+    page-break-inside: avoid; 
+  }
 }
 </style>
 
 <!-- Custom stylesheet, it must be in the same directory as the html file -->
 <link rel="stylesheet" href="custom.css">
 
-</head>
-
-
+<!-- Loading mathjax macro -->
+<!-- Load mathjax -->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    <!-- End of mathjax configuration --></head>
 <body>
+  <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
 
-
-<div class="reveal">
-<div class="slides">
-<section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Parallelism-and-HPC-Julia">Parallelism and HPC Julia<a class="anchor-link" href="#Parallelism-and-HPC-Julia">&#182;</a></h1><p>Julia's documentation: <a href="http://docs.julialang.org/en/release-0.5/manual/parallel-computing/">http://docs.julialang.org/en/release-0.5/manual/parallel-computing/</a></p>
+<h1 id="Interop">Interop<a class="anchor-link" href="#Interop">&#182;</a></h1><h3 id="ccall">ccall<a class="anchor-link" href="#ccall">&#182;</a></h3><p>While not technically a package because it's built into Julia, <code>ccall</code> is very important to know. The documentation page for <code>ccall</code> is: <a href="http://docs.julialang.org/en/release-0.4/manual/calling-c-and-fortran-code/">http://docs.julialang.org/en/release-0.4/manual/calling-c-and-fortran-code/</a>. I wrote a tutorial for using ccall: <a href="http://www.stochasticlifestyle.com/using-julias-c-interface-utilize-c-libraries/">http://www.stochasticlifestyle.com/using-julias-c-interface-utilize-c-libraries/</a></p>
+<h4 id="Xeon-Phi">Xeon Phi<a class="anchor-link" href="#Xeon-Phi">&#182;</a></h4><p>Note that you can use ccall to control Xeon Phi acceleration cards: <a href="http://www.stochasticlifestyle.com/interfacing-xeon-phi-via-julia/">http://www.stochasticlifestyle.com/interfacing-xeon-phi-via-julia/</a></p>
+<h3 id="Cxx.jl">Cxx.jl<a class="anchor-link" href="#Cxx.jl">&#182;</a></h3><h3 id="RCall">RCall<a class="anchor-link" href="#RCall">&#182;</a></h3><h3 id="PyCall">PyCall<a class="anchor-link" href="#PyCall">&#182;</a></h3><h3 id="MATLAB.jl">MATLAB.jl<a class="anchor-link" href="#MATLAB.jl">&#182;</a></h3><h3 id="CUDArt.jl">CUDArt.jl<a class="anchor-link" href="#CUDArt.jl">&#182;</a></h3><p><a href="http://www.stochasticlifestyle.com/julia-on-the-hpc-with-gpus/">http://www.stochasticlifestyle.com/julia-on-the-hpc-with-gpus/</a></p>
+<p><a href="http://www.stochasticlifestyle.com/multiple-gpu-on-the-hpc-with-julia/">http://www.stochasticlifestyle.com/multiple-gpu-on-the-hpc-with-julia/</a></p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>In this notebook we will go over the different aspects of parallelism present in Julia.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="SIMD">SIMD<a class="anchor-link" href="#SIMD">&#182;</a></h2><p>SIMD, Single Instruction Multiple Data, is a form of parallelism from executing multiple similar commands at once using specialized instructions in the processor. Julia applies SIMD automatically to loops and some functions due to the <code>-O3</code> optimization in its JIT compilation. However, SIMD can be explicitly added to a loop by using the <code>@simd</code> macro (note, this may slow down the calcuation. It is wise to let the auto-optimizer apply SIMD, and finer control of SIMD can be achieved using the SIMD.jl library.</p>
-<p>Another form of multiple instruction is fused multiply add for calculations of type <code>a*b+c</code>. There are two forms present in Julia. The first is <code>muladd</code>. This is the recommended form for performance. <code>muladd(a,b,c)</code> will only apply a fused multiplication/addition if it will help with performance. On the otherhand, <code>fma(a,b,c)</code> will always apply fused multiplication/addition.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Multithreading">Multithreading<a class="anchor-link" href="#Multithreading">&#182;</a></h2><p>As of Julia v0.5, experimental multithreading is native to Julia via the <code>Threads.@threads</code> macro.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Distributed-Parallelism">Distributed Parallelism<a class="anchor-link" href="#Distributed-Parallelism">&#182;</a></h2><p>Julia's native parallelism is a distributed form of parallelism through TCPIP/ssh.</p>
-<h3 id="Libraries">Libraries<a class="anchor-link" href="#Libraries">&#182;</a></h3><p>The following libraries are helpful for solving parallel problems:</p>
-<ul>
-<li>DistributedArrays.jl</li>
-<li>ParallelDataTransfer.jl</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Projects">Projects<a class="anchor-link" href="#Projects">&#182;</a></h1><h2 id="Project-1:-Getting-Started-with-Distributed-Parallelism">Project 1: Getting Started with Distributed Parallelism<a class="anchor-link" href="#Project-1:-Getting-Started-with-Distributed-Parallelism">&#182;</a></h2><p>Use the following tutorial to test Julia's distributed parallelism:</p>
-<p><a href="http://www.stochasticlifestyle.com/multi-node-parallelism-in-julia-on-an-hpc/">http://www.stochasticlifestyle.com/multi-node-parallelism-in-julia-on-an-hpc/</a></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Project-2:-Coding-a-Distributed-Algorithm">Project 2: Coding a Distributed Algorithm<a class="anchor-link" href="#Project-2:-Coding-a-Distributed-Algorithm">&#182;</a></h2><p>Extend your <code>least_squares</code> implementation to a distributed algorithm.</p>
-<ul>
-<li>Now generate a much larger <code>X</code> and <code>y</code></li>
-<li>Use DistributedArrays.jl or ParallelDataTransfer.jl to evenly split the data amongst worker processes</li>
-<li>Apply the <code>@spawnat</code> macro to use the <code>least_squares</code> function on the remote processes</li>
-<li>Retrive the results of the <code>least_squares</code> algorithm, and average them together</li>
-<li>Now try a different approach using <code>pmap</code></li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Benchmarks">Benchmarks<a class="anchor-link" href="#Benchmarks">&#182;</a></h3><ul>
-<li>Benchmark the two codes on your computer (or cluster!). How does the performance scale with the number of processes? Look at <a href="http://www.stochasticlifestyle.com/236-2/">http://www.stochasticlifestyle.com/236-2/</a></li>
-<li>Try to make a multithreaded version of the algorithm. How well does it benchmark? Check for type instabilities!</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<h1 id="Extras">Extras<a class="anchor-link" href="#Extras">&#182;</a></h1><h2 id="Job-Scripts">Job Scripts<a class="anchor-link" href="#Job-Scripts">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="UC-Irvine-Cluster-(SGE)">UC Irvine Cluster (SGE)<a class="anchor-link" href="#UC-Irvine-Cluster-(SGE)">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="c">#!/bin/bash</span>
-
-<span class="c">#$ -N jbtest</span>
-<span class="c">#$ -q &lt;Queue&gt;</span>
-<span class="c">#$ -pe mpich 128</span>
-<span class="c">#$ -cwd            		# run the job out of the current directory</span>
-<span class="c">#$ -m beas</span>
-<span class="c">#$ -ckpt blcr</span>
-<span class="c">#$ -o output/</span>
-<span class="c">#$ -e output/</span>
-<span class="k">module</span> <span class="nb">load</span> <span class="n">julia</span><span class="o">/</span><span class="mf">0.4</span><span class="o">.</span><span class="mi">3</span>
-<span class="n">julia</span> <span class="o">--</span><span class="n">machinefile</span> <span class="n">jbtest</span><span class="o">-</span><span class="n">pe_hostfile_mpich</span><span class="o">.$</span><span class="n">JOB_ID</span> <span class="n">test</span><span class="o">.</span><span class="n">jl</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="XSEDE-Comet-(Slurm)-Job-Script">XSEDE Comet (Slurm) Job Script<a class="anchor-link" href="#XSEDE-Comet-(Slurm)-Job-Script">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="c">#!/bin/bash</span>
-<span class="c">#SBATCH -A &lt;account&gt;</span>
-<span class="c">#SBATCH --job-name=&quot;juliaTest&quot;</span>
-<span class="c">#SBATCH --output=&quot;juliaTest.%j.%N.out&quot;</span>
-<span class="c">#SBATCH --partition=compute</span>
-<span class="c">#SBATCH --nodes=8</span>
-<span class="c">#SBATCH --export=ALL</span>
-<span class="c">#SBATCH --ntasks-per-node=24</span>
-<span class="c">#SBATCH -t 01:00:00</span>
-<span class="k">export</span> <span class="n">SLURM_NODEFILE</span><span class="o">=</span><span class="sb">`generate_pbs_nodefile`</span>
-<span class="o">./</span><span class="n">julia</span> <span class="o">--</span><span class="n">machinefile</span> <span class="o">$</span><span class="n">SLURM_NODEFILE</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">crackauc</span><span class="o">/</span><span class="n">test</span><span class="o">.</span><span class="n">jl</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Test-function">Test function<a class="anchor-link" href="#Test-function">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="c">## Script which prints out the hostnames of the worker processes</span>
-<span class="c"># Used in conjunction with a job script to ensure multi-node parallelism</span>
-
-<span class="n">hosts</span> <span class="o">=</span> <span class="p">@</span><span class="n">parallel</span> <span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="mi">120</span>
-       <span class="n">run</span><span class="p">(</span><span class="sb">`hostname`</span><span class="p">)</span> <span class="k">end</span>
-<span class="n">println</span><span class="p">(</span><span class="n">hosts</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div></section></section>
-</div>
-</div>
-
-<script>
-
-require(
-    {
-      // it makes sense to wait a little bit when you are loading
-      // reveal from a cdn in a slow connection environment
-      waitSeconds: 15
-    },
-    [
-      "reveal.js/lib/js/head.min.js",
-      "reveal.js/js/reveal.js"
-    ],
-
-    function(head, Reveal){
-
-        // Full list of configuration options available here: https://github.com/hakimel/reveal.js#configuration
-        Reveal.initialize({
-            controls: true,
-            progress: true,
-            history: true,
-
-            theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-            transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/none
-
-            // Optional libraries used to extend on reveal.js
-            dependencies: [
-                { src: "reveal.js/lib/js/classList.js",
-                  condition: function() { return !document.body.classList; } },
-                { src: "reveal.js/plugin/notes/notes.js",
-                  async: true,
-                  condition: function() { return !!document.body.classList; } }
-            ]
-        });
-
-        var update = function(event){
-          if(MathJax.Hub.getAllJax(Reveal.getCurrentSlide())){
-            MathJax.Hub.Rerender(Reveal.getCurrentSlide());
-          }
-        };
-
-        Reveal.addEventListener('slidechanged', update);
-
-        var update_scroll = function(event){
-          $(".reveal").scrollTop(0);
-        };
-
-        Reveal.addEventListener('slidechanged', update_scroll);
-
-    }
-);
-</script>
-
+    </div>
+  </div>
 </body>
-
-
 </html>
