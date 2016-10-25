@@ -1480,6 +1480,39 @@ mostly because there is a lot less memory allocation needed: only a
 However, \texttt{b} has to hold \texttt{100000} numbers, leading to the
 huge difference.
 
+    \subsubsection{Dictionaries}\label{dictionaries}
+
+Another common type is the Dictionary. It allows you to access
+(key,value) pairs in a named manner. For example:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{n}{d} \PY{o}{=} \PY{n}{Dict}\PY{p}{(}\PY{p}{:}\PY{n}{test}\PY{o}{=}\PY{o}{\PYZgt{}}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{silly}\PY{l+s}{\PYZdq{}}\PY{o}{=}\PY{o}{\PYZgt{}}\PY{p}{:}\PY{n}{suit}\PY{p}{)}
+        \PY{n}{println}\PY{p}{(}\PY{n}{d}\PY{p}{[}\PY{p}{:}\PY{n}{test}\PY{p}{]}\PY{p}{)}
+        \PY{n}{println}\PY{p}{(}\PY{n}{d}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{silly}\PY{l+s}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+2
+suit
+
+    \end{Verbatim}
+
+    \subsubsection{Tuples}\label{tuples}
+
+Tuples are immutable arrays. That means they can't be changed. However,
+they are super fast. They are made with the \texttt{(x,y,z,...)} syntax
+and are the standard return type of functions which return more than one
+object.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{tup} \PY{o}{=} \PY{p}{(}\PY{l+m+mf}{2.}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)} \PY{c}{\PYZsh{} Don\PYZsq{}t have to match types}
+        \PY{n}{x}\PY{p}{,}\PY{n}{y} \PY{o}{=} \PY{p}{(}\PY{l+m+mf}{3.0}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{hi}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{c}{\PYZsh{} Can separate a tuple to multiple variables}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}4}]:} (3.0,"hi")
+\end{Verbatim}
+        
     \paragraph{Problem 8}\label{problem-8}
 
 If you know \texttt{start}, \texttt{step}, and \texttt{stop}, how do you
@@ -1514,39 +1547,6 @@ http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading
 Overload the call on the UnitStepRange to give an interpolated value at
 intermediate points, i.e.~if \texttt{a=1:2:10}, then \texttt{a(1.5)=2}.
 
-    \subsubsection{Dictionaries}\label{dictionaries}
-
-Another common type is the Dictionary. It allows you to access
-(key,value) pairs in a named manner. For example:
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}1}]:} \PY{n}{d} \PY{o}{=} \PY{n}{Dict}\PY{p}{(}\PY{p}{:}\PY{n}{test}\PY{o}{=}\PY{o}{\PYZgt{}}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{silly}\PY{l+s}{\PYZdq{}}\PY{o}{=}\PY{o}{\PYZgt{}}\PY{p}{:}\PY{n}{suit}\PY{p}{)}
-        \PY{n}{println}\PY{p}{(}\PY{n}{d}\PY{p}{[}\PY{p}{:}\PY{n}{test}\PY{p}{]}\PY{p}{)}
-        \PY{n}{println}\PY{p}{(}\PY{n}{d}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{silly}\PY{l+s}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
-\end{Verbatim}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-2
-suit
-
-    \end{Verbatim}
-
-    \subsubsection{Tuples}\label{tuples}
-
-Tuples are immutable arrays. That means they can't be changed. However,
-they are super fast. They are made with the \texttt{(x,y,z,...)} syntax
-and are the standard return type of functions which return more than one
-object.
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{tup} \PY{o}{=} \PY{p}{(}\PY{l+m+mf}{2.}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)} \PY{c}{\PYZsh{} Don\PYZsq{}t have to match types}
-        \PY{n}{x}\PY{p}{,}\PY{n}{y} \PY{o}{=} \PY{p}{(}\PY{l+m+mf}{3.0}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{hi}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{c}{\PYZsh{} Can separate a tuple to multiple variables}
-\end{Verbatim}
-
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}4}]:} (3.0,"hi")
-\end{Verbatim}
-        
     \subsection{Metaprogramming}\label{metaprogramming}
 
 Metaprogramming is a huge feature of Julia. The key idea is that every
@@ -1596,6 +1596,25 @@ know how to parse the expression into working code, you can ``choose any
 syntax'' to be your syntax. A case study will be shown later. Another
 reason is because these are done at ``parse time'' and those are only
 called once (before the function compilation).
+
+    \subsection{Steps for Julia Parsing and
+Execution}\label{steps-for-julia-parsing-and-execution}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  The AST after parsing \textless{}- Macros
+\item
+  The AST after lowering (@code\_typed)
+\item
+  The AST after type inference and optimization \textless{}- Generated
+  Functions (@code\_lowered)
+\item
+  The LLVM IR \textless{}- Functions (@code\_llvm)
+\item
+  The assembly code (@code\_native)
+\end{enumerate}
 
 
     % Add a bibliography block to the postdoc

@@ -14196,23 +14196,6 @@ $$ \theta_{n+1} = \theta_{n} - \frac{cdf(\theta)-q}{pdf(\theta)} $$<p>to have $\
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Problem-8">Problem 8<a class="anchor-link" href="#Problem-8">&#182;</a></h4><p>If you know <code>start</code>, <code>step</code>, and <code>stop</code>, how do you calculate the <code>i</code>th value? Can you create a function MyRange which where for <code>a</code> being a <code>MyRange</code>, and <code>a[i]</code> is the correct value? Use the Julia array interface in order to define the function for the <code>a[i]</code> syntax on your type.</p>
-<h4 id="Problem-9">Problem 9<a class="anchor-link" href="#Problem-9">&#182;</a></h4><p>Do ?linspace. Make your own LinSpace object using the array interface.</p>
-<p><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces">http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces</a></p>
-<p>Do your implementations obay dimensional analysis? Try using the package <code>Unitful</code> to build arrays of numbers with units (i.e. an array of numbers who have values of Newtons), and see if you can make your LinSpace not give errors.</p>
-<h4 id="Problem-10">Problem 10<a class="anchor-link" href="#Problem-10">&#182;</a></h4><p>Check your implementation vs the source code of Ranges.jl. Tim Holy is the master of Julia arrays, learn from him!</p>
-<h4 id="Problem-11">Problem 11<a class="anchor-link" href="#Problem-11">&#182;</a></h4><p>Check out the call overloading notebook:</p>
-<p><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading">http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading</a></p>
-<p>Overload the call on the UnitStepRange to give an interpolated value at intermediate points, i.e. if <code>a=1:2:10</code>, then <code>a(1.5)=2</code>.</p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Dictionaries">Dictionaries<a class="anchor-link" href="#Dictionaries">&#182;</a></h3><p>Another common type is the Dictionary. It allows you to access (key,value) pairs in a named manner. For example:</p>
 
 </div>
@@ -14293,6 +14276,23 @@ suit
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Problem-8">Problem 8<a class="anchor-link" href="#Problem-8">&#182;</a></h4><p>If you know <code>start</code>, <code>step</code>, and <code>stop</code>, how do you calculate the <code>i</code>th value? Can you create a function MyRange which where for <code>a</code> being a <code>MyRange</code>, and <code>a[i]</code> is the correct value? Use the Julia array interface in order to define the function for the <code>a[i]</code> syntax on your type.</p>
+<h4 id="Problem-9">Problem 9<a class="anchor-link" href="#Problem-9">&#182;</a></h4><p>Do ?linspace. Make your own LinSpace object using the array interface.</p>
+<p><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces">http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces</a></p>
+<p>Do your implementations obay dimensional analysis? Try using the package <code>Unitful</code> to build arrays of numbers with units (i.e. an array of numbers who have values of Newtons), and see if you can make your LinSpace not give errors.</p>
+<h4 id="Problem-10">Problem 10<a class="anchor-link" href="#Problem-10">&#182;</a></h4><p>Check your implementation vs the source code of Ranges.jl. Tim Holy is the master of Julia arrays, learn from him!</p>
+<h4 id="Problem-11">Problem 11<a class="anchor-link" href="#Problem-11">&#182;</a></h4><p>Check out the call overloading notebook:</p>
+<p><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading">http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading</a></p>
+<p>Overload the call on the UnitStepRange to give an interpolated value at intermediate points, i.e. if <code>a=1:2:10</code>, then <code>a(1.5)=2</code>.</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Metaprogramming">Metaprogramming<a class="anchor-link" href="#Metaprogramming">&#182;</a></h2><p>Metaprogramming is a huge feature of Julia. The key idea is that every statement in Julia is of the type <code>Expression</code>. Julia operators by building an Abstract Syntax Tree (AST) from the Expressions. You've already been exposed to this a little bit: a <code>Symbol</code> (like <code>:PhysicalSciences</code> is not a string because it is part of the AST, and thus is part of the parsing/expression structure. One interesting thing is that symbol comparisons are O(1) while string comparisons, like always, are O(n)) is part of this, and macros (the weird functions with an <code>@</code>) are functions on expressions.</p>
 <p>Thus you can think of metaprogramming as "code which takes in code and outputs code". One basic example is the <code>@time</code> macro:</p>
 
@@ -14343,6 +14343,22 @@ while loading In[85], in expression starting on line 1
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This takes in an expression <code>ex</code>, gets the time before and after evaluation, and prints the elapsed time between (the real time macro also calculates the allocations as seen earlier). Note that <code>$ex</code> "interpolates" the expression into the macro. Going into detail on metaprogramming is a large step from standard scripting and will be a later session.</p>
 <p>Why macros? One reason is because it lets you define any syntax you want. Since it operates on the expressions themselves, as long as you know how to parse the expression into working code, you can "choose any syntax" to be your syntax. A case study will be shown later. Another reason is because these are done at "parse time" and those are only called once (before the function compilation).</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Steps-for-Julia-Parsing-and-Execution">Steps for Julia Parsing and Execution<a class="anchor-link" href="#Steps-for-Julia-Parsing-and-Execution">&#182;</a></h2><ol>
+<li>The AST after parsing &lt;- Macros</li>
+<li>The AST after lowering (@code_typed)</li>
+<li>The AST after type inference and optimization &lt;- Generated Functions (@code_lowered) </li>
+<li>The LLVM IR &lt;- Functions (@code_llvm)</li>
+<li>The assembly code (@code_native)</li>
+</ol>
 
 </div>
 </div>
