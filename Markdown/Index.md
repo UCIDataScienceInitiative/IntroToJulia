@@ -67,7 +67,8 @@ To get started, see the [Tooling, Documentation, and Community notebook](http://
 - [Data Visualization: Plots.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PlotsJL)
 - [Juno, the Julia IDE (Debugging, Progress Bars, etc.): JunoLab](https://chrisrackauckas.github.io/JunoDocs.jl/latest/)
 - [Differential Equations: DifferentialEquations.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DiffEq)
-- [Dimensional Reduction: MultivariateStats.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DimensionalReduction)
+- [Clustering: Clustering.jl and Distances.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Clustering)
+- [Dimensionality Reduction: MultivariateStats.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DimensionalityReduction)
 - [Mathematical Programming / Optimization: JuMP and Optim.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Optimization)
 - [Solving Nonlinear Equations: NLsolve.jl and Roots.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/NonlinearSolve)
 - [Forward-mode Autodifferentiation (with Optimization): ForwardDiff.jl and Optim.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ForwardDiff)
@@ -98,6 +99,8 @@ Probe around and understand the following results:
 ---------------------------
 
 #### [Answers to the Problems](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ProblemAnswers)
+- [Answer to Dimensionality Reduction Problem](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DimensionalityReductionSolutions)
+- [Answer to Clustering Problem](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ClusteringSolutions)
 
 ## Slides
 
@@ -125,7 +128,8 @@ Probe around and understand the following results:
 - [Overview of the Package Ecosystem](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/PackageEcosystem)
 - [Data Visualization: Plots.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/PlotsJL)
 - [Differential Equations: DifferentialEquations.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/DiffEq)
-- [Dimensional Reduction: MultivariateStats.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/DimensionalReduction)
+- [Clustering: Clustering.jl and Distances.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Clustering)
+- [Dimensionality Reduction: MultivariateStats.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DimensionalityReduction)
 - [Mathematical Programming / Optimization: JuMP and Optim.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/Optimization)
 - [Solving Nonlinear Equations: NLsolve.jl and Roots.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/NonlinearSolve)
 - [Forward-mode Autodifferentiation (with Optimization): ForwardDiff.jl and Optim.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ForwardDiff)

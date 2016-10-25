@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-<title>Index slides</title>
+<title>ClusteringSolutions slides</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -11830,194 +11830,301 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="A-Deep-Introduction-to-Julia-for-Data-Science-and-Scientific-Computing">A Deep Introduction to Julia for Data Science and Scientific Computing<a class="anchor-link" href="#A-Deep-Introduction-to-Julia-for-Data-Science-and-Scientific-Computing">&#182;</a></h1>
+<h1 id="Solutions-to-the-Clustering-Task">Solutions to the Clustering Task<a class="anchor-link" href="#Solutions-to-the-Clustering-Task">&#182;</a></h1>
 </div>
 </div>
-</div></section></section><section><section>
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><p>This workshop is put together by Chris Rackauckas as part of the UC Irvine Data Science Initiative. This workshop is made to teach people who are experienced with other scripting languages the relatively new language Julia. Unlike the other Data Science Initiative workshops, this workshop assumes prior knowledge of some form of programming in a language such as Python, R, or MATLAB.</p>
-<p>We will start by introducing the basic syntax of the language, and quickly move into the details of how Julia is different from other scripting languages and how to exploit Julia's type system + multiple dispatch to be able to achieve C/Fortran-like performance while maintaining the concise syntax of a scripting language. Large parts of the package ecosystem will be explored and some information on implementation details will be highlighted in order for the participants to learn how to design Julia projects.</p>
-<p>The ideal participant is anyone who is interested in Julia. There are many groups of people interested in using Julia. One large fraction come with a strong software development background and C/Fortran knowledge, and are looking to learn Julia as a tool to create packages with enhanced productivity while not losing performance. On the other side, there are users who are interested in the growing package ecosystem of Julia and would like to add Julia to their knowledge-base. And then there's everything in between. One major goal of this workshop is to use Julia's language and syntax to bridge the gap between "package users" and "package developers" in the way that Julia has done.</p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Introduction-to-the-Author">Introduction to the Author<a class="anchor-link" href="#Introduction-to-the-Author">&#182;</a></h2><p>Chris is a PhD student in Mathematics from the Mathematical, Computational, and Systems Biology (MCSB) Gateway program and is an active part of the Julia community. He runs the blog, <a href="http://www.stochasticlifestyle.com/">http://www.stochasticlifestyle.com/</a>, where he write tutorials on using the Julia languages covering many topics, such as high-performance and GPGPU computing, package development, and Julia tips. He is part of the JuliaMath and JuliaDiffEq communities for curating the Julia libraries for mathematics and differential equations respectively. Chris is the developer of many Julia packages, the most prominent being <a href="https://github.com/JuliaDiffEq/DifferentialEquations.jl">DifferentialEquations.jl</a>, a Julia library which has become a standard solver for many forms of differential equations.</p>
-<h3 id="Remote-Instructors">Remote Instructors<a class="anchor-link" href="#Remote-Instructors">&#182;</a></h3><p>You are highly encouraged to use the <a href="https://gitter.im/JuliaLang/julia">Julia Gitter chat channel</a> to ask your Julia-related questions, both during the workshop and after the workshop! There are a few "remote instructors" who will be available through this chat channel at different times throughout the workshop:</p>
+<h2 id="Clustering">Clustering<a class="anchor-link" href="#Clustering">&#182;</a></h2><p>The main clustering package for julia, is unexpectedly, named <a href="https://github.com/JuliaStats/Clustering.jl">Clustering.jl</a></p>
 <ul>
-<li>Lyndon White (@oxinabox): University of Western Australia</li>
-<li>Fengyang Wang (@TotalVerb): University of Waterloo</li>
-<li>Ismael Venegas Castelló (@Ismael-VC): Data Analyst at Rich IT</li>
-<li>Seth Bromberger (@sbromberger): Lawrence Livermore National Laboratory</li>
+<li>It supports K-means, K-medoids, Affinity Propagation, DBSCAN</li>
+<li>It also supports hierarchical clustering, but that is not currently in the docs.</li>
 </ul>
-<p>Others will also be available. Please do not be afraid to use this resource!</p>
+<p>You'll also want  <a href="https://github.com/JuliaStats/Distances.jl">Distances.jl</a> for all your distance metric needs.
+It is traditional with word2vec to use cosine distance.</p>
+<h3 id="Affinity-Propagraion">Affinity Propagraion<a class="anchor-link" href="#Affinity-Propagraion">&#182;</a></h3><p>If you set the availability right, it can get a breakdown where the ball-sports and clustered seperately from the other sports. Though you may have problems with some of the cities being classes as sports, as this word2vec repressentation was trained on a dump of wikipedia taken in 2014, and there are a lot of sports pages talking about the Athens and Beijing olypics.</p>
 
 </div>
 </div>
-</div></section></section><section><section>
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Notes-Before-We-Get-Started">Notes Before We Get Started<a class="anchor-link" href="#Notes-Before-We-Get-Started">&#182;</a></h2><ul>
-<li>Please install some version of IJulia/Jupyter to follow along. I also recommend working through longer problems using the Juno IDE.</li>
-<li>The start of the course will be on developing general performant Julia code. After lunch it will be about the package ecosystem. This understanding of Julia will be useful even for "Julia users" (i.e. non package developers) to use packages effectively, but don't worry we will get to packages. </li>
-<li>Please do the problems/projects at your own pace. Not everyone is expected to complete all of the material in the allotted time. Instead, this is supposed to be a resource to introduce you to a large amount of Julia, and the material may take awhile to fully be digested. That's okay!</li>
-<li>During the basic introduction, there will be information that is not included in these notebooks. That is intentional. One major hurdle for learning a language is learning how to find out more about the language. Please use the manual, chatrooms, StackExchange, etc. If these aren't working for you, ask for help.</li>
-</ul>
-<p>A good primer for the workshop: <a href="https://www.youtube.com/watch?v=JNvMs0j3a4E">https://www.youtube.com/watch?v=JNvMs0j3a4E</a></p>
+<h1 id="First-we-loadup-some-data">First we loadup some data<a class="anchor-link" href="#First-we-loadup-some-data">&#182;</a></h1><p>For the the example presented here, we will use a subhset of Word Embedding, trained using <a href="https://github.com/tanmaykm/Word2Vec.jl">Word2Vec.jl</a>.
+These are 100 dimentional vectors, which encode syntactic and semantic information about words.</p>
 
 </div>
 </div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Installation-and-Setup">Installation and Setup<a class="anchor-link" href="#Installation-and-Setup">&#182;</a></h2><p>To get started, see the <a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ToolingDocumentationCommunity">Tooling, Documentation, and Community notebook</a>.</p>
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">JLD</span>
+<span class="n">embeddings</span> <span class="o">=</span> <span class="nb">load</span><span class="p">(</span><span class="s">&quot;../assets/ClusteringAndDimentionalityReduction.jld&quot;</span><span class="p">,</span> <span class="s">&quot;embeddings&quot;</span><span class="p">)</span>
+</pre></div>
 
 </div>
 </div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
 </div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[1]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Dict{String,Array{Float32,1}} with 185 entries:
+  &#34;ferret&#34;       =&gt; Float32[0.0945707,-0.435267,0.0109875,-0.107674,0.169001,-0…
+  &#34;gymnastics&#34;   =&gt; Float32[-0.269173,-0.343412,-0.00603042,-0.186179,0.0342606…
+  &#34;vegas&#34;        =&gt; Float32[-0.00530534,-0.264874,0.0167432,-0.289836,-0.14033,…
+  &#34;archery&#34;      =&gt; Float32[0.0279714,-0.485648,0.105468,-0.0696941,0.182807,-0…
+  &#34;jacksonville&#34; =&gt; Float32[-0.418758,-0.0284594,0.00847164,-0.0989162,0.098186…
+  &#34;ankara&#34;       =&gt; Float32[-0.139109,0.0872892,0.749557,-0.0308427,-0.0936718,…
+  &#34;pentathlon&#34;   =&gt; Float32[-0.357405,-0.379595,-0.134314,-0.31008,-0.0245871,-…
+  &#34;seoul&#34;        =&gt; Float32[0.0274904,-0.153844,-0.0936614,-0.0269344,-0.091449…
+  &#34;china&#34;        =&gt; Float32[0.132423,-0.515862,-0.0381339,-0.287565,-0.285202,-…
+  &#34;korea&#34;        =&gt; Float32[0.236904,-0.128355,-0.0816942,-0.0702621,-0.148426,…
+  &#34;argentina&#34;    =&gt; Float32[-0.113967,-0.437523,-0.226014,-0.439572,-0.230062,-…
+  &#34;mozambique&#34;   =&gt; Float32[0.309411,-0.13457,-0.632055,-0.309943,0.040591,0.11…
+  &#34;iraq&#34;         =&gt; Float32[-0.260673,0.0356129,0.104878,0.103836,-0.17918,-0.3…
+  &#34;baku&#34;         =&gt; Float32[0.182572,0.156322,0.225807,-0.0933851,-0.246997,-0.…
+  &#34;jakarta&#34;      =&gt; Float32[0.13052,-0.408592,-0.0138496,-0.415052,0.21523,-0.0…
+  &#34;bogotá&#34;       =&gt; Float32[-0.26368,-0.292844,-0.338501,-0.278793,-0.0690988,0…
+  &#34;sacramento&#34;   =&gt; Float32[-0.217914,-0.116757,-0.213111,-0.13627,-0.0241341,-…
+  &#34;dhaka&#34;        =&gt; Float32[-0.0264262,-0.256298,0.0922423,-0.711511,-0.329286,…
+  &#34;kyiv&#34;         =&gt; Float32[-0.0527193,0.219892,-0.298013,-0.594799,-0.452732,-…
+  &#34;houston&#34;      =&gt; Float32[-0.301442,-0.133911,-0.17504,-0.0391225,-0.0525875,…
+  &#34;italy&#34;        =&gt; Float32[0.246153,-0.0510639,-0.143408,-0.149572,-0.229163,-…
+  &#34;francisco&#34;    =&gt; Float32[-0.342338,-0.200734,-0.347174,-0.228947,-0.125513,-…
+  &#34;baghdad&#34;      =&gt; Float32[-0.309163,0.00524779,0.287937,0.0294381,-0.173093,-…
+  &#34;dog&#34;          =&gt; Float32[0.0509182,-0.479764,0.0209584,-0.0409415,0.0650602,…
+  &#34;kabul&#34;        =&gt; Float32[-0.0282727,-0.108688,0.249284,0.119064,-0.163644,-0…
+  ⋮              =&gt; ⋮</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Rendered-Jupyter-Notebooks">Rendered Jupyter Notebooks<a class="anchor-link" href="#Rendered-Jupyter-Notebooks">&#182;</a></h2><h3 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h3><ul>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ToolingDocumentationCommunity">Tooling, Documentation, and Community</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/JuliaMentalModel">A Mental Model for Julia</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/GithubIntroduction">A Very Quick Introduction to Git/Github for Julia Users</a></li>
-</ul>
-<h3 id="Basics">Basics<a class="anchor-link" href="#Basics">&#182;</a></h3><ul>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicIntroduction">A Basic Introduction to Julia</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicProblems">Introductory Problems</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/WhyJulia">Why Julia?</a></li>
-<li><a href="http://www.stochasticlifestyle.com/7-julia-gotchas-handle/">7 Julia Gotchas and How to Handle Them</a></li>
-</ul>
-<h3 id="Detailed-Usage:-A-Peek-Into-&quot;the-Rabbit-Hole&quot;">Detailed Usage: A Peek Into "the Rabbit Hole"<a class="anchor-link" href="#Detailed-Usage:-A-Peek-Into-&quot;the-Rabbit-Hole&quot;">&#182;</a></h3><ul>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Metaprogramming">Metaprogramming</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading">Call Overloading</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArraysAndMatrices">More Details on Arrays and Matrices - How to get Fortran Speeds in Linear Algebra</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces">Array and Iterator Interfaces</a></li>
-</ul>
-<h3 id="Packages-to-Explore">Packages to Explore<a class="anchor-link" href="#Packages-to-Explore">&#182;</a></h3><ul>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PackageEcosystem">Overview of the Package Ecosystem</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PlotsJL">Data Visualization: Plots.jl</a></li>
-<li><a href="https://chrisrackauckas.github.io/JunoDocs.jl/latest/">Juno, the Julia IDE (Debugging, Progress Bars, etc.): JunoLab</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DiffEq">Differential Equations: DifferentialEquations.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Clustering">Clustering: Clustering.jl and Distances.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DimensionalityReduction">Dimensionality Reduction: MultivariateStats.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Optimization">Mathematical Programming / Optimization: JuMP and Optim.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/NonlinearSolve">Solving Nonlinear Equations: NLsolve.jl and Roots.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ForwardDiff">Forward-mode Autodifferentiation (with Optimization): ForwardDiff.jl and Optim.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Graphs">Graph Algorithms and Analysis: LightGraphs.jl</a></li>
-<li>Bioinformatics: Bio.jl</li>
-<li>Deep Learning: Mocha.jl, TensorFlow.jl, or MXNet.jl</li>
-</ul>
-<h3 id="Extra-Projects-and-Problems">Extra Projects and Problems<a class="anchor-link" href="#Extra-Projects-and-Problems">&#182;</a></h3><ul>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Interop">Using External Languages from Julia (Interop)</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/HPCJulia">Parallelism and HPC</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/JuliaML">Work in Progress: JuliaML for Machine Learning</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PackageDevelopment">Package Development, Documentation, and Testing</a></li>
-<li>Tools for Faster Code: <a href="https://github.com/simonbyrne/InplaceOps.jl">InplaceOps.jl</a>, <a href="https://github.com/ahwillia/CatViews.jl">CatViews.jl</a>, and <a href="https://github.com/JuliaMath/VML.jl">VML.jl</a></li>
-<li>Robust Benchmarking: <a href="https://github.com/JuliaCI/BenchmarkTools.jl">BenchmarkTools.jl</a> and <a href="https://github.com/timholy/ProfileView.jl">ProfileView.jl</a></li>
-</ul>
-<h3 id="Experiments">Experiments<a class="anchor-link" href="#Experiments">&#182;</a></h3><p>Probe around and understand the following results:</p>
-<ul>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/TypeStabilityExperiment">Type-Stability Experiment</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ScopingExperiment">Scoping Experiment</a></li>
-</ul>
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">all_words</span> <span class="o">=</span> <span class="n">collect</span><span class="p">(</span><span class="n">keys</span><span class="p">(</span><span class="n">embeddings</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">all_words</span><span class="p">)</span>
+<span class="n">embeddings_mat</span> <span class="o">=</span> <span class="n">hcat</span><span class="p">(</span><span class="n">getindex</span><span class="o">.</span><span class="p">([</span><span class="n">embeddings</span><span class="p">],</span> <span class="n">all_words</span><span class="p">)</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
 
 </div>
 </div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
 </div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_text output_subarea ">
+<pre>185-element Array{String,1}:
+ &#34;ferret&#34;      
+ &#34;gymnastics&#34;  
+ &#34;vegas&#34;       
+ &#34;archery&#34;     
+ &#34;jacksonville&#34;
+ &#34;ankara&#34;      
+ &#34;pentathlon&#34;  
+ &#34;seoul&#34;       
+ &#34;china&#34;       
+ &#34;korea&#34;       
+ &#34;argentina&#34;   
+ &#34;mozambique&#34;  
+ &#34;iraq&#34;        
+ ⋮             
+ &#34;volleyball&#34;  
+ &#34;luanda&#34;      
+ &#34;ghana&#34;       
+ &#34;warsaw&#34;      
+ &#34;accra&#34;       
+ &#34;indianapolis&#34;
+ &#34;las&#34;         
+ &#34;russia&#34;      
+ &#34;columbus&#34;    
+ &#34;thailand&#34;    
+ &#34;mesa&#34;        
+ &#34;goose&#34;       </pre>
+</div>
+
+</div>
+
+<div class="output_area"><div class="prompt output_prompt">Out[2]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>100×185 Array{Float32,2}:
+  0.0945707   -0.269173    …   0.0859109  -0.215521     0.118283 
+ -0.435267    -0.343412       -0.185847   -0.0846722   -0.40088  
+  0.0109875   -0.00603042      0.131935   -0.452262     0.0091058
+ -0.107674    -0.186179       -0.221565   -0.115309     0.0121521
+  0.169001     0.0342606      -0.0558827  -0.373113    -0.0509757
+ -0.0564122   -0.137685    …  -0.0252548  -0.264813    -0.24657  
+ -0.249841    -0.162321        0.0430546   0.0958876    0.0397347
+ -0.115424    -0.253833        0.161854   -0.274667    -0.120246 
+ -0.302291     0.0844513      -0.263644   -0.158253    -0.0829336
+ -0.0232056    0.138056       -0.476437   -0.1159       0.0935187
+ -0.0826832    0.0510365   …  -0.190116   -0.00022561  -0.338357 
+ -0.11338      0.0767575      -0.0493041  -0.252975    -0.0785137
+ -0.255015    -0.591677        0.0772709   0.180385    -0.134259 
+  ⋮                        ⋱                                     
+ -0.191331    -0.290943       -0.164481   -0.0834075    0.182234 
+  0.0188895   -0.594902       -0.365009    0.0104588    0.205071 
+ -0.1854       0.169166    …  -0.175704   -0.00672958  -0.047146 
+ -0.0505824    0.251584       -0.468982    0.257763    -0.0606379
+ -0.169504     0.189358       -0.0463411  -0.0674982   -0.222475 
+  0.00213797  -0.113193        0.0145402  -0.192454    -0.087933 
+ -0.0281012   -0.07121         0.158821   -0.00851574  -0.51206  
+ -0.064161    -0.132502    …  -0.439959   -0.512601    -0.186174 
+ -0.161479    -0.0524493       0.170235   -0.123051     0.0789853
+  0.0849455   -0.178514       -0.0547684  -0.578576     0.154197 
+  0.0256315   -0.154586        0.0279115  -0.28596      0.0913349
+ -0.0626861    0.312328        0.338198    0.0463355   -0.14829  </pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<h1 id="Extras">Extras<a class="anchor-link" href="#Extras">&#182;</a></h1><hr>
-<h4 id="Answers-to-the-Problems"><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ProblemAnswers">Answers to the Problems</a><a class="anchor-link" href="#Answers-to-the-Problems">&#182;</a></h4><ul>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DimensionalityReductionSolutions">Answer to Dimensionality Reduction Problem</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ClusteringSolutions">Answer to Clustering Problem</a></li>
-</ul>
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">Clustering</span>
+<span class="k">using</span> <span class="n">Distances</span>
+
+<span class="n">similarity</span> <span class="o">=</span> <span class="mf">1f0</span> <span class="o">-</span> <span class="n">pairwise</span><span class="p">(</span><span class="n">CosineDist</span><span class="p">(),</span> <span class="n">embeddings_mat</span><span class="p">)</span>
+<span class="n">availability</span> <span class="o">=</span> <span class="mf">0.01</span><span class="o">*</span><span class="n">ones</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">similarity</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span> 
+<span class="c"># tweaking availability is how you control number of clusters</span>
+<span class="c"># it is the diagonal of the similarity matrix</span>
+<span class="n">similarity</span><span class="p">[</span><span class="n">diagind</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">similarity</span><span class="p">)</span><span class="o">...</span><span class="p">)]</span> <span class="o">=</span> <span class="n">availability</span>
+<span class="n">aprop</span> <span class="o">=</span> <span class="n">affinityprop</span><span class="p">(</span><span class="n">similarity</span><span class="p">)</span>
+</pre></div>
 
 </div>
 </div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
 </div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Clustering.AffinityPropResult([10,17,24,49,77,84,87,88,91,107,136,148,161,165,174,182],[3,12,2,12,16,6,12,1,1,1  …  14,11,14,16,2,8,16,4,2,3],[9,12,14,9,7,14,7,8,15,7,5,20,5,19,10,24],46,true)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Slides">Slides<a class="anchor-link" href="#Slides">&#182;</a></h2><h3 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h3><ul>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ToolingDocumentationCommunity">Tooling, Documentation, and Community</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/JuliaMentalModel">A Mental Model for Julia</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/GithubIntroduction">A Very Quick Introduction to Git/Github for Julia Users</a></li>
-</ul>
-<h3 id="Basics">Basics<a class="anchor-link" href="#Basics">&#182;</a></h3><ul>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/BasicIntroduction">A Basic Introduction to Julia</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/BasicProblems">Introductory Problems</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/WhyJulia">Why Julia?</a></li>
-</ul>
-<h3 id="Detailed-Usage:-A-Peak-Into-&quot;the-Rabbit-Hole&quot;">Detailed Usage: A Peak Into "the Rabbit Hole"<a class="anchor-link" href="#Detailed-Usage:-A-Peak-Into-&quot;the-Rabbit-Hole&quot;">&#182;</a></h3><ul>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/Metaprogramming">Metaprogramming</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/CallOverloading">Call Overloading</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ArrayIteratorInterfaces">Array and Iterator Interfaces</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ArraysAndMatrices">More Details on Arrays and Matrices - How to get Fortran Speeds from Linear Algebra</a></li>
-</ul>
-<h3 id="Packages-to-Explore">Packages to Explore<a class="anchor-link" href="#Packages-to-Explore">&#182;</a></h3><ul>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/PackageEcosystem">Overview of the Package Ecosystem</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/PlotsJL">Data Visualization: Plots.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/DiffEq">Differential Equations: DifferentialEquations.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Clustering">Clustering: Clustering.jl and Distances.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DimensionalityReduction">Dimensionality Reduction: MultivariateStats.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/Optimization">Mathematical Programming / Optimization: JuMP and Optim.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/NonlinearSolve">Solving Nonlinear Equations: NLsolve.jl and Roots.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ForwardDiff">Forward-mode Autodifferentiation (with Optimization): ForwardDiff.jl and Optim.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/Graphs">Graph Algorithms and Analysis: LightGraphs.jl</a></li>
-<li>Bioinformatics: Bio.jl</li>
-<li>Deep Learning: Mocha.jl, TensorFlow.jl, or MXNet.jl</li>
-</ul>
-<h3 id="Extra-Projects-and-Problems">Extra Projects and Problems<a class="anchor-link" href="#Extra-Projects-and-Problems">&#182;</a></h3><ul>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/Interop">Using External Languages from Julia (Interop)</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/HPCJulia">Parallelism and HPC</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/JuliaML">Work in Progress: JuliaML for Machine Learning</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/PackageDevelopment">Package Development, Documentation, and Testing</a></li>
-<li>Tools for Faster Code: <a href="https://github.com/simonbyrne/InplaceOps.jl">InplaceOps.jl</a>, <a href="https://github.com/ahwillia/CatViews.jl">CatViews.jl</a>, and <a href="https://github.com/JuliaMath/VML.jl">VML.jl</a></li>
-<li>Robust Benchmarking: <a href="https://github.com/JuliaCI/BenchmarkTools.jl">BenchmarkTools.jl</a> and <a href="https://github.com/timholy/ProfileView.jl">ProfileView.jl</a></li>
-</ul>
-<h3 id="Experiments">Experiments<a class="anchor-link" href="#Experiments">&#182;</a></h3><p>Probe around and understand the following results:</p>
-<ul>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/TypeStabilityExperiment">Type-Stability Experiment</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ScopingExperiment">Scoping Experiment</a></li>
-</ul>
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="n">cluster_ii</span><span class="p">,</span> <span class="n">examplar_ind</span><span class="p">)</span> <span class="k">in</span> <span class="n">enumerate</span><span class="p">(</span><span class="n">aprop</span><span class="o">.</span><span class="n">exemplars</span><span class="p">)</span>
+    <span class="n">println</span><span class="p">(</span><span class="s">&quot;-&quot;</span><span class="o">^</span><span class="mi">32</span><span class="p">)</span>
+    <span class="n">println</span><span class="p">(</span><span class="s">&quot;Exemplar: &quot;</span><span class="p">,</span> <span class="n">all_words</span><span class="p">[</span><span class="n">examplar_ind</span><span class="p">])</span>
+    <span class="n">cluster_member_inds</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">assignments</span><span class="p">(</span><span class="n">aprop</span><span class="p">)</span><span class="o">.==</span><span class="n">cluster_ii</span><span class="p">)</span>
+    <span class="n">println</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">getindex</span><span class="o">.</span><span class="p">([</span><span class="n">all_words</span><span class="p">],</span> <span class="n">cluster_member_inds</span><span class="p">),</span> <span class="s">&quot;, &quot;</span><span class="p">))</span>
+<span class="k">end</span>
+</pre></div>
 
 </div>
 </div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
 </div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="How-These-Were-Made">How These Were Made<a class="anchor-link" href="#How-These-Were-Made">&#182;</a></h2><p>This entire repository is made using Jupyter notebooks using the template from the <a href="https://github.com/ChrisRackauckas/JupyterSite">JupyterSite</a> repository. To contribute to these materials, see <a href="https://github.com/UCIDataScienceInitiative/IntroToJulia">the Github repository</a>.</p>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>--------------------------------
+Exemplar: korea
+seoul, china, korea, pyongyang, japan, vietnam, tokyo, hanoi, taipei
+--------------------------------
+Exemplar: sacramento
+vegas, sacramento, francisco, tucson, seattle, san, albuquerque, denver, portland, fresno, las, mesa
+--------------------------------
+Exemplar: dog
+ferret, dog, goldfish, cattle, dove, yak, duck, llama, mouse, alpaca, pigeon, guineafowl, camel, goose
+--------------------------------
+Exemplar: indonesia
+jakarta, bangkok, myanmar, indonesia, manila, malaysia, philippines, singapore, thailand
+--------------------------------
+Exemplar: iran
+iraq, kabul, uzbekistan, tehran, iran, yemen, afghanistan
+--------------------------------
+Exemplar: cairo
+ankara, baghdad, algiers, khartoum, rabat, beirut, cairo, algeria, morocco, damascus, amman, egypt, arabia, riyadh
+--------------------------------
+Exemplar: vienna
+italy, rome, berlin, vienna, stockholm, budapest, paris
+--------------------------------
+Exemplar: moscow
+baku, kyiv, bucharest, tashkent, moscow, minsk, ukraine, russia
+--------------------------------
+Exemplar: colombia
+argentina, bogotá, lima, madrid, venezuela, havana, peru, colombia, brazil, brasília, quito, mexico, santiago, spain, caracas
+--------------------------------
+Exemplar: wales
+australia, england, london, wales, britain, rugby, ireland
+--------------------------------
+Exemplar: poland
+south, france, germany, poland, warsaw
+--------------------------------
+Exemplar: weightlifting
+gymnastics, archery, pentathlon, shooting, diving, swimming, fencing, rowing, taekwondo, cycling, judo, beijing, kayak, wrestling, triathlon, sailing, weightlifting, boxing, equestrian, athens
+--------------------------------
+Exemplar: bangladesh
+dhaka, nepal, pakistan, india, bangladesh
+--------------------------------
+Exemplar: uganda
+mozambique, madagascar, congo, yaoundé, pretoria, sudan, tanzania, angola, nigeria, kenya, kinshasa, antananarivo, kampala, nairobi, ethiopia, uganda, luanda, ghana, accra
+--------------------------------
+Exemplar: volleyball
+basketball, handball, polo, tennis, football, golf, hockey, soccer, badminton, volleyball
+--------------------------------
+Exemplar: columbus
+jacksonville, houston, nashville, raleigh, phoenix, washington, detroit, milwaukee, canada, chicago, usa, austin, field, charlotte, dallas, omaha, memphis, baltimore, atlanta, louisville, philadelphia, boston, indianapolis, columbus
+</pre>
+</div>
+</div>
 
 </div>
 </div>
+
 </div></section></section>
 </div>
 </div>

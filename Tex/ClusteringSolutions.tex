@@ -1,0 +1,495 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font than Computer Modern for most use cases
+    \usepackage{palatino}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{ClusteringSolutions}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Solutions to the Clustering
+Task}\label{solutions-to-the-clustering-task}
+
+    \subsection{Clustering}\label{clustering}
+
+The main clustering package for julia, is unexpectedly, named
+\href{https://github.com/JuliaStats/Clustering.jl}{Clustering.jl} - It
+supports K-means, K-medoids, Affinity Propagation, DBSCAN - It also
+supports hierarchical clustering, but that is not currently in the docs.
+
+You'll also want
+\href{https://github.com/JuliaStats/Distances.jl}{Distances.jl} for all
+your distance metric needs. It is traditional with word2vec to use
+cosine distance.
+
+\subsubsection{Affinity Propagraion}\label{affinity-propagraion}
+
+If you set the availability right, it can get a breakdown where the
+ball-sports and clustered seperately from the other sports. Though you
+may have problems with some of the cities being classes as sports, as
+this word2vec repressentation was trained on a dump of wikipedia taken
+in 2014, and there are a lot of sports pages talking about the Athens
+and Beijing olypics.
+
+    \section{First we loadup some data}\label{first-we-loadup-some-data}
+
+For the the example presented here, we will use a subhset of Word
+Embedding, trained using
+\href{https://github.com/tanmaykm/Word2Vec.jl}{Word2Vec.jl}. These are
+100 dimentional vectors, which encode syntactic and semantic information
+about words.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{using} \PY{n}{JLD}
+        \PY{n}{embeddings} \PY{o}{=} \PY{n+nb}{load}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{../assets/ClusteringAndDimentionalityReduction.jld}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{embeddings}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}1}]:} Dict\{String,Array\{Float32,1\}\} with 185 entries:
+          "ferret"       => Float32[0.0945707,-0.435267,0.0109875,-0.107674,0.169001,-0…
+          "gymnastics"   => Float32[-0.269173,-0.343412,-0.00603042,-0.186179,0.0342606…
+          "vegas"        => Float32[-0.00530534,-0.264874,0.0167432,-0.289836,-0.14033,…
+          "archery"      => Float32[0.0279714,-0.485648,0.105468,-0.0696941,0.182807,-0…
+          "jacksonville" => Float32[-0.418758,-0.0284594,0.00847164,-0.0989162,0.098186…
+          "ankara"       => Float32[-0.139109,0.0872892,0.749557,-0.0308427,-0.0936718,…
+          "pentathlon"   => Float32[-0.357405,-0.379595,-0.134314,-0.31008,-0.0245871,-…
+          "seoul"        => Float32[0.0274904,-0.153844,-0.0936614,-0.0269344,-0.091449…
+          "china"        => Float32[0.132423,-0.515862,-0.0381339,-0.287565,-0.285202,-…
+          "korea"        => Float32[0.236904,-0.128355,-0.0816942,-0.0702621,-0.148426,…
+          "argentina"    => Float32[-0.113967,-0.437523,-0.226014,-0.439572,-0.230062,-…
+          "mozambique"   => Float32[0.309411,-0.13457,-0.632055,-0.309943,0.040591,0.11…
+          "iraq"         => Float32[-0.260673,0.0356129,0.104878,0.103836,-0.17918,-0.3…
+          "baku"         => Float32[0.182572,0.156322,0.225807,-0.0933851,-0.246997,-0.…
+          "jakarta"      => Float32[0.13052,-0.408592,-0.0138496,-0.415052,0.21523,-0.0…
+          "bogotá"       => Float32[-0.26368,-0.292844,-0.338501,-0.278793,-0.0690988,0…
+          "sacramento"   => Float32[-0.217914,-0.116757,-0.213111,-0.13627,-0.0241341,-…
+          "dhaka"        => Float32[-0.0264262,-0.256298,0.0922423,-0.711511,-0.329286,…
+          "kyiv"         => Float32[-0.0527193,0.219892,-0.298013,-0.594799,-0.452732,-…
+          "houston"      => Float32[-0.301442,-0.133911,-0.17504,-0.0391225,-0.0525875,…
+          "italy"        => Float32[0.246153,-0.0510639,-0.143408,-0.149572,-0.229163,-…
+          "francisco"    => Float32[-0.342338,-0.200734,-0.347174,-0.228947,-0.125513,-…
+          "baghdad"      => Float32[-0.309163,0.00524779,0.287937,0.0294381,-0.173093,-…
+          "dog"          => Float32[0.0509182,-0.479764,0.0209584,-0.0409415,0.0650602,…
+          "kabul"        => Float32[-0.0282727,-0.108688,0.249284,0.119064,-0.163644,-0…
+          ⋮              => ⋮
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{all\PYZus{}words} \PY{o}{=} \PY{n}{collect}\PY{p}{(}\PY{n}{keys}\PY{p}{(}\PY{n}{embeddings}\PY{p}{)}\PY{p}{)}
+        \PY{n}{display}\PY{p}{(}\PY{n}{all\PYZus{}words}\PY{p}{)}
+        \PY{n}{embeddings\PYZus{}mat} \PY{o}{=} \PY{n}{hcat}\PY{p}{(}\PY{n}{getindex}\PY{o}{.}\PY{p}{(}\PY{p}{[}\PY{n}{embeddings}\PY{p}{]}\PY{p}{,} \PY{n}{all\PYZus{}words}\PY{p}{)}\PY{o}{.}\PY{o}{.}\PY{o}{.}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+185-element Array{String,1}:
+ "ferret"      
+ "gymnastics"  
+ "vegas"       
+ "archery"     
+ "jacksonville"
+ "ankara"      
+ "pentathlon"  
+ "seoul"       
+ "china"       
+ "korea"       
+ "argentina"   
+ "mozambique"  
+ "iraq"        
+ ⋮             
+ "volleyball"  
+ "luanda"      
+ "ghana"       
+ "warsaw"      
+ "accra"       
+ "indianapolis"
+ "las"         
+ "russia"      
+ "columbus"    
+ "thailand"    
+ "mesa"        
+ "goose"       
+    \end{verbatim}
+
+    
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}2}]:} 100×185 Array\{Float32,2\}:
+          0.0945707   -0.269173    …   0.0859109  -0.215521     0.118283 
+         -0.435267    -0.343412       -0.185847   -0.0846722   -0.40088  
+          0.0109875   -0.00603042      0.131935   -0.452262     0.0091058
+         -0.107674    -0.186179       -0.221565   -0.115309     0.0121521
+          0.169001     0.0342606      -0.0558827  -0.373113    -0.0509757
+         -0.0564122   -0.137685    …  -0.0252548  -0.264813    -0.24657  
+         -0.249841    -0.162321        0.0430546   0.0958876    0.0397347
+         -0.115424    -0.253833        0.161854   -0.274667    -0.120246 
+         -0.302291     0.0844513      -0.263644   -0.158253    -0.0829336
+         -0.0232056    0.138056       -0.476437   -0.1159       0.0935187
+         -0.0826832    0.0510365   …  -0.190116   -0.00022561  -0.338357 
+         -0.11338      0.0767575      -0.0493041  -0.252975    -0.0785137
+         -0.255015    -0.591677        0.0772709   0.180385    -0.134259 
+          ⋮                        ⋱                                     
+         -0.191331    -0.290943       -0.164481   -0.0834075    0.182234 
+          0.0188895   -0.594902       -0.365009    0.0104588    0.205071 
+         -0.1854       0.169166    …  -0.175704   -0.00672958  -0.047146 
+         -0.0505824    0.251584       -0.468982    0.257763    -0.0606379
+         -0.169504     0.189358       -0.0463411  -0.0674982   -0.222475 
+          0.00213797  -0.113193        0.0145402  -0.192454    -0.087933 
+         -0.0281012   -0.07121         0.158821   -0.00851574  -0.51206  
+         -0.064161    -0.132502    …  -0.439959   -0.512601    -0.186174 
+         -0.161479    -0.0524493       0.170235   -0.123051     0.0789853
+          0.0849455   -0.178514       -0.0547684  -0.578576     0.154197 
+          0.0256315   -0.154586        0.0279115  -0.28596      0.0913349
+         -0.0626861    0.312328        0.338198    0.0463355   -0.14829  
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k}{using} \PY{n}{Clustering}
+        \PY{k}{using} \PY{n}{Distances}
+        
+        \PY{n}{similarity} \PY{o}{=} \PY{l+m+mf}{1f0} \PY{o}{\PYZhy{}} \PY{n}{pairwise}\PY{p}{(}\PY{n}{CosineDist}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{embeddings\PYZus{}mat}\PY{p}{)}
+        \PY{n}{availability} \PY{o}{=} \PY{l+m+mf}{0.01}\PY{o}{*}\PY{n}{ones}\PY{p}{(}\PY{n}{size}\PY{p}{(}\PY{n}{similarity}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)} 
+        \PY{c}{\PYZsh{} tweaking availability is how you control number of clusters}
+        \PY{c}{\PYZsh{} it is the diagonal of the similarity matrix}
+        \PY{n}{similarity}\PY{p}{[}\PY{n}{diagind}\PY{p}{(}\PY{n}{size}\PY{p}{(}\PY{n}{similarity}\PY{p}{)}\PY{o}{.}\PY{o}{.}\PY{o}{.}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{n}{availability}
+        \PY{n}{aprop} \PY{o}{=} \PY{n}{affinityprop}\PY{p}{(}\PY{n}{similarity}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:} Clustering.AffinityPropResult([10,17,24,49,77,84,87,88,91,107,136,148,161,165,174,182],[3,12,2,12,16,6,12,1,1,1  …  14,11,14,16,2,8,16,4,2,3],[9,12,14,9,7,14,7,8,15,7,5,20,5,19,10,24],46,true)
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{k}{for} \PY{p}{(}\PY{n}{cluster\PYZus{}ii}\PY{p}{,} \PY{n}{examplar\PYZus{}ind}\PY{p}{)} \PY{k}{in} \PY{n}{enumerate}\PY{p}{(}\PY{n}{aprop}\PY{o}{.}\PY{n}{exemplars}\PY{p}{)}
+            \PY{n}{println}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}}\PY{l+s}{\PYZdq{}}\PY{o}{\PYZca{}}\PY{l+m+mi}{32}\PY{p}{)}
+            \PY{n}{println}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Exemplar: }\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{all\PYZus{}words}\PY{p}{[}\PY{n}{examplar\PYZus{}ind}\PY{p}{]}\PY{p}{)}
+            \PY{n}{cluster\PYZus{}member\PYZus{}inds} \PY{o}{=} \PY{n}{find}\PY{p}{(}\PY{n}{assignments}\PY{p}{(}\PY{n}{aprop}\PY{p}{)}\PY{o}{.}\PY{o}{==}\PY{n}{cluster\PYZus{}ii}\PY{p}{)}
+            \PY{n}{println}\PY{p}{(}\PY{n}{join}\PY{p}{(}\PY{n}{getindex}\PY{o}{.}\PY{p}{(}\PY{p}{[}\PY{n}{all\PYZus{}words}\PY{p}{]}\PY{p}{,} \PY{n}{cluster\PYZus{}member\PYZus{}inds}\PY{p}{)}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{, }\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+        \PY{k}{end}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+--------------------------------
+Exemplar: korea
+seoul, china, korea, pyongyang, japan, vietnam, tokyo, hanoi, taipei
+--------------------------------
+Exemplar: sacramento
+vegas, sacramento, francisco, tucson, seattle, san, albuquerque, denver, portland, fresno, las, mesa
+--------------------------------
+Exemplar: dog
+ferret, dog, goldfish, cattle, dove, yak, duck, llama, mouse, alpaca, pigeon, guineafowl, camel, goose
+--------------------------------
+Exemplar: indonesia
+jakarta, bangkok, myanmar, indonesia, manila, malaysia, philippines, singapore, thailand
+--------------------------------
+Exemplar: iran
+iraq, kabul, uzbekistan, tehran, iran, yemen, afghanistan
+--------------------------------
+Exemplar: cairo
+ankara, baghdad, algiers, khartoum, rabat, beirut, cairo, algeria, morocco, damascus, amman, egypt, arabia, riyadh
+--------------------------------
+Exemplar: vienna
+italy, rome, berlin, vienna, stockholm, budapest, paris
+--------------------------------
+Exemplar: moscow
+baku, kyiv, bucharest, tashkent, moscow, minsk, ukraine, russia
+--------------------------------
+Exemplar: colombia
+argentina, bogotá, lima, madrid, venezuela, havana, peru, colombia, brazil, brasília, quito, mexico, santiago, spain, caracas
+--------------------------------
+Exemplar: wales
+australia, england, london, wales, britain, rugby, ireland
+--------------------------------
+Exemplar: poland
+south, france, germany, poland, warsaw
+--------------------------------
+Exemplar: weightlifting
+gymnastics, archery, pentathlon, shooting, diving, swimming, fencing, rowing, taekwondo, cycling, judo, beijing, kayak, wrestling, triathlon, sailing, weightlifting, boxing, equestrian, athens
+--------------------------------
+Exemplar: bangladesh
+dhaka, nepal, pakistan, india, bangladesh
+--------------------------------
+Exemplar: uganda
+mozambique, madagascar, congo, yaoundé, pretoria, sudan, tanzania, angola, nigeria, kenya, kinshasa, antananarivo, kampala, nairobi, ethiopia, uganda, luanda, ghana, accra
+--------------------------------
+Exemplar: volleyball
+basketball, handball, polo, tennis, football, golf, hockey, soccer, badminton, volleyball
+--------------------------------
+Exemplar: columbus
+jacksonville, houston, nashville, raleigh, phoenix, washington, detroit, milwaukee, canada, chicago, usa, austin, field, charlotte, dallas, omaha, memphis, baltimore, atlanta, louisville, philadelphia, boston, indianapolis, columbus
+
+    \end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
