@@ -68,15 +68,14 @@ function bpath(T,N)
     [0:dt:T-dt],W
 end # Translation took < 1 minute
 @time t,W = bpath(1,100000) # Timing is slower in Jupyter!
+@time t,W = bpath(1,100000) # Timing is slower in Jupyter!
 # 10x speedup over MATLAB
 using Plots
 plot(t,W',color=:red,xlabel="t",ylabel="W(t)")
 ```
 
-      0.091469 seconds (1.31 M allocations: 111.882 MB, 20.96% gc time)
-
-
-    WARNING: Method definition bpath(Any, Any) in module Main at In[2]:2 overwritten at In[3]:2.
+      0.312249 seconds (1.58 M allocations: 123.550 MB, 5.14% gc time)
+      0.051225 seconds (1.30 M allocations: 111.374 MB, 16.63% gc time)
 
 
 
