@@ -160,7 +160,7 @@ macro ~(y,ex)
   new_ex = Meta.quot(ex)
   quote
     inner_ex = $(esc(new_ex))
-    data_name = symbol(string(inner_ex.args[end])[1])
+    data_name = Symbol(string(inner_ex.args[end])[1])
     eval_ex = Expr(:(=),:data,data_name)
     eval(Main,eval_ex)
     new_X = Matrix{Float64}(size(data,1),length(inner_ex.args)-1)
@@ -188,22 +188,15 @@ solve_least_squares(tup::Tuple) = solve_least_squares(tup...)
 solve_least_squares(y~1+X1+X2+X4)
 ```
 
-    WARNING: Method definition @~(
-
 
 
 
     4-element Array{Float64,1}:
-      0.529064 
-      0.55191  
-     -0.52334  
-      0.0513438
+      0.153788
+      0.742984
+     -0.268836
+      0.320996
 
-
-
-    ANY<:Any, ANY<:Any) in module Main at In[9]:2 overwritten at In[10]:2.
-    WARNING: Method definition solve_least_squares(Any, Any) in module Main at In[4]:27 overwritten at In[10]:27.
-    WARNING: Method definition solve_least_squares(Tuple) in module Main at In[4]:29 overwritten at In[10]:29.
 
 
 ## Distribution Dispatch Problem
@@ -229,5 +222,26 @@ for dist in [Gamma(5, 1), Normal(0, 1), Beta(2, 4)]
     @show myquantile(dist, .75)
     @show quantile(dist, .75)
     println()
+end
+```
+
+## LightGraphs Problem
+
+
+```julia
+using Distributions
+function mkTree(maxdepth::Int = 10, p::Float64 = 0.8, g::SimpleGraph = Graph(1), currhead::Int = 1)
+    if (maxdepth <= 1) g
+    else
+       b = Binomial(2, p)
+       nEdges = max(1, rand(b))
+        for leaves in 1:nEdges
+            add_vertex!(g)
+            newnode = nv(g)
+            add_edge!(g, currhead, newnode)
+            mkTree(maxdepth-1, p, g, newnode)
+        end
+    end
+    g
 end
 ```

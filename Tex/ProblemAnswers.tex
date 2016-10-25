@@ -408,57 +408,46 @@
     \subsection{Metaprogramming Project}\label{metaprogramming-project}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}10}]:} \PY{k}{macro} \PY{o}{\PYZti{}}\PY{p}{(}\PY{n}{y}\PY{p}{,}\PY{n}{ex}\PY{p}{)}
-           \PY{n}{new\PYZus{}ex} \PY{o}{=} \PY{n}{Meta}\PY{o}{.}\PY{n}{quot}\PY{p}{(}\PY{n}{ex}\PY{p}{)}
-           \PY{k}{quote}
-             \PY{n}{inner\PYZus{}ex} \PY{o}{=} \PY{o}{\PYZdl{}}\PY{p}{(}\PY{n}{esc}\PY{p}{(}\PY{n}{new\PYZus{}ex}\PY{p}{)}\PY{p}{)}
-             \PY{n}{data\PYZus{}name} \PY{o}{=} \PY{n}{symbol}\PY{p}{(}\PY{n}{string}\PY{p}{(}\PY{n}{inner\PYZus{}ex}\PY{o}{.}\PY{n}{args}\PY{p}{[}\PY{k}{end}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
-             \PY{n}{eval\PYZus{}ex} \PY{o}{=} \PY{n}{Expr}\PY{p}{(}\PY{p}{:}\PY{p}{(}\PY{o}{=}\PY{p}{)}\PY{p}{,}\PY{p}{:}\PY{n}{data}\PY{p}{,}\PY{n}{data\PYZus{}name}\PY{p}{)}
-             \PY{n}{eval}\PY{p}{(}\PY{n}{Main}\PY{p}{,}\PY{n}{eval\PYZus{}ex}\PY{p}{)}
-             \PY{n}{new\PYZus{}X} \PY{o}{=} \PY{n}{Matrix}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{size}\PY{p}{(}\PY{n}{data}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,}\PY{n}{length}\PY{p}{(}\PY{n}{inner\PYZus{}ex}\PY{o}{.}\PY{n}{args}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
-             \PY{n}{cur\PYZus{}spot} \PY{o}{=} \PY{l+m+mi}{0}
-             \PY{k}{for} \PY{n}{i} \PY{k}{in} \PY{l+m+mi}{2}\PY{p}{:}\PY{n}{length}\PY{p}{(}\PY{n}{inner\PYZus{}ex}\PY{o}{.}\PY{n}{args}\PY{p}{)}
-               \PY{k}{if} \PY{n}{inner\PYZus{}ex}\PY{o}{.}\PY{n}{args}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{1}
-                 \PY{n}{new\PYZus{}X}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{ones}\PY{p}{(}\PY{n}{size}\PY{p}{(}\PY{n}{data}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
-               \PY{k}{else}
-                 \PY{n}{col} \PY{o}{=} \PY{n}{parse}\PY{p}{(}\PY{k+kt}{Int}\PY{p}{,}\PY{n}{string}\PY{p}{(}\PY{n}{string}\PY{p}{(}\PY{n}{inner\PYZus{}ex}\PY{o}{.}\PY{n}{args}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}\PY{p}{)}
-                 \PY{n}{new\PYZus{}X}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{col}\PY{p}{]}
-               \PY{k}{end}
-             \PY{k}{end}
-             \PY{o}{\PYZdl{}}\PY{p}{(}\PY{n}{esc}\PY{p}{(}\PY{n}{y}\PY{p}{)}\PY{p}{)}\PY{p}{,}\PY{n}{new\PYZus{}X}
-           \PY{k}{end}
-         \PY{k}{end}
-         
-         \PY{n}{y} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
-         \PY{n}{X} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}
-         \PY{n}{y}\PY{o}{\PYZti{}}\PY{l+m+mi}{1}\PY{o}{+}\PY{n}{X1}\PY{o}{+}\PY{n}{X2}\PY{o}{+}\PY{n}{X4}
-         
-         \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{solve\PYZus{}least\PYZus{}squares}\PY{p}{(}\PY{n}{y}\PY{p}{,}\PY{n}{X}\PY{p}{)}
-           \PY{n}{X}\PYZbs{}\PY{n}{y}
-         \PY{k}{end}
-         \PY{n}{solve\PYZus{}least\PYZus{}squares}\PY{p}{(}\PY{n}{tup}\PY{p}{:}\PY{p}{:}\PY{n}{Tuple}\PY{p}{)} \PY{o}{=} \PY{n}{solve\PYZus{}least\PYZus{}squares}\PY{p}{(}\PY{n}{tup}\PY{o}{.}\PY{o}{.}\PY{o}{.}\PY{p}{)}
-         \PY{n}{solve\PYZus{}least\PYZus{}squares}\PY{p}{(}\PY{n}{y}\PY{o}{\PYZti{}}\PY{l+m+mi}{1}\PY{o}{+}\PY{n}{X1}\PY{o}{+}\PY{n}{X2}\PY{o}{+}\PY{n}{X4}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{macro} \PY{o}{\PYZti{}}\PY{p}{(}\PY{n}{y}\PY{p}{,}\PY{n}{ex}\PY{p}{)}
+          \PY{n}{new\PYZus{}ex} \PY{o}{=} \PY{n}{Meta}\PY{o}{.}\PY{n}{quot}\PY{p}{(}\PY{n}{ex}\PY{p}{)}
+          \PY{k}{quote}
+            \PY{n}{inner\PYZus{}ex} \PY{o}{=} \PY{o}{\PYZdl{}}\PY{p}{(}\PY{n}{esc}\PY{p}{(}\PY{n}{new\PYZus{}ex}\PY{p}{)}\PY{p}{)}
+            \PY{n}{data\PYZus{}name} \PY{o}{=} \PY{n}{Symbol}\PY{p}{(}\PY{n}{string}\PY{p}{(}\PY{n}{inner\PYZus{}ex}\PY{o}{.}\PY{n}{args}\PY{p}{[}\PY{k}{end}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+            \PY{n}{eval\PYZus{}ex} \PY{o}{=} \PY{n}{Expr}\PY{p}{(}\PY{p}{:}\PY{p}{(}\PY{o}{=}\PY{p}{)}\PY{p}{,}\PY{p}{:}\PY{n}{data}\PY{p}{,}\PY{n}{data\PYZus{}name}\PY{p}{)}
+            \PY{n}{eval}\PY{p}{(}\PY{n}{Main}\PY{p}{,}\PY{n}{eval\PYZus{}ex}\PY{p}{)}
+            \PY{n}{new\PYZus{}X} \PY{o}{=} \PY{n}{Matrix}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{size}\PY{p}{(}\PY{n}{data}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,}\PY{n}{length}\PY{p}{(}\PY{n}{inner\PYZus{}ex}\PY{o}{.}\PY{n}{args}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+            \PY{n}{cur\PYZus{}spot} \PY{o}{=} \PY{l+m+mi}{0}
+            \PY{k}{for} \PY{n}{i} \PY{k}{in} \PY{l+m+mi}{2}\PY{p}{:}\PY{n}{length}\PY{p}{(}\PY{n}{inner\PYZus{}ex}\PY{o}{.}\PY{n}{args}\PY{p}{)}
+              \PY{k}{if} \PY{n}{inner\PYZus{}ex}\PY{o}{.}\PY{n}{args}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{1}
+                \PY{n}{new\PYZus{}X}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{ones}\PY{p}{(}\PY{n}{size}\PY{p}{(}\PY{n}{data}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+              \PY{k}{else}
+                \PY{n}{col} \PY{o}{=} \PY{n}{parse}\PY{p}{(}\PY{k+kt}{Int}\PY{p}{,}\PY{n}{string}\PY{p}{(}\PY{n}{string}\PY{p}{(}\PY{n}{inner\PYZus{}ex}\PY{o}{.}\PY{n}{args}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+                \PY{n}{new\PYZus{}X}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{col}\PY{p}{]}
+              \PY{k}{end}
+            \PY{k}{end}
+            \PY{o}{\PYZdl{}}\PY{p}{(}\PY{n}{esc}\PY{p}{(}\PY{n}{y}\PY{p}{)}\PY{p}{)}\PY{p}{,}\PY{n}{new\PYZus{}X}
+          \PY{k}{end}
+        \PY{k}{end}
+        
+        \PY{n}{y} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+        \PY{n}{X} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}
+        \PY{n}{y}\PY{o}{\PYZti{}}\PY{l+m+mi}{1}\PY{o}{+}\PY{n}{X1}\PY{o}{+}\PY{n}{X2}\PY{o}{+}\PY{n}{X4}
+        
+        \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{solve\PYZus{}least\PYZus{}squares}\PY{p}{(}\PY{n}{y}\PY{p}{,}\PY{n}{X}\PY{p}{)}
+          \PY{n}{X}\PYZbs{}\PY{n}{y}
+        \PY{k}{end}
+        \PY{n}{solve\PYZus{}least\PYZus{}squares}\PY{p}{(}\PY{n}{tup}\PY{p}{:}\PY{p}{:}\PY{n}{Tuple}\PY{p}{)} \PY{o}{=} \PY{n}{solve\PYZus{}least\PYZus{}squares}\PY{p}{(}\PY{n}{tup}\PY{o}{.}\PY{o}{.}\PY{o}{.}\PY{p}{)}
+        \PY{n}{solve\PYZus{}least\PYZus{}squares}\PY{p}{(}\PY{n}{y}\PY{o}{\PYZti{}}\PY{l+m+mi}{1}\PY{o}{+}\PY{n}{X1}\PY{o}{+}\PY{n}{X2}\PY{o}{+}\PY{n}{X4}\PY{p}{)}
 \end{Verbatim}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-WARNING: Method definition @\textasciitilde{}(
-    \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}10}]:} 4-element Array\{Float64,1\}:
-           0.529064 
-           0.55191  
-          -0.52334  
-           0.0513438
+{\color{outcolor}Out[{\color{outcolor}1}]:} 4-element Array\{Float64,1\}:
+          0.153788
+          0.742984
+         -0.268836
+          0.320996
 \end{Verbatim}
         
-    \begin{Verbatim}[commandchars=\\\{\}]
-ANY<:Any, ANY<:Any) in module Main at In[9]:2 overwritten at In[10]:2.
-WARNING: Method definition solve\_least\_squares(Any, Any) in module Main at In[4]:27 overwritten at In[10]:27.
-WARNING: Method definition solve\_least\_squares(Tuple) in module Main at In[4]:29 overwritten at In[10]:29.
-
-    \end{Verbatim}
-
     \subsection{Distribution Dispatch
 Problem}\label{distribution-dispatch-problem}
 
@@ -484,6 +473,26 @@ https://github.com/joshday/Talks/blob/master/SLG2016\_IntroToJulia/Slides.ipynb
             \PY{p}{@}\PY{n}{show} \PY{n}{myquantile}\PY{p}{(}\PY{n}{dist}\PY{p}{,} \PY{o}{.}\PY{l+m+mi}{75}\PY{p}{)}
             \PY{p}{@}\PY{n}{show} \PY{n}{quantile}\PY{p}{(}\PY{n}{dist}\PY{p}{,} \PY{o}{.}\PY{l+m+mi}{75}\PY{p}{)}
             \PY{n}{println}\PY{p}{(}\PY{p}{)}
+        \PY{k}{end}
+\end{Verbatim}
+
+    \subsection{LightGraphs Problem}\label{lightgraphs-problem}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k}{using} \PY{n}{Distributions}
+        \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{mkTree}\PY{p}{(}\PY{n}{maxdepth}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{,} \PY{n}{p}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Float64} \PY{o}{=} \PY{l+m+mf}{0.8}\PY{p}{,} \PY{n}{g}\PY{p}{:}\PY{p}{:}\PY{n}{SimpleGraph} \PY{o}{=} \PY{n}{Graph}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{currhead}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+            \PY{k}{if} \PY{p}{(}\PY{n}{maxdepth} \PY{o}{\PYZlt{}=} \PY{l+m+mi}{1}\PY{p}{)} \PY{n}{g}
+            \PY{k}{else}
+               \PY{n}{b} \PY{o}{=} \PY{n}{Binomial}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{p}\PY{p}{)}
+               \PY{n}{nEdges} \PY{o}{=} \PY{n}{max}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{rand}\PY{p}{(}\PY{n}{b}\PY{p}{)}\PY{p}{)}
+                \PY{k}{for} \PY{n}{leaves} \PY{k}{in} \PY{l+m+mi}{1}\PY{p}{:}\PY{n}{nEdges}
+                    \PY{n}{add\PYZus{}vertex!}\PY{p}{(}\PY{n}{g}\PY{p}{)}
+                    \PY{n}{newnode} \PY{o}{=} \PY{n}{nv}\PY{p}{(}\PY{n}{g}\PY{p}{)}
+                    \PY{n}{add\PYZus{}edge!}\PY{p}{(}\PY{n}{g}\PY{p}{,} \PY{n}{currhead}\PY{p}{,} \PY{n}{newnode}\PY{p}{)}
+                    \PY{n}{mkTree}\PY{p}{(}\PY{n}{maxdepth}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{p}\PY{p}{,} \PY{n}{g}\PY{p}{,} \PY{n}{newnode}\PY{p}{)}
+                \PY{k}{end}
+            \PY{k}{end}
+            \PY{n}{g}
         \PY{k}{end}
 \end{Verbatim}
 
