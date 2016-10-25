@@ -83,7 +83,7 @@ To get started, see the [Tooling, Documentation, and Community notebook](http://
 - [Work in Progress: JuliaML for Machine Learning](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/JuliaML)
 - [Package Development, Documentation, and Testing](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PackageDevelopment)
 - Tools for Faster Code: [InplaceOps.jl](https://github.com/simonbyrne/InplaceOps.jl), [CatViews.jl](https://github.com/ahwillia/CatViews.jl), and [VML.jl](https://github.com/JuliaMath/VML.jl)
-- Robust Benchmarking: BenchmarkTools.jl and ProfileView.jl
+- Robust Benchmarking: [BenchmarkTools.jl](https://github.com/JuliaCI/BenchmarkTools.jl) and [ProfileView.jl](https://github.com/timholy/ProfileView.jl)
 
 ### Experiments
 
@@ -141,7 +141,7 @@ Probe around and understand the following results:
 - [Work in Progress: JuliaML for Machine Learning](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/JuliaML)
 - [Package Development, Documentation, and Testing](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/PackageDevelopment)
 - Tools for Faster Code: [InplaceOps.jl](https://github.com/simonbyrne/InplaceOps.jl), [CatViews.jl](https://github.com/ahwillia/CatViews.jl), and [VML.jl](https://github.com/JuliaMath/VML.jl)
-- Robust Benchmarking: BenchmarkTools.jl and ProfileView.jl
+- Robust Benchmarking: [BenchmarkTools.jl](https://github.com/JuliaCI/BenchmarkTools.jl) and [ProfileView.jl](https://github.com/timholy/ProfileView.jl)
 
 ### Experiments
 
