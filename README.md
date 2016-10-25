@@ -9,3 +9,5 @@
 **Contact**: Please mail [crackauc@uci.edu](mailto:crackauc@uci.edu) for more information.
 
 **[Workshop Website](http://ucidatascienceinitiative.github.io/IntroToJulia/)**
+
+Feel free to open issues / PRs to improve the course materials.
