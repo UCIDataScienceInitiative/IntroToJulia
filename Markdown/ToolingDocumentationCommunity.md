@@ -44,6 +44,28 @@ notebook(detached=true,dir=Pkg.dir("IntroToJulia/notebooks"))
 
 To install Juno, use the installation instructions from here: https://github.com/JunoLab/uber-juno/blob/master/setup.md
 
+## Installing Libraries
+
+For later in the workshop you will need some libraries installed. Suggested libraries to install are:
+
+- Plots.jl for plotting. This will require some backends:
+  - PyPlot.jl
+  - GR.jl
+  - Plotly.jl
+- MultivariateStats.jl
+- GLM.jl
+
+Optional libraries, depending on which projects you explore later, include:
+
+- DifferentialEquations.jl
+- LightGraphs.jl
+- ForwardDiff.jl
+- NLsolve.jl
+- JuMP
+- BenchmarkTools.jl
+- ProfileView.jl
+- PkgDev.jl
+
 ## Documentation
 
 The Julia documentation can be found at http://docs.julialang.org/en/latest/manual/
@@ -58,6 +80,7 @@ The following documentation pages are good pages to read in full:
 
 - [Noteworthy Differences from Other Languages](http://docs.julialang.org/en/release-0.5/manual/noteworthy-differences/)
 - [Performance Tips](http://docs.julialang.org/en/release-0.5/manual/performance-tips/)
+- [MATLAB, Python, Julia Syntax Comparison](http://cheatsheets.quantecon.org/)
 
 ## Community
 

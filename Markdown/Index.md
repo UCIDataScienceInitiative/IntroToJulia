@@ -21,6 +21,7 @@ You are highly encouraged to use the [Julia Gitter chat channel](https://gitter.
 - Lyndon White (@oxinabox): University of Western Australia
 - Fengyang Wang (@TotalVerb): University of Waterloo
 - Ismael Venegas Castelló (@Ismael-VC): Data Analyst at Rich IT
+- Seth Bromberger (@sbromberger): Lawrence Livermore National Laboratory
 
 Others will also be available. Please do not be afraid to use this resource!
 
@@ -62,26 +63,26 @@ To get started, see the [Tooling, Documentation, and Community notebook](http://
 ### Packages to Explore
 
 - [Overview of the Package Ecosystem](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PackageEcosystem)
-- [Data Visualization: Plots.jl]
-- Juno, the Julia IDE (Debugging, Progress Bars, etc.): JunoLab
-- Differential Equations: DifferentialEquations.jl
+- [Data Visualization: Plots.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PlotsJL)
+- [Juno, the Julia IDE (Debugging, Progress Bars, etc.): JunoLab](https://chrisrackauckas.github.io/JunoDocs.jl/latest/)
+- [Differential Equations: DifferentialEquations.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DiffEq)
 - Dimensional Reduction: MultivariateStats.jl
-- Mathematical Programming / Optimization: JuMP and Optim.jl
-- Solving Nonlinear Equations: NLsolve.jl
-- Forward-mode Autodifferentiation: ForwardDiff.jl
-- Robust Benchmarking: BenchmarkTools.jl
+- [Mathematical Programming / Optimization: JuMP and Optim.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Optimization)
+- [Solving Nonlinear Equations: NLsolve.jl and Roots.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/NonlinearSolve)
+- [Forward-mode Autodifferentiation (with Optimization): ForwardDiff.jl and Optim.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ForwardDiff)
+- [Graph Algorithms and Analysis: LightGraphs.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Graphs)
 - Bioinformatics: Bio.jl
 - Deep Learning: Mocha.jl, TensorFlow.jl, or MXNet.jl
-- Symbolic Mathematics: Symata.jl, SymEngine.jl, and SymPy.jl
 
 
 ### Extra Projects
 
 - [Using External Languages from Julia (Interop)](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Interop)
 - [Parallelism and HPC](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/HPCJulia)
-- [Work in Progress: JuliaML for Machine Learning] - Include Roadmap and Tom's post
-- Package Development, Documentation, and Testing
+- [Work in Progress: JuliaML for Machine Learning](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/JuliaML)
+- [Package Development, Documentation, and Testing](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PackageDevelopment)
 - Tools for Faster Code: InplaceOps.jl, CatViews.jl, and VML.jl
+- Robust Benchmarking: BenchmarkTools.jl and ProfileView.jl
 
 ### Experiments
 

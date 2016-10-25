@@ -275,9 +275,231 @@
     
 
     
+    \subsection{An Introduction to
+Plots.jl}\label{an-introduction-to-plots.jl}
+
+    \subsection{Idea}\label{idea}
+
+Plots.jl is a non-traditional plotting library
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  It does not implement a ``plotting backend'' itself, it's a plotting
+  API
+\item
+  The API is easily extendable via recipes
+\end{itemize}
+
+    \subsection{Backends}\label{backends}
+
+Plots.jl uses other plotting libraries as backends
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  PyPlot (matplotlob): Slow but dependable
+\item
+  GR: Feature-rich and fast, but new
+\item
+  Plotly/PlotlyJS: Interactive and good for web
+\item
+  PGFPlots: Native LaTeX rendering
+\item
+  UnicodePlots: Plots to unicode for no-display situations
+\end{itemize}
+
+    \subsection{Using Backends}\label{using-backends}
+
+To switch backends, you simply use the name of the library:
+https://juliaplots.github.io/backends/
+
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} 
+{\color{incolor}In [{\color{incolor}2}]:} \PY{k}{using} \PY{n}{Plots}
+        \PY{n}{pyplot}\PY{p}{(}\PY{p}{)} \PY{c}{\PYZsh{} Turns on the PyPlot backend}
+        \PY{n}{plot}\PY{p}{(}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{gr}\PY{p}{(}\PY{p}{)}
+        \PY{n}{plot}\PY{p}{(}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{plotly}\PY{p}{(}\PY{p}{)}
+        \PY{n}{plot}\PY{p}{(}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \subsection{Attributes}\label{attributes}
+
+The attributes work with each of the backends:
+https://juliaplots.github.io/attributes/
+
+Compatibility of attributes is found in this chart:
+https://juliaplots.github.io/supported/
+
+I find it easiest to use this page to find the right attributes:
+https://juliaplots.github.io/examples/pyplot/
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{pyplot}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plot}\PY{p}{(}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{,}\PY{n}{title}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Test Title}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{n}{label}\PY{o}{=}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{First}\PY{l+s}{\PYZdq{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{Second}\PY{l+s}{\PYZdq{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{Third}\PY{l+s}{\PYZdq{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{Fourth}\PY{l+s}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{gr}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plot}\PY{p}{(}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{,}\PY{n}{title}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Test Title}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{n}{label}\PY{o}{=}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{First}\PY{l+s}{\PYZdq{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{Second}\PY{l+s}{\PYZdq{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{Third}\PY{l+s}{\PYZdq{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{Fourth}\PY{l+s}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{plotly}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plot}\PY{p}{(}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{,}\PY{n}{title}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Test Title}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{n}{label}\PY{o}{=}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{First}\PY{l+s}{\PYZdq{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{Second}\PY{l+s}{\PYZdq{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{Third}\PY{l+s}{\PYZdq{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{Fourth}\PY{l+s}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+    \subsection{Animations}\label{animations}
+
+Any plot can be animated
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{c}{\PYZsh{} initialize the attractor}
+         \PY{n}{n} \PY{o}{=} \PY{l+m+mi}{1500}
+         \PY{n}{dt} \PY{o}{=} \PY{l+m+mf}{0.02}
+         \PY{n}{σ}\PY{p}{,} \PY{n}{ρ}\PY{p}{,} \PY{n}{β} \PY{o}{=} \PY{l+m+mf}{10.}\PY{p}{,} \PY{l+m+mf}{28.}\PY{p}{,} \PY{l+m+mi}{8}\PY{o}{/}\PY{l+m+mi}{3}
+         \PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z} \PY{o}{=} \PY{l+m+mf}{1.}\PY{p}{,} \PY{l+m+mf}{1.}\PY{p}{,} \PY{l+m+mf}{1.}
+         
+         \PY{c}{\PYZsh{} initialize a 3D plot with 1 empty series}
+         \PY{n}{plt} \PY{o}{=} \PY{n}{path3d}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{xlim}\PY{o}{=}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{25}\PY{p}{,}\PY{l+m+mi}{25}\PY{p}{)}\PY{p}{,} \PY{n}{ylim}\PY{o}{=}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{25}\PY{p}{,}\PY{l+m+mi}{25}\PY{p}{)}\PY{p}{,} \PY{n}{zlim}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{50}\PY{p}{)}\PY{p}{,}
+                         \PY{n}{xlab} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{x}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{ylab} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{zlab} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{z}\PY{l+s}{\PYZdq{}}\PY{p}{,}
+                         \PY{n}{title} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Lorenz Attractor}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{marker} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+         
+         \PY{c}{\PYZsh{} build an animated gif, saving every 10th frame}
+         \PY{p}{@}\PY{n}{gif} \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{:}\PY{n}{n}
+             \PY{n}{dx} \PY{o}{=} \PY{n}{σ}\PY{o}{*}\PY{p}{(}\PY{n}{y} \PY{o}{\PYZhy{}} \PY{n}{x}\PY{p}{)}     \PY{p}{;} \PY{n}{x} \PY{o}{+}\PY{o}{=} \PY{n}{dt} \PY{o}{*} \PY{n}{dx}
+             \PY{n}{dy} \PY{o}{=} \PY{n}{x}\PY{o}{*}\PY{p}{(}\PY{n}{ρ} \PY{o}{\PYZhy{}} \PY{n}{z}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{y} \PY{p}{;} \PY{n}{y} \PY{o}{+}\PY{o}{=} \PY{n}{dt} \PY{o}{*} \PY{n}{dy}
+             \PY{n}{dz} \PY{o}{=} \PY{n}{x}\PY{o}{*}\PY{n}{y} \PY{o}{\PYZhy{}} \PY{n}{β}\PY{o}{*}\PY{n}{z}     \PY{p}{;} \PY{n}{z} \PY{o}{+}\PY{o}{=} \PY{n}{dt} \PY{o}{*} \PY{n}{dz}
+             \PY{n}{push!}\PY{p}{(}\PY{n}{plt}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{)}
+         \PY{k}{end} \PY{n}{every} \PY{l+m+mi}{10}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+INFO: Saved animation to C:\textbackslash{}Users\textbackslash{}Chris\textbackslash{}.julia\textbackslash{}v0.5\textbackslash{}IntroToJulia\textbackslash{}notebooks\textbackslash{}tmp.gif
+
+    \end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}15}]:} Plots.AnimatedGif("C:\textbackslash{}\textbackslash{}Users\textbackslash{}\textbackslash{}Chris\textbackslash{}\textbackslash{}.julia\textbackslash{}\textbackslash{}v0.5\textbackslash{}\textbackslash{}IntroToJulia\textbackslash{}\textbackslash{}notebooks\textbackslash{}\textbackslash{}tmp.gif")
+\end{Verbatim}
+        
+    \subsection{Recipes}\label{recipes}
+
+Recipes are abstract instructions for how to ``build a plot'' from data.
+There are multiple kinds of recipes. In execution order:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  User Recipes: Provides dispatches to plotting
+\item
+  Type Recipes: Says how to interpret the data of an abstract type
+\item
+  Plot Recipes: A pre-processing recipe which builds a set of series
+  plots and defaults
+\item
+  Series Recipes: What most would think of as a ``type of plot'',
+  i.e.~scatter, histogram, etc.
+\end{itemize}
+
+Since these extend Plots.jl itself, all of Plots.jl is accessible from
+the plotting commands that these make, and these recipes are accessible
+from each other.
+
+{[}Series recipes are used to extend the compatibility of backends
+itself!{]}
+
+\href{https://juliaplots.github.io/ecosystem/}{Check out of the Plots
+Ecosystem!}
+
+    \subsection{Type Recipe Example}\label{type-recipe-example}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{k}{using} \PY{n}{DifferentialEquations}
+         \PY{n}{sol} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{n}{prob\PYZus{}ode\PYZus{}linear}\PY{p}{)}
+         \PY{p}{@}\PY{n}{show} \PY{n+nb}{typeof}\PY{p}{(}\PY{n}{sol}\PY{p}{)}
+         \PY{n}{plot}\PY{p}{(}\PY{n}{sol}\PY{p}{,}\PY{n}{title}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{The Attributes Still Work}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+typeof(sol) = DifferentialEquations.ODESolution
+
+    \end{Verbatim}
+
+    \subsection{Plot and Type Recipes
+Together}\label{plot-and-type-recipes-together}
+
+StatsPlots provides a type recipe for how to read DataFrames, and a
+series recipe \texttt{marginalhist} which puts together histograms into
+a cohesive larger plot
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{k}{using} \PY{n}{RDatasets}\PY{p}{,} \PY{n}{StatPlots}\PY{p}{,} \PY{n}{Plots}
+        \PY{n}{iris} \PY{o}{=} \PY{n}{dataset}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{datasets}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{iris}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{marginalhist}\PY{p}{(}\PY{n}{iris}\PY{p}{,} \PY{p}{:}\PY{n}{PetalLength}\PY{p}{,} \PY{p}{:}\PY{n}{PetalWidth}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+WARNING: using Plots.PyPlot in module Main conflicts with an existing identifier.
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{M} \PY{o}{=} \PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}
+        \PY{n}{M}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{+}\PY{o}{=} \PY{l+m+mf}{0.8}\PY{n}{sqrt}\PY{p}{(}\PY{n}{abs}\PY{p}{(}\PY{n}{M}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{l+m+mf}{0.5}\PY{n}{M}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]} \PY{o}{+} \PY{l+m+mi}{5}
+        \PY{n}{M}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]} \PY{o}{\PYZhy{}}\PY{o}{=} \PY{l+m+mf}{0.7}\PY{n}{M}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mi}{2}
+        \PY{n}{corrplot}\PY{p}{(}\PY{n}{M}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{x}\PY{l+s+si}{\PYZdl{}i}\PY{l+s}{\PYZdq{}} \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{k}{import} \PY{n}{RDatasets}
+         \PY{n}{pyplot}\PY{p}{(}\PY{p}{)}
+         \PY{n}{singers} \PY{o}{=} \PY{n}{RDatasets}\PY{o}{.}\PY{n}{dataset}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{lattice}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{singer}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{violin}\PY{p}{(}\PY{n}{singers}\PY{p}{,}\PY{p}{:}\PY{n}{VoicePart}\PY{p}{,}\PY{p}{:}\PY{n}{Height}\PY{p}{,}\PY{n}{marker}\PY{o}{=}\PY{p}{(}\PY{l+m+mf}{0.2}\PY{p}{,}\PY{p}{:}\PY{n}{blue}\PY{p}{,}\PY{n}{stroke}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         \PY{n}{boxplot!}\PY{p}{(}\PY{n}{singers}\PY{p}{,}\PY{p}{:}\PY{n}{VoicePart}\PY{p}{,}\PY{p}{:}\PY{n}{Height}\PY{p}{,}\PY{n}{marker}\PY{o}{=}\PY{p}{(}\PY{l+m+mf}{0.3}\PY{p}{,}\PY{p}{:}\PY{n}{orange}\PY{p}{,}\PY{n}{stroke}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \subsection{Series Type}\label{series-type}
+
+A series type allows you to define an entirely new way of visualizing
+data into backends.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{groupedbar}\PY{p}{(}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{,} \PY{n}{bar\PYZus{}position} \PY{o}{=} \PY{p}{:}\PY{n}{dodge}\PY{p}{,} \PY{n}{bar\PYZus{}width}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{gr}\PY{p}{(}\PY{p}{)}
+         \PY{n}{groupedbar}\PY{p}{(}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{,} \PY{n}{bar\PYZus{}position} \PY{o}{=} \PY{p}{:}\PY{n}{dodge}\PY{p}{,} \PY{n}{bar\PYZus{}width}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{)}
+\end{Verbatim}
+
+    \subsection{Project: Regression Plot}\label{project-regression-plot}
+
+Make a beautiful plot of your regression:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Plot the values as a scatter plot
+\item
+  Use the mutating plot (\texttt{plot!}) to add the linear regression
+  line over the scatter plot
+\item
+  Use Loess.jl to build a smoothed line, and see how that plots vs your
+  linear regression
+\item
+  Add a title, label the two lines in a legend, and label the \texttt{x}
+  and \texttt{y} axis
+\item
+  Try some other backends: which one do you like the best?
+\end{itemize}
 
 
     % Add a bibliography block to the postdoc

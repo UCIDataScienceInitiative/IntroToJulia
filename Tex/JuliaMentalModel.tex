@@ -298,7 +298,8 @@ mental model for approaching Julia
   really fast!
 \item
   You are a package user: you heard about some really cool Julia
-  packages (JuMP, Plots, DifferentialEquations), and want to use Julia
+  packages/metapackages (JuMP, Plots, DifferentialEquations), and want
+  to use Julia
 \item
   Calling C, Fortran, Python, R, and MATLAB libraries, likely a
   combination of them, is necessary for your work
@@ -309,7 +310,81 @@ mental model for approaching Julia
   etc.
 \end{itemize}
 
-\subsection{Main Reasons to Not Use
+    \begin{figure}[htbp]
+\centering
+\includegraphics{https://github.com/UCIDataScienceInitiative/IntroToJulia/raw/master/assets/Julia_Interop_Test.jpg-large}
+\caption{Interop}
+\end{figure}
+
+    \subsection{Syntax is Familiar}\label{syntax-is-familiar}
+
+Higham: An Algorithmic Introduction to Numerical Simulation of
+Stochastic Differential Equations
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{o}{\PYZpc{}}\PY{n}{BPATH1} \PY{n}{Brownian} \PY{n}{path} \PY{n}{simulation}
+        \PY{k}{function}\PY{n+nf}{ }\PY{o}{[}\PY{n}{t}\PY{p}{,}\PY{n}{W}\PY{p}{]}\PY{o}{=}\PY{n}{BPATH1}\PY{p}{(}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{)}
+        \PY{n}{randn}\PY{p}{(}\PY{err}{\PYZsq{}}\PY{n}{state}\PY{o}{\PYZsq{}}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{)}
+        \PY{n}{dt} \PY{o}{=} \PY{n}{T}\PY{o}{/}\PY{n}{N}\PY{p}{;}
+        \PY{n}{dW} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{n}{N}\PY{p}{)}\PY{p}{;}
+        \PY{n}{W} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{n}{N}\PY{p}{)}\PY{p}{;}
+        
+        \PY{n}{dW}\PY{p}{(}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)} \PY{o}{=} \PY{n}{sqrt}\PY{p}{(}\PY{n}{dt}\PY{p}{)}\PY{o}{*}\PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{;}
+        \PY{n}{W}\PY{p}{(}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)} \PY{o}{=} \PY{n}{dW}\PY{p}{(}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{;}
+        
+        \PY{k}{for} \PY{n}{j} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{:}\PY{n}{N}
+            \PY{n}{dW}\PY{p}{(}\PY{p}{:}\PY{p}{,}\PY{n}{j}\PY{p}{)} \PY{o}{=} \PY{n}{sqrt}\PY{p}{(}\PY{n}{dt}\PY{p}{)}\PY{o}{*}\PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{;}
+            \PY{n}{W}\PY{p}{(}\PY{p}{:}\PY{p}{,}\PY{n}{j}\PY{p}{)} \PY{o}{=} \PY{n}{W}\PY{p}{(}\PY{p}{:}\PY{p}{,}\PY{n}{j}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)} \PY{o}{+} \PY{n}{dW}\PY{p}{(}\PY{p}{:}\PY{p}{,}\PY{n}{j}\PY{p}{)}\PY{p}{;}
+        \PY{k}{end}
+        \PY{n}{t} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{n}{dt}\PY{p}{:}\PY{n}{T}\PY{o}{\PYZhy{}}\PY{n}{dt}\PY{p}{]}\PY{p}{;}
+        \PY{k}{end}
+        
+        \PY{o}{\PYZpc{}} \PY{n}{In} \PY{n}{Another} \PY{n}{File}\PY{o}{.}\PY{o}{.}\PY{o}{.}
+        
+        \PY{n}{f} \PY{o}{=} \PY{p}{@}\PY{p}{(}\PY{p}{)} \PY{n}{BPATH1}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{10000}\PY{p}{)}\PY{p}{;}
+        \PY{n}{timeit}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}
+        \PY{p}{[}\PY{n}{t}\PY{p}{,}\PY{n}{W}\PY{p}{]} \PY{o}{=} \PY{n}{BPATH1}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{10000}\PY{p}{)}\PY{p}{;}
+        \PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,}\PY{n}{W}\PY{p}{,}\PY{err}{\PYZsq{}}\PY{n}{r}\PY{o}{\PYZhy{}}\PY{err}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{xlabel}\PY{p}{(}\PY{l+s+sc}{\PYZsq{}t\PYZsq{}}\PY{p}{,}\PY{err}{\PYZsq{}}\PY{n}{FontSize}\PY{o}{\PYZsq{}}\PY{p}{,}\PY{l+m+mi}{16}\PY{p}{)}
+        \PY{n}{ylabel}\PY{p}{(}\PY{err}{\PYZsq{}}\PY{n}{W}\PY{p}{(}\PY{n}{t}\PY{p}{)}\PY{l+s+sc}{\PYZsq{},\PYZsq{}}\PY{n}{FontSize}\PY{o}{\PYZsq{}}\PY{p}{,}\PY{l+m+mi}{16}\PY{p}{,}\PY{err}{\PYZsq{}}\PY{n}{Rotation}\PY{o}{\PYZsq{}}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{bpath}\PY{p}{(}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{)}
+            \PY{n}{srand}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)}
+            \PY{n}{dt} \PY{o}{=} \PY{n}{T}\PY{o}{/}\PY{n}{N}
+            \PY{n}{dW} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{n}{N}\PY{p}{)}
+            \PY{n}{W} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{n}{N}\PY{p}{)}
+        
+            \PY{n}{dW}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{sqrt}\PY{p}{(}\PY{n}{dt}\PY{p}{)}\PY{o}{*}\PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+            \PY{n}{W}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{dW}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}
+        
+            \PY{k}{for} \PY{n}{j} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{:}\PY{n}{N}
+                \PY{n}{dW}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{j}\PY{p}{]} \PY{o}{.}\PY{o}{=} \PY{n}{sqrt}\PY{p}{(}\PY{n}{dt}\PY{p}{)}\PY{o}{*}\PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+                \PY{n}{W}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{j}\PY{p}{]} \PY{o}{.}\PY{o}{=} \PY{n}{W}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{j}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{.}\PY{o}{+} \PY{n}{dW}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{j}\PY{p}{]}
+            \PY{k}{end}
+            \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{n}{dt}\PY{p}{:}\PY{n}{T}\PY{o}{\PYZhy{}}\PY{n}{dt}\PY{p}{]}\PY{p}{,}\PY{n}{W}
+        \PY{k}{end} \PY{c}{\PYZsh{} Translation took \PYZlt{} 1 minute}
+        \PY{p}{@}\PY{n}{time} \PY{n}{t}\PY{p}{,}\PY{n}{W} \PY{o}{=} \PY{n}{bpath}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{100000}\PY{p}{)} \PY{c}{\PYZsh{} Timing is slower in Jupyter!}
+        \PY{c}{\PYZsh{} 10x speedup over MATLAB}
+        \PY{k}{using} \PY{n}{Plots}
+        \PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,}\PY{n}{W}\PY{o}{\PYZsq{}}\PY{p}{,}\PY{n}{color}\PY{o}{=}\PY{p}{:}\PY{n}{red}\PY{p}{,}\PY{n}{xlabel}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{n}{ylabel}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{W(t)}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+  0.091469 seconds (1.31 M allocations: 111.882 MB, 20.96\% gc time)
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+WARNING: Method definition bpath(Any, Any) in module Main at In[2]:2 overwritten at In[3]:2.
+
+    \end{Verbatim}
+
+    \subsection{\href{http://cheatsheets.quantecon.org/}{MATLAB, Python,
+Julia Syntax Comparison}}\label{matlab-python-julia-syntax-comparison}
+
+    \subsection{Main Reasons to Not Use
 Julia}\label{main-reasons-to-not-use-julia}
 
 \begin{itemize}
@@ -317,15 +392,12 @@ Julia}\label{main-reasons-to-not-use-julia}
 \item
   You need low latency (game programming)
 \item
-  You need stability. I.e. you are a company and need a large code-base
+  You need stability. i.e.~you are a company and need a large code-base
   to run without modifications next year
+\item
+  It is more complex than other scripting languages: there is a lot you
+  can know
 \end{itemize}
-
-    \begin{figure}[htbp]
-\centering
-\includegraphics{https://github.com/UCIDataScienceInitiative/IntroToJulia/raw/master/assets/Julia_Interop_Test.jpg-large}
-\caption{Interop}
-\end{figure}
 
     \subsection{The Julia Community: Who is a
 user?}\label{the-julia-community-who-is-a-user}

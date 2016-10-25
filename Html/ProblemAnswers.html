@@ -12048,14 +12048,14 @@ X3             0.090267 0.0108559    8.315   &lt;1e-15
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="k">macro</span> <span class="o">~</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">ex</span><span class="p">)</span>
   <span class="n">new_ex</span> <span class="o">=</span> <span class="n">Meta</span><span class="o">.</span><span class="n">quot</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span>
   <span class="k">quote</span>
     <span class="n">inner_ex</span> <span class="o">=</span> <span class="o">$</span><span class="p">(</span><span class="n">esc</span><span class="p">(</span><span class="n">new_ex</span><span class="p">))</span>
-    <span class="n">data_name</span> <span class="o">=</span> <span class="n">symbol</span><span class="p">(</span><span class="n">string</span><span class="p">(</span><span class="n">inner_ex</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="k">end</span><span class="p">])[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">data_name</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="n">string</span><span class="p">(</span><span class="n">inner_ex</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="k">end</span><span class="p">])[</span><span class="mi">1</span><span class="p">])</span>
     <span class="n">eval_ex</span> <span class="o">=</span> <span class="n">Expr</span><span class="p">(:(</span><span class="o">=</span><span class="p">),:</span><span class="n">data</span><span class="p">,</span><span class="n">data_name</span><span class="p">)</span>
     <span class="n">eval</span><span class="p">(</span><span class="n">Main</span><span class="p">,</span><span class="n">eval_ex</span><span class="p">)</span>
     <span class="n">new_X</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="n">size</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">length</span><span class="p">(</span><span class="n">inner_ex</span><span class="o">.</span><span class="n">args</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
@@ -12091,32 +12091,17 @@ X3             0.090267 0.0108559    8.315   &lt;1e-15
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>WARNING: Method definition @~(</pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt output_prompt">Out[10]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[1]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
 <pre>4-element Array{Float64,1}:
-  0.529064 
-  0.55191  
- -0.52334  
-  0.0513438</pre>
+  0.153788
+  0.742984
+ -0.268836
+  0.320996</pre>
 </div>
 
-</div>
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>ANY&lt;:Any, ANY&lt;:Any) in module Main at In[9]:2 overwritten at In[10]:2.
-WARNING: Method definition solve_least_squares(Any, Any) in module Main at In[4]:27 overwritten at In[10]:27.
-WARNING: Method definition solve_least_squares(Tuple) in module Main at In[4]:29 overwritten at In[10]:29.
-</pre>
-</div>
 </div>
 
 </div>
@@ -12154,6 +12139,42 @@ WARNING: Method definition solve_least_squares(Tuple) in module Main at In[4]:29
     <span class="p">@</span><span class="n">show</span> <span class="n">myquantile</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="o">.</span><span class="mi">75</span><span class="p">)</span>
     <span class="p">@</span><span class="n">show</span> <span class="n">quantile</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="o">.</span><span class="mi">75</span><span class="p">)</span>
     <span class="n">println</span><span class="p">()</span>
+<span class="k">end</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="LightGraphs-Problem">LightGraphs Problem<a class="anchor-link" href="#LightGraphs-Problem">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">Distributions</span>
+<span class="k">function</span><span class="nf"> mkTree</span><span class="p">(</span><span class="n">maxdepth</span><span class="p">::</span><span class="kt">Int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">p</span><span class="p">::</span><span class="kt">Float64</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">g</span><span class="p">::</span><span class="n">SimpleGraph</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">currhead</span><span class="p">::</span><span class="kt">Int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">maxdepth</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="n">g</span>
+    <span class="k">else</span>
+       <span class="n">b</span> <span class="o">=</span> <span class="n">Binomial</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+       <span class="n">nEdges</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">rand</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">leaves</span> <span class="k">in</span> <span class="mi">1</span><span class="p">:</span><span class="n">nEdges</span>
+            <span class="n">add_vertex!</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+            <span class="n">newnode</span> <span class="o">=</span> <span class="n">nv</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+            <span class="n">add_edge!</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">currhead</span><span class="p">,</span> <span class="n">newnode</span><span class="p">)</span>
+            <span class="n">mkTree</span><span class="p">(</span><span class="n">maxdepth</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">newnode</span><span class="p">)</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+    <span class="n">g</span>
 <span class="k">end</span>
 </pre></div>
 
