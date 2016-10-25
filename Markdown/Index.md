@@ -54,7 +54,7 @@ To get started, see the [Tooling, Documentation, and Community notebook](http://
 - [Why Julia?](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/WhyJulia)
 - [7 Julia Gotchas and How to Handle Them](http://www.stochasticlifestyle.com/7-julia-gotchas-handle/)
 
-### Detailed Usage: A Peak Into "the Rabbit Hole"
+### Detailed Usage: A Peek Into "the Rabbit Hole"
 
 - [Metaprogramming](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Metaprogramming)
 - [Call Overloading](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading)
@@ -82,7 +82,7 @@ To get started, see the [Tooling, Documentation, and Community notebook](http://
 - [Parallelism and HPC](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/HPCJulia)
 - [Work in Progress: JuliaML for Machine Learning](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/JuliaML)
 - [Package Development, Documentation, and Testing](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PackageDevelopment)
-- Tools for Faster Code: InplaceOps.jl, CatViews.jl, and VML.jl
+- Tools for Faster Code: [InplaceOps.jl](https://github.com/simonbyrne/InplaceOps.jl), [CatViews.jl](https://github.com/ahwillia/CatViews.jl), and [VML.jl](https://github.com/JuliaMath/VML.jl)
 - Robust Benchmarking: BenchmarkTools.jl and ProfileView.jl
 
 ### Experiments
@@ -109,7 +109,8 @@ Probe around and understand the following results:
 
 ### Basics
 
-- [An Introduction to Basic Julia](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/BasicIntroduction)
+- [A Basic Introduction to Julia](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/BasicIntroduction)
+- [Introductory Problems](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/BasicProblems)
 - [Why Julia?](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/WhyJulia)
 
 ### Detailed Usage: A Peak Into "the Rabbit Hole"
@@ -119,17 +120,35 @@ Probe around and understand the following results:
 - [Array and Iterator Interfaces](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ArrayIteratorInterfaces)
 - [More Details on Arrays and Matrices - How to get Fortran Speeds from Linear Algebra](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ArraysAndMatrices)
 
-
-
 ### Packages to Explore
 
 - [Overview of the Package Ecosystem](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/PackageEcosystem)
-- [An In-Depth Look at Plots.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/PlotsJL)
+- [Data Visualization: Plots.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/PlotsJL)
+- [Differential Equations: DifferentialEquations.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/DiffEq)
+- Dimensional Reduction: MultivariateStats.jl
+- [Mathematical Programming / Optimization: JuMP and Optim.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/Optimization)
+- [Solving Nonlinear Equations: NLsolve.jl and Roots.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/NonlinearSolve)
+- [Forward-mode Autodifferentiation (with Optimization): ForwardDiff.jl and Optim.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ForwardDiff)
+- [Graph Algorithms and Analysis: LightGraphs.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/Graphs)
+- Bioinformatics: Bio.jl
+- Deep Learning: Mocha.jl, TensorFlow.jl, or MXNet.jl
 
-### Projects / Experiments
+
+### Extra Projects and Problems
+
+- [Using External Languages from Julia (Interop)](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/Interop)
+- [Parallelism and HPC](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/HPCJulia)
+- [Work in Progress: JuliaML for Machine Learning](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/JuliaML)
+- [Package Development, Documentation, and Testing](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/PackageDevelopment)
+- Tools for Faster Code: [InplaceOps.jl](https://github.com/simonbyrne/InplaceOps.jl), [CatViews.jl](https://github.com/ahwillia/CatViews.jl), and [VML.jl](https://github.com/JuliaMath/VML.jl)
+- Robust Benchmarking: BenchmarkTools.jl and ProfileView.jl
+
+### Experiments
+
+Probe around and understand the following results:
+
 - [Type-Stability Experiment](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/TypeStabilityExperiment)
 - [Scoping Experiment](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ScopingExperiment)
-- [Parallelism and HPC](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/HPCProject)
 
 ## How These Were Made
 

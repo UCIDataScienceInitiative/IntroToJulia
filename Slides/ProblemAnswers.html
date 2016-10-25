@@ -12240,7 +12240,7 @@ X3             0.090267 0.0108559    8.315   &lt;1e-15
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">Distributions</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">LightGraphs</span><span class="p">,</span> <span class="n">Distributions</span>
 <span class="k">function</span><span class="nf"> mkTree</span><span class="p">(</span><span class="n">maxdepth</span><span class="p">::</span><span class="kt">Int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">p</span><span class="p">::</span><span class="kt">Float64</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">g</span><span class="p">::</span><span class="n">SimpleGraph</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">currhead</span><span class="p">::</span><span class="kt">Int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">maxdepth</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="n">g</span>
     <span class="k">else</span>
@@ -12255,6 +12255,52 @@ X3             0.090267 0.0108559    8.315   &lt;1e-15
     <span class="k">end</span>
     <span class="n">g</span>
 <span class="k">end</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Roots-Problems">Roots Problems<a class="anchor-link" href="#Roots-Problems">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">Roots</span>
+<span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">-</span> <span class="n">x</span> <span class="o">+</span> <span class="n">e</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">fzero</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">BigFloat</span><span class="p">(</span><span class="mf">2.0</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">f!</span> <span class="o">=</span> <span class="k">function</span><span class="nf"> </span><span class="o">(</span><span class="n">x</span><span class="p">,</span><span class="n">dx</span><span class="p">)</span>
+  <span class="n">dx</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>   <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>   <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span><span class="mi">12</span>
+  <span class="n">dx</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>   <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>   <span class="o">-</span> <span class="mi">2</span>
+  <span class="n">dx</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>   <span class="o">-</span> <span class="mi">1</span>
+<span class="k">end</span>
+<span class="k">using</span> <span class="n">NLsolve</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">nlsolve</span><span class="p">(</span><span class="n">f!</span><span class="p">,[</span><span class="mf">1.0</span><span class="p">;</span><span class="mf">1.0</span><span class="p">;</span><span class="mf">1.0</span><span class="p">])</span>
+<span class="n">res</span><span class="o">.</span><span class="n">zero</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">nlsolve</span><span class="p">(</span><span class="n">f!</span><span class="p">,[</span><span class="mf">1.0</span><span class="p">;</span><span class="mf">1.0</span><span class="p">;</span><span class="mf">1.0</span><span class="p">],</span><span class="n">autodiff</span><span class="o">=</span><span class="n">true</span><span class="p">)</span>
+<span class="n">res</span><span class="o">.</span><span class="n">zero</span>
 </pre></div>
 
 </div>

@@ -479,7 +479,7 @@ https://github.com/joshday/Talks/blob/master/SLG2016\_IntroToJulia/Slides.ipynb
     \subsection{LightGraphs Problem}\label{lightgraphs-problem}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{k}{using} \PY{n}{Distributions}
+{\color{incolor}In [{\color{incolor} }]:} \PY{k}{using} \PY{n}{LightGraphs}\PY{p}{,} \PY{n}{Distributions}
         \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{mkTree}\PY{p}{(}\PY{n}{maxdepth}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{,} \PY{n}{p}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Float64} \PY{o}{=} \PY{l+m+mf}{0.8}\PY{p}{,} \PY{n}{g}\PY{p}{:}\PY{p}{:}\PY{n}{SimpleGraph} \PY{o}{=} \PY{n}{Graph}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{currhead}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
             \PY{k}{if} \PY{p}{(}\PY{n}{maxdepth} \PY{o}{\PYZlt{}=} \PY{l+m+mi}{1}\PY{p}{)} \PY{n}{g}
             \PY{k}{else}
@@ -494,6 +494,27 @@ https://github.com/joshday/Talks/blob/master/SLG2016\_IntroToJulia/Slides.ipynb
             \PY{k}{end}
             \PY{n}{g}
         \PY{k}{end}
+\end{Verbatim}
+
+    \subsection{Roots Problems}\label{roots-problems}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k}{using} \PY{n}{Roots}
+        \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{=} \PY{l+m+mi}{10} \PY{o}{\PYZhy{}} \PY{n}{x} \PY{o}{+} \PY{n}{e}\PY{o}{*}\PY{n}{sin}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+        \PY{n}{fzero}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{n}{BigFloat}\PY{p}{(}\PY{l+m+mf}{2.0}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{f!} \PY{o}{=} \PY{k}{function}\PY{n+nf}{ }\PY{o}{(}\PY{n}{x}\PY{p}{,}\PY{n}{dx}\PY{p}{)}
+          \PY{n}{dx}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}   \PY{o}{+} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}   \PY{o}{+} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}}\PY{l+m+mi}{12}
+          \PY{n}{dx}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}   \PY{o}{+} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}   \PY{o}{\PYZhy{}} \PY{l+m+mi}{2}
+          \PY{n}{dx}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{2}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}  \PY{o}{\PYZhy{}} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}   \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}
+        \PY{k}{end}
+        \PY{k}{using} \PY{n}{NLsolve}
+        \PY{n}{res} \PY{o}{=} \PY{n}{nlsolve}\PY{p}{(}\PY{n}{f!}\PY{p}{,}\PY{p}{[}\PY{l+m+mf}{1.0}\PY{p}{;}\PY{l+m+mf}{1.0}\PY{p}{;}\PY{l+m+mf}{1.0}\PY{p}{]}\PY{p}{)}
+        \PY{n}{res}\PY{o}{.}\PY{n}{zero}
+        \PY{n}{res} \PY{o}{=} \PY{n}{nlsolve}\PY{p}{(}\PY{n}{f!}\PY{p}{,}\PY{p}{[}\PY{l+m+mf}{1.0}\PY{p}{;}\PY{l+m+mf}{1.0}\PY{p}{;}\PY{l+m+mf}{1.0}\PY{p}{]}\PY{p}{,}\PY{n}{autodiff}\PY{o}{=}\PY{n}{true}\PY{p}{)}
+        \PY{n}{res}\PY{o}{.}\PY{n}{zero}
 \end{Verbatim}
 
 
