@@ -140,7 +140,7 @@
     \def\gt{>}
     \def\lt{<}
     % Document parameters
-    \title{Index}
+    \title{BasicProblems}
     
     
     
@@ -275,333 +275,168 @@
     
 
     
-    \section{A Deep Introduction to Julia for Data Science and Scientific
-Computing}\label{a-deep-introduction-to-julia-for-data-science-and-scientific-computing}
+    \paragraph{Problem 1}\label{problem-1}
 
-    \subsection{Introduction}\label{introduction}
+Use Julia's array and control flow syntax in order to define the NxN
+Strang matrix:
 
-This workshop is put together by Chris Rackauckas as part of the UC
-Irvine Data Science Initiative. This workshop is made to teach people
-who are experienced with other scripting languages the relatively new
-language Julia. Unlike the other Data Science Initiative workshops, this
-workshop assumes prior knowledge of some form of programming in a
-language such as Python, R, or MATLAB.
+\[ \left[\begin{array}{ccccc}
+-2 & 1\\
+1 & -2 & 1\\
+ & \ddots & \ddots & \ddots\\
+ &  & \ddots & \ddots & 1\\
+ &  &  & 1 & -2
+\end{array}\right] \]
 
-We will start by introducing the basic syntax of the language, and
-quickly move into the details of how Julia is different from other
-scripting languages and how to exploit Julia's type system + multiple
-dispatch to be able to achieve C/Fortran-like performance while
-maintaining the concise syntax of a scripting language. Large parts of
-the package ecosystem will be explored and some information on
-implementation details will be highlighted in order for the participants
-to learn how to design Julia projects.
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{} Prepare Data}
+        
+        \PY{n}{X} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}               \PY{c}{\PYZsh{} feature matrix}
+        \PY{n}{a0} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}                    \PY{c}{\PYZsh{} ground truths}
+        \PY{n}{y} \PY{o}{=} \PY{n}{X} \PY{o}{*} \PY{n}{a0} \PY{o}{+} \PY{l+m+mf}{0.1} \PY{o}{*} \PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{;}  \PY{c}{\PYZsh{} generate response}
+\end{Verbatim}
 
-The ideal participant is anyone who is interested in Julia. There are
-many groups of people interested in using Julia. One large fraction come
-with a strong software development background and C/Fortran knowledge,
-and are looking to learn Julia as a tool to create packages with
-enhanced productivity while not losing performance. On the other side,
-there are users who are interested in the growing package ecosystem of
-Julia and would like to add Julia to their knowledge-base. And then
-there's everything in between. One major goal of this workshop is to use
-Julia's language and syntax to bridge the gap between ``package users''
-and ``package developers'' in the way that Julia has done.
+    \paragraph{Problem 2}\label{problem-2}
 
-    \subsection{Introduction to the
-Author}\label{introduction-to-the-author}
+Given an Nx3 array of data (\texttt{randn(N,3)}) and a Nx1 array of
+outcomes, produce the data matrix \texttt{X} which appends a column of
+1's to the data matrix, and solve for the 4x1 array \texttt{β} via
+\texttt{βX = b} using \texttt{qrfact} or \texttt{\textbackslash{}}.
+(Note: This is linear regression)
 
-Chris is a PhD student in Mathematics from the Mathematical,
-Computational, and Systems Biology (MCSB) Gateway program and is an
-active part of the Julia community. He runs the blog,
-http://www.stochasticlifestyle.com/, where he write tutorials on using
-the Julia languages covering many topics, such as high-performance and
-GPGPU computing, package development, and Julia tips. He is part of the
-JuliaMath and JuliaDiffEq communities for curating the Julia libraries
-for mathematics and differential equations respectively. Chris is the
-developer of many Julia packages, the most prominent being
-\href{https://github.com/JuliaDiffEq/DifferentialEquations.jl}{DifferentialEquations.jl},
-a Julia library which has become a standard solver for many forms of
-differential equations.
+\paragraph{Problem 3}\label{problem-3}
 
-\subsubsection{Remote Instructors}\label{remote-instructors}
+Compare your results to that of using \texttt{llsq} from
+\texttt{MultivariateStats.jl} (note: you need to go find the
+documentation to find out how to use this!)
 
-You are highly encouraged to use the
-\href{https://gitter.im/JuliaLang/julia}{Julia Gitter chat channel} to
-ask your Julia-related questions, both during the workshop and after the
-workshop! There are a few ``remote instructors'' who will be available
-through this chat channel at different times throughout the workshop:
+\paragraph{Problem 4}\label{problem-4}
 
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  Lyndon White (@oxinabox): University of Western Australia
-\item
-  Fengyang Wang (@TotalVerb): University of Waterloo
-\item
-  Ismael Venegas Castelló (@Ismael-VC): Data Analyst at Rich IT
-\item
-  Seth Bromberger (@sbromberger): Lawrence Livermore National Laboratory
-\end{itemize}
+Compare your results to that of using ordinary least squares regression
+from \texttt{GLM.jl}
 
-Others will also be available. Please do not be afraid to use this
-resource!
+\paragraph{Problem 5}\label{problem-5}
 
-    \subsection{Notes Before We Get
-Started}\label{notes-before-we-get-started}
+The logistic difference equation is defined by the recursion
 
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  Please install some version of IJulia/Jupyter to follow along. I also
-  recommend working through longer problems using the Juno IDE.
-\item
-  The start of the course will be on developing general performant Julia
-  code. After lunch it will be about the package ecosystem. This
-  understanding of Julia will be useful even for ``Julia users''
-  (i.e.~non package developers) to use packages effectively, but don't
-  worry we will get to packages.
-\item
-  Please do the problems/projects at your own pace. Not everyone is
-  expected to complete all of the material in the allotted time.
-  Instead, this is supposed to be a resource to introduce you to a large
-  amount of Julia, and the material may take awhile to fully be
-  digested. That's okay!
-\item
-  During the basic introduction, there will be information that is not
-  included in these notebooks. That is intentional. One major hurdle for
-  learning a language is learning how to find out more about the
-  language. Please use the manual, chatrooms, StackExchange, etc. If
-  these aren't working for you, ask for help.
-\end{itemize}
+\[ b_{n+1}=r*b_{n}(1-b_{n}) \]
 
-A good primer for the workshop:
-https://www.youtube.com/watch?v=JNvMs0j3a4E
+where $b_{n}$ is the number of bunnies at time $n$. Starting with
+$b_{0}=.25$, by around $400$ iterations this will reach a steady state.
+This steady state (or steady periodic state) is dependent on $r$. Write
+a function which solves for the steady state(s) for each given $r$, and
+plot ``every state'' in the steady attractor for each $r$ (x-axis is
+$r$, $y$=value seen in the attractor) using Plots.jl. Take
+$r\in\left(2.9,4\right)$
 
-    \subsection{Installation and Setup}\label{installation-and-setup}
+    \paragraph{Problem 6}\label{problem-6}
 
-To get started, see the
-\href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ToolingDocumentationCommunity}{Tooling,
-Documentation, and Community notebook}.
+Make a function \texttt{person\_info(x)} where, if \texttt{x} is a any
+type of person, print their name. However, if \texttt{x} is a student,
+print their name and their grade. Make a new type which is a graduate
+student, and have it print their name and grade as well. If \texttt{x}
+is anything else, throw an error. Do not using branching (\texttt{if}),
+use multiple dispatch to solve the problem!
 
-    \subsection{Rendered Jupyter
-Notebooks}\label{rendered-jupyter-notebooks}
+Note that in order to do this you will need to re-structure the type
+hierarchy. Make an AbstractPerson and AbstractStudent type, define the
+subclassing structure, and write dispatches on these abstract types.
+Note that you cannot define subclasses of concrete types!
 
-\subsubsection{Introduction}\label{introduction}
+(Not only is the multiple-dispatch way more Julian, we will see later
+that it also has a lot of performance enhancements due to how it
+interacts with the compiler).
+
+\paragraph{Distribution Quantile Problem (From Josh
+Day)}\label{distribution-quantile-problem-from-josh-day}
+
+To find the quantile of a number \texttt{q} in a distribution, one can
+use a Newton method
+
+\[ \theta_{n+1} = \theta_{n} - \frac{cdf(\theta)-q}{pdf(\theta)} \]
+
+to have $\theta_{n} \rightarrow$ the value of for the \texttt{q}th
+quantile. Use multiple dispatch to write a generic algorithm for which
+calculates the \texttt{q}th quantile of any
+\texttt{UnivariateDistribution} in Distributions.jl, and test your
+result against the \texttt{quantile(d::UnivariateDistribution,q::Number}
+function.
+
+Hint: Use $\theta_{0} = $ mean of the distribution
+
+\paragraph{Operator Problem}\label{operator-problem}
+
+In mathematics, a matrix is known to be a linear operator. In many
+cases, this can have huge performance advantages because, if you know a
+function which ``acts like a matrix'' but does not form the matrix
+itself, you can save the time that it takes to allocate the matrix
+(sometimes the matrix may not fit in memory!)
+
+Therefore, instead of solving regressions on matrices, let's be brave
+and generalize our regression algorithm to work on any operator, and
+make it solve the problem for the Laplacian operator. Here are the steps
+that are required to do this:
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
 \item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ToolingDocumentationCommunity}{Tooling,
-  Documentation, and Community}
+  Make an abstract type \texttt{AbstractOperator}
 \item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/JuliaMentalModel}{A
-  Mental Model for Julia}
+  Re-define AbstractMatrix as a subtype
 \item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/GithubIntroduction}{A
-  Very Quick Introduction to Git/Github for Julia Users}
+  Define a concrete type \texttt{LaplacianOperator} which holds a
+  function. This function \texttt{f(x)} should calculate the discrete
+  Laplacian of \texttt{x} (i.e.~multiply it on the left by the Strang
+  matrix, but without forming the matrix!)
+\item
+  Write dispatches for \texttt{*(::LaplacianOperator,::Vector)},
+  \texttt{eltype(::LaplacianOperator)},
+  \texttt{size(::LaplacianOperator,d::Integer)}.
+\item
+  Write \texttt{least\_square(::Operator,::Vector)} to solve the
+  least-square approximation problem \texttt{Ax=b} for any operator.
+  Note that since you do not have a matrix, you cannot use
+  \texttt{\textbackslash{}} or factorizations like \texttt{qrfact}.
+  Instead, take a look at \texttt{cg} in IterativeSolvers.jl
+\item
+  Test your least\_square function vs \texttt{llsq} and \texttt{lm}
+  (where you use the data matrix as a Strang matrix). Do you get the
+  same result?
 \end{itemize}
 
-\subsubsection{Basics}\label{basics}
+    \paragraph{Problem 8}\label{problem-8}
 
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicIntroduction}{A
-  Basic Introduction to Julia}
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicProblems}{Introductory
-  Problems}
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/WhyJulia}{Why
-  Julia?}
-\item
-  \href{http://www.stochasticlifestyle.com/7-julia-gotchas-handle/}{7
-  Julia Gotchas and How to Handle Them}
-\end{itemize}
+If you know \texttt{start}, \texttt{step}, and \texttt{stop}, how do you
+calculate the \texttt{i}th value? Can you create a function MyRange
+which where for \texttt{a} being a \texttt{MyRange}, and
+\texttt{a{[}i{]}} is the correct value? Use the Julia array interface in
+order to define the function for the \texttt{a{[}i{]}} syntax on your
+type.
 
-\subsubsection{Detailed Usage: A Peak Into ``the Rabbit
-Hole''}\label{detailed-usage-a-peak-into-the-rabbit-hole}
+\paragraph{Problem 9}\label{problem-9}
 
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Metaprogramming}{Metaprogramming}
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading}{Call
-  Overloading}
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArraysAndMatrices}{More
-  Details on Arrays and Matrices - How to get Fortran Speeds in Linear
-  Algebra}
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces}{Array
-  and Iterator Interfaces}
-\end{itemize}
+Do ?linspace. Make your own LinSpace object using the array interface.
 
-\subsubsection{Packages to Explore}\label{packages-to-explore}
+http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces
 
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PackageEcosystem}{Overview
-  of the Package Ecosystem}
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PlotsJL}{Data
-  Visualization: Plots.jl}
-\item
-  \href{https://chrisrackauckas.github.io/JunoDocs.jl/latest/}{Juno, the
-  Julia IDE (Debugging, Progress Bars, etc.): JunoLab}
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DiffEq}{Differential
-  Equations: DifferentialEquations.jl}
-\item
-  Dimensional Reduction: MultivariateStats.jl
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Optimization}{Mathematical
-  Programming / Optimization: JuMP and Optim.jl}
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/NonlinearSolve}{Solving
-  Nonlinear Equations: NLsolve.jl and Roots.jl}
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ForwardDiff}{Forward-mode
-  Autodifferentiation (with Optimization): ForwardDiff.jl and Optim.jl}
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Graphs}{Graph
-  Algorithms and Analysis: LightGraphs.jl}
-\item
-  Bioinformatics: Bio.jl
-\item
-  Deep Learning: Mocha.jl, TensorFlow.jl, or MXNet.jl
-\end{itemize}
+Do your implementations obay dimensional analysis? Try using the package
+\texttt{Unitful} to build arrays of numbers with units (i.e.~an array of
+numbers who have values of Newtons), and see if you can make your
+LinSpace not give errors.
 
-\subsubsection{Extra Projects and
-Problems}\label{extra-projects-and-problems}
+\paragraph{Problem 10}\label{problem-10}
 
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Interop}{Using
-  External Languages from Julia (Interop)}
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/HPCJulia}{Parallelism
-  and HPC}
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/JuliaML}{Work
-  in Progress: JuliaML for Machine Learning}
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PackageDevelopment}{Package
-  Development, Documentation, and Testing}
-\item
-  Tools for Faster Code: InplaceOps.jl, CatViews.jl, and VML.jl
-\item
-  Robust Benchmarking: BenchmarkTools.jl and ProfileView.jl
-\end{itemize}
+Check your implementation vs the source code of Ranges.jl. Tim Holy is
+the master of Julia arrays, learn from him!
 
-\subsubsection{Experiments}\label{experiments}
+\paragraph{Problem 11}\label{problem-11}
 
-Probe around and understand the following results:
+Check out the call overloading notebook:
 
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/TypeStabilityExperiment}{Type-Stability
-  Experiment}
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ScopingExperiment}{Scoping
-  Experiment}
-\end{itemize}
+http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading
 
-    \begin{longtable}[c]{@{}l@{}}
-\toprule\addlinespace
-\# Extras
-\\\addlinespace
-\bottomrule
-\end{longtable}
-
-\paragraph{\href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ProblemAnswers}{Answers
-to the Problems}}\label{answers-to-the-problems}
-
-    \subsection{Slides}\label{slides}
-
-\subsubsection{Introduction}\label{introduction}
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ToolingDocumentationCommunity}{Tooling,
-  Documentation, and Community}
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/JuliaMentalModel}{A
-  Mental Model for Julia}
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/GithubIntroduction}{A
-  Very Quick Introduction to Git/Github for Julia Users}
-\end{itemize}
-
-\subsubsection{Basics}\label{basics}
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/BasicIntroduction}{An
-  Introduction to Basic Julia}
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/WhyJulia}{Why
-  Julia?}
-\end{itemize}
-
-\subsubsection{Detailed Usage: A Peak Into ``the Rabbit
-Hole''}\label{detailed-usage-a-peak-into-the-rabbit-hole}
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/Metaprogramming}{Metaprogramming}
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/CallOverloading}{Call
-  Overloading}
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ArrayIteratorInterfaces}{Array
-  and Iterator Interfaces}
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ArraysAndMatrices}{More
-  Details on Arrays and Matrices - How to get Fortran Speeds from Linear
-  Algebra}
-\end{itemize}
-
-\subsubsection{Packages to Explore}\label{packages-to-explore}
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/PackageEcosystem}{Overview
-  of the Package Ecosystem}
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/PlotsJL}{An
-  In-Depth Look at Plots.jl}
-\end{itemize}
-
-\subsubsection{Projects / Experiments}\label{projects-experiments}
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/TypeStabilityExperiment}{Type-Stability
-  Experiment}
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ScopingExperiment}{Scoping
-  Experiment}
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/HPCProject}{Parallelism
-  and HPC}
-\end{itemize}
-
-    \subsection{How These Were Made}\label{how-these-were-made}
-
-This entire repository is made using Jupyter notebooks using the
-template from the
-\href{https://github.com/ChrisRackauckas/JupyterSite}{JupyterSite}
-repository.
+Overload the call on the UnitStepRange to give an interpolated value at
+intermediate points, i.e.~if \texttt{a=1:2:10}, then \texttt{a(1.5)=2}.
 
 
     % Add a bibliography block to the postdoc

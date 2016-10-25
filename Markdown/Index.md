@@ -50,6 +50,7 @@ To get started, see the [Tooling, Documentation, and Community notebook](http://
 ### Basics
 
 - [A Basic Introduction to Julia](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicIntroduction)
+- [Introductory Problems](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicProblems)
 - [Why Julia?](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/WhyJulia)
 - [7 Julia Gotchas and How to Handle Them](http://www.stochasticlifestyle.com/7-julia-gotchas-handle/)
 
@@ -75,7 +76,7 @@ To get started, see the [Tooling, Documentation, and Community notebook](http://
 - Deep Learning: Mocha.jl, TensorFlow.jl, or MXNet.jl
 
 
-### Extra Projects
+### Extra Projects and Problems
 
 - [Using External Languages from Julia (Interop)](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Interop)
 - [Parallelism and HPC](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/HPCJulia)
@@ -96,6 +97,7 @@ Probe around and understand the following results:
 # Extras
 ---------------------------
 
+#### [Answers to the Problems](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ProblemAnswers)
 
 ## Slides
 
