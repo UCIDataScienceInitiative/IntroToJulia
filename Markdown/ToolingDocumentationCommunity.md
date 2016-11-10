@@ -37,7 +37,7 @@ Pkg.add("IJulia") # This will install the package
 Pkg.clone("https://github.com/UCIDataScienceInitiative/IntroToJulia") # Clone the IntroToJulia Repo
 ### Next commands you run each time you open the REPL
 using IJulia
-notebook(detached=true,dir=Pkg.dir("IntroToJulia/notebooks"))
+notebook(detached=true,dir=Pkg.dir("IntroToJulia/Notebooks"))
 ```
 
 ### Installing Juno
