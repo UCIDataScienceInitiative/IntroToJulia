@@ -12013,7 +12013,7 @@ copy<i>{T<:Array{T,N}}</i>(a::<b>T</b>) at <a href="https://github.com/JuliaLang
 
 <span class="n">b</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="c"># Define a Matrix of Float64&#39;s of size (4,2)</span>
 
-<span class="n">c</span> <span class="o">=</span> <span class="n">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">4</span><span class="p">}(</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span> <span class="c"># Define a (4,5,6,7) array of Float64&#39;s </span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span> <span class="c"># Define a (4,5,6,7) array of Float64&#39;s </span>
 
 <span class="n">mat</span>    <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span>
           <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span>
@@ -13606,10 +13606,10 @@ ZotZotZot
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">abstract</span><span class="nc"> AbstractStudent</span> <span class="o">&lt;:</span> <span class="n">AbstractPerson</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="k">abstract</span><span class="nc"> AbstractStudent</span> <span class="o">&lt;:</span> <span class="n">Person</span>
 </pre></div>
 
 </div>
@@ -14184,13 +14184,13 @@ suit
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_error">
-<pre>
-LoadError: error in method definition: function Base.@time must be explicitly imported to be extended
-while loading In[85], in expression starting on line 1
-</pre>
+<div class="output_area"><div class="prompt output_prompt">Out[85]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>@my_time (macro with 1 method)</pre>
 </div>
+
 </div>
 
 </div>

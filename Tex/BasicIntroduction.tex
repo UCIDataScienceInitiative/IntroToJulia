@@ -563,7 +563,7 @@ The array syntax is similar to MATLAB's conventions.
          
          \PY{n}{b} \PY{o}{=} \PY{n}{Matrix}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)} \PY{c}{\PYZsh{} Define a Matrix of Float64\PYZsq{}s of size (4,2)}
          
-         \PY{n}{c} \PY{o}{=} \PY{n}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{)} \PY{c}{\PYZsh{} Define a (4,5,6,7) array of Float64\PYZsq{}s }
+         \PY{n}{c} \PY{o}{=} \PY{n}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{)} \PY{c}{\PYZsh{} Define a (4,5,6,7) array of Float64\PYZsq{}s }
          
          \PY{n}{mat}    \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1} \PY{l+m+mi}{2} \PY{l+m+mi}{3} \PY{l+m+mi}{4}
                    \PY{l+m+mi}{3} \PY{l+m+mi}{4} \PY{l+m+mi}{5} \PY{l+m+mi}{6}
@@ -1169,7 +1169,7 @@ explanation at:
 http://docs.julialang.org/en/release-0.5/manual/types/\#abstract-types
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{k}{abstract}\PY{n+nc}{ }\PY{n+nc}{AbstractStudent} \PY{o}{\PYZlt{}:} \PY{n}{AbstractPerson}
+{\color{incolor}In [{\color{incolor}45}]:} \PY{k}{abstract}\PY{n+nc}{ }\PY{n+nc}{AbstractStudent} \PY{o}{\PYZlt{}:} \PY{n}{Person}
 \end{Verbatim}
 
     Another ``version'' of type is \texttt{immutable}. When one uses
@@ -1421,15 +1421,10 @@ outputs code''. One basic example is the \texttt{@time} macro:
          \PY{k}{end}
 \end{Verbatim}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        LoadError: error in method definition: function Base.@time must be explicitly imported to be extended
-    while loading In[85], in expression starting on line 1
-
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}85}]:} @my\_time (macro with 1 method)
+\end{Verbatim}
         
-
-    \end{Verbatim}
-
     This takes in an expression \texttt{ex}, gets the time before and after
 evaluation, and prints the elapsed time between (the real time macro
 also calculates the allocations as seen earlier). Note that

@@ -119,7 +119,7 @@ a[3] = 2 # Change the third element of a (using linear indexing) to 2
 
 b = Matrix{Float64}(4,2) # Define a Matrix of Float64's of size (4,2)
 
-c = Array{Float64,4}(4,5,6,7) # Define a (4,5,6,7) array of Float64's 
+c = Array{Float64}(4,5,6,7) # Define a (4,5,6,7) array of Float64's 
 
 mat    = [1 2 3 4
           3 4 5 6
@@ -783,7 +783,7 @@ You can define type heirarchies on abstract types. See the beautiful explanation
 
 
 ```julia
-abstract AbstractStudent <: AbstractPerson
+abstract AbstractStudent <: Person
 ```
 
 Another "version" of type is `immutable`. When one uses `immutable`, the fields of the type cannot be changed. However, Julia will automatically stack allocate immutable types, whereas standard types are heap allocated. If this is unfamiliar terminology, then think of this as meaning that immutable types are able to be stored closer to the CPU and have less cost for memory access (this is a detail not present in many scripting languages). Many things like Julia's built-in Number types are defined as `immutable` in order to give good performance.
@@ -1013,10 +1013,10 @@ end
 ```
 
 
-    LoadError: error in method definition: function Base.@time must be explicitly imported to be extended
-    while loading In[85], in expression starting on line 1
 
-    
+
+    @my_time (macro with 1 method)
+
 
 
 This takes in an expression `ex`, gets the time before and after evaluation, and prints the elapsed time between (the real time macro also calculates the allocations as seen earlier). Note that `$ex` "interpolates" the expression into the macro. Going into detail on metaprogramming is a large step from standard scripting and will be a later session. 
