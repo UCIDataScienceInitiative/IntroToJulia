@@ -11,10 +11,11 @@ $$ \left[\begin{array}{ccccc}
  &  &  & 1 & -2
 \end{array}\right] $$
 
+i.e. a matrix with `-2` on the diagonal, 1 on the off-diagonals, and 0 elsewere.
 
 
 ```julia
-#### Prepare Data
+#### Prepare Data For Problem 2
 
 X = rand(1000, 3)               # feature matrix
 a0 = rand(3)                    # ground truths

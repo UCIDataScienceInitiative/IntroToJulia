@@ -297,7 +297,7 @@ What happens if we inspect this code?
 
 That's a very visual demonstration on why Julia achieves such higher performance than other scripting languages.
 
-# Core Idea: Multiple Dispatch + Type Stability => Speed + Readibility
+# Core Idea: Multiple Dispatch + Type Stability => Speed + Readability
 
 Type stability is one crucial feature which separates Julia apart from other scripting languages.  In fact, the core idea of Julia is the following statement:
 
