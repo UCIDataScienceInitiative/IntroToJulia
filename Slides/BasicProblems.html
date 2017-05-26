@@ -11830,7 +11830,7 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Problem-1">Problem 1<a class="anchor-link" href="#Problem-1">&#182;</a></h4><p>Use Julia's array and control flow syntax in order to define the NxN Strang matrix:</p>
+<h4 id="Strang-Matrix-Problem">Strang Matrix Problem<a class="anchor-link" href="#Strang-Matrix-Problem">&#182;</a></h4><p>Use Julia's array and control flow syntax in order to define the NxN Strang matrix:</p>
 $$ \left[\begin{array}{ccccc}
 -2 & 1\\
 1 & -2 & 1\\
@@ -11844,14 +11844,18 @@ $$ \left[\begin{array}{ccccc}
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="c">#### Prepare Data For Problem 2</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="c">#### Prepare Data For Regression Problem</span>
 
 <span class="n">X</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>               <span class="c"># feature matrix</span>
 <span class="n">a0</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>                    <span class="c"># ground truths</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">X</span> <span class="o">*</span> <span class="n">a0</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>  <span class="c"># generate response</span>
+
+<span class="c"># Data For Regression Problem Part 2</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span><span class="n">X</span>  <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
 </pre></div>
 
 </div>
@@ -11864,11 +11868,9 @@ $$ \left[\begin{array}{ccccc}
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Problem-2">Problem 2<a class="anchor-link" href="#Problem-2">&#182;</a></h4><p>Given an Nx3 array of data (<code>randn(N,3)</code>) and a Nx1 array of outcomes, produce the data matrix <code>X</code> which appends a column of 1's to the data matrix, and solve for the 4x1 array <code>β</code> via <code>βX = b</code> using <code>qrfact</code> or <code>\</code>. (Note: This is linear regression)</p>
-<h4 id="Problem-3">Problem 3<a class="anchor-link" href="#Problem-3">&#182;</a></h4><p>Compare your results to that of using <code>llsq</code> from <code>MultivariateStats.jl</code> (note: you need to go find the documentation to find out how to use this!)</p>
-<h4 id="Problem-4">Problem 4<a class="anchor-link" href="#Problem-4">&#182;</a></h4><p>Compare your results to that of using ordinary least squares regression from <code>GLM.jl</code></p>
-<h4 id="Problem-5">Problem 5<a class="anchor-link" href="#Problem-5">&#182;</a></h4><p>The logistic difference equation is defined by the recursion</p>
-$$ b_{n+1}=r*b_{n}(1-b_{n}) $$<p>where $b_{n}$ is the number of bunnies at time $n$. Starting with $b_{0}=.25$, by around $400$ iterations this will reach a steady state. This steady state (or steady periodic state) is dependent on $r$. Write a function which solves for the steady state(s) for each given $r$, and plot "every state" in the steady attractor for each $r$ (x-axis is $r$, $y$=value seen in the attractor) using Plots.jl. Take $r\in\left(2.9,4\right)$</p>
+<h4 id="Regression-Problem">Regression Problem<a class="anchor-link" href="#Regression-Problem">&#182;</a></h4><p>Given an Nx3 array of data (<code>randn(N,3)</code>) and a Nx1 array of outcomes, produce the data matrix <code>X</code> which appends a column of 1's to the front of the data matrix, and solve for the 4x1 array <code>β</code> via <code>βX = b</code> using <code>qrfact</code>, or <code>\</code>, or <a href="https://en.wikipedia.org/wiki/Ordinary_least_squares#Estimation">the definition of the OLS estimator</a>. (Note: This is linear regression).</p>
+<p>Compare your results to that of using <code>llsq</code> from <code>MultivariateStats.jl</code> (note: you need to go find the documentation to find out how to use this!). Compare your results to that of using ordinary least squares regression from <code>GLM.jl</code>.</p>
+<h4 id="Regression-Problem-Part-2">Regression Problem Part 2<a class="anchor-link" href="#Regression-Problem-Part-2">&#182;</a></h4><p>Using your OLS estimator or one of the aforementioned packages, solve for the regression line using the (X,y) data above. Plot the (X,y) scatter plot using <code>scatter!</code> from Plots.jl. Add the regression line using <code>abline!</code>. Add a title saying "Regression Plot on Fake Data", and label the x and y axis.</p>
 
 </div>
 </div>
@@ -11878,39 +11880,11 @@ $$ b_{n+1}=r*b_{n}(1-b_{n}) $$<p>where $b_{n}$ is the number of bunnies at time 
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Problem-6">Problem 6<a class="anchor-link" href="#Problem-6">&#182;</a></h4><p>Make a function <code>person_info(x)</code> where, if <code>x</code> is a any type of person, print their name. However, if <code>x</code> is a student, print their name and their grade. Make a new type which is a graduate student, and have it print their name and grade as well. If <code>x</code> is anything else, throw an error. Do not using branching (<code>if</code>), use multiple dispatch to solve the problem!</p>
-<p>Note that in order to do this you will need to re-structure the type hierarchy. Make an AbstractPerson and AbstractStudent type, define the subclassing structure, and write dispatches on these abstract types. Note that you cannot define subclasses of concrete types!</p>
-<p>(Not only is the multiple-dispatch way more Julian, we will see later that it also has a lot of performance enhancements due to how it interacts with the compiler).</p>
-<h4 id="Distribution-Quantile-Problem-(From-Josh-Day)">Distribution Quantile Problem (From Josh Day)<a class="anchor-link" href="#Distribution-Quantile-Problem-(From-Josh-Day)">&#182;</a></h4><p>To find the quantile of a number <code>q</code> in a distribution, one can use a Newton method</p>
-$$ \theta_{n+1} = \theta_{n} - \frac{cdf(\theta)-q}{pdf(\theta)} $$<p>to have $\theta_{n} \rightarrow$ the value of for the <code>q</code>th quantile. Use multiple dispatch to write a generic algorithm for which calculates the <code>q</code>th quantile of any <code>UnivariateDistribution</code> in Distributions.jl, and test your result against the <code>quantile(d::UnivariateDistribution,q::Number</code> function.</p>
-<p>Hint: Use $\theta_{0} = $ mean of the distribution</p>
-<h4 id="Operator-Problem">Operator Problem<a class="anchor-link" href="#Operator-Problem">&#182;</a></h4><p>In mathematics, a matrix is known to be a linear operator. In many cases, this can have huge performance advantages because, if you  know a function which "acts like a matrix" but does not form the matrix itself, you can save the time that it takes to allocate the matrix (sometimes the matrix may not fit in memory!)</p>
-<p>Therefore, instead of solving regressions on matrices, let's be brave and generalize our regression algorithm to work on any operator, and make it solve the problem for the Laplacian operator. Here are the steps that are required to do this:</p>
-<ul>
-<li>Make an abstract type <code>AbstractOperator</code></li>
-<li>Re-define AbstractMatrix as a subtype</li>
-<li>Define a concrete type <code>LaplacianOperator</code> which holds a function. This function <code>f(x)</code> should calculate the discrete Laplacian of <code>x</code> (i.e. multiply it on the left by the Strang matrix, but without forming the matrix!)</li>
-<li>Write dispatches for <code>*(::LaplacianOperator,::Vector)</code>, <code>eltype(::LaplacianOperator)</code>, <code>size(::LaplacianOperator,d::Integer)</code>. </li>
-<li>Write <code>least_square(::Operator,::Vector)</code> to solve the least-square approximation problem <code>Ax=b</code> for any operator. Note that since you do not have a matrix, you cannot use <code>\</code> or factorizations like <code>qrfact</code>. Instead, take a look at <code>cg</code> in IterativeSolvers.jl</li>
-<li>Test your least_square function vs <code>llsq</code> and <code>lm</code> (where you use the data matrix as a Strang matrix). Do you get the same result?</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Problem-8">Problem 8<a class="anchor-link" href="#Problem-8">&#182;</a></h4><p>If you know <code>start</code>, <code>step</code>, and <code>stop</code>, how do you calculate the <code>i</code>th value? Can you create a function MyRange which where for <code>a</code> being a <code>MyRange</code>, and <code>a[i]</code> is the correct value? Use the Julia array interface in order to define the function for the <code>a[i]</code> syntax on your type.</p>
-<h4 id="Problem-9">Problem 9<a class="anchor-link" href="#Problem-9">&#182;</a></h4><p>Do ?linspace. Make your own LinSpace object using the array interface.</p>
-<p><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces">http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces</a></p>
-<p>Do your implementations obay dimensional analysis? Try using the package <code>Unitful</code> to build arrays of numbers with units (i.e. an array of numbers who have values of Newtons), and see if you can make your LinSpace not give errors.</p>
-<h4 id="Problem-10">Problem 10<a class="anchor-link" href="#Problem-10">&#182;</a></h4><p>Check your implementation vs the source code of Ranges.jl. Tim Holy is the master of Julia arrays, learn from him!</p>
-<h4 id="Problem-11">Problem 11<a class="anchor-link" href="#Problem-11">&#182;</a></h4><p>Check out the call overloading notebook:</p>
-<p><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading">http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading</a></p>
-<p>Overload the call on the UnitStepRange to give an interpolated value at intermediate points, i.e. if <code>a=1:2:10</code>, then <code>a(1.5)=2</code>.</p>
+<h4 id="Logistic-Map-Problem">Logistic Map Problem<a class="anchor-link" href="#Logistic-Map-Problem">&#182;</a></h4><p>The logistic difference equation is defined by the recursion</p>
+$$ b_{n+1}=r*b_{n}(1-b_{n}) $$<p>where $b_{n}$ is the number of bunnies at time $n$. Starting with $b_{0}=.25$, by around $400$ iterations this will reach a steady state. This steady state (or steady periodic state) is dependent on $r$. Write a function which plots the steady state attractor. This is done as follows:</p>
+<p>1) Solve for the steady state(s) for each given $r$ (i.e. iterate the relation 400 times).</p>
+<p>2) Calculate "every state" in the steady state attractor. This means, at steady state (after the first 400 iterations), save the next 150 values. Call this set of values $y_s(r)$.</p>
+<p>3) Do steps (1) and (2) with $r\in\left(2.9,4\right)$, <code>dr=.00005</code>. Plot $r$ x-axis vs $y_s(r)$=value seen in the attractor) using Plots.jl. Your result should be the <a href="https://upload.wikimedia.org/wikipedia/commons/7/7d/LogisticMap_BifurcationDiagram.png">Logistic equation bifurcation diagram</a>.</p>
 
 </div>
 </div>

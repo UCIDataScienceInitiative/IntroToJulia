@@ -50,7 +50,8 @@ To get started, see the [Tooling, Documentation, and Community notebook](http://
 ### Basics
 
 - [A Basic Introduction to Julia](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicIntroduction)
-- [Introductory Problems](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicProblems)
+- [Basic Problems](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicProblems)
+- [Intermediate Problems Problems](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicProblems)
 - [Why Julia?](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/WhyJulia)
 - [7 Julia Gotchas and How to Handle Them](http://www.stochasticlifestyle.com/7-julia-gotchas-handle/)
 
@@ -63,6 +64,8 @@ To get started, see the [Tooling, Documentation, and Community notebook](http://
 
 ### Packages to Explore
 
+This section introduces you to a wide variety of packages for data science and scientific computing in Julia. Many of these pages have example problems for you to have a guided tour through the package basics.
+
 - [Overview of the Package Ecosystem](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PackageEcosystem)
 - [Data Visualization: Plots.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PlotsJL)
 - [Juno, the Julia IDE (Debugging, Progress Bars, etc.): JunoLab](https://chrisrackauckas.github.io/JunoDocs.jl/latest/)
@@ -74,7 +77,7 @@ To get started, see the [Tooling, Documentation, and Community notebook](http://
 - [Forward-mode Autodifferentiation (with Optimization): ForwardDiff.jl and Optim.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ForwardDiff)
 - [Graph Algorithms and Analysis: LightGraphs.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Graphs)
 - Bioinformatics: Bio.jl
-- Deep Learning: Mocha.jl, TensorFlow.jl, or MXNet.jl
+- Deep Learning: KNet.jl, TensorFlow.jl, or MXNet.jl
 
 
 ### Extra Projects and Problems
@@ -95,14 +98,17 @@ Probe around and understand the following results:
 
 
 ---------------------------
-# Extras
+# Problem Answers
 ---------------------------
 
 #### [Answers to the Problems](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ProblemAnswers)
+- [Basic Problem Answers](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicProblemAnswers)
+- [Intermediate Problem Answers](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/IntermediateProblemAnswers)
+- [Some Package Problem Answers](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PackageProblemAnswers)
 - [Answer to Dimensionality Reduction Problem](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DimensionalityReductionSolutions)
 - [Answer to Clustering Problem](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ClusteringSolutions)
 
-## Slides
+# Slide Versions of the Pages
 
 ### Introduction
 

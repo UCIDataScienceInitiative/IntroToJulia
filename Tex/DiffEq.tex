@@ -292,7 +292,11 @@ equations in Julia. The basic workflow is:
 \end{itemize}
 
 The API between different types of differential equations is unified
-through multiple dispatch
+through multiple dispatch.
+
+See the
+\href{http://docs.juliadiffeq.org/latest/index.html}{DifferentialEquations.jl
+Documentation}.
 
     \subsection{Example: Lotka-Volterra
 ODE}\label{example-lotka-volterra-ode}
@@ -303,61 +307,53 @@ y' &= -cy + dxy
 \end{align}\]
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{using} \PY{n}{DifferentialEquations}
-        \PY{c}{\PYZsh{} Define a problem}
-        \PY{k+kd}{const} \PY{n}{a} \PY{o}{=} \PY{l+m+mf}{1.0}\PY{p}{;} \PY{k+kd}{const} \PY{n}{b} \PY{o}{=} \PY{l+m+mf}{2.0}
-        \PY{k+kd}{const} \PY{n}{c} \PY{o}{=} \PY{l+m+mf}{1.5}\PY{p}{;} \PY{k+kd}{const} \PY{n}{d} \PY{o}{=} \PY{l+m+mf}{1.25}
-        \PY{n}{f} \PY{o}{=} \PY{k}{function}\PY{n+nf}{ }\PY{o}{(}\PY{n}{t}\PY{p}{,}\PY{n}{u}\PY{p}{,}\PY{n}{du}\PY{p}{)} \PY{c}{\PYZsh{} Define f as an in\PYZhy{}place update into du}
-            \PY{n}{du}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{a}\PY{o}{*}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{b}\PY{o}{*}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
-            \PY{n}{du}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{n}{c}\PY{o}{*}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{+} \PY{n}{d}\PY{o}{*}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
-        \PY{k}{end}
-        \PY{n}{u0} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{1.0}\PY{p}{;}\PY{l+m+mf}{1.0}\PY{p}{]}\PY{p}{;} \PY{n}{tspan} \PY{o}{=} \PY{p}{(}\PY{l+m+mf}{0.0}\PY{p}{,}\PY{l+m+mf}{10.0}\PY{p}{)}
-        \PY{n}{prob} \PY{o}{=} \PY{n}{ODEProblem}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{n}{u0}\PY{p}{,}\PY{n}{tspan}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}12}]:} \PY{k}{using} \PY{n}{DifferentialEquations}
+         \PY{c}{\PYZsh{} Define a problem}
+         \PY{k+kd}{const} \PY{n}{a} \PY{o}{=} \PY{l+m+mf}{1.0}\PY{p}{;} \PY{k+kd}{const} \PY{n}{b} \PY{o}{=} \PY{l+m+mf}{2.0}
+         \PY{k+kd}{const} \PY{n}{c} \PY{o}{=} \PY{l+m+mf}{1.5}\PY{p}{;} \PY{k+kd}{const} \PY{n}{d} \PY{o}{=} \PY{l+m+mf}{1.25}
+         \PY{n}{f} \PY{o}{=} \PY{k}{function}\PY{n+nf}{ }\PY{o}{(}\PY{n}{t}\PY{p}{,}\PY{n}{u}\PY{p}{,}\PY{n}{du}\PY{p}{)} \PY{c}{\PYZsh{} Define f as an in\PYZhy{}place update into du}
+             \PY{n}{du}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{a}\PY{o}{*}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{b}\PY{o}{*}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+             \PY{n}{du}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{n}{c}\PY{o}{*}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{+} \PY{n}{d}\PY{o}{*}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+         \PY{k}{end}
+         \PY{n}{u0} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{1.0}\PY{p}{;}\PY{l+m+mf}{1.0}\PY{p}{]}\PY{p}{;} \PY{n}{tspan} \PY{o}{=} \PY{p}{(}\PY{l+m+mf}{0.0}\PY{p}{,}\PY{l+m+mf}{10.0}\PY{p}{)}
+         \PY{n}{prob} \PY{o}{=} \PY{n}{ODEProblem}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{n}{u0}\PY{p}{,}\PY{n}{tspan}\PY{p}{)}\PY{p}{;}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}1}]:} DiffEqBase.ODEProblem\{Array\{Float64,1\},Float64,true,\#\#1\#2\}(\#1,[1.0,1.0],(0.0,10.0))
-\end{Verbatim}
-        
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}2}]:} \PY{c}{\PYZsh{} Solve the problem}
-        \PY{n}{sol} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{n}{prob}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}8}]:} \PY{c}{\PYZsh{} Solve the problem}
+        \PY{n}{sol} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{n}{prob}\PY{p}{)}\PY{p}{;}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}2}]:} DiffEqBase.ODESolution\{Array\{Array\{Float64,1\},1\},Array\{Float64,1\},Array\{Array\{Array\{Float64,1\},1\},1\},DiffEqBase.ODEProblem\{Array\{Float64,1\},Float64,true,\#\#1\#2\},OrdinaryDiffEq.Tsit5\}(Array\{Float64,1\}[[1.0,1.0],[0.912378,0.971564],[0.768635,0.887673],[0.640215,0.739539],[0.579038,0.586645],[0.575609,0.43638],[0.647248,0.312288],[0.858273,0.222465],[1.35784,0.199293],[1.9923,0.308114],[2.0708,0.692973],[1.38472,1.00669],[0.749332,0.868987],[0.585712,0.607774],[0.61316,0.352207],[0.830329,0.229312],[1.6363,0.225058],[2.17455,0.525744],[1.95406,0.781683]],[0.0,0.0942336,0.292772,0.583403,0.894442,1.27134,1.72127,2.31275,3.08354,3.81497,4.51466,5.0524,5.69616,6.21559,6.92158,7.61688,8.7721,9.6451,10.0],Array\{Array\{Float64,1\},1\}[Array\{Float64,1\}[[Inf,Inf]],Array\{Float64,1\}[[-1.0,-0.25],[-0.977358,-0.267944],[-0.953858,-0.285244],[-0.874675,-0.340554],[-0.864124,-0.347634],[-0.861484,-0.349373],[-0.860489,-0.349304]],Array\{Float64,1\}[[-0.860489,-0.349304],[-0.814788,-0.37831],[-0.768366,-0.40298],[-0.623447,-0.471329],[-0.607034,-0.479105],[-0.602901,-0.480922],[-0.595958,-0.478639]],Array\{Float64,1\}[[-0.595958,-0.478639],[-0.541156,-0.496724],[-0.488396,-0.507047],[-0.336725,-0.524479],[-0.322681,-0.527544],[-0.319131,-0.528077],[-0.306713,-0.517479]],Array\{Float64,1\}[[-0.306713,-0.517479],[-0.266969,-0.513047],[-0.229776,-0.504214],[-0.120563,-0.467931],[-0.109463,-0.464552],[-0.106698,-0.463573],[-0.100342,-0.455355]],Array\{Float64,1\}[[-0.100342,-0.455355],[-0.0676245,-0.438163],[-0.0373299,-0.418962],[0.0560904,-0.354913],[0.066499,-0.347975],[0.0690868,-0.34618],[0.0732407,-0.34059]],Array\{Float64,1\}[[0.0732407,-0.34059],[0.10258,-0.318603],[0.130465,-0.296665],[0.225873,-0.227795],[0.238624,-0.219607],[0.241807,-0.217569],[0.242992,-0.215772]],Array\{Float64,1\}[[0.242992,-0.215772],[0.279229,-0.193137],[0.315581,-0.17141],[0.452284,-0.105553],[0.473176,-0.097418],[0.478416,-0.0954156],[0.476402,-0.0950276]],Array\{Float64,1\}[[0.476402,-0.0950276],[0.530856,-0.0744214],[0.587835,-0.0528887],[0.785114,0.023796],[0.810624,0.0365301],[0.816915,0.0398332],[0.816626,0.0393212]],Array\{Float64,1\}[[0.816626,0.0393212],[0.860996,0.0647479],[0.891706,0.0978093],[0.796413,0.267322],[0.733842,0.304354],[0.717618,0.314065],[0.764589,0.305151]],Array\{Float64,1\}[[0.764589,0.305151],[0.654751,0.376068],[0.451512,0.464349],[-0.684867,0.676435],[-0.917973,0.625448],[-0.972402,0.610386],[-0.799214,0.754298]],Array\{Float64,1\}[[-0.799214,0.754298],[-1.03394,0.759797],[-1.23319,0.710792],[-1.28411,0.314734],[-1.13229,0.233961],[-1.0974,0.214075],[-1.40325,0.232449]],Array\{Float64,1\}[[-1.40325,0.232449],[-1.31558,0.050614],[-1.1445,-0.116552],[-0.762234,-0.295025],[-0.787111,-0.167891],[-0.786233,-0.140416],[-0.552988,-0.489531]],Array\{Float64,1\}[[-0.552988,-0.489531],[-0.461295,-0.514335],[-0.378013,-0.516403],[-0.188398,-0.508778],[-0.191578,-0.523974],[-0.191915,-0.526953],[-0.126249,-0.466685]],Array\{Float64,1\}[[-0.126249,-0.466685],[-0.0625391,-0.435904],[-0.00837493,-0.398468],[0.136143,-0.295743],[0.13908,-0.295662],[0.140036,-0.295226],[0.181242,-0.258361]],Array\{Float64,1\}[[0.181242,-0.258361],[0.223879,-0.228947],[0.265291,-0.201101],[0.421627,-0.119131],[0.445462,-0.109591],[0.451447,-0.107246],[0.44952,-0.105962]],Array\{Float64,1\}[[0.44952,-0.105962],[0.530807,-0.0749502],[0.616297,-0.0423637],[0.888188,0.0902778],[0.920606,0.118146],[0.927983,0.125535],[0.899776,0.122741]],Array\{Float64,1\}[[0.899776,0.122741],[0.908496,0.170455],[0.856593,0.238345],[0.0134149,0.577832],[-0.254365,0.634424],[-0.320807,0.648238],[-0.111962,0.640453]],Array\{Float64,1\}[[-0.111962,0.640453],[-0.270317,0.680535],[-0.449287,0.71273],[-0.993857,0.727265],[-1.0439,0.700943],[-1.05652,0.694192],[-1.10085,0.736798]]],DiffEqBase.ODEProblem\{Array\{Float64,1\},Float64,true,\#\#1\#2\}(\#1,[1.0,1.0],(0.0,10.0)),OrdinaryDiffEq.Tsit5
-          order: 5
-          adaptiveorder: 4,OrdinaryDiffEq.\#124,true,0)
-\end{Verbatim}
-        
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}5}]:} \PY{c}{\PYZsh{} Plot the solution using the plot recipe}
-        \PY{k}{using} \PY{n}{Plots}\PY{p}{;} \PY{n}{gr}\PY{p}{(}\PY{p}{)} \PY{c}{\PYZsh{} Using the GR Backend}
+{\color{incolor}In [{\color{incolor}9}]:} \PY{c}{\PYZsh{} Plot the solution using the plot recipe}
+        \PY{k}{using} \PY{n}{Plots}\PY{p}{;} \PY{n}{plotly}\PY{p}{(}\PY{p}{)} \PY{c}{\PYZsh{} Using the GR Backend}
         \PY{n}{plot}\PY{p}{(}\PY{n}{sol}\PY{p}{,}\PY{n}{title}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{All Plots.jl Attributes are Available}\PY{l+s}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 
+    
+    
     \subsection{Extra Features}\label{extra-features}
 
 The solution object acts both as an array and as an interpolation of the
 solution
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}6}]:} \PY{p}{@}\PY{n}{show} \PY{n}{sol}\PY{o}{.}\PY{n}{t}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]} \PY{c}{\PYZsh{} Time at the 3rd timestep}
-        \PY{p}{@}\PY{n}{show} \PY{n}{sol}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]} \PY{c}{\PYZsh{} Value at the third timestep}
-        \PY{p}{@}\PY{n}{show} \PY{n}{sol}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)} \PY{c}{\PYZsh{} Value at t=5 using the interpolation}
+{\color{incolor}In [{\color{incolor}10}]:} \PY{p}{@}\PY{n}{show} \PY{n}{sol}\PY{o}{.}\PY{n}{t}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]} \PY{c}{\PYZsh{} Time at the 3rd timestep}
+         \PY{p}{@}\PY{n}{show} \PY{n}{sol}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]} \PY{c}{\PYZsh{} Value at the third timestep}
+         \PY{p}{@}\PY{n}{show} \PY{n}{sol}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)} \PY{c}{\PYZsh{} Value at t=5 using the interpolation}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-sol.t[3] = 0.2927716363580929
+sol.t[3] = 0.29277163636804704
 sol[3] = [0.768635,0.887673]
 sol(5) = [1.45932,0.99208]
 
     \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}6}]:} 2-element Array\{Float64,1\}:
-         1.45932
-         0.99208
+{\color{outcolor}Out[{\color{outcolor}10}]:} 2-element Array\{Float64,1\}:
+          1.45932
+          0.99208
 \end{Verbatim}
         
     \subsection{Stochastic Differential
@@ -366,13 +362,13 @@ Equations}\label{stochastic-differential-equations}
 Also included are problems for stochastic differential equations
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{g} \PY{o}{=} \PY{k}{function}\PY{n+nf}{ }\PY{o}{(}\PY{n}{t}\PY{p}{,}\PY{n}{u}\PY{p}{,}\PY{n}{du}\PY{p}{)}
-            \PY{n}{du}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{o}{.}\PY{l+m+mi}{5}\PY{o}{*}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} 
-            \PY{n}{du}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{=} \PY{o}{.}\PY{l+m+mi}{1}\PY{o}{*}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
-        \PY{k}{end}
-        \PY{n}{prob} \PY{o}{=} \PY{n}{SDEProblem}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{n}{g}\PY{p}{,}\PY{n}{u0}\PY{p}{,}\PY{n}{tspan}\PY{p}{)}
-        \PY{n}{sol} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{n}{prob}\PY{p}{,}\PY{n}{dt}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2}\PY{o}{\PYZca{}}\PY{l+m+mi}{4}\PY{p}{)}
-        \PY{n}{plot}\PY{p}{(}\PY{n}{sol}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{g} \PY{o}{=} \PY{k}{function}\PY{n+nf}{ }\PY{o}{(}\PY{n}{t}\PY{p}{,}\PY{n}{u}\PY{p}{,}\PY{n}{du}\PY{p}{)}
+             \PY{n}{du}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{o}{.}\PY{l+m+mi}{5}\PY{o}{*}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} 
+             \PY{n}{du}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{=} \PY{o}{.}\PY{l+m+mi}{1}\PY{o}{*}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+         \PY{k}{end}
+         \PY{n}{prob} \PY{o}{=} \PY{n}{SDEProblem}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{n}{g}\PY{p}{,}\PY{n}{u0}\PY{p}{,}\PY{n}{tspan}\PY{p}{)}
+         \PY{n}{sol} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{n}{prob}\PY{p}{,}\PY{n}{dt}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2}\PY{o}{\PYZca{}}\PY{l+m+mi}{4}\PY{p}{)}
+         \PY{n}{plot}\PY{p}{(}\PY{n}{sol}\PY{p}{)}
 \end{Verbatim}
 
     \subsection{Documentation}\label{documentation}
@@ -388,22 +384,22 @@ The DifferentialEquations.jl algorithms choose the number type of their
 calculation given their input. Use this fact to solve the
 \href{https://en.wikipedia.org/wiki/Lorenz_system}{Lorenz equation}
 using BigFloats. You may want to
-\href{https://github.com/JuliaDiffEq/DifferentialEquations.jl/tree/master/examples}{check
-out the example notebooks}.
+\href{https://github.com/JuliaDiffEq/DiffEqTutorials.jl}{check out the
+example notebooks}.
 
 \subsubsection{Problem 2}\label{problem-2}
 
 Use the
-\href{http://juliadiffeq.github.io/DifferentialEquations.jl/latest/man/callback_functions.html}{event
+\href{http://docs.juliadiffeq.org/latest/features/callback_functions.html}{event
 handling} the model a bouncing ball with friction, i.e.~at every bounce
 the velocity flips but is decreased to 80\%. Does the ball eventually
 stop bouncing?
 
 \subsubsection{Problem 3}\label{problem-3}
 
-Install the ODE.jl and ODEInterface conditional dependencies (note:
-ODEInterface may give build issues on Windows!) and run some of the
-\href{https://github.com/JuliaDiffEq/DifferentialEquations.jl/tree/master/benchmarks}{benchmarks
+Install the LSODA and ODEInterfaceDiffEq (note: ODEInterface may give
+build issues on Windows!) and run some of the
+\href{https://github.com/JuliaDiffEq/DiffEqBenchmarks.jl}{benchmarks
 notebooks} on your machine. Do you notice any trends amongst the
 algorithms? Use the method as shown in the Pleiades benchmarks to
 benchmark the algorithms against each other on nonlinear problems with
