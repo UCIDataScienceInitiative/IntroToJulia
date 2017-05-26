@@ -1,64 +1,10 @@
-
 <!DOCTYPE html>
 <html>
-<head>
-
-<meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="chrome=1" />
-
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
-<title>Index slides</title>
+<head><meta charset="utf-8" />
+<title>LightGraphsAnswers</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<!-- General and theme style sheets -->
-<link rel="stylesheet" href="reveal.js/css/reveal.css">
-<link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
-
-<!-- If the query includes 'print-pdf', include the PDF print sheet -->
-<script>
-if( window.location.search.match( /print-pdf/gi ) ) {
-        var link = document.createElement( 'link' );
-        link.rel = 'stylesheet';
-        link.type = 'text/css';
-        link.href = 'reveal.js/css/print/pdf.css';
-        document.getElementsByTagName( 'head' )[0].appendChild( link );
-}
-
-</script>
-
-<!--[if lt IE 9]>
-<script src="reveal.js/lib/js/html5shiv.js"></script>
-<![endif]-->
-
-<!-- Loading the mathjax macro -->
-<!-- Load mathjax -->
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
-    <!-- MathJax configuration -->
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-            processEscapes: true,
-            processEnvironments: true
-        },
-        // Center justify equations in code and markdown cells. Elsewhere
-        // we use CSS to left justify single line equations in code cells.
-        displayAlign: 'center',
-        "HTML-CSS": {
-            styles: {'.MathJax_Display': {"margin": 0}},
-            linebreaks: { automatic: true }
-        }
-    });
-    </script>
-    <!-- End of mathjax configuration -->
-
-<!-- Get Font-awesome from cdn -->
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css">
 
 <style type="text/css">
     /*!
@@ -11745,344 +11691,98 @@ ul.typeahead-list > li > a {
 
 <style type="text/css">
 /* Overrides of notebook CSS for static HTML export */
-.reveal {
-  font-size: 160%;
-  overflow-y: scroll;
+body {
+  overflow: visible;
+  padding: 8px;
 }
-.reveal pre {
-  width: inherit;
-  padding: 0.4em;
-  margin: 0px;
-  font-family: monospace, sans-serif;
-  font-size: 80%;
-  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+
+div#notebook {
+  overflow: visible;
+  border-top: none;
 }
-.reveal pre code {
-  padding: 0px;
-}
-.reveal section img {
-  border: 0px solid black;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0);
-}
-.reveal i {
-  font-style: normal;
-  font-family: FontAwesome;
-  font-size: 2em;
-}
-.reveal .slides {
-  text-align: left;
-}
-.reveal.fade {
-  opacity: 1;
-}
-.reveal .progress {
-  position: static;
-}
-div.input_area {
-  padding: 0.06em;
-}
-div.code_cell {
-  background-color: transparent;
-}
-div.prompt {
-  width: 11ex;
-  padding: 0.4em;
-  margin: 0px;
-  font-family: monospace, sans-serif;
-  font-size: 80%;
-  text-align: right;
-}
-div.output_area pre {
-  font-family: monospace, sans-serif;
-  font-size: 80%;
-}
-div.output_prompt {
-  /* 5px right shift to account for margin in parent container */
-  margin: 5px 5px 0 0;
-}
-div.text_cell.rendered .rendered_html {
-  /* The H1 height seems miscalculated, we are just hidding the scrollbar */
-  overflow-y: hidden;
-}
-a.anchor-link {
-  /* There is still an anchor, we are only hidding it */
-  display: none;
-}
-.rendered_html p {
-  text-align: inherit;
+
+@media print {
+  div.cell {
+    display: block;
+    page-break-inside: avoid;
+  } 
+  div.output_wrapper { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+  div.output { 
+    display: block;
+    page-break-inside: avoid; 
+  }
 }
 </style>
 
 <!-- Custom stylesheet, it must be in the same directory as the html file -->
 <link rel="stylesheet" href="custom.css">
 
-</head>
-
-
+<!-- Loading mathjax macro -->
+<!-- Load mathjax -->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    <!-- End of mathjax configuration --></head>
 <body>
+  <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
 
-
-<div class="reveal">
-<div class="slides">
-<section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="A-Deep-Introduction-to-Julia-for-Data-Science-and-Scientific-Computing">A Deep Introduction to Julia for Data Science and Scientific Computing<a class="anchor-link" href="#A-Deep-Introduction-to-Julia-for-Data-Science-and-Scientific-Computing">&#182;</a></h1>
+<h2 id="LightGraphs-Problem">LightGraphs Problem<a class="anchor-link" href="#LightGraphs-Problem">&#182;</a></h2>
 </div>
 </div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><p>This workshop is put together by Chris Rackauckas as part of the UC Irvine Data Science Initiative. This workshop is made to teach people who are experienced with other scripting languages the relatively new language Julia. Unlike the other Data Science Initiative workshops, this workshop assumes prior knowledge of some form of programming in a language such as Python, R, or MATLAB.</p>
-<p>We will start by introducing the basic syntax of the language, and quickly move into the details of how Julia is different from other scripting languages and how to exploit Julia's type system + multiple dispatch to be able to achieve C/Fortran-like performance while maintaining the concise syntax of a scripting language. Large parts of the package ecosystem will be explored and some information on implementation details will be highlighted in order for the participants to learn how to design Julia projects.</p>
-<p>The ideal participant is anyone who is interested in Julia. There are many groups of people interested in using Julia. One large fraction come with a strong software development background and C/Fortran knowledge, and are looking to learn Julia as a tool to create packages with enhanced productivity while not losing performance. On the other side, there are users who are interested in the growing package ecosystem of Julia and would like to add Julia to their knowledge-base. And then there's everything in between. One major goal of this workshop is to use Julia's language and syntax to bridge the gap between "package users" and "package developers" in the way that Julia has done.</p>
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">LightGraphs</span><span class="p">,</span> <span class="n">Distributions</span>
+<span class="k">function</span><span class="nf"> mkTree</span><span class="p">(</span><span class="n">maxdepth</span><span class="p">::</span><span class="kt">Int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">p</span><span class="p">::</span><span class="kt">Float64</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">g</span><span class="p">::</span><span class="n">SimpleGraph</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">currhead</span><span class="p">::</span><span class="kt">Int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">maxdepth</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="n">g</span>
+    <span class="k">else</span>
+       <span class="n">b</span> <span class="o">=</span> <span class="n">Binomial</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+       <span class="n">nEdges</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">rand</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">leaves</span> <span class="k">in</span> <span class="mi">1</span><span class="p">:</span><span class="n">nEdges</span>
+            <span class="n">add_vertex!</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+            <span class="n">newnode</span> <span class="o">=</span> <span class="n">nv</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+            <span class="n">add_edge!</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">currhead</span><span class="p">,</span> <span class="n">newnode</span><span class="p">)</span>
+            <span class="n">mkTree</span><span class="p">(</span><span class="n">maxdepth</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">newnode</span><span class="p">)</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+    <span class="n">g</span>
+<span class="k">end</span>
+</pre></div>
 
 </div>
 </div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Introduction-to-the-Author">Introduction to the Author<a class="anchor-link" href="#Introduction-to-the-Author">&#182;</a></h2><p>Chris is a PhD student in Mathematics from the Mathematical, Computational, and Systems Biology (MCSB) Gateway program and is an active part of the Julia community. He runs the blog, <a href="http://www.stochasticlifestyle.com/">http://www.stochasticlifestyle.com/</a>, where he write tutorials on using the Julia languages covering many topics, such as high-performance and GPGPU computing, package development, and Julia tips. He is part of the JuliaMath and JuliaDiffEq communities for curating the Julia libraries for mathematics and differential equations respectively. Chris is the developer of many Julia packages, the most prominent being <a href="https://github.com/JuliaDiffEq/DifferentialEquations.jl">DifferentialEquations.jl</a>, a Julia library which has become a standard solver for many forms of differential equations.</p>
-<h3 id="Remote-Instructors">Remote Instructors<a class="anchor-link" href="#Remote-Instructors">&#182;</a></h3><p>You are highly encouraged to use the <a href="https://gitter.im/JuliaLang/julia">Julia Gitter chat channel</a> to ask your Julia-related questions, both during the workshop and after the workshop! There are a few "remote instructors" who will be available through this chat channel at different times throughout the workshop:</p>
-<ul>
-<li>Lyndon White (@oxinabox): University of Western Australia</li>
-<li>Fengyang Wang (@TotalVerb): University of Waterloo</li>
-<li>Ismael Venegas Castelló (@Ismael-VC): Data Analyst at Rich IT</li>
-<li>Seth Bromberger (@sbromberger): Lawrence Livermore National Laboratory</li>
-</ul>
-<p>Others will also be available. Please do not be afraid to use this resource!</p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Notes-Before-We-Get-Started">Notes Before We Get Started<a class="anchor-link" href="#Notes-Before-We-Get-Started">&#182;</a></h2><ul>
-<li>Please install some version of IJulia/Jupyter to follow along. I also recommend working through longer problems using the Juno IDE.</li>
-<li>The start of the course will be on developing general performant Julia code. After lunch it will be about the package ecosystem. This understanding of Julia will be useful even for "Julia users" (i.e. non package developers) to use packages effectively, but don't worry we will get to packages. </li>
-<li>Please do the problems/projects at your own pace. Not everyone is expected to complete all of the material in the allotted time. <strong>Some of the problems are supposed to be hard!</strong> Instead, this is supposed to be a resource to introduce you to a large amount of Julia, and the material may take awhile to fully be digested. That's okay!</li>
-<li>During the basic introduction, there will be information that is not included in these notebooks. That is intentional. One major hurdle for learning a language is learning how to find out more about the language. Please use the manual, chatrooms, StackExchange, etc. If these aren't working for you, ask for help.</li>
-</ul>
-<p>A good primer for the workshop: <a href="https://www.youtube.com/watch?v=JNvMs0j3a4E">https://www.youtube.com/watch?v=JNvMs0j3a4E</a></p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Installation-and-Setup">Installation and Setup<a class="anchor-link" href="#Installation-and-Setup">&#182;</a></h2><p>To get started, see the <a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ToolingDocumentationCommunity">Tooling, Documentation, and Community notebook</a>.</p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Rendered-Jupyter-Notebooks">Rendered Jupyter Notebooks<a class="anchor-link" href="#Rendered-Jupyter-Notebooks">&#182;</a></h2><h3 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h3><ul>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ToolingDocumentationCommunity">Tooling, Documentation, and Community</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/JuliaMentalModel">A Mental Model for Julia</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/GithubIntroduction">A Very Quick Introduction to Git/Github for Julia Users</a></li>
-</ul>
-<h3 id="Basics">Basics<a class="anchor-link" href="#Basics">&#182;</a></h3><ul>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicIntroduction">A Basic Introduction to Julia</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicProblems">Basic Problems</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicProblems">Intermediate Problems Problems</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/WhyJulia">Why Julia?</a></li>
-<li><a href="http://www.stochasticlifestyle.com/7-julia-gotchas-handle/">7 Julia Gotchas and How to Handle Them</a></li>
-</ul>
-<h3 id="Detailed-Usage:-A-Peek-Into-&quot;the-Rabbit-Hole&quot;">Detailed Usage: A Peek Into "the Rabbit Hole"<a class="anchor-link" href="#Detailed-Usage:-A-Peek-Into-&quot;the-Rabbit-Hole&quot;">&#182;</a></h3><ul>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Metaprogramming">Metaprogramming</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading">Call Overloading</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArraysAndMatrices">More Details on Arrays and Matrices - How to get Fortran Speeds in Linear Algebra</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces">Array and Iterator Interfaces</a></li>
-</ul>
-<h3 id="Packages-to-Explore">Packages to Explore<a class="anchor-link" href="#Packages-to-Explore">&#182;</a></h3><p>This section introduces you to a wide variety of packages for data science and scientific computing in Julia. Many of these pages have example problems for you to have a guided tour through the package basics.</p>
-<ul>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PackageEcosystem">Overview of the Package Ecosystem</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PlotsJL">Data Visualization: Plots.jl</a></li>
-<li><a href="http://docs.junolab.org/latest/">Juno, the Julia IDE (Debugging, Progress Bars, etc.): JunoLab</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DiffEq">Differential Equations: DifferentialEquations.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Clustering">Clustering: Clustering.jl and Distances.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DimensionalityReduction">Dimensionality Reduction: MultivariateStats.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Optimization">Mathematical Programming / Optimization: JuMP and Optim.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/NonlinearSolve">Solving Nonlinear Equations: NLsolve.jl and Roots.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ForwardDiff">Forward-mode Autodifferentiation (with Optimization): ForwardDiff.jl and Optim.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Graphs">Graph Algorithms and Analysis: LightGraphs.jl</a></li>
-<li>Bioinformatics: Bio.jl</li>
-<li>Deep Learning: KNet.jl, TensorFlow.jl, or MXNet.jl</li>
-</ul>
-<h3 id="Extra-Projects-and-Problems">Extra Projects and Problems<a class="anchor-link" href="#Extra-Projects-and-Problems">&#182;</a></h3><ul>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Interop">Using External Languages from Julia (Interop)</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/HPCJulia">Parallelism and HPC</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/JuliaML">Work in Progress: JuliaML for Machine Learning</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PackageDevelopment">Package Development, Documentation, and Testing</a></li>
-<li>Tools for Faster Code: <a href="https://github.com/simonbyrne/InplaceOps.jl">InplaceOps.jl</a>, <a href="https://github.com/ahwillia/CatViews.jl">CatViews.jl</a>, and <a href="https://github.com/JuliaMath/VML.jl">VML.jl</a></li>
-<li>Robust Benchmarking: <a href="https://github.com/JuliaCI/BenchmarkTools.jl">BenchmarkTools.jl</a> and <a href="https://github.com/timholy/ProfileView.jl">ProfileView.jl</a></li>
-</ul>
-<h3 id="Experiments">Experiments<a class="anchor-link" href="#Experiments">&#182;</a></h3><p>Probe around and understand the following results:</p>
-<ul>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/TypeStabilityExperiment">Type-Stability Experiment</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ScopingExperiment">Scoping Experiment</a></li>
-</ul>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<h1 id="Problem-Answers">Problem Answers<a class="anchor-link" href="#Problem-Answers">&#182;</a></h1><hr>
-<h4 id="Answers-to-the-Problems">Answers to the Problems<a class="anchor-link" href="#Answers-to-the-Problems">&#182;</a></h4><ul>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicProblemAnswers">Basic Problem Answers</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/IntermediateProblemAnswers">Intermediate Problem Answers</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/LightGraphsProblemAnswers">Answer to the LightGraphs Problem</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/NonlinearSolveAnswers">Answer to the Nonlinear Solver Problems</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DiffEqSolutions">Answer to the DiffEq Problems</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DimensionalityReductionSolutions">Answer to Dimensionality Reduction Problem</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ClusteringSolutions">Answer to Clustering Problem</a></li>
-</ul>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Slide-Versions-of-the-Pages">Slide Versions of the Pages<a class="anchor-link" href="#Slide-Versions-of-the-Pages">&#182;</a></h1><h3 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h3><ul>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ToolingDocumentationCommunity">Tooling, Documentation, and Community</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/JuliaMentalModel">A Mental Model for Julia</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/GithubIntroduction">A Very Quick Introduction to Git/Github for Julia Users</a></li>
-</ul>
-<h3 id="Basics">Basics<a class="anchor-link" href="#Basics">&#182;</a></h3><ul>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/BasicIntroduction">A Basic Introduction to Julia</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/BasicProblems">Basic Problems</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/BasicProblems">Intermediate Problems Problems</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/WhyJulia">Why Julia?</a></li>
-</ul>
-<h3 id="Detailed-Usage:-A-Peak-Into-&quot;the-Rabbit-Hole&quot;">Detailed Usage: A Peak Into "the Rabbit Hole"<a class="anchor-link" href="#Detailed-Usage:-A-Peak-Into-&quot;the-Rabbit-Hole&quot;">&#182;</a></h3><ul>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/Metaprogramming">Metaprogramming</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/CallOverloading">Call Overloading</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ArrayIteratorInterfaces">Array and Iterator Interfaces</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ArraysAndMatrices">More Details on Arrays and Matrices - How to get Fortran Speeds from Linear Algebra</a></li>
-</ul>
-<h3 id="Packages-to-Explore">Packages to Explore<a class="anchor-link" href="#Packages-to-Explore">&#182;</a></h3><ul>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/PackageEcosystem">Overview of the Package Ecosystem</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/PlotsJL">Data Visualization: Plots.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/DiffEq">Differential Equations: DifferentialEquations.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Clustering">Clustering: Clustering.jl and Distances.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DimensionalityReduction">Dimensionality Reduction: MultivariateStats.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/Optimization">Mathematical Programming / Optimization: JuMP and Optim.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/NonlinearSolve">Solving Nonlinear Equations: NLsolve.jl and Roots.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ForwardDiff">Forward-mode Autodifferentiation (with Optimization): ForwardDiff.jl and Optim.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/Graphs">Graph Algorithms and Analysis: LightGraphs.jl</a></li>
-<li>Bioinformatics: Bio.jl</li>
-<li>Deep Learning: KNet.jl, TensorFlow.jl, MXNet.jl, and Flux.jl</li>
-</ul>
-<h3 id="Extra-Projects-and-Problems">Extra Projects and Problems<a class="anchor-link" href="#Extra-Projects-and-Problems">&#182;</a></h3><ul>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/Interop">Using External Languages from Julia (Interop)</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/HPCJulia">Parallelism and HPC</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/JuliaML">Work in Progress: JuliaML for Machine Learning</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/PackageDevelopment">Package Development, Documentation, and Testing</a></li>
-<li>Tools for Faster Code: <a href="https://github.com/simonbyrne/InplaceOps.jl">InplaceOps.jl</a>, <a href="https://github.com/ahwillia/CatViews.jl">CatViews.jl</a>, and <a href="https://github.com/JuliaMath/VML.jl">VML.jl</a></li>
-<li>Robust Benchmarking: <a href="https://github.com/JuliaCI/BenchmarkTools.jl">BenchmarkTools.jl</a> and <a href="https://github.com/timholy/ProfileView.jl">ProfileView.jl</a></li>
-</ul>
-<h3 id="Experiments">Experiments<a class="anchor-link" href="#Experiments">&#182;</a></h3><p>Probe around and understand the following results:</p>
-<ul>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/TypeStabilityExperiment">Type-Stability Experiment</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ScopingExperiment">Scoping Experiment</a></li>
-</ul>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="How-These-Were-Made">How These Were Made<a class="anchor-link" href="#How-These-Were-Made">&#182;</a></h2><p>This entire repository is made using Jupyter notebooks using the template from the <a href="https://github.com/ChrisRackauckas/JupyterSite">JupyterSite</a> repository. To contribute to these materials, see <a href="https://github.com/UCIDataScienceInitiative/IntroToJulia">the Github repository</a>.</p>
-
-</div>
-</div>
-</div></section></section>
-</div>
 </div>
 
-<script>
-
-require(
-    {
-      // it makes sense to wait a little bit when you are loading
-      // reveal from a cdn in a slow connection environment
-      waitSeconds: 15
-    },
-    [
-      "reveal.js/lib/js/head.min.js",
-      "reveal.js/js/reveal.js"
-    ],
-
-    function(head, Reveal){
-
-        // Full list of configuration options available here: https://github.com/hakimel/reveal.js#configuration
-        Reveal.initialize({
-            controls: true,
-            progress: true,
-            history: true,
-
-            theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-            transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/none
-
-            // Optional libraries used to extend on reveal.js
-            dependencies: [
-                { src: "reveal.js/lib/js/classList.js",
-                  condition: function() { return !document.body.classList; } },
-                { src: "reveal.js/plugin/notes/notes.js",
-                  async: true,
-                  condition: function() { return !!document.body.classList; } }
-            ]
-        });
-
-        var update = function(event){
-          if(MathJax.Hub.getAllJax(Reveal.getCurrentSlide())){
-            MathJax.Hub.Rerender(Reveal.getCurrentSlide());
-          }
-        };
-
-        Reveal.addEventListener('slidechanged', update);
-
-        var update_scroll = function(event){
-          $(".reveal").scrollTop(0);
-        };
-
-        Reveal.addEventListener('slidechanged', update_scroll);
-
-    }
-);
-</script>
-
+</div>
+    </div>
+  </div>
 </body>
-
-
 </html>

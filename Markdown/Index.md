@@ -68,7 +68,7 @@ This section introduces you to a wide variety of packages for data science and s
 
 - [Overview of the Package Ecosystem](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PackageEcosystem)
 - [Data Visualization: Plots.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PlotsJL)
-- [Juno, the Julia IDE (Debugging, Progress Bars, etc.): JunoLab](https://chrisrackauckas.github.io/JunoDocs.jl/latest/)
+- [Juno, the Julia IDE (Debugging, Progress Bars, etc.): JunoLab](http://docs.junolab.org/latest/)
 - [Differential Equations: DifferentialEquations.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DiffEq)
 - [Clustering: Clustering.jl and Distances.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Clustering)
 - [Dimensionality Reduction: MultivariateStats.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DimensionalityReduction)
@@ -104,7 +104,9 @@ Probe around and understand the following results:
 #### Answers to the Problems
 - [Basic Problem Answers](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicProblemAnswers)
 - [Intermediate Problem Answers](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/IntermediateProblemAnswers)
-- [Some Package Problem Answers](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PackageProblemAnswers)
+- [Answer to the LightGraphs Problem](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/LightGraphsProblemAnswers)
+- [Answer to the Nonlinear Solver Problems](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/NonlinearSolveAnswers)
+- [Answer to the DiffEq Problems](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DiffEqSolutions)
 - [Answer to Dimensionality Reduction Problem](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DimensionalityReductionSolutions)
 - [Answer to Clustering Problem](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ClusteringSolutions)
 
@@ -119,7 +121,8 @@ Probe around and understand the following results:
 ### Basics
 
 - [A Basic Introduction to Julia](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/BasicIntroduction)
-- [Introductory Problems](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/BasicProblems)
+- [Basic Problems](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/BasicProblems)
+- [Intermediate Problems Problems](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/BasicProblems)
 - [Why Julia?](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/WhyJulia)
 
 ### Detailed Usage: A Peak Into "the Rabbit Hole"
@@ -141,7 +144,7 @@ Probe around and understand the following results:
 - [Forward-mode Autodifferentiation (with Optimization): ForwardDiff.jl and Optim.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/ForwardDiff)
 - [Graph Algorithms and Analysis: LightGraphs.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Slides/Graphs)
 - Bioinformatics: Bio.jl
-- Deep Learning: Mocha.jl, TensorFlow.jl, or MXNet.jl
+- Deep Learning: KNet.jl, TensorFlow.jl, MXNet.jl, and Flux.jl
 
 
 ### Extra Projects and Problems

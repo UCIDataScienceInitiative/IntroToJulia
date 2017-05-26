@@ -140,7 +140,7 @@
     \def\gt{>}
     \def\lt{<}
     % Document parameters
-    \title{DiffEq}
+    \title{LightGraphsAnswers}
     
     
     
@@ -275,146 +275,25 @@
     
 
     
-    \subsection{A Quick Tour of
-DifferentialEquations.jl}\label{a-quick-tour-of-differentialequations.jl}
-
-DifferentialEquations.jl is a metapackage for solving differential
-equations in Julia. The basic workflow is:
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  Define a problem
-\item
-  Solve a problem
-\item
-  Plot the solution
-\end{itemize}
-
-The API between different types of differential equations is unified
-through multiple dispatch.
-
-See the
-\href{http://docs.juliadiffeq.org/latest/index.html}{DifferentialEquations.jl
-Documentation}.
-
-    \subsection{Example: Lotka-Volterra
-ODE}\label{example-lotka-volterra-ode}
-
-\[\begin{align}
-x' &= ax - bxy\\
-y' &= -cy + dxy
-\end{align}\]
+    \subsection{LightGraphs Problem}\label{lightgraphs-problem}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}10}]:} \PY{k}{using} \PY{n}{DifferentialEquations}
-         \PY{c}{\PYZsh{} Define a problem}
-         \PY{k+kd}{const} \PY{n}{a} \PY{o}{=} \PY{l+m+mf}{1.0}\PY{p}{;} \PY{k+kd}{const} \PY{n}{b} \PY{o}{=} \PY{l+m+mf}{2.0}
-         \PY{k+kd}{const} \PY{n}{c} \PY{o}{=} \PY{l+m+mf}{1.5}\PY{p}{;} \PY{k+kd}{const} \PY{n}{d} \PY{o}{=} \PY{l+m+mf}{1.25}
-         \PY{n}{f} \PY{o}{=} \PY{k}{function}\PY{n+nf}{ }\PY{o}{(}\PY{n}{t}\PY{p}{,}\PY{n}{u}\PY{p}{,}\PY{n}{du}\PY{p}{)} \PY{c}{\PYZsh{} Define f as an in\PYZhy{}place update into du}
-             \PY{n}{du}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{a}\PY{o}{*}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{b}\PY{o}{*}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
-             \PY{n}{du}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{n}{c}\PY{o}{*}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{+} \PY{n}{d}\PY{o}{*}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
-         \PY{k}{end}
-         \PY{n}{u0} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{1.0}\PY{p}{;}\PY{l+m+mf}{1.0}\PY{p}{]}\PY{p}{;} \PY{n}{tspan} \PY{o}{=} \PY{p}{(}\PY{l+m+mf}{0.0}\PY{p}{,}\PY{l+m+mf}{10.0}\PY{p}{)}
-         \PY{n}{prob} \PY{o}{=} \PY{n}{ODEProblem}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{n}{u0}\PY{p}{,}\PY{n}{tspan}\PY{p}{)}\PY{p}{;}
-\end{Verbatim}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}11}]:} \PY{c}{\PYZsh{} Solve the problem}
-         \PY{n}{sol} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{n}{prob}\PY{p}{)}\PY{p}{;}
-\end{Verbatim}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}12}]:} \PY{c}{\PYZsh{} Plot the solution using the plot recipe}
-         \PY{k}{using} \PY{n}{Plots}\PY{p}{;} \PY{n}{plotly}\PY{p}{(}\PY{p}{)} \PY{c}{\PYZsh{} Using the Plotly Backend}
-         \PY{n}{plot}\PY{p}{(}\PY{n}{sol}\PY{p}{,}\PY{n}{title}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{All Plots.jl Attributes are Available}\PY{l+s}{\PYZdq{}}\PY{p}{)}
-\end{Verbatim}
-
-    The plot recipe
-\href{http://docs.juliadiffeq.org/latest/basics/plot.html}{contains
-special fields} for plotting phase diagrams and other transformations:
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{plot}\PY{p}{(}\PY{n}{sol}\PY{p}{,}\PY{n}{title}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Phase Diagram}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{n}{vars}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
-\end{Verbatim}
-
-    \subsection{Extra Features}\label{extra-features}
-
-The solution object acts both as an array and as an interpolation of the
-solution
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}10}]:} \PY{p}{@}\PY{n}{show} \PY{n}{sol}\PY{o}{.}\PY{n}{t}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]} \PY{c}{\PYZsh{} Time at the 3rd timestep}
-         \PY{p}{@}\PY{n}{show} \PY{n}{sol}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]} \PY{c}{\PYZsh{} Value at the third timestep}
-         \PY{p}{@}\PY{n}{show} \PY{n}{sol}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)} \PY{c}{\PYZsh{} Value at t=5 using the interpolation}
-\end{Verbatim}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-sol.t[3] = 0.29277163636804704
-sol[3] = [0.768635,0.887673]
-sol(5) = [1.45932,0.99208]
-
-    \end{Verbatim}
-
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}10}]:} 2-element Array\{Float64,1\}:
-          1.45932
-          0.99208
-\end{Verbatim}
-        
-    \subsection{Stochastic Differential
-Equations}\label{stochastic-differential-equations}
-
-Also included are problems for stochastic differential equations
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{g} \PY{o}{=} \PY{k}{function}\PY{n+nf}{ }\PY{o}{(}\PY{n}{t}\PY{p}{,}\PY{n}{u}\PY{p}{,}\PY{n}{du}\PY{p}{)}
-            \PY{n}{du}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{o}{.}\PY{l+m+mi}{5}\PY{o}{*}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} 
-            \PY{n}{du}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{=} \PY{o}{.}\PY{l+m+mi}{1}\PY{o}{*}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+{\color{incolor}In [{\color{incolor} }]:} \PY{k}{using} \PY{n}{LightGraphs}\PY{p}{,} \PY{n}{Distributions}
+        \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{mkTree}\PY{p}{(}\PY{n}{maxdepth}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{,} \PY{n}{p}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Float64} \PY{o}{=} \PY{l+m+mf}{0.8}\PY{p}{,} \PY{n}{g}\PY{p}{:}\PY{p}{:}\PY{n}{SimpleGraph} \PY{o}{=} \PY{n}{Graph}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{currhead}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+            \PY{k}{if} \PY{p}{(}\PY{n}{maxdepth} \PY{o}{\PYZlt{}=} \PY{l+m+mi}{1}\PY{p}{)} \PY{n}{g}
+            \PY{k}{else}
+               \PY{n}{b} \PY{o}{=} \PY{n}{Binomial}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{p}\PY{p}{)}
+               \PY{n}{nEdges} \PY{o}{=} \PY{n}{max}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{rand}\PY{p}{(}\PY{n}{b}\PY{p}{)}\PY{p}{)}
+                \PY{k}{for} \PY{n}{leaves} \PY{k}{in} \PY{l+m+mi}{1}\PY{p}{:}\PY{n}{nEdges}
+                    \PY{n}{add\PYZus{}vertex!}\PY{p}{(}\PY{n}{g}\PY{p}{)}
+                    \PY{n}{newnode} \PY{o}{=} \PY{n}{nv}\PY{p}{(}\PY{n}{g}\PY{p}{)}
+                    \PY{n}{add\PYZus{}edge!}\PY{p}{(}\PY{n}{g}\PY{p}{,} \PY{n}{currhead}\PY{p}{,} \PY{n}{newnode}\PY{p}{)}
+                    \PY{n}{mkTree}\PY{p}{(}\PY{n}{maxdepth}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{p}\PY{p}{,} \PY{n}{g}\PY{p}{,} \PY{n}{newnode}\PY{p}{)}
+                \PY{k}{end}
+            \PY{k}{end}
+            \PY{n}{g}
         \PY{k}{end}
-        \PY{n}{prob} \PY{o}{=} \PY{n}{SDEProblem}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{n}{g}\PY{p}{,}\PY{n}{u0}\PY{p}{,}\PY{n}{tspan}\PY{p}{)}
-        \PY{n}{sol} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{n}{prob}\PY{p}{,}\PY{n}{dt}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2}\PY{o}{\PYZca{}}\PY{l+m+mi}{4}\PY{p}{)}
-        \PY{n}{plot}\PY{p}{(}\PY{n}{sol}\PY{p}{)}
 \end{Verbatim}
-
-    \subsection{Documentation}\label{documentation}
-
-For more information, see the documentation:
-https://github.com/JuliaDiffEq/DifferentialEquations.jl
-
-    \subsection{Problems}\label{problems}
-
-\subsubsection{Problem 1}\label{problem-1}
-
-The DifferentialEquations.jl algorithms choose the number type of their
-calculation given their input. Use this fact to solve the
-\href{https://en.wikipedia.org/wiki/Lorenz_system}{Lorenz equation}
-using BigFloats. You may want to
-\href{https://github.com/JuliaDiffEq/DiffEqTutorials.jl}{check out the
-example notebooks}. Make a 3D plot of the Lorenz attractor using the
-plot recipe.
-
-\subsubsection{Problem 2}\label{problem-2}
-
-Use the
-\href{http://docs.juliadiffeq.org/latest/features/callback_functions.html}{event
-handling} the model a bouncing ball with friction, i.e.~at every bounce
-the velocity flips but is decreased to 80\%. Does the ball eventually
-stop bouncing?
-
-\subsubsection{Problem 3}\label{problem-3}
-
-Install the LSODA and ODEInterfaceDiffEq (note: ODEInterface may give
-build issues on Windows! See the repo README for details on setting up
-the compiler) and run some of the
-\href{https://github.com/JuliaDiffEq/DiffEqBenchmarks.jl}{benchmarks
-notebooks} on your machine. Do you notice any trends amongst the
-algorithms? Use the method as shown in the Pleiades benchmarks to
-benchmark the algorithms against each other on nonlinear problems with
-no known analytical solution. Try building an example problem with a
-large number of independent variables to accentuate the differences
-between the algorithms (Example: the Linear problem in the benchmarks is
-a 100x100 problem).
 
 
     % Add a bibliography block to the postdoc
