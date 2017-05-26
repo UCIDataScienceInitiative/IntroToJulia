@@ -29,7 +29,7 @@ Others will also be available. Please do not be afraid to use this resource!
 
 - Please install some version of IJulia/Jupyter to follow along. I also recommend working through longer problems using the Juno IDE.
 - The start of the course will be on developing general performant Julia code. After lunch it will be about the package ecosystem. This understanding of Julia will be useful even for "Julia users" (i.e. non package developers) to use packages effectively, but don't worry we will get to packages. 
-- Please do the problems/projects at your own pace. Not everyone is expected to complete all of the material in the allotted time. Instead, this is supposed to be a resource to introduce you to a large amount of Julia, and the material may take awhile to fully be digested. That's okay!
+- Please do the problems/projects at your own pace. Not everyone is expected to complete all of the material in the allotted time. **Some of the problems are supposed to be hard!** Instead, this is supposed to be a resource to introduce you to a large amount of Julia, and the material may take awhile to fully be digested. That's okay!
 - During the basic introduction, there will be information that is not included in these notebooks. That is intentional. One major hurdle for learning a language is learning how to find out more about the language. Please use the manual, chatrooms, StackExchange, etc. If these aren't working for you, ask for help.
 
 A good primer for the workshop: https://www.youtube.com/watch?v=JNvMs0j3a4E

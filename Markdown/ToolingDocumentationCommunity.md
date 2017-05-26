@@ -42,7 +42,7 @@ notebook(detached=true,dir=Pkg.dir("IntroToJulia/Notebooks"))
 
 ### Installing Juno
 
-To install Juno, use the installation instructions from here: https://github.com/JunoLab/uber-juno/blob/master/setup.md
+To install Juno, use the installation instructions from here: http://docs.junolab.org/latest/
 
 ## Installing Libraries
 
@@ -72,7 +72,7 @@ The Julia documentation can be found at http://docs.julialang.org/en/latest/manu
 
 Documentation can be found from the REPL by using `?` in front of a command.
 
-The Juno documentation can be found at https://chrisrackauckas.github.io/JunoDocs.jl/latest/
+The Juno documentation can be found at http://docs.junolab.org/latest/
 
 ### Good Pages to Read
 
@@ -91,7 +91,7 @@ Julia is changing fast: there are updates every few months which bring in loads 
 The main Julia community resources are:
 
 - [The JuliaLang Gitter](https://gitter.im/JuliaLang/julia) - A chatroom for Julia users
-- [julia-users Google group](https://groups.google.com/forum/#!forum/julia-users) - A mailing list for Julia users. Frequented by core developers.
+- [The Julia Discourse](https://discourse.julialang.org/) - A forum / mailing list for Julia users. Frequented by core developers.
 - [The JuliaLang Github Repository](https://github.com/JuliaLang/julia) - The issues/PRs document everything changing in Julia
 - [JuliaBloggers](http://www.juliabloggers.com/) - A blog aggregator for Julia
 - [r/Julia](https://www.reddit.com/r/Julia/) - A subreddit for Julia
