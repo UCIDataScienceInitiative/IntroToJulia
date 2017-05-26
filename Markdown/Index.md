@@ -101,7 +101,7 @@ Probe around and understand the following results:
 # Problem Answers
 ---------------------------
 
-#### [Answers to the Problems](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ProblemAnswers)
+#### Answers to the Problems
 - [Basic Problem Answers](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicProblemAnswers)
 - [Intermediate Problem Answers](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/IntermediateProblemAnswers)
 - [Some Package Problem Answers](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PackageProblemAnswers)

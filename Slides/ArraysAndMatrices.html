@@ -12101,10 +12101,10 @@ while loading In[13], in expression starting on line 1
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span><span class="nf"> </span><span class="o">.*</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Number</span><span class="p">,</span><span class="n">N</span><span class="p">}(</span><span class="n">x</span><span class="p">::</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">y</span><span class="p">::</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">z</span><span class="p">::</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">})</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span><span class="nf"> Base</span><span class="o">.</span><span class="p">:</span><span class="o">.*</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Number</span><span class="p">,</span><span class="n">N</span><span class="p">}(</span><span class="n">x</span><span class="p">::</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">y</span><span class="p">::</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">z</span><span class="p">::</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">})</span>
     <span class="n">output</span> <span class="o">=</span> <span class="n">similar</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c"># Makes an array of similar size and shape as x</span>
     <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">eachindex</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c"># Let the iterator choose the fast linear indexing for x</span>
         <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
@@ -12114,22 +12114,6 @@ while loading In[13], in expression starting on line 1
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_error">
-<pre>
-LoadError: error in method definition: function Base..* must be explicitly imported to be extended
-while loading In[16], in expression starting on line 1
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 

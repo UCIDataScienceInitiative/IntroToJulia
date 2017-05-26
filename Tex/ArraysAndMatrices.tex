@@ -415,23 +415,14 @@ allocations leads to vastly improved performance, so a better
 implementation would be to do this all together as one loop:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}16}]:} \PY{k}{function}\PY{n+nf}{ }\PY{o}{.*}\PY{p}{\PYZob{}}\PY{n}{T}\PY{o}{\PYZlt{}:}\PY{n}{Number}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{x}\PY{p}{:}\PY{p}{:}\PY{n}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{,}\PY{n}{y}\PY{p}{:}\PY{p}{:}\PY{n}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{,}\PY{n}{z}\PY{p}{:}\PY{p}{:}\PY{n}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{)}
-             \PY{n}{output} \PY{o}{=} \PY{n}{similar}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{c}{\PYZsh{} Makes an array of similar size and shape as x}
-             \PY{k}{for} \PY{n}{i} \PY{k}{in} \PY{n}{eachindex}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{c}{\PYZsh{} Let the iterator choose the fast linear indexing for x}
-                 \PY{n}{output}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{*}\PY{n}{z}\PY{p}{[}\PY{n}{i}\PY{p}{]}
-             \PY{k}{end}
-             \PY{n}{output}
-         \PY{k}{end}
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{Base}\PY{o}{.}\PY{p}{:}\PY{o}{.}\PY{o}{*}\PY{p}{\PYZob{}}\PY{n}{T}\PY{o}{\PYZlt{}:}\PY{n}{Number}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{x}\PY{p}{:}\PY{p}{:}\PY{n}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{,}\PY{n}{y}\PY{p}{:}\PY{p}{:}\PY{n}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{,}\PY{n}{z}\PY{p}{:}\PY{p}{:}\PY{n}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{)}
+            \PY{n}{output} \PY{o}{=} \PY{n}{similar}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{c}{\PYZsh{} Makes an array of similar size and shape as x}
+            \PY{k}{for} \PY{n}{i} \PY{k}{in} \PY{n}{eachindex}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{c}{\PYZsh{} Let the iterator choose the fast linear indexing for x}
+                \PY{n}{output}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{*}\PY{n}{z}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+            \PY{k}{end}
+            \PY{n}{output}
+        \PY{k}{end}
 \end{Verbatim}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        LoadError: error in method definition: function Base..* must be explicitly imported to be extended
-    while loading In[16], in expression starting on line 1
-
-        
-
-    \end{Verbatim}
 
     (but notice this doesn't really work because now \texttt{.*} isn't a
 binary operator and therefore the inline syntax won't work). This

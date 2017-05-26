@@ -858,12 +858,6 @@ first(methods(foo)).lambda_template.fptr
 
 
 
-------------------------------
-
-## Problems
-
-Try the new few problems in the Basic Problems
-
 ## Some Basic Types
 
 Julia provides many basic types. Indeed, you will come to know Julia as a system of multiple dispatch on types, meaning that the interaction of types with functions is core to the design.

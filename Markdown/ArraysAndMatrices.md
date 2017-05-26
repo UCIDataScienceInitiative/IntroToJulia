@@ -126,7 +126,7 @@ Notice that `.*` creates an array every time it is called. Therefore a naive app
 
 
 ```julia
-function .*{T<:Number,N}(x::Array{T,N},y::Array{T,N},z::Array{T,N})
+function Base.:.*{T<:Number,N}(x::Array{T,N},y::Array{T,N},z::Array{T,N})
     output = similar(x) # Makes an array of similar size and shape as x
     for i in eachindex(x) # Let the iterator choose the fast linear indexing for x
         output[i] = x[i]*y[i]*z[i]
@@ -134,13 +134,6 @@ function .*{T<:Number,N}(x::Array{T,N},y::Array{T,N},z::Array{T,N})
     output
 end
 ```
-
-
-    LoadError: error in method definition: function Base..* must be explicitly imported to be extended
-    while loading In[16], in expression starting on line 1
-
-    
-
 
 (but notice this doesn't really work because now `.*` isn't a binary operator and therefore the inline syntax won't work). This optimization is known as "loop fusing". Julia does this by searching for all of the broadcasts in a line and putting them together into one broadcast statement during parsing time. Therefore, in Julia `A.*B.*C` creates an anonymous function and broadcasts on it, like
 
