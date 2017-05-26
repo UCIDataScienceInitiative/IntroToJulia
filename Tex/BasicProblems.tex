@@ -300,9 +300,14 @@ and 0 elsewere.
 
 Using a \texttt{for} loop, write a function \texttt{my\_factorial(n)}
 that computes the \texttt{n}th factorial. Try your function on integers
-like \texttt{15}, and then use \texttt{BigInt} inputs like
-\texttt{big(100)}. Make your function's output type match the input type
-for \texttt{n}.
+like \texttt{15}
+
+Bonus: Use \texttt{BigInt} inputs like \texttt{big(100)}. Make your
+function's output type match the input type for \texttt{n}. You'll know
+that you'll successfully matched the input type if your output does not
+``overflow'' to negative, and you can check \texttt{typeof(x)}. Hint,
+you may want to initialize a value using \texttt{one(x)}, which is the
+value \texttt{1} in the type that matches \texttt{x}.
 
     \paragraph{Binomial Problem*}\label{binomial-problem}
 

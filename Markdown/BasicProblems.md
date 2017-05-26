@@ -19,7 +19,9 @@ i.e. a matrix with `-2` on the diagonal, 1 on the off-diagonals, and 0 elsewere.
 
 #### Factorial Problem*
 
-Using a `for` loop, write a function `my_factorial(n)` that computes the `n`th factorial. Try your function on integers like `15`, and then use `BigInt` inputs like `big(100)`. Make your function's output type match the input type for `n`.
+Using a `for` loop, write a function `my_factorial(n)` that computes the `n`th factorial. Try your function on integers like `15`
+
+Bonus: Use `BigInt` inputs like `big(100)`. Make your function's output type match the input type for `n`. You'll know that you'll successfully matched the input type if your output does not "overflow" to negative, and you can check `typeof(x)`. Hint, you may want to initialize a value using `one(x)`, which is the value `1` in the type that matches `x`.
 
 #### Binomial Problem*
 
