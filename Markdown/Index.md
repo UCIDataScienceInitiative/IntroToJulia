@@ -57,6 +57,7 @@ To get started, see the [Tooling, Documentation, and Community notebook](http://
 
 ### Detailed Usage: A Peek Into "the Rabbit Hole"
 
+- [Multiple Dispatch Designs: Duck Typing, Hierarchies and Traits](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DispatchDesigns)
 - [Metaprogramming](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Metaprogramming)
 - [Call Overloading](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading)
 - [More Details on Arrays and Matrices - How to get Fortran Speeds in Linear Algebra](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArraysAndMatrices)
@@ -77,7 +78,7 @@ This section introduces you to a wide variety of packages for data science and s
 - [Forward-mode Autodifferentiation (with Optimization): ForwardDiff.jl and Optim.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ForwardDiff)
 - [Graph Algorithms and Analysis: LightGraphs.jl](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Graphs)
 - Bioinformatics: Bio.jl
-- Deep Learning: KNet.jl, TensorFlow.jl, or MXNet.jl
+- Deep Learning: KNet.jl, TensorFlow.jl, MXNet.jl, and Flux.jl
 
 
 ### Extra Projects and Problems
