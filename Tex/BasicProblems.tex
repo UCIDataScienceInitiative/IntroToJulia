@@ -275,6 +275,11 @@
     
 
     
+    \subsection{Starter Problems}\label{starter-problems}
+
+    \paragraph{Note: These 4 problems are from
+https://lectures.quantecon.org/jl/julia\_by\_example.html}\label{note-these-4-problems-are-from-httpslectures.quantecon.orgjljuliaux5fbyux5fexample.html}
+
     \paragraph{Strang Matrix Problem}\label{strang-matrix-problem}
 
 Use Julia's array and control flow syntax in order to define the NxN
@@ -291,8 +296,69 @@ Strang matrix:
 i.e.~a matrix with \texttt{-2} on the diagonal, 1 on the off-diagonals,
 and 0 elsewere.
 
+    \paragraph{Factorial Problem*}\label{factorial-problem}
+
+Using a \texttt{for} loop, write a function \texttt{my\_factorial(n)}
+that computes the \texttt{n}th factorial. Try your function on integers
+like \texttt{15}, and then use \texttt{BigInt} inputs like
+\texttt{big(100)}. Make your function's output type match the input type
+for \texttt{n}.
+
+    \paragraph{Binomial Problem*}\label{binomial-problem}
+
+A random variable \texttt{X\textasciitilde{}Bin(n,p)} is defined the
+number of successes in \texttt{n} trials where each trial has a success
+probability \texttt{p}. For example, if \texttt{Bin(10,0.5)}, then
+\texttt{X} is the number of coin flips that turn up heads in \texttt{10}
+flips.
+
+Using only \texttt{rand()} (uniform random numbers), write a function
+\texttt{binomial\_rv(n,p)} that produces one draw of \texttt{Bin(n,p)}.
+
+    \paragraph{Monte Carlo $\pi$ Problem*}\label{monte-carlo-pi-problem}
+
+Use random number generation to estimate $\pi$. To do so, mentally draw
+the unit circle. It is encompassed in the square $[-1,1]\times[-1,1]$.
+The area of the circle is $\pi r^2 = \pi$. The area of the square is
+$4$. Thus if points are randomly taken evenly from $[-1,1]\times[-1,1]$,
+then the probability they land in the circle ($x^2 + y^2\leq 1$) is
+$\frac{\pi}{4}$. Use this to estimate $\pi$.
+
+    \subsection{Integration Problems}\label{integration-problems}
+
+These problems integrate basic workflow tools to solve some standard
+data science and scientific computing problems.
+
+    \paragraph{Timeseries Generation
+Problem*}\label{timeseries-generation-problem}
+
+An AR1 timeseries is defined by
+
+\[ x_{t+1} = \alpha x_i + \epsilon_{t+1} \]
+
+where $x_0 = 0$ and $t=0,\ldots,T$. The shocks ${\epsilon_t}$ are i.i.d.
+standard normal (\texttt{N(0,1)}, given by \texttt{randn()}). Using
+$T=200$
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  $\alpha = 0$
+\item
+  $\alpha = 0.5$
+\item
+  $\alpha = 0.9$
+\end{enumerate}
+
+use Plots.jl to plot a timecourse for each of the parameters. Label the
+lines for the values of $\alpha$ that generate them using the
+\texttt{label} argument in \texttt{plot}.
+
+    \paragraph{Regression Problem}\label{regression-problem}
+
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}1}]:} \PY{c}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{} Prepare Data For Regression Problem}
+{\color{incolor}In [{\color{incolor} }]:} \PY{c}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{} Prepare Data For Regression Problem}
         
         \PY{n}{X} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}               \PY{c}{\PYZsh{} feature matrix}
         \PY{n}{a0} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}                    \PY{c}{\PYZsh{} ground truths}
@@ -303,9 +369,7 @@ and 0 elsewere.
         \PY{n}{y} \PY{o}{=} \PY{l+m+mi}{2}\PY{n}{X}  \PY{o}{+} \PY{l+m+mf}{0.1} \PY{o}{*} \PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{;}
 \end{Verbatim}
 
-    \paragraph{Regression Problem}\label{regression-problem}
-
-Given an Nx3 array of data (\texttt{randn(N,3)}) and a Nx1 array of
+    Given an Nx3 array of data (\texttt{randn(N,3)}) and a Nx1 array of
 outcomes, produce the data matrix \texttt{X} which appends a column of
 1's to the front of the data matrix, and solve for the 4x1 array
 \texttt{β} via \texttt{βX = b} using \texttt{qrfact}, or
@@ -348,9 +412,9 @@ follows:
   at steady state (after the first 400 iterations), save the next 150
   values. Call this set of values $y_s(r)$.
 \item
-  Do steps (1) and (2) with $r\in\left(2.9,4\right)$,
-  \texttt{dr=.00005}. Plot $r$ x-axis vs $y_s(r)$=value seen in the
-  attractor) using Plots.jl. Your result should be the
+  Do steps (1) and (2) with $r\in\left(2.9,4\right)$, \texttt{dr=.001}.
+  Plot $r$ x-axis vs $y_s(r)$=value seen in the attractor) using
+  Plots.jl. Your result should be the
   \href{https://upload.wikimedia.org/wikipedia/commons/7/7d/LogisticMap_BifurcationDiagram.png}{Logistic
   equation bifurcation diagram}.
 \end{enumerate}

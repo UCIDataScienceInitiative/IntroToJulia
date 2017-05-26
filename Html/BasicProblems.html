@@ -11751,6 +11751,24 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Starter-Problems">Starter Problems<a class="anchor-link" href="#Starter-Problems">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Note:-These-4-problems-are-from-https://lectures.quantecon.org/jl/julia_by_example.html">Note: These 4 problems are from <a href="https://lectures.quantecon.org/jl/julia_by_example.html">https://lectures.quantecon.org/jl/julia_by_example.html</a><a class="anchor-link" href="#Note:-These-4-problems-are-from-https://lectures.quantecon.org/jl/julia_by_example.html">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Strang-Matrix-Problem">Strang Matrix Problem<a class="anchor-link" href="#Strang-Matrix-Problem">&#182;</a></h4><p>Use Julia's array and control flow syntax in order to define the NxN Strang matrix:</p>
 $$ \left[\begin{array}{ccccc}
 -2 & 1\\
@@ -11763,9 +11781,74 @@ $$ \left[\begin{array}{ccccc}
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Factorial-Problem*">Factorial Problem*<a class="anchor-link" href="#Factorial-Problem*">&#182;</a></h4><p>Using a <code>for</code> loop, write a function <code>my_factorial(n)</code> that computes the <code>n</code>th factorial. Try your function on integers like <code>15</code>, and then use <code>BigInt</code> inputs like <code>big(100)</code>. Make your function's output type match the input type for <code>n</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Binomial-Problem*">Binomial Problem*<a class="anchor-link" href="#Binomial-Problem*">&#182;</a></h4><p>A random variable <code>X~Bin(n,p)</code> is defined the number of successes in <code>n</code> trials where each trial has a success probability <code>p</code>. For example, if <code>Bin(10,0.5)</code>, then <code>X</code> is the number of coin flips that turn up heads in <code>10</code> flips.</p>
+<p>Using only <code>rand()</code> (uniform random numbers), write a function <code>binomial_rv(n,p)</code> that produces one draw of <code>Bin(n,p)</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Monte-Carlo-$\pi$-Problem*">Monte Carlo $\pi$ Problem*<a class="anchor-link" href="#Monte-Carlo-$\pi$-Problem*">&#182;</a></h4><p>Use random number generation to estimate $\pi$. To do so, mentally draw the unit circle. It is encompassed in the square $[-1,1]\times[-1,1]$. The area of the circle is $\pi r^2 = \pi$. The area of the square is $4$. Thus if points are randomly taken evenly from $[-1,1]\times[-1,1]$, then the probability they land in the circle ($x^2 + y^2\leq 1$) is $\frac{\pi}{4}$. Use this to estimate $\pi$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Integration-Problems">Integration Problems<a class="anchor-link" href="#Integration-Problems">&#182;</a></h2><p>These problems integrate basic workflow tools to solve some standard data science and scientific computing problems.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Timeseries-Generation-Problem*">Timeseries Generation Problem*<a class="anchor-link" href="#Timeseries-Generation-Problem*">&#182;</a></h4><p>An AR1 timeseries is defined by</p>
+$$ x_{t+1} = \alpha x_i + \epsilon_{t+1} $$<p>where $x_0 = 0$ and $t=0,\ldots,T$. The shocks ${\epsilon_t}$ are i.i.d. standard normal (<code>N(0,1)</code>, given by <code>randn()</code>). Using $T=200$</p>
+<p>1) $\alpha = 0$
+2) $\alpha = 0.5$
+3) $\alpha = 0.9$</p>
+<p>use Plots.jl to plot a timecourse for each of the parameters. Label the lines for the values of $\alpha$ that generate them using the <code>label</code> argument in <code>plot</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Regression-Problem">Regression Problem<a class="anchor-link" href="#Regression-Problem">&#182;</a></h4>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="c">#### Prepare Data For Regression Problem</span>
@@ -11789,7 +11872,7 @@ $$ \left[\begin{array}{ccccc}
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Regression-Problem">Regression Problem<a class="anchor-link" href="#Regression-Problem">&#182;</a></h4><p>Given an Nx3 array of data (<code>randn(N,3)</code>) and a Nx1 array of outcomes, produce the data matrix <code>X</code> which appends a column of 1's to the front of the data matrix, and solve for the 4x1 array <code>β</code> via <code>βX = b</code> using <code>qrfact</code>, or <code>\</code>, or <a href="https://en.wikipedia.org/wiki/Ordinary_least_squares#Estimation">the definition of the OLS estimator</a>. (Note: This is linear regression).</p>
+<p>Given an Nx3 array of data (<code>randn(N,3)</code>) and a Nx1 array of outcomes, produce the data matrix <code>X</code> which appends a column of 1's to the front of the data matrix, and solve for the 4x1 array <code>β</code> via <code>βX = b</code> using <code>qrfact</code>, or <code>\</code>, or <a href="https://en.wikipedia.org/wiki/Ordinary_least_squares#Estimation">the definition of the OLS estimator</a>. (Note: This is linear regression).</p>
 <p>Compare your results to that of using <code>llsq</code> from <code>MultivariateStats.jl</code> (note: you need to go find the documentation to find out how to use this!). Compare your results to that of using ordinary least squares regression from <code>GLM.jl</code>.</p>
 <h4 id="Regression-Problem-Part-2">Regression Problem Part 2<a class="anchor-link" href="#Regression-Problem-Part-2">&#182;</a></h4><p>Using your OLS estimator or one of the aforementioned packages, solve for the regression line using the (X,y) data above. Plot the (X,y) scatter plot using <code>scatter!</code> from Plots.jl. Add the regression line using <code>abline!</code>. Add a title saying "Regression Plot on Fake Data", and label the x and y axis.</p>
 
@@ -11805,7 +11888,7 @@ $$ \left[\begin{array}{ccccc}
 $$ b_{n+1}=r*b_{n}(1-b_{n}) $$<p>where $b_{n}$ is the number of bunnies at time $n$. Starting with $b_{0}=.25$, by around $400$ iterations this will reach a steady state. This steady state (or steady periodic state) is dependent on $r$. Write a function which plots the steady state attractor. This is done as follows:</p>
 <p>1) Solve for the steady state(s) for each given $r$ (i.e. iterate the relation 400 times).</p>
 <p>2) Calculate "every state" in the steady state attractor. This means, at steady state (after the first 400 iterations), save the next 150 values. Call this set of values $y_s(r)$.</p>
-<p>3) Do steps (1) and (2) with $r\in\left(2.9,4\right)$, <code>dr=.00005</code>. Plot $r$ x-axis vs $y_s(r)$=value seen in the attractor) using Plots.jl. Your result should be the <a href="https://upload.wikimedia.org/wikipedia/commons/7/7d/LogisticMap_BifurcationDiagram.png">Logistic equation bifurcation diagram</a>.</p>
+<p>3) Do steps (1) and (2) with $r\in\left(2.9,4\right)$, <code>dr=.001</code>. Plot $r$ x-axis vs $y_s(r)$=value seen in the attractor) using Plots.jl. Your result should be the <a href="https://upload.wikimedia.org/wikipedia/commons/7/7d/LogisticMap_BifurcationDiagram.png">Logistic equation bifurcation diagram</a>.</p>
 
 </div>
 </div>

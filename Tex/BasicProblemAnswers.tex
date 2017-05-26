@@ -275,36 +275,133 @@
     
 
     
+    \section{Starter Problems}\label{starter-problems}
+
     \subsection{Strang Matrix Problem}\label{strang-matrix-problem}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{N} \PY{o}{=} \PY{l+m+mi}{10}
-         \PY{n}{A} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{n}{N}\PY{p}{,}\PY{n}{N}\PY{p}{)}
-         \PY{k}{for} \PY{n}{i} \PY{k}{in} \PY{l+m+mi}{1}\PY{p}{:}\PY{n}{N}\PY{p}{,} \PY{n}{j} \PY{k}{in} \PY{l+m+mi}{1}\PY{p}{:}\PY{n}{N}
-             \PY{n}{abs}\PY{p}{(}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{j}\PY{p}{)}\PY{o}{\PYZlt{}=}\PY{l+m+mi}{1} \PY{o}{\PYZam{}\PYZam{}} \PY{n}{A}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{n}{j}\PY{p}{]}\PY{o}{+}\PY{o}{=}\PY{l+m+mi}{1}
-             \PY{n}{i}\PY{o}{==}\PY{n}{j} \PY{o}{\PYZam{}\PYZam{}} \PY{n}{A}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{n}{j}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{o}{=}\PY{l+m+mi}{3}
-         \PY{k}{end}
-         \PY{n}{A}
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{N} \PY{o}{=} \PY{l+m+mi}{10}
+        \PY{n}{A} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{n}{N}\PY{p}{,}\PY{n}{N}\PY{p}{)}
+        \PY{k}{for} \PY{n}{i} \PY{k}{in} \PY{l+m+mi}{1}\PY{p}{:}\PY{n}{N}\PY{p}{,} \PY{n}{j} \PY{k}{in} \PY{l+m+mi}{1}\PY{p}{:}\PY{n}{N}
+            \PY{n}{abs}\PY{p}{(}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{j}\PY{p}{)}\PY{o}{\PYZlt{}=}\PY{l+m+mi}{1} \PY{o}{\PYZam{}\PYZam{}} \PY{p}{(}\PY{n}{A}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{n}{j}\PY{p}{]}\PY{o}{+}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+            \PY{n}{i}\PY{o}{==}\PY{n}{j} \PY{o}{\PYZam{}\PYZam{}} \PY{p}{(}\PY{n}{A}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{n}{j}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
+        \PY{k}{end}
+        \PY{n}{A}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}10}]:} 10×10 Array\{Float64,2\}:
-          -2.0   1.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0
-           1.0  -2.0   1.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0
-           0.0   1.0  -2.0   1.0   0.0   0.0   0.0   0.0   0.0   0.0
-           0.0   0.0   1.0  -2.0   1.0   0.0   0.0   0.0   0.0   0.0
-           0.0   0.0   0.0   1.0  -2.0   1.0   0.0   0.0   0.0   0.0
-           0.0   0.0   0.0   0.0   1.0  -2.0   1.0   0.0   0.0   0.0
-           0.0   0.0   0.0   0.0   0.0   1.0  -2.0   1.0   0.0   0.0
-           0.0   0.0   0.0   0.0   0.0   0.0   1.0  -2.0   1.0   0.0
-           0.0   0.0   0.0   0.0   0.0   0.0   0.0   1.0  -2.0   1.0
-           0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   1.0  -2.0
+{\color{outcolor}Out[{\color{outcolor}3}]:} 10×10 Array\{Float64,2\}:
+         -2.0   1.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0
+          1.0  -2.0   1.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0
+          0.0   1.0  -2.0   1.0   0.0   0.0   0.0   0.0   0.0   0.0
+          0.0   0.0   1.0  -2.0   1.0   0.0   0.0   0.0   0.0   0.0
+          0.0   0.0   0.0   1.0  -2.0   1.0   0.0   0.0   0.0   0.0
+          0.0   0.0   0.0   0.0   1.0  -2.0   1.0   0.0   0.0   0.0
+          0.0   0.0   0.0   0.0   0.0   1.0  -2.0   1.0   0.0   0.0
+          0.0   0.0   0.0   0.0   0.0   0.0   1.0  -2.0   1.0   0.0
+          0.0   0.0   0.0   0.0   0.0   0.0   0.0   1.0  -2.0   1.0
+          0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   1.0  -2.0
 \end{Verbatim}
         
+    \subsection{Factorial Problem}\label{factorial-problem}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{my\PYZus{}factorial}\PY{p}{(}\PY{n}{n}\PY{p}{)}
+            \PY{n}{k} \PY{o}{=} \PY{n}{one}\PY{p}{(}\PY{n}{n}\PY{p}{)}
+            \PY{k}{for} \PY{n}{i} \PY{k}{in} \PY{l+m+mi}{1}\PY{p}{:}\PY{n}{n}
+                \PY{n}{k} \PY{o}{*}\PY{o}{=} \PY{n}{i}
+            \PY{k}{end}
+            \PY{n}{k}
+        \PY{k}{end}
+        
+        \PY{n}{my\PYZus{}factorial}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{)}
+        \PY{n}{my\PYZus{}factorial}\PY{p}{(}\PY{l+m+mi}{30}\PY{p}{)}
+        \PY{n}{my\PYZus{}factorial}\PY{p}{(}\PY{n}{big}\PY{p}{(}\PY{l+m+mi}{30}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}1}]:} 265252859812191058636308480000000
+\end{Verbatim}
+        
+    \subsection{Binomial Problem}\label{binomial-problem}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{binomial\PYZus{}rv}\PY{p}{(}\PY{n}{n}\PY{p}{,} \PY{n}{p}\PY{p}{)}
+            \PY{n}{count} \PY{o}{=} \PY{n}{zero}\PY{p}{(}\PY{n}{n}\PY{p}{)}
+            \PY{n}{U} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{n}{n}\PY{p}{)}
+            \PY{k}{for} \PY{n}{i} \PY{k}{in} \PY{l+m+mi}{1}\PY{p}{:}\PY{n}{n}
+              \PY{n}{U}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{n}{p} \PY{o}{\PYZam{}\PYZam{}} \PY{p}{(}\PY{n}{count} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+            \PY{k}{end}
+            \PY{n}{count}
+        \PY{k}{end}
+        
+        \PY{n}{bs} \PY{o}{=} \PY{p}{[}\PY{n}{binomial\PYZus{}rv}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)} \PY{k}{for} \PY{n}{j} \PY{k}{in} \PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{10}\PY{p}{]}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}1}]:} 10-element Array\{Int64,1\}:
+         1
+         5
+         6
+         6
+         2
+         4
+         3
+         5
+         5
+         8
+\end{Verbatim}
+        
+    \subsection{Monte Carlo $\pi$ Problem}\label{monte-carlo-pi-problem}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{n} \PY{o}{=} \PY{l+m+mi}{10000000}
+         
+         \PY{n}{count} \PY{o}{=} \PY{l+m+mi}{0}
+         \PY{k}{for} \PY{n}{i} \PY{k}{in} \PY{l+m+mi}{1}\PY{p}{:}\PY{n}{n}
+             \PY{n}{u}\PY{p}{,} \PY{n}{v} \PY{o}{=} \PY{l+m+mi}{2}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+             \PY{n}{d} \PY{o}{=} \PY{n}{sqrt}\PY{p}{(}\PY{n}{u}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{v}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{)}  \PY{c}{\PYZsh{} Distance from middle of square}
+             \PY{n}{d} \PY{o}{\PYZlt{}} \PY{l+m+mi}{1} \PY{o}{\PYZam{}\PYZam{}} \PY{p}{(}\PY{n}{count} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+         \PY{k}{end}
+         
+         \PY{n}{area\PYZus{}estimate} \PY{o}{=} \PY{n}{count} \PY{o}{/} \PY{n}{n}
+         
+         \PY{n}{print}\PY{p}{(}\PY{n}{area\PYZus{}estimate} \PY{o}{*} \PY{l+m+mi}{4}\PY{p}{)}  \PY{c}{\PYZsh{} dividing by radius**2}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+3.1417656
+    \end{Verbatim}
+
+    \section{Integration Problems}\label{integration-problems}
+
+    \subsection{Timeseries Generation
+Problem}\label{timeseries-generation-problem}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{alphas} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{,} \PY{l+m+mf}{0.98}\PY{p}{]}
+         \PY{n}{T} \PY{o}{=} \PY{l+m+mi}{200}
+         
+         \PY{n}{series} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{labels} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+         \PY{k}{for} \PY{n}{alpha} \PY{k}{in} \PY{n}{alphas}
+             \PY{n}{x} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{n}{T} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}
+             \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{l+m+mf}{0.0}
+             \PY{k}{for} \PY{n}{t} \PY{k}{in} \PY{l+m+mi}{1}\PY{p}{:}\PY{n}{T}
+                 \PY{n}{x}\PY{p}{[}\PY{n}{t}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{alpha} \PY{o}{*} \PY{n}{x}\PY{p}{[}\PY{n}{t}\PY{p}{]} \PY{o}{+} \PY{n}{randn}\PY{p}{(}\PY{p}{)}
+             \PY{k}{end}
+             \PY{n}{push!}\PY{p}{(}\PY{n}{series}\PY{p}{,} \PY{n}{x}\PY{p}{)}
+             \PY{n}{push!}\PY{p}{(}\PY{n}{labels}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{alpha = }\PY{l+s+si}{\PYZdl{}alpha}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{k}{end}
+         
+         \PY{n}{plot}\PY{p}{(}\PY{n}{series}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{n}{reshape}\PY{p}{(}\PY{n}{labels}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{length}\PY{p}{(}\PY{n}{labels}\PY{p}{)}\PY{p}{)}\PY{p}{,}\PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
+\end{Verbatim}
+
     \subsection{Linear Regression Problem}\label{linear-regression-problem}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}1}]:} \PY{c}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{} Prepare Data}
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{} Prepare Data}
         
         \PY{n}{X} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}               \PY{c}{\PYZsh{} feature matrix}
         \PY{n}{a0} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}                    \PY{c}{\PYZsh{} ground truths}
@@ -333,9 +430,9 @@
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-[0.160686,0.303242,0.881393,-0.00799982]
-[0.160686,0.303242,0.881393,-0.00799982]
-[2.00413]
+[0.474905,0.910809,0.298824,0.00130641]
+[0.474905,0.910809,0.298824,0.00130641]
+[1.9975]
 
     \end{Verbatim}
 
