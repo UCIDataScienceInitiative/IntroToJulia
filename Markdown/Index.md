@@ -51,7 +51,7 @@ To get started, see the [Tooling, Documentation, and Community notebook](http://
 
 - [A Basic Introduction to Julia](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicIntroduction)
 - [Basic Problems](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicProblems)
-- [Intermediate Problems Problems](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicProblems)
+- [Intermediate Problems](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/IntermediateProblems)
 - [Why Julia?](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/WhyJulia)
 - [7 Julia Gotchas and How to Handle Them](http://www.stochasticlifestyle.com/7-julia-gotchas-handle/)
 
