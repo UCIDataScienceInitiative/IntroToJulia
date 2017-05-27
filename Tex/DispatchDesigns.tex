@@ -844,6 +844,156 @@ allows you to dispatch on a trait \texttt{IsNice} like:
         \PY{p}{@}\PY{n}{traitfn} \PY{n}{ft}\PY{p}{(}\PY{n}{x}\PY{p}{:}\PY{p}{:}\PY{p}{:}\PY{p}{:}\PY{p}{(}\PY{o}{!}\PY{n}{IsNice}\PY{p}{)}\PY{p}{)} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Not so nice!}\PY{l+s}{\PYZdq{}}
 \end{Verbatim}
 
+    \subsection{Composition vs
+Inheritance}\label{composition-vs-inheritance}
+
+    The last remark that is needed is a discussion of composition vs
+inheritance. While the previous discussions have all explained why
+``information not in fields'' makes structural relations compile-time
+information and increases the efficiency. However, there are cases where
+we want to share runtime structure. Thus the great debate of composition
+vs inheritance, comes up.
+
+Composition vs inheritance isn't a Julia issue, it's a long debate in
+object-oriented programming. The idea is that, inheritance is inherently
+(pun-inteded) inflexible. It forces an ``is a'' relation: A inherits
+from B means A is a B, and adds a few things. It copies behavior from
+something defined elsewere. This is a recipe for havoc. Here's a few
+links which discuss this in more detail:
+
+https://softwareengineering.stackexchange.com/questions/134097/why-should-i-prefer-composition-over-inheritance
+https://en.wikipedia.org/wiki/Composition\_over\_inheritance
+https://www.thoughtworks.com/insights/blog/composition-vs-inheritance-how-choose
+
+So if possible, give composition a try. Say you have \texttt{MyType},
+and it has some function \texttt{f} defined on it. This means that you
+can extend \texttt{MyType} by making it a field in another type:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k}{type}\PY{n+nc}{ }\PY{n+nc}{MyType2}
+            \PY{n}{mt}\PY{p}{:}\PY{p}{:}\PY{n}{MyType}
+            \PY{o}{.}\PY{o}{.}\PY{o}{.} \PY{c}{\PYZsh{} Other stuff}
+        \PY{k}{end} 
+        
+        \PY{n}{f}\PY{p}{(}\PY{n}{mt2}\PY{p}{:}\PY{p}{:}\PY{n}{MyType2}\PY{p}{)} \PY{o}{=} \PY{n}{f}\PY{p}{(}\PY{n}{mt2}\PY{o}{.}\PY{n}{mt}\PY{p}{)}
+\end{Verbatim}
+
+    The pro here is that it's explicit: you've made the choice for each
+extension. The con is that this can require some extra code, though this
+can be automated by metaprogramming.
+
+    What if you really really really want inheritance of fields? There are
+solutions via metaprogramming. One simple solution is the \texttt{@def}
+macro.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{k}{macro} \PY{n}{def}\PY{p}{(}\PY{n}{name}\PY{p}{,} \PY{n}{definition}\PY{p}{)}
+               \PY{k}{return} \PY{k}{quote}
+                   \PY{k}{macro} \PY{o}{\PYZdl{}}\PY{n}{name}\PY{p}{(}\PY{p}{)}
+                       \PY{n}{esc}\PY{p}{(}\PY{o}{\PYZdl{}}\PY{p}{(}\PY{n}{Expr}\PY{p}{(}\PY{p}{:}\PY{k}{quote}\PY{p}{,} \PY{n}{definition}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+                   \PY{k}{end}
+               \PY{k}{end}
+           \PY{k}{end}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}25}]:} @def (macro with 1 method)
+\end{Verbatim}
+        
+    This macro is very simple. What it does is compile-time copy/paste. For
+example:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{p}{@}\PY{n}{def} \PY{n}{give\PYZus{}it\PYZus{}a\PYZus{}name} \PY{k}{begin}
+           \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{2}
+           \PY{n}{println}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+         \PY{k}{end}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}26}]:} @give\_it\_a\_name (macro with 1 method)
+\end{Verbatim}
+        
+    defines a macro \texttt{@give\_it\_a\_name} that will paste in those two
+lines of code wherever it is used. For example, the reused fields of
+Optim.jl's solvers could be put into an \texttt{@def}:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{p}{@}\PY{n}{def} \PY{n}{add\PYZus{}generic\PYZus{}fields} \PY{k}{begin}
+                 \PY{n}{method\PYZus{}string}\PY{p}{:}\PY{p}{:}\PY{n}{String}
+                 \PY{n}{n}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int64}
+                 \PY{n}{x}\PY{p}{:}\PY{p}{:}\PY{n}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+                 \PY{n}{f\PYZus{}x}\PY{p}{:}\PY{p}{:}\PY{n}{T}
+                 \PY{n}{f\PYZus{}calls}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int64}
+                 \PY{n}{g\PYZus{}calls}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int64}
+                 \PY{n}{h\PYZus{}calls}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int64}
+         \PY{k}{end}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}27}]:} @add\_generic\_fields (macro with 1 method)
+\end{Verbatim}
+        
+    and those fields can be copied around with
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{k}{type}\PY{n+nc}{ }\PY{n+nc}{LBFGSState}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+             \PY{p}{@}\PY{n}{add\PYZus{}generic\PYZus{}fields}
+             \PY{n}{x\PYZus{}previous}\PY{p}{:}\PY{p}{:}\PY{n}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+             \PY{n}{g}\PY{p}{:}\PY{p}{:}\PY{n}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+             \PY{n}{g\PYZus{}previous}\PY{p}{:}\PY{p}{:}\PY{n}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+             \PY{n}{rho}\PY{p}{:}\PY{p}{:}\PY{n}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+             \PY{c}{\PYZsh{} ... more fields ... }
+         \PY{k}{end}
+\end{Verbatim}
+
+    Because \texttt{@def} works at compile-time, there is no cost associated
+with this. Similar metaprogramming can be used to build an ``inheritance
+feature'' for Julia. One package which does this is
+\href{https://github.com/tbreloff/ConcreteAbstractions.jl}{ConcreteAbstractions.jl}
+which allows you to add fields to abstract types and make the child
+types inherit the fields:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c}{\PYZsh{} The abstract type}
+        \PY{p}{@}\PY{n}{base} \PY{k}{type}\PY{n+nc}{ }\PY{n+nc}{AbstractFoo}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+            \PY{n}{a}
+            \PY{n}{b}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int}
+            \PY{n}{c}\PY{p}{:}\PY{p}{:}\PY{n}{T}
+            \PY{n}{d}\PY{p}{:}\PY{p}{:}\PY{n}{Vector}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+        \PY{k}{end}
+        
+        \PY{c}{\PYZsh{} Inheritance}
+        \PY{p}{@}\PY{n}{extend} \PY{k}{type}\PY{n+nc}{ }\PY{n+nc}{Foo} \PY{o}{\PYZlt{}:} \PY{n}{AbstractFoo}
+            \PY{n}{e}\PY{p}{:}\PY{p}{:}\PY{n}{T}
+        \PY{k}{end}
+\end{Verbatim}
+
+    where the \texttt{@extend} macro generates the type-definition:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k}{type}\PY{n+nc}{ }\PY{n+nc}{Foo}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}} \PY{o}{\PYZlt{}:} \PY{n}{AbstractFoo}
+            \PY{n}{a}
+            \PY{n}{b}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int}
+            \PY{n}{c}\PY{p}{:}\PY{p}{:}\PY{n}{T}
+            \PY{n}{d}\PY{p}{:}\PY{p}{:}\PY{n}{Vector}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+            \PY{n}{e}\PY{p}{:}\PY{p}{:}\PY{n}{T}
+        \PY{k}{end}
+\end{Verbatim}
+
+    But it's just a package? Well, that's the beauty of Julia. Most of Julia
+is written in Julia, and Julia code is first class and performant (here,
+this is all at compile-time, so again runtime is not affected at all).
+Honestly, if something ever gets added to Julia's Base library for this,
+it will likely look very similar, and the only real difference to the
+user will be that the compiler will directly recognize the keywords,
+meaning you would use base and extend instead of \texttt{@base} and
+\texttt{@extend}. So if you have something that really really really
+needs inheritance, go for it: there's no downsides to using a package +
+macro for this. But you should really try other means to reduce the
+runtime information and build a more performant and more Julian
+architecture first.
+
     \subsection{Conclusion}\label{conclusion}
 
 Programming for type systems has a different architecture than

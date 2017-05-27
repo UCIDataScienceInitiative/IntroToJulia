@@ -457,6 +457,136 @@ This gives us all of the tools we need to compile the most efficient code, and s
 @traitfn ft(x::::(!IsNice)) = "Not so nice!"
 ```
 
+## Composition vs Inheritance
+
+The last remark that is needed is a discussion of composition vs inheritance. While the previous discussions have all explained why "information not in fields" makes structural relations compile-time information and increases the efficiency. However, there are cases where we want to share runtime structure. Thus the great debate of composition vs inheritance, comes up.
+
+Composition vs inheritance isn't a Julia issue, it's a long debate in object-oriented programming. The idea is that, inheritance is inherently (pun-inteded) inflexible. It forces an "is a" relation: A inherits from B means A is a B, and adds a few things. It copies behavior from something defined elsewere. This is a recipe for havoc. Here's a few links which discuss this in more detail:
+
+https://softwareengineering.stackexchange.com/questions/134097/why-should-i-prefer-composition-over-inheritance
+https://en.wikipedia.org/wiki/Composition_over_inheritance
+https://www.thoughtworks.com/insights/blog/composition-vs-inheritance-how-choose
+
+So if possible, give composition a try. Say you have `MyType`, and it has some function `f` defined on it. This means that you can extend `MyType` by making it a field in another type:
+
+
+```julia
+type MyType2
+    mt::MyType
+    ... # Other stuff
+end 
+
+f(mt2::MyType2) = f(mt2.mt)
+```
+
+The pro here is that it's explicit: you've made the choice for each extension. The con is that this can require some extra code, though this can be automated by metaprogramming.
+
+What if you really really really want inheritance of fields? There are solutions via metaprogramming. One simple solution is the `@def` macro. 
+
+
+```julia
+  macro def(name, definition)
+      return quote
+          macro $name()
+              esc($(Expr(:quote, definition)))
+          end
+      end
+  end
+```
+
+
+
+
+    @def (macro with 1 method)
+
+
+
+This macro is very simple. What it does is compile-time copy/paste. For example:
+
+
+```julia
+@def give_it_a_name begin
+  a = 2
+  println(a)
+end
+```
+
+
+
+
+    @give_it_a_name (macro with 1 method)
+
+
+
+defines a macro `@give_it_a_name` that will paste in those two lines of code wherever it is used. For example, the reused fields of Optim.jl's solvers could be put into an `@def`:
+
+
+```julia
+@def add_generic_fields begin
+        method_string::String
+        n::Int64
+        x::Array{T}
+        f_x::T
+        f_calls::Int64
+        g_calls::Int64
+        h_calls::Int64
+end
+```
+
+
+
+
+    @add_generic_fields (macro with 1 method)
+
+
+
+and those fields can be copied around with
+
+
+```julia
+type LBFGSState{T}
+    @add_generic_fields
+    x_previous::Array{T}
+    g::Array{T}
+    g_previous::Array{T}
+    rho::Array{T}
+    # ... more fields ... 
+end
+```
+
+Because `@def` works at compile-time, there is no cost associated with this. Similar metaprogramming can be used to build an "inheritance feature" for Julia. One package which does this is [ConcreteAbstractions.jl](https://github.com/tbreloff/ConcreteAbstractions.jl) which allows you to add fields to abstract types and make the child types inherit the fields:
+
+
+```julia
+# The abstract type
+@base type AbstractFoo{T}
+    a
+    b::Int
+    c::T
+    d::Vector{T}
+end
+
+# Inheritance
+@extend type Foo <: AbstractFoo
+    e::T
+end
+```
+
+where the `@extend` macro generates the type-definition:
+
+
+```julia
+type Foo{T} <: AbstractFoo
+    a
+    b::Int
+    c::T
+    d::Vector{T}
+    e::T
+end
+```
+
+But it's just a package? Well, that's the beauty of Julia. Most of Julia is written in Julia, and Julia code is first class and performant (here, this is all at compile-time, so again runtime is not affected at all). Honestly, if something ever gets added to Julia's Base library for this, it will likely look very similar, and the only real difference to the user will be that the compiler will directly recognize the keywords, meaning you would use base and extend instead of `@base` and `@extend`. So if you have something that really really really needs inheritance, go for it: there's no downsides to using a package + macro for this. But you should really try other means to reduce the runtime information and build a more performant and more Julian architecture first.
+
 ## Conclusion
 
 Programming for type systems has a different architecture than object-oriented systems. Instead of being oriented around the objects and their fields, type-dispatch systems are oriented around the actions of types. Using traits, multiple inheritance behavior can be given. Using this structure, the compiler can have maximal information, and use this to optimize the code. But also, this directly generalizes the vast majority of the code to not be "implementation-dependent", allowing for duck-typed code to be fully performance, with all of the details handled by dispatch/traits/abstract types. The end result is flexible, generic, and high performance code.
