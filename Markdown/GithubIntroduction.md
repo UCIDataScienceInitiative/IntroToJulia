@@ -35,6 +35,10 @@ Because of this, it's very useful for everyone using Julia to know a little bit 
 
 An example Github repository for a Julia package is is DifferentialEquations.jl: https://github.com/JuliaDiffEq/DifferentialEquations.jl
 
+## Basic through Advanced / Video Tutorial 
+- For the visually inclined, here is a video tutorial on basic and advanced github workflow for developing and editing Julia Packages, as well as for setting up Continuous Integration (CI).
+![Developing Julia Packages](https://www.youtube.com/watch?v=tx8DRc7_c9I)
+
 ## Examining a Github Repository
 
 ![GithubTop](https://github.com/ChrisRackauckas/JupyterSite/raw/master/assets/GithubTop.PNG "Top of a Github Repository")
