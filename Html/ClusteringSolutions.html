@@ -11631,8 +11631,10 @@ ul.typeahead-list > li > a {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -11643,9 +11645,11 @@ ul.typeahead-list > li > a {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
 <style type="text/css">
@@ -11789,7 +11793,7 @@ These are 100 dimentional vectors, which encode syntactic and semantic informati
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">JLD</span>
-<span class="n">embeddings</span> <span class="o">=</span> <span class="nb">load</span><span class="p">(</span><span class="s">&quot;../assets/ClusteringAndDimentionalityReduction.jld&quot;</span><span class="p">,</span> <span class="s">&quot;embeddings&quot;</span><span class="p">)</span>
+<span class="n">embeddings</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s">&quot;../assets/ClusteringAndDimentionalityReduction.jld&quot;</span><span class="p">,</span> <span class="s">&quot;embeddings&quot;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11973,7 +11977,7 @@ These are 100 dimentional vectors, which encode syntactic and semantic informati
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="n">cluster_ii</span><span class="p">,</span> <span class="n">examplar_ind</span><span class="p">)</span> <span class="k">in</span> <span class="n">enumerate</span><span class="p">(</span><span class="n">aprop</span><span class="o">.</span><span class="n">exemplars</span><span class="p">)</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="n">cluster_ii</span><span class="p">,</span> <span class="n">examplar_ind</span><span class="p">)</span> <span class="kp">in</span> <span class="n">enumerate</span><span class="p">(</span><span class="n">aprop</span><span class="o">.</span><span class="n">exemplars</span><span class="p">)</span>
     <span class="n">println</span><span class="p">(</span><span class="s">&quot;-&quot;</span><span class="o">^</span><span class="mi">32</span><span class="p">)</span>
     <span class="n">println</span><span class="p">(</span><span class="s">&quot;Exemplar: &quot;</span><span class="p">,</span> <span class="n">all_words</span><span class="p">[</span><span class="n">examplar_ind</span><span class="p">])</span>
     <span class="n">cluster_member_inds</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">assignments</span><span class="p">(</span><span class="n">aprop</span><span class="p">)</span><span class="o">.==</span><span class="n">cluster_ii</span><span class="p">)</span>

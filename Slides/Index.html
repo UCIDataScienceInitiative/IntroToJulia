@@ -11685,8 +11685,10 @@ ul.typeahead-list > li > a {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -11697,9 +11699,11 @@ ul.typeahead-list > li > a {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
 <style type="text/css">
@@ -11842,7 +11846,7 @@ a.anchor-link {
 <h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><p>This workshop is put together by Chris Rackauckas as part of the UC Irvine Data Science Initiative. This workshop is made to teach people who are experienced with other scripting languages the relatively new language Julia. Unlike the other Data Science Initiative workshops, this workshop assumes prior knowledge of some form of programming in a language such as Python, R, or MATLAB.</p>
 <p>We will start by introducing the basic syntax of the language, and quickly move into the details of how Julia is different from other scripting languages and how to exploit Julia's type system + multiple dispatch to be able to achieve C/Fortran-like performance while maintaining the concise syntax of a scripting language. Large parts of the package ecosystem will be explored and some information on implementation details will be highlighted in order for the participants to learn how to design Julia projects.</p>
 <p>The ideal participant is anyone who is interested in Julia. There are many groups of people interested in using Julia. One large fraction come with a strong software development background and C/Fortran knowledge, and are looking to learn Julia as a tool to create packages with enhanced productivity while not losing performance. On the other side, there are users who are interested in the growing package ecosystem of Julia and would like to add Julia to their knowledge-base. And then there's everything in between. One major goal of this workshop is to use Julia's language and syntax to bridge the gap between "package users" and "package developers" in the way that Julia has done.</p>
-
+<h4 id="This-is-very-problem-focused.-The-method-is-not-passive:-the-goal-is-to-get-you-using-Julia!">This is very problem-focused. The method is not passive: the goal is to get you using Julia!<a class="anchor-link" href="#This-is-very-problem-focused.-The-method-is-not-passive:-the-goal-is-to-get-you-using-Julia!">&#182;</a></h4>
 </div>
 </div>
 </div></section></section><section><section>
@@ -11852,14 +11856,6 @@ a.anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Introduction-to-the-Author">Introduction to the Author<a class="anchor-link" href="#Introduction-to-the-Author">&#182;</a></h2><p>Chris is a PhD student in Mathematics from the Mathematical, Computational, and Systems Biology (MCSB) Gateway program and is an active part of the Julia community. He runs the blog, <a href="http://www.stochasticlifestyle.com/">http://www.stochasticlifestyle.com/</a>, where he write tutorials on using the Julia languages covering many topics, such as high-performance and GPGPU computing, package development, and Julia tips. He is part of the JuliaMath and JuliaDiffEq communities for curating the Julia libraries for mathematics and differential equations respectively. Chris is the developer of many Julia packages, the most prominent being <a href="https://github.com/JuliaDiffEq/DifferentialEquations.jl">DifferentialEquations.jl</a>, a Julia library which has become a standard solver for many forms of differential equations.</p>
-<h3 id="Remote-Instructors">Remote Instructors<a class="anchor-link" href="#Remote-Instructors">&#182;</a></h3><p>You are highly encouraged to use the <a href="https://gitter.im/JuliaLang/julia">Julia Gitter chat channel</a> to ask your Julia-related questions, both during the workshop and after the workshop! There are a few "remote instructors" who will be available through this chat channel at different times throughout the workshop:</p>
-<ul>
-<li>Lyndon White (@oxinabox): University of Western Australia</li>
-<li>Fengyang Wang (@TotalVerb): University of Waterloo</li>
-<li>Ismael Venegas Castelló (@Ismael-VC): Data Analyst at Rich IT</li>
-<li>Seth Bromberger (@sbromberger): Lawrence Livermore National Laboratory</li>
-</ul>
-<p>Others will also be available. Please do not be afraid to use this resource!</p>
 
 </div>
 </div>
@@ -11897,44 +11893,55 @@ a.anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Rendered-Jupyter-Notebooks">Rendered Jupyter Notebooks<a class="anchor-link" href="#Rendered-Jupyter-Notebooks">&#182;</a></h2><h3 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h3><ul>
 <li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ToolingDocumentationCommunity">Tooling, Documentation, and Community</a></li>
+<li><a href="http://docs.junolab.org/latest/">Juno, the Julia IDE (Debugging, Progress Bars, etc.): JunoLab</a></li>
 <li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/JuliaMentalModel">A Mental Model for Julia</a></li>
 <li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/GithubIntroduction">A Very Quick Introduction to Git/Github for Julia Users</a></li>
 </ul>
 <h3 id="Basics">Basics<a class="anchor-link" href="#Basics">&#182;</a></h3><ul>
 <li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicIntroduction">A Basic Introduction to Julia</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/WhyJulia">Why Julia?</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArraysAndMatrices">More Details on Arrays and Matrices - How to get Fortran Speeds in Linear Algebra</a></li>
+<li><a href="https://docs.julialang.org/en/stable/">The Julia Manual</a></li>
+<li><a href="https://en.wikibooks.org/wiki/Introducing_Julia">The Julia Wikibook</a></li>
+<li><a href="https://docs.julialang.org/en/stable/manual/noteworthy-differences/">Noteworthy Differences from Other Languages (Julia's Manual)</a></li>
+<li><a href="https://cheatsheets.quantecon.org/">Julia Cheatsheet Reference (with MATLAB and Python)</a></li>
+</ul>
+<h3 id="General-Problems">General Problems<a class="anchor-link" href="#General-Problems">&#182;</a></h3><ul>
 <li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicProblems">Basic Problems</a></li>
 <li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/IntermediateProblems">Intermediate Problems</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/WhyJulia">Why Julia?</a></li>
-<li><a href="http://www.stochasticlifestyle.com/7-julia-gotchas-handle/">7 Julia Gotchas and How to Handle Them</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/AdvancedProblems">Advanced Problems</a></li>
 </ul>
 <h3 id="Detailed-Usage:-A-Peek-Into-&quot;the-Rabbit-Hole&quot;">Detailed Usage: A Peek Into "the Rabbit Hole"<a class="anchor-link" href="#Detailed-Usage:-A-Peek-Into-&quot;the-Rabbit-Hole&quot;">&#182;</a></h3><ul>
 <li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DispatchDesigns">Multiple Dispatch Designs: Duck Typing, Hierarchies and Traits</a></li>
 <li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Metaprogramming">Metaprogramming</a></li>
 <li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading">Call Overloading</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArraysAndMatrices">More Details on Arrays and Matrices - How to get Fortran Speeds in Linear Algebra</a></li>
+<li><a href="http://www.stochasticlifestyle.com/7-julia-gotchas-handle/">7 Julia Gotchas and How to Handle Them</a></li>
 <li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces">Array and Iterator Interfaces</a></li>
 </ul>
-<h3 id="Packages-to-Explore">Packages to Explore<a class="anchor-link" href="#Packages-to-Explore">&#182;</a></h3><p>This section introduces you to a wide variety of packages for data science and scientific computing in Julia. Many of these pages have example problems for you to have a guided tour through the package basics.</p>
+<h3 id="Packages-to-Explore-(with-Problems!)">Packages to Explore (with Problems!)<a class="anchor-link" href="#Packages-to-Explore-(with-Problems!)">&#182;</a></h3><p>This section introduces you to a wide variety of packages for data science and scientific computing in Julia. Many of these pages have example problems for you to have a guided tour through the package basics.</p>
 <ul>
 <li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PackageEcosystem">Overview of the Package Ecosystem</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PlotsJL">Data Visualization: Plots.jl</a></li>
-<li><a href="http://docs.junolab.org/latest/">Juno, the Julia IDE (Debugging, Progress Bars, etc.): JunoLab</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DiffEq">Differential Equations: DifferentialEquations.jl</a></li>
+</ul>
+<h4 id="Data-Science">Data Science<a class="anchor-link" href="#Data-Science">&#182;</a></h4><ul>
 <li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Clustering">Clustering: Clustering.jl and Distances.jl</a></li>
 <li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DimensionalityReduction">Dimensionality Reduction: MultivariateStats.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Optimization">Mathematical Programming / Optimization: JuMP and Optim.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/NonlinearSolve">Solving Nonlinear Equations: NLsolve.jl and Roots.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ForwardDiff">Forward-mode Autodifferentiation (with Optimization): ForwardDiff.jl and Optim.jl</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Graphs">Graph Algorithms and Analysis: LightGraphs.jl</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PlotsJL">Data Visualization: Plots.jl</a></li>
 <li>Bioinformatics: Bio.jl</li>
-<li>Deep Learning: KNet.jl, TensorFlow.jl, MXNet.jl, and Flux.jl</li>
+<li>Deep Learning: Flux.jl</li>
+</ul>
+<h4 id="Scientific-Computing">Scientific Computing<a class="anchor-link" href="#Scientific-Computing">&#182;</a></h4><ul>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DiffEq">Differential Equations: DifferentialEquations.jl</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/NonlinearSolve">Solving Nonlinear Equations: NLsolve.jl and Roots.jl</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Graphs">Graph Algorithms and Analysis: LightGraphs.jl</a></li>
+</ul>
+<h4 id="Both!">Both!<a class="anchor-link" href="#Both!">&#182;</a></h4><ul>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Optimization">Mathematical Programming / Optimization: JuMP and Optim.jl</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ForwardDiff">Forward-mode Autodifferentiation (with Optimization): ForwardDiff.jl and Optim.jl</a></li>
 </ul>
 <h3 id="Extra-Projects-and-Problems">Extra Projects and Problems<a class="anchor-link" href="#Extra-Projects-and-Problems">&#182;</a></h3><ul>
 <li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Interop">Using External Languages from Julia (Interop)</a></li>
 <li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/HPCJulia">Parallelism and HPC</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/JuliaML">Work in Progress: JuliaML for Machine Learning</a></li>
 <li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PackageDevelopment">Package Development, Documentation, and Testing</a></li>
-<li>Tools for Faster Code: <a href="https://github.com/simonbyrne/InplaceOps.jl">InplaceOps.jl</a>, <a href="https://github.com/ahwillia/CatViews.jl">CatViews.jl</a>, and <a href="https://github.com/JuliaMath/VML.jl">VML.jl</a></li>
 <li>Robust Benchmarking: <a href="https://github.com/JuliaCI/BenchmarkTools.jl">BenchmarkTools.jl</a> and <a href="https://github.com/timholy/ProfileView.jl">ProfileView.jl</a></li>
 </ul>
 <h3 id="Experiments">Experiments<a class="anchor-link" href="#Experiments">&#182;</a></h3><p>Probe around and understand the following results:</p>
@@ -11956,7 +11963,8 @@ a.anchor-link {
 <h4 id="Answers-to-the-Problems">Answers to the Problems<a class="anchor-link" href="#Answers-to-the-Problems">&#182;</a></h4><ul>
 <li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicProblemAnswers">Basic Problem Answers</a></li>
 <li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/IntermediateProblemAnswers">Intermediate Problem Answers</a></li>
-<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/LightGraphsProblemAnswers">Answer to the LightGraphs Problem</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/AdvancedProblemAnswers">Advanced Problem Answers</a></li>
+<li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/LightGraphsAnswers">Answer to the LightGraphs Problem</a></li>
 <li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/NonlinearSolveAnswers">Answer to the Nonlinear Solver Problems</a></li>
 <li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DiffEqSolutions">Answer to the DiffEq Problems</a></li>
 <li><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DimensionalityReductionSolutions">Answer to Dimensionality Reduction Problem</a></li>

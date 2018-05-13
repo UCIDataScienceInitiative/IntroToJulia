@@ -19,4 +19,6 @@ f_2(x_1,x_2,x_3) &= x_1^2 - x_2 + x_3 - 2 \\
 f_3(x_1,x_2,x_3) &= 2x_1 - x_2^2 + x_3 -1
 \end{align}$$
 
+Solve it first with finite differencing, then utilize autodifferentiation.
+
 [Use an in-place updating function to make the solving more efficient!]

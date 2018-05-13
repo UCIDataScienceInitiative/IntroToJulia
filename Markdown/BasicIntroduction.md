@@ -689,7 +689,7 @@ In Julia, we would define the car type as follows:
 
 
 ```julia
-type Car
+mutable struct Car
     make
     model
 end
@@ -727,7 +727,7 @@ To "enhance Julia's performance", one usually likes to make the typing stricter.
 
 
 ```julia
-type WorkshopParticipant
+mutable struct WorkshopParticipant
     name::String
     field::Symbol
 end
@@ -745,7 +745,7 @@ As with functions, types can be set "parametrically". For example, we can have a
 
 
 ```julia
-type StaffMember{T<:Number}
+mutable struct StaffMember{T<:Number}
     name::String
     field::Symbol
     age::T
@@ -766,14 +766,15 @@ Lastly, there exist abstract types. These types cannot be instantiated but are u
 
 
 ```julia
-abstract Person
+abstract type Person
+end
 ```
 
 Then we can set types as a subtype of person
 
 
 ```julia
-type Student <: Person
+mutable struct Student <: Person
     name
     grade
 end
@@ -783,14 +784,15 @@ You can define type heirarchies on abstract types. See the beautiful explanation
 
 
 ```julia
-abstract AbstractStudent <: Person
+abstract type AbstractStudent <: Person
+end
 ```
 
 Another "version" of type is `immutable`. When one uses `immutable`, the fields of the type cannot be changed. However, Julia will automatically stack allocate immutable types, whereas standard types are heap allocated. If this is unfamiliar terminology, then think of this as meaning that immutable types are able to be stored closer to the CPU and have less cost for memory access (this is a detail not present in many scripting languages). Many things like Julia's built-in Number types are defined as `immutable` in order to give good performance.
 
 
 ```julia
-immutable Field
+struct Field
     name
     school
 end

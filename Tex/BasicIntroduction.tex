@@ -166,6 +166,7 @@
 \expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
@@ -190,6 +191,7 @@
 \expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
@@ -198,6 +200,7 @@
 \expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
 \expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
@@ -218,6 +221,7 @@
 \expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
 \expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
@@ -512,7 +516,7 @@ function. For example, let's see how \texttt{+} is defined:
     We can inspect a type by finding its fields with \texttt{fieldnames}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}40}]:} \PY{n}{fieldnames}\PY{p}{(}\PY{n}{LinSpace}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}40}]:} \PY{n}{fieldnames}\PY{p}{(}\PY{k+kt}{LinSpace}\PY{p}{)}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
@@ -526,7 +530,7 @@ function. For example, let's see how \texttt{+} is defined:
     and find out which method was used with the \texttt{@which} macro:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}43}]:} \PY{p}{@}\PY{n}{which} \PY{n}{copy}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}43}]:} \PY{n+nd}{@which} \PY{n}{copy}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
@@ -541,7 +545,7 @@ function:
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}44}]:} \PY{n}{a} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{;}\PY{l+m+mi}{2}\PY{p}{;}\PY{l+m+mi}{3}\PY{p}{]}
-         \PY{n+nb}{typeof}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+         \PY{n}{typeof}\PY{p}{(}\PY{n}{a}\PY{p}{)}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
@@ -553,7 +557,7 @@ function:
 The array syntax is similar to MATLAB's conventions.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{a} \PY{o}{=} \PY{n}{Vector}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)} \PY{c}{\PYZsh{} Create a length 5 Vector (dimension 1 array) of Float64\PYZsq{}s}
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{a} \PY{o}{=} \PY{k+kt}{Vector}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)} \PY{c}{\PYZsh{} Create a length 5 Vector (dimension 1 array) of Float64\PYZsq{}s}
          
          \PY{n}{a} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{;}\PY{l+m+mi}{2}\PY{p}{;}\PY{l+m+mi}{3}\PY{p}{;}\PY{l+m+mi}{4}\PY{p}{;}\PY{l+m+mi}{5}\PY{p}{]} \PY{c}{\PYZsh{} Create the column vector [1 2 3 4 5]}
          
@@ -561,9 +565,9 @@ The array syntax is similar to MATLAB's conventions.
          
          \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{2} \PY{c}{\PYZsh{} Change the third element of a (using linear indexing) to 2}
          
-         \PY{n}{b} \PY{o}{=} \PY{n}{Matrix}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)} \PY{c}{\PYZsh{} Define a Matrix of Float64\PYZsq{}s of size (4,2)}
+         \PY{n}{b} \PY{o}{=} \PY{k+kt}{Matrix}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)} \PY{c}{\PYZsh{} Define a Matrix of Float64\PYZsq{}s of size (4,2)}
          
-         \PY{n}{c} \PY{o}{=} \PY{n}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{)} \PY{c}{\PYZsh{} Define a (4,5,6,7) array of Float64\PYZsq{}s }
+         \PY{n}{c} \PY{o}{=} \PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{)} \PY{c}{\PYZsh{} Define a (4,5,6,7) array of Float64\PYZsq{}s }
          
          \PY{n}{mat}    \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1} \PY{l+m+mi}{2} \PY{l+m+mi}{3} \PY{l+m+mi}{4}
                    \PY{l+m+mi}{3} \PY{l+m+mi}{4} \PY{l+m+mi}{5} \PY{l+m+mi}{6}
@@ -625,8 +629,8 @@ means that arrays which are set equal affect the same values:
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}14}]:} \PY{n}{c} \PY{o}{=} \PY{n}{similar}\PY{p}{(}\PY{n}{a}\PY{p}{)}
          \PY{n}{d} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{n}{a}\PY{p}{)}
-         \PY{n}{e} \PY{o}{=} \PY{n}{ones}\PY{p}{(}\PY{n}{a}\PY{p}{)}
-         \PY{n}{println}\PY{p}{(}\PY{n}{c}\PY{p}{)}\PY{p}{;} \PY{n}{println}\PY{p}{(}\PY{n}{d}\PY{p}{)}\PY{p}{;} \PY{n}{println}\PY{p}{(}\PY{n}{e}\PY{p}{)}
+         \PY{n+nb}{e} \PY{o}{=} \PY{n}{ones}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+         \PY{n}{println}\PY{p}{(}\PY{n}{c}\PY{p}{)}\PY{p}{;} \PY{n}{println}\PY{p}{(}\PY{n}{d}\PY{p}{)}\PY{p}{;} \PY{n}{println}\PY{p}{(}\PY{n+nb}{e}\PY{p}{)}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
@@ -639,7 +643,7 @@ means that arrays which are set equal affect the same values:
     Note that arrays can be index'd by arrays:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{]}
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{2}\PY{p}{]}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
@@ -652,7 +656,7 @@ means that arrays which are set equal affect the same values:
 interesting thing is that this means that arrays can be of arrays:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{a} \PY{o}{=} \PY{n}{Vector}\PY{p}{\PYZob{}}\PY{n}{Vector}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{a} \PY{o}{=} \PY{k+kt}{Vector}\PY{p}{\PYZob{}}\PY{k+kt}{Vector}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}
          \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{;}\PY{l+m+mi}{2}\PY{p}{;}\PY{l+m+mi}{3}\PY{p}{]}
          \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{;}\PY{l+m+mi}{2}\PY{p}{]}
          \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{3}\PY{p}{;}\PY{l+m+mi}{4}\PY{p}{;}\PY{l+m+mi}{5}\PY{p}{]}
@@ -733,22 +737,22 @@ Control flow in Julia is pretty standard. You have your basic for and
 while loops, and your if statements. There's more in the documentation.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}16}]:} \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{5} \PY{c}{\PYZsh{}for i goes from 1 to 5}
+{\color{incolor}In [{\color{incolor}16}]:} \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{5} \PY{c}{\PYZsh{}for i goes from 1 to 5}
              \PY{n}{println}\PY{p}{(}\PY{n}{i}\PY{p}{)}
          \PY{k}{end}
          
          \PY{n}{t} \PY{o}{=} \PY{l+m+mi}{0}
          \PY{k}{while} \PY{n}{t}\PY{o}{\PYZlt{}}\PY{l+m+mi}{5}
              \PY{n}{println}\PY{p}{(}\PY{n}{t}\PY{p}{)}
-             \PY{n}{t}\PY{o}{+}\PY{o}{=}\PY{l+m+mi}{1} \PY{c}{\PYZsh{} t = t + 1}
+             \PY{n}{t}\PY{o}{+=}\PY{l+m+mi}{1} \PY{c}{\PYZsh{} t = t + 1}
          \PY{k}{end}
          
-         \PY{n}{school} \PY{o}{=} \PY{p}{:}\PY{n}{UCI}
+         \PY{n}{school} \PY{o}{=} \PY{o}{:}\PY{n}{UCI}
          
-         \PY{k}{if} \PY{n}{school}\PY{o}{==}\PY{p}{:}\PY{n}{UCI}
-             \PY{n}{println}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{ZotZotZot}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{k}{if} \PY{n}{school}\PY{o}{==}\PY{o}{:}\PY{n}{UCI}
+             \PY{n}{println}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Z}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{Z}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{Z}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{)}
          \PY{k}{else}
-             \PY{n}{println}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Not even worth discussing.}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+             \PY{n}{println}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{N}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{ }\PY{l+s}{e}\PY{l+s}{v}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{w}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{ }\PY{l+s}{d}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{c}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{.}\PY{l+s}{\PYZdq{}}\PY{p}{)}
          \PY{k}{end}
 \end{Verbatim}
 
@@ -771,7 +775,7 @@ ZotZotZot
 multiple loops in one line:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}17}]:} \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{j}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{:}\PY{l+m+mi}{4}
+{\color{incolor}In [{\color{incolor}17}]:} \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{j}\PY{o}{=}\PY{l+m+mi}{2}\PY{o}{:}\PY{l+m+mi}{4}
              \PY{n}{println}\PY{p}{(}\PY{n}{i}\PY{o}{*}\PY{n}{j}\PY{p}{)}
          \PY{k}{end}
 \end{Verbatim}
@@ -809,7 +813,7 @@ Try problems 1-5 in the Basic Problems.
 \end{Verbatim}
         
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}2}]:} \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}2}]:} \PY{k}{function} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)}
           \PY{n}{x}\PY{o}{+}\PY{l+m+mi}{2}  
         \PY{k}{end} \PY{c}{\PYZsh{} Long form definition}
 \end{Verbatim}
@@ -839,7 +843,7 @@ Multiple dispatch works on types. To define a dispatch on a type, use
 the \texttt{::Type} signifier:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int}\PY{p}{,}\PY{n}{y}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int}\PY{p}{)} \PY{o}{=} \PY{l+m+mi}{3}\PY{n}{x}\PY{o}{+}\PY{l+m+mi}{2}\PY{n}{y}
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{k+kt}{Int}\PY{p}{,}\PY{n}{y}\PY{o}{::}\PY{k+kt}{Int}\PY{p}{)} \PY{o}{=} \PY{l+m+mi}{3}\PY{n}{x}\PY{o}{+}\PY{l+m+mi}{2}\PY{n}{y}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
@@ -869,7 +873,7 @@ method for ``two values are passed in, both Numbers and having the same
 type''. Note that \texttt{\textless{}:} means ``a subtype of''.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{f}\PY{p}{\PYZob{}}\PY{n}{T}\PY{o}{\PYZlt{}:}\PY{n}{Number}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{x}\PY{p}{:}\PY{p}{:}\PY{n}{T}\PY{p}{,}\PY{n}{y}\PY{p}{:}\PY{p}{:}\PY{n}{T}\PY{p}{)} \PY{o}{=} \PY{l+m+mi}{4}\PY{n}{x}\PY{o}{+}\PY{l+m+mi}{10}\PY{n}{y}
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{f}\PY{p}{\PYZob{}}\PY{n}{T}\PY{o}{\PYZlt{}:}\PY{k+kt}{Number}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{T}\PY{p}{,}\PY{n}{y}\PY{o}{::}\PY{n}{T}\PY{p}{)} \PY{o}{=} \PY{l+m+mi}{4}\PY{n}{x}\PY{o}{+}\PY{l+m+mi}{10}\PY{n}{y}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
@@ -898,7 +902,7 @@ is an \texttt{x} which must be a Number, while \texttt{y} and \texttt{z}
 must match types:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{f}\PY{p}{\PYZob{}}\PY{n}{T}\PY{o}{\PYZlt{}:}\PY{n}{Number}\PY{p}{,}\PY{n}{T2}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{x}\PY{p}{:}\PY{p}{:}\PY{n}{T}\PY{p}{,}\PY{n}{y}\PY{p}{:}\PY{p}{:}\PY{n}{T2}\PY{p}{,}\PY{n}{z}\PY{p}{:}\PY{p}{:}\PY{n}{T2}\PY{p}{)} \PY{o}{=} \PY{l+m+mi}{5}\PY{n}{x} \PY{o}{+} \PY{l+m+mi}{5}\PY{n}{y} \PY{o}{+} \PY{l+m+mi}{5}\PY{n}{z}
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{f}\PY{p}{\PYZob{}}\PY{n}{T}\PY{o}{\PYZlt{}:}\PY{k+kt}{Number}\PY{p}{,}\PY{n}{T2}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{T}\PY{p}{,}\PY{n}{y}\PY{o}{::}\PY{n}{T2}\PY{p}{,}\PY{n}{z}\PY{o}{::}\PY{n}{T2}\PY{p}{)} \PY{o}{=} \PY{l+m+mi}{5}\PY{n}{x} \PY{o}{+} \PY{l+m+mi}{5}\PY{n}{y} \PY{o}{+} \PY{l+m+mi}{5}\PY{n}{z}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
@@ -920,11 +924,11 @@ Can you explain these timings?
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}6}]:} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{n}{z}\PY{p}{,}\PY{n}{w}\PY{p}{)} \PY{o}{=} \PY{n}{x}\PY{o}{+}\PY{n}{y}\PY{o}{+}\PY{n}{z}\PY{o}{+}\PY{n}{w}
-        \PY{p}{@}\PY{n}{time} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
-        \PY{p}{@}\PY{n}{time} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
-        \PY{p}{@}\PY{n}{time} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
-        \PY{p}{@}\PY{n}{time} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mf}{1.0}\PY{p}{)}
-        \PY{p}{@}\PY{n}{time} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mf}{1.0}\PY{p}{)}
+        \PY{n+nd}{@time} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n+nd}{@time} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n+nd}{@time} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n+nd}{@time} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mf}{1.0}\PY{p}{)}
+        \PY{n+nd}{@time} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mf}{1.0}\PY{p}{)}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
@@ -945,7 +949,7 @@ Can you explain these timings?
     Note that functions can also feature optional arguments:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}42}]:} \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{test\PYZus{}function}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{;}\PY{n}{z}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)} \PY{c}{\PYZsh{}z is an optional argument}
+{\color{incolor}In [{\color{incolor}42}]:} \PY{k}{function} \PY{n}{test\PYZus{}function}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{;}\PY{n}{z}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)} \PY{c}{\PYZsh{}z is an optional argument}
            \PY{k}{if} \PY{n}{z}\PY{o}{==}\PY{l+m+mi}{0}
              \PY{k}{return} \PY{n}{x}\PY{o}{+}\PY{n}{y}\PY{p}{,}\PY{n}{x}\PY{o}{*}\PY{n}{y} \PY{c}{\PYZsh{}Return a tuple}
            \PY{k}{else}
@@ -999,9 +1003,9 @@ functions, you can store functions as variables, pass them as variables,
 etc. For example:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}6}]:} \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{function\PYZus{}playtime}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{c}{\PYZsh{}z is an optional argument}
+{\color{incolor}In [{\color{incolor}6}]:} \PY{k}{function} \PY{n}{function\PYZus{}playtime}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{c}{\PYZsh{}z is an optional argument}
             \PY{n}{y} \PY{o}{=} \PY{l+m+mi}{2}\PY{o}{+}\PY{n}{x}
-            \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{test}\PY{p}{(}\PY{p}{)}
+            \PY{k}{function} \PY{n}{test}\PY{p}{(}\PY{p}{)}
                 \PY{l+m+mi}{2}\PY{n}{y} \PY{c}{\PYZsh{} y is defined in the previous scope, so it\PYZsq{}s available here}
             \PY{k}{end}
             \PY{n}{z} \PY{o}{=} \PY{n}{test}\PY{p}{(}\PY{p}{)} \PY{o}{*} \PY{n}{test}\PY{p}{(}\PY{p}{)}
@@ -1042,7 +1046,7 @@ top level scope is global. Yes, that means
 a function inline.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{g} \PY{o}{=} \PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{)} \PY{o}{\PYZhy{}\PYZgt{}} \PY{l+m+mi}{2}\PY{n}{x}\PY{o}{+}\PY{n}{y}
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{g} \PY{o}{=} \PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{)} \PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}} \PY{l+m+mi}{2}\PY{n}{x}\PY{o}{+}\PY{n}{y}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
@@ -1053,7 +1057,7 @@ a function inline.
 and can be overwritten at any time:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{g} \PY{o}{=} \PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{\PYZhy{}\PYZgt{}} \PY{l+m+mi}{2}\PY{n}{x}
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{g} \PY{o}{=} \PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}} \PY{l+m+mi}{2}\PY{n}{x}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
@@ -1076,7 +1080,7 @@ car type.
 In Julia, we would define the car type as follows:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}48}]:} \PY{k}{type}\PY{n+nc}{ }\PY{n+nc}{Car}
+{\color{incolor}In [{\color{incolor}48}]:} \PY{n}{mutable} \PY{n}{struct} \PY{n}{Car}
              \PY{n}{make}
              \PY{n}{model}
          \PY{k}{end}
@@ -1085,7 +1089,7 @@ In Julia, we would define the car type as follows:
     We could then make the instance of a car as follows:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}49}]:} \PY{n}{mycar} \PY{o}{=} \PY{n}{Car}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Toyota}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{Rav4}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}49}]:} \PY{n}{mycar} \PY{o}{=} \PY{n}{Car}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{T}\PY{l+s}{o}\PY{l+s}{y}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{R}\PY{l+s}{a}\PY{l+s}{v}\PY{l+s}{4}\PY{l+s}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
@@ -1111,11 +1115,11 @@ a field. The name will be a string and the field will be a Symbol type,
 (defined by :Symbol, which we will go into plenty more detail later).
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}52}]:} \PY{k}{type}\PY{n+nc}{ }\PY{n+nc}{WorkshopParticipant}
-             \PY{n}{name}\PY{p}{:}\PY{p}{:}\PY{n}{String}
-             \PY{n}{field}\PY{p}{:}\PY{p}{:}\PY{n}{Symbol}
+{\color{incolor}In [{\color{incolor}52}]:} \PY{n}{mutable} \PY{n}{struct} \PY{n}{WorkshopParticipant}
+             \PY{n}{name}\PY{o}{::}\PY{n}{String}
+             \PY{n}{field}\PY{o}{::}\PY{k+kt}{Symbol}
          \PY{k}{end}
-         \PY{n}{tony} \PY{o}{=} \PY{n}{WorkshopParticipant}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Tony}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{p}{:}\PY{n}{physics}\PY{p}{)}
+         \PY{n}{tony} \PY{o}{=} \PY{n}{WorkshopParticipant}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{T}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{o}{:}\PY{n}{physics}\PY{p}{)}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
@@ -1127,12 +1131,12 @@ can have an StaffMember have a name and a field, but also an age. We can
 allow this age to be any Number type as follows:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{type}\PY{n+nc}{ }\PY{n+nc}{StaffMember}\PY{p}{\PYZob{}}\PY{n}{T}\PY{o}{\PYZlt{}:}\PY{n}{Number}\PY{p}{\PYZcb{}}
-            \PY{n}{name}\PY{p}{:}\PY{p}{:}\PY{n}{String}
-            \PY{n}{field}\PY{p}{:}\PY{p}{:}\PY{n}{Symbol}
-            \PY{n}{age}\PY{p}{:}\PY{p}{:}\PY{n}{T}
+{\color{incolor}In [{\color{incolor}1}]:} \PY{n}{mutable} \PY{n}{struct} \PY{n}{StaffMember}\PY{p}{\PYZob{}}\PY{n}{T}\PY{o}{\PYZlt{}:}\PY{k+kt}{Number}\PY{p}{\PYZcb{}}
+            \PY{n}{name}\PY{o}{::}\PY{n}{String}
+            \PY{n}{field}\PY{o}{::}\PY{k+kt}{Symbol}
+            \PY{n}{age}\PY{o}{::}\PY{n}{T}
         \PY{k}{end}
-        \PY{n}{ter} \PY{o}{=} \PY{n}{StaffMember}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Terry}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{p}{:}\PY{n}{football}\PY{p}{,}\PY{l+m+mi}{17}\PY{p}{)}
+        \PY{n}{ter} \PY{o}{=} \PY{n}{StaffMember}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{T}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{r}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{o}{:}\PY{n}{football}\PY{p}{,}\PY{l+m+mi}{17}\PY{p}{)}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
@@ -1152,13 +1156,14 @@ abstract type, Number. We can define one for Person using the Abstract
 keyword
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}15}]:} \PY{k}{abstract}\PY{n+nc}{ }\PY{n+nc}{Person}
+{\color{incolor}In [{\color{incolor}15}]:} \PY{k}{abstract} \PY{k}{type} \PY{n}{Person}
+         \PY{k}{end}
 \end{Verbatim}
 
     Then we can set types as a subtype of person
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}16}]:} \PY{k}{type}\PY{n+nc}{ }\PY{n+nc}{Student} \PY{o}{\PYZlt{}:} \PY{n}{Person}
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{mutable} \PY{n}{struct} \PY{n}{Student} \PY{o}{\PYZlt{}:} \PY{n}{Person}
              \PY{n}{name}
              \PY{n}{grade}
          \PY{k}{end}
@@ -1169,7 +1174,8 @@ explanation at:
 http://docs.julialang.org/en/release-0.5/manual/types/\#abstract-types
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}45}]:} \PY{k}{abstract}\PY{n+nc}{ }\PY{n+nc}{AbstractStudent} \PY{o}{\PYZlt{}:} \PY{n}{Person}
+{\color{incolor}In [{\color{incolor}45}]:} \PY{k}{abstract} \PY{k}{type} \PY{n}{AbstractStudent} \PY{o}{\PYZlt{}:} \PY{n}{Person}
+         \PY{k}{end}
 \end{Verbatim}
 
     Another ``version'' of type is \texttt{immutable}. When one uses
@@ -1183,11 +1189,11 @@ built-in Number types are defined as \texttt{immutable} in order to give
 good performance.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}7}]:} \PY{k}{immutable} \PY{n}{Field}
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{struct} \PY{n}{Field}
             \PY{n}{name}
             \PY{n}{school}
         \PY{k}{end}
-        \PY{n}{ds} \PY{o}{=} \PY{n}{Field}\PY{p}{(}\PY{p}{:}\PY{n}{DataScience}\PY{p}{,}\PY{p}{[}\PY{p}{:}\PY{n}{PhysicalScience}\PY{p}{;}\PY{p}{:}\PY{n}{ComputerScience}\PY{p}{]}\PY{p}{)}
+        \PY{n}{ds} \PY{o}{=} \PY{n}{Field}\PY{p}{(}\PY{o}{:}\PY{n}{DataScience}\PY{p}{,}\PY{p}{[}\PY{o}{:}\PY{n}{PhysicalScience}\PY{p}{;}\PY{o}{:}\PY{n}{ComputerScience}\PY{p}{]}\PY{p}{)}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
@@ -1202,7 +1208,7 @@ Can you explain this interesting quirk? Thus Field is immutable, meaning
 that \texttt{ds.name} and \texttt{ds.school} cannot be changed:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}64}]:} \PY{n}{ds}\PY{o}{.}\PY{n}{name} \PY{o}{=} \PY{p}{:}\PY{n}{ComputationalStatistics}
+{\color{incolor}In [{\color{incolor}64}]:} \PY{n}{ds}\PY{o}{.}\PY{n}{name} \PY{o}{=} \PY{o}{:}\PY{n}{ComputationalStatistics}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
@@ -1217,7 +1223,7 @@ that \texttt{ds.name} and \texttt{ds.school} cannot be changed:
     However, the following is allowed:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}65}]:} \PY{n}{push!}\PY{p}{(}\PY{n}{ds}\PY{o}{.}\PY{n}{school}\PY{p}{,}\PY{p}{:}\PY{n}{BiologicalScience}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}65}]:} \PY{n}{push!}\PY{p}{(}\PY{n}{ds}\PY{o}{.}\PY{n}{school}\PY{p}{,}\PY{o}{:}\PY{n}{BiologicalScience}\PY{p}{)}
          \PY{n}{ds}\PY{o}{.}\PY{n}{school}
 \end{Verbatim}
 
@@ -1263,9 +1269,9 @@ One such example are ranges. To define a range, use the
 \texttt{start:stepsize:end} syntax. For example:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}45}]:} \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{5}
+{\color{incolor}In [{\color{incolor}45}]:} \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{5}
          \PY{n}{println}\PY{p}{(}\PY{n}{a}\PY{p}{)}
-         \PY{n}{b} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{:}\PY{l+m+mi}{10}
+         \PY{n}{b} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{2}\PY{o}{:}\PY{l+m+mi}{10}
          \PY{n}{println}\PY{p}{(}\PY{n}{b}\PY{p}{)}
 \end{Verbatim}
 
@@ -1290,7 +1296,7 @@ One such example are ranges. To define a range, use the
     But what is \texttt{b}?
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}50}]:} \PY{n}{println}\PY{p}{(}\PY{n+nb}{typeof}\PY{p}{(}\PY{n}{b}\PY{p}{)}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}50}]:} \PY{n}{println}\PY{p}{(}\PY{n}{typeof}\PY{p}{(}\PY{n}{b}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
@@ -1302,7 +1308,7 @@ StepRange\{Int64,Int64\}
 to act like an array using its fields:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}52}]:} \PY{n}{fieldnames}\PY{p}{(}\PY{n}{StepRange}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}52}]:} \PY{n}{fieldnames}\PY{p}{(}\PY{k+kt}{StepRange}\PY{p}{)}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
@@ -1333,9 +1339,9 @@ the computations until it's absolutely necessary, and they take up much
 less space. We can check this with \texttt{@time}:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}7}]:} \PY{p}{@}\PY{n}{time} \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{100000}
-        \PY{p}{@}\PY{n}{time} \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{100}
-        \PY{p}{@}\PY{n}{time} \PY{n}{b} \PY{o}{=} \PY{n}{collect}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{100000}\PY{p}{)}\PY{p}{;}
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n+nd}{@time} \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{100000}
+        \PY{n+nd}{@time} \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{100}
+        \PY{n+nd}{@time} \PY{n}{b} \PY{o}{=} \PY{n}{collect}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{100000}\PY{p}{)}\PY{p}{;}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
@@ -1357,9 +1363,9 @@ Another common type is the Dictionary. It allows you to access
 (key,value) pairs in a named manner. For example:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}1}]:} \PY{n}{d} \PY{o}{=} \PY{n}{Dict}\PY{p}{(}\PY{p}{:}\PY{n}{test}\PY{o}{=}\PY{o}{\PYZgt{}}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{silly}\PY{l+s}{\PYZdq{}}\PY{o}{=}\PY{o}{\PYZgt{}}\PY{p}{:}\PY{n}{suit}\PY{p}{)}
-        \PY{n}{println}\PY{p}{(}\PY{n}{d}\PY{p}{[}\PY{p}{:}\PY{n}{test}\PY{p}{]}\PY{p}{)}
-        \PY{n}{println}\PY{p}{(}\PY{n}{d}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{silly}\PY{l+s}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}1}]:} \PY{n}{d} \PY{o}{=} \PY{k+kt}{Dict}\PY{p}{(}\PY{o}{:}\PY{n}{test}\PY{o}{=\PYZgt{}}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{o}{=\PYZgt{}}\PY{o}{:}\PY{n}{suit}\PY{p}{)}
+        \PY{n}{println}\PY{p}{(}\PY{n}{d}\PY{p}{[}\PY{o}{:}\PY{n}{test}\PY{p}{]}\PY{p}{)}
+        \PY{n}{println}\PY{p}{(}\PY{n}{d}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
@@ -1377,7 +1383,7 @@ object.
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}4}]:} \PY{n}{tup} \PY{o}{=} \PY{p}{(}\PY{l+m+mf}{2.}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)} \PY{c}{\PYZsh{} Don\PYZsq{}t have to match types}
-        \PY{n}{x}\PY{p}{,}\PY{n}{y} \PY{o}{=} \PY{p}{(}\PY{l+m+mf}{3.0}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{hi}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{c}{\PYZsh{} Can separate a tuple to multiple variables}
+        \PY{n}{x}\PY{p}{,}\PY{n}{y} \PY{o}{=} \PY{p}{(}\PY{l+m+mf}{3.0}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{c}{\PYZsh{} Can separate a tuple to multiple variables}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
@@ -1409,7 +1415,7 @@ outputs code''. One basic example is the \texttt{@time} macro:
              \PY{k+kd}{local} \PY{n}{t0} \PY{o}{=} \PY{n}{time}\PY{p}{(}\PY{p}{)}
              \PY{k+kd}{local} \PY{n}{val} \PY{o}{=} \PY{o}{\PYZdl{}}\PY{n}{ex}
              \PY{k+kd}{local} \PY{n}{t1} \PY{o}{=} \PY{n}{time}\PY{p}{(}\PY{p}{)}
-             \PY{n}{println}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{elapsed time: }\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{t1}\PY{o}{\PYZhy{}}\PY{n}{t0}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{ seconds}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+             \PY{n}{println}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{e}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{p}\PY{l+s}{s}\PY{l+s}{e}\PY{l+s}{d}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{:}\PY{l+s}{ }\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{t1}\PY{o}{\PYZhy{}}\PY{n}{t0}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{ }\PY{l+s}{s}\PY{l+s}{e}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{)}
              \PY{n}{val}
            \PY{k}{end}
          \PY{k}{end}

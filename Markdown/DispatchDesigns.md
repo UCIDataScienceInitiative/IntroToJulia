@@ -227,25 +227,25 @@ This is the key idea to keep in mind when building type hierarchies: things whic
 
 
 ```julia
-abstract AbstractPerson
-abstract AbstractStudent <: AbstractPerson
-abstract AbstractTeacher <: AbstractPerson
+abstract type AbstractPerson end
+abstract type AbstractStudent <: AbstractPerson end
+abstract type AbstractTeacher <: AbstractPerson end
 
-type Person <: AbstractPerson
+mutable struct Person <: AbstractPerson
   name::String    
 end
 
-type Student <: AbstractStudent
+mutable struct Student <: AbstractStudent
   name::String  
   grade::Int
   hobby::String
 end
 
-type MusicStudent <: AbstractStudent
+mutable struct MusicStudent <: AbstractStudent
   grade::Int
 end
 
-type Teacher <: AbstractTeacher
+mutable struct Teacher <: AbstractTeacher
   name::String
   grade::Int
 end
@@ -424,11 +424,11 @@ Traits can be more refined than just `true/false`. This can be done by having th
 
 
 ```julia
-abstract MusicGenres
-abstract RockGenre <: MusicGenres
-immutable ClassicRock <: RockGenre end
-immutable AltRock <: RockGenre end
-immutable Classical <: MusicGenres end
+abstract type MusicGenres end
+abstract type RockGenre <: MusicGenres end
+struct ClassicRock <: RockGenre end
+struct AltRock <: RockGenre end
+struct Classical <: MusicGenres end
 ```
 
 These "simple types" are known as singleton types. This means that we can have traits like:
@@ -471,7 +471,7 @@ So if possible, give composition a try. Say you have `MyType`, and it has some f
 
 
 ```julia
-type MyType2
+mutable struct MyType2
     mt::MyType
     ... # Other stuff
 end 
@@ -544,7 +544,7 @@ and those fields can be copied around with
 
 
 ```julia
-type LBFGSState{T}
+mutable struct LBFGSState{T}
     @add_generic_fields
     x_previous::Array{T}
     g::Array{T}
@@ -559,7 +559,7 @@ Because `@def` works at compile-time, there is no cost associated with this. Sim
 
 ```julia
 # The abstract type
-@base type AbstractFoo{T}
+@base mutable struct AbstractFoo{T}
     a
     b::Int
     c::T
@@ -567,7 +567,7 @@ Because `@def` works at compile-time, there is no cost associated with this. Sim
 end
 
 # Inheritance
-@extend type Foo <: AbstractFoo
+@extend mutable struct Foo <: AbstractFoo
     e::T
 end
 ```
@@ -576,7 +576,7 @@ where the `@extend` macro generates the type-definition:
 
 
 ```julia
-type Foo{T} <: AbstractFoo
+mutable struct Foo{T} <: AbstractFoo
     a
     b::Int
     c::T

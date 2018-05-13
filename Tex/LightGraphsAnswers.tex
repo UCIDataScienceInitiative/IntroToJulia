@@ -166,6 +166,7 @@
 \expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
@@ -190,6 +191,7 @@
 \expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
@@ -198,6 +200,7 @@
 \expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
 \expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
@@ -218,6 +221,7 @@
 \expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
 \expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
@@ -279,12 +283,12 @@
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor} }]:} \PY{k}{using} \PY{n}{LightGraphs}\PY{p}{,} \PY{n}{Distributions}
-        \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{mkTree}\PY{p}{(}\PY{n}{maxdepth}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{,} \PY{n}{p}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Float64} \PY{o}{=} \PY{l+m+mf}{0.8}\PY{p}{,} \PY{n}{g}\PY{p}{:}\PY{p}{:}\PY{n}{SimpleGraph} \PY{o}{=} \PY{n}{Graph}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{currhead}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+        \PY{k}{function} \PY{n}{mkTree}\PY{p}{(}\PY{n}{maxdepth}\PY{o}{::}\PY{k+kt}{Int} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{,} \PY{n}{p}\PY{o}{::}\PY{k+kt}{Float64} \PY{o}{=} \PY{l+m+mf}{0.8}\PY{p}{,} \PY{n}{g}\PY{o}{::}\PY{n}{SimpleGraph} \PY{o}{=} \PY{n}{Graph}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{currhead}\PY{o}{::}\PY{k+kt}{Int} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
             \PY{k}{if} \PY{p}{(}\PY{n}{maxdepth} \PY{o}{\PYZlt{}=} \PY{l+m+mi}{1}\PY{p}{)} \PY{n}{g}
             \PY{k}{else}
                \PY{n}{b} \PY{o}{=} \PY{n}{Binomial}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{p}\PY{p}{)}
                \PY{n}{nEdges} \PY{o}{=} \PY{n}{max}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{rand}\PY{p}{(}\PY{n}{b}\PY{p}{)}\PY{p}{)}
-                \PY{k}{for} \PY{n}{leaves} \PY{k}{in} \PY{l+m+mi}{1}\PY{p}{:}\PY{n}{nEdges}
+                \PY{k}{for} \PY{n}{leaves} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{nEdges}
                     \PY{n}{add\PYZus{}vertex!}\PY{p}{(}\PY{n}{g}\PY{p}{)}
                     \PY{n}{newnode} \PY{o}{=} \PY{n}{nv}\PY{p}{(}\PY{n}{g}\PY{p}{)}
                     \PY{n}{add\PYZus{}edge!}\PY{p}{(}\PY{n}{g}\PY{p}{,} \PY{n}{currhead}\PY{p}{,} \PY{n}{newnode}\PY{p}{)}

@@ -166,6 +166,7 @@
 \expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
@@ -190,6 +191,7 @@
 \expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
@@ -198,6 +200,7 @@
 \expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
 \expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
@@ -218,6 +221,7 @@
 \expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
 \expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
@@ -309,7 +313,7 @@ about words.
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}1}]:} \PY{k}{using} \PY{n}{JLD}
-        \PY{n}{embeddings} \PY{o}{=} \PY{n+nb}{load}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{../assets/ClusteringAndDimentionalityReduction.jld}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{embeddings}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{embeddings} \PY{o}{=} \PY{n}{load}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{.}\PY{l+s}{.}\PY{l+s}{/}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{s}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{s}\PY{l+s}{/}\PY{l+s}{C}\PY{l+s}{l}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{A}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{D}\PY{l+s}{i}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{y}\PY{l+s}{R}\PY{l+s}{e}\PY{l+s}{d}\PY{l+s}{u}\PY{l+s}{c}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{.}\PY{l+s}{j}\PY{l+s}{l}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{e}\PY{l+s}{m}\PY{l+s}{b}\PY{l+s}{e}\PY{l+s}{d}\PY{l+s}{d}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
@@ -427,11 +431,11 @@ about words.
 \end{Verbatim}
         
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}4}]:} \PY{k}{for} \PY{p}{(}\PY{n}{cluster\PYZus{}ii}\PY{p}{,} \PY{n}{examplar\PYZus{}ind}\PY{p}{)} \PY{k}{in} \PY{n}{enumerate}\PY{p}{(}\PY{n}{aprop}\PY{o}{.}\PY{n}{exemplars}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}4}]:} \PY{k}{for} \PY{p}{(}\PY{n}{cluster\PYZus{}ii}\PY{p}{,} \PY{n}{examplar\PYZus{}ind}\PY{p}{)} \PY{k+kp}{in} \PY{n}{enumerate}\PY{p}{(}\PY{n}{aprop}\PY{o}{.}\PY{n}{exemplars}\PY{p}{)}
             \PY{n}{println}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}}\PY{l+s}{\PYZdq{}}\PY{o}{\PYZca{}}\PY{l+m+mi}{32}\PY{p}{)}
-            \PY{n}{println}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Exemplar: }\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{all\PYZus{}words}\PY{p}{[}\PY{n}{examplar\PYZus{}ind}\PY{p}{]}\PY{p}{)}
-            \PY{n}{cluster\PYZus{}member\PYZus{}inds} \PY{o}{=} \PY{n}{find}\PY{p}{(}\PY{n}{assignments}\PY{p}{(}\PY{n}{aprop}\PY{p}{)}\PY{o}{.}\PY{o}{==}\PY{n}{cluster\PYZus{}ii}\PY{p}{)}
-            \PY{n}{println}\PY{p}{(}\PY{n}{join}\PY{p}{(}\PY{n}{getindex}\PY{o}{.}\PY{p}{(}\PY{p}{[}\PY{n}{all\PYZus{}words}\PY{p}{]}\PY{p}{,} \PY{n}{cluster\PYZus{}member\PYZus{}inds}\PY{p}{)}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{, }\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+            \PY{n}{println}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{E}\PY{l+s}{x}\PY{l+s}{e}\PY{l+s}{m}\PY{l+s}{p}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{:}\PY{l+s}{ }\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{all\PYZus{}words}\PY{p}{[}\PY{n}{examplar\PYZus{}ind}\PY{p}{]}\PY{p}{)}
+            \PY{n}{cluster\PYZus{}member\PYZus{}inds} \PY{o}{=} \PY{n}{find}\PY{p}{(}\PY{n}{assignments}\PY{p}{(}\PY{n}{aprop}\PY{p}{)}\PY{o}{.==}\PY{n}{cluster\PYZus{}ii}\PY{p}{)}
+            \PY{n}{println}\PY{p}{(}\PY{n}{join}\PY{p}{(}\PY{n}{getindex}\PY{o}{.}\PY{p}{(}\PY{p}{[}\PY{n}{all\PYZus{}words}\PY{p}{]}\PY{p}{,} \PY{n}{cluster\PYZus{}member\PYZus{}inds}\PY{p}{)}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{,}\PY{l+s}{ }\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
         \PY{k}{end}
 \end{Verbatim}
 

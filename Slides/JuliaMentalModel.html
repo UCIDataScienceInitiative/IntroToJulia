@@ -11685,8 +11685,10 @@ ul.typeahead-list > li > a {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -11697,9 +11699,11 @@ ul.typeahead-list > li > a {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
 <style type="text/css">
@@ -11883,25 +11887,25 @@ a.anchor-link {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="o">%</span><span class="n">BPATH1</span> <span class="n">Brownian</span> <span class="n">path</span> <span class="n">simulation</span>
-<span class="k">function</span><span class="nf"> </span><span class="o">[</span><span class="n">t</span><span class="p">,</span><span class="n">W</span><span class="p">]</span><span class="o">=</span><span class="n">BPATH1</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="k">function</span> <span class="p">[</span><span class="n">t</span><span class="p">,</span><span class="n">W</span><span class="p">]</span><span class="o">=</span><span class="n">BPATH1</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
 <span class="n">randn</span><span class="p">(</span><span class="err">&#39;</span><span class="n">state</span><span class="o">&#39;</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">dt</span> <span class="o">=</span> <span class="n">T</span><span class="o">/</span><span class="n">N</span><span class="p">;</span>
 <span class="n">dW</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="n">N</span><span class="p">);</span>
 <span class="n">W</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="n">N</span><span class="p">);</span>
 
-<span class="n">dW</span><span class="p">(:,</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span><span class="o">*</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
-<span class="n">W</span><span class="p">(:,</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">dW</span><span class="p">(:,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">dW</span><span class="p">(</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span><span class="o">*</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+<span class="n">W</span><span class="p">(</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">dW</span><span class="p">(</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
 
-<span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">2</span><span class="p">:</span><span class="n">N</span>
-    <span class="n">dW</span><span class="p">(:,</span><span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span><span class="o">*</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
-    <span class="n">W</span><span class="p">(:,</span><span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="n">W</span><span class="p">(:,</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">dW</span><span class="p">(:,</span><span class="n">j</span><span class="p">);</span>
+<span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">2</span><span class="o">:</span><span class="n">N</span>
+    <span class="n">dW</span><span class="p">(</span><span class="o">:</span><span class="p">,</span><span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span><span class="o">*</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+    <span class="n">W</span><span class="p">(</span><span class="o">:</span><span class="p">,</span><span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="n">W</span><span class="p">(</span><span class="o">:</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">dW</span><span class="p">(</span><span class="o">:</span><span class="p">,</span><span class="n">j</span><span class="p">);</span>
 <span class="k">end</span>
-<span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">dt</span><span class="p">:</span><span class="n">T</span><span class="o">-</span><span class="n">dt</span><span class="p">];</span>
+<span class="n">t</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="o">:</span><span class="n">dt</span><span class="o">:</span><span class="n">T</span><span class="o">-</span><span class="n">dt</span><span class="p">];</span>
 <span class="k">end</span>
 
 <span class="o">%</span> <span class="n">In</span> <span class="n">Another</span> <span class="n">File</span><span class="o">...</span>
 
-<span class="n">f</span> <span class="o">=</span> <span class="p">@()</span> <span class="n">BPATH1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000</span><span class="p">);</span>
+<span class="n">f</span> <span class="o">=</span> <span class="err">@</span><span class="p">()</span> <span class="n">BPATH1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000</span><span class="p">);</span>
 <span class="n">timeit</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 <span class="p">[</span><span class="n">t</span><span class="p">,</span><span class="n">W</span><span class="p">]</span> <span class="o">=</span> <span class="n">BPATH1</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10000</span><span class="p">);</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">W</span><span class="p">,</span><span class="err">&#39;</span><span class="n">r</span><span class="o">-</span><span class="err">&#39;</span><span class="p">)</span>
@@ -11919,26 +11923,26 @@ a.anchor-link {
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span><span class="nf"> bpath</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">bpath</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
     <span class="n">srand</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
     <span class="n">dt</span> <span class="o">=</span> <span class="n">T</span><span class="o">/</span><span class="n">N</span>
     <span class="n">dW</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
     <span class="n">W</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
 
-    <span class="n">dW</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span><span class="o">*</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-    <span class="n">W</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">dW</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">dW</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span><span class="o">*</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">W</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">dW</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
 
-    <span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">2</span><span class="p">:</span><span class="n">N</span>
-        <span class="n">dW</span><span class="p">[:,</span><span class="n">j</span><span class="p">]</span> <span class="o">.=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span><span class="o">*</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-        <span class="n">W</span><span class="p">[:,</span><span class="n">j</span><span class="p">]</span> <span class="o">.=</span> <span class="n">W</span><span class="p">[:,</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">.+</span> <span class="n">dW</span><span class="p">[:,</span><span class="n">j</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">2</span><span class="o">:</span><span class="n">N</span>
+        <span class="n">dW</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">.=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span><span class="o">*</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">W</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">.=</span> <span class="n">W</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">.+</span> <span class="n">dW</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
     <span class="k">end</span>
-    <span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">dt</span><span class="p">:</span><span class="n">T</span><span class="o">-</span><span class="n">dt</span><span class="p">],</span><span class="n">W</span>
+    <span class="p">[</span><span class="mi">0</span><span class="o">:</span><span class="n">dt</span><span class="o">:</span><span class="n">T</span><span class="o">-</span><span class="n">dt</span><span class="p">],</span><span class="n">W</span>
 <span class="k">end</span> <span class="c"># Translation took &lt; 1 minute</span>
-<span class="p">@</span><span class="n">time</span> <span class="n">t</span><span class="p">,</span><span class="n">W</span> <span class="o">=</span> <span class="n">bpath</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">100000</span><span class="p">)</span> <span class="c"># Timing is slower in Jupyter!</span>
-<span class="p">@</span><span class="n">time</span> <span class="n">t</span><span class="p">,</span><span class="n">W</span> <span class="o">=</span> <span class="n">bpath</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">100000</span><span class="p">)</span> <span class="c"># Timing is slower in Jupyter!</span>
+<span class="nd">@time</span> <span class="n">t</span><span class="p">,</span><span class="n">W</span> <span class="o">=</span> <span class="n">bpath</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">100000</span><span class="p">)</span> <span class="c"># Timing is slower in Jupyter!</span>
+<span class="nd">@time</span> <span class="n">t</span><span class="p">,</span><span class="n">W</span> <span class="o">=</span> <span class="n">bpath</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">100000</span><span class="p">)</span> <span class="c"># Timing is slower in Jupyter!</span>
 <span class="c"># 10x speedup over MATLAB</span>
 <span class="k">using</span> <span class="n">Plots</span>
-<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">W</span><span class="o">&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="p">:</span><span class="n">red</span><span class="p">,</span><span class="n">xlabel</span><span class="o">=</span><span class="s">&quot;t&quot;</span><span class="p">,</span><span class="n">ylabel</span><span class="o">=</span><span class="s">&quot;W(t)&quot;</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">W</span><span class="o">&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=:</span><span class="n">red</span><span class="p">,</span><span class="n">xlabel</span><span class="o">=</span><span class="s">&quot;t&quot;</span><span class="p">,</span><span class="n">ylabel</span><span class="o">=</span><span class="s">&quot;W(t)&quot;</span><span class="p">)</span>
 </pre></div>
 
 </div>

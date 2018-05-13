@@ -166,6 +166,7 @@
 \expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
@@ -190,6 +191,7 @@
 \expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
@@ -198,6 +200,7 @@
 \expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
 \expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
@@ -218,6 +221,7 @@
 \expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
 \expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
@@ -332,7 +336,7 @@ something like:
 give it. Looking at the generated code:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}2}]:} \PY{p}{@}\PY{n}{code\PYZus{}llvm} \PY{n}{my\PYZus{}square}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n+nd}{@code\PYZus{}llvm} \PY{n}{my\PYZus{}square}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
@@ -346,7 +350,7 @@ top:
     \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}3}]:} \PY{p}{@}\PY{n}{code\PYZus{}llvm} \PY{n}{my\PYZus{}square}\PY{p}{(}\PY{l+m+mf}{1.0}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n+nd}{@code\PYZus{}llvm} \PY{n}{my\PYZus{}square}\PY{p}{(}\PY{l+m+mf}{1.0}\PY{p}{)}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
@@ -371,7 +375,7 @@ Thus we don't need to restrict the type in order to get performance.
 That means that
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{my\PYZus{}restricted\PYZus{}square}\PY{p}{(}\PY{n}{x}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int}\PY{p}{)} \PY{o}{=} \PY{n}{x}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{my\PYZus{}restricted\PYZus{}square}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{k+kt}{Int}\PY{p}{)} \PY{o}{=} \PY{n}{x}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
@@ -382,7 +386,7 @@ That means that
 same exact compiled code:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}5}]:} \PY{p}{@}\PY{n}{code\PYZus{}llvm} \PY{n}{my\PYZus{}restricted\PYZus{}square}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n+nd}{@code\PYZus{}llvm} \PY{n}{my\PYZus{}restricted\PYZus{}square}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
@@ -406,7 +410,7 @@ We can be slightly more conservative by restricting to abstract types.
 For example:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{my\PYZus{}number\PYZus{}restricted\PYZus{}square}\PY{p}{(}\PY{n}{x}\PY{p}{:}\PY{p}{:}\PY{n}{Number}\PY{p}{)} \PY{o}{=} \PY{n}{x}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{my\PYZus{}number\PYZus{}restricted\PYZus{}square}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{k+kt}{Number}\PY{p}{)} \PY{o}{=} \PY{n}{x}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
@@ -420,7 +424,7 @@ for our package/script/code. Using these assertions, we can then
 dispatch differently for different type classes. For example:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{my\PYZus{}number\PYZus{}restricted\PYZus{}square}\PY{p}{(}\PY{n}{x}\PY{p}{:}\PY{p}{:}\PY{n}{AbstractArray}\PY{p}{)} \PY{o}{=} \PY{p}{(}\PY{n}{println}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{;}\PY{n}{x}\PY{o}{.}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{my\PYZus{}number\PYZus{}restricted\PYZus{}square}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{k+kt}{AbstractArray}\PY{p}{)} \PY{o}{=} \PY{p}{(}\PY{n}{println}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{;}\PY{n}{x}\PY{o}{.\PYZca{}}\PY{l+m+mi}{2}\PY{p}{)}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
@@ -444,7 +448,7 @@ do an action. A good example of this is the range type, for example
 \texttt{1:10}.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{10}
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{10}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
@@ -454,7 +458,7 @@ do an action. A good example of this is the range type, for example
     This type is an abstract array:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}9}]:} \PY{n+nb}{typeof}\PY{p}{(}\PY{n}{a}\PY{p}{)} \PY{o}{\PYZlt{}:} \PY{n}{AbstractArray}
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{typeof}\PY{p}{(}\PY{n}{a}\PY{p}{)} \PY{o}{\PYZlt{}:} \PY{k+kt}{AbstractArray}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
@@ -490,7 +494,7 @@ function. What's nice about this is that means that no array is ever
 created. Creating large arrays can be a costly action:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}12}]:} \PY{p}{@}\PY{n}{time} \PY{n}{collect}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{10000000}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n+nd}{@time} \PY{n}{collect}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{10000000}\PY{p}{)}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
@@ -502,7 +506,7 @@ created. Creating large arrays can be a costly action:
 matter what those two numbers are:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}13}]:} \PY{p}{@}\PY{n}{time} \PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{10000000}
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n+nd}{@time} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{10000000}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
@@ -523,8 +527,8 @@ Another nice example is the \texttt{UniformScaling} operator, which acts
 like an identity matrix without forming an identity matrix.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{println}\PY{p}{(}\PY{n}{I}\PY{p}{[}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{]}\PY{p}{)}
-         \PY{n}{println}\PY{p}{(}\PY{n}{I}\PY{p}{[}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{println}\PY{p}{(}\PY{n+nb}{I}\PY{p}{[}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{]}\PY{p}{)}
+         \PY{n}{println}\PY{p}{(}\PY{n+nb}{I}\PY{p}{[}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
@@ -550,27 +554,27 @@ things which subtype are inheriting behavior. You should setup your
 behavior. For example:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}15}]:} \PY{k}{abstract}\PY{n+nc}{ }\PY{n+nc}{AbstractPerson}
-         \PY{k}{abstract}\PY{n+nc}{ }\PY{n+nc}{AbstractStudent} \PY{o}{\PYZlt{}:} \PY{n}{AbstractPerson}
-         \PY{k}{abstract}\PY{n+nc}{ }\PY{n+nc}{AbstractTeacher} \PY{o}{\PYZlt{}:} \PY{n}{AbstractPerson}
+{\color{incolor}In [{\color{incolor}15}]:} \PY{k}{abstract} \PY{k}{type} \PY{n}{AbstractPerson} \PY{k}{end}
+         \PY{k}{abstract} \PY{k}{type} \PY{n}{AbstractStudent} \PY{o}{\PYZlt{}:} \PY{n}{AbstractPerson} \PY{k}{end}
+         \PY{k}{abstract} \PY{k}{type} \PY{n}{AbstractTeacher} \PY{o}{\PYZlt{}:} \PY{n}{AbstractPerson} \PY{k}{end}
          
-         \PY{k}{type}\PY{n+nc}{ }\PY{n+nc}{Person} \PY{o}{\PYZlt{}:} \PY{n}{AbstractPerson}
-           \PY{n}{name}\PY{p}{:}\PY{p}{:}\PY{n}{String}    
+         \PY{n}{mutable} \PY{n}{struct} \PY{n}{Person} \PY{o}{\PYZlt{}:} \PY{n}{AbstractPerson}
+           \PY{n}{name}\PY{o}{::}\PY{n}{String}    
          \PY{k}{end}
          
-         \PY{k}{type}\PY{n+nc}{ }\PY{n+nc}{Student} \PY{o}{\PYZlt{}:} \PY{n}{AbstractStudent}
-           \PY{n}{name}\PY{p}{:}\PY{p}{:}\PY{n}{String}  
-           \PY{n}{grade}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int}
-           \PY{n}{hobby}\PY{p}{:}\PY{p}{:}\PY{n}{String}
+         \PY{n}{mutable} \PY{n}{struct} \PY{n}{Student} \PY{o}{\PYZlt{}:} \PY{n}{AbstractStudent}
+           \PY{n}{name}\PY{o}{::}\PY{n}{String}  
+           \PY{n}{grade}\PY{o}{::}\PY{k+kt}{Int}
+           \PY{n}{hobby}\PY{o}{::}\PY{n}{String}
          \PY{k}{end}
          
-         \PY{k}{type}\PY{n+nc}{ }\PY{n+nc}{MusicStudent} \PY{o}{\PYZlt{}:} \PY{n}{AbstractStudent}
-           \PY{n}{grade}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int}
+         \PY{n}{mutable} \PY{n}{struct} \PY{n}{MusicStudent} \PY{o}{\PYZlt{}:} \PY{n}{AbstractStudent}
+           \PY{n}{grade}\PY{o}{::}\PY{k+kt}{Int}
          \PY{k}{end}
          
-         \PY{k}{type}\PY{n+nc}{ }\PY{n+nc}{Teacher} \PY{o}{\PYZlt{}:} \PY{n}{AbstractTeacher}
-           \PY{n}{name}\PY{p}{:}\PY{p}{:}\PY{n}{String}
-           \PY{n}{grade}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int}
+         \PY{n}{mutable} \PY{n}{struct} \PY{n}{Teacher} \PY{o}{\PYZlt{}:} \PY{n}{AbstractTeacher}
+           \PY{n}{name}\PY{o}{::}\PY{n}{String}
+           \PY{n}{grade}\PY{o}{::}\PY{k+kt}{Int}
          \PY{k}{end}
 \end{Verbatim}
 
@@ -579,7 +583,7 @@ behavior. For example:
 has a name which can be gotten by \texttt{get\_name}''.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{get\PYZus{}name}\PY{p}{(}\PY{n}{x}\PY{p}{:}\PY{p}{:}\PY{n}{AbstractPerson}\PY{p}{)} \PY{o}{=} \PY{n}{x}\PY{o}{.}\PY{n}{name}
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{get\PYZus{}name}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{AbstractPerson}\PY{p}{)} \PY{o}{=} \PY{n}{x}\PY{o}{.}\PY{n}{name}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
@@ -595,7 +599,7 @@ trendiest band is, so we can just replace the usage of the field by the
 action:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{get\PYZus{}name}\PY{p}{(}\PY{n}{x}\PY{p}{:}\PY{p}{:}\PY{n}{MusicStudent}\PY{p}{)} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Justin Bieber}\PY{l+s}{\PYZdq{}}
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{get\PYZus{}name}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{MusicStudent}\PY{p}{)} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{J}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{B}\PY{l+s}{i}\PY{l+s}{e}\PY{l+s}{b}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{\PYZdq{}}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
@@ -625,9 +629,9 @@ are old and don't like music, while students do like music. But
 generally people like music. This means that:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{likes\PYZus{}music}\PY{p}{(}\PY{n}{x}\PY{p}{:}\PY{p}{:}\PY{n}{AbstractTeacher}\PY{p}{)} \PY{o}{=} \PY{n}{false}
-         \PY{n}{likes\PYZus{}music}\PY{p}{(}\PY{n}{x}\PY{p}{:}\PY{p}{:}\PY{n}{AbstractStudent}\PY{p}{)} \PY{o}{=} \PY{n}{true}
-         \PY{n}{likes\PYZus{}music}\PY{p}{(}\PY{n}{x}\PY{p}{:}\PY{p}{:}\PY{n}{AbstractPerson}\PY{p}{)} \PY{o}{=} \PY{n}{true}
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{likes\PYZus{}music}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{AbstractTeacher}\PY{p}{)} \PY{o}{=} \PY{k+kc}{false}
+         \PY{n}{likes\PYZus{}music}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{AbstractStudent}\PY{p}{)} \PY{o}{=} \PY{k+kc}{true}
+         \PY{n}{likes\PYZus{}music}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{AbstractPerson}\PY{p}{)} \PY{o}{=} \PY{k+kc}{true}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
@@ -640,12 +644,12 @@ they will pick up a random number between 1 and 10. If they are a
 student, they will then double that (impulsive Millenials!).
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}19}]:} \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{number\PYZus{}of\PYZus{}records}\PY{p}{(}\PY{n}{x}\PY{p}{:}\PY{p}{:}\PY{n}{AbstractPerson}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}19}]:} \PY{k}{function} \PY{n}{number\PYZus{}of\PYZus{}records}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{AbstractPerson}\PY{p}{)}
              \PY{k}{if} \PY{o}{!}\PY{n}{likes\PYZus{}music}\PY{p}{(}\PY{n}{x}\PY{p}{)} 
                \PY{k}{return} \PY{l+m+mi}{0}
              \PY{k}{end}
              \PY{n}{num\PYZus{}records} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
-             \PY{k}{if} \PY{n+nb}{typeof}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{\PYZlt{}:} \PY{n}{AbstractStudent}
+             \PY{k}{if} \PY{n}{typeof}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{\PYZlt{}:} \PY{n}{AbstractStudent}
                \PY{k}{return} \PY{l+m+mi}{2}\PY{n}{num\PYZus{}records}
              \PY{k}{else} 
                \PY{k}{return} \PY{n}{num\PYZus{}records}
@@ -660,9 +664,9 @@ student, they will then double that (impulsive Millenials!).
     Let's check the code that is created:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{n}{x} \PY{o}{=} \PY{n}{Teacher}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Randy}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+m+mi}{11}\PY{p}{)}
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{x} \PY{o}{=} \PY{n}{Teacher}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{R}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+m+mi}{11}\PY{p}{)}
         \PY{n}{println}\PY{p}{(}\PY{n}{number\PYZus{}of\PYZus{}records}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
-        \PY{p}{@}\PY{n}{code\PYZus{}llvm} \PY{n}{number\PYZus{}of\PYZus{}records}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+        \PY{n+nd}{@code\PYZus{}llvm} \PY{n}{number\PYZus{}of\PYZus{}records}\PY{p}{(}\PY{n}{x}\PY{p}{)}
 \end{Verbatim}
 
     on v0.6, we get:
@@ -801,20 +805,20 @@ done by having the return be a type itself. For example, we can create
 music genre types:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}23}]:} \PY{k}{abstract}\PY{n+nc}{ }\PY{n+nc}{MusicGenres}
-         \PY{k}{abstract}\PY{n+nc}{ }\PY{n+nc}{RockGenre} \PY{o}{\PYZlt{}:} \PY{n}{MusicGenres}
-         \PY{k}{immutable} \PY{n}{ClassicRock} \PY{o}{\PYZlt{}:} \PY{n}{RockGenre} \PY{k}{end}
-         \PY{k}{immutable} \PY{n}{AltRock} \PY{o}{\PYZlt{}:} \PY{n}{RockGenre} \PY{k}{end}
-         \PY{k}{immutable} \PY{n}{Classical} \PY{o}{\PYZlt{}:} \PY{n}{MusicGenres} \PY{k}{end}
+{\color{incolor}In [{\color{incolor}23}]:} \PY{k}{abstract} \PY{k}{type} \PY{n}{MusicGenres} \PY{k}{end}
+         \PY{k}{abstract} \PY{k}{type} \PY{n}{RockGenre} \PY{o}{\PYZlt{}:} \PY{n}{MusicGenres} \PY{k}{end}
+         \PY{n}{struct} \PY{n}{ClassicRock} \PY{o}{\PYZlt{}:} \PY{n}{RockGenre} \PY{k}{end}
+         \PY{n}{struct} \PY{n}{AltRock} \PY{o}{\PYZlt{}:} \PY{n}{RockGenre} \PY{k}{end}
+         \PY{n}{struct} \PY{n}{Classical} \PY{o}{\PYZlt{}:} \PY{n}{MusicGenres} \PY{k}{end}
 \end{Verbatim}
 
     These ``simple types'' are known as singleton types. This means that we
 can have traits like:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{favorite\PYZus{}genre}\PY{p}{(}\PY{n}{x}\PY{p}{:}\PY{p}{:}\PY{n}{AbstractPerson}\PY{p}{)} \PY{o}{=} \PY{n}{ClassicRock}\PY{p}{(}\PY{p}{)}
-         \PY{n}{favorite\PYZus{}genre}\PY{p}{(}\PY{n}{x}\PY{p}{:}\PY{p}{:}\PY{n}{MusicStudent}\PY{p}{)} \PY{o}{=} \PY{n}{Classical}\PY{p}{(}\PY{p}{)}
-         \PY{n}{favorite\PYZus{}genre}\PY{p}{(}\PY{n}{x}\PY{p}{:}\PY{p}{:}\PY{n}{AbstractTeacher}\PY{p}{)} \PY{o}{=} \PY{n}{AltRock}\PY{p}{(}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{favorite\PYZus{}genre}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{AbstractPerson}\PY{p}{)} \PY{o}{=} \PY{n}{ClassicRock}\PY{p}{(}\PY{p}{)}
+         \PY{n}{favorite\PYZus{}genre}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{MusicStudent}\PY{p}{)} \PY{o}{=} \PY{n}{Classical}\PY{p}{(}\PY{p}{)}
+         \PY{n}{favorite\PYZus{}genre}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{AbstractTeacher}\PY{p}{)} \PY{o}{=} \PY{n}{AltRock}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
@@ -840,8 +844,8 @@ implements trait-dispatch is
 allows you to dispatch on a trait \texttt{IsNice} like:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{p}{@}\PY{n}{traitfn} \PY{n}{ft}\PY{p}{(}\PY{n}{x}\PY{p}{:}\PY{p}{:}\PY{p}{:}\PY{p}{:}\PY{n}{IsNice}\PY{p}{)} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Very nice!}\PY{l+s}{\PYZdq{}}
-        \PY{p}{@}\PY{n}{traitfn} \PY{n}{ft}\PY{p}{(}\PY{n}{x}\PY{p}{:}\PY{p}{:}\PY{p}{:}\PY{p}{:}\PY{p}{(}\PY{o}{!}\PY{n}{IsNice}\PY{p}{)}\PY{p}{)} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Not so nice!}\PY{l+s}{\PYZdq{}}
+{\color{incolor}In [{\color{incolor} }]:} \PY{n+nd}{@traitfn} \PY{n}{ft}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{o}{::}\PY{n}{IsNice}\PY{p}{)} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{V}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{y}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{!}\PY{l+s}{\PYZdq{}}
+        \PY{n+nd}{@traitfn} \PY{n}{ft}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{o}{::}\PY{p}{(}\PY{o}{!}\PY{n}{IsNice}\PY{p}{)}\PY{p}{)} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{N}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{ }\PY{l+s}{s}\PY{l+s}{o}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{!}\PY{l+s}{\PYZdq{}}
 \end{Verbatim}
 
     \subsection{Composition vs
@@ -870,12 +874,12 @@ and it has some function \texttt{f} defined on it. This means that you
 can extend \texttt{MyType} by making it a field in another type:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{k}{type}\PY{n+nc}{ }\PY{n+nc}{MyType2}
-            \PY{n}{mt}\PY{p}{:}\PY{p}{:}\PY{n}{MyType}
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{mutable} \PY{n}{struct} \PY{n}{MyType2}
+            \PY{n}{mt}\PY{o}{::}\PY{n}{MyType}
             \PY{o}{.}\PY{o}{.}\PY{o}{.} \PY{c}{\PYZsh{} Other stuff}
         \PY{k}{end} 
         
-        \PY{n}{f}\PY{p}{(}\PY{n}{mt2}\PY{p}{:}\PY{p}{:}\PY{n}{MyType2}\PY{p}{)} \PY{o}{=} \PY{n}{f}\PY{p}{(}\PY{n}{mt2}\PY{o}{.}\PY{n}{mt}\PY{p}{)}
+        \PY{n}{f}\PY{p}{(}\PY{n}{mt2}\PY{o}{::}\PY{n}{MyType2}\PY{p}{)} \PY{o}{=} \PY{n}{f}\PY{p}{(}\PY{n}{mt2}\PY{o}{.}\PY{n}{mt}\PY{p}{)}
 \end{Verbatim}
 
     The pro here is that it's explicit: you've made the choice for each
@@ -890,7 +894,7 @@ macro.
 {\color{incolor}In [{\color{incolor}25}]:} \PY{k}{macro} \PY{n}{def}\PY{p}{(}\PY{n}{name}\PY{p}{,} \PY{n}{definition}\PY{p}{)}
                \PY{k}{return} \PY{k}{quote}
                    \PY{k}{macro} \PY{o}{\PYZdl{}}\PY{n}{name}\PY{p}{(}\PY{p}{)}
-                       \PY{n}{esc}\PY{p}{(}\PY{o}{\PYZdl{}}\PY{p}{(}\PY{n}{Expr}\PY{p}{(}\PY{p}{:}\PY{k}{quote}\PY{p}{,} \PY{n}{definition}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+                       \PY{n}{esc}\PY{p}{(}\PY{o}{\PYZdl{}}\PY{p}{(}\PY{k+kt}{Expr}\PY{p}{(}\PY{o}{:}\PY{k}{quote}\PY{p}{,} \PY{n}{definition}\PY{p}{)}\PY{p}{)}\PY{p}{)}
                    \PY{k}{end}
                \PY{k}{end}
            \PY{k}{end}
@@ -904,7 +908,7 @@ macro.
 example:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}26}]:} \PY{p}{@}\PY{n}{def} \PY{n}{give\PYZus{}it\PYZus{}a\PYZus{}name} \PY{k}{begin}
+{\color{incolor}In [{\color{incolor}26}]:} \PY{n+nd}{@def} \PY{n}{give\PYZus{}it\PYZus{}a\PYZus{}name} \PY{k}{begin}
            \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{2}
            \PY{n}{println}\PY{p}{(}\PY{n}{a}\PY{p}{)}
          \PY{k}{end}
@@ -919,14 +923,14 @@ lines of code wherever it is used. For example, the reused fields of
 Optim.jl's solvers could be put into an \texttt{@def}:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}27}]:} \PY{p}{@}\PY{n}{def} \PY{n}{add\PYZus{}generic\PYZus{}fields} \PY{k}{begin}
-                 \PY{n}{method\PYZus{}string}\PY{p}{:}\PY{p}{:}\PY{n}{String}
-                 \PY{n}{n}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int64}
-                 \PY{n}{x}\PY{p}{:}\PY{p}{:}\PY{n}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
-                 \PY{n}{f\PYZus{}x}\PY{p}{:}\PY{p}{:}\PY{n}{T}
-                 \PY{n}{f\PYZus{}calls}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int64}
-                 \PY{n}{g\PYZus{}calls}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int64}
-                 \PY{n}{h\PYZus{}calls}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int64}
+{\color{incolor}In [{\color{incolor}27}]:} \PY{n+nd}{@def} \PY{n}{add\PYZus{}generic\PYZus{}fields} \PY{k}{begin}
+                 \PY{n}{method\PYZus{}string}\PY{o}{::}\PY{n}{String}
+                 \PY{n}{n}\PY{o}{::}\PY{k+kt}{Int64}
+                 \PY{n}{x}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+                 \PY{n}{f\PYZus{}x}\PY{o}{::}\PY{n}{T}
+                 \PY{n}{f\PYZus{}calls}\PY{o}{::}\PY{k+kt}{Int64}
+                 \PY{n}{g\PYZus{}calls}\PY{o}{::}\PY{k+kt}{Int64}
+                 \PY{n}{h\PYZus{}calls}\PY{o}{::}\PY{k+kt}{Int64}
          \PY{k}{end}
 \end{Verbatim}
 
@@ -937,12 +941,12 @@ Optim.jl's solvers could be put into an \texttt{@def}:
     and those fields can be copied around with
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}28}]:} \PY{k}{type}\PY{n+nc}{ }\PY{n+nc}{LBFGSState}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
-             \PY{p}{@}\PY{n}{add\PYZus{}generic\PYZus{}fields}
-             \PY{n}{x\PYZus{}previous}\PY{p}{:}\PY{p}{:}\PY{n}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
-             \PY{n}{g}\PY{p}{:}\PY{p}{:}\PY{n}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
-             \PY{n}{g\PYZus{}previous}\PY{p}{:}\PY{p}{:}\PY{n}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
-             \PY{n}{rho}\PY{p}{:}\PY{p}{:}\PY{n}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+{\color{incolor}In [{\color{incolor}28}]:} \PY{n}{mutable} \PY{n}{struct} \PY{n}{LBFGSState}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+             \PY{n+nd}{@add\PYZus{}generic\PYZus{}fields}
+             \PY{n}{x\PYZus{}previous}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+             \PY{n}{g}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+             \PY{n}{g\PYZus{}previous}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+             \PY{n}{rho}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
              \PY{c}{\PYZsh{} ... more fields ... }
          \PY{k}{end}
 \end{Verbatim}
@@ -956,28 +960,28 @@ types inherit the fields:
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor} }]:} \PY{c}{\PYZsh{} The abstract type}
-        \PY{p}{@}\PY{n}{base} \PY{k}{type}\PY{n+nc}{ }\PY{n+nc}{AbstractFoo}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+        \PY{n+nd}{@base} \PY{n}{mutable} \PY{n}{struct} \PY{n}{AbstractFoo}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
             \PY{n}{a}
-            \PY{n}{b}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int}
-            \PY{n}{c}\PY{p}{:}\PY{p}{:}\PY{n}{T}
-            \PY{n}{d}\PY{p}{:}\PY{p}{:}\PY{n}{Vector}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+            \PY{n}{b}\PY{o}{::}\PY{k+kt}{Int}
+            \PY{n}{c}\PY{o}{::}\PY{n}{T}
+            \PY{n}{d}\PY{o}{::}\PY{k+kt}{Vector}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
         \PY{k}{end}
         
         \PY{c}{\PYZsh{} Inheritance}
-        \PY{p}{@}\PY{n}{extend} \PY{k}{type}\PY{n+nc}{ }\PY{n+nc}{Foo} \PY{o}{\PYZlt{}:} \PY{n}{AbstractFoo}
-            \PY{n}{e}\PY{p}{:}\PY{p}{:}\PY{n}{T}
+        \PY{n+nd}{@extend} \PY{n}{mutable} \PY{n}{struct} \PY{n}{Foo} \PY{o}{\PYZlt{}:} \PY{n}{AbstractFoo}
+            \PY{n+nb}{e}\PY{o}{::}\PY{n}{T}
         \PY{k}{end}
 \end{Verbatim}
 
     where the \texttt{@extend} macro generates the type-definition:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{k}{type}\PY{n+nc}{ }\PY{n+nc}{Foo}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}} \PY{o}{\PYZlt{}:} \PY{n}{AbstractFoo}
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{mutable} \PY{n}{struct} \PY{n}{Foo}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}} \PY{o}{\PYZlt{}:} \PY{n}{AbstractFoo}
             \PY{n}{a}
-            \PY{n}{b}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int}
-            \PY{n}{c}\PY{p}{:}\PY{p}{:}\PY{n}{T}
-            \PY{n}{d}\PY{p}{:}\PY{p}{:}\PY{n}{Vector}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
-            \PY{n}{e}\PY{p}{:}\PY{p}{:}\PY{n}{T}
+            \PY{n}{b}\PY{o}{::}\PY{k+kt}{Int}
+            \PY{n}{c}\PY{o}{::}\PY{n}{T}
+            \PY{n}{d}\PY{o}{::}\PY{k+kt}{Vector}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+            \PY{n+nb}{e}\PY{o}{::}\PY{n}{T}
         \PY{k}{end}
 \end{Verbatim}
 

@@ -166,6 +166,7 @@
 \expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
@@ -190,6 +191,7 @@
 \expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
@@ -198,6 +200,7 @@
 \expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
 \expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
@@ -218,6 +221,7 @@
 \expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
 \expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
@@ -350,6 +354,19 @@ An example Github repository for a Julia package is is
 DifferentialEquations.jl:
 https://github.com/JuliaDiffEq/DifferentialEquations.jl
 
+    \subsection{Basic through Advanced / Video Tutorial on
+Github}\label{basic-through-advanced-video-tutorial-on-github}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  For the visually inclined, here is a video tutorial on basic and
+  advanced github workflow for developing and editing Julia Packages, as
+  well as for setting up Continuous Integration (CI).
+\end{itemize}
+
+\href{https://www.youtube.com/watch?v=tx8DRc7_c9I}{\includegraphics{https://imgur.com/a/mMRUT}}
+
     \subsection{Examining a Github
 Repository}\label{examining-a-github-repository}
 
@@ -438,7 +455,7 @@ package by Tom Breloff}. To add a package, use \texttt{Pkg.add}
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor} }]:} \PY{n}{Pkg}\PY{o}{.}\PY{n}{update}\PY{p}{(}\PY{p}{)} \PY{c}{\PYZsh{} You may need to update your local packages first}
-        \PY{n}{Pkg}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Plots}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{Pkg}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{l}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 
     This will install the package to your local system. However, this will
@@ -448,7 +465,7 @@ to the Github repository to find the clone URL and use
 \texttt{ParameterizedFunctions} package, we can use:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{n}{Pkg}\PY{o}{.}\PY{n}{clone}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{https://github.com/JuliaDiffEq/ParameterizedFunctions.jl}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{Pkg}\PY{o}{.}\PY{n}{clone}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{h}\PY{l+s}{t}\PY{l+s}{t}\PY{l+s}{p}\PY{l+s}{s}\PY{l+s}{:}\PY{l+s}{/}\PY{l+s}{/}\PY{l+s}{g}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{u}\PY{l+s}{b}\PY{l+s}{.}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{m}\PY{l+s}{/}\PY{l+s}{J}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{D}\PY{l+s}{i}\PY{l+s}{f}\PY{l+s}{f}\PY{l+s}{E}\PY{l+s}{q}\PY{l+s}{/}\PY{l+s}{P}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{z}\PY{l+s}{e}\PY{l+s}{d}\PY{l+s}{F}\PY{l+s}{u}\PY{l+s}{n}\PY{l+s}{c}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{s}\PY{l+s}{.}\PY{l+s}{j}\PY{l+s}{l}\PY{l+s}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 
     \subsubsection{Importing a Package}\label{importing-a-package}
@@ -497,7 +514,7 @@ which branch your local repository takes from. For example, to checkout
 the master branch, we can use:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{n}{Pkg}\PY{o}{.}\PY{n}{checkout}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Plots}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{Pkg}\PY{o}{.}\PY{n}{checkout}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{l}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 
     This will usually gives us pretty up to date features (if you are using
@@ -507,7 +524,7 @@ packages working). However, to go to a specific branch we can give the
 branch as another argument:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{n}{Pkg}\PY{o}{.}\PY{n}{checkout}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Plots}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{dev}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{Pkg}\PY{o}{.}\PY{n}{checkout}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{l}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{d}\PY{l+s}{e}\PY{l+s}{v}\PY{l+s}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 
     This is not advised if you don't know what you're doing (i.e.~talk to

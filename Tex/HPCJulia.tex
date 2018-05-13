@@ -166,6 +166,7 @@
 \expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
@@ -190,6 +191,7 @@
 \expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
@@ -198,6 +200,7 @@
 \expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
 \expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
@@ -218,6 +221,7 @@
 \expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
 \expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
@@ -388,8 +392,8 @@ algorithm.
         \PY{c}{\PYZsh{}\PYZdl{} \PYZhy{}ckpt blcr}
         \PY{c}{\PYZsh{}\PYZdl{} \PYZhy{}o output/}
         \PY{c}{\PYZsh{}\PYZdl{} \PYZhy{}e output/}
-        \PY{k}{module} \PY{n+nb}{load} \PY{n}{julia}\PY{o}{/}\PY{l+m+mf}{0.4}\PY{o}{.}\PY{l+m+mi}{3}
-        \PY{n}{julia} \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{machinefile} \PY{n}{jbtest}\PY{o}{\PYZhy{}}\PY{n}{pe\PYZus{}hostfile\PYZus{}mpich}\PY{o}{.}\PY{o}{\PYZdl{}}\PY{n}{JOB\PYZus{}ID} \PY{n}{test}\PY{o}{.}\PY{n}{jl}
+        \PY{k}{module} \PY{n}{load} \PY{n}{julia}\PY{o}{/}\PY{l+m+mf}{0.4}\PY{o}{.}\PY{l+m+mi}{3}
+        \PY{n}{julia} \PY{o}{\PYZhy{}\PYZhy{}}\PY{n}{machinefile} \PY{n}{jbtest}\PY{o}{\PYZhy{}}\PY{n}{pe\PYZus{}hostfile\PYZus{}mpich}\PY{o}{.}\PY{o}{\PYZdl{}}\PY{n}{JOB\PYZus{}ID} \PY{n}{test}\PY{o}{.}\PY{n}{jl}
 \end{Verbatim}
 
     \subsubsection{XSEDE Comet (Slurm) Job
@@ -405,8 +409,8 @@ Script}\label{xsede-comet-slurm-job-script}
         \PY{c}{\PYZsh{}SBATCH \PYZhy{}\PYZhy{}export=ALL}
         \PY{c}{\PYZsh{}SBATCH \PYZhy{}\PYZhy{}ntasks\PYZhy{}per\PYZhy{}node=24}
         \PY{c}{\PYZsh{}SBATCH \PYZhy{}t 01:00:00}
-        \PY{k}{export} \PY{n}{SLURM\PYZus{}NODEFILE}\PY{o}{=}\PY{l+s+sb}{`generate\PYZus{}pbs\PYZus{}nodefile`}
-        \PY{o}{.}\PY{o}{/}\PY{n}{julia} \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{machinefile} \PY{o}{\PYZdl{}}\PY{n}{SLURM\PYZus{}NODEFILE} \PY{o}{/}\PY{n}{home}\PY{o}{/}\PY{n}{crackauc}\PY{o}{/}\PY{n}{test}\PY{o}{.}\PY{n}{jl}
+        \PY{k}{export} \PY{n}{SLURM\PYZus{}NODEFILE}\PY{o}{=}\PY{l+s+sb}{`}\PY{l+s+sb}{g}\PY{l+s+sb}{e}\PY{l+s+sb}{n}\PY{l+s+sb}{e}\PY{l+s+sb}{r}\PY{l+s+sb}{a}\PY{l+s+sb}{t}\PY{l+s+sb}{e}\PY{l+s+sb}{\PYZus{}}\PY{l+s+sb}{p}\PY{l+s+sb}{b}\PY{l+s+sb}{s}\PY{l+s+sb}{\PYZus{}}\PY{l+s+sb}{n}\PY{l+s+sb}{o}\PY{l+s+sb}{d}\PY{l+s+sb}{e}\PY{l+s+sb}{f}\PY{l+s+sb}{i}\PY{l+s+sb}{l}\PY{l+s+sb}{e}\PY{l+s+sb}{`}
+        \PY{o}{./}\PY{n}{julia} \PY{o}{\PYZhy{}\PYZhy{}}\PY{n}{machinefile} \PY{o}{\PYZdl{}}\PY{n}{SLURM\PYZus{}NODEFILE} \PY{o}{/}\PY{n}{home}\PY{o}{/}\PY{n}{crackauc}\PY{o}{/}\PY{n}{test}\PY{o}{.}\PY{n}{jl}
 \end{Verbatim}
 
     \subsection{Test function}\label{test-function}
@@ -415,8 +419,8 @@ Script}\label{xsede-comet-slurm-job-script}
 {\color{incolor}In [{\color{incolor} }]:} \PY{c}{\PYZsh{}\PYZsh{} Script which prints out the hostnames of the worker processes}
         \PY{c}{\PYZsh{} Used in conjunction with a job script to ensure multi\PYZhy{}node parallelism}
         
-        \PY{n}{hosts} \PY{o}{=} \PY{p}{@}\PY{n}{parallel} \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{120}
-               \PY{n}{run}\PY{p}{(}\PY{l+s+sb}{`hostname`}\PY{p}{)} \PY{k}{end}
+        \PY{n}{hosts} \PY{o}{=} \PY{n+nd}{@parallel} \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{120}
+               \PY{n}{run}\PY{p}{(}\PY{l+s+sb}{`}\PY{l+s+sb}{h}\PY{l+s+sb}{o}\PY{l+s+sb}{s}\PY{l+s+sb}{t}\PY{l+s+sb}{n}\PY{l+s+sb}{a}\PY{l+s+sb}{m}\PY{l+s+sb}{e}\PY{l+s+sb}{`}\PY{p}{)} \PY{k}{end}
         \PY{n}{println}\PY{p}{(}\PY{n}{hosts}\PY{p}{)}
 \end{Verbatim}
 

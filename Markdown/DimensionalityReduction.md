@@ -45,11 +45,9 @@ embeddings = load("../assets/ClusteringAndDimentionalityReduction.jld", "embeddi
  - Use [TSne.jl](https://github.com/lejon/TSne.jl), to perform similar dimentionality reduction, and to produce plots.
 
 T-SNE is another popluar DR method.  
-However, the [TSne.jl](https://github.com/lejon/TSne.jl) package is not registered.  
 It is mostly maintained though.
 Be warned: it is sideways -- it is row major, so tanspose the inputs and outputs
 
 You may have to play with the perplexity to get it to work well.
-
 
 If you look at the resulting plots, you may note that countries are often paired uo with their captical city.

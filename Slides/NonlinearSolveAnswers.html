@@ -11685,8 +11685,10 @@ ul.typeahead-list > li > a {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -11697,9 +11699,11 @@ ul.typeahead-list > li > a {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
 <style type="text/css">
@@ -11849,8 +11853,8 @@ a.anchor-link {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">Roots</span>
-<span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">-</span> <span class="n">x</span> <span class="o">+</span> <span class="n">e</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">fzero</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">BigFloat</span><span class="p">(</span><span class="mf">2.0</span><span class="p">))</span>
+<span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">-</span> <span class="n">x</span> <span class="o">+</span> <span class="nb">e</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">fzero</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="kt">BigFloat</span><span class="p">(</span><span class="mf">2.0</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -11872,7 +11876,7 @@ a.anchor-link {
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">f!</span> <span class="o">=</span> <span class="k">function</span><span class="nf"> </span><span class="o">(</span><span class="n">x</span><span class="p">,</span><span class="n">dx</span><span class="p">)</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">f!</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">dx</span><span class="p">)</span>
   <span class="n">dx</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>   <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>   <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span><span class="mi">12</span>
   <span class="n">dx</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>   <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>   <span class="o">-</span> <span class="mi">2</span>
   <span class="n">dx</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>   <span class="o">-</span> <span class="mi">1</span>
@@ -11880,7 +11884,7 @@ a.anchor-link {
 <span class="k">using</span> <span class="n">NLsolve</span>
 <span class="n">res</span> <span class="o">=</span> <span class="n">nlsolve</span><span class="p">(</span><span class="n">f!</span><span class="p">,[</span><span class="mf">1.0</span><span class="p">;</span><span class="mf">1.0</span><span class="p">;</span><span class="mf">1.0</span><span class="p">])</span>
 <span class="n">res</span><span class="o">.</span><span class="n">zero</span>
-<span class="n">res</span> <span class="o">=</span> <span class="n">nlsolve</span><span class="p">(</span><span class="n">f!</span><span class="p">,[</span><span class="mf">1.0</span><span class="p">;</span><span class="mf">1.0</span><span class="p">;</span><span class="mf">1.0</span><span class="p">],</span><span class="n">autodiff</span><span class="o">=</span><span class="n">true</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">nlsolve</span><span class="p">(</span><span class="n">f!</span><span class="p">,[</span><span class="mf">1.0</span><span class="p">;</span><span class="mf">1.0</span><span class="p">;</span><span class="mf">1.0</span><span class="p">],</span><span class="n">autodiff</span><span class="o">=</span><span class="kc">true</span><span class="p">)</span>
 <span class="n">res</span><span class="o">.</span><span class="n">zero</span>
 </pre></div>
 

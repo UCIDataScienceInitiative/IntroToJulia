@@ -166,6 +166,7 @@
 \expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
@@ -190,6 +191,7 @@
 \expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
@@ -198,6 +200,7 @@
 \expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
 \expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
@@ -218,6 +221,7 @@
 \expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
 \expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
@@ -282,9 +286,9 @@
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}3}]:} \PY{n}{N} \PY{o}{=} \PY{l+m+mi}{10}
         \PY{n}{A} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{n}{N}\PY{p}{,}\PY{n}{N}\PY{p}{)}
-        \PY{k}{for} \PY{n}{i} \PY{k}{in} \PY{l+m+mi}{1}\PY{p}{:}\PY{n}{N}\PY{p}{,} \PY{n}{j} \PY{k}{in} \PY{l+m+mi}{1}\PY{p}{:}\PY{n}{N}
-            \PY{n}{abs}\PY{p}{(}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{j}\PY{p}{)}\PY{o}{\PYZlt{}=}\PY{l+m+mi}{1} \PY{o}{\PYZam{}\PYZam{}} \PY{p}{(}\PY{n}{A}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{n}{j}\PY{p}{]}\PY{o}{+}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
-            \PY{n}{i}\PY{o}{==}\PY{n}{j} \PY{o}{\PYZam{}\PYZam{}} \PY{p}{(}\PY{n}{A}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{n}{j}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
+        \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{N}\PY{p}{,} \PY{n}{j} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{N}
+            \PY{n}{abs}\PY{p}{(}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{j}\PY{p}{)}\PY{o}{\PYZlt{}=}\PY{l+m+mi}{1} \PY{o}{\PYZam{}\PYZam{}} \PY{p}{(}\PY{n}{A}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{n}{j}\PY{p}{]}\PY{o}{+=}\PY{l+m+mi}{1}\PY{p}{)}
+            \PY{n}{i}\PY{o}{==}\PY{n}{j} \PY{o}{\PYZam{}\PYZam{}} \PY{p}{(}\PY{n}{A}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{n}{j}\PY{p}{]}\PY{o}{\PYZhy{}=}\PY{l+m+mi}{3}\PY{p}{)}
         \PY{k}{end}
         \PY{n}{A}
 \end{Verbatim}
@@ -306,10 +310,10 @@
     \subsection{Factorial Problem}\label{factorial-problem}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{my\PYZus{}factorial}\PY{p}{(}\PY{n}{n}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{function} \PY{n}{my\PYZus{}factorial}\PY{p}{(}\PY{n}{n}\PY{p}{)}
             \PY{n}{k} \PY{o}{=} \PY{n}{one}\PY{p}{(}\PY{n}{n}\PY{p}{)}
-            \PY{k}{for} \PY{n}{i} \PY{k}{in} \PY{l+m+mi}{1}\PY{p}{:}\PY{n}{n}
-                \PY{n}{k} \PY{o}{*}\PY{o}{=} \PY{n}{i}
+            \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{n}
+                \PY{n}{k} \PY{o}{*=} \PY{n}{i}
             \PY{k}{end}
             \PY{n}{k}
         \PY{k}{end}
@@ -326,16 +330,16 @@
     \subsection{Binomial Problem}\label{binomial-problem}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{binomial\PYZus{}rv}\PY{p}{(}\PY{n}{n}\PY{p}{,} \PY{n}{p}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{function} \PY{n}{binomial\PYZus{}rv}\PY{p}{(}\PY{n}{n}\PY{p}{,} \PY{n}{p}\PY{p}{)}
             \PY{n}{count} \PY{o}{=} \PY{n}{zero}\PY{p}{(}\PY{n}{n}\PY{p}{)}
             \PY{n}{U} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{n}{n}\PY{p}{)}
-            \PY{k}{for} \PY{n}{i} \PY{k}{in} \PY{l+m+mi}{1}\PY{p}{:}\PY{n}{n}
-              \PY{n}{U}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{n}{p} \PY{o}{\PYZam{}\PYZam{}} \PY{p}{(}\PY{n}{count} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+            \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{n}
+              \PY{n}{U}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{n}{p} \PY{o}{\PYZam{}\PYZam{}} \PY{p}{(}\PY{n}{count} \PY{o}{+=} \PY{l+m+mi}{1}\PY{p}{)}
             \PY{k}{end}
             \PY{n}{count}
         \PY{k}{end}
         
-        \PY{n}{bs} \PY{o}{=} \PY{p}{[}\PY{n}{binomial\PYZus{}rv}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)} \PY{k}{for} \PY{n}{j} \PY{k}{in} \PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{10}\PY{p}{]}
+        \PY{n}{bs} \PY{o}{=} \PY{p}{[}\PY{n}{binomial\PYZus{}rv}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)} \PY{k}{for} \PY{n}{j} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{10}\PY{p}{]}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
@@ -358,10 +362,10 @@
 {\color{incolor}In [{\color{incolor}17}]:} \PY{n}{n} \PY{o}{=} \PY{l+m+mi}{10000000}
          
          \PY{n}{count} \PY{o}{=} \PY{l+m+mi}{0}
-         \PY{k}{for} \PY{n}{i} \PY{k}{in} \PY{l+m+mi}{1}\PY{p}{:}\PY{n}{n}
+         \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{n}
              \PY{n}{u}\PY{p}{,} \PY{n}{v} \PY{o}{=} \PY{l+m+mi}{2}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
              \PY{n}{d} \PY{o}{=} \PY{n}{sqrt}\PY{p}{(}\PY{n}{u}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{v}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{)}  \PY{c}{\PYZsh{} Distance from middle of square}
-             \PY{n}{d} \PY{o}{\PYZlt{}} \PY{l+m+mi}{1} \PY{o}{\PYZam{}\PYZam{}} \PY{p}{(}\PY{n}{count} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+             \PY{n}{d} \PY{o}{\PYZlt{}} \PY{l+m+mi}{1} \PY{o}{\PYZam{}\PYZam{}} \PY{p}{(}\PY{n}{count} \PY{o}{+=} \PY{l+m+mi}{1}\PY{p}{)}
          \PY{k}{end}
          
          \PY{n}{area\PYZus{}estimate} \PY{o}{=} \PY{n}{count} \PY{o}{/} \PY{n}{n}
@@ -385,77 +389,34 @@ Problem}\label{timeseries-generation-problem}
          \PY{n}{series} \PY{o}{=} \PY{p}{[}\PY{p}{]}
          \PY{n}{labels} \PY{o}{=} \PY{p}{[}\PY{p}{]}
          
-         \PY{k}{for} \PY{n}{alpha} \PY{k}{in} \PY{n}{alphas}
+         \PY{k}{for} \PY{n}{alpha} \PY{k+kp}{in} \PY{n}{alphas}
              \PY{n}{x} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{n}{T} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}
              \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{l+m+mf}{0.0}
-             \PY{k}{for} \PY{n}{t} \PY{k}{in} \PY{l+m+mi}{1}\PY{p}{:}\PY{n}{T}
+             \PY{k}{for} \PY{n}{t} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{T}
                  \PY{n}{x}\PY{p}{[}\PY{n}{t}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{alpha} \PY{o}{*} \PY{n}{x}\PY{p}{[}\PY{n}{t}\PY{p}{]} \PY{o}{+} \PY{n}{randn}\PY{p}{(}\PY{p}{)}
              \PY{k}{end}
              \PY{n}{push!}\PY{p}{(}\PY{n}{series}\PY{p}{,} \PY{n}{x}\PY{p}{)}
-             \PY{n}{push!}\PY{p}{(}\PY{n}{labels}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{alpha = }\PY{l+s+si}{\PYZdl{}alpha}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+             \PY{n}{push!}\PY{p}{(}\PY{n}{labels}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{p}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{ }\PY{l+s}{=}\PY{l+s}{ }\PY{l+s+si}{\PYZdl{}alpha}\PY{l+s}{\PYZdq{}}\PY{p}{)}
          \PY{k}{end}
          
          \PY{n}{plot}\PY{p}{(}\PY{n}{series}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{n}{reshape}\PY{p}{(}\PY{n}{labels}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{length}\PY{p}{(}\PY{n}{labels}\PY{p}{)}\PY{p}{)}\PY{p}{,}\PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
 \end{Verbatim}
 
-    \subsection{Linear Regression Problem}\label{linear-regression-problem}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}2}]:} \PY{c}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{} Prepare Data}
-        
-        \PY{n}{X} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}               \PY{c}{\PYZsh{} feature matrix}
-        \PY{n}{a0} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}                    \PY{c}{\PYZsh{} ground truths}
-        \PY{n}{y} \PY{o}{=} \PY{n}{X} \PY{o}{*} \PY{n}{a0} \PY{o}{+} \PY{l+m+mf}{0.1} \PY{o}{*} \PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{;}  \PY{c}{\PYZsh{} generate response}
-        
-        \PY{n}{X2} \PY{o}{=} \PY{n}{hcat}\PY{p}{(}\PY{n}{X}\PY{p}{,}\PY{n}{ones}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{)}
-        \PY{n}{println}\PY{p}{(}\PY{n}{X2}\PYZbs{}\PY{n}{y}\PY{p}{)}
-        
-        \PY{k}{using} \PY{n}{MultivariateStats}
-        \PY{n}{println}\PY{p}{(}\PY{n}{llsq}\PY{p}{(}\PY{n}{X}\PY{p}{,}\PY{n}{y}\PY{p}{)}\PY{p}{)}
-        
-        \PY{k}{using} \PY{n}{DataFrames}\PY{p}{,} \PY{n}{GLM}
-        \PY{n}{data} \PY{o}{=} \PY{n}{DataFrame}\PY{p}{(}\PY{n}{X1}\PY{o}{=}\PY{n}{X}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{X2}\PY{o}{=}\PY{n}{X}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{n}{X3}\PY{o}{=}\PY{n}{X}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{,}\PY{n}{Y}\PY{o}{=}\PY{n}{y}\PY{p}{)}
-        \PY{n}{OLS} \PY{o}{=} \PY{n}{lm}\PY{p}{(}\PY{p}{@}\PY{n}{formula}\PY{p}{(}\PY{n}{Y} \PY{o}{\PYZti{}} \PY{n}{X1} \PY{o}{+} \PY{n}{X2} \PY{o}{+} \PY{n}{X3}\PY{p}{)}\PY{p}{,} \PY{n}{data}\PY{p}{)}
-        
-        
-        \PY{n}{X} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{;}
-        \PY{n}{y} \PY{o}{=} \PY{l+m+mi}{2}\PY{n}{X}  \PY{o}{+} \PY{l+m+mf}{0.1} \PY{o}{*} \PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{;}
-        
-        \PY{k}{using} \PY{n}{Plots}
-        \PY{n}{b} \PY{o}{=} \PY{n}{X}\PYZbs{}\PY{n}{y}
-        \PY{n}{println}\PY{p}{(}\PY{n}{b}\PY{p}{)}
-        \PY{n}{gr}\PY{p}{(}\PY{p}{)}
-        \PY{n}{scatter}\PY{p}{(}\PY{n}{X}\PY{p}{,}\PY{n}{y}\PY{p}{)}
-        \PY{n}{Plots}\PY{o}{.}\PY{n}{abline!}\PY{p}{(}\PY{n}{b}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+m+mf}{0.0}\PY{p}{,} \PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)} \PY{c}{\PYZsh{} Slope,Intercept}
-\end{Verbatim}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-[0.474905,0.910809,0.298824,0.00130641]
-[0.474905,0.910809,0.298824,0.00130641]
-[1.9975]
-
-    \end{Verbatim}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-WARNING: Method definition describe(AbstractArray) in module StatsBase at /home/crackauc/.julia/v0.5/StatsBase/src/scalarstats.jl:573 overwritten in module DataFrames at /home/crackauc/.julia/v0.5/DataFrames/src/abstractdataframe/abstractdataframe.jl:407.
-
-    \end{Verbatim}
-
     \subsection{Logistic Equation Problem}\label{logistic-equation-problem}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{r} \PY{o}{=} \PY{l+m+mf}{2.9}\PY{p}{:}\PY{o}{.}\PY{l+m+mi}{001}\PY{p}{:}\PY{l+m+mi}{4}\PY{p}{;} \PY{n}{numAttract} \PY{o}{=} \PY{l+m+mi}{100}
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{r} \PY{o}{=} \PY{l+m+mf}{2.9}\PY{o}{:}\PY{o}{.}\PY{l+m+mi}{001}\PY{o}{:}\PY{l+m+mi}{4}\PY{p}{;} \PY{n}{numAttract} \PY{o}{=} \PY{l+m+mi}{100}
         \PY{n}{steady} \PY{o}{=} \PY{n}{ones}\PY{p}{(}\PY{n}{length}\PY{p}{(}\PY{n}{r}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{o}{.}\PY{l+m+mi}{25}
-        \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{400} \PY{c}{\PYZsh{}\PYZsh{} Get to steady state}
-          \PY{n}{steady} \PY{o}{.}\PY{o}{=} \PY{n}{r}\PY{o}{.}\PY{o}{*}\PY{n}{steady}\PY{o}{.}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{steady}\PY{p}{)}
+        \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{400} \PY{c}{\PYZsh{}\PYZsh{} Get to steady state}
+          \PY{n}{steady} \PY{o}{.=} \PY{n}{r}\PY{o}{.*}\PY{n}{steady}\PY{o}{.*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{steady}\PY{p}{)}
         \PY{k}{end}
         \PY{n}{x} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{n}{length}\PY{p}{(}\PY{n}{steady}\PY{p}{)}\PY{p}{,}\PY{n}{numAttract}\PY{p}{)}
-        \PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{steady}
-        \PY{p}{@}\PY{n}{inbounds} \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{:}\PY{n}{numAttract} \PY{c}{\PYZsh{}\PYZsh{} Grab values at the attractor}
-          \PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{r}\PY{o}{.}\PY{o}{*}\PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+        \PY{n}{x}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{steady}
+        \PY{n+nd}{@inbounds} \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{2}\PY{o}{:}\PY{n}{numAttract} \PY{c}{\PYZsh{}\PYZsh{} Grab values at the attractor}
+          \PY{n}{x}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{r}\PY{o}{.*}\PY{n}{x}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{x}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
         \PY{k}{end}
         \PY{k}{using} \PY{n}{Plots}\PY{p}{;} \PY{n}{gr}\PY{p}{(}\PY{p}{)}
-        \PY{n}{plot}\PY{p}{(}\PY{n}{collect}\PY{p}{(}\PY{n}{r}\PY{p}{)}\PY{p}{,}\PY{n}{x}\PY{p}{,}\PY{n}{seriestype}\PY{o}{=}\PY{p}{:}\PY{n}{scatter}\PY{p}{,}\PY{n}{markersize}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{002}\PY{p}{,}\PY{n}{legend}\PY{o}{=}\PY{n}{false}\PY{p}{,}\PY{n}{color}\PY{o}{=}\PY{p}{:}\PY{n}{black}\PY{p}{)}
+        \PY{n}{plot}\PY{p}{(}\PY{n}{collect}\PY{p}{(}\PY{n}{r}\PY{p}{)}\PY{p}{,}\PY{n}{x}\PY{p}{,}\PY{n}{seriestype}\PY{o}{=}\PY{o}{:}\PY{n}{scatter}\PY{p}{,}\PY{n}{markersize}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{002}\PY{p}{,}\PY{n}{legend}\PY{o}{=}\PY{k+kc}{false}\PY{p}{,}\PY{n}{color}\PY{o}{=}\PY{o}{:}\PY{n}{black}\PY{p}{)}
 \end{Verbatim}
 
 

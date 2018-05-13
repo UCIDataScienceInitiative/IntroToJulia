@@ -11685,8 +11685,10 @@ ul.typeahead-list > li > a {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -11697,9 +11699,11 @@ ul.typeahead-list > li > a {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
 <style type="text/css">
@@ -11830,68 +11834,53 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Metaprogramming-Project">Metaprogramming Project<a class="anchor-link" href="#Metaprogramming-Project">&#182;</a></h2>
+<h1 id="Intermediate-Problem-Answers">Intermediate Problem Answers<a class="anchor-link" href="#Intermediate-Problem-Answers">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Regression-Problem">Regression Problem<a class="anchor-link" href="#Regression-Problem">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">macro</span> <span class="o">~</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">ex</span><span class="p">)</span>
-  <span class="n">new_ex</span> <span class="o">=</span> <span class="n">Meta</span><span class="o">.</span><span class="n">quot</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span>
-  <span class="k">quote</span>
-    <span class="n">inner_ex</span> <span class="o">=</span> <span class="o">$</span><span class="p">(</span><span class="n">esc</span><span class="p">(</span><span class="n">new_ex</span><span class="p">))</span>
-    <span class="n">data_name</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="n">string</span><span class="p">(</span><span class="n">inner_ex</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="k">end</span><span class="p">])[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">eval_ex</span> <span class="o">=</span> <span class="n">Expr</span><span class="p">(:(</span><span class="o">=</span><span class="p">),:</span><span class="n">data</span><span class="p">,</span><span class="n">data_name</span><span class="p">)</span>
-    <span class="n">eval</span><span class="p">(</span><span class="n">Main</span><span class="p">,</span><span class="n">eval_ex</span><span class="p">)</span>
-    <span class="n">new_X</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="n">size</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">length</span><span class="p">(</span><span class="n">inner_ex</span><span class="o">.</span><span class="n">args</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">cur_spot</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">2</span><span class="p">:</span><span class="n">length</span><span class="p">(</span><span class="n">inner_ex</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
-      <span class="k">if</span> <span class="n">inner_ex</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span>
-        <span class="n">new_X</span><span class="p">[:,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ones</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-      <span class="k">else</span>
-        <span class="n">col</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="kt">Int</span><span class="p">,</span><span class="n">string</span><span class="p">(</span><span class="n">string</span><span class="p">(</span><span class="n">inner_ex</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">])[</span><span class="mi">2</span><span class="p">]))</span>
-        <span class="n">new_X</span><span class="p">[:,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span><span class="n">col</span><span class="p">]</span>
-      <span class="k">end</span>
-    <span class="k">end</span>
-    <span class="o">$</span><span class="p">(</span><span class="n">esc</span><span class="p">(</span><span class="n">y</span><span class="p">)),</span><span class="n">new_X</span>
-  <span class="k">end</span>
-<span class="k">end</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="c">#### Prepare Data</span>
 
-<span class="n">y</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">y</span><span class="o">~</span><span class="mi">1</span><span class="o">+</span><span class="n">X1</span><span class="o">+</span><span class="n">X2</span><span class="o">+</span><span class="n">X4</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>               <span class="c"># feature matrix</span>
+<span class="n">a0</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>                    <span class="c"># ground truths</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">X</span> <span class="o">*</span> <span class="n">a0</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>  <span class="c"># generate response</span>
 
-<span class="k">function</span><span class="nf"> solve_least_squares</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">X</span><span class="p">)</span>
-  <span class="n">X</span>\<span class="n">y</span>
-<span class="k">end</span>
-<span class="n">solve_least_squares</span><span class="p">(</span><span class="n">tup</span><span class="p">::</span><span class="n">Tuple</span><span class="p">)</span> <span class="o">=</span> <span class="n">solve_least_squares</span><span class="p">(</span><span class="n">tup</span><span class="o">...</span><span class="p">)</span>
-<span class="n">solve_least_squares</span><span class="p">(</span><span class="n">y</span><span class="o">~</span><span class="mi">1</span><span class="o">+</span><span class="n">X1</span><span class="o">+</span><span class="n">X2</span><span class="o">+</span><span class="n">X4</span><span class="p">)</span>
+<span class="n">X2</span> <span class="o">=</span> <span class="n">hcat</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">ones</span><span class="p">(</span><span class="mi">1000</span><span class="p">))</span>
+<span class="n">println</span><span class="p">(</span><span class="n">X2</span><span class="o">\</span><span class="n">y</span><span class="p">)</span>
+
+<span class="k">using</span> <span class="n">MultivariateStats</span>
+<span class="n">println</span><span class="p">(</span><span class="n">llsq</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+
+<span class="k">using</span> <span class="n">DataFrames</span><span class="p">,</span> <span class="n">GLM</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">X1</span><span class="o">=</span><span class="n">X</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">X2</span><span class="o">=</span><span class="n">X</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="n">X3</span><span class="o">=</span><span class="n">X</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span><span class="n">Y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+<span class="n">OLS</span> <span class="o">=</span> <span class="n">lm</span><span class="p">(</span><span class="nd">@formula</span><span class="p">(</span><span class="n">Y</span> <span class="o">~</span> <span class="n">X1</span> <span class="o">+</span> <span class="n">X2</span> <span class="o">+</span> <span class="n">X3</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span>
+
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span><span class="n">X</span>  <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+
+<span class="k">using</span> <span class="n">Plots</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">X</span><span class="o">\</span><span class="n">y</span>
+<span class="n">println</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="n">gr</span><span class="p">()</span>
+<span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">Plots</span><span class="o">.</span><span class="n">abline!</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> <span class="c"># Slope,Intercept</span>
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[1]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>4-element Array{Float64,1}:
-  0.153788
-  0.742984
- -0.268836
-  0.320996</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -11912,7 +11901,7 @@ a.anchor-link {
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span><span class="nf"> myquantile</span><span class="p">(</span><span class="n">d</span><span class="p">::</span><span class="n">UnivariateDistribution</span><span class="p">,</span> <span class="n">q</span><span class="p">::</span><span class="n">Number</span><span class="p">)</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">myquantile</span><span class="p">(</span><span class="n">d</span><span class="o">::</span><span class="n">UnivariateDistribution</span><span class="p">,</span> <span class="n">q</span><span class="o">::</span><span class="kt">Number</span><span class="p">)</span>
     <span class="n">θ</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
     <span class="n">tol</span> <span class="o">=</span> <span class="nb">Inf</span>
     <span class="k">while</span> <span class="n">tol</span> <span class="o">&gt;</span> <span class="mf">1e-5</span>
@@ -11923,9 +11912,9 @@ a.anchor-link {
     <span class="n">θ</span>
 <span class="k">end</span>
 
-<span class="k">for</span> <span class="n">dist</span> <span class="k">in</span> <span class="p">[</span><span class="n">Gamma</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">Normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">Beta</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)]</span>
-    <span class="p">@</span><span class="n">show</span> <span class="n">myquantile</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="o">.</span><span class="mi">75</span><span class="p">)</span>
-    <span class="p">@</span><span class="n">show</span> <span class="n">quantile</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="o">.</span><span class="mi">75</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">dist</span> <span class="kp">in</span> <span class="p">[</span><span class="n">Gamma</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">Normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">Beta</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)]</span>
+    <span class="nd">@show</span> <span class="n">myquantile</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="o">.</span><span class="mi">75</span><span class="p">)</span>
+    <span class="nd">@show</span> <span class="n">quantile</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span> <span class="o">.</span><span class="mi">75</span><span class="p">)</span>
     <span class="n">println</span><span class="p">()</span>
 <span class="k">end</span>
 </pre></div>

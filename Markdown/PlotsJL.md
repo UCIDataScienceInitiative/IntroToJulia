@@ -13,7 +13,7 @@ Plots.jl is a non-traditional plotting library
 
 Plots.jl uses other plotting libraries as backends
 
-- PyPlot (matplotlob): Slow but dependable
+- PyPlot (matplotlib): Slow but dependable
 - GR: Feature-rich and fast, but new
 - Plotly/PlotlyJS: Interactive and good for web
 - PGFPlots: Native LaTeX rendering

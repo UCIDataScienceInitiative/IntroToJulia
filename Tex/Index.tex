@@ -166,6 +166,7 @@
 \expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
@@ -190,6 +191,7 @@
 \expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
@@ -198,6 +200,7 @@
 \expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
 \expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
@@ -218,6 +221,7 @@
 \expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
 \expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
@@ -307,6 +311,10 @@ there's everything in between. One major goal of this workshop is to use
 Julia's language and syntax to bridge the gap between ``package users''
 and ``package developers'' in the way that Julia has done.
 
+\paragraph{This is very problem-focused. The method is not passive: the
+goal is to get you using
+Julia!}\label{this-is-very-problem-focused.-the-method-is-not-passive-the-goal-is-to-get-you-using-julia}
+
     \subsection{Introduction to the
 Author}\label{introduction-to-the-author}
 
@@ -322,29 +330,6 @@ developer of many Julia packages, the most prominent being
 \href{https://github.com/JuliaDiffEq/DifferentialEquations.jl}{DifferentialEquations.jl},
 a Julia library which has become a standard solver for many forms of
 differential equations.
-
-\subsubsection{Remote Instructors}\label{remote-instructors}
-
-You are highly encouraged to use the
-\href{https://gitter.im/JuliaLang/julia}{Julia Gitter chat channel} to
-ask your Julia-related questions, both during the workshop and after the
-workshop! There are a few ``remote instructors'' who will be available
-through this chat channel at different times throughout the workshop:
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  Lyndon White (@oxinabox): University of Western Australia
-\item
-  Fengyang Wang (@TotalVerb): University of Waterloo
-\item
-  Ismael Venegas Castelló (@Ismael-VC): Data Analyst at Rich IT
-\item
-  Seth Bromberger (@sbromberger): Lawrence Livermore National Laboratory
-\end{itemize}
-
-Others will also be available. Please do not be afraid to use this
-resource!
 
     \subsection{Notes Before We Get
 Started}\label{notes-before-we-get-started}
@@ -395,6 +380,9 @@ Notebooks}\label{rendered-jupyter-notebooks}
   \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ToolingDocumentationCommunity}{Tooling,
   Documentation, and Community}
 \item
+  \href{http://docs.junolab.org/latest/}{Juno, the Julia IDE (Debugging,
+  Progress Bars, etc.): JunoLab}
+\item
   \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/JuliaMentalModel}{A
   Mental Model for Julia}
 \item
@@ -410,17 +398,38 @@ Notebooks}\label{rendered-jupyter-notebooks}
   \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicIntroduction}{A
   Basic Introduction to Julia}
 \item
+  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/WhyJulia}{Why
+  Julia?}
+\item
+  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArraysAndMatrices}{More
+  Details on Arrays and Matrices - How to get Fortran Speeds in Linear
+  Algebra}
+\item
+  \href{https://docs.julialang.org/en/stable/}{The Julia Manual}
+\item
+  \href{https://en.wikibooks.org/wiki/Introducing_Julia}{The Julia
+  Wikibook}
+\item
+  \href{https://docs.julialang.org/en/stable/manual/noteworthy-differences/}{Noteworthy
+  Differences from Other Languages (Julia's Manual)}
+\item
+  \href{https://cheatsheets.quantecon.org/}{Julia Cheatsheet Reference
+  (with MATLAB and Python)}
+\end{itemize}
+
+\subsubsection{General Problems}\label{general-problems}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
   \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicProblems}{Basic
   Problems}
 \item
   \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/IntermediateProblems}{Intermediate
   Problems}
 \item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/WhyJulia}{Why
-  Julia?}
-\item
-  \href{http://www.stochasticlifestyle.com/7-julia-gotchas-handle/}{7
-  Julia Gotchas and How to Handle Them}
+  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/AdvancedProblems}{Advanced
+  Problems}
 \end{itemize}
 
 \subsubsection{Detailed Usage: A Peek Into ``the Rabbit
@@ -437,15 +446,15 @@ Hole''}\label{detailed-usage-a-peek-into-the-rabbit-hole}
   \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading}{Call
   Overloading}
 \item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArraysAndMatrices}{More
-  Details on Arrays and Matrices - How to get Fortran Speeds in Linear
-  Algebra}
+  \href{http://www.stochasticlifestyle.com/7-julia-gotchas-handle/}{7
+  Julia Gotchas and How to Handle Them}
 \item
   \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces}{Array
   and Iterator Interfaces}
 \end{itemize}
 
-\subsubsection{Packages to Explore}\label{packages-to-explore}
+\subsubsection{Packages to Explore (with
+Problems!)}\label{packages-to-explore-with-problems}
 
 This section introduces you to a wide variety of packages for data
 science and scientific computing in Julia. Many of these pages have
@@ -457,15 +466,12 @@ basics.
 \item
   \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PackageEcosystem}{Overview
   of the Package Ecosystem}
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PlotsJL}{Data
-  Visualization: Plots.jl}
-\item
-  \href{http://docs.junolab.org/latest/}{Juno, the Julia IDE (Debugging,
-  Progress Bars, etc.): JunoLab}
-\item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DiffEq}{Differential
-  Equations: DifferentialEquations.jl}
+\end{itemize}
+
+\paragraph{Data Science}\label{data-science}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
 \item
   \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Clustering}{Clustering:
   Clustering.jl and Distances.jl}
@@ -473,21 +479,39 @@ basics.
   \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DimensionalityReduction}{Dimensionality
   Reduction: MultivariateStats.jl}
 \item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Optimization}{Mathematical
-  Programming / Optimization: JuMP and Optim.jl}
+  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PlotsJL}{Data
+  Visualization: Plots.jl}
+\item
+  Bioinformatics: Bio.jl
+\item
+  Deep Learning: Flux.jl
+\end{itemize}
+
+\paragraph{Scientific Computing}\label{scientific-computing}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DiffEq}{Differential
+  Equations: DifferentialEquations.jl}
 \item
   \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/NonlinearSolve}{Solving
   Nonlinear Equations: NLsolve.jl and Roots.jl}
 \item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ForwardDiff}{Forward-mode
-  Autodifferentiation (with Optimization): ForwardDiff.jl and Optim.jl}
-\item
   \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Graphs}{Graph
   Algorithms and Analysis: LightGraphs.jl}
+\end{itemize}
+
+\paragraph{Both!}\label{both}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
 \item
-  Bioinformatics: Bio.jl
+  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/Optimization}{Mathematical
+  Programming / Optimization: JuMP and Optim.jl}
 \item
-  Deep Learning: KNet.jl, TensorFlow.jl, MXNet.jl, and Flux.jl
+  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ForwardDiff}{Forward-mode
+  Autodifferentiation (with Optimization): ForwardDiff.jl and Optim.jl}
 \end{itemize}
 
 \subsubsection{Extra Projects and
@@ -502,16 +526,8 @@ Problems}\label{extra-projects-and-problems}
   \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/HPCJulia}{Parallelism
   and HPC}
 \item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/JuliaML}{Work
-  in Progress: JuliaML for Machine Learning}
-\item
   \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/PackageDevelopment}{Package
   Development, Documentation, and Testing}
-\item
-  Tools for Faster Code:
-  \href{https://github.com/simonbyrne/InplaceOps.jl}{InplaceOps.jl},
-  \href{https://github.com/ahwillia/CatViews.jl}{CatViews.jl}, and
-  \href{https://github.com/JuliaMath/VML.jl}{VML.jl}
 \item
   Robust Benchmarking:
   \href{https://github.com/JuliaCI/BenchmarkTools.jl}{BenchmarkTools.jl}
@@ -550,7 +566,10 @@ Probe around and understand the following results:
   \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/IntermediateProblemAnswers}{Intermediate
   Problem Answers}
 \item
-  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/LightGraphsProblemAnswers}{Answer
+  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/AdvancedProblemAnswers}{Advanced
+  Problem Answers}
+\item
+  \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/LightGraphsAnswers}{Answer
   to the LightGraphs Problem}
 \item
   \href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/NonlinearSolveAnswers}{Answer

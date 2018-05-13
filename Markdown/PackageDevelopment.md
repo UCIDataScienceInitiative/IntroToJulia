@@ -3,7 +3,7 @@
 
 ## Project
 
-Follow the tutorial in the following link to setup a Julia package Github repository, complete with documentation and CI testing, for your `least_squares` implementation(s).
+Follow the tutorial in the following link to setup a Julia package Github repository, complete with documentation and CI testing, for some sample function.
 
 http://www.stochasticlifestyle.com/finalizing-julia-package-documentation-testing-coverage-publishing/
 

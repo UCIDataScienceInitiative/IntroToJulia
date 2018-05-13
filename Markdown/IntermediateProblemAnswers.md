@@ -1,50 +1,37 @@
 
-## Metaprogramming Project
+# Intermediate Problem Answers
+
+## Regression Problem
 
 
 ```julia
-macro ~(y,ex)
-  new_ex = Meta.quot(ex)
-  quote
-    inner_ex = $(esc(new_ex))
-    data_name = Symbol(string(inner_ex.args[end])[1])
-    eval_ex = Expr(:(=),:data,data_name)
-    eval(Main,eval_ex)
-    new_X = Matrix{Float64}(size(data,1),length(inner_ex.args)-1)
-    cur_spot = 0
-    for i in 2:length(inner_ex.args)
-      if inner_ex.args[i] == 1
-        new_X[:,i-1] = ones(size(data,1))
-      else
-        col = parse(Int,string(string(inner_ex.args[i])[2]))
-        new_X[:,i-1] = data[:,col]
-      end
-    end
-    $(esc(y)),new_X
-  end
-end
+#### Prepare Data
 
-y = rand(10)
-X = rand(10,4)
-y~1+X1+X2+X4
+X = rand(1000, 3)               # feature matrix
+a0 = rand(3)                    # ground truths
+y = X * a0 + 0.1 * randn(1000);  # generate response
 
-function solve_least_squares(y,X)
-  X\y
-end
-solve_least_squares(tup::Tuple) = solve_least_squares(tup...)
-solve_least_squares(y~1+X1+X2+X4)
+X2 = hcat(X,ones(1000))
+println(X2\y)
+
+using MultivariateStats
+println(llsq(X,y))
+
+using DataFrames, GLM
+data = DataFrame(X1=X[:,1], X2=X[:,2], X3=X[:,3],Y=y)
+OLS = lm(@formula(Y ~ X1 + X2 + X3), data)
+
+
+X = rand(100);
+y = 2X  + 0.1 * randn(100);
+
+using Plots
+b = X\y
+println(b)
+gr()
+scatter(X,y)
+Plots.abline!(b[1],0.0, lw=3) # Slope,Intercept
 ```
-
-
-
-
-    4-element Array{Float64,1}:
-      0.153788
-      0.742984
-     -0.268836
-      0.320996
-
-
 
 ## Distribution Dispatch Problem
 

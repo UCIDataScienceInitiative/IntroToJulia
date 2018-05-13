@@ -7,7 +7,7 @@ To make a callable type, first make a type:
 
 
 ```julia
-type CallTest
+mutable struct CallTest
     a::Float64 
 end
 ```

@@ -166,6 +166,7 @@
 \expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
@@ -190,6 +191,7 @@
 \expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
@@ -198,6 +200,7 @@
 \expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
 \expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
@@ -218,6 +221,7 @@
 \expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
 \expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
@@ -287,15 +291,15 @@ generated as needed.
 To make a callable type, first make a type:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{type}\PY{n+nc}{ }\PY{n+nc}{CallTest}
-            \PY{n}{a}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Float64} 
+{\color{incolor}In [{\color{incolor}1}]:} \PY{n}{mutable} \PY{n}{struct} \PY{n}{CallTest}
+            \PY{n}{a}\PY{o}{::}\PY{k+kt}{Float64} 
         \PY{k}{end}
 \end{Verbatim}
 
     Then define its call as follows:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}2}]:} \PY{p}{(}\PY{n}{c}\PY{p}{:}\PY{p}{:}\PY{n}{CallTest}\PY{p}{)}\PY{p}{(}\PY{n}{b}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Float64}\PY{p}{)} \PY{o}{=} \PY{n}{c}\PY{o}{.}\PY{n}{a}\PY{o}{*}\PY{n}{b}
+{\color{incolor}In [{\color{incolor}2}]:} \PY{p}{(}\PY{n}{c}\PY{o}{::}\PY{n}{CallTest}\PY{p}{)}\PY{p}{(}\PY{n}{b}\PY{o}{::}\PY{k+kt}{Float64}\PY{p}{)} \PY{o}{=} \PY{n}{c}\PY{o}{.}\PY{n}{a}\PY{o}{*}\PY{n}{b}
 \end{Verbatim}
 
     Note that the fields of the \texttt{CallTest} from which the function is
@@ -317,7 +321,7 @@ your type an the function you described. For example:
     You can add extra dispatches to the function on your type:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}4}]:} \PY{p}{(}\PY{n}{c}\PY{p}{:}\PY{p}{:}\PY{n}{CallTest}\PY{p}{)}\PY{p}{(}\PY{n}{b}\PY{p}{:}\PY{p}{:}\PY{k+kt}{Int}\PY{p}{)} \PY{o}{=} \PY{n}{c}\PY{o}{.}\PY{n}{a}\PY{o}{/}\PY{n}{b}
+{\color{incolor}In [{\color{incolor}4}]:} \PY{p}{(}\PY{n}{c}\PY{o}{::}\PY{n}{CallTest}\PY{p}{)}\PY{p}{(}\PY{n}{b}\PY{o}{::}\PY{k+kt}{Int}\PY{p}{)} \PY{o}{=} \PY{n}{c}\PY{o}{.}\PY{n}{a}\PY{o}{/}\PY{n}{b}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]

@@ -166,6 +166,7 @@
 \expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
@@ -190,6 +191,7 @@
 \expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
@@ -198,6 +200,7 @@
 \expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
 \expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
@@ -218,6 +221,7 @@
 \expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
 \expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
@@ -338,11 +342,11 @@ To install Jupyter notebooks (IJulia), use the following commands in the
 REPL:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{n}{Pkg}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{IJulia}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{c}{\PYZsh{} This will install the package}
-        \PY{n}{Pkg}\PY{o}{.}\PY{n}{clone}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{https://github.com/UCIDataScienceInitiative/IntroToJulia}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{c}{\PYZsh{} Clone the IntroToJulia Repo}
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{Pkg}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{I}\PY{l+s}{J}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{c}{\PYZsh{} This will install the package}
+        \PY{n}{Pkg}\PY{o}{.}\PY{n}{clone}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{h}\PY{l+s}{t}\PY{l+s}{t}\PY{l+s}{p}\PY{l+s}{s}\PY{l+s}{:}\PY{l+s}{/}\PY{l+s}{/}\PY{l+s}{g}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{u}\PY{l+s}{b}\PY{l+s}{.}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{m}\PY{l+s}{/}\PY{l+s}{U}\PY{l+s}{C}\PY{l+s}{I}\PY{l+s}{D}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{S}\PY{l+s}{c}\PY{l+s}{i}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{I}\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{v}\PY{l+s}{e}\PY{l+s}{/}\PY{l+s}{I}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{T}\PY{l+s}{o}\PY{l+s}{J}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{c}{\PYZsh{} Clone the IntroToJulia Repo}
         \PY{c}{\PYZsh{}\PYZsh{}\PYZsh{} Next commands you run each time you open the REPL}
         \PY{k}{using} \PY{n}{IJulia}
-        \PY{n}{notebook}\PY{p}{(}\PY{n}{detached}\PY{o}{=}\PY{n}{true}\PY{p}{,}\PY{n}{dir}\PY{o}{=}\PY{n}{Pkg}\PY{o}{.}\PY{n}{dir}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{IntroToJulia/Notebooks}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+        \PY{n}{notebook}\PY{p}{(}\PY{n}{detached}\PY{o}{=}\PY{k+kc}{true}\PY{p}{,}\PY{n}{dir}\PY{o}{=}\PY{n}{Pkg}\PY{o}{.}\PY{n}{dir}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{I}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{T}\PY{l+s}{o}\PY{l+s}{J}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{/}\PY{l+s}{N}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{b}\PY{l+s}{o}\PY{l+s}{o}\PY{l+s}{k}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
     \subsubsection{Installing Juno}\label{installing-juno}
@@ -436,6 +440,10 @@ The main Julia community resources are:
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
+\item
+  \href{https://slackinvite.julialang.org/}{The Julia Slack} - A
+  chatroom for Julia users and Julia help. Frequented by core
+  developers.
 \item
   \href{https://gitter.im/JuliaLang/julia}{The JuliaLang Gitter} - A
   chatroom for Julia users

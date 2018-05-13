@@ -11631,8 +11631,10 @@ ul.typeahead-list > li > a {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -11643,9 +11645,11 @@ ul.typeahead-list > li > a {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
 <style type="text/css">
@@ -11812,7 +11816,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="p">@</span><span class="n">code_llvm</span> <span class="n">my_square</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="nd">@code_llvm</span> <span class="n">my_square</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11844,7 +11848,7 @@ top:
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="p">@</span><span class="n">code_llvm</span> <span class="n">my_square</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="nd">@code_llvm</span> <span class="n">my_square</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11887,7 +11891,7 @@ top:
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">my_restricted_square</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="kt">Int</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span><span class="o">^</span><span class="mi">2</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">my_restricted_square</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="kt">Int</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span><span class="o">^</span><span class="mi">2</span>
 </pre></div>
 
 </div>
@@ -11926,7 +11930,7 @@ top:
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="p">@</span><span class="n">code_llvm</span> <span class="n">my_restricted_square</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="nd">@code_llvm</span> <span class="n">my_restricted_square</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11969,7 +11973,7 @@ top:
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">my_number_restricted_square</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">Number</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span><span class="o">^</span><span class="mi">2</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">my_number_restricted_square</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="kt">Number</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span><span class="o">^</span><span class="mi">2</span>
 </pre></div>
 
 </div>
@@ -12008,7 +12012,7 @@ top:
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">my_number_restricted_square</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">AbstractArray</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">println</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="n">x</span><span class="o">.^</span><span class="mi">2</span><span class="p">)</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">my_number_restricted_square</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="kt">AbstractArray</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">println</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="n">x</span><span class="o">.^</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12058,7 +12062,7 @@ top:
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">10</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="mi">10</span>
 </pre></div>
 
 </div>
@@ -12097,7 +12101,7 @@ top:
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="nb">typeof</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">&lt;:</span> <span class="n">AbstractArray</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">typeof</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">&lt;:</span> <span class="kt">AbstractArray</span>
 </pre></div>
 
 </div>
@@ -12216,7 +12220,7 @@ top:
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="p">@</span><span class="n">time</span> <span class="n">collect</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">10000000</span><span class="p">)</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="nd">@time</span> <span class="n">collect</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">10000000</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12253,7 +12257,7 @@ top:
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="p">@</span><span class="n">time</span> <span class="mi">1</span><span class="p">:</span><span class="mi">10000000</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="nd">@time</span> <span class="mi">1</span><span class="o">:</span><span class="mi">10000000</span>
 </pre></div>
 
 </div>
@@ -12300,8 +12304,8 @@ top:
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="n">I</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
-<span class="n">println</span><span class="p">(</span><span class="n">I</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="nb">I</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">println</span><span class="p">(</span><span class="nb">I</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
 </pre></div>
 
 </div>
@@ -12350,27 +12354,27 @@ top:
 <div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">abstract</span><span class="nc"> AbstractPerson</span>
-<span class="k">abstract</span><span class="nc"> AbstractStudent</span> <span class="o">&lt;:</span> <span class="n">AbstractPerson</span>
-<span class="k">abstract</span><span class="nc"> AbstractTeacher</span> <span class="o">&lt;:</span> <span class="n">AbstractPerson</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="k">abstract</span> <span class="k">type</span> <span class="n">AbstractPerson</span> <span class="k">end</span>
+<span class="k">abstract</span> <span class="k">type</span> <span class="n">AbstractStudent</span> <span class="o">&lt;:</span> <span class="n">AbstractPerson</span> <span class="k">end</span>
+<span class="k">abstract</span> <span class="k">type</span> <span class="n">AbstractTeacher</span> <span class="o">&lt;:</span> <span class="n">AbstractPerson</span> <span class="k">end</span>
 
-<span class="k">type</span><span class="nc"> Person</span> <span class="o">&lt;:</span> <span class="n">AbstractPerson</span>
-  <span class="n">name</span><span class="p">::</span><span class="n">String</span>    
+<span class="n">mutable</span> <span class="n">struct</span> <span class="n">Person</span> <span class="o">&lt;:</span> <span class="n">AbstractPerson</span>
+  <span class="n">name</span><span class="o">::</span><span class="n">String</span>    
 <span class="k">end</span>
 
-<span class="k">type</span><span class="nc"> Student</span> <span class="o">&lt;:</span> <span class="n">AbstractStudent</span>
-  <span class="n">name</span><span class="p">::</span><span class="n">String</span>  
-  <span class="n">grade</span><span class="p">::</span><span class="kt">Int</span>
-  <span class="n">hobby</span><span class="p">::</span><span class="n">String</span>
+<span class="n">mutable</span> <span class="n">struct</span> <span class="n">Student</span> <span class="o">&lt;:</span> <span class="n">AbstractStudent</span>
+  <span class="n">name</span><span class="o">::</span><span class="n">String</span>  
+  <span class="n">grade</span><span class="o">::</span><span class="kt">Int</span>
+  <span class="n">hobby</span><span class="o">::</span><span class="n">String</span>
 <span class="k">end</span>
 
-<span class="k">type</span><span class="nc"> MusicStudent</span> <span class="o">&lt;:</span> <span class="n">AbstractStudent</span>
-  <span class="n">grade</span><span class="p">::</span><span class="kt">Int</span>
+<span class="n">mutable</span> <span class="n">struct</span> <span class="n">MusicStudent</span> <span class="o">&lt;:</span> <span class="n">AbstractStudent</span>
+  <span class="n">grade</span><span class="o">::</span><span class="kt">Int</span>
 <span class="k">end</span>
 
-<span class="k">type</span><span class="nc"> Teacher</span> <span class="o">&lt;:</span> <span class="n">AbstractTeacher</span>
-  <span class="n">name</span><span class="p">::</span><span class="n">String</span>
-  <span class="n">grade</span><span class="p">::</span><span class="kt">Int</span>
+<span class="n">mutable</span> <span class="n">struct</span> <span class="n">Teacher</span> <span class="o">&lt;:</span> <span class="n">AbstractTeacher</span>
+  <span class="n">name</span><span class="o">::</span><span class="n">String</span>
+  <span class="n">grade</span><span class="o">::</span><span class="kt">Int</span>
 <span class="k">end</span>
 </pre></div>
 
@@ -12394,7 +12398,7 @@ top:
 <div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">get_name</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">AbstractPerson</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">name</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">get_name</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="n">AbstractPerson</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">name</span>
 </pre></div>
 
 </div>
@@ -12433,7 +12437,7 @@ top:
 <div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">get_name</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">MusicStudent</span><span class="p">)</span> <span class="o">=</span> <span class="s">&quot;Justin Bieber&quot;</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">get_name</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="n">MusicStudent</span><span class="p">)</span> <span class="o">=</span> <span class="s">&quot;Justin Bieber&quot;</span>
 </pre></div>
 
 </div>
@@ -12491,9 +12495,9 @@ top:
 <div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">likes_music</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">AbstractTeacher</span><span class="p">)</span> <span class="o">=</span> <span class="n">false</span>
-<span class="n">likes_music</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">AbstractStudent</span><span class="p">)</span> <span class="o">=</span> <span class="n">true</span>
-<span class="n">likes_music</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">AbstractPerson</span><span class="p">)</span> <span class="o">=</span> <span class="n">true</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">likes_music</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="n">AbstractTeacher</span><span class="p">)</span> <span class="o">=</span> <span class="kc">false</span>
+<span class="n">likes_music</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="n">AbstractStudent</span><span class="p">)</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="n">likes_music</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="n">AbstractPerson</span><span class="p">)</span> <span class="o">=</span> <span class="kc">true</span>
 </pre></div>
 
 </div>
@@ -12532,12 +12536,12 @@ top:
 <div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span><span class="nf"> number_of_records</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">AbstractPerson</span><span class="p">)</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">number_of_records</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="n">AbstractPerson</span><span class="p">)</span>
     <span class="k">if</span> <span class="o">!</span><span class="n">likes_music</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> 
       <span class="k">return</span> <span class="mi">0</span>
     <span class="k">end</span>
     <span class="n">num_records</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nb">typeof</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&lt;:</span> <span class="n">AbstractStudent</span>
+    <span class="k">if</span> <span class="n">typeof</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&lt;:</span> <span class="n">AbstractStudent</span>
       <span class="k">return</span> <span class="mi">2</span><span class="n">num_records</span>
     <span class="k">else</span> 
       <span class="k">return</span> <span class="n">num_records</span>
@@ -12583,7 +12587,7 @@ top:
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">Teacher</span><span class="p">(</span><span class="s">&quot;Randy&quot;</span><span class="p">,</span><span class="mi">11</span><span class="p">)</span>
 <span class="n">println</span><span class="p">(</span><span class="n">number_of_records</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-<span class="p">@</span><span class="n">code_llvm</span> <span class="n">number_of_records</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nd">@code_llvm</span> <span class="n">number_of_records</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12597,63 +12601,63 @@ top:
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>on v0.6, we get:</p>
-<div class="highlight"><pre><span></span><span class="p">;</span> <span class="n">Function</span> <span class="n">Attrs</span><span class="p">:</span> <span class="n">uwtable</span>
-<span class="n">define</span> <span class="n">i64</span> <span class="p">@</span><span class="n">julia_number_of_records_63848</span><span class="p">(</span><span class="n">i8</span><span class="o">**</span> <span class="n">dereferenceable</span><span class="p">(</span><span class="mi">16</span><span class="p">))</span> <span class="c">#0 !dbg !5 {</span>
-<span class="n">top</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="p">;</span> <span class="kt">Function</span> <span class="n">Attrs</span><span class="o">:</span> <span class="n">uwtable</span>
+<span class="n">define</span> <span class="n">i64</span> <span class="nd">@julia_number_of_records_63848</span><span class="p">(</span><span class="n">i8</span><span class="o">**</span> <span class="n">dereferenceable</span><span class="p">(</span><span class="mi">16</span><span class="p">))</span> <span class="c">#0 !dbg !5 {</span>
+<span class="n">top</span><span class="o">:</span>
   <span class="n">ret</span> <span class="n">i64</span> <span class="mi">0</span>
 <span class="p">}</span>
 </pre></div>
 <p>Notice that the entire function compiled away! Then for a music student</p>
 <div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">MusicStudent</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="p">@</span><span class="n">code_typed</span> <span class="n">number_of_records</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nd">@code_typed</span> <span class="n">number_of_records</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
 <span class="c"># Output</span>
-<span class="n">CodeInfo</span><span class="p">(:(</span><span class="k">begin</span> 
-        <span class="n">NewvarNode</span><span class="p">(:(</span><span class="n">num_records</span><span class="p">))</span>
+<span class="n">CodeInfo</span><span class="p">(</span><span class="o">:</span><span class="p">(</span><span class="k">begin</span> 
+        <span class="kt">NewvarNode</span><span class="p">(</span><span class="o">:</span><span class="p">(</span><span class="n">num_records</span><span class="p">))</span>
         <span class="n">goto</span> <span class="mi">4</span> <span class="c"># line 30:</span>
-        <span class="mi">4</span><span class="p">:</span>  <span class="c"># line 32:</span>
-        <span class="o">$</span><span class="p">(</span><span class="n">Expr</span><span class="p">(:</span><span class="n">inbounds</span><span class="p">,</span> <span class="n">false</span><span class="p">))</span>
+        <span class="mi">4</span><span class="o">:</span>  <span class="c"># line 32:</span>
+        <span class="o">$</span><span class="p">(</span><span class="kt">Expr</span><span class="p">(</span><span class="o">:</span><span class="n">inbounds</span><span class="p">,</span> <span class="kc">false</span><span class="p">))</span>
         <span class="c"># meta: location random.jl rand 279</span>
         <span class="c"># meta: location random.jl rand 278</span>
         <span class="c"># meta: location random.jl rand 367</span>
         <span class="c"># meta: location random.jl rand 370</span>
-        <span class="n">SSAValue</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="o">$</span><span class="p">(</span><span class="n">Expr</span><span class="p">(:</span><span class="n">foreigncall</span><span class="p">,</span> <span class="p">:(:</span><span class="n">jl_alloc_array_1d</span><span class="p">),</span> <span class="n">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">1</span><span class="p">},</span> <span class="n">svec</span><span class="p">(</span><span class="kt">Any</span><span class="p">,</span> <span class="kt">Int64</span><span class="p">),</span> <span class="n">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">1</span><span class="p">},</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="n">SSAValue</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="o">$</span><span class="p">(</span><span class="kt">Expr</span><span class="p">(</span><span class="o">:</span><span class="n">foreigncall</span><span class="p">,</span> <span class="o">:</span><span class="p">(</span><span class="o">:</span><span class="n">jl_alloc_array_1d</span><span class="p">),</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">1</span><span class="p">},</span> <span class="n">svec</span><span class="p">(</span><span class="kt">Any</span><span class="p">,</span> <span class="kt">Int64</span><span class="p">),</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">1</span><span class="p">},</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
         <span class="c"># meta: pop location</span>
         <span class="c"># meta: pop location</span>
         <span class="c"># meta: pop location</span>
         <span class="c"># meta: pop location</span>
-        <span class="o">$</span><span class="p">(</span><span class="n">Expr</span><span class="p">(:</span><span class="n">inbounds</span><span class="p">,</span> <span class="p">:</span><span class="n">pop</span><span class="p">))</span>
-        <span class="n">num_records</span> <span class="o">=</span> <span class="o">$</span><span class="p">(</span><span class="n">Expr</span><span class="p">(:</span><span class="nb">invoke</span><span class="p">,</span> <span class="n">MethodInstance</span> <span class="k">for</span> <span class="n">rand!</span><span class="p">(::</span><span class="n">MersenneTwister</span><span class="p">,</span> <span class="p">::</span><span class="n">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">1</span><span class="p">},</span> <span class="p">::</span><span class="kt">Int64</span><span class="p">,</span> <span class="p">::</span><span class="n">Type</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">Random</span><span class="o">.</span><span class="n">CloseOpen</span><span class="p">}),</span> <span class="p">:(</span><span class="n">Base</span><span class="o">.</span><span class="n">Random</span><span class="o">.</span><span class="n">rand!</span><span class="p">),</span> <span class="p">:(</span><span class="n">Base</span><span class="o">.</span><span class="n">Random</span><span class="o">.</span><span class="n">GLOBAL_RNG</span><span class="p">),</span> <span class="n">SSAValue</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="p">:((</span><span class="n">Base</span><span class="o">.</span><span class="n">arraylen</span><span class="p">)(</span><span class="n">SSAValue</span><span class="p">(</span><span class="mi">1</span><span class="p">))::</span><span class="kt">Int64</span><span class="p">),</span> <span class="p">:(</span><span class="n">Base</span><span class="o">.</span><span class="n">Random</span><span class="o">.</span><span class="n">CloseOpen</span><span class="p">)))</span> <span class="c"># line 33:</span>
-        <span class="p">(</span><span class="n">MusicStudent</span> <span class="o">&lt;:</span> <span class="n">Main</span><span class="o">.</span><span class="n">AbstractStudent</span><span class="p">)::</span><span class="kt">Bool</span> <span class="c"># line 34:</span>
-        <span class="k">return</span> <span class="o">$</span><span class="p">(</span><span class="n">Expr</span><span class="p">(:</span><span class="nb">invoke</span><span class="p">,</span> <span class="n">MethodInstance</span> <span class="k">for</span> <span class="o">*</span><span class="p">(::</span><span class="kt">Int64</span><span class="p">,</span> <span class="p">::</span><span class="n">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">1</span><span class="p">}),</span> <span class="p">:(</span><span class="n">Main</span><span class="o">.*</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="p">:(</span><span class="n">num_records</span><span class="p">)))</span> <span class="c"># line 36:</span>
-    <span class="k">end</span><span class="p">))</span><span class="o">=&gt;</span><span class="n">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">1</span><span class="p">}</span>
+        <span class="o">$</span><span class="p">(</span><span class="kt">Expr</span><span class="p">(</span><span class="o">:</span><span class="n">inbounds</span><span class="p">,</span> <span class="o">:</span><span class="n">pop</span><span class="p">))</span>
+        <span class="n">num_records</span> <span class="o">=</span> <span class="o">$</span><span class="p">(</span><span class="kt">Expr</span><span class="p">(</span><span class="o">:</span><span class="n">invoke</span><span class="p">,</span> <span class="n">MethodInstance</span> <span class="k">for</span> <span class="n">rand!</span><span class="p">(</span><span class="o">::</span><span class="kt">MersenneTwister</span><span class="p">,</span> <span class="o">::</span><span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">1</span><span class="p">},</span> <span class="o">::</span><span class="kt">Int64</span><span class="p">,</span> <span class="o">::</span><span class="kt">Type</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">Random</span><span class="o">.</span><span class="n">CloseOpen</span><span class="p">}),</span> <span class="o">:</span><span class="p">(</span><span class="n">Base</span><span class="o">.</span><span class="n">Random</span><span class="o">.</span><span class="n">rand!</span><span class="p">),</span> <span class="o">:</span><span class="p">(</span><span class="n">Base</span><span class="o">.</span><span class="n">Random</span><span class="o">.</span><span class="n">GLOBAL_RNG</span><span class="p">),</span> <span class="n">SSAValue</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="o">:</span><span class="p">((</span><span class="n">Base</span><span class="o">.</span><span class="n">arraylen</span><span class="p">)(</span><span class="n">SSAValue</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="o">::</span><span class="kt">Int64</span><span class="p">),</span> <span class="o">:</span><span class="p">(</span><span class="n">Base</span><span class="o">.</span><span class="n">Random</span><span class="o">.</span><span class="n">CloseOpen</span><span class="p">)))</span> <span class="c"># line 33:</span>
+        <span class="p">(</span><span class="n">MusicStudent</span> <span class="o">&lt;:</span> <span class="n">Main</span><span class="o">.</span><span class="n">AbstractStudent</span><span class="p">)</span><span class="o">::</span><span class="kt">Bool</span> <span class="c"># line 34:</span>
+        <span class="k">return</span> <span class="o">$</span><span class="p">(</span><span class="kt">Expr</span><span class="p">(</span><span class="o">:</span><span class="n">invoke</span><span class="p">,</span> <span class="n">MethodInstance</span> <span class="k">for</span> <span class="o">*</span><span class="p">(</span><span class="o">::</span><span class="kt">Int64</span><span class="p">,</span> <span class="o">::</span><span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">1</span><span class="p">}),</span> <span class="o">:</span><span class="p">(</span><span class="n">Main</span><span class="o">.*</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="o">:</span><span class="p">(</span><span class="n">num_records</span><span class="p">)))</span> <span class="c"># line 36:</span>
+    <span class="k">end</span><span class="p">))</span><span class="o">=&gt;</span><span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">1</span><span class="p">}</span>
 </pre></div>
 <p>we get a multiplication by 2, while for a regular person,</p>
 <div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Miguel&quot;</span><span class="p">)</span>
-<span class="p">@</span><span class="n">code_typed</span> <span class="n">number_of_records</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nd">@code_typed</span> <span class="n">number_of_records</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
 <span class="c"># Output</span>
-<span class="n">CodeInfo</span><span class="p">(:(</span><span class="k">begin</span> 
-        <span class="n">NewvarNode</span><span class="p">(:(</span><span class="n">num_records</span><span class="p">))</span>
+<span class="n">CodeInfo</span><span class="p">(</span><span class="o">:</span><span class="p">(</span><span class="k">begin</span> 
+        <span class="kt">NewvarNode</span><span class="p">(</span><span class="o">:</span><span class="p">(</span><span class="n">num_records</span><span class="p">))</span>
         <span class="n">goto</span> <span class="mi">4</span> <span class="c"># line 30:</span>
-        <span class="mi">4</span><span class="p">:</span>  <span class="c"># line 32:</span>
-        <span class="o">$</span><span class="p">(</span><span class="n">Expr</span><span class="p">(:</span><span class="n">inbounds</span><span class="p">,</span> <span class="n">false</span><span class="p">))</span>
+        <span class="mi">4</span><span class="o">:</span>  <span class="c"># line 32:</span>
+        <span class="o">$</span><span class="p">(</span><span class="kt">Expr</span><span class="p">(</span><span class="o">:</span><span class="n">inbounds</span><span class="p">,</span> <span class="kc">false</span><span class="p">))</span>
         <span class="c"># meta: location random.jl rand 279</span>
         <span class="c"># meta: location random.jl rand 278</span>
         <span class="c"># meta: location random.jl rand 367</span>
         <span class="c"># meta: location random.jl rand 370</span>
-        <span class="n">SSAValue</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="o">$</span><span class="p">(</span><span class="n">Expr</span><span class="p">(:</span><span class="n">foreigncall</span><span class="p">,</span> <span class="p">:(:</span><span class="n">jl_alloc_array_1d</span><span class="p">),</span> <span class="n">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">1</span><span class="p">},</span> <span class="n">svec</span><span class="p">(</span><span class="kt">Any</span><span class="p">,</span> <span class="kt">Int64</span><span class="p">),</span> <span class="n">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">1</span><span class="p">},</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="n">SSAValue</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="o">$</span><span class="p">(</span><span class="kt">Expr</span><span class="p">(</span><span class="o">:</span><span class="n">foreigncall</span><span class="p">,</span> <span class="o">:</span><span class="p">(</span><span class="o">:</span><span class="n">jl_alloc_array_1d</span><span class="p">),</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">1</span><span class="p">},</span> <span class="n">svec</span><span class="p">(</span><span class="kt">Any</span><span class="p">,</span> <span class="kt">Int64</span><span class="p">),</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">1</span><span class="p">},</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
         <span class="c"># meta: pop location</span>
         <span class="c"># meta: pop location</span>
         <span class="c"># meta: pop location</span>
         <span class="c"># meta: pop location</span>
-        <span class="o">$</span><span class="p">(</span><span class="n">Expr</span><span class="p">(:</span><span class="n">inbounds</span><span class="p">,</span> <span class="p">:</span><span class="n">pop</span><span class="p">))</span>
-        <span class="n">num_records</span> <span class="o">=</span> <span class="o">$</span><span class="p">(</span><span class="n">Expr</span><span class="p">(:</span><span class="nb">invoke</span><span class="p">,</span> <span class="n">MethodInstance</span> <span class="k">for</span> <span class="n">rand!</span><span class="p">(::</span><span class="n">MersenneTwister</span><span class="p">,</span> <span class="p">::</span><span class="n">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">1</span><span class="p">},</span> <span class="p">::</span><span class="kt">Int64</span><span class="p">,</span> <span class="p">::</span><span class="n">Type</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">Random</span><span class="o">.</span><span class="n">CloseOpen</span><span class="p">}),</span> <span class="p">:(</span><span class="n">Base</span><span class="o">.</span><span class="n">Random</span><span class="o">.</span><span class="n">rand!</span><span class="p">),</span> <span class="p">:(</span><span class="n">Base</span><span class="o">.</span><span class="n">Random</span><span class="o">.</span><span class="n">GLOBAL_RNG</span><span class="p">),</span> <span class="n">SSAValue</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="p">:((</span><span class="n">Base</span><span class="o">.</span><span class="n">arraylen</span><span class="p">)(</span><span class="n">SSAValue</span><span class="p">(</span><span class="mi">1</span><span class="p">))::</span><span class="kt">Int64</span><span class="p">),</span> <span class="p">:(</span><span class="n">Base</span><span class="o">.</span><span class="n">Random</span><span class="o">.</span><span class="n">CloseOpen</span><span class="p">)))</span> <span class="c"># line 33:</span>
-        <span class="p">(</span><span class="n">Person</span> <span class="o">&lt;:</span> <span class="n">Main</span><span class="o">.</span><span class="n">AbstractStudent</span><span class="p">)::</span><span class="kt">Bool</span>
+        <span class="o">$</span><span class="p">(</span><span class="kt">Expr</span><span class="p">(</span><span class="o">:</span><span class="n">inbounds</span><span class="p">,</span> <span class="o">:</span><span class="n">pop</span><span class="p">))</span>
+        <span class="n">num_records</span> <span class="o">=</span> <span class="o">$</span><span class="p">(</span><span class="kt">Expr</span><span class="p">(</span><span class="o">:</span><span class="n">invoke</span><span class="p">,</span> <span class="n">MethodInstance</span> <span class="k">for</span> <span class="n">rand!</span><span class="p">(</span><span class="o">::</span><span class="kt">MersenneTwister</span><span class="p">,</span> <span class="o">::</span><span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">1</span><span class="p">},</span> <span class="o">::</span><span class="kt">Int64</span><span class="p">,</span> <span class="o">::</span><span class="kt">Type</span><span class="p">{</span><span class="n">Base</span><span class="o">.</span><span class="n">Random</span><span class="o">.</span><span class="n">CloseOpen</span><span class="p">}),</span> <span class="o">:</span><span class="p">(</span><span class="n">Base</span><span class="o">.</span><span class="n">Random</span><span class="o">.</span><span class="n">rand!</span><span class="p">),</span> <span class="o">:</span><span class="p">(</span><span class="n">Base</span><span class="o">.</span><span class="n">Random</span><span class="o">.</span><span class="n">GLOBAL_RNG</span><span class="p">),</span> <span class="n">SSAValue</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="o">:</span><span class="p">((</span><span class="n">Base</span><span class="o">.</span><span class="n">arraylen</span><span class="p">)(</span><span class="n">SSAValue</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="o">::</span><span class="kt">Int64</span><span class="p">),</span> <span class="o">:</span><span class="p">(</span><span class="n">Base</span><span class="o">.</span><span class="n">Random</span><span class="o">.</span><span class="n">CloseOpen</span><span class="p">)))</span> <span class="c"># line 33:</span>
+        <span class="p">(</span><span class="n">Person</span> <span class="o">&lt;:</span> <span class="n">Main</span><span class="o">.</span><span class="n">AbstractStudent</span><span class="p">)</span><span class="o">::</span><span class="kt">Bool</span>
         <span class="n">goto</span> <span class="mi">22</span> <span class="c"># line 34:</span>
-        <span class="mi">22</span><span class="p">:</span>  <span class="c"># line 36:</span>
+        <span class="mi">22</span><span class="o">:</span>  <span class="c"># line 36:</span>
         <span class="k">return</span> <span class="n">num_records</span>
-    <span class="k">end</span><span class="p">))</span><span class="o">=&gt;</span><span class="n">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">1</span><span class="p">}</span>
+    <span class="k">end</span><span class="p">))</span><span class="o">=&gt;</span><span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">1</span><span class="p">}</span>
 </pre></div>
 <p>we do not get a multiplication by 2.</p>
 
@@ -12701,11 +12705,11 @@ top:
 <div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">abstract</span><span class="nc"> MusicGenres</span>
-<span class="k">abstract</span><span class="nc"> RockGenre</span> <span class="o">&lt;:</span> <span class="n">MusicGenres</span>
-<span class="k">immutable</span> <span class="n">ClassicRock</span> <span class="o">&lt;:</span> <span class="n">RockGenre</span> <span class="k">end</span>
-<span class="k">immutable</span> <span class="n">AltRock</span> <span class="o">&lt;:</span> <span class="n">RockGenre</span> <span class="k">end</span>
-<span class="k">immutable</span> <span class="n">Classical</span> <span class="o">&lt;:</span> <span class="n">MusicGenres</span> <span class="k">end</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="k">abstract</span> <span class="k">type</span> <span class="n">MusicGenres</span> <span class="k">end</span>
+<span class="k">abstract</span> <span class="k">type</span> <span class="n">RockGenre</span> <span class="o">&lt;:</span> <span class="n">MusicGenres</span> <span class="k">end</span>
+<span class="n">struct</span> <span class="n">ClassicRock</span> <span class="o">&lt;:</span> <span class="n">RockGenre</span> <span class="k">end</span>
+<span class="n">struct</span> <span class="n">AltRock</span> <span class="o">&lt;:</span> <span class="n">RockGenre</span> <span class="k">end</span>
+<span class="n">struct</span> <span class="n">Classical</span> <span class="o">&lt;:</span> <span class="n">MusicGenres</span> <span class="k">end</span>
 </pre></div>
 
 </div>
@@ -12728,9 +12732,9 @@ top:
 <div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">favorite_genre</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">AbstractPerson</span><span class="p">)</span> <span class="o">=</span> <span class="n">ClassicRock</span><span class="p">()</span>
-<span class="n">favorite_genre</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">MusicStudent</span><span class="p">)</span> <span class="o">=</span> <span class="n">Classical</span><span class="p">()</span>
-<span class="n">favorite_genre</span><span class="p">(</span><span class="n">x</span><span class="p">::</span><span class="n">AbstractTeacher</span><span class="p">)</span> <span class="o">=</span> <span class="n">AltRock</span><span class="p">()</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">favorite_genre</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="n">AbstractPerson</span><span class="p">)</span> <span class="o">=</span> <span class="n">ClassicRock</span><span class="p">()</span>
+<span class="n">favorite_genre</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="n">MusicStudent</span><span class="p">)</span> <span class="o">=</span> <span class="n">Classical</span><span class="p">()</span>
+<span class="n">favorite_genre</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="n">AbstractTeacher</span><span class="p">)</span> <span class="o">=</span> <span class="n">AltRock</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -12779,8 +12783,8 @@ top:
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="p">@</span><span class="n">traitfn</span> <span class="n">ft</span><span class="p">(</span><span class="n">x</span><span class="p">::::</span><span class="n">IsNice</span><span class="p">)</span> <span class="o">=</span> <span class="s">&quot;Very nice!&quot;</span>
-<span class="p">@</span><span class="n">traitfn</span> <span class="n">ft</span><span class="p">(</span><span class="n">x</span><span class="p">::::(</span><span class="o">!</span><span class="n">IsNice</span><span class="p">))</span> <span class="o">=</span> <span class="s">&quot;Not so nice!&quot;</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="nd">@traitfn</span> <span class="n">ft</span><span class="p">(</span><span class="n">x</span><span class="o">::::</span><span class="n">IsNice</span><span class="p">)</span> <span class="o">=</span> <span class="s">&quot;Very nice!&quot;</span>
+<span class="nd">@traitfn</span> <span class="n">ft</span><span class="p">(</span><span class="n">x</span><span class="o">::::</span><span class="p">(</span><span class="o">!</span><span class="n">IsNice</span><span class="p">))</span> <span class="o">=</span> <span class="s">&quot;Not so nice!&quot;</span>
 </pre></div>
 
 </div>
@@ -12817,12 +12821,12 @@ top:
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">type</span><span class="nc"> MyType2</span>
-    <span class="n">mt</span><span class="p">::</span><span class="n">MyType</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">mutable</span> <span class="n">struct</span> <span class="n">MyType2</span>
+    <span class="n">mt</span><span class="o">::</span><span class="n">MyType</span>
     <span class="o">...</span> <span class="c"># Other stuff</span>
 <span class="k">end</span> 
 
-<span class="n">f</span><span class="p">(</span><span class="n">mt2</span><span class="p">::</span><span class="n">MyType2</span><span class="p">)</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">mt2</span><span class="o">.</span><span class="n">mt</span><span class="p">)</span>
+<span class="n">f</span><span class="p">(</span><span class="n">mt2</span><span class="o">::</span><span class="n">MyType2</span><span class="p">)</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">mt2</span><span class="o">.</span><span class="n">mt</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12858,7 +12862,7 @@ top:
 <div class=" highlight hl-julia"><pre><span></span><span class="k">macro</span> <span class="n">def</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">definition</span><span class="p">)</span>
       <span class="k">return</span> <span class="k">quote</span>
           <span class="k">macro</span> <span class="o">$</span><span class="n">name</span><span class="p">()</span>
-              <span class="n">esc</span><span class="p">(</span><span class="o">$</span><span class="p">(</span><span class="n">Expr</span><span class="p">(:</span><span class="k">quote</span><span class="p">,</span> <span class="n">definition</span><span class="p">)))</span>
+              <span class="n">esc</span><span class="p">(</span><span class="o">$</span><span class="p">(</span><span class="kt">Expr</span><span class="p">(</span><span class="o">:</span><span class="k">quote</span><span class="p">,</span> <span class="n">definition</span><span class="p">)))</span>
           <span class="k">end</span>
       <span class="k">end</span>
   <span class="k">end</span>
@@ -12900,7 +12904,7 @@ top:
 <div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="p">@</span><span class="n">def</span> <span class="n">give_it_a_name</span> <span class="k">begin</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="nd">@def</span> <span class="n">give_it_a_name</span> <span class="k">begin</span>
   <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
   <span class="n">println</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 <span class="k">end</span>
@@ -12942,14 +12946,14 @@ top:
 <div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="p">@</span><span class="n">def</span> <span class="n">add_generic_fields</span> <span class="k">begin</span>
-        <span class="n">method_string</span><span class="p">::</span><span class="n">String</span>
-        <span class="n">n</span><span class="p">::</span><span class="kt">Int64</span>
-        <span class="n">x</span><span class="p">::</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
-        <span class="n">f_x</span><span class="p">::</span><span class="n">T</span>
-        <span class="n">f_calls</span><span class="p">::</span><span class="kt">Int64</span>
-        <span class="n">g_calls</span><span class="p">::</span><span class="kt">Int64</span>
-        <span class="n">h_calls</span><span class="p">::</span><span class="kt">Int64</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="nd">@def</span> <span class="n">add_generic_fields</span> <span class="k">begin</span>
+        <span class="n">method_string</span><span class="o">::</span><span class="n">String</span>
+        <span class="n">n</span><span class="o">::</span><span class="kt">Int64</span>
+        <span class="n">x</span><span class="o">::</span><span class="kt">Array</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+        <span class="n">f_x</span><span class="o">::</span><span class="n">T</span>
+        <span class="n">f_calls</span><span class="o">::</span><span class="kt">Int64</span>
+        <span class="n">g_calls</span><span class="o">::</span><span class="kt">Int64</span>
+        <span class="n">h_calls</span><span class="o">::</span><span class="kt">Int64</span>
 <span class="k">end</span>
 </pre></div>
 
@@ -12989,12 +12993,12 @@ top:
 <div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">type</span><span class="nc"> LBFGSState</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
-    <span class="p">@</span><span class="n">add_generic_fields</span>
-    <span class="n">x_previous</span><span class="p">::</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
-    <span class="n">g</span><span class="p">::</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
-    <span class="n">g_previous</span><span class="p">::</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
-    <span class="n">rho</span><span class="p">::</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">mutable</span> <span class="n">struct</span> <span class="n">LBFGSState</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+    <span class="nd">@add_generic_fields</span>
+    <span class="n">x_previous</span><span class="o">::</span><span class="kt">Array</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+    <span class="n">g</span><span class="o">::</span><span class="kt">Array</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+    <span class="n">g_previous</span><span class="o">::</span><span class="kt">Array</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+    <span class="n">rho</span><span class="o">::</span><span class="kt">Array</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
     <span class="c"># ... more fields ... </span>
 <span class="k">end</span>
 </pre></div>
@@ -13020,16 +13024,16 @@ top:
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="c"># The abstract type</span>
-<span class="p">@</span><span class="n">base</span> <span class="k">type</span><span class="nc"> AbstractFoo</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+<span class="nd">@base</span> <span class="n">mutable</span> <span class="n">struct</span> <span class="n">AbstractFoo</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
     <span class="n">a</span>
-    <span class="n">b</span><span class="p">::</span><span class="kt">Int</span>
-    <span class="n">c</span><span class="p">::</span><span class="n">T</span>
-    <span class="n">d</span><span class="p">::</span><span class="n">Vector</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+    <span class="n">b</span><span class="o">::</span><span class="kt">Int</span>
+    <span class="n">c</span><span class="o">::</span><span class="n">T</span>
+    <span class="n">d</span><span class="o">::</span><span class="kt">Vector</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
 <span class="k">end</span>
 
 <span class="c"># Inheritance</span>
-<span class="p">@</span><span class="n">extend</span> <span class="k">type</span><span class="nc"> Foo</span> <span class="o">&lt;:</span> <span class="n">AbstractFoo</span>
-    <span class="n">e</span><span class="p">::</span><span class="n">T</span>
+<span class="nd">@extend</span> <span class="n">mutable</span> <span class="n">struct</span> <span class="n">Foo</span> <span class="o">&lt;:</span> <span class="n">AbstractFoo</span>
+    <span class="nb">e</span><span class="o">::</span><span class="n">T</span>
 <span class="k">end</span>
 </pre></div>
 
@@ -13053,12 +13057,12 @@ top:
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">type</span><span class="nc"> Foo</span><span class="p">{</span><span class="n">T</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">AbstractFoo</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">mutable</span> <span class="n">struct</span> <span class="n">Foo</span><span class="p">{</span><span class="n">T</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">AbstractFoo</span>
     <span class="n">a</span>
-    <span class="n">b</span><span class="p">::</span><span class="kt">Int</span>
-    <span class="n">c</span><span class="p">::</span><span class="n">T</span>
-    <span class="n">d</span><span class="p">::</span><span class="n">Vector</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
-    <span class="n">e</span><span class="p">::</span><span class="n">T</span>
+    <span class="n">b</span><span class="o">::</span><span class="kt">Int</span>
+    <span class="n">c</span><span class="o">::</span><span class="n">T</span>
+    <span class="n">d</span><span class="o">::</span><span class="kt">Vector</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+    <span class="nb">e</span><span class="o">::</span><span class="n">T</span>
 <span class="k">end</span>
 </pre></div>
 

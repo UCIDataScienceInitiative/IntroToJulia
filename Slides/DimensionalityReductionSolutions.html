@@ -11685,8 +11685,10 @@ ul.typeahead-list > li > a {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -11697,9 +11699,11 @@ ul.typeahead-list > li > a {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
 <style type="text/css">
@@ -11876,8 +11880,8 @@ together with the words sorted into their original classes is below.</p>
 
 <span class="n">words_by_class</span> <span class="o">=</span> <span class="p">[</span><span class="n">countries</span><span class="p">,</span> <span class="n">usa_cities</span><span class="p">,</span> <span class="n">world_capitals</span><span class="p">,</span> <span class="n">animals</span><span class="p">,</span> <span class="n">sports</span><span class="p">]</span>
 <span class="n">all_words</span> <span class="o">=</span> <span class="n">vcat</span><span class="p">(</span><span class="n">words_by_class</span><span class="o">...</span><span class="p">)</span>
-<span class="n">classes</span> <span class="o">=</span> <span class="n">vcat</span><span class="p">(((</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span> <span class="o">.*</span> <span class="n">ones</span><span class="o">.</span><span class="p">(</span><span class="n">length</span><span class="o">.</span><span class="p">(</span><span class="n">words_by_class</span><span class="p">)))</span><span class="o">...</span><span class="p">);</span>
-<span class="n">embeddings</span> <span class="o">=</span> <span class="nb">load</span><span class="p">(</span><span class="s">&quot;../assets/ClusteringAndDimensionalityReduction.jld&quot;</span><span class="p">,</span> <span class="s">&quot;embeddings&quot;</span><span class="p">)</span>
+<span class="n">classes</span> <span class="o">=</span> <span class="n">vcat</span><span class="p">(((</span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="p">)</span> <span class="o">.*</span> <span class="n">ones</span><span class="o">.</span><span class="p">(</span><span class="n">length</span><span class="o">.</span><span class="p">(</span><span class="n">words_by_class</span><span class="p">)))</span><span class="o">...</span><span class="p">);</span>
+<span class="n">embeddings</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s">&quot;../assets/ClusteringAndDimensionalityReduction.jld&quot;</span><span class="p">,</span> <span class="s">&quot;embeddings&quot;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12079,7 +12083,7 @@ e.exports={lon:{valType:"data_array"},lat:{valType:"data_array"},locations:{valT
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="c">#Direct projection -- no DR -- just throw away the information in the other axies</span>
 <span class="n">xs</span><span class="o">=</span><span class="n">embeddings_mat</span>
-<span class="n">scatter</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span> <span class="n">xs</span><span class="p">[</span><span class="mi">2</span><span class="p">,:],</span> <span class="n">xs</span><span class="p">[</span><span class="mi">3</span><span class="p">,:];</span> <span class="n">hover</span><span class="o">=</span><span class="n">all_words</span><span class="p">,</span> <span class="n">zcolor</span><span class="o">=</span><span class="n">classes</span><span class="p">)</span>
+<span class="n">scatter</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">],</span> <span class="n">xs</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="o">:</span><span class="p">],</span> <span class="n">xs</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="o">:</span><span class="p">];</span> <span class="n">hover</span><span class="o">=</span><span class="n">all_words</span><span class="p">,</span> <span class="n">zcolor</span><span class="o">=</span><span class="n">classes</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12123,7 +12127,7 @@ e.exports={lon:{valType:"data_array"},lat:{valType:"data_array"},locations:{valT
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">PCA</span><span class="p">,</span> <span class="n">embeddings_mat</span><span class="p">;</span> <span class="n">maxoutdim</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">xs</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">embeddings_mat</span><span class="p">)</span>
-<span class="n">scatter</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span> <span class="n">xs</span><span class="p">[</span><span class="mi">2</span><span class="p">,:],</span> <span class="n">xs</span><span class="p">[</span><span class="mi">3</span><span class="p">,:];</span> <span class="n">hover</span><span class="o">=</span><span class="n">all_words</span><span class="p">,</span> <span class="n">zcolor</span><span class="o">=</span><span class="n">classes</span><span class="p">)</span>
+<span class="n">scatter</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">],</span> <span class="n">xs</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="o">:</span><span class="p">],</span> <span class="n">xs</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="o">:</span><span class="p">];</span> <span class="n">hover</span><span class="o">=</span><span class="n">all_words</span><span class="p">,</span> <span class="n">zcolor</span><span class="o">=</span><span class="n">classes</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12158,7 +12162,7 @@ e.exports={lon:{valType:"data_array"},lat:{valType:"data_array"},locations:{valT
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">PCA</span><span class="p">,</span> <span class="n">embeddings_mat</span><span class="p">;</span> <span class="n">maxoutdim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">xs</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">embeddings_mat</span><span class="p">)</span>
-<span class="n">scatter</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span> <span class="n">xs</span><span class="p">[</span><span class="mi">2</span><span class="p">,:];</span> <span class="n">hover</span><span class="o">=</span><span class="n">all_words</span><span class="p">,</span> <span class="n">zcolor</span><span class="o">=</span><span class="n">classes</span><span class="p">)</span>
+<span class="n">scatter</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">],</span> <span class="n">xs</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="o">:</span><span class="p">];</span> <span class="n">hover</span><span class="o">=</span><span class="n">all_words</span><span class="p">,</span> <span class="n">zcolor</span><span class="o">=</span><span class="n">classes</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12193,7 +12197,7 @@ e.exports={lon:{valType:"data_array"},lat:{valType:"data_array"},locations:{valT
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">PCA</span><span class="p">,</span> <span class="n">embeddings_mat</span><span class="p">;</span> <span class="n">maxoutdim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">xs</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">embeddings_mat</span><span class="p">)</span>
-<span class="n">scatter</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span> <span class="n">ones</span><span class="p">(</span><span class="n">length</span><span class="p">(</span><span class="n">xs</span><span class="p">));</span> <span class="n">hover</span><span class="o">=</span><span class="n">all_words</span><span class="p">,</span> <span class="n">zcolor</span><span class="o">=</span><span class="n">classes</span><span class="p">)</span>
+<span class="n">scatter</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">],</span> <span class="n">ones</span><span class="p">(</span><span class="n">length</span><span class="p">(</span><span class="n">xs</span><span class="p">));</span> <span class="n">hover</span><span class="o">=</span><span class="n">all_words</span><span class="p">,</span> <span class="n">zcolor</span><span class="o">=</span><span class="n">classes</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12235,7 +12239,7 @@ e.exports={lon:{valType:"data_array"},lat:{valType:"data_array"},locations:{valT
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">embeddings_mat_f64</span> <span class="o">=</span> <span class="nb">convert</span><span class="p">(</span><span class="n">Matrix</span><span class="p">{</span><span class="kt">Float64</span><span class="p">},</span> <span class="n">embeddings_mat</span><span class="p">)</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">embeddings_mat_f64</span> <span class="o">=</span> <span class="n">convert</span><span class="p">(</span><span class="kt">Matrix</span><span class="p">{</span><span class="kt">Float64</span><span class="p">},</span> <span class="n">embeddings_mat</span><span class="p">)</span>
 
 <span class="n">M</span> <span class="o">=</span> <span class="n">fit</span><span class="p">(</span><span class="n">ICA</span><span class="p">,</span> <span class="kt">Float64</span><span class="o">.</span><span class="p">(</span><span class="n">embeddings_mat_f64</span><span class="p">),</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">xs</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">embeddings_mat_f64</span><span class="p">)</span>
@@ -12272,7 +12276,7 @@ e.exports={lon:{valType:"data_array"},lat:{valType:"data_array"},locations:{valT
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">scatter</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span> <span class="n">xs</span><span class="p">[</span><span class="mi">2</span><span class="p">,:],</span> <span class="n">xs</span><span class="p">[</span><span class="mi">3</span><span class="p">,:];</span> <span class="n">hover</span><span class="o">=</span><span class="n">all_words</span><span class="p">,</span> <span class="n">zcolor</span><span class="o">=</span><span class="n">classes</span><span class="p">)</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">scatter</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">],</span> <span class="n">xs</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="o">:</span><span class="p">],</span> <span class="n">xs</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="o">:</span><span class="p">];</span> <span class="n">hover</span><span class="o">=</span><span class="n">all_words</span><span class="p">,</span> <span class="n">zcolor</span><span class="o">=</span><span class="n">classes</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12512,7 +12516,7 @@ Computing t-SNE100%|████████████████████
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">scatter</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span> <span class="n">xs</span><span class="p">[</span><span class="mi">2</span><span class="p">,:],</span> <span class="n">xs</span><span class="p">[</span><span class="mi">3</span><span class="p">,:];</span> <span class="n">hover</span><span class="o">=</span><span class="n">all_words</span><span class="p">,</span> <span class="n">zcolor</span><span class="o">=</span><span class="n">classes</span><span class="p">)</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">scatter</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">],</span> <span class="n">xs</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="o">:</span><span class="p">],</span> <span class="n">xs</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="o">:</span><span class="p">];</span> <span class="n">hover</span><span class="o">=</span><span class="n">all_words</span><span class="p">,</span> <span class="n">zcolor</span><span class="o">=</span><span class="n">classes</span><span class="p">)</span>
 </pre></div>
 
 </div>

@@ -166,6 +166,7 @@
 \expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
@@ -190,6 +191,7 @@
 \expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
@@ -198,6 +200,7 @@
 \expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
 \expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
@@ -218,6 +221,7 @@
 \expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
 \expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
@@ -283,9 +287,9 @@ access to the values of the outer function. For example:
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}1}]:} \PY{n}{x}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{;} \PY{n}{y}\PY{o}{=}\PY{l+m+mi}{7}\PY{p}{;} \PY{c}{\PYZsh{}Defined globally}
-        \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{scopeTest}\PY{p}{(}\PY{n}{z}\PY{p}{)}
-          \PY{n}{x} \PY{o}{+}\PY{o}{=} \PY{n}{z} \PY{c}{\PYZsh{}Changes global value}
-          \PY{n}{y} \PY{o}{=} \PY{n}{Vector}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)} \PY{c}{\PYZsh{}Declares a variable, local scope}
+        \PY{k}{function} \PY{n}{scopeTest}\PY{p}{(}\PY{n}{z}\PY{p}{)}
+          \PY{n}{x} \PY{o}{+=} \PY{n}{z} \PY{c}{\PYZsh{}Changes global value}
+          \PY{n}{y} \PY{o}{=} \PY{k+kt}{Vector}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)} \PY{c}{\PYZsh{}Declares a variable, local scope}
           \PY{n}{y}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{2}
           \PY{k}{return} \PY{n}{x} \PY{o}{+} \PY{n}{y} \PY{o}{+} \PY{n}{z}
         \PY{k}{end}
@@ -299,8 +303,8 @@ access to the values of the outer function. For example:
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}37}]:} \PY{n}{addprocs}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
-         \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{f1}\PY{p}{(}\PY{p}{)}
-           \PY{p}{@}\PY{n}{parallel} \PY{k}{for} \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{100}
+         \PY{k}{function} \PY{n}{f1}\PY{p}{(}\PY{p}{)}
+           \PY{n+nd}{@parallel} \PY{k}{for} \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{100}
              \PY{n}{x} \PY{o}{=} \PY{l+m+mi}{10}
              \PY{k}{if} \PY{n}{x} \PY{o}{\PYZlt{}} \PY{l+m+mi}{100}
                \PY{n}{x} \PY{o}{=} \PY{n}{x} \PY{o}{+} \PY{l+m+mi}{1}
@@ -335,8 +339,8 @@ WARNING: Method definition f1() in module Main at In[36]:3 overwritten at In[37]
     \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}38}]:} \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{f2}\PY{p}{(}\PY{p}{)}
-           \PY{p}{@}\PY{n}{parallel} \PY{k}{for} \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{:}\PY{l+m+mi}{100}
+{\color{incolor}In [{\color{incolor}38}]:} \PY{k}{function} \PY{n}{f2}\PY{p}{(}\PY{p}{)}
+           \PY{n+nd}{@parallel} \PY{k}{for} \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{100}
              \PY{n}{x} \PY{o}{=} \PY{l+m+mi}{10}
              \PY{k}{if} \PY{n}{x} \PY{o}{\PYZlt{}} \PY{l+m+mi}{100}
                \PY{n}{x} \PY{o}{=} \PY{n}{x} \PY{o}{+} \PY{l+m+mi}{1}

@@ -90,17 +90,8 @@ JuliaMath holds basic mathematical libraries.
 
 JuliaDiffEq holds the packages for solving differential equations.
 
-- DifferentialEquations.jl: The core package for solving ODEs, SDEs, PDEs, DAEs, (hopefully DDEs soon...). Also wraps ODE.jl, Sundials.jl, and ODEInterface.jl into one convenient API.
+- DifferentialEquations.jl: The core package for solving ODEs, SDEs, PDEs, DAEs, DDEs, jump problems, etc.
 - Sundials.jl: Wrappers for the Sundials ODE/DAE solvers
-
-## JuliaPlots
-
-JuliaPlots is the organization for plotting and visualization.
-
-- Plots.jl is a metapackage for plotting. It is the main plotting library in Julia.
-- GGPlots.jl is a Grammar of Graphics (GoG) API for Plots.jl
-- StatPlots.jl provides plotting recipes for statistics in Plots.jl
-- PlotRecipes.jl is a random assortment of plotting recipes
 
 ## JuliaInterop
 

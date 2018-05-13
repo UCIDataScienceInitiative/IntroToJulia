@@ -11631,8 +11631,10 @@ ul.typeahead-list > li > a {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -11643,9 +11645,11 @@ ul.typeahead-list > li > a {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
 <style type="text/css">
@@ -11779,7 +11783,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">map</span><span class="p">((</span><span class="n">x</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">map</span><span class="p">((</span><span class="n">x</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11823,7 +11827,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">5</span> <span class="c"># Acts like a column vector, Julia is &quot;column-major&quot; so columns come first</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="mi">5</span> <span class="c"># Acts like a column vector, Julia is &quot;column-major&quot; so columns come first</span>
 <span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span>
      <span class="mi">3</span> <span class="mi">4</span>
      <span class="mi">5</span> <span class="mi">6</span>
@@ -11883,7 +11887,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">5</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="mi">5</span>
 <span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">;</span><span class="mi">3</span><span class="p">;</span><span class="mi">4</span><span class="p">;</span><span class="mi">5</span><span class="p">;</span><span class="mi">6</span><span class="p">]</span>
 <span class="n">A</span><span class="o">.*</span><span class="n">B</span>
 </pre></div>
@@ -11978,9 +11982,9 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span><span class="nf"> </span><span class="o">.*</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Number</span><span class="p">,</span><span class="n">N</span><span class="p">}(</span><span class="n">x</span><span class="p">::</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">y</span><span class="p">::</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">})</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="o">.*</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="kt">Number</span><span class="p">,</span><span class="n">N</span><span class="p">}(</span><span class="n">x</span><span class="o">::</span><span class="kt">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">y</span><span class="o">::</span><span class="kt">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">})</span>
     <span class="n">output</span> <span class="o">=</span> <span class="n">similar</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c"># Makes an array of similar size and shape as x</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">eachindex</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c"># Let the iterator choose the fast linear indexing for x</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="kp">in</span> <span class="n">eachindex</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c"># Let the iterator choose the fast linear indexing for x</span>
         <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="k">end</span>
     <span class="n">output</span>
@@ -12023,9 +12027,9 @@ while loading In[13], in expression starting on line 1
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span><span class="nf"> Base</span><span class="o">.</span><span class="p">:</span><span class="o">.*</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="n">Number</span><span class="p">,</span><span class="n">N</span><span class="p">}(</span><span class="n">x</span><span class="p">::</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">y</span><span class="p">::</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">z</span><span class="p">::</span><span class="n">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">})</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">Base</span><span class="o">.:.*</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="kt">Number</span><span class="p">,</span><span class="n">N</span><span class="p">}(</span><span class="n">x</span><span class="o">::</span><span class="kt">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">y</span><span class="o">::</span><span class="kt">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">},</span><span class="n">z</span><span class="o">::</span><span class="kt">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">})</span>
     <span class="n">output</span> <span class="o">=</span> <span class="n">similar</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c"># Makes an array of similar size and shape as x</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">eachindex</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c"># Let the iterator choose the fast linear indexing for x</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="kp">in</span> <span class="n">eachindex</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c"># Let the iterator choose the fast linear indexing for x</span>
         <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="k">end</span>
     <span class="n">output</span>
@@ -12184,7 +12188,7 @@ while loading In[13], in expression starting on line 1
 <div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="p">@</span><span class="n">time</span> <span class="n">D</span><span class="o">.=</span><span class="n">A</span><span class="o">.*</span><span class="n">B</span><span class="o">.*</span><span class="n">C</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="nd">@time</span> <span class="n">D</span><span class="o">.=</span><span class="n">A</span><span class="o">.*</span><span class="n">B</span><span class="o">.*</span><span class="n">C</span>
 </pre></div>
 
 </div>
@@ -12247,7 +12251,7 @@ while loading In[13], in expression starting on line 1
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="c"># Generate a 4x4 random matrix</span>
-<span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="c"># Take the top left 3-3 matrix</span>
+<span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="o">:</span><span class="mi">3</span><span class="p">]</span> <span class="c"># Take the top left 3-3 matrix</span>
 </pre></div>
 
 </div>
@@ -12299,7 +12303,7 @@ while loading In[13], in expression starting on line 1
 <div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="p">@</span><span class="n">time</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="nd">@time</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="o">:</span><span class="mi">3</span><span class="p">]</span>
 </pre></div>
 
 </div>
@@ -12349,10 +12353,10 @@ while loading In[13], in expression starting on line 1
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">;</span><span class="mi">3</span><span class="p">;</span><span class="mi">5</span><span class="p">]</span>
-<span class="p">@</span><span class="n">time</span> <span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
+<span class="nd">@time</span> <span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
 <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">a</span>
-<span class="p">@</span><span class="n">time</span> <span class="n">c</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nd">@time</span> <span class="n">c</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12445,17 +12449,17 @@ while loading In[13], in expression starting on line 1
 <div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span><span class="nf"> testloops</span><span class="p">()</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">testloops</span><span class="p">()</span>
     <span class="n">b</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
     <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span> <span class="c"># Need this so that way the compiler doesn&#39;t optimize away the loop!</span>
-    <span class="p">@</span><span class="n">time</span> <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span> <span class="n">j</span> <span class="k">in</span> <span class="mi">1</span><span class="p">:</span><span class="mi">1000</span>
+    <span class="nd">@time</span> <span class="k">for</span> <span class="n">i</span> <span class="kp">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">1000</span><span class="p">,</span> <span class="n">j</span> <span class="kp">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">1000</span>
         <span class="n">c</span><span class="o">+=</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
     <span class="k">end</span>
-    <span class="p">@</span><span class="n">time</span> <span class="k">for</span> <span class="n">j</span> <span class="k">in</span> <span class="mi">1</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="p">:</span><span class="mi">1000</span>
+    <span class="nd">@time</span> <span class="k">for</span> <span class="n">j</span> <span class="kp">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">1000</span><span class="p">,</span> <span class="n">i</span> <span class="kp">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">1000</span>
         <span class="n">c</span><span class="o">+=</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
     <span class="k">end</span>
     <span class="n">bidx</span> <span class="o">=</span> <span class="n">eachindex</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-    <span class="p">@</span><span class="n">time</span> <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">bidx</span>
+    <span class="nd">@time</span> <span class="k">for</span> <span class="n">i</span> <span class="kp">in</span> <span class="n">bidx</span>
         <span class="n">c</span><span class="o">+=</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="k">end</span>
 <span class="k">end</span>
@@ -12507,7 +12511,7 @@ while loading In[13], in expression starting on line 1
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-<span class="n">B</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="o">:</span><span class="mi">3</span><span class="p">]</span>
 <span class="n">B</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">100</span>
 <span class="n">println</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 </pre></div>
@@ -12547,7 +12551,7 @@ while loading In[13], in expression starting on line 1
 <div class="prompt input_prompt">In&nbsp;[51]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">view</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">)</span> <span class="c"># No copy involved</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">view</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="mi">1</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="o">:</span><span class="mi">3</span><span class="p">)</span> <span class="c"># No copy involved</span>
 <span class="n">B</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span> <span class="c"># Will mutate A</span>
 <span class="n">println</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 </pre></div>
@@ -12699,8 +12703,8 @@ while loading In[13], in expression starting on line 1
 <div class="prompt input_prompt">In&nbsp;[59]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">4</span>
-<span class="n">A</span>\<span class="n">b</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="mi">4</span>
+<span class="n">A</span><span class="o">\</span><span class="n">b</span>
 </pre></div>
 
 </div>
@@ -12754,7 +12758,7 @@ while loading In[13], in expression starting on line 1
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">.=</span> <span class="n">view</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">i</span><span class="p">,:)</span> <span class="o">.*</span> <span class="n">view</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">i</span><span class="p">,:)</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="o">:</span><span class="p">]</span> <span class="o">.=</span> <span class="n">view</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="o">:</span><span class="p">)</span> <span class="o">.*</span> <span class="n">view</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="o">:</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12891,7 +12895,7 @@ while loading In[13], in expression starting on line 1
 <div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">Tridiagonal</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">)</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="kt">Tridiagonal</span><span class="p">(</span><span class="mi">2</span><span class="o">:</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="o">:</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="o">:</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -13058,7 +13062,7 @@ while loading In[13], in expression starting on line 1
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">λ</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">A</span> <span class="o">-</span> <span class="n">λ</span><span class="o">*</span><span class="n">I</span>
+<span class="n">A</span> <span class="o">-</span> <span class="n">λ</span><span class="o">*</span><span class="nb">I</span>
 </pre></div>
 
 </div>
@@ -13112,10 +13116,10 @@ while loading In[13], in expression starting on line 1
 <div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">:</span><span class="mi">5</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="mi">5</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">Q</span><span class="p">,</span><span class="n">R</span> <span class="o">=</span> <span class="n">qr</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-<span class="n">println</span><span class="p">(</span><span class="n">A</span>\<span class="n">b</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="n">A</span><span class="o">\</span><span class="n">b</span><span class="p">)</span>
 <span class="n">println</span><span class="p">(</span><span class="n">inv</span><span class="p">(</span><span class="n">R</span><span class="p">)</span><span class="o">*</span><span class="n">Q</span><span class="o">&#39;*</span><span class="n">b</span><span class="p">)</span>
 </pre></div>
 
@@ -13193,7 +13197,7 @@ while loading In[13], in expression starting on line 1
 <div class="prompt input_prompt">In&nbsp;[46]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">q</span>\<span class="n">b</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">q</span><span class="o">\</span><span class="n">b</span>
 </pre></div>
 
 </div>

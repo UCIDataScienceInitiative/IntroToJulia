@@ -166,6 +166,7 @@
 \expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
@@ -190,6 +191,7 @@
 \expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
@@ -198,6 +200,7 @@
 \expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
 \expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
@@ -218,6 +221,7 @@
 \expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
 \expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
@@ -323,25 +327,25 @@ Stochastic Differential Equations
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor} }]:} \PY{o}{\PYZpc{}}\PY{n}{BPATH1} \PY{n}{Brownian} \PY{n}{path} \PY{n}{simulation}
-        \PY{k}{function}\PY{n+nf}{ }\PY{o}{[}\PY{n}{t}\PY{p}{,}\PY{n}{W}\PY{p}{]}\PY{o}{=}\PY{n}{BPATH1}\PY{p}{(}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{)}
+        \PY{k}{function} \PY{p}{[}\PY{n}{t}\PY{p}{,}\PY{n}{W}\PY{p}{]}\PY{o}{=}\PY{n}{BPATH1}\PY{p}{(}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{)}
         \PY{n}{randn}\PY{p}{(}\PY{err}{\PYZsq{}}\PY{n}{state}\PY{o}{\PYZsq{}}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{)}
         \PY{n}{dt} \PY{o}{=} \PY{n}{T}\PY{o}{/}\PY{n}{N}\PY{p}{;}
         \PY{n}{dW} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{n}{N}\PY{p}{)}\PY{p}{;}
         \PY{n}{W} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{n}{N}\PY{p}{)}\PY{p}{;}
         
-        \PY{n}{dW}\PY{p}{(}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)} \PY{o}{=} \PY{n}{sqrt}\PY{p}{(}\PY{n}{dt}\PY{p}{)}\PY{o}{*}\PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{;}
-        \PY{n}{W}\PY{p}{(}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)} \PY{o}{=} \PY{n}{dW}\PY{p}{(}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{;}
+        \PY{n}{dW}\PY{p}{(}\PY{o}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)} \PY{o}{=} \PY{n}{sqrt}\PY{p}{(}\PY{n}{dt}\PY{p}{)}\PY{o}{*}\PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{;}
+        \PY{n}{W}\PY{p}{(}\PY{o}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)} \PY{o}{=} \PY{n}{dW}\PY{p}{(}\PY{o}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{;}
         
-        \PY{k}{for} \PY{n}{j} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{:}\PY{n}{N}
-            \PY{n}{dW}\PY{p}{(}\PY{p}{:}\PY{p}{,}\PY{n}{j}\PY{p}{)} \PY{o}{=} \PY{n}{sqrt}\PY{p}{(}\PY{n}{dt}\PY{p}{)}\PY{o}{*}\PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{;}
-            \PY{n}{W}\PY{p}{(}\PY{p}{:}\PY{p}{,}\PY{n}{j}\PY{p}{)} \PY{o}{=} \PY{n}{W}\PY{p}{(}\PY{p}{:}\PY{p}{,}\PY{n}{j}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)} \PY{o}{+} \PY{n}{dW}\PY{p}{(}\PY{p}{:}\PY{p}{,}\PY{n}{j}\PY{p}{)}\PY{p}{;}
+        \PY{k}{for} \PY{n}{j} \PY{o}{=} \PY{l+m+mi}{2}\PY{o}{:}\PY{n}{N}
+            \PY{n}{dW}\PY{p}{(}\PY{o}{:}\PY{p}{,}\PY{n}{j}\PY{p}{)} \PY{o}{=} \PY{n}{sqrt}\PY{p}{(}\PY{n}{dt}\PY{p}{)}\PY{o}{*}\PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{;}
+            \PY{n}{W}\PY{p}{(}\PY{o}{:}\PY{p}{,}\PY{n}{j}\PY{p}{)} \PY{o}{=} \PY{n}{W}\PY{p}{(}\PY{o}{:}\PY{p}{,}\PY{n}{j}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)} \PY{o}{+} \PY{n}{dW}\PY{p}{(}\PY{o}{:}\PY{p}{,}\PY{n}{j}\PY{p}{)}\PY{p}{;}
         \PY{k}{end}
-        \PY{n}{t} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{n}{dt}\PY{p}{:}\PY{n}{T}\PY{o}{\PYZhy{}}\PY{n}{dt}\PY{p}{]}\PY{p}{;}
+        \PY{n}{t} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{o}{:}\PY{n}{dt}\PY{o}{:}\PY{n}{T}\PY{o}{\PYZhy{}}\PY{n}{dt}\PY{p}{]}\PY{p}{;}
         \PY{k}{end}
         
         \PY{o}{\PYZpc{}} \PY{n}{In} \PY{n}{Another} \PY{n}{File}\PY{o}{.}\PY{o}{.}\PY{o}{.}
         
-        \PY{n}{f} \PY{o}{=} \PY{p}{@}\PY{p}{(}\PY{p}{)} \PY{n}{BPATH1}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{10000}\PY{p}{)}\PY{p}{;}
+        \PY{n}{f} \PY{o}{=} \PY{err}{@}\PY{p}{(}\PY{p}{)} \PY{n}{BPATH1}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{10000}\PY{p}{)}\PY{p}{;}
         \PY{n}{timeit}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}
         \PY{p}{[}\PY{n}{t}\PY{p}{,}\PY{n}{W}\PY{p}{]} \PY{o}{=} \PY{n}{BPATH1}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{10000}\PY{p}{)}\PY{p}{;}
         \PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,}\PY{n}{W}\PY{p}{,}\PY{err}{\PYZsq{}}\PY{n}{r}\PY{o}{\PYZhy{}}\PY{err}{\PYZsq{}}\PY{p}{)}
@@ -350,26 +354,26 @@ Stochastic Differential Equations
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{function}\PY{n+nf}{ }\PY{n+nf}{bpath}\PY{p}{(}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{function} \PY{n}{bpath}\PY{p}{(}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{)}
             \PY{n}{srand}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)}
             \PY{n}{dt} \PY{o}{=} \PY{n}{T}\PY{o}{/}\PY{n}{N}
             \PY{n}{dW} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{n}{N}\PY{p}{)}
             \PY{n}{W} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{n}{N}\PY{p}{)}
         
-            \PY{n}{dW}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{sqrt}\PY{p}{(}\PY{n}{dt}\PY{p}{)}\PY{o}{*}\PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
-            \PY{n}{W}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{dW}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}
+            \PY{n}{dW}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{sqrt}\PY{p}{(}\PY{n}{dt}\PY{p}{)}\PY{o}{*}\PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+            \PY{n}{W}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{dW}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}
         
-            \PY{k}{for} \PY{n}{j} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{:}\PY{n}{N}
-                \PY{n}{dW}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{j}\PY{p}{]} \PY{o}{.}\PY{o}{=} \PY{n}{sqrt}\PY{p}{(}\PY{n}{dt}\PY{p}{)}\PY{o}{*}\PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
-                \PY{n}{W}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{j}\PY{p}{]} \PY{o}{.}\PY{o}{=} \PY{n}{W}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{j}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{.}\PY{o}{+} \PY{n}{dW}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{j}\PY{p}{]}
+            \PY{k}{for} \PY{n}{j} \PY{o}{=} \PY{l+m+mi}{2}\PY{o}{:}\PY{n}{N}
+                \PY{n}{dW}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{n}{j}\PY{p}{]} \PY{o}{.=} \PY{n}{sqrt}\PY{p}{(}\PY{n}{dt}\PY{p}{)}\PY{o}{*}\PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+                \PY{n}{W}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{n}{j}\PY{p}{]} \PY{o}{.=} \PY{n}{W}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{n}{j}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{.+} \PY{n}{dW}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{n}{j}\PY{p}{]}
             \PY{k}{end}
-            \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{n}{dt}\PY{p}{:}\PY{n}{T}\PY{o}{\PYZhy{}}\PY{n}{dt}\PY{p}{]}\PY{p}{,}\PY{n}{W}
+            \PY{p}{[}\PY{l+m+mi}{0}\PY{o}{:}\PY{n}{dt}\PY{o}{:}\PY{n}{T}\PY{o}{\PYZhy{}}\PY{n}{dt}\PY{p}{]}\PY{p}{,}\PY{n}{W}
         \PY{k}{end} \PY{c}{\PYZsh{} Translation took \PYZlt{} 1 minute}
-        \PY{p}{@}\PY{n}{time} \PY{n}{t}\PY{p}{,}\PY{n}{W} \PY{o}{=} \PY{n}{bpath}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{100000}\PY{p}{)} \PY{c}{\PYZsh{} Timing is slower in Jupyter!}
-        \PY{p}{@}\PY{n}{time} \PY{n}{t}\PY{p}{,}\PY{n}{W} \PY{o}{=} \PY{n}{bpath}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{100000}\PY{p}{)} \PY{c}{\PYZsh{} Timing is slower in Jupyter!}
+        \PY{n+nd}{@time} \PY{n}{t}\PY{p}{,}\PY{n}{W} \PY{o}{=} \PY{n}{bpath}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{100000}\PY{p}{)} \PY{c}{\PYZsh{} Timing is slower in Jupyter!}
+        \PY{n+nd}{@time} \PY{n}{t}\PY{p}{,}\PY{n}{W} \PY{o}{=} \PY{n}{bpath}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{100000}\PY{p}{)} \PY{c}{\PYZsh{} Timing is slower in Jupyter!}
         \PY{c}{\PYZsh{} 10x speedup over MATLAB}
         \PY{k}{using} \PY{n}{Plots}
-        \PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,}\PY{n}{W}\PY{o}{\PYZsq{}}\PY{p}{,}\PY{n}{color}\PY{o}{=}\PY{p}{:}\PY{n}{red}\PY{p}{,}\PY{n}{xlabel}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{n}{ylabel}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{W(t)}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,}\PY{n}{W}\PY{o}{\PYZsq{}}\PY{p}{,}\PY{n}{color}\PY{o}{=}\PY{o}{:}\PY{n}{red}\PY{p}{,}\PY{n}{xlabel}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{n}{ylabel}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{W}\PY{l+s}{(}\PY{l+s}{t}\PY{l+s}{)}\PY{l+s}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]

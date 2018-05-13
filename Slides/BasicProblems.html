@@ -11685,8 +11685,10 @@ ul.typeahead-list > li > a {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -11697,9 +11699,11 @@ ul.typeahead-list > li > a {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
 <style type="text/css">
@@ -11913,48 +11917,6 @@ $$ x_{t+1} = \alpha x_i + \epsilon_{t+1} $$<p>where $x_0 = 0$ and $t=0,\ldots,T$
 2) $\alpha = 0.5$
 3) $\alpha = 0.9$</p>
 <p>use Plots.jl to plot a timecourse for each of the parameters. Label the lines for the values of $\alpha$ that generate them using the <code>label</code> argument in <code>plot</code>.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Regression-Problem">Regression Problem<a class="anchor-link" href="#Regression-Problem">&#182;</a></h4>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="c">#### Prepare Data For Regression Problem</span>
-
-<span class="n">X</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>               <span class="c"># feature matrix</span>
-<span class="n">a0</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>                    <span class="c"># ground truths</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">X</span> <span class="o">*</span> <span class="n">a0</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>  <span class="c"># generate response</span>
-
-<span class="c"># Data For Regression Problem Part 2</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
-<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span><span class="n">X</span>  <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Given an Nx3 array of data (<code>randn(N,3)</code>) and a Nx1 array of outcomes, produce the data matrix <code>X</code> which appends a column of 1's to the front of the data matrix, and solve for the 4x1 array <code>β</code> via <code>βX = b</code> using <code>qrfact</code>, or <code>\</code>, or <a href="https://en.wikipedia.org/wiki/Ordinary_least_squares#Estimation">the definition of the OLS estimator</a>. (Note: This is linear regression).</p>
-<p>Compare your results to that of using <code>llsq</code> from <code>MultivariateStats.jl</code> (note: you need to go find the documentation to find out how to use this!). Compare your results to that of using ordinary least squares regression from <code>GLM.jl</code>.</p>
-<h4 id="Regression-Problem-Part-2">Regression Problem Part 2<a class="anchor-link" href="#Regression-Problem-Part-2">&#182;</a></h4><p>Using your OLS estimator or one of the aforementioned packages, solve for the regression line using the (X,y) data above. Plot the (X,y) scatter plot using <code>scatter!</code> from Plots.jl. Add the regression line using <code>abline!</code>. Add a title saying "Regression Plot on Fake Data", and label the x and y axis.</p>
 
 </div>
 </div>

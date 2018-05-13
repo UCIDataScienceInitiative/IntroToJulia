@@ -90,6 +90,7 @@ Julia is changing fast: there are updates every few months which bring in loads 
 
 The main Julia community resources are:
 
+- [The Julia Slack](https://slackinvite.julialang.org/) - A chatroom for Julia users and Julia help. Frequented by core developers.
 - [The JuliaLang Gitter](https://gitter.im/JuliaLang/julia) - A chatroom for Julia users
 - [The Julia Discourse](https://discourse.julialang.org/) - A forum / mailing list for Julia users. Frequented by core developers.
 - [The JuliaLang Github Repository](https://github.com/JuliaLang/julia) - The issues/PRs document everything changing in Julia

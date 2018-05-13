@@ -166,6 +166,7 @@
 \expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
@@ -190,6 +191,7 @@
 \expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 \expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
@@ -198,6 +200,7 @@
 \expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
 \expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
 \expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
@@ -218,6 +221,7 @@
 \expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
 \expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
 \expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
@@ -330,7 +334,7 @@ z\prime &= xy - \beta z\\
 is the following:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{n}{f} \PY{o}{=} \PY{p}{(}\PY{n}{t}\PY{p}{,}\PY{n}{u}\PY{p}{,}\PY{n}{du}\PY{p}{)} \PY{o}{\PYZhy{}\PYZgt{}} \PY{k}{begin}
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{f} \PY{o}{=} \PY{p}{(}\PY{n}{t}\PY{p}{,}\PY{n}{u}\PY{p}{,}\PY{n}{du}\PY{p}{)} \PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}} \PY{k}{begin}
          \PY{n}{du}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{l+m+mf}{10.0}\PY{p}{(}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
          \PY{n}{du}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{=} \PY{n}{u}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{p}{(}\PY{l+m+mf}{28.0}\PY{o}{\PYZhy{}}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{u}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
          \PY{n}{du}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]} \PY{o}{=} \PY{n}{u}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{p}{(}\PY{l+m+mi}{8}\PY{o}{/}\PY{l+m+mi}{3}\PY{p}{)}\PY{o}{*}\PY{n}{u}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}
@@ -340,11 +344,11 @@ is the following:
     However, we can define a DSL to make this easier to do:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{n}{g} \PY{o}{=} \PY{p}{@}\PY{n}{ode\PYZus{}def} \PY{k}{begin}
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{g} \PY{o}{=} \PY{n+nd}{@ode\PYZus{}def} \PY{k}{begin}
           \PY{n}{dx} \PY{o}{=} \PY{n}{σ}\PY{o}{*}\PY{p}{(}\PY{n}{y}\PY{o}{\PYZhy{}}\PY{n}{x}\PY{p}{)}
           \PY{n}{dy} \PY{o}{=} \PY{n}{x}\PY{o}{*}\PY{p}{(}\PY{n}{ρ}\PY{o}{\PYZhy{}}\PY{n}{z}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{y}
           \PY{n}{dz} \PY{o}{=} \PY{n}{x}\PY{o}{*}\PY{n}{y} \PY{o}{\PYZhy{}} \PY{n}{β}\PY{o}{*}\PY{n}{z}
-        \PY{k}{end} \PY{n}{σ}\PY{o}{=}\PY{o}{\PYZgt{}}\PY{l+m+mf}{10.} \PY{n}{ρ}\PY{o}{=}\PY{o}{\PYZgt{}}\PY{l+m+mf}{28.} \PY{n}{β}\PY{o}{=}\PY{o}{\PYZgt{}}\PY{l+m+mf}{2.66}
+        \PY{k}{end} \PY{n}{σ}\PY{o}{=\PYZgt{}}\PY{l+m+mf}{10.} \PY{n}{ρ}\PY{o}{=\PYZgt{}}\PY{l+m+mf}{28.} \PY{n}{β}\PY{o}{=\PYZgt{}}\PY{l+m+mf}{2.66}
 \end{Verbatim}
 
     \subsubsection{JuMP.jl}\label{jump.jl}
@@ -358,19 +362,19 @@ use as the solver without care.
 {\color{incolor}In [{\color{incolor} }]:} \PY{k}{using} \PY{n}{JuMP}
         
         \PY{n}{m} \PY{o}{=} \PY{n}{Model}\PY{p}{(}\PY{p}{)}
-        \PY{p}{@}\PY{n}{variable}\PY{p}{(}\PY{n}{m}\PY{p}{,} \PY{l+m+mi}{0} \PY{o}{\PYZlt{}=} \PY{n}{x} \PY{o}{\PYZlt{}=} \PY{l+m+mi}{2} \PY{p}{)}
-        \PY{p}{@}\PY{n}{variable}\PY{p}{(}\PY{n}{m}\PY{p}{,} \PY{l+m+mi}{0} \PY{o}{\PYZlt{}=} \PY{n}{y} \PY{o}{\PYZlt{}=} \PY{l+m+mi}{30} \PY{p}{)}
+        \PY{n+nd}{@variable}\PY{p}{(}\PY{n}{m}\PY{p}{,} \PY{l+m+mi}{0} \PY{o}{\PYZlt{}=} \PY{n}{x} \PY{o}{\PYZlt{}=} \PY{l+m+mi}{2} \PY{p}{)}
+        \PY{n+nd}{@variable}\PY{p}{(}\PY{n}{m}\PY{p}{,} \PY{l+m+mi}{0} \PY{o}{\PYZlt{}=} \PY{n}{y} \PY{o}{\PYZlt{}=} \PY{l+m+mi}{30} \PY{p}{)}
         
-        \PY{p}{@}\PY{n}{objective}\PY{p}{(}\PY{n}{m}\PY{p}{,} \PY{n}{Max}\PY{p}{,} \PY{l+m+mi}{5}\PY{n}{x} \PY{o}{+} \PY{l+m+mi}{3}\PY{o}{*}\PY{n}{y} \PY{p}{)}
-        \PY{p}{@}\PY{n}{constraint}\PY{p}{(}\PY{n}{m}\PY{p}{,} \PY{l+m+mi}{1}\PY{n}{x} \PY{o}{+} \PY{l+m+mi}{5}\PY{n}{y} \PY{o}{\PYZlt{}=} \PY{l+m+mf}{3.0} \PY{p}{)}
+        \PY{n+nd}{@objective}\PY{p}{(}\PY{n}{m}\PY{p}{,} \PY{n}{Max}\PY{p}{,} \PY{l+m+mi}{5}\PY{n}{x} \PY{o}{+} \PY{l+m+mi}{3}\PY{o}{*}\PY{n}{y} \PY{p}{)}
+        \PY{n+nd}{@constraint}\PY{p}{(}\PY{n}{m}\PY{p}{,} \PY{l+m+mi}{1}\PY{n}{x} \PY{o}{+} \PY{l+m+mi}{5}\PY{n}{y} \PY{o}{\PYZlt{}=} \PY{l+m+mf}{3.0} \PY{p}{)}
         
         \PY{n}{print}\PY{p}{(}\PY{n}{m}\PY{p}{)}
         
         \PY{n}{status} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{n}{m}\PY{p}{)}
         
-        \PY{n}{println}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Objective value: }\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{getobjectivevalue}\PY{p}{(}\PY{n}{m}\PY{p}{)}\PY{p}{)}
-        \PY{n}{println}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{x = }\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{getvalue}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
-        \PY{n}{println}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{y = }\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{getvalue}\PY{p}{(}\PY{n}{y}\PY{p}{)}\PY{p}{)}
+        \PY{n}{println}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{O}\PY{l+s}{b}\PY{l+s}{j}\PY{l+s}{e}\PY{l+s}{c}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{v}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{v}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{u}\PY{l+s}{e}\PY{l+s}{:}\PY{l+s}{ }\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{getobjectivevalue}\PY{p}{(}\PY{n}{m}\PY{p}{)}\PY{p}{)}
+        \PY{n}{println}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{x}\PY{l+s}{ }\PY{l+s}{=}\PY{l+s}{ }\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{getvalue}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
+        \PY{n}{println}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{y}\PY{l+s}{ }\PY{l+s}{=}\PY{l+s}{ }\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{getvalue}\PY{p}{(}\PY{n}{y}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
     \subsection{Writing Your Own Macros}\label{writing-your-own-macros}

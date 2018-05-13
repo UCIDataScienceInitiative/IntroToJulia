@@ -11631,8 +11631,10 @@ ul.typeahead-list > li > a {
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
 .highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
 .highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
 .highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
 .highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
 .highlight .s2 { color: #BA2121 } /* Literal.String.Double */
 .highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
@@ -11643,9 +11645,11 @@ ul.typeahead-list > li > a {
 .highlight .s1 { color: #BA2121 } /* Literal.String.Single */
 .highlight .ss { color: #19177C } /* Literal.String.Symbol */
 .highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
 .highlight .vc { color: #19177C } /* Name.Variable.Class */
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
 <style type="text/css">
@@ -11751,7 +11755,84 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Type-Hierarchy-Problem">Type Hierarchy Problem<a class="anchor-link" href="#Type-Hierarchy-Problem">&#182;</a></h4><p>Make a function <code>person_info(x)</code> where, if <code>x</code> is a any type of person, print their name. However, if <code>x</code> is a student, print their name and their grade. Make a new type which is a graduate student, and have it print their name and grade as well. If <code>x</code> is anything else, throw an error. Do not using branching (<code>if</code>), use multiple dispatch to solve the problem!</p>
+<h1 id="Intermediate-Problems">Intermediate Problems<a class="anchor-link" href="#Intermediate-Problems">&#182;</a></h1><h2 id="MyRange-and-LinSpace-Problem">MyRange and LinSpace Problem<a class="anchor-link" href="#MyRange-and-LinSpace-Problem">&#182;</a></h2><h6 id="Part-1">Part 1<a class="anchor-link" href="#Part-1">&#182;</a></h6><p>If you know <code>start</code>, <code>step</code>, and <code>stop</code>, how do you calculate the <code>i</code>th value? Can you create a function MyRange which where for <code>a</code> being a <code>MyRange</code>, and <code>a[i]</code> is the correct value? Use the Julia array interface in order to define the function for the <code>a[i]</code> syntax on your type.</p>
+<h6 id="Part-2">Part 2<a class="anchor-link" href="#Part-2">&#182;</a></h6><p>Do ?linspace. Make your own LinSpace object using the array interface.</p>
+<p><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces">http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces</a></p>
+<h5 id="Part-3">Part 3<a class="anchor-link" href="#Part-3">&#182;</a></h5><p>Check out the call overloading notebook:</p>
+<p><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading">http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading</a></p>
+<p>Overload the call on the UnitStepRange to give an interpolated value at intermediate points, i.e. if <code>a=1:2:10</code>, then <code>a(1.5)=2</code>.</p>
+<h4 id="Part-4-(Advanced)">Part 4 (Advanced)<a class="anchor-link" href="#Part-4-(Advanced)">&#182;</a></h4><p>Do your implementations obay dimensional analysis? Try using the package <code>Unitful</code> to build arrays of numbers with units (i.e. an array of numbers who have values of Newtons), and see if you can make your LinSpace not give errors.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Operator-Problem">Operator Problem<a class="anchor-link" href="#Operator-Problem">&#182;</a></h2><p>In mathematics, a matrix is known to be a linear operator. In many cases, this can have huge performance advantages because, if you  know a function which "acts like a matrix" but does not form the matrix itself, you can save the time that it takes to allocate the matrix (sometimes the matrix may not fit in memory!)</p>
+<p>Recall the Strang matrix</p>
+$$ \left[\begin{array}{ccccc}
+-2 & 1\\
+1 & -2 & 1\\
+ & \ddots & \ddots & \ddots\\
+ &  & \ddots & \ddots & 1\\
+ &  &  & 1 & -2
+\end{array}\right] $$<p>Define a type <code>StrangMatrix &lt;: AbstractMatrix</code> and define a dispatch such that <code>A*x</code> acts like a Strang matrix on a vector.</p>
+<p><strong>Bonus: Iterative solvers solve <code>Ax=b</code> and only require the definition of matrix multiplication. Thus utilize IterativeSolvers.jl to solve <code>Ax=b</code> for <code>b=rand(100)</code> using your lazy matrix type. Hint: you will need to define <code>A_mul_B!</code>.</strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Regression-Problem">Regression Problem<a class="anchor-link" href="#Regression-Problem">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="c">#### Prepare Data For Regression Problem</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>               <span class="c"># feature matrix</span>
+<span class="n">a0</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>                    <span class="c"># ground truths</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">X</span> <span class="o">*</span> <span class="n">a0</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>  <span class="c"># generate response</span>
+
+<span class="c"># Data For Regression Problem Part 2</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span><span class="n">X</span>  <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Given an Nx3 array of data (<code>randn(N,3)</code>) and a Nx1 array of outcomes, produce the data matrix <code>X</code> which appends a column of 1's to the front of the data matrix, and solve for the 4x1 array <code>β</code> via <code>βX = b</code> using <code>qrfact</code>, or <code>\</code>, or <a href="https://en.wikipedia.org/wiki/Ordinary_least_squares#Estimation">the definition of the OLS estimator</a>. (Note: This is linear regression).</p>
+<p>Compare your results to that of using <code>llsq</code> from <code>MultivariateStats.jl</code> (note: you need to go find the documentation to find out how to use this!). Compare your results to that of using ordinary least squares regression from <code>GLM.jl</code>.</p>
+<h4 id="Regression-Problem-Part-2">Regression Problem Part 2<a class="anchor-link" href="#Regression-Problem-Part-2">&#182;</a></h4><p>Using your OLS estimator or one of the aforementioned packages, solve for the regression line using the (X,y) data above. Plot the (X,y) scatter plot using <code>scatter!</code> from Plots.jl. Add the regression line using <code>abline!</code>. Add a title saying "Regression Plot on Fake Data", and label the x and y axis.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Type-Hierarchy-Problem">Type Hierarchy Problem<a class="anchor-link" href="#Type-Hierarchy-Problem">&#182;</a></h2><p>Make a function <code>person_info(x)</code> where, if <code>x</code> is a any type of person, print their name. However, if <code>x</code> is a student, print their name and their grade. Make a new type which is a graduate student, and have it print their name and grade as well. If <code>x</code> is anything else, throw an error. Do not use branching (<code>if</code>), use multiple dispatch to solve the problem!</p>
 <p>Note that in order to do this you will need to re-structure the type hierarchy. Make an AbstractPerson and AbstractStudent type, define the subclassing structure, and write dispatches on these abstract types. Note that you cannot define subclasses of concrete types!</p>
 <p>(Not only is the multiple-dispatch way more Julian, we will see later that it also has a lot of performance enhancements due to how it interacts with the compiler).</p>
 
@@ -11763,45 +11844,9 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Distribution-Quantile-Problem-(From-Josh-Day)">Distribution Quantile Problem (From Josh Day)<a class="anchor-link" href="#Distribution-Quantile-Problem-(From-Josh-Day)">&#182;</a></h4><p>To find the quantile of a number <code>q</code> in a distribution, one can use a Newton method</p>
+<h2 id="Distribution-Quantile-Problem-(From-Josh-Day)">Distribution Quantile Problem (From Josh Day)<a class="anchor-link" href="#Distribution-Quantile-Problem-(From-Josh-Day)">&#182;</a></h2><p>To find the quantile of a number <code>q</code> in a distribution, one can use a Newton method</p>
 $$ \theta_{n+1} = \theta_{n} - \frac{cdf(\theta)-q}{pdf(\theta)} $$<p>to have $\theta_{n} \rightarrow$ the value of for the <code>q</code>th quantile. Use multiple dispatch to write a generic algorithm for which calculates the <code>q</code>th quantile of any <code>UnivariateDistribution</code> in Distributions.jl, and test your result against the <code>quantile(d::UnivariateDistribution,q::Number</code> function.</p>
 <p>Hint: Use $\theta_{0} = $ mean of the distribution</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Operator-Problem">Operator Problem<a class="anchor-link" href="#Operator-Problem">&#182;</a></h4><p>In mathematics, a matrix is known to be a linear operator. In many cases, this can have huge performance advantages because, if you  know a function which "acts like a matrix" but does not form the matrix itself, you can save the time that it takes to allocate the matrix (sometimes the matrix may not fit in memory!)</p>
-<p>Therefore, instead of solving regressions on matrices, let's be brave and generalize our regression algorithm to work on any operator, and make it solve the problem for the Laplacian operator. Here are the steps that are required to do this:</p>
-<ul>
-<li>Make an abstract type <code>AbstractOperator</code></li>
-<li>Re-define AbstractMatrix as a subtype</li>
-<li>Define a concrete type <code>LaplacianOperator</code> which holds a function. This function <code>f(x)</code> should calculate the discrete Laplacian of <code>x</code> (i.e. multiply it on the left by the Strang matrix, but without forming the matrix!)</li>
-<li>Write dispatches for <code>*(::LaplacianOperator,::Vector)</code>, <code>eltype(::LaplacianOperator)</code>, <code>size(::LaplacianOperator,d::Integer)</code>. </li>
-<li>Write <code>least_square(::Operator,::Vector)</code> to solve the least-square approximation problem <code>Ax=b</code> for any operator. Note that since you do not have a matrix, you cannot use <code>\</code> or factorizations like <code>qrfact</code>. Instead, take a look at <code>cg</code> or <code>gmres</code> in IterativeSolvers.jl</li>
-<li>Test your least_square function vs <code>llsq</code> and <code>lm</code> (where you use the data matrix as a Strang matrix). Do you get the same result?</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="MyRange-and-LinSpace-Problem">MyRange and LinSpace Problem<a class="anchor-link" href="#MyRange-and-LinSpace-Problem">&#182;</a></h4><h6 id="Part-1">Part 1<a class="anchor-link" href="#Part-1">&#182;</a></h6><p>If you know <code>start</code>, <code>step</code>, and <code>stop</code>, how do you calculate the <code>i</code>th value? Can you create a function MyRange which where for <code>a</code> being a <code>MyRange</code>, and <code>a[i]</code> is the correct value? Use the Julia array interface in order to define the function for the <code>a[i]</code> syntax on your type.</p>
-<h6 id="Part-2">Part 2<a class="anchor-link" href="#Part-2">&#182;</a></h6><p>Do ?linspace. Make your own LinSpace object using the array interface.</p>
-<p><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces">http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces</a></p>
-<p>Do your implementations obay dimensional analysis? Try using the package <code>Unitful</code> to build arrays of numbers with units (i.e. an array of numbers who have values of Newtons), and see if you can make your LinSpace not give errors.</p>
-<p>Check your implementation vs the source code of Ranges.jl. Tim Holy is the master of Julia arrays, learn from him!</p>
-<h5 id="Part-3">Part 3<a class="anchor-link" href="#Part-3">&#182;</a></h5><p>Check out the call overloading notebook:</p>
-<p><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading">http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading</a></p>
-<p>Overload the call on the UnitStepRange to give an interpolated value at intermediate points, i.e. if <code>a=1:2:10</code>, then <code>a(1.5)=2</code>.</p>
 
 </div>
 </div>
