@@ -11755,13 +11755,14 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Intermediate-Problems">Intermediate Problems<a class="anchor-link" href="#Intermediate-Problems">&#182;</a></h1><h2 id="MyRange-and-LinSpace-Problem">MyRange and LinSpace Problem<a class="anchor-link" href="#MyRange-and-LinSpace-Problem">&#182;</a></h2><h6 id="Part-1">Part 1<a class="anchor-link" href="#Part-1">&#182;</a></h6><p>If you know <code>start</code>, <code>step</code>, and <code>stop</code>, how do you calculate the <code>i</code>th value? Can you create a function MyRange which where for <code>a</code> being a <code>MyRange</code>, and <code>a[i]</code> is the correct value? Use the Julia array interface in order to define the function for the <code>a[i]</code> syntax on your type.</p>
+<h1 id="Intermediate-Problems">Intermediate Problems<a class="anchor-link" href="#Intermediate-Problems">&#182;</a></h1><h2 id="MyRange-and-LinSpace-Problem">MyRange and LinSpace Problem<a class="anchor-link" href="#MyRange-and-LinSpace-Problem">&#182;</a></h2><h6 id="Part-1">Part 1<a class="anchor-link" href="#Part-1">&#182;</a></h6><p>Let's create our own implementation of the range type. The <code>Range</code> type is what you get from <code>1:2:20</code>. It's form is <code>start:step:stop</code>. If you know <code>start</code>, <code>step</code>, and <code>stop</code>, how do you calculate the <code>i</code>th value? Create a type <code>MyRange</code> which stores <code>start</code>, <code>step</code>, and <code>stop</code>. Can you create a function <code>_MyRange(a,i)</code> which for <code>a</code> being a <code>MyRange</code>, it returns what <code>a[i]</code> should be? After getting this correct, use the <a href="https://docs.julialang.org/en/stable/manual/interfaces/#Indexing-1">Julia array interface</a> in order to define the function for the <code>a[i]</code> syntax on your type.</p>
 <h6 id="Part-2">Part 2<a class="anchor-link" href="#Part-2">&#182;</a></h6><p>Do ?linspace. Make your own LinSpace object using the array interface.</p>
 <p><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces">http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces</a></p>
+<p>(Note, <code>linspace</code> has extra accuracy enhancing changes. Just do the "simple" implementation")</p>
 <h5 id="Part-3">Part 3<a class="anchor-link" href="#Part-3">&#182;</a></h5><p>Check out the call overloading notebook:</p>
 <p><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading">http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading</a></p>
 <p>Overload the call on the UnitStepRange to give an interpolated value at intermediate points, i.e. if <code>a=1:2:10</code>, then <code>a(1.5)=2</code>.</p>
-<h4 id="Part-4-(Advanced)">Part 4 (Advanced)<a class="anchor-link" href="#Part-4-(Advanced)">&#182;</a></h4><p>Do your implementations obay dimensional analysis? Try using the package <code>Unitful</code> to build arrays of numbers with units (i.e. an array of numbers who have values of Newtons), and see if you can make your LinSpace not give errors.</p>
+<h4 id="Part-4">Part 4<a class="anchor-link" href="#Part-4">&#182;</a></h4><p>Do your implementations obay dimensional analysis? Try using the package <code>Unitful</code> to build arrays of numbers with units (i.e. an array of numbers who have values of Newtons), and see if you can make your LinSpace not give errors.</p>
 
 </div>
 </div>
@@ -11779,8 +11780,8 @@ $$ \left[\begin{array}{ccccc}
  & \ddots & \ddots & \ddots\\
  &  & \ddots & \ddots & 1\\
  &  &  & 1 & -2
-\end{array}\right] $$<p>Define a type <code>StrangMatrix &lt;: AbstractMatrix</code> and define a dispatch such that <code>A*x</code> acts like a Strang matrix on a vector.</p>
-<p><strong>Bonus: Iterative solvers solve <code>Ax=b</code> and only require the definition of matrix multiplication. Thus utilize IterativeSolvers.jl to solve <code>Ax=b</code> for <code>b=rand(100)</code> using your lazy matrix type. Hint: you will need to define <code>A_mul_B!</code>.</strong></p>
+\end{array}\right] $$<p>Define a type <code>StrangMatrix</code> and define a dispatch such that <code>A*x</code> acts like a Strang matrix on a vector.</p>
+<h3 id="Advanced-Bonus">Advanced Bonus<a class="anchor-link" href="#Advanced-Bonus">&#182;</a></h3><p>Iterative solvers solve <code>Ax=b</code> and only require the definition of matrix multiplication. Thus utilize IterativeSolvers.jl to solve <code>Ax=b</code> for <code>b=rand(100)</code> using your lazy matrix type. Hint: you will need to define <code>A_mul_B!</code>. You will also need to define a different version of your Strang matrix which holds a size and has <code>Base.eltype</code> defined.</p>
 
 </div>
 </div>

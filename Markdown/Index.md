@@ -111,8 +111,10 @@ Probe around and understand the following results:
 - [Intermediate Problem Answers](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/IntermediateProblemAnswers)
 - [Advanced Problem Answers](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/AdvancedProblemAnswers)
 - [Answer to the LightGraphs Problem](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/LightGraphsAnswers)
+- [Answer to the ForwardDiff Problems](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ForwardDiffAnswers)
 - [Answer to the Nonlinear Solver Problems](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/NonlinearSolveAnswers)
 - [Answer to the DiffEq Problems](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DiffEqSolutions)
+- [Answer to the Optimization Problems](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/OptimizationAnswers)
 - [Answer to Dimensionality Reduction Problem](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/DimensionalityReductionSolutions)
 - [Answer to Clustering Problem](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ClusteringSolutions)
 

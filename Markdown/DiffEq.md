@@ -32,9 +32,6 @@ u0 = [1.0;1.0]; tspan = (0.0,10.0)
 prob = ODEProblem(f,u0,tspan,p);
 ```
 
-    [1m[36mINFO: [39m[22m[36mRecompiling stale cache file C:\Users\Chris\.julia\lib\v0.6\DifferentialEquations.ji for module DifferentialEquations.
-    [39m
-
 
 ```julia
 # Solve the problem
@@ -80,7 +77,7 @@ The solution object acts both as an array and as an interpolation of the solutio
 @show sol(5) # Value at t=5 using the interpolation 
 ```
 
-    sol.t[3] = 0.2927716363825574
+    sol.t[3] = 0.2927716363874482
     sol[3] = [0.768635, 0.887673]
     sol(5) = [1.45932, 0.99208]
 

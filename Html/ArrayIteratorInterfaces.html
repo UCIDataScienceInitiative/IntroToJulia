@@ -11783,10 +11783,10 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">DifferentialEquations</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">DifferentialEquations</span><span class="p">,</span> <span class="n">DiffEqProblemLibrary</span>
 <span class="n">sol</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">prob_ode_linear</span><span class="p">)</span>
 </pre></div>
 
@@ -11798,11 +11798,24 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>DifferentialEquations.ODESolution, 4 timesteps, final value 1.372803219752981</pre>
+<pre>retcode: Success
+Interpolation: 3rd order Hermite
+t: 5-element Array{Float64,1}:
+ 0.0      
+ 0.0996426
+ 0.345703 
+ 0.677692 
+ 1.0      
+u: 5-element Array{Float64,1}:
+ 0.5     
+ 0.552939
+ 0.708938
+ 0.99136 
+ 1.3728  </pre>
 </div>
 
 </div>
@@ -11823,7 +11836,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span>
@@ -11839,13 +11852,10 @@ div#notebook {
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>DifferentialEquations.ODESolution with 4 timesteps. Analytical solution is known.
-u: 1.372803219752981
-errors: Dict(:l∞=&gt;2.71224e-6,:final=&gt;2.71224e-6,:l2=&gt;1.57376e-6)
-t: [0.0,0.146343,0.643575,1.0]
-timeseries: [0.5,0.579644,0.957782,1.3728]
-timeseries_analytic: [0.5,0.579644,0.957781,1.3728]
-
+<pre>retcode: Success
+Interpolation: 3rd order Hermite
+t: [0.0, 0.0996426, 0.345703, 0.677692, 1.0]
+u: [0.5, 0.552939, 0.708938, 0.99136, 1.3728]
 </pre>
 </div>
 </div>
@@ -11866,7 +11876,7 @@ timeseries_analytic: [0.5,0.579644,0.957781,1.3728]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="c"># The third timestep</span>
@@ -11883,16 +11893,16 @@ timeseries_analytic: [0.5,0.579644,0.957781,1.3728]
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>0.6435749072667494
+<pre>0.3457030604980719
 </pre>
 </div>
 </div>
 
-<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>0.9577822179420759</pre>
+<pre>0.7089380797962724</pre>
 </div>
 
 </div>

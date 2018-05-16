@@ -1,7 +1,7 @@
 
 ## Starter Problems
 
-#### Note: These 4 problems are from https://lectures.quantecon.org/jl/julia_by_example.html
+#### Note: The 4 \* problems are from https://lectures.quantecon.org/jl/julia_by_example.html
 
 #### Strang Matrix Problem
 
@@ -45,9 +45,9 @@ $$ x_{t+1} = \alpha x_i + \epsilon_{t+1} $$
 
 where $x_0 = 0$ and $t=0,\ldots,T$. The shocks ${\epsilon_t}$ are i.i.d. standard normal (`N(0,1)`, given by `randn()`). Using $T=200$ 
 
-1) $\alpha = 0$
-2) $\alpha = 0.5$
-3) $\alpha = 0.9$
+1. $\alpha = 0$
+2. $\alpha = 0.5$
+3. $\alpha = 0.9$
 
 use Plots.jl to plot a timecourse for each of the parameters. Label the lines for the values of $\alpha$ that generate them using the `label` argument in `plot`.
 

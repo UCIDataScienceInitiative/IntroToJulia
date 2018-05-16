@@ -281,9 +281,67 @@
     
     \section{Advanced Problems}\label{advanced-problems}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} 
-\end{Verbatim}
+    \subsection{Metaprogramming Problem}\label{metaprogramming-problem}
+
+\href{https://docs.julialang.org/en/stable/manual/metaprogramming/}{Metaprogramming
+in Julia} is the practice of writing code that generates code. There are
+many uses for metaprogramming, but it generally falls into two
+categories:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Implementing ``new language features'' you want.
+\item
+  Implementing syntactic sugar.
+\end{enumerate}
+
+For new language features, you can do things like
+\href{https://github.com/tbreloff/ConcreteAbstractions.jl}{create
+inheritance from abstract types} if you want. But we'll focus on 2.
+Syntactic sugar metaprogramming is the generation of new syntax rules
+which makes it easy to do common tasks.
+
+Evluation of a polynomial is a common task in many disciplines. Julia's
+Base provides \texttt{@evalpoly x a0 a1 a2 ...} that implements
+\texttt{a0 + x*a1 + x\^{}2 * a2 + ...} using Horner's rule, which is
+writing it out as: \texttt{(((an*x) + a(n-1))*x + ...) * x + a0}.
+
+Implement your own version of the \texttt{@evalpoly} macro called
+\texttt{@myevalpoly}.
+
+\paragraph{Note: While you can create values using macros in the top
+level scope, this is not good practice and will not work in function
+scopes. Instead, you should return an expression for the computation of
+the
+polynomial}\label{note-while-you-can-create-values-using-macros-in-the-top-level-scope-this-is-not-good-practice-and-will-not-work-in-function-scopes.-instead-you-should-return-an-expression-for-the-computation-of-the-polynomial}
+
+    \subsection{Plot the roots of Wilkinson's polynomial with
+perturbation}\label{plot-the-roots-of-wilkinsons-polynomial-with-perturbation}
+
+\href{https://en.wikipedia.org/wiki/Wilkinson\%27s_polynomial}{Wilkinson's
+polynomial} has the form \[
+w(x)=\underbrace{\prod_{i=1}^{20}(x-i)}_\text{root form}=\underbrace{a_1+a_2x+a_3x^2+\cdots+a_{21}x^{20}}_\text{coefficient form}.
+\] It is a famous example of ill-conditioning in numerical analysis. One
+can show this visually by plotting the roots of polynomials with
+perturbed coefficients $\hat{a}_k=a_k(1+10^{-10}r_k)$, where $r_k$ is a
+normally distributed random number.
+
+This problem has three parts, which are
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Convert root form to coefficient form. (Compute $a_k$)
+\item
+  Calculate roots of a polynomial by using the
+  \href{https://en.wikipedia.org/wiki/Companion_matrix}{companion
+  matrix}.
+\item
+  Plot the roots of polynomials
+\end{enumerate}
 
 
     % Add a bibliography block to the postdoc

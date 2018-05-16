@@ -281,23 +281,75 @@
     
     \subsection{FowardDiff.jl}\label{fowarddiff.jl}
 
-Read the JuliaDiff website to understand the advantages (and some of the
-implementation) of autodifferentiation
+\href{http://www.juliadiff.org/}{The JuliaDiff website} describes the
+advantages (and some of the implementation) of autodifferentiation. The
+basic idea is as follows. For normal derivative approximations, you do
+calculations like:
 
-http://www.juliadiff.org/
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Df = (f(x+ϵ) - f(x)) / ϵ}
+\end{Highlighting}
+\end{Shaded}
+
+with ϵ sufficiently small. However, when ϵ is small
+\href{https://en.wikipedia.org/wiki/Loss_of_significance}{catestrophic
+cancellation} occurs which causes numerical error. This puts numerical
+differentiation methods in a bind: a small epsilon is required to not
+have derivative error (since it's defined as the limit), but small
+epsilon results in floating point errors due to cancelation. The result
+is that numerical derivative approximations are very error prone.
+
+Symbolic differentiation isn't always possible since the length of the
+expressions grows exponentially. But a newer technique, called
+autodifferentiation, can do this. The central idea is that you can
+directly define the derivatives of basic expressions (like
+\texttt{sin}), and then use the chain rule to know how to propagate
+derivatives. This allows you to efficiently calculate derivatives
+through entire codes without using small epsilon values, meaning it
+doesn't result in the high numerical errors that plague numerical
+differentiation. The result is fast and accurate derivatives.
+
+ForwardDiff.jl is an implementation of autodifferentiation which uses
+\href{https://en.wikipedia.org/wiki/Dual_number}{dual numbers}. The idea
+is you have a two dimensional number, and you define operators like
+\texttt{+} so that way the first part is the value and the second part
+is the derivative. For example, \texttt{sin(Ax) = sin(Ax) + cos(A)ϵ},
+and then you can use the chain rule to define how the epsilon gets
+passed down. The resulting derivative at the end of the calculation is
+then simply the coefficient on the epsilon part. Here, ϵ is part of a
+number type, and this is all done by multiple dispatch and defining new
+dispatches on basic mathematical functions for Dual numbers which also
+compute the derivative.
 
 \subsubsection{Problem}\label{problem}
 
-Use Optim.jl to optimize
-\href{http://al-roomi.org/benchmarks/unconstrained/2-dimensions/58-hosaki-s-function}{Hosaki's
-Function}
+The ForwardDiff.jl documentation can be found here:
+http://www.juliadiff.org/ForwardDiff.jl/stable/user/api.html
 
-Improve Optim.jl's timing by providing functions for the gradient and
-Hessian using ForwardDiff.jl
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Use the \texttt{ForwardDiff.derivative} function to take the
+  derivative of \texttt{x\^{}5 + 3x\^{}2}. Compare the result to the
+  analytical solution by plotting both with Plots.jl, overlaying one on
+  top of the other (hint: \texttt{plot!} can be helpful!).
+\item
+  The transformation from spherical to cartesian coordinates is given
+  by:
+\end{enumerate}
 
-https://github.com/JuliaDiff/ForwardDiff.jl
+\[
+\begin{align}
+x &= r\sin(\theta)\cos(\phi) \\
+y &= r\sin(\theta)\sin(\phi) \\
+z &= r\cos(\theta)
+\end{align}
+\]
 
-http://www.juliadiff.org/ForwardDiff.jl/
+Use ForwardDiff.jl to calculate the Jacobian of the transformation.
+Compare the determinant of the Jacobian against the analytical solution
+$r^2 \sin(\theta)$.
 
 
     % Add a bibliography block to the postdoc

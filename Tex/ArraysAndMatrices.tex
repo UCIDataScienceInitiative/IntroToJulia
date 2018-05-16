@@ -291,11 +291,11 @@ array. For example, we can apply the anonymous function
 \texttt{(x)-\textgreater{}x\^{}2} to each element via:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{map}\PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{x}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{5}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}1}]:} \PY{n}{map}\PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{x}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{5}\PY{p}{)}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}5}]:} 5-element Array\{Int64,1\}:
+{\color{outcolor}Out[{\color{outcolor}1}]:} 5-element Array\{Int64,1\}:
           1
           4
           9
@@ -309,7 +309,7 @@ common size by expanding singleton dimensions''. For example, the
 following broadcast's \texttt{+} onto \texttt{A} and \texttt{B}:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{A} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{5} \PY{c}{\PYZsh{} Acts like a column vector, Julia is \PYZdq{}column\PYZhy{}major\PYZdq{} so columns come first}
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{A} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{5} \PY{c}{\PYZsh{} Acts like a column vector, Julia is \PYZdq{}column\PYZhy{}major\PYZdq{} so columns come first}
         \PY{n}{B} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1} \PY{l+m+mi}{2}
              \PY{l+m+mi}{3} \PY{l+m+mi}{4}
              \PY{l+m+mi}{5} \PY{l+m+mi}{6}
@@ -319,7 +319,7 @@ following broadcast's \texttt{+} onto \texttt{A} and \texttt{B}:
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}8}]:} 5×2 Array\{Int64,2\}:
+{\color{outcolor}Out[{\color{outcolor}2}]:} 5×2 Array\{Int64,2\}:
           2   3
           5   6
           8   9
@@ -340,13 +340,13 @@ example, we can broadcast any function with the syntax \texttt{f.(x)},
 and broadcast operators by \texttt{.+} and related. For example:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{A} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{5}
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{A} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{5}
         \PY{n}{B} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{2}\PY{p}{;}\PY{l+m+mi}{3}\PY{p}{;}\PY{l+m+mi}{4}\PY{p}{;}\PY{l+m+mi}{5}\PY{p}{;}\PY{l+m+mi}{6}\PY{p}{]}
         \PY{n}{A}\PY{o}{.*}\PY{n}{B}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}2}]:} 5-element Array\{Int64,1\}:
+{\color{outcolor}Out[{\color{outcolor}3}]:} 5-element Array\{Int64,1\}:
           2
           6
          12
@@ -368,12 +368,12 @@ being a function, and \texttt{A.*B} calling this function. However, if
 \texttt{.*} is just a function, then
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{C} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{3}\PY{p}{;}\PY{l+m+mi}{4}\PY{p}{;}\PY{l+m+mi}{5}\PY{p}{;}\PY{l+m+mi}{2}\PY{p}{;}\PY{l+m+mi}{1}\PY{p}{]}
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{C} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{3}\PY{p}{;}\PY{l+m+mi}{4}\PY{p}{;}\PY{l+m+mi}{5}\PY{p}{;}\PY{l+m+mi}{2}\PY{p}{;}\PY{l+m+mi}{1}\PY{p}{]}
         \PY{n}{A}\PY{o}{.*}\PY{n}{B}\PY{o}{.*}\PY{n}{C}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}3}]:} 5-element Array\{Int64,1\}:
+{\color{outcolor}Out[{\color{outcolor}4}]:} 5-element Array\{Int64,1\}:
           6
          24
          60
@@ -388,38 +388,33 @@ being a function, and \texttt{A.*B} calling this function. However, if
 
 \paragraph{Question 1}\label{question-1}
 
-How would you implement \texttt{.*} as a function (not using broadcast)?
-Don't peak below!
+How would you implement \texttt{broadcast\_mult} as a function (not
+using broadcast)? Don't peak below!
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}13}]:} \PY{k}{function} \PY{o}{.*}\PY{p}{\PYZob{}}\PY{n}{T}\PY{o}{\PYZlt{}:}\PY{k+kt}{Number}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{,}\PY{n}{y}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{)}
-             \PY{n}{output} \PY{o}{=} \PY{n}{similar}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{c}{\PYZsh{} Makes an array of similar size and shape as x}
-             \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{n}{eachindex}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{c}{\PYZsh{} Let the iterator choose the fast linear indexing for x}
-                 \PY{n}{output}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{p}{[}\PY{n}{i}\PY{p}{]}
-             \PY{k}{end}
-             \PY{n}{output}
-         \PY{k}{end}
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{function} \PY{n}{broadcast\PYZus{}mult}\PY{p}{\PYZob{}}\PY{n}{T}\PY{o}{\PYZlt{}:}\PY{k+kt}{Number}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{,}\PY{n}{y}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{)}
+            \PY{n}{output} \PY{o}{=} \PY{n}{similar}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{c}{\PYZsh{} Makes an array of similar size and shape as x}
+            \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{n}{eachindex}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{c}{\PYZsh{} Let the iterator choose the fast linear indexing for x}
+                \PY{n}{output}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+            \PY{k}{end}
+            \PY{n}{output}
+        \PY{k}{end}
 \end{Verbatim}
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        LoadError: error in method definition: function Base..* must be explicitly imported to be extended
-    while loading In[13], in expression starting on line 1
-
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}1}]:} broadcast\_mult (generic function with 1 method)
+\end{Verbatim}
         
-
-    \end{Verbatim}
-
-    Notice that \texttt{.*} creates an array every time it is called.
-Therefore a naive approach where \texttt{.*} is a function creates two
-arrays in the call \texttt{A.*B.*C}. We saw earlier that reducing memory
-allocations leads to vastly improved performance, so a better
-implementation would be to do this all together as one loop:
+    Notice that \texttt{broadcast\_mult} creates an array every time it is
+called. Therefore a naive approach where \texttt{.*} is a function
+creates two arrays in the call \texttt{A.*B.*C}. We saw earlier that
+reducing memory allocations leads to vastly improved performance, so a
+better implementation would be to do this all together as one loop:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{function} \PY{n}{Base}\PY{o}{.}\PY{o}{:}\PY{o}{.*}\PY{p}{\PYZob{}}\PY{n}{T}\PY{o}{\PYZlt{}:}\PY{k+kt}{Number}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{,}\PY{n}{y}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{,}\PY{n}{z}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}2}]:} \PY{k}{function} \PY{n}{broadcast\PYZus{}mult}\PY{p}{\PYZob{}}\PY{n}{T}\PY{o}{\PYZlt{}:}\PY{k+kt}{Number}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{,}\PY{n}{y}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{,}\PY{n}{z}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{)}
             \PY{n}{output} \PY{o}{=} \PY{n}{similar}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{c}{\PYZsh{} Makes an array of similar size and shape as x}
             \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{n}{eachindex}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{c}{\PYZsh{} Let the iterator choose the fast linear indexing for x}
                 \PY{n}{output}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{*}\PY{n}{z}\PY{p}{[}\PY{n}{i}\PY{p}{]}
@@ -428,6 +423,10 @@ implementation would be to do this all together as one loop:
         \PY{k}{end}
 \end{Verbatim}
 
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}2}]:} broadcast\_mult (generic function with 2 methods)
+\end{Verbatim}
+        
     (but notice this doesn't really work because now \texttt{.*} isn't a
 binary operator and therefore the inline syntax won't work). This
 optimization is known as ``loop fusing''. Julia does this by searching
@@ -437,16 +436,16 @@ broadcast statement during parsing time. Therefore, in Julia
 like
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{broadcast}\PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{n}{z}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{x}\PY{o}{*}\PY{n}{y}\PY{o}{*}\PY{n}{z}\PY{p}{,}\PY{n}{A}\PY{p}{,}\PY{n}{B}\PY{p}{,}\PY{n}{C}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{broadcast}\PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{n}{z}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{x}\PY{o}{*}\PY{n}{y}\PY{o}{*}\PY{n}{z}\PY{p}{,}\PY{n}{A}\PY{p}{,}\PY{n}{B}\PY{p}{,}\PY{n}{C}\PY{p}{)}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}17}]:} 5-element Array\{Int64,1\}:
-           6
-          24
-          60
-          40
-          30
+{\color{outcolor}Out[{\color{outcolor}6}]:} 5-element Array\{Int64,1\}:
+          6
+         24
+         60
+         40
+         30
 \end{Verbatim}
         
     Notice that this is equivalent to our 1-loop solution. However, because
@@ -473,31 +472,33 @@ requires the array \texttt{A} to already be define. Thus for example, if
 we let
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{D} \PY{o}{=} \PY{n}{similar}\PY{p}{(}\PY{n}{C}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{D} \PY{o}{=} \PY{n}{similar}\PY{p}{(}\PY{n}{C}\PY{p}{)}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}12}]:} 5-element Array\{Int64,1\}:
-          140539342502768
-          140539342502832
-          140539342502896
-          140539342502672
-          140539342537392
+{\color{outcolor}Out[{\color{outcolor}8}]:} 5-element Array\{Int64,1\}:
+         140367029183112
+         140367029182920
+         140367028220392
+         140367028363256
+         140367029820536
 \end{Verbatim}
         
-    then the operation
+    then the operation (Using \texttt{@btime} in BenchmarkTools.jl to get an
+accurate measurement)
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}16}]:} \PY{n+nd}{@time} \PY{n}{D}\PY{o}{.=}\PY{n}{A}\PY{o}{.*}\PY{n}{B}\PY{o}{.*}\PY{n}{C}
+{\color{incolor}In [{\color{incolor}10}]:} \PY{k}{using} \PY{n}{BenchmarkTools}
+         \PY{n+nd}{@btime} \PY{n}{D}\PY{o}{.=}\PY{n}{A}\PY{o}{.*}\PY{n}{B}\PY{o}{.*}\PY{n}{C}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-  0.000008 seconds (10 allocations: 512 bytes)
+  358.029 ns (4 allocations: 112 bytes)
 
     \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}16}]:} 5-element Array\{Int64,1\}:
+{\color{outcolor}Out[{\color{outcolor}10}]:} 5-element Array\{Int64,1\}:
            6
           24
           60
@@ -520,15 +521,15 @@ little bit by seeing Julia's array indexing syntax. For example, we can
 get the first three elements by \texttt{1:3}:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{A} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)} \PY{c}{\PYZsh{} Generate a 4x4 random matrix}
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{A} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)} \PY{c}{\PYZsh{} Generate a 4x4 random matrix}
          \PY{n}{A}\PY{p}{[}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{3}\PY{p}{]} \PY{c}{\PYZsh{} Take the top left 3\PYZhy{}3 matrix}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}20}]:} 3×3 Array\{Float64,2\}:
-          0.168453  0.121436  0.395455
-          0.531294  0.545059  0.08028 
-          0.813272  0.732868  0.336742
+{\color{outcolor}Out[{\color{outcolor}11}]:} 3×3 Array\{Float64,2\}:
+          0.477756  0.767096  0.555022
+          0.962542  0.474019  0.227217
+          0.431555  0.981847  0.551405
 \end{Verbatim}
         
     Note that Julia is column-major, meaning that columns come first in both
@@ -542,19 +543,19 @@ array come from? Well, since there was no 3x3 array before,
 memory)
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}22}]:} \PY{n+nd}{@time} \PY{n}{A}\PY{p}{[}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{3}\PY{p}{]}
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n+nd}{@time} \PY{n}{A}\PY{p}{[}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{3}\PY{p}{]}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-  0.000005 seconds (8 allocations: 416 bytes)
+  0.000010 seconds (7 allocations: 384 bytes)
 
     \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}22}]:} 3×3 Array\{Float64,2\}:
-          0.168453  0.121436  0.395455
-          0.531294  0.545059  0.08028 
-          0.813272  0.732868  0.336742
+{\color{outcolor}Out[{\color{outcolor}12}]:} 3×3 Array\{Float64,2\}:
+          0.477756  0.767096  0.555022
+          0.962542  0.474019  0.227217
+          0.431555  0.981847  0.551405
 \end{Verbatim}
         
     Do you always have to allocate memory when making new arrays? We saw
@@ -562,7 +563,7 @@ before this wasn't the case when dealing with references. Recall the
 example where modifying one array modified another:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}26}]:} \PY{n}{a} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{;}\PY{l+m+mi}{3}\PY{p}{;}\PY{l+m+mi}{5}\PY{p}{]}
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{a} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{;}\PY{l+m+mi}{3}\PY{p}{;}\PY{l+m+mi}{5}\PY{p}{]}
          \PY{n+nd}{@time} \PY{n}{b} \PY{o}{=} \PY{n}{a}
          \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{10}
          \PY{n}{a}
@@ -570,13 +571,13 @@ example where modifying one array modified another:
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-  0.000001 seconds (3 allocations: 144 bytes)
-  0.000004 seconds (6 allocations: 320 bytes)
+  0.000005 seconds (5 allocations: 208 bytes)
+  0.005950 seconds (97 allocations: 6.967 KiB)
 
     \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}26}]:} 3-element Array\{Int64,1\}:
+{\color{outcolor}Out[{\color{outcolor}13}]:} 3-element Array\{Int64,1\}:
            1
           10
            5
@@ -596,15 +597,15 @@ compatibility layer that changes how things like the indexing works. For
 example: if we define the matrix
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}28}]:} \PY{n}{A} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{A} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}28}]:} 4×4 Array\{Float64,2\}:
-          0.348922   0.716248  0.960668  0.952156
-          0.795233   0.888537  0.728711  0.655722
-          0.0666479  0.396674  0.462853  0.738748
-          0.191717   0.941639  0.112687  0.946103
+{\color{outcolor}Out[{\color{outcolor}14}]:} 4×4 Array\{Float64,2\}:
+          0.018712  0.00978789  0.580567  0.194657
+          0.901197  0.247349    0.650729  0.403426
+          0.805088  0.277707    0.81981   0.576702
+          0.672966  0.569978    0.57837   0.48308 
 \end{Verbatim}
         
     then the array that we made is actually a 16-number long sequence (of
@@ -614,7 +615,7 @@ This tells us one thing already: looping through the columns is faster
 than looping through the rows. Indeed we can easily test this:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}47}]:} \PY{k}{function} \PY{n}{testloops}\PY{p}{(}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}23}]:} \PY{k}{function} \PY{n}{testloops}\PY{p}{(}\PY{p}{)}
              \PY{n}{b} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{,}\PY{l+m+mi}{1000}\PY{p}{)}
              \PY{n}{c} \PY{o}{=} \PY{l+m+mi}{0} \PY{c}{\PYZsh{} Need this so that way the compiler doesn\PYZsq{}t optimize away the loop!}
              \PY{n+nd}{@time} \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{1000}\PY{p}{,} \PY{n}{j} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{1000}
@@ -632,14 +633,9 @@ than looping through the rows. Indeed we can easily test this:
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-  0.037648 seconds (3.00 M allocations: 45.776 MB, 9.13\% gc time)
-  0.028310 seconds (3.00 M allocations: 45.776 MB, 15.80\% gc time)
-  0.026682 seconds (3.00 M allocations: 45.776 MB, 11.06\% gc time)
-
-    \end{Verbatim}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-WARNING: Method definition testloops() in module Main at In[46]:2 overwritten at In[47]:2.
+  0.038866 seconds (3.00 M allocations: 45.776 MiB, 9.93\% gc time)
+  0.030133 seconds (3.00 M allocations: 45.776 MiB, 10.89\% gc time)
+  0.027543 seconds (3.00 M allocations: 45.776 MiB, 14.82\% gc time)
 
     \end{Verbatim}
 
@@ -651,28 +647,28 @@ memory. We can check this by noticing that it doesn't mutate the
 original array:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}49}]:} \PY{n}{println}\PY{p}{(}\PY{n}{A}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{println}\PY{p}{(}\PY{n}{A}\PY{p}{)}
          \PY{n}{B} \PY{o}{=} \PY{n}{A}\PY{p}{[}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{3}\PY{p}{]}
          \PY{n}{B}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{=}\PY{l+m+mi}{100}
          \PY{n}{println}\PY{p}{(}\PY{n}{A}\PY{p}{)}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-[0.348922 0.716248 0.960668 0.952156; 0.795233 0.888537 0.728711 0.655722; 0.0666479 0.396674 0.462853 0.738748; 0.191717 0.941639 0.112687 0.946103]
-[0.348922 0.716248 0.960668 0.952156; 0.795233 0.888537 0.728711 0.655722; 0.0666479 0.396674 0.462853 0.738748; 0.191717 0.941639 0.112687 0.946103]
+[0.018712 0.00978789 0.580567 0.194657; 0.901197 0.247349 0.650729 0.403426; 0.805088 0.277707 0.81981 0.576702; 0.672966 0.569978 0.57837 0.48308]
+[0.018712 0.00978789 0.580567 0.194657; 0.901197 0.247349 0.650729 0.403426; 0.805088 0.277707 0.81981 0.576702; 0.672966 0.569978 0.57837 0.48308]
 
     \end{Verbatim}
 
     If we instead want a view, then we can use the \texttt{view} function:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}51}]:} \PY{n}{B} \PY{o}{=} \PY{n}{view}\PY{p}{(}\PY{n}{A}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{3}\PY{p}{)} \PY{c}{\PYZsh{} No copy involved}
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{B} \PY{o}{=} \PY{n}{view}\PY{p}{(}\PY{n}{A}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{3}\PY{p}{)} \PY{c}{\PYZsh{} No copy involved}
          \PY{n}{B}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{100} \PY{c}{\PYZsh{} Will mutate A}
          \PY{n}{println}\PY{p}{(}\PY{n}{A}\PY{p}{)}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-[100.0 0.716248 0.960668 0.952156; 0.795233 0.888537 0.728711 0.655722; 0.0666479 0.396674 0.462853 0.738748; 0.191717 0.941639 0.112687 0.946103]
+[100.0 0.00978789 0.580567 0.194657; 0.901197 0.247349 0.650729 0.403426; 0.805088 0.277707 0.81981 0.576702; 0.672966 0.569978 0.57837 0.48308]
 
     \end{Verbatim}
 
@@ -686,27 +682,27 @@ sending a view to the original array which is simply the column:
 builds a view in a different shape. For example:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}55}]:} \PY{n}{C} \PY{o}{=} \PY{n}{vec}\PY{p}{(}\PY{n}{A}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{C} \PY{o}{=} \PY{n}{vec}\PY{p}{(}\PY{n}{A}\PY{p}{)}
          \PY{n}{println}\PY{p}{(}\PY{n}{C}\PY{p}{)}
          \PY{n}{C} \PY{o}{=} \PY{n}{reshape}\PY{p}{(}\PY{n}{A}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)} \PY{c}{\PYZsh{} C is an 8x2 matrix}
          \PY{n}{C}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-[100.0,0.795233,0.0666479,0.191717,0.716248,0.888537,0.396674,0.941639,0.960668,0.728711,0.462853,0.112687,0.952156,0.655722,0.738748,0.946103]
+[100.0, 0.901197, 0.805088, 0.672966, 0.00978789, 0.247349, 0.277707, 0.569978, 0.580567, 0.650729, 0.81981, 0.57837, 0.194657, 0.403426, 0.576702, 0.48308]
 
     \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}55}]:} 8×2 Array\{Float64,2\}:
-          100.0        0.960668
-            0.795233   0.728711
-            0.0666479  0.462853
-            0.191717   0.112687
-            0.716248   0.952156
-            0.888537   0.655722
-            0.396674   0.738748
-            0.941639   0.946103
+{\color{outcolor}Out[{\color{outcolor}20}]:} 8×2 Array\{Float64,2\}:
+          100.0         0.580567
+            0.901197    0.650729
+            0.805088    0.81981 
+            0.672966    0.57837 
+            0.00978789  0.194657
+            0.247349    0.403426
+            0.277707    0.576702
+            0.569978    0.48308 
 \end{Verbatim}
         
     Since these operations do not copy the array, they are very cheap and
@@ -721,34 +717,34 @@ program known as OpenBLAS so that way \texttt{*} is an optimized
 multithreaded operation. For example:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}57}]:} \PY{n}{A} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{;} \PY{n}{B} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{A} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{;} \PY{n}{B} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}
          \PY{n}{C} \PY{o}{=} \PY{n}{A}\PY{o}{*}\PY{n}{B} \PY{c}{\PYZsh{} Matrix Multiplication}
          \PY{n}{D} \PY{o}{=} \PY{n}{A}\PY{o}{.*}\PY{n}{B} \PY{c}{\PYZsh{} Element\PYZhy{}wise Multiplication}
          \PY{n}{C}\PY{o}{\PYZhy{}}\PY{n}{D} \PY{c}{\PYZsh{} Not zero}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}57}]:} 4×4 Array\{Float64,2\}:
-          0.906899  1.09457   1.13941   0.673966
-          0.663752  0.397312  0.515964  0.442822
-          1.12845   1.27351   0.972741  0.140849
-          0.956337  1.03546   0.662021  0.720551
+{\color{outcolor}Out[{\color{outcolor}24}]:} 4×4 Array\{Float64,2\}:
+          0.76219   0.569967  0.818689  0.578922
+          0.404203  0.204554  0.30552   0.427527
+          0.38402   0.29275   0.159849  0.71353 
+          0.698901  0.655951  0.640823  1.01684 
 \end{Verbatim}
         
     A common operation is to solve the linear system \texttt{Ax=b}. In Julia
 this is done by \texttt{A\textbackslash{}b}:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}59}]:} \PY{n}{b} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{4}
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{b} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{4}
          \PY{n}{A}\PY{o}{\PYZbs{}}\PY{n}{b}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}59}]:} 4-element Array\{Float64,1\}:
-           10.2694
-          -45.8265
-           70.7536
-          -63.3756
+{\color{outcolor}Out[{\color{outcolor}25}]:} 4-element Array\{Float64,1\}:
+          -39.3027
+          -58.4907
+           27.0498
+           44.3226
 \end{Verbatim}
         
     Note that this uses a direct solver. Iterative solvers for linear
@@ -791,24 +787,24 @@ denote the existance of a non-zero element at \texttt{(i,j)} of value
 \texttt{sparse} command:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{A} \PY{o}{=} \PY{n}{sparse}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{;}\PY{l+m+mi}{2}\PY{p}{;}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{;}\PY{l+m+mi}{2}\PY{p}{;}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{;}\PY{l+m+mi}{4}\PY{p}{;}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}27}]:} \PY{n}{A} \PY{o}{=} \PY{n}{sparse}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{;}\PY{l+m+mi}{2}\PY{p}{;}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{;}\PY{l+m+mi}{2}\PY{p}{;}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{;}\PY{l+m+mi}{4}\PY{p}{;}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{)}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}14}]:} 3×2 sparse matrix with 3 Int64 nonzero entries:
-         	[3, 1]  =  5
-         	[1, 2]  =  3
-         	[2, 2]  =  4
+{\color{outcolor}Out[{\color{outcolor}27}]:} 3×2 SparseMatrixCSC\{Int64,Int64\} with 3 stored entries:
+           [3, 1]  =  5
+           [1, 2]  =  3
+           [2, 2]  =  4
 \end{Verbatim}
         
     They can be converted into a dense matrix with the \texttt{full} command
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{full}\PY{p}{(}\PY{n}{A}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}28}]:} \PY{n}{full}\PY{p}{(}\PY{n}{A}\PY{p}{)}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}15}]:} 3×2 Array\{Int64,2\}:
+{\color{outcolor}Out[{\color{outcolor}28}]:} 3×2 Array\{Int64,2\}:
           0  3
           0  4
           5  0
@@ -829,11 +825,11 @@ has special types for these common matrix forms. For example, we can
 define a \texttt{Tridiagonal} by giving it three vectors:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{A} \PY{o}{=} \PY{k+kt}{Tridiagonal}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{:}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{4}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}29}]:} \PY{n}{A} \PY{o}{=} \PY{k+kt}{Tridiagonal}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{:}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{4}\PY{p}{)}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}17}]:} 5×5 Tridiagonal\{Int64\}:
+{\color{outcolor}Out[{\color{outcolor}29}]:} 5×5 Tridiagonal\{Int64\}:
           1  1  ⋅  ⋅  ⋅
           2  2  2  ⋅  ⋅
           ⋅  3  3  3  ⋅
@@ -844,11 +840,11 @@ define a \texttt{Tridiagonal} by giving it three vectors:
     We can inspect it to see its internal form:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{fieldnames}\PY{p}{(}\PY{n}{A}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}30}]:} \PY{n}{fieldnames}\PY{p}{(}\PY{n}{A}\PY{p}{)}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}19}]:} 4-element Array\{Symbol,1\}:
+{\color{outcolor}Out[{\color{outcolor}30}]:} 4-element Array\{Symbol,1\}:
           :dl 
           :d  
           :du 
@@ -856,11 +852,11 @@ define a \texttt{Tridiagonal} by giving it three vectors:
 \end{Verbatim}
         
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{A}\PY{o}{.}\PY{n}{d}
+{\color{incolor}In [{\color{incolor}31}]:} \PY{n}{A}\PY{o}{.}\PY{n}{d}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}21}]:} 5-element Array\{Int64,1\}:
+{\color{outcolor}Out[{\color{outcolor}31}]:} 5-element Array\{Int64,1\}:
           1
           2
           3
@@ -882,16 +878,16 @@ operations on them work seamlessly like with normal matrices. For
 example, we can multiply a Tridiagonal by a dense matrix:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}23}]:} \PY{n}{A}\PY{o}{*}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}32}]:} \PY{n}{A}\PY{o}{*}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}23}]:} 5×5 Array\{Float64,2\}:
-          0.780741  0.74277  0.193545  0.675908  1.248  
-          3.30878   3.08334  1.79876   2.54081   3.93285
-          5.81165   5.22405  4.35947   3.73634   6.53809
-          7.1226    4.86664  5.38682   6.70923   7.78302
-          4.535     2.08879  3.20436   5.41406   6.13665
+{\color{outcolor}Out[{\color{outcolor}32}]:} 5×5 Array\{Float64,2\}:
+          1.02345  1.24593  1.22701  0.923725  0.174128
+          3.02457  2.68779  3.31618  3.71978   1.53963 
+          3.63319  3.36634  5.10534  4.98842   2.42633 
+          3.65838  2.58564  5.3866   7.67081   5.04129 
+          2.12879  2.74221  4.57785  4.9077    3.32318 
 \end{Verbatim}
         
     \subsubsection{The UniformScaling
@@ -906,12 +902,12 @@ scalar \texttt{λ} from a matrix \texttt{A} we use the notation
 We can do this naturally with the \texttt{I} operator:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}31}]:} \PY{n}{λ} \PY{o}{=} \PY{l+m+mi}{2}
+{\color{incolor}In [{\color{incolor}33}]:} \PY{n}{λ} \PY{o}{=} \PY{l+m+mi}{2}
          \PY{n}{A} \PY{o}{\PYZhy{}} \PY{n}{λ}\PY{o}{*}\PY{n+nb}{I}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}31}]:} 5×5 Tridiagonal\{Int64\}:
+{\color{outcolor}Out[{\color{outcolor}33}]:} 5×5 Tridiagonal\{Int64\}:
           -1  1  ⋅  ⋅  ⋅
            2  0  2  ⋅  ⋅
            ⋅  3  1  3  ⋅
@@ -933,7 +929,7 @@ have to remember how this is done. For example, we can use a QR
 factorization to solve a linear system like:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}42}]:} \PY{n}{b} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{5}
+{\color{incolor}In [{\color{incolor}34}]:} \PY{n}{b} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{5}
          \PY{n}{A} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}
          \PY{n}{Q}\PY{p}{,}\PY{n}{R} \PY{o}{=} \PY{n}{qr}\PY{p}{(}\PY{n}{A}\PY{p}{)}
          \PY{n}{println}\PY{p}{(}\PY{n}{A}\PY{o}{\PYZbs{}}\PY{n}{b}\PY{p}{)}
@@ -941,8 +937,8 @@ factorization to solve a linear system like:
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-[76.7207,-41.2925,10.9053,24.3147,-27.5507]
-[76.7207,-41.2925,10.9053,24.3147,-27.5507]
+[278.582, 83.2806, -210.387, -176.288, 71.6258]
+[278.582, 83.2806, -210.387, -176.288, 71.6258]
 
     \end{Verbatim}
 
@@ -953,11 +949,13 @@ remembering the details of the factorization. Instead, we can have Julia
 return a factorization type:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}44}]:} \PY{n}{q} \PY{o}{=} \PY{n}{qrfact}\PY{p}{(}\PY{n}{A}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}35}]:} \PY{n}{q} \PY{o}{=} \PY{n}{qrfact}\PY{p}{(}\PY{n}{A}\PY{p}{)}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}44}]:} Base.LinAlg.QRCompactWY\{Float64,Array\{Float64,2\}\}([-0.59303 -0.936694 -1.45618 -1.1015 -1.56616; 0.175783 -0.424785 0.173332 -0.556283 0.156938; 0.144953 0.12557 0.387682 0.385917 0.496761; 0.245034 -0.697802 -0.470008 -0.372761 -0.333139; 0.354059 -0.029529 -0.000566456 -0.459193 -0.127657],[1.61641 -0.0269726 -0.0582957 -0.295851 0.0; 6.91248e-310 1.33017 -0.988298 0.736517 0.0; 6.91248e-310 0.0 1.63813 1.27101 0.0; 6.91248e-310 0.0 6.91249e-310 1.65172 0.0; 6.91248e-310 0.0 6.91249e-310 6.91249e-310 0.0])
+{\color{outcolor}Out[{\color{outcolor}35}]:} Base.LinAlg.QRCompactWY\{Float64,Array\{Float64,2\}\} with factors Q and R:
+         [-0.605569 0.228049 … 0.439742 -0.597013; -0.186034 -0.451705 … -0.675901 -0.528686; … ; -0.355752 0.0705326 … -0.390601 0.33145; -0.419395 -0.745107 … 0.350345 0.367664]
+         [-0.965209 -0.680789 … -1.12482 -0.664075; 0.0 -0.565101 … -0.420464 -0.0936588; … ; 0.0 0.0 … -0.245942 -0.626841; 0.0 0.0 … 0.0 0.0355285]
 \end{Verbatim}
         
     What this does is it internally stores \texttt{Qt} (\texttt{Qt = Q'})
@@ -967,16 +965,16 @@ fast algorithm \texttt{Rinv*Qt*b}, giving you the performance without
 having to remember anything:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}46}]:} \PY{n}{q}\PY{o}{\PYZbs{}}\PY{n}{b}
+{\color{incolor}In [{\color{incolor}36}]:} \PY{n}{q}\PY{o}{\PYZbs{}}\PY{n}{b}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}46}]:} 5-element Array\{Float64,1\}:
-           76.7207
-          -41.2925
-           10.9053
-           24.3147
-          -27.5507
+{\color{outcolor}Out[{\color{outcolor}36}]:} 5-element Array\{Float64,1\}:
+           278.582 
+            83.2806
+          -210.387 
+          -176.288 
+            71.6258
 \end{Verbatim}
         
     The result is fast algorithms with clean code.
@@ -988,44 +986,44 @@ generated by the \texttt{rand} function, while normal random numbers are
 generated by the \texttt{randn} function.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}37}]:} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}6}]:} 5-element Array\{Float64,1\}:
-         0.308529
-         0.427921
-         0.196477
-         0.297359
-         0.128141
+{\color{outcolor}Out[{\color{outcolor}37}]:} 5-element Array\{Float64,1\}:
+          0.807563
+          0.816094
+          0.700426
+          0.143112
+          0.850222
 \end{Verbatim}
         
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}38}]:} \PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}8}]:} 5×5 Array\{Float64,2\}:
-         -0.239053  -1.08253   -0.648596   0.167503   2.22728 
-          0.557901  -0.312473   1.29566    0.264857  -0.232809
-          0.172738  -1.58695   -0.180161  -2.93838    0.787948
-         -0.258095  -0.775395   1.67288   -0.641336   1.0621  
-          0.805768   1.29153   -0.50146    0.276417  -0.601687
+{\color{outcolor}Out[{\color{outcolor}38}]:} 5×5 Array\{Float64,2\}:
+          -1.09988    0.749767   -0.903473   -1.41094   -1.46029 
+          -0.130691  -0.301776    0.0920583  -0.657685   0.165837
+          -0.78635   -0.0241995   0.475994   -0.511755   0.191074
+           0.701819  -1.53829    -0.397952   -0.627364   0.555426
+           0.90149   -1.90167     0.762773    0.832047  -0.959216
 \end{Verbatim}
         
     The argument is the size of the array. You can make random numbers which
 match another array with the \texttt{size} function:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{a} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1} \PY{l+m+mi}{2}
+{\color{incolor}In [{\color{incolor}39}]:} \PY{n}{a} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1} \PY{l+m+mi}{2}
               \PY{l+m+mi}{3} \PY{l+m+mi}{4}\PY{p}{]}
          \PY{n}{randn}\PY{p}{(}\PY{n}{size}\PY{p}{(}\PY{n}{a}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}11}]:} 2×2 Array\{Float64,2\}:
-          -0.291548   0.193372
-           1.53665   -0.830749
+{\color{outcolor}Out[{\color{outcolor}39}]:} 2×2 Array\{Float64,2\}:
+          -0.859275  -0.645734
+          -0.117098   0.562239
 \end{Verbatim}
         
 

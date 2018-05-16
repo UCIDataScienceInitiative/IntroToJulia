@@ -32,7 +32,7 @@ d = 4*5
 println([a;b;c;d])
 ```
 
-    [4.0,1.33333,1.0,20.0]
+    [4.0, 1.33333, 1.0, 20.0]
 
 
 Note here that I showed off Julia's unicode tab completion. Julia allows for unicode characters, and these can be used by tab completing Latex-like statements. Also, multiplication by a number is allowed without the * if followed by a variable. For example, the following is allowed Julia code:
@@ -61,8 +61,7 @@ Type stability is the idea that there is only 1 possible type which can be outpu
 ```
 
     
-    ; Function Attrs: uwtable
-    define i64 @"jlsys_*_43301"(i64, i64) #0 {
+    define i64 @"jlsys_*_56568"(i64, i64) #0 !dbg !5 {
     top:
       %2 = mul i64 %1, %0
       ret i64 %2
@@ -114,16 +113,17 @@ The upside is that Julia's functions, when type stable, are essentially C/Fortra
 ```
 
 
-    LoadError: DomainError:
+    DomainError:
     Cannot raise an integer x to a negative power -n. 
     Make x a float by adding a zero decimal (e.g. 2.0^-n instead of 2^-n), or write 1/x^n, float(x)^-n, or (x//1)^-n.
-    while loading In[4], in expression starting on line 1
 
     
 
-     in power_by_squaring(::Int64, ::Int64) at .\intfuncs.jl:118
+    Stacktrace:
 
-     in ^(::Int64, ::Int64) at .\intfuncs.jl:142
+     [1] power_by_squaring(::Int64, ::Int64) at ./intfuncs.jl:173
+
+     [2] literal_pow(::Base.#^, ::Int64, ::Type{Val{-5}}) at ./intfuncs.jl:208
 
 
 Here we get an error. In order to guarantee to the compiler that `^` will give an Int64 back, it has to throw an error. If you do this in MATLAB, Python, or R, it will not throw an error. That is because those languages do not have their entire language built around type stability.
@@ -138,15 +138,12 @@ What happens when we don't have type stability? Let's inspect this code:
     	.text
     Filename: intfuncs.jl
     	pushq	%rbp
-    Source line: 142
-    	subq	$32, %rsp
-    	leaq	32(%rsp), %rbp
+    	movq	%rsp, %rbp
+    Source line: 197
     	callq	power_by_squaring
-    	nop
-    	addq	$32, %rsp
     	popq	%rbp
     	retq
-    	nopw	%cs:(%rax,%rax)
+    	nopl	(%rax,%rax)
 
 
 Now let's define our own exponentiation on integers. Let's make it "safe" like the form seen in other scripting languages:
@@ -197,102 +194,58 @@ What happens if we inspect this code?
 ```
 
     	.text
-    Filename: In[6]
+    Filename: In[8]
     	pushq	%rbp
     	movq	%rsp, %rbp
-    	pushq	%r14
-    	pushq	%rsi
-    	pushq	%rdi
     	pushq	%rbx
-    	subq	$96, %rsp
-    	movaps	%xmm6, -48(%rbp)
-    	movq	%rdx, %rdi
-    	movq	%rcx, %rbx
-    	movabsq	$jl_get_ptls_states, %rax
-    	callq	*%rax
-    	movq	%rax, %rsi
-    	xorps	%xmm0, %xmm0
-    	movups	%xmm0, -64(%rbp)
-    	movups	%xmm0, -80(%rbp)
-    	movq	$8, -96(%rbp)
-    	movq	(%rsi), %rax
-    	movq	%rax, -88(%rbp)
-    	leaq	-96(%rbp), %rax
-    	movq	%rax, (%rsi)
+    	subq	$24, %rsp
+    	movq	%rdi, %rbx
     Source line: 2
-    	movabsq	$jl_box_int64, %r14
-    	movq	%rbx, %rcx
-    	callq	*%r14
-    	movq	%rax, -80(%rbp)
-    	testq	%rdi, %rdi
-    	jle	L146
+    	testq	%rdx, %rdx
+    	jle	L42
     Source line: 3
-    	movq	%rax, -72(%rbp)
-    	movq	(%rax), %rcx
     	movabsq	$power_by_squaring, %rax
-    	movq	%rdi, %rdx
+    	movq	%rsi, %rdi
+    	movq	%rdx, %rsi
     	callq	*%rax
-    	movq	%rax, %rcx
-    	callq	*%r14
-    	movq	-88(%rbp), %rcx
-    	movq	%rcx, (%rsi)
-    	movaps	-48(%rbp), %xmm6
-    	addq	$96, %rsp
+    	movb	$1, %dl
+    	movq	%rax, (%rbx)
+    	jmp	L106
+    Source line: 5
+    L42:
+    	vxorps	%xmm1, %xmm1, %xmm1
+    	vcvtsi2sdq	%rsi, %xmm1, %xmm0
+    Source line: 701
+    	vmovsd	%xmm0, -24(%rbp)
+    	vcvtsi2sdq	%rdx, %xmm1, %xmm1
+    Source line: 699
+    	vmovsd	%xmm1, -16(%rbp)
+    	movabsq	$pow, %rax
+    	callq	*%rax
+    	vmovsd	-16(%rbp), %xmm1        # xmm1 = mem[0],zero
+    	vaddsd	-24(%rbp), %xmm1, %xmm1
+    Source line: 300
+    	vucomisd	%xmm1, %xmm1
+    	jp	L100
+    	vucomisd	%xmm0, %xmm0
+    	jp	L116
+    Source line: 6
+    L100:
+    	movb	$2, %dl
+    	vmovsd	%xmm0, (%rbx)
+    Source line: 3
+    L106:
+    	movq	%rbx, %rax
+    	addq	$24, %rsp
     	popq	%rbx
-    	popq	%rdi
-    	popq	%rsi
-    	popq	%r14
     	popq	%rbp
     	retq
-    L146:
-    	movl	$2148805808, %ebx       # imm = 0x80142CB0
-    Source line: 5
-    	movq	%rax, -64(%rbp)
-    	movq	(%rax), %rax
-    Source line: 6
-    	cvtsi2sdq	%rax, %xmm6
-    Source line: 5
-    	movabsq	$jl_gc_pool_alloc, %r14
-    	movl	$1488, %edx             # imm = 0x5D0
-    	movl	$16, %r8d
-    	movq	%rsi, %rcx
-    	callq	*%r14
-    	movq	%rbx, -8(%rax)
-    	movsd	%xmm6, (%rax)
-    	movq	%rax, -80(%rbp)
-    Source line: 6
-    	movq	%rax, -56(%rbp)
-    	movslq	%edi, %rax
-    	cmpq	%rdi, %rax
-    	jne	L283
-    	movabsq	$_powidf2, %rax
-    	movapd	%xmm6, %xmm0
-    	movl	%edi, %edx
-    	callq	*%rax
-    	movapd	%xmm0, %xmm6
-    	movl	$1488, %edx             # imm = 0x5D0
-    	movl	$16, %r8d
-    	movq	%rsi, %rcx
-    	callq	*%r14
-    	movq	%rbx, -8(%rax)
-    	movsd	%xmm6, (%rax)
-    	movq	-88(%rbp), %rcx
-    	movq	%rcx, (%rsi)
-    	movaps	-48(%rbp), %xmm6
-    	addq	$96, %rsp
-    	popq	%rbx
-    	popq	%rdi
-    	popq	%rsi
-    	popq	%r14
-    	popq	%rbp
-    	retq
-    L283:
-    	addq	$45616, %rbx            # imm = 0xB230
+    Source line: 300
+    L116:
     	movabsq	$jl_throw, %rax
-    	movq	%rbx, %rcx
+    	movabsq	$140181784264784, %rdi  # imm = 0x7F7E9D748050
     	callq	*%rax
-    	ud2
-    	nopw	%cs:(%rax,%rax)
+    	nopw	(%rax,%rax)
 
 
 That's a very visual demonstration on why Julia achieves such higher performance than other scripting languages.
@@ -327,12 +280,13 @@ test1()
 ```
 
 
-    LoadError: BoundsError: attempt to access 3-element Array{Float64,1} at index [4]
-    while loading In[28], in expression starting on line 7
+    BoundsError: attempt to access 3-element Array{Float64,1} at index [4]
 
     
 
-     in test1() at ./In[28]:4
+    Stacktrace:
+
+     [1] test1() at ./In[11]:4
 
 
 However, Julia allows you to turn this off using the `@inbounds` macro:
@@ -387,7 +341,7 @@ a
 
 
 
-    3-element Array{Union{Float64,Int64},1}:
+    3-element Array{Union{Float64, Int64},1}:
      1.0 
      3   
      0.25
@@ -416,13 +370,13 @@ Since type-stability is so essential, Julia gives you tools to check that your f
 ```
 
     Variables:
-      #self#::Base.#^
+      #self# <optimized out>
       x::Int64
       p::Int64
     
     Body:
       begin 
-          return $(Expr(:invoke, LambdaInfo for power_by_squaring(::Int64, ::Int64), :(Base.power_by_squaring), :(x), :(p)))
+          return $(Expr(:invoke, MethodInstance for power_by_squaring(::Int64, ::Int64), :(Base.power_by_squaring), :(x), :(p)))
       end::Int64
 
 
@@ -434,20 +388,38 @@ Notice that it shows all of the variables in the function as strictly typed. Wha
 ```
 
     Variables:
-      #self#::#expo
+      #self# <optimized out>
       x@_2::Int64
       y::Int64
-      x@_4::ANY
+      x@_4[1m[91m::Union{Float64, Int64}[39m[22m
+      #temp#::Float64
     
     Body:
       begin 
-          x@_4::ANY = x@_2::Int64
-          unless (Base.slt_int)(0,y::Int64)::Bool goto 5 # line 3:
-          return $(Expr(:invoke, LambdaInfo for power_by_squaring(::Int64, ::Int64), :(Base.power_by_squaring), :(x@_4::Int64), :(y)))
+          x@_4[1m[91m::Union{Float64, Int64}[39m[22m = x@_2::Int64
+          unless (Base.slt_int)(0, y::Int64)::Bool goto 5 # line 3:
+          return $(Expr(:invoke, MethodInstance for power_by_squaring(::Int64, ::Int64), :(Base.power_by_squaring), :(x@_4::Int64), :(y)))
           5:  # line 5:
-          x@_4::ANY = (Base.box)(Float64,(Base.sitofp)(Float64,x@_4::Int64)) # line 6:
-          return (Base.Math.box)(Base.Math.Float64,(Base.Math.powi_llvm)(x@_4::Float64,(Base.box)(Int32,(Base.checked_trunc_sint)(Int32,y::Int64))))::Float64
-      end::UNION{FLOAT64,INT64}
+          x@_4[1m[91m::Union{Float64, Int64}[39m[22m = (Base.sitofp)(Float64, x@_4::Int64)::Float64 # line 6:
+          $(Expr(:inbounds, false))
+          # meta: location math.jl ^ 701
+          SSAValue(0) = (Base.sitofp)(Float64, y::Int64)::Float64
+          # meta: location math.jl ^ 699
+          SSAValue(3) = $(Expr(:foreigncall, "llvm.pow.f64", Float64, svec(Float64, Float64), :(x@_4::Float64), 0, SSAValue(0), 0, :($(Expr(:llvmcall)))))
+          SSAValue(4) = (Base.add_float)(x@_4::Float64, SSAValue(0))::Float64
+          # meta: location math.jl nan_dom_err 300
+          unless (Base.and_int)((Base.ne_float)(SSAValue(3), SSAValue(3))::Bool, (Base.not_int)((Base.ne_float)(SSAValue(4), SSAValue(4))::Bool)::Bool)::Bool goto 19
+          #temp#::Float64 = (Base.Math.throw)($(QuoteNode(DomainError())))[1m[91m::Union{}[39m[22m
+          goto 21
+          19: 
+          #temp#::Float64 = SSAValue(3)
+          21: 
+          # meta: pop location
+          # meta: pop location
+          # meta: pop location
+          $(Expr(:inbounds, :pop))
+          return #temp#::Float64
+      end[1m[91m::Union{Float64, Int64}[39m[22m
 
 
 Notice that it has to make a temporary variable `x@_4` which is translates our int at the beginning of the function, and then do type-checking in order to find the right function, and then its output type is the non-strict `Union{Float64,Int64}`. The quick way to read this is to see that `x@_4::ANY` has a non-strict type, indicating a type-instability. This gives you a tool to know how to optimize.
@@ -555,20 +527,19 @@ Because no dispatch is used to specialize `badidea`, and we can change the type 
 
 
 ```julia
-const a = 3
+const a_cons = 3
 function badidea()
-    a + 2
+    a_cons + 2
 end
-a = 4 # Works
-a = 3.0 # Fails
+a_cons = 4 # Works
+a_cons = 3.0 # Fails
 ```
 
-    WARNING: redefining constant a
+    WARNING: redefining constant a_cons
 
 
 
-    LoadError: invalid redefinition of constant a
-    while loading In[1], in expression starting on line 6
+    invalid redefinition of constant a_cons
 
     
 
@@ -585,7 +556,7 @@ a = 3.0
 end
 ```
 
-      0.000005 seconds (4 allocations: 64 bytes)
+      0.000006 seconds (4 allocations: 64 bytes)
 
 
 However, if we put this in a function, it will optimize (in fact, it will optimize away the loop and stick in the answer)

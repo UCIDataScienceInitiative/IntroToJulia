@@ -11764,17 +11764,57 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Clustering-Task">Clustering Task<a class="anchor-link" href="#Clustering-Task">&#182;</a></h2><ul>
-<li>Use Affinity Propagraion from <a href="https://github.com/JuliaStats/Clustering.jl">Clustering.jl</a>, to cluster word2vec word embeddings, according to meaning.</li>
-<li>Done right this will seperate locations from sports</li>
-<li><p>Done finely and it will seperate ball-sports from other sports, and will seperate locations according to regions, etc</p>
-</li>
-<li><p>Affinity propagraion requires a similarity matrix, which you can set as a negated distance matrix.</p>
-</li>
-<li>For this you'll also want  <a href="https://github.com/JuliaStats/Distances.jl">Distances.jl</a> for all your distance metric needs. </li>
-<li>It is traditional with word2vec to use cosine distance.</li>
-<li>You will as also need to set each item's availability. This is the diagonal of the similarity matrix. Decreasing it roughly corresponds to decreasing the amount each node wants to be in a cluster on its own.</li>
-</ul>
+<h2 id="Basic-Clustering-Task">Basic Clustering Task<a class="anchor-link" href="#Basic-Clustering-Task">&#182;</a></h2><p>Use the following dataset:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="c"># Pkg.add(&quot;RDatasets&quot;)</span>
+<span class="k">using</span> <span class="n">RDatasets</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">(</span><span class="s">&quot;datasets&quot;</span><span class="p">,</span> <span class="s">&quot;iris&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre><span class="ansi-cyan-intense-fg ansi-bold">INFO: </span><span class="ansi-cyan-fg">Package RDatasets is already installed
+</span><span class="ansi-cyan-intense-fg ansi-bold">INFO: </span><span class="ansi-cyan-fg">METADATA is out-of-date — you may not have the latest version of RDatasets
+</span><span class="ansi-cyan-intense-fg ansi-bold">INFO: </span><span class="ansi-cyan-fg">Use `Pkg.update()` to get the latest versions of your packages
+</span></pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt output_prompt">Out[24]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table class="data-frame"><thead><tr><th></th><th>SepalLength</th><th>SepalWidth</th><th>PetalLength</th><th>PetalWidth</th><th>Species</th></tr></thead><tbody><tr><th>1</th><td>5.1</td><td>3.5</td><td>1.4</td><td>0.2</td><td>setosa</td></tr><tr><th>2</th><td>4.9</td><td>3.0</td><td>1.4</td><td>0.2</td><td>setosa</td></tr><tr><th>3</th><td>4.7</td><td>3.2</td><td>1.3</td><td>0.2</td><td>setosa</td></tr><tr><th>4</th><td>4.6</td><td>3.1</td><td>1.5</td><td>0.2</td><td>setosa</td></tr><tr><th>5</th><td>5.0</td><td>3.6</td><td>1.4</td><td>0.2</td><td>setosa</td></tr><tr><th>6</th><td>5.4</td><td>3.9</td><td>1.7</td><td>0.4</td><td>setosa</td></tr><tr><th>7</th><td>4.6</td><td>3.4</td><td>1.4</td><td>0.3</td><td>setosa</td></tr><tr><th>8</th><td>5.0</td><td>3.4</td><td>1.5</td><td>0.2</td><td>setosa</td></tr><tr><th>9</th><td>4.4</td><td>2.9</td><td>1.4</td><td>0.2</td><td>setosa</td></tr><tr><th>10</th><td>4.9</td><td>3.1</td><td>1.5</td><td>0.1</td><td>setosa</td></tr><tr><th>11</th><td>5.4</td><td>3.7</td><td>1.5</td><td>0.2</td><td>setosa</td></tr><tr><th>12</th><td>4.8</td><td>3.4</td><td>1.6</td><td>0.2</td><td>setosa</td></tr><tr><th>13</th><td>4.8</td><td>3.0</td><td>1.4</td><td>0.1</td><td>setosa</td></tr><tr><th>14</th><td>4.3</td><td>3.0</td><td>1.1</td><td>0.1</td><td>setosa</td></tr><tr><th>15</th><td>5.8</td><td>4.0</td><td>1.2</td><td>0.2</td><td>setosa</td></tr><tr><th>16</th><td>5.7</td><td>4.4</td><td>1.5</td><td>0.4</td><td>setosa</td></tr><tr><th>17</th><td>5.4</td><td>3.9</td><td>1.3</td><td>0.4</td><td>setosa</td></tr><tr><th>18</th><td>5.1</td><td>3.5</td><td>1.4</td><td>0.3</td><td>setosa</td></tr><tr><th>19</th><td>5.7</td><td>3.8</td><td>1.7</td><td>0.3</td><td>setosa</td></tr><tr><th>20</th><td>5.1</td><td>3.8</td><td>1.5</td><td>0.3</td><td>setosa</td></tr><tr><th>21</th><td>5.4</td><td>3.4</td><td>1.7</td><td>0.2</td><td>setosa</td></tr><tr><th>22</th><td>5.1</td><td>3.7</td><td>1.5</td><td>0.4</td><td>setosa</td></tr><tr><th>23</th><td>4.6</td><td>3.6</td><td>1.0</td><td>0.2</td><td>setosa</td></tr><tr><th>24</th><td>5.1</td><td>3.3</td><td>1.7</td><td>0.5</td><td>setosa</td></tr><tr><th>25</th><td>4.8</td><td>3.4</td><td>1.9</td><td>0.2</td><td>setosa</td></tr><tr><th>26</th><td>5.0</td><td>3.0</td><td>1.6</td><td>0.2</td><td>setosa</td></tr><tr><th>27</th><td>5.0</td><td>3.4</td><td>1.6</td><td>0.4</td><td>setosa</td></tr><tr><th>28</th><td>5.2</td><td>3.5</td><td>1.5</td><td>0.2</td><td>setosa</td></tr><tr><th>29</th><td>5.2</td><td>3.4</td><td>1.4</td><td>0.2</td><td>setosa</td></tr><tr><th>30</th><td>4.7</td><td>3.2</td><td>1.6</td><td>0.2</td><td>setosa</td></tr><tr><th>&vellip;</th><td>&vellip;</td><td>&vellip;</td><td>&vellip;</td><td>&vellip;</td><td>&vellip;</td></tr></tbody></table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Use Clustering.jl to cluster using the <code>SepalLength</code>, <code>PetalLength</code>, and <code>PetalWidth</code>features via K-means clustering. Make a scatter plot of the resulting clusters.</p>
+<p><strong>Hint: You will need to index the dataframe, convert it to an array, and transpose it. In addition, you will need to use the <code>assignments</code> field of the return to get the cluster assignments</strong>.</p>
 
 </div>
 </div>
@@ -11784,9 +11824,8 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="First-we-loadup-some-data">First we loadup some data<a class="anchor-link" href="#First-we-loadup-some-data">&#182;</a></h1><p>For the the example presented here, we will use a subhset of Word Embedding, trained using <a href="https://github.com/tanmaykm/Word2Vec.jl">Word2Vec.jl</a>.
+<h2 id="Advanced-Clustering-Task">Advanced Clustering Task<a class="anchor-link" href="#Advanced-Clustering-Task">&#182;</a></h2><p>For the the example presented here, we will use a subhset of Word Embedding, trained using <a href="https://github.com/tanmaykm/Word2Vec.jl">Word2Vec.jl</a>.
 These are 100 dimentional vectors, which encode syntactic and semantic information about words.</p>
-<p>You can download the datased from <a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ForwardDiff">here</a>, and load it up with <a href="https://github.com/JuliaIO/JLD.jl">JLD</a> as shown below. (or just load it directly if you have cloned the notebooks)</p>
 
 </div>
 </div>
@@ -11804,6 +11843,27 @@ These are 100 dimentional vectors, which encode syntactic and semantic informati
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can download the datased from <a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ForwardDiff">here</a>, and load it up with <a href="https://github.com/JuliaIO/JLD.jl">JLD</a> as shown below. (or just load it directly if you have cloned the notebooks)</p>
+<ul>
+<li>Use Affinity Propagraion from <a href="https://github.com/JuliaStats/Clustering.jl">Clustering.jl</a>, to cluster word2vec word embeddings, according to meaning.</li>
+<li>Done right this will seperate locations from sports</li>
+<li><p>Done finely and it will seperate ball-sports from other sports, and will seperate locations according to regions, etc</p>
+</li>
+<li><p>Affinity propagraion requires a similarity matrix, which you can set as a negated distance matrix.</p>
+</li>
+<li>For this you'll also want  <a href="https://github.com/JuliaStats/Distances.jl">Distances.jl</a> for all your distance metric needs. </li>
+<li>It is traditional with word2vec to use cosine distance.</li>
+<li>You will as also need to set each item's availability. This is the diagonal of the similarity matrix. Decreasing it roughly corresponds to decreasing the amount each node wants to be in a cluster on its own.</li>
+</ul>
+
+</div>
+</div>
 </div>
     </div>
   </div>

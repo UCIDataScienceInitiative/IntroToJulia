@@ -11759,18 +11759,42 @@ div#notebook {
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span>
-</pre></div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Metaprogramming-Problem">Metaprogramming Problem<a class="anchor-link" href="#Metaprogramming-Problem">&#182;</a></h2><p><a href="https://docs.julialang.org/en/stable/manual/metaprogramming/">Metaprogramming in Julia</a> is the practice of writing code that generates code. There are many uses for metaprogramming, but it generally falls into two categories:</p>
+<ol>
+<li>Implementing "new language features" you want.</li>
+<li>Implementing syntactic sugar.</li>
+</ol>
+<p>For new language features, you can do things like <a href="https://github.com/tbreloff/ConcreteAbstractions.jl">create inheritance from abstract types</a> if you want. But we'll focus on 2. Syntactic sugar metaprogramming is the generation of new syntax rules which makes it easy to do common tasks.</p>
+<p>Evluation of a polynomial is a common task in many disciplines. Julia's Base provides <code>@evalpoly x a0 a1 a2 ...</code> that implements <code>a0 + x*a1 + x^2 * a2 + ...</code> using Horner's rule, which is writing it out as: <code>(((an*x) + a(n-1))*x + ...) * x + a0</code>.</p>
+<p>Implement your own version of the <code>@evalpoly</code> macro called <code>@myevalpoly</code>.</p>
+<h4 id="Note:-While-you-can-create-values-using-macros-in-the-top-level-scope,-this-is-not-good-practice-and-will-not-work-in-function-scopes.-Instead,-you-should-return-an-expression-for-the-computation-of-the-polynomial">Note: While you can create values using macros in the top level scope, this is not good practice and will not work in function scopes. Instead, you should return an expression for the computation of the polynomial<a class="anchor-link" href="#Note:-While-you-can-create-values-using-macros-in-the-top-level-scope,-this-is-not-good-practice-and-will-not-work-in-function-scopes.-Instead,-you-should-return-an-expression-for-the-computation-of-the-polynomial">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Plot-the-roots-of-Wilkinson's-polynomial-with-perturbation">Plot the roots of Wilkinson's polynomial with perturbation<a class="anchor-link" href="#Plot-the-roots-of-Wilkinson's-polynomial-with-perturbation">&#182;</a></h2><p><a href="https://en.wikipedia.org/wiki/Wilkinson%27s_polynomial">Wilkinson's polynomial</a> has the form
+$$
+w(x)=\underbrace{\prod_{i=1}^{20}(x-i)}_\text{root form}=\underbrace{a_1+a_2x+a_3x^2+\cdots+a_{21}x^{20}}_\text{coefficient form}.
+$$
+It is a famous example of ill-conditioning in numerical analysis. One can show this visually by plotting the roots of polynomials with perturbed coefficients $\hat{a}_k=a_k(1+10^{-10}r_k)$, where $r_k$ is a normally distributed random number.</p>
+<p>This problem has three parts, which are</p>
+<ol>
+<li>Convert root form to coefficient form. (Compute $a_k$)</li>
+<li>Calculate roots of a polynomial by using the <a href="https://en.wikipedia.org/wiki/Companion_matrix">companion matrix</a>.</li>
+<li>Plot the roots of polynomials</li>
+</ol>
 
 </div>
 </div>
-</div>
-
 </div>
     </div>
   </div>

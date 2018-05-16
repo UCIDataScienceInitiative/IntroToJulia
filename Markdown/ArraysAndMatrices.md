@@ -100,13 +100,13 @@ the operation `A.*B.*C` actually expands into `.*(A,.*(B,C))`. Let's think of ho
 
 #### Question 1
 
-How would you implement `.*` as a function (not using broadcast)? Don't peak below!
+How would you implement `broadcast_mult` as a function (not using broadcast)? Don't peak below!
 
 ------
 
 
 ```julia
-function .*{T<:Number,N}(x::Array{T,N},y::Array{T,N})
+function broadcast_mult{T<:Number,N}(x::Array{T,N},y::Array{T,N})
     output = similar(x) # Makes an array of similar size and shape as x
     for i in eachindex(x) # Let the iterator choose the fast linear indexing for x
         output[i] = x[i]*y[i]
@@ -116,17 +116,17 @@ end
 ```
 
 
-    LoadError: error in method definition: function Base..* must be explicitly imported to be extended
-    while loading In[13], in expression starting on line 1
-
-    
 
 
-Notice that `.*` creates an array every time it is called. Therefore a naive approach where `.*` is a function creates two arrays in the call `A.*B.*C`. We saw earlier that reducing memory allocations leads to vastly improved performance, so a better implementation would be to do this all together as one loop:
+    broadcast_mult (generic function with 1 method)
+
+
+
+Notice that `broadcast_mult` creates an array every time it is called. Therefore a naive approach where `.*` is a function creates two arrays in the call `A.*B.*C`. We saw earlier that reducing memory allocations leads to vastly improved performance, so a better implementation would be to do this all together as one loop:
 
 
 ```julia
-function Base.:.*{T<:Number,N}(x::Array{T,N},y::Array{T,N},z::Array{T,N})
+function broadcast_mult{T<:Number,N}(x::Array{T,N},y::Array{T,N},z::Array{T,N})
     output = similar(x) # Makes an array of similar size and shape as x
     for i in eachindex(x) # Let the iterator choose the fast linear indexing for x
         output[i] = x[i]*y[i]*z[i]
@@ -134,6 +134,13 @@ function Base.:.*{T<:Number,N}(x::Array{T,N},y::Array{T,N},z::Array{T,N})
     output
 end
 ```
+
+
+
+
+    broadcast_mult (generic function with 2 methods)
+
+
 
 (but notice this doesn't really work because now `.*` isn't a binary operator and therefore the inline syntax won't work). This optimization is known as "loop fusing". Julia does this by searching for all of the broadcasts in a line and putting them together into one broadcast statement during parsing time. Therefore, in Julia `A.*B.*C` creates an anonymous function and broadcasts on it, like
 
@@ -184,22 +191,23 @@ D = similar(C)
 
 
     5-element Array{Int64,1}:
-     140539342502768
-     140539342502832
-     140539342502896
-     140539342502672
-     140539342537392
+     140367029183112
+     140367029182920
+     140367028220392
+     140367028363256
+     140367029820536
 
 
 
-then the operation
+then the operation (Using `@btime` in BenchmarkTools.jl to get an accurate measurement)
 
 
 ```julia
-@time D.=A.*B.*C
+using BenchmarkTools
+@btime D.=A.*B.*C
 ```
 
-      0.000008 seconds (10 allocations: 512 bytes)
+      358.029 ns (4 allocations: 112 bytes)
 
 
 
@@ -232,9 +240,9 @@ A[1:3,1:3] # Take the top left 3-3 matrix
 
 
     3×3 Array{Float64,2}:
-     0.168453  0.121436  0.395455
-     0.531294  0.545059  0.08028 
-     0.813272  0.732868  0.336742
+     0.477756  0.767096  0.555022
+     0.962542  0.474019  0.227217
+     0.431555  0.981847  0.551405
 
 
 
@@ -249,16 +257,16 @@ Notice that `A[1:3,1:3]` returned an array. Where did this array come from? Well
 @time A[1:3,1:3]
 ```
 
-      0.000005 seconds (8 allocations: 416 bytes)
+      0.000010 seconds (7 allocations: 384 bytes)
 
 
 
 
 
     3×3 Array{Float64,2}:
-     0.168453  0.121436  0.395455
-     0.531294  0.545059  0.08028 
-     0.813272  0.732868  0.336742
+     0.477756  0.767096  0.555022
+     0.962542  0.474019  0.227217
+     0.431555  0.981847  0.551405
 
 
 
@@ -273,8 +281,8 @@ a
 @time c = copy(a)
 ```
 
-      0.000001 seconds (3 allocations: 144 bytes)
-      0.000004 seconds (6 allocations: 320 bytes)
+      0.000005 seconds (5 allocations: 208 bytes)
+      0.005950 seconds (97 allocations: 6.967 KiB)
 
 
 
@@ -298,10 +306,10 @@ A = rand(4,4)
 
 
     4×4 Array{Float64,2}:
-     0.348922   0.716248  0.960668  0.952156
-     0.795233   0.888537  0.728711  0.655722
-     0.0666479  0.396674  0.462853  0.738748
-     0.191717   0.941639  0.112687  0.946103
+     0.018712  0.00978789  0.580567  0.194657
+     0.901197  0.247349    0.650729  0.403426
+     0.805088  0.277707    0.81981   0.576702
+     0.672966  0.569978    0.57837   0.48308 
 
 
 
@@ -326,12 +334,9 @@ end
 testloops()
 ```
 
-      0.037648 seconds (3.00 M allocations: 45.776 MB, 9.13% gc time)
-      0.028310 seconds (3.00 M allocations: 45.776 MB, 15.80% gc time)
-      0.026682 seconds (3.00 M allocations: 45.776 MB, 11.06% gc time)
-
-
-    WARNING: Method definition testloops() in module Main at In[46]:2 overwritten at In[47]:2.
+      0.038866 seconds (3.00 M allocations: 45.776 MiB, 9.93% gc time)
+      0.030133 seconds (3.00 M allocations: 45.776 MiB, 10.89% gc time)
+      0.027543 seconds (3.00 M allocations: 45.776 MiB, 14.82% gc time)
 
 
 One should normally use the `eachindex` function since this will return the indices in the "fast" order for general iterator types.
@@ -346,8 +351,8 @@ B[1,1]=100
 println(A)
 ```
 
-    [0.348922 0.716248 0.960668 0.952156; 0.795233 0.888537 0.728711 0.655722; 0.0666479 0.396674 0.462853 0.738748; 0.191717 0.941639 0.112687 0.946103]
-    [0.348922 0.716248 0.960668 0.952156; 0.795233 0.888537 0.728711 0.655722; 0.0666479 0.396674 0.462853 0.738748; 0.191717 0.941639 0.112687 0.946103]
+    [0.018712 0.00978789 0.580567 0.194657; 0.901197 0.247349 0.650729 0.403426; 0.805088 0.277707 0.81981 0.576702; 0.672966 0.569978 0.57837 0.48308]
+    [0.018712 0.00978789 0.580567 0.194657; 0.901197 0.247349 0.650729 0.403426; 0.805088 0.277707 0.81981 0.576702; 0.672966 0.569978 0.57837 0.48308]
 
 
 If we instead want a view, then we can use the `view` function:
@@ -359,7 +364,7 @@ B[1,1] = 100 # Will mutate A
 println(A)
 ```
 
-    [100.0 0.716248 0.960668 0.952156; 0.795233 0.888537 0.728711 0.655722; 0.0666479 0.396674 0.462853 0.738748; 0.191717 0.941639 0.112687 0.946103]
+    [100.0 0.00978789 0.580567 0.194657; 0.901197 0.247349 0.650729 0.403426; 0.805088 0.277707 0.81981 0.576702; 0.672966 0.569978 0.57837 0.48308]
 
 
 There are many cases where you might want to use a view. For example, if a function needs the `i`th column, you may naively think of doing `f(A[i,:])`. But, if `A` won't be changed in the loop, we can avoid the memory allocation (and thus make things faster) by sending a view to the original array which is simply the column: `f(view(A,i,:))`. Two functions can be used to give common views. `vec` gives a view of the array as a Vector and `reshape` builds a view in a different shape. For example:
@@ -372,21 +377,21 @@ C = reshape(A,8,2) # C is an 8x2 matrix
 C
 ```
 
-    [100.0,0.795233,0.0666479,0.191717,0.716248,0.888537,0.396674,0.941639,0.960668,0.728711,0.462853,0.112687,0.952156,0.655722,0.738748,0.946103]
+    [100.0, 0.901197, 0.805088, 0.672966, 0.00978789, 0.247349, 0.277707, 0.569978, 0.580567, 0.650729, 0.81981, 0.57837, 0.194657, 0.403426, 0.576702, 0.48308]
 
 
 
 
 
     8×2 Array{Float64,2}:
-     100.0        0.960668
-       0.795233   0.728711
-       0.0666479  0.462853
-       0.191717   0.112687
-       0.716248   0.952156
-       0.888537   0.655722
-       0.396674   0.738748
-       0.941639   0.946103
+     100.0         0.580567
+       0.901197    0.650729
+       0.805088    0.81981 
+       0.672966    0.57837 
+       0.00978789  0.194657
+       0.247349    0.403426
+       0.277707    0.576702
+       0.569978    0.48308 
 
 
 
@@ -408,10 +413,10 @@ C-D # Not zero
 
 
     4×4 Array{Float64,2}:
-     0.906899  1.09457   1.13941   0.673966
-     0.663752  0.397312  0.515964  0.442822
-     1.12845   1.27351   0.972741  0.140849
-     0.956337  1.03546   0.662021  0.720551
+     0.76219   0.569967  0.818689  0.578922
+     0.404203  0.204554  0.30552   0.427527
+     0.38402   0.29275   0.159849  0.71353 
+     0.698901  0.655951  0.640823  1.01684 
 
 
 
@@ -427,10 +432,10 @@ A\b
 
 
     4-element Array{Float64,1}:
-      10.2694
-     -45.8265
-      70.7536
-     -63.3756
+     -39.3027
+     -58.4907
+      27.0498
+      44.3226
 
 
 
@@ -463,10 +468,10 @@ A = sparse([1;2;3],[2;2;1],[3;4;5])
 
 
 
-    3×2 sparse matrix with 3 Int64 nonzero entries:
-    	[3, 1]  =  5
-    	[1, 2]  =  3
-    	[2, 2]  =  4
+    3×2 SparseMatrixCSC{Int64,Int64} with 3 stored entries:
+      [3, 1]  =  5
+      [1, 2]  =  3
+      [2, 2]  =  4
 
 
 
@@ -560,11 +565,11 @@ A*rand(5,5)
 
 
     5×5 Array{Float64,2}:
-     0.780741  0.74277  0.193545  0.675908  1.248  
-     3.30878   3.08334  1.79876   2.54081   3.93285
-     5.81165   5.22405  4.35947   3.73634   6.53809
-     7.1226    4.86664  5.38682   6.70923   7.78302
-     4.535     2.08879  3.20436   5.41406   6.13665
+     1.02345  1.24593  1.22701  0.923725  0.174128
+     3.02457  2.68779  3.31618  3.71978   1.53963 
+     3.63319  3.36634  5.10534  4.98842   2.42633 
+     3.65838  2.58564  5.3866   7.67081   5.04129 
+     2.12879  2.74221  4.57785  4.9077    3.32318 
 
 
 
@@ -607,8 +612,8 @@ println(A\b)
 println(inv(R)*Q'*b)
 ```
 
-    [76.7207,-41.2925,10.9053,24.3147,-27.5507]
-    [76.7207,-41.2925,10.9053,24.3147,-27.5507]
+    [278.582, 83.2806, -210.387, -176.288, 71.6258]
+    [278.582, 83.2806, -210.387, -176.288, 71.6258]
 
 
 Thus we can save the variables `Q` and `R` and use `inv(R)*Q'*b` instead of `A\b` and get better performance. This is the NumPy/MATLAB way. However, that requires remembering the details of the factorization. Instead, we can have Julia return a factorization type:
@@ -621,7 +626,9 @@ q = qrfact(A)
 
 
 
-    Base.LinAlg.QRCompactWY{Float64,Array{Float64,2}}([-0.59303 -0.936694 -1.45618 -1.1015 -1.56616; 0.175783 -0.424785 0.173332 -0.556283 0.156938; 0.144953 0.12557 0.387682 0.385917 0.496761; 0.245034 -0.697802 -0.470008 -0.372761 -0.333139; 0.354059 -0.029529 -0.000566456 -0.459193 -0.127657],[1.61641 -0.0269726 -0.0582957 -0.295851 0.0; 6.91248e-310 1.33017 -0.988298 0.736517 0.0; 6.91248e-310 0.0 1.63813 1.27101 0.0; 6.91248e-310 0.0 6.91249e-310 1.65172 0.0; 6.91248e-310 0.0 6.91249e-310 6.91249e-310 0.0])
+    Base.LinAlg.QRCompactWY{Float64,Array{Float64,2}} with factors Q and R:
+    [-0.605569 0.228049 … 0.439742 -0.597013; -0.186034 -0.451705 … -0.675901 -0.528686; … ; -0.355752 0.0705326 … -0.390601 0.33145; -0.419395 -0.745107 … 0.350345 0.367664]
+    [-0.965209 -0.680789 … -1.12482 -0.664075; 0.0 -0.565101 … -0.420464 -0.0936588; … ; 0.0 0.0 … -0.245942 -0.626841; 0.0 0.0 … 0.0 0.0355285]
 
 
 
@@ -636,11 +643,11 @@ q\b
 
 
     5-element Array{Float64,1}:
-      76.7207
-     -41.2925
-      10.9053
-      24.3147
-     -27.5507
+      278.582 
+       83.2806
+     -210.387 
+     -176.288 
+       71.6258
 
 
 
@@ -659,11 +666,11 @@ rand(5)
 
 
     5-element Array{Float64,1}:
-     0.308529
-     0.427921
-     0.196477
-     0.297359
-     0.128141
+     0.807563
+     0.816094
+     0.700426
+     0.143112
+     0.850222
 
 
 
@@ -676,11 +683,11 @@ randn(5,5)
 
 
     5×5 Array{Float64,2}:
-     -0.239053  -1.08253   -0.648596   0.167503   2.22728 
-      0.557901  -0.312473   1.29566    0.264857  -0.232809
-      0.172738  -1.58695   -0.180161  -2.93838    0.787948
-     -0.258095  -0.775395   1.67288   -0.641336   1.0621  
-      0.805768   1.29153   -0.50146    0.276417  -0.601687
+     -1.09988    0.749767   -0.903473   -1.41094   -1.46029 
+     -0.130691  -0.301776    0.0920583  -0.657685   0.165837
+     -0.78635   -0.0241995   0.475994   -0.511755   0.191074
+      0.701819  -1.53829    -0.397952   -0.627364   0.555426
+      0.90149   -1.90167     0.762773    0.832047  -0.959216
 
 
 
@@ -697,7 +704,7 @@ randn(size(a))
 
 
     2×2 Array{Float64,2}:
-     -0.291548   0.193372
-      1.53665   -0.830749
+     -0.859275  -0.645734
+     -0.117098   0.562239
 
 

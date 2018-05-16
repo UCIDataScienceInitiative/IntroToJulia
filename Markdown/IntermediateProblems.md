@@ -5,13 +5,15 @@
 
 ###### Part 1
 
-If you know `start`, `step`, and `stop`, how do you calculate the `i`th value? Can you create a function MyRange which where for `a` being a `MyRange`, and `a[i]` is the correct value? Use the Julia array interface in order to define the function for the `a[i]` syntax on your type.
+Let's create our own implementation of the range type. The `Range` type is what you get from `1:2:20`. It's form is `start:step:stop`. If you know `start`, `step`, and `stop`, how do you calculate the `i`th value? Create a type `MyRange` which stores `start`, `step`, and `stop`. Can you create a function `_MyRange(a,i)` which for `a` being a `MyRange`, it returns what `a[i]` should be? After getting this correct, use the [Julia array interface](https://docs.julialang.org/en/stable/manual/interfaces/#Indexing-1) in order to define the function for the `a[i]` syntax on your type.
 
 ######  Part 2
 
 Do ?linspace. Make your own LinSpace object using the array interface. 
 
 http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces
+
+(Note, `linspace` has extra accuracy enhancing changes. Just do the "simple" implementation")
 
 ##### Part 3
 
@@ -21,7 +23,7 @@ http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading
 
 Overload the call on the UnitStepRange to give an interpolated value at intermediate points, i.e. if `a=1:2:10`, then `a(1.5)=2`.
 
-#### Part 4 (Advanced)
+#### Part 4
 
 Do your implementations obay dimensional analysis? Try using the package `Unitful` to build arrays of numbers with units (i.e. an array of numbers who have values of Newtons), and see if you can make your LinSpace not give errors.
 
@@ -39,9 +41,12 @@ $$ \left[\begin{array}{ccccc}
  &  &  & 1 & -2
 \end{array}\right] $$
 
-Define a type `StrangMatrix <: AbstractMatrix` and define a dispatch such that `A*x` acts like a Strang matrix on a vector. 
+Define a type `StrangMatrix` and define a dispatch such that `A*x` acts like a Strang matrix on a vector. 
 
-**Bonus: Iterative solvers solve `Ax=b` and only require the definition of matrix multiplication. Thus utilize IterativeSolvers.jl to solve `Ax=b` for `b=rand(100)` using your lazy matrix type. Hint: you will need to define `A_mul_B!`.**
+
+### Advanced Bonus
+
+Iterative solvers solve `Ax=b` and only require the definition of matrix multiplication. Thus utilize IterativeSolvers.jl to solve `Ax=b` for `b=rand(100)` using your lazy matrix type. Hint: you will need to define `A_mul_B!`. You will also need to define a different version of your Strang matrix which holds a size and has `Base.eltype` defined.
 
 ## Regression Problem
 

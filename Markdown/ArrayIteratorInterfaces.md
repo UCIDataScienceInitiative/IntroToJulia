@@ -23,14 +23,27 @@ One usage example is in DifferentialEquations.jl. When you solve a differential 
 
 
 ```julia
-using DifferentialEquations
+using DifferentialEquations, DiffEqProblemLibrary
 sol = solve(prob_ode_linear)
 ```
 
 
 
 
-    DifferentialEquations.ODESolution, 4 timesteps, final value 1.372803219752981
+    retcode: Success
+    Interpolation: 3rd order Hermite
+    t: 5-element Array{Float64,1}:
+     0.0      
+     0.0996426
+     0.345703 
+     0.677692 
+     1.0      
+    u: 5-element Array{Float64,1}:
+     0.5     
+     0.552939
+     0.708938
+     0.99136 
+     1.3728  
 
 
 
@@ -41,13 +54,10 @@ While there are many fields that the type could hold, such as the errors of a gi
 println(sol)
 ```
 
-    DifferentialEquations.ODESolution with 4 timesteps. Analytical solution is known.
-    u: 1.372803219752981
-    errors: Dict(:l∞=>2.71224e-6,:final=>2.71224e-6,:l2=>1.57376e-6)
-    t: [0.0,0.146343,0.643575,1.0]
-    timeseries: [0.5,0.579644,0.957782,1.3728]
-    timeseries_analytic: [0.5,0.579644,0.957781,1.3728]
-    
+    retcode: Success
+    Interpolation: 3rd order Hermite
+    t: [0.0, 0.0996426, 0.345703, 0.677692, 1.0]
+    u: [0.5, 0.552939, 0.708938, 0.99136, 1.3728]
 
 
 An array interface is provided so that the solution "acts" like a traditional solution: i.e. as an array of the numerically computed values:
@@ -58,13 +68,13 @@ println(sol.t[3]) # The third timestep
 sol[3] # The value at the third timestep
 ```
 
-    0.6435749072667494
+    0.3457030604980719
 
 
 
 
 
-    0.9577822179420759
+    0.7089380797962724
 
 
 

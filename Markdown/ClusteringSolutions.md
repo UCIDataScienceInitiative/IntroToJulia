@@ -1,10 +1,94 @@
 
 # Solutions to the Clustering Task
 
+## Problem 1
+
+
+```julia
+Pkg.add("RDatasets")
+using RDatasets
+iris = dataset("datasets", "iris")
+```
+
+    [1m[36mINFO: [39m[22m[36mPackage RDatasets is already installed
+    [39m[1m[36mINFO: [39m[22m[36mMETADATA is out-of-date — you may not have the latest version of RDatasets
+    [39m[1m[36mINFO: [39m[22m[36mUse `Pkg.update()` to get the latest versions of your packages
+    [39m
 
 
 
-## Clustering
+
+<table class="data-frame"><thead><tr><th></th><th>SepalLength</th><th>SepalWidth</th><th>PetalLength</th><th>PetalWidth</th><th>Species</th></tr></thead><tbody><tr><th>1</th><td>5.1</td><td>3.5</td><td>1.4</td><td>0.2</td><td>setosa</td></tr><tr><th>2</th><td>4.9</td><td>3.0</td><td>1.4</td><td>0.2</td><td>setosa</td></tr><tr><th>3</th><td>4.7</td><td>3.2</td><td>1.3</td><td>0.2</td><td>setosa</td></tr><tr><th>4</th><td>4.6</td><td>3.1</td><td>1.5</td><td>0.2</td><td>setosa</td></tr><tr><th>5</th><td>5.0</td><td>3.6</td><td>1.4</td><td>0.2</td><td>setosa</td></tr><tr><th>6</th><td>5.4</td><td>3.9</td><td>1.7</td><td>0.4</td><td>setosa</td></tr><tr><th>7</th><td>4.6</td><td>3.4</td><td>1.4</td><td>0.3</td><td>setosa</td></tr><tr><th>8</th><td>5.0</td><td>3.4</td><td>1.5</td><td>0.2</td><td>setosa</td></tr><tr><th>9</th><td>4.4</td><td>2.9</td><td>1.4</td><td>0.2</td><td>setosa</td></tr><tr><th>10</th><td>4.9</td><td>3.1</td><td>1.5</td><td>0.1</td><td>setosa</td></tr><tr><th>11</th><td>5.4</td><td>3.7</td><td>1.5</td><td>0.2</td><td>setosa</td></tr><tr><th>12</th><td>4.8</td><td>3.4</td><td>1.6</td><td>0.2</td><td>setosa</td></tr><tr><th>13</th><td>4.8</td><td>3.0</td><td>1.4</td><td>0.1</td><td>setosa</td></tr><tr><th>14</th><td>4.3</td><td>3.0</td><td>1.1</td><td>0.1</td><td>setosa</td></tr><tr><th>15</th><td>5.8</td><td>4.0</td><td>1.2</td><td>0.2</td><td>setosa</td></tr><tr><th>16</th><td>5.7</td><td>4.4</td><td>1.5</td><td>0.4</td><td>setosa</td></tr><tr><th>17</th><td>5.4</td><td>3.9</td><td>1.3</td><td>0.4</td><td>setosa</td></tr><tr><th>18</th><td>5.1</td><td>3.5</td><td>1.4</td><td>0.3</td><td>setosa</td></tr><tr><th>19</th><td>5.7</td><td>3.8</td><td>1.7</td><td>0.3</td><td>setosa</td></tr><tr><th>20</th><td>5.1</td><td>3.8</td><td>1.5</td><td>0.3</td><td>setosa</td></tr><tr><th>21</th><td>5.4</td><td>3.4</td><td>1.7</td><td>0.2</td><td>setosa</td></tr><tr><th>22</th><td>5.1</td><td>3.7</td><td>1.5</td><td>0.4</td><td>setosa</td></tr><tr><th>23</th><td>4.6</td><td>3.6</td><td>1.0</td><td>0.2</td><td>setosa</td></tr><tr><th>24</th><td>5.1</td><td>3.3</td><td>1.7</td><td>0.5</td><td>setosa</td></tr><tr><th>25</th><td>4.8</td><td>3.4</td><td>1.9</td><td>0.2</td><td>setosa</td></tr><tr><th>26</th><td>5.0</td><td>3.0</td><td>1.6</td><td>0.2</td><td>setosa</td></tr><tr><th>27</th><td>5.0</td><td>3.4</td><td>1.6</td><td>0.4</td><td>setosa</td></tr><tr><th>28</th><td>5.2</td><td>3.5</td><td>1.5</td><td>0.2</td><td>setosa</td></tr><tr><th>29</th><td>5.2</td><td>3.4</td><td>1.4</td><td>0.2</td><td>setosa</td></tr><tr><th>30</th><td>4.7</td><td>3.2</td><td>1.6</td><td>0.2</td><td>setosa</td></tr><tr><th>&vellip;</th><td>&vellip;</td><td>&vellip;</td><td>&vellip;</td><td>&vellip;</td><td>&vellip;</td></tr></tbody></table>
+
+
+
+
+```julia
+using Clustering
+features = Array(iris[:,[1,3,4]])'
+result = kmeans( features, 3 ) 
+```
+
+
+
+
+    Clustering.KmeansResult{Float64}([6.81 5.006 5.89667; 5.7075 1.462 4.37167; 2.075 0.246 1.41], [2, 2, 2, 2, 2, 2, 2, 2, 2, 2  …  1, 1, 3, 1, 1, 1, 1, 1, 1, 3], [0.014796, 0.017196, 0.121996, 0.168396, 0.005996, 0.235596, 0.171596, 0.003596, 0.373196, 0.033996  …  0.129281, 0.427781, 0.779914, 0.0877813, 0.192781, 0.320281, 0.791281, 0.359281, 0.517281, 0.682581], [40, 50, 60], [40.0, 50.0, 60.0], 63.484116666666814, 10, true)
+
+
+
+
+```julia
+features'
+```
+
+
+
+
+    150×3 Array{Float64,2}:
+     5.1  1.4  0.2
+     4.9  1.4  0.2
+     4.7  1.3  0.2
+     4.6  1.5  0.2
+     5.0  1.4  0.2
+     5.4  1.7  0.4
+     4.6  1.4  0.3
+     5.0  1.5  0.2
+     4.4  1.4  0.2
+     4.9  1.5  0.1
+     5.4  1.5  0.2
+     4.8  1.6  0.2
+     4.8  1.4  0.1
+     ⋮            
+     6.0  4.8  1.8
+     6.9  5.4  2.1
+     6.7  5.6  2.4
+     6.9  5.1  2.3
+     5.8  5.1  1.9
+     6.8  5.9  2.3
+     6.7  5.7  2.5
+     6.7  5.2  2.3
+     6.3  5.0  1.9
+     6.5  5.2  2.0
+     6.2  5.4  2.3
+     5.9  5.1  1.8
+
+
+
+
+```julia
+using Plots; gr()
+scatter(features[1,:], features[2,:], features[3,:], color = result.assignments)
+```
+
+
+
+
+![svg](ClusteringSolutions_files/ClusteringSolutions_4_0.svg)
+
+
+
+## Problem 2 (Advanced)
+
 The main clustering package for julia, is unexpectedly, named [Clustering.jl](https://github.com/JuliaStats/Clustering.jl)
  - It supports K-means, K-medoids, Affinity Propagation, DBSCAN
  - It also supports hierarchical clustering, but that is not currently in the docs.

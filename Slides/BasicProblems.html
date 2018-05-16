@@ -11843,7 +11843,7 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Note:-These-4-problems-are-from-https://lectures.quantecon.org/jl/julia_by_example.html">Note: These 4 problems are from <a href="https://lectures.quantecon.org/jl/julia_by_example.html">https://lectures.quantecon.org/jl/julia_by_example.html</a><a class="anchor-link" href="#Note:-These-4-problems-are-from-https://lectures.quantecon.org/jl/julia_by_example.html">&#182;</a></h4>
+<h4 id="Note:-The-4-*-problems-are-from-https://lectures.quantecon.org/jl/julia_by_example.html">Note: The 4 * problems are from <a href="https://lectures.quantecon.org/jl/julia_by_example.html">https://lectures.quantecon.org/jl/julia_by_example.html</a><a class="anchor-link" href="#Note:-The-4-*-problems-are-from-https://lectures.quantecon.org/jl/julia_by_example.html">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -11913,9 +11913,11 @@ $$ \left[\begin{array}{ccccc}
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Timeseries-Generation-Problem*">Timeseries Generation Problem*<a class="anchor-link" href="#Timeseries-Generation-Problem*">&#182;</a></h4><p>An AR1 timeseries is defined by</p>
 $$ x_{t+1} = \alpha x_i + \epsilon_{t+1} $$<p>where $x_0 = 0$ and $t=0,\ldots,T$. The shocks ${\epsilon_t}$ are i.i.d. standard normal (<code>N(0,1)</code>, given by <code>randn()</code>). Using $T=200$</p>
-<p>1) $\alpha = 0$
-2) $\alpha = 0.5$
-3) $\alpha = 0.9$</p>
+<ol>
+<li>$\alpha = 0$</li>
+<li>$\alpha = 0.5$</li>
+<li>$\alpha = 0.9$</li>
+</ol>
 <p>use Plots.jl to plot a timecourse for each of the parameters. Label the lines for the values of $\alpha$ that generate them using the <code>label</code> argument in <code>plot</code>.</p>
 
 </div>

@@ -281,7 +281,79 @@
     
     \section{Clustering}\label{clustering}
 
-    \subsection{Clustering Task}\label{clustering-task}
+    \subsection{Basic Clustering Task}\label{basic-clustering-task}
+
+Use the following dataset:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{c}{\PYZsh{} Pkg.add(\PYZdq{}RDatasets\PYZdq{})}
+         \PY{k}{using} \PY{n}{RDatasets}
+         \PY{n}{iris} \PY{o}{=} \PY{n}{dataset}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{i}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\textcolor{ansi-cyan-intense}{\textbf{INFO: }}\textcolor{ansi-cyan}{Package RDatasets is already installed
+}\textcolor{ansi-cyan-intense}{\textbf{INFO: }}\textcolor{ansi-cyan}{METADATA is out-of-date — you may not have the latest version of RDatasets
+}\textcolor{ansi-cyan-intense}{\textbf{INFO: }}\textcolor{ansi-cyan}{Use `Pkg.update()` to get the latest versions of your packages
+}
+    \end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}24}]:} 150×5 DataFrames.DataFrame
+         │ Row │ SepalLength │ SepalWidth │ PetalLength │ PetalWidth │ Species     │
+         ├─────┼─────────────┼────────────┼─────────────┼────────────┼─────────────┤
+         │ 1   │ 5.1         │ 3.5        │ 1.4         │ 0.2        │ "setosa"    │
+         │ 2   │ 4.9         │ 3.0        │ 1.4         │ 0.2        │ "setosa"    │
+         │ 3   │ 4.7         │ 3.2        │ 1.3         │ 0.2        │ "setosa"    │
+         │ 4   │ 4.6         │ 3.1        │ 1.5         │ 0.2        │ "setosa"    │
+         │ 5   │ 5.0         │ 3.6        │ 1.4         │ 0.2        │ "setosa"    │
+         │ 6   │ 5.4         │ 3.9        │ 1.7         │ 0.4        │ "setosa"    │
+         │ 7   │ 4.6         │ 3.4        │ 1.4         │ 0.3        │ "setosa"    │
+         │ 8   │ 5.0         │ 3.4        │ 1.5         │ 0.2        │ "setosa"    │
+         │ 9   │ 4.4         │ 2.9        │ 1.4         │ 0.2        │ "setosa"    │
+         │ 10  │ 4.9         │ 3.1        │ 1.5         │ 0.1        │ "setosa"    │
+         │ 11  │ 5.4         │ 3.7        │ 1.5         │ 0.2        │ "setosa"    │
+         ⋮
+         │ 139 │ 6.0         │ 3.0        │ 4.8         │ 1.8        │ "virginica" │
+         │ 140 │ 6.9         │ 3.1        │ 5.4         │ 2.1        │ "virginica" │
+         │ 141 │ 6.7         │ 3.1        │ 5.6         │ 2.4        │ "virginica" │
+         │ 142 │ 6.9         │ 3.1        │ 5.1         │ 2.3        │ "virginica" │
+         │ 143 │ 5.8         │ 2.7        │ 5.1         │ 1.9        │ "virginica" │
+         │ 144 │ 6.8         │ 3.2        │ 5.9         │ 2.3        │ "virginica" │
+         │ 145 │ 6.7         │ 3.3        │ 5.7         │ 2.5        │ "virginica" │
+         │ 146 │ 6.7         │ 3.0        │ 5.2         │ 2.3        │ "virginica" │
+         │ 147 │ 6.3         │ 2.5        │ 5.0         │ 1.9        │ "virginica" │
+         │ 148 │ 6.5         │ 3.0        │ 5.2         │ 2.0        │ "virginica" │
+         │ 149 │ 6.2         │ 3.4        │ 5.4         │ 2.3        │ "virginica" │
+         │ 150 │ 5.9         │ 3.0        │ 5.1         │ 1.8        │ "virginica" │
+\end{Verbatim}
+        
+    Use Clustering.jl to cluster using the \texttt{SepalLength},
+\texttt{PetalLength}, and \texttt{PetalWidth}features via K-means
+clustering. Make a scatter plot of the resulting clusters.
+
+\textbf{Hint: You will need to index the dataframe, convert it to an
+array, and transpose it. In addition, you will need to use the
+\texttt{assignments} field of the return to get the cluster
+assignments}.
+
+    \subsection{Advanced Clustering Task}\label{advanced-clustering-task}
+
+For the the example presented here, we will use a subhset of Word
+Embedding, trained using
+\href{https://github.com/tanmaykm/Word2Vec.jl}{Word2Vec.jl}. These are
+100 dimentional vectors, which encode syntactic and semantic information
+about words.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k}{using} \PY{n}{JLD}
+        \PY{n}{embeddings} \PY{o}{=} \PY{n}{load}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{.}\PY{l+s}{.}\PY{l+s}{/}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{s}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{s}\PY{l+s}{/}\PY{l+s}{C}\PY{l+s}{l}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{A}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{D}\PY{l+s}{i}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{y}\PY{l+s}{R}\PY{l+s}{e}\PY{l+s}{d}\PY{l+s}{u}\PY{l+s}{c}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{.}\PY{l+s}{j}\PY{l+s}{l}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{e}\PY{l+s}{m}\PY{l+s}{b}\PY{l+s}{e}\PY{l+s}{d}\PY{l+s}{d}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+    You can download the datased from
+\href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ForwardDiff}{here},
+and load it up with \href{https://github.com/JuliaIO/JLD.jl}{JLD} as
+shown below. (or just load it directly if you have cloned the notebooks)
 
 \begin{itemize}
 \item
@@ -308,24 +380,6 @@
   to decreasing the amount each node wants to be in a cluster on its
   own.
 \end{itemize}
-
-    \section{First we loadup some data}\label{first-we-loadup-some-data}
-
-For the the example presented here, we will use a subhset of Word
-Embedding, trained using
-\href{https://github.com/tanmaykm/Word2Vec.jl}{Word2Vec.jl}. These are
-100 dimentional vectors, which encode syntactic and semantic information
-about words.
-
-You can download the datased from
-\href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ForwardDiff}{here},
-and load it up with \href{https://github.com/JuliaIO/JLD.jl}{JLD} as
-shown below. (or just load it directly if you have cloned the notebooks)
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{k}{using} \PY{n}{JLD}
-        \PY{n}{embeddings} \PY{o}{=} \PY{n}{load}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{.}\PY{l+s}{.}\PY{l+s}{/}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{s}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{s}\PY{l+s}{/}\PY{l+s}{C}\PY{l+s}{l}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{A}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{D}\PY{l+s}{i}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{y}\PY{l+s}{R}\PY{l+s}{e}\PY{l+s}{d}\PY{l+s}{u}\PY{l+s}{c}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{.}\PY{l+s}{j}\PY{l+s}{l}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{e}\PY{l+s}{m}\PY{l+s}{b}\PY{l+s}{e}\PY{l+s}{d}\PY{l+s}{d}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{)}
-\end{Verbatim}
 
 
     % Add a bibliography block to the postdoc

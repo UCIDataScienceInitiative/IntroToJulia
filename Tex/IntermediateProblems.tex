@@ -286,18 +286,26 @@ Problem}\label{myrange-and-linspace-problem}
 
 Part 1
 
-If you know \texttt{start}, \texttt{step}, and \texttt{stop}, how do you
-calculate the \texttt{i}th value? Can you create a function MyRange
-which where for \texttt{a} being a \texttt{MyRange}, and
-\texttt{a{[}i{]}} is the correct value? Use the Julia array interface in
-order to define the function for the \texttt{a{[}i{]}} syntax on your
-type.
+Let's create our own implementation of the range type. The
+\texttt{Range} type is what you get from \texttt{1:2:20}. It's form is
+\texttt{start:step:stop}. If you know \texttt{start}, \texttt{step}, and
+\texttt{stop}, how do you calculate the \texttt{i}th value? Create a
+type \texttt{MyRange} which stores \texttt{start}, \texttt{step}, and
+\texttt{stop}. Can you create a function \texttt{\_MyRange(a,i)} which
+for \texttt{a} being a \texttt{MyRange}, it returns what
+\texttt{a{[}i{]}} should be? After getting this correct, use the
+\href{https://docs.julialang.org/en/stable/manual/interfaces/\#Indexing-1}{Julia
+array interface} in order to define the function for the
+\texttt{a{[}i{]}} syntax on your type.
 
 Part 2
 
 Do ?linspace. Make your own LinSpace object using the array interface.
 
 http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces
+
+(Note, \texttt{linspace} has extra accuracy enhancing changes. Just do
+the ``simple'' implementation``)
 
 \subparagraph{Part 3}\label{part-3}
 
@@ -308,7 +316,7 @@ http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading
 Overload the call on the UnitStepRange to give an interpolated value at
 intermediate points, i.e.~if \texttt{a=1:2:10}, then \texttt{a(1.5)=2}.
 
-\paragraph{Part 4 (Advanced)}\label{part-4-advanced}
+\paragraph{Part 4}\label{part-4}
 
 Do your implementations obay dimensional analysis? Try using the package
 \texttt{Unitful} to build arrays of numbers with units (i.e.~an array of
@@ -333,15 +341,17 @@ Recall the Strang matrix
  &  &  & 1 & -2
 \end{array}\right] \]
 
-Define a type \texttt{StrangMatrix \textless{}: AbstractMatrix} and
-define a dispatch such that \texttt{A*x} acts like a Strang matrix on a
-vector.
+Define a type \texttt{StrangMatrix} and define a dispatch such that
+\texttt{A*x} acts like a Strang matrix on a vector.
 
-\textbf{Bonus: Iterative solvers solve \texttt{Ax=b} and only require
-the definition of matrix multiplication. Thus utilize
-IterativeSolvers.jl to solve \texttt{Ax=b} for \texttt{b=rand(100)}
-using your lazy matrix type. Hint: you will need to define
-\texttt{A\_mul\_B!}.}
+\subsubsection{Advanced Bonus}\label{advanced-bonus}
+
+Iterative solvers solve \texttt{Ax=b} and only require the definition of
+matrix multiplication. Thus utilize IterativeSolvers.jl to solve
+\texttt{Ax=b} for \texttt{b=rand(100)} using your lazy matrix type.
+Hint: you will need to define \texttt{A\_mul\_B!}. You will also need to
+define a different version of your Strang matrix which holds a size and
+has \texttt{Base.eltype} defined.
 
     \subsection{Regression Problem}\label{regression-problem}
 

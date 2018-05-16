@@ -326,29 +326,39 @@ One usage example is in DifferentialEquations.jl. When you solve a
 differential equation, the solution returns a specialized solution type.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}3}]:} \PY{k}{using} \PY{n}{DifferentialEquations}
+{\color{incolor}In [{\color{incolor}5}]:} \PY{k}{using} \PY{n}{DifferentialEquations}\PY{p}{,} \PY{n}{DiffEqProblemLibrary}
         \PY{n}{sol} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{n}{prob\PYZus{}ode\PYZus{}linear}\PY{p}{)}
 \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}3}]:} DifferentialEquations.ODESolution, 4 timesteps, final value 1.372803219752981
+{\color{outcolor}Out[{\color{outcolor}5}]:} retcode: Success
+        Interpolation: 3rd order Hermite
+        t: 5-element Array\{Float64,1\}:
+         0.0      
+         0.0996426
+         0.345703 
+         0.677692 
+         1.0      
+        u: 5-element Array\{Float64,1\}:
+         0.5     
+         0.552939
+         0.708938
+         0.99136 
+         1.3728  
 \end{Verbatim}
         
     While there are many fields that the type could hold, such as the errors
 of a given analytical solution:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{println}\PY{p}{(}\PY{n}{sol}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{println}\PY{p}{(}\PY{n}{sol}\PY{p}{)}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-DifferentialEquations.ODESolution with 4 timesteps. Analytical solution is known.
-u: 1.372803219752981
-errors: Dict(:l∞=>2.71224e-6,:final=>2.71224e-6,:l2=>1.57376e-6)
-t: [0.0,0.146343,0.643575,1.0]
-timeseries: [0.5,0.579644,0.957782,1.3728]
-timeseries\_analytic: [0.5,0.579644,0.957781,1.3728]
-
+retcode: Success
+Interpolation: 3rd order Hermite
+t: [0.0, 0.0996426, 0.345703, 0.677692, 1.0]
+u: [0.5, 0.552939, 0.708938, 0.99136, 1.3728]
 
     \end{Verbatim}
 
@@ -357,17 +367,17 @@ traditional solution: i.e.~as an array of the numerically computed
 values:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{println}\PY{p}{(}\PY{n}{sol}\PY{o}{.}\PY{n}{t}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)} \PY{c}{\PYZsh{} The third timestep}
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{println}\PY{p}{(}\PY{n}{sol}\PY{o}{.}\PY{n}{t}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)} \PY{c}{\PYZsh{} The third timestep}
         \PY{n}{sol}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]} \PY{c}{\PYZsh{} The value at the third timestep}
 \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-0.6435749072667494
+0.3457030604980719
 
     \end{Verbatim}
 
             \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}7}]:} 0.9577822179420759
+{\color{outcolor}Out[{\color{outcolor}4}]:} 0.7089380797962724
 \end{Verbatim}
         
     An entire Julia organization, JuliaArrays, is devoted to making fast,

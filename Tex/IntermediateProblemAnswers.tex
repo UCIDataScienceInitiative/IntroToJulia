@@ -282,6 +282,300 @@
     \section{Intermediate Problem
 Answers}\label{intermediate-problem-answers}
 
+    \subsection{MyRange and MyLinSpace
+Problem}\label{myrange-and-mylinspace-problem}
+
+\subsubsection{Part 1}\label{part-1}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{struct} \PY{n}{MyRange}
+            \PY{n}{start}
+            \PY{n}{step}
+            \PY{n}{stop}
+        \PY{k}{end}
+        
+        \PY{k}{function} \PY{n}{\PYZus{}MyRange}\PY{p}{(}\PY{n}{a}\PY{o}{::}\PY{n}{MyRange}\PY{p}{,}\PY{n}{i}\PY{o}{::}\PY{k+kt}{Int}\PY{p}{)}
+            \PY{n}{tmp} \PY{o}{=} \PY{n}{a}\PY{o}{.}\PY{n}{start} \PY{o}{+} \PY{n}{a}\PY{o}{.}\PY{n}{step}\PY{o}{*}\PY{p}{(}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+            \PY{k}{if} \PY{n}{tmp} \PY{o}{\PYZgt{}} \PY{n}{a}\PY{o}{.}\PY{n}{stop}
+                \PY{n}{error}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{I}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{e}\PY{l+s}{x}\PY{l+s}{ }\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{ }\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{t}\PY{l+s}{ }\PY{l+s}{o}\PY{l+s}{f}\PY{l+s}{ }\PY{l+s}{b}\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{s}\PY{l+s}{!}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+            \PY{k}{else}
+                \PY{k}{return} \PY{n}{tmp}
+            \PY{k}{end}
+        \PY{k}{end}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}8}]:} \_MyRange (generic function with 1 method)
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{a} \PY{o}{=} \PY{n}{MyRange}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{)}
+        \PY{n}{\PYZus{}MyRange}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)} \PY{o}{==} \PY{p}{(}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{2}\PY{o}{:}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{]}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}9}]:} true
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{Base}\PY{o}{.}\PY{n}{getindex}\PY{p}{(}\PY{n}{a}\PY{o}{::}\PY{n}{MyRange}\PY{p}{,}\PY{n}{i}\PY{o}{::}\PY{k+kt}{Int}\PY{p}{)} \PY{o}{=} \PY{n}{\PYZus{}MyRange}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{i}\PY{p}{)}
+         \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{]}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} 9
+\end{Verbatim}
+        
+    \subsubsection{Part 2}\label{part-2}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{o}{?}\PY{n}{linspace}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+search: \textbf{l}\textbf{i}\textbf{n}\textbf{s}\textbf{p}\textbf{a}\textbf{c}\textbf{e} \textbf{L}\textbf{i}\textbf{n}\textbf{S}\textbf{p}\textbf{a}\textbf{c}\textbf{e}
+
+
+    \end{Verbatim}
+\texttt{\color{outcolor}Out[{\color{outcolor}13}]:}
+    
+    \begin{verbatim}
+linspace(start, stop, n=50)
+\end{verbatim}
+
+Construct a range of \texttt{n} linearly spaced elements from
+\texttt{start} to \texttt{stop}.
+
+\begin{verbatim}
+julia> linspace(1.3,2.9,9)
+1.3:0.2:2.9
+\end{verbatim}
+
+    
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{struct} \PY{n}{MyLinSpace}
+             \PY{n}{start}
+             \PY{n}{stop}
+             \PY{n}{n}
+         \PY{k}{end}
+         
+         \PY{k}{function} \PY{n}{Base}\PY{o}{.}\PY{n}{getindex}\PY{p}{(}\PY{n}{a}\PY{o}{::}\PY{n}{MyLinSpace}\PY{p}{,}\PY{n}{i}\PY{o}{::}\PY{k+kt}{Int}\PY{p}{)}
+             \PY{n}{dx} \PY{o}{=} \PY{p}{(}\PY{n}{a}\PY{o}{.}\PY{n}{stop}\PY{o}{\PYZhy{}}\PY{n}{a}\PY{o}{.}\PY{n}{start}\PY{p}{)}\PY{o}{/}\PY{n}{a}\PY{o}{.}\PY{n}{n}
+             \PY{n}{a}\PY{o}{.}\PY{n}{start} \PY{o}{+} \PY{n}{dx}\PY{o}{*}\PY{p}{(}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{k}{end}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{n}{l} \PY{o}{=} \PY{n}{MyLinSpace}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{50}\PY{p}{)}
+         \PY{n}{l}\PY{p}{[}\PY{l+m+mi}{6}\PY{p}{]}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}26}]:} 1.1
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{50}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{6}\PY{p}{]}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}27}]:} 1.1020408163265305
+\end{Verbatim}
+        
+    \subsubsection{Part 3}\label{part-3}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{p}{(}\PY{n}{a}\PY{o}{::}\PY{n}{MyRange}\PY{p}{)}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{=} \PY{n}{a}\PY{o}{.}\PY{n}{start} \PY{o}{+} \PY{n}{a}\PY{o}{.}\PY{n}{step}\PY{o}{*}\PY{p}{(}\PY{n}{x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{a} \PY{o}{=} \PY{n}{MyRange}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{)}
+         \PY{n}{a}\PY{p}{(}\PY{l+m+mf}{1.1}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}29}]:} 1.2000000000000002
+\end{Verbatim}
+        
+    \subsubsection{Part 4}\label{part-4}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{k}{using} \PY{n}{Unitful}
+         \PY{n}{a} \PY{o}{=} \PY{n}{MyRange}\PY{p}{(}\PY{l+m+mi}{1}\PY{n}{u}\PY{l+s}{\PYZdq{}}\PY{l+s}{k}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+m+mi}{2}\PY{n}{u}\PY{l+s}{\PYZdq{}}\PY{l+s}{k}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+m+mi}{20}\PY{n}{u}\PY{l+s}{\PYZdq{}}\PY{l+s}{k}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{]}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}32}]:} 9 kg
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+search: \textbf{e}\textbf{n}\textbf{d} \textbf{e}\textbf{n}\textbf{d}of \textbf{e}\textbf{n}\textbf{d}swith \textbf{E}\textbf{N}\textbf{D}IAN\_BOM s\textbf{e}\textbf{n}\textbf{d} app\textbf{e}\textbf{n}\textbf{d}! Quot\textbf{e}\textbf{N}o\textbf{d}e Rang\textbf{e}I\textbf{n}\textbf{d}ex g\textbf{e}ti\textbf{n}\textbf{d}ex
+
+
+    \end{Verbatim}
+
+    \subsection{Operator Problem}\label{operator-problem}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}56}]:} \PY{n}{struct} \PY{n}{StrangMatrix} \PY{k}{end}
+         \PY{n}{A} \PY{o}{=} \PY{n}{StrangMatrix}\PY{p}{(}\PY{p}{)}
+         
+         \PY{k}{function} \PY{n}{Base}\PY{o}{.}\PY{n}{A\PYZus{}mul\PYZus{}B!}\PY{p}{(}\PY{n}{C}\PY{p}{,}\PY{n}{A}\PY{o}{::}\PY{n}{StrangMatrix}\PY{p}{,}\PY{n}{B}\PY{o}{::}\PY{k+kt}{AbstractVector}\PY{p}{)}
+             \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{2}\PY{o}{:}\PY{n}{length}\PY{p}{(}\PY{n}{B}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+                 \PY{n}{C}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{B}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{l+m+mi}{2}\PY{n}{B}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{+} \PY{n}{B}\PY{p}{[}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}
+             \PY{k}{end}
+             \PY{n}{C}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{n}{B}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{B}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+             \PY{n}{C}\PY{p}{[}\PY{k}{end}\PY{p}{]} \PY{o}{=} \PY{n}{B}\PY{p}{[}\PY{k}{end}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{l+m+mi}{2}\PY{n}{B}\PY{p}{[}\PY{k}{end}\PY{p}{]}
+             \PY{n}{C}
+         \PY{k}{end}
+         
+         \PY{n}{Base}\PY{o}{.}\PY{o}{:}\PY{o}{*}\PY{p}{(}\PY{n}{A}\PY{o}{::}\PY{n}{StrangMatrix}\PY{p}{,}\PY{n}{B}\PY{o}{::}\PY{k+kt}{AbstractVector}\PY{p}{)} \PY{o}{=} \PY{p}{(}\PY{n}{C} \PY{o}{=} \PY{n}{similar}\PY{p}{(}\PY{n}{B}\PY{p}{)}\PY{p}{;} \PY{n}{A\PYZus{}mul\PYZus{}B!}\PY{p}{(}\PY{n}{C}\PY{p}{,}\PY{n}{A}\PY{p}{,}\PY{n}{B}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{n}{A}\PY{o}{*}\PY{n}{ones}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}38}]:} 10-element Array\{Float64,1\}:
+          -1.0
+           0.0
+           0.0
+           0.0
+           0.0
+           0.0
+           0.0
+           0.0
+           0.0
+          -1.0
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}64}]:} \PY{n}{struct} \PY{n}{SizedStrangMatrix}
+             \PY{n}{size}
+         \PY{k}{end}
+         
+         \PY{n}{Base}\PY{o}{.}\PY{n}{eltype}\PY{p}{(}\PY{n}{A}\PY{o}{::}\PY{n}{SizedStrangMatrix}\PY{p}{)} \PY{o}{=} \PY{k+kt}{Float64}
+         \PY{n}{Base}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{n}{A}\PY{o}{::}\PY{n}{SizedStrangMatrix}\PY{p}{)} \PY{o}{=} \PY{n}{A}\PY{o}{.}\PY{n}{size}
+         \PY{n}{Base}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{n}{A}\PY{o}{::}\PY{n}{SizedStrangMatrix}\PY{p}{,}\PY{n}{i}\PY{o}{::}\PY{k+kt}{Int}\PY{p}{)} \PY{o}{=} \PY{n}{A}\PY{o}{.}\PY{n}{size}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}65}]:} \PY{n}{b} \PY{o}{=} \PY{n}{sin}\PY{o}{.}\PY{p}{(}\PY{l+m+mi}{0}\PY{o}{:}\PY{l+m+mf}{0.1}\PY{o}{:}\PY{l+m+mi}{2}\PY{n+nb}{π}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}65}]:} 63-element Array\{Float64,1\}:
+           0.0      
+           0.0998334
+           0.198669 
+           0.29552  
+           0.389418 
+           0.479426 
+           0.564642 
+           0.644218 
+           0.717356 
+           0.783327 
+           0.841471 
+           0.891207 
+           0.932039 
+           ⋮        
+          -0.925815 
+          -0.883455 
+          -0.832267 
+          -0.772764 
+          -0.70554  
+          -0.631267 
+          -0.550686 
+          -0.464602 
+          -0.373877 
+          -0.279415 
+          -0.182163 
+          -0.0830894
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}66}]:} \PY{n}{A} \PY{o}{=} \PY{n}{SizedStrangMatrix}\PY{p}{(}\PY{p}{(}\PY{n}{length}\PY{p}{(}\PY{n}{b}\PY{p}{)}\PY{p}{,}\PY{n}{length}\PY{p}{(}\PY{n}{b}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         
+         \PY{k}{function} \PY{n}{Base}\PY{o}{.}\PY{n}{A\PYZus{}mul\PYZus{}B!}\PY{p}{(}\PY{n}{C}\PY{p}{,}\PY{n}{A}\PY{o}{::}\PY{n}{SizedStrangMatrix}\PY{p}{,}\PY{n}{B}\PY{p}{)}
+             \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{2}\PY{o}{:}\PY{n}{length}\PY{p}{(}\PY{n}{B}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+                 \PY{n}{C}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{B}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{l+m+mi}{2}\PY{n}{B}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{+} \PY{n}{B}\PY{p}{[}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}
+             \PY{k}{end}
+             \PY{n}{C}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{n}{B}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{B}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+             \PY{n}{C}\PY{p}{[}\PY{k}{end}\PY{p}{]} \PY{o}{=} \PY{n}{B}\PY{p}{[}\PY{k}{end}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{l+m+mi}{2}\PY{n}{B}\PY{p}{[}\PY{k}{end}\PY{p}{]}
+             \PY{n}{C}
+         \PY{k}{end}
+         \PY{n}{Base}\PY{o}{.}\PY{o}{:}\PY{o}{*}\PY{p}{(}\PY{n}{A}\PY{o}{::}\PY{n}{SizedStrangMatrix}\PY{p}{,}\PY{n}{B}\PY{o}{::}\PY{k+kt}{AbstractVector}\PY{p}{)} \PY{o}{=} \PY{p}{(}\PY{n}{C} \PY{o}{=} \PY{n}{similar}\PY{p}{(}\PY{n}{B}\PY{p}{)}\PY{p}{;} \PY{n}{A\PYZus{}mul\PYZus{}B!}\PY{p}{(}\PY{n}{C}\PY{p}{,}\PY{n}{A}\PY{p}{,}\PY{n}{B}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}73}]:} \PY{k}{using} \PY{n}{IterativeSolvers}
+         \PY{n}{x} \PY{o}{=} \PY{n}{gmres}\PY{p}{(}\PY{n}{A}\PY{p}{,}\PY{n}{b}\PY{p}{,}\PY{n}{tol}\PY{o}{=}\PY{l+m+mf}{1e\PYZhy{}14}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}73}]:} 63-element Array\{Float64,1\}:
+            -9.75574
+           -19.5118 
+           -29.1685 
+           -38.6273 
+           -47.7917 
+           -56.5679 
+           -64.8662 
+           -72.6018 
+           -79.6955 
+           -86.0744 
+           -91.6729 
+           -96.4332 
+          -100.306  
+             ⋮      
+            92.7311 
+            88.6305 
+            83.6451 
+            77.8263 
+            71.2334 
+            63.934  
+            56.0017 
+            47.5193 
+            38.5723 
+            29.2516 
+            19.6511 
+             9.86787
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}75}]:} \PY{n}{A}\PY{o}{*}\PY{n}{x} \PY{o}{\PYZhy{}} \PY{n}{b}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}75}]:} 63-element Array\{Float64,1\}:
+          -0.000289122
+          -0.000548773
+          -0.000747631
+          -0.00109653 
+          -0.00121106 
+          -0.00156251 
+          -0.001876   
+          -0.00234776 
+          -0.00257171 
+          -0.0029435  
+          -0.0031805  
+          -0.00349519 
+          -0.00378336 
+           ⋮          
+          -0.00139662 
+          -0.00132261 
+          -0.00122719 
+          -0.00123587 
+          -0.00103713 
+          -0.00164304 
+           0.000594124
+           0.00010594 
+           9.1898e-5  
+          -0.000444569
+          -0.000461939
+          -0.00158795 
+\end{Verbatim}
+        
     \subsection{Regression Problem}\label{regression-problem}
 
     \begin{Verbatim}[commandchars=\\\{\}]
@@ -312,6 +606,63 @@ Answers}\label{intermediate-problem-answers}
         \PY{n}{scatter}\PY{p}{(}\PY{n}{X}\PY{p}{,}\PY{n}{y}\PY{p}{)}
         \PY{n}{Plots}\PY{o}{.}\PY{n}{abline!}\PY{p}{(}\PY{n}{b}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+m+mf}{0.0}\PY{p}{,} \PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)} \PY{c}{\PYZsh{} Slope,Intercept}
 \end{Verbatim}
+
+    \subsection{Type Hierarchy Problem}\label{type-hierarchy-problem}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}80}]:} \PY{k}{abstract} \PY{k}{type} \PY{n}{AbstractPerson} \PY{k}{end}
+         \PY{k}{abstract} \PY{k}{type} \PY{n}{AbstractStudent} \PY{o}{\PYZlt{}:} \PY{n}{AbstractPerson} \PY{k}{end}
+         
+         \PY{n}{struct} \PY{n}{Person} \PY{o}{\PYZlt{}:} \PY{n}{AbstractPerson}
+             \PY{n}{name}
+         \PY{k}{end}
+         
+         \PY{n}{struct} \PY{n}{Student} \PY{o}{\PYZlt{}:} \PY{n}{AbstractStudent}
+             \PY{n}{name}
+             \PY{n}{grade}
+         \PY{k}{end}
+         
+         \PY{n}{struct} \PY{n}{GraduateStudent} \PY{o}{\PYZlt{}:} \PY{n}{AbstractStudent}
+             \PY{n}{name}
+             \PY{n}{grade}
+         \PY{k}{end}
+         
+         \PY{n}{person\PYZus{}info}\PY{p}{(}\PY{n}{p}\PY{o}{::}\PY{n}{AbstractPerson}\PY{p}{)} \PY{o}{=} \PY{n}{println}\PY{p}{(}\PY{n}{p}\PY{o}{.}\PY{n}{name}\PY{p}{)}
+         \PY{n}{person\PYZus{}info}\PY{p}{(}\PY{n}{s}\PY{o}{::}\PY{n}{AbstractStudent}\PY{p}{)} \PY{o}{=} \PY{p}{(}\PY{n}{println}\PY{p}{(}\PY{n}{s}\PY{o}{.}\PY{n}{name}\PY{p}{)}\PY{p}{;} \PY{n}{println}\PY{p}{(}\PY{n}{s}\PY{o}{.}\PY{n}{grade}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+            \begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}80}]:} person\_info (generic function with 2 methods)
+\end{Verbatim}
+        
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}78}]:} \PY{n}{person\PYZus{}info}\PY{p}{(}\PY{n}{Person}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{o}\PY{l+s}{b}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Bob
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}81}]:} \PY{n}{person\PYZus{}info}\PY{p}{(}\PY{n}{Student}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{o}\PY{l+s}{b}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Bob
+2
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}82}]:} \PY{n}{person\PYZus{}info}\PY{p}{(}\PY{n}{GraduateStudent}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{o}\PY{l+s}{b}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Bob
+2
+
+    \end{Verbatim}
 
     \subsection{Distribution Dispatch
 Problem}\label{distribution-dispatch-problem}
