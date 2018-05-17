@@ -158,7 +158,7 @@ display(p)
 
 The probabilities follow the binomial formula. Let $S_T$ denote the final price. 
 
-$$\mathbb{P}[S_T = u^{n-k}d^kS] = {{n}\choose{k}} p^{*(n-k)}(1-p^*)^k$$
+$$\mathbb{P}[S_T = u^{n-k}d^kS] = {{n}\choose{k}} p^{\ast(n-k)}(1-p^\ast)^k$$
 
 ## 2 b) 
 
