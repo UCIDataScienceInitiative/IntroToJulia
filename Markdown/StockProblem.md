@@ -52,6 +52,7 @@ a) Assume $S = 100$, $T = 1$, $n = 10,000$, $\sigma = 0.3$, and $r = 0.08$.  Try
 
 b) Create a function `createPath(S::Float64, r::Float64, sigma::Float64, T::Float64, n::Int64)` which creates a stock price path given initial parameters.  Use `createPath` to create $10$ different stock paths and plot them all on the same plot.  You can use the function `plot!` to modify an existing plot.
 
+c) (Optional) Parallelize your path generation! See [the parallelism documentation](https://docs.julialang.org/en/stable/manual/parallel-computing) for details on how to do this. Try use `Threads.@threads`, `pmap`, and `@parallel for`.
 
 
 #### Problem 2 

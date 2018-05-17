@@ -1,5 +1,5 @@
 
-Problem 1 a)
+## Problem 1 a)
 
 
 ```julia
@@ -41,13 +41,13 @@ plot(path)
 
 
 
-Problem 1 b)
+## Problem 1 b)
 
 
 ```julia
 using Plots
 
-function createPath(S::Float64, r::Float64, sigma::Float64, T::Float64, n::Int64)
+function createPath(S, r, sigma, T, n)
     h = T / n
     u = exp(r*h + sigma * sqrt(h))
     d = exp(r*h - sigma * sqrt(h))
@@ -83,15 +83,90 @@ display(p)
 ![svg](StockProblemAnswers_files/StockProblemAnswers_3_0.svg)
 
 
-2 a) The probabilities follow the binomial formula. Let $S_T$ denote the final price. 
-
-$$\mathbb{P}[S_T = u^{n-k}d^kS] = {{n}\choose{k}} p^{*(n-k)}(1-p^*)^k$$
-
-2 b) for $n = 100$
+## 1 c) (Optional)
 
 
 ```julia
-function computeDistribution(S::Float64, r::Float64, sigma::Float64, T::Float64, n::Int64)
+# Threads
+# This will work on shared memory (multicore) machines
+
+paths = Array{Array{Float64}}(10)
+
+Threads.@threads for i in 1:10
+    paths[i] = createPath(100.0, 0.08, 0.3, 1.0, 10000)
+end
+
+p = plot(paths[1]);
+plot!(p, title="Stock Price Paths", xlabel="Period", ylabel="Price", legend=false)
+
+for k in 2:10
+    plot!(p, paths[k])
+end
+display(p)
+```
+
+
+![svg](StockProblemAnswers_files/StockProblemAnswers_5_0.svg)
+
+
+
+```julia
+# Distributed parallelism
+# This will work across multiple computers and multiple nodes of a cluster
+
+@everywhere function createPath(S, r, sigma, T, n)
+    h = T / n
+    u = exp(r*h + sigma * sqrt(h))
+    d = exp(r*h - sigma * sqrt(h))
+
+    p_star = (exp(r*h) - d) / (u - d)
+
+    path = Array{Float64}(n + 2)
+
+    #add in the starting price
+    path[1] = S
+
+    for k in 2:n+2
+        if rand() < p_star
+            #then we go up
+            path[k] = path[k-1] * u
+        else
+            path[k] = path[k-1] * d
+        end
+    end
+    path
+end
+
+f = (i) -> createPath(100.0, 0.08, 0.3, 1.0, 10000)
+addprocs()
+paths = pmap(f,1:10)
+
+p = plot(paths[1]);
+plot!(p, title="Stock Price Paths", xlabel="Period", ylabel="Price", legend=false)
+
+for k in 2:10
+    plot!(p, paths[k])
+end
+display(p)
+```
+
+
+![svg](StockProblemAnswers_files/StockProblemAnswers_6_0.svg)
+
+
+## 2 a) 
+
+The probabilities follow the binomial formula. Let $S_T$ denote the final price. 
+
+$$\mathbb{P}[S_T = u^{n-k}d^kS] = {{n}\choose{k}} p^{*(n-k)}(1-p^*)^k$$
+
+## 2 b) 
+
+for $n = 100$
+
+
+```julia
+function computeDistribution(S, r, sigma, T, n)
 
     h = T / n
     u = exp(r*h + sigma * sqrt(h))
@@ -118,6 +193,6 @@ computeDistribution(100.0, 0.08, 0.3, 1.0, 100)
 
 
 
-![svg](StockProblemAnswers_files/StockProblemAnswers_6_0.svg)
+![svg](StockProblemAnswers_files/StockProblemAnswers_9_0.svg)
 
 

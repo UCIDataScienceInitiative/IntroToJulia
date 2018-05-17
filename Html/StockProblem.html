@@ -11790,6 +11790,7 @@ S & & & & udS = duS \\
 </ul>
 <p>a) Assume $S = 100$, $T = 1$, $n = 10,000$, $\sigma = 0.3$, and $r = 0.08$.  Try to plot a single stock price path.  The function <code>rand()</code> generates a random number between $0$ and $1$. You can use the <code>plot</code> function from the <code>Plots</code> library.</p>
 <p>b) Create a function <code>createPath(S::Float64, r::Float64, sigma::Float64, T::Float64, n::Int64)</code> which creates a stock price path given initial parameters.  Use <code>createPath</code> to create $10$ different stock paths and plot them all on the same plot.  You can use the function <code>plot!</code> to modify an existing plot.</p>
+<p>c) (Optional) Parallelize your path generation! See <a href="https://docs.julialang.org/en/stable/manual/parallel-computing">the parallelism documentation</a> for details on how to do this. Try use <code>Threads.@threads</code>, <code>pmap</code>, and <code>@parallel for</code>.</p>
 <h4 id="Problem-2">Problem 2<a class="anchor-link" href="#Problem-2">&#182;</a></h4><p>Now, lets try and figure out what distribution the stock prices follow when using the binomial model.  In this case, we are only worried about the final prices in our model.  If $150$ is one of the final prices in our model, the question we are trying to answer is: what is the probability that the final stock price will be $150$?  Notice, that the binomial tree is easily adjusted to accomodate probabilities.</p>
 $$\begin{array}{c c c c c}
 & & & & u^2S \\

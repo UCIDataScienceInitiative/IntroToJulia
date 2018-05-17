@@ -378,6 +378,11 @@ $p^* = \frac{e^{rh} - d}{u - d}$
   \texttt{createPath} to create $10$ different stock paths and plot them
   all on the same plot. You can use the function \texttt{plot!} to
   modify an existing plot.
+\item
+  (Optional) Parallelize your path generation! See
+  \href{https://docs.julialang.org/en/stable/manual/parallel-computing}{the
+  parallelism documentation} for details on how to do this. Try use
+  \texttt{Threads.@threads}, \texttt{pmap}, and \texttt{@parallel for}.
 \end{enumerate}
 
 \paragraph{Problem 2}\label{problem-2}
