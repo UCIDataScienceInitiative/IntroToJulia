@@ -53,6 +53,7 @@ To get started, see the [Tooling, Documentation, and Community notebook](http://
 - [Basic Problems](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicProblems)
 - [Intermediate Problems](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/IntermediateProblems)
 - [Advanced Problems](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/AdvancedProblems)
+- [Stock Modeling Problem](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/StockProblem)
 
 ### Detailed Usage: A Peek Into "the Rabbit Hole"
 
@@ -110,6 +111,7 @@ Probe around and understand the following results:
 - [Basic Problem Answers](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicProblemAnswers)
 - [Intermediate Problem Answers](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/IntermediateProblemAnswers)
 - [Advanced Problem Answers](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/AdvancedProblemAnswers)
+- [Answer to Stock Modeling Problem](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/StockProblemAnswers)
 - [Answer to the LightGraphs Problem](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/LightGraphsAnswers)
 - [Answer to the ForwardDiff Problems](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ForwardDiffAnswers)
 - [Answer to the Nonlinear Solver Problems](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/NonlinearSolveAnswers)
