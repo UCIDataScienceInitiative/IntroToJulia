@@ -15,8 +15,8 @@
     
     
     \usepackage[T1]{fontenc}
-    % Nicer default font than Computer Modern for most use cases
-    \usepackage{palatino}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
 
     % Basic figure setup, for now with no caption control since it's done
     % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
@@ -62,6 +62,7 @@
     \usepackage{hyperref}
     \usepackage{longtable} % longtable support required by pandoc >1.10
     \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
     \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
                                 % normalem makes italics be italics, not underlines
     
@@ -158,73 +159,73 @@
     \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
 \def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
 
-\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
 \expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
-\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
-\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
 \expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
-\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
-\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
-\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
-\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
-\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
-\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
-\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
-\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
-\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
-\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
-\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
-\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
-\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
-\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
-\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
-\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
-\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
-\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
-\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
-\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 
 \def\PYZbs{\char`\\}
 \def\PYZus{\char`\_}
@@ -280,6 +281,214 @@
 
     
     \section{Advanced Problem Answers}\label{advanced-problem-answers}
+
+\subsection{Metaprogramming Problem}\label{metaprogramming-problem}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{macro} \PY{n}{myevalpoly}\PY{p}{(}\PY{n}{z}\PY{p}{,}\PY{n}{a}\PY{o}{.}\PY{o}{.}\PY{o}{.}\PY{p}{)}
+            \PY{n}{isempty}\PY{p}{(}\PY{n}{a}\PY{p}{)} \PY{o}{\PYZam{}\PYZam{}} \PY{n}{error}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Y}\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{ }\PY{l+s}{f}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{g}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{ }\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{ }\PY{l+s}{p}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{s}\PY{l+s}{ }\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{e}\PY{l+s}{f}\PY{l+s}{f}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{i}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{s}\PY{l+s}{!}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+            \PY{n}{ex} \PY{o}{=} \PY{o}{:}\PY{p}{(}\PY{o}{\PYZdl{}}\PY{p}{(}\PY{n}{a}\PY{p}{[}\PY{n}{length}\PY{p}{(}\PY{n}{a}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+            \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{length}\PY{p}{(}\PY{n}{a}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+               \PY{n}{ex} \PY{o}{=} \PY{o}{:}\PY{p}{(}\PY{o}{\PYZdl{}}\PY{n}{ex} \PY{o}{*} \PY{o}{\PYZdl{}}\PY{p}{(}\PY{n}{z}\PY{p}{)} \PY{o}{+} \PY{o}{\PYZdl{}}\PY{p}{(}\PY{n}{a}\PY{p}{[}\PY{n}{length}\PY{p}{(}\PY{n}{a}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{p}{]}\PY{p}{)} \PY{p}{)} 
+            \PY{k}{end}
+            \PY{n}{println}\PY{p}{(}\PY{n}{ex}\PY{p}{)}
+            \PY{n}{ex}
+        \PY{k}{end}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}1}]:} @myevalpoly (macro with 1 method)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n+nd}{@myevalpoly} \PY{l+m+mi}{7} \PY{l+m+mi}{2} \PY{l+m+mi}{3} \PY{l+m+mi}{4} \PY{l+m+mi}{5}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+((5 * 7 + 4) * 7 + 3) * 7 + 2
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}2}]:} 1934
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n+nd}{@evalpoly} \PY{l+m+mi}{7} \PY{l+m+mi}{2} \PY{l+m+mi}{3} \PY{l+m+mi}{4} \PY{l+m+mi}{5}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:} 1934
+\end{Verbatim}
+            
+    \subsection{Plot the roots of Wilkinson's polynomial with
+perturbation}\label{plot-the-roots-of-wilkinsons-polynomial-with-perturbation}
+
+First, we need to construct coefficients \(a_k\). For the polynomial
+\(\prod_{i=1}^4 (x-z_i)\), we have the coefficients \[\left(
+\begin{array}{c}
+ z_1 z_2 z_3 z_4 \\
+ -z_1 z_2 z_3-z_1 z_4 z_3-z_2 z_4 z_3-z_1 z_2 z_4 \\
+ z_1 z_2+z_3 z_2+z_4 z_2+z_1 z_3+z_1 z_4+z_3 z_4 \\
+ -z_1-z_2-z_3-z_4 \\
+ 1 \\
+\end{array}
+\right),\] thus we can exploit the structure and write a double
+\texttt{for} loop to calculate the coefficients. A more general formula
+is \[
+\begin{cases}
+1 = a_{n}\\
+x_{1}+x_{2}+\dots +x_{n-1}+x_{n}=-a_{n-1}\\
+(x_{1}x_{2}+x_{1}x_{3}+\cdots +x_{1}x_{n})+(x_{2}x_{3}+x_{2}x_{4}+\cdots +x_{2}x_{n})+\cdots +x_{n-1}x_{n}=a_{n-2}\\
+\quad \vdots \\
+x_{1}x_{2}\dots x_{n}=(-1)^{n}a_{0}.\end{cases}
+\] Checkout
+\href{https://en.wikipedia.org/wiki/Vieta\%27s_formulas}{Vieta's
+formulas} for more information.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{k}{function} \PY{n}{root2coeff}\PY{p}{(}\PY{n}{z}\PY{o}{::}\PY{k+kt}{AbstractVector}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}\PY{p}{)} \PY{n}{where} \PY{n}{T}
+            \PY{n}{N} \PY{o}{=} \PY{n}{length}\PY{p}{(}\PY{n}{z}\PY{p}{)}
+            \PY{n}{co} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{n}{T}\PY{p}{,} \PY{n}{N}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
+            \PY{c}{\PYZsh{} The last coefficient is always one}
+            \PY{n}{co}\PY{p}{[}\PY{k}{end}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+            \PY{c}{\PYZsh{} The outer loop adds one root at a time}
+            \PY{k}{for} \PY{n}{j} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{N}\PY{p}{,} \PY{n}{i} \PY{k+kp}{in} \PY{n}{j}\PY{o}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{1}
+                \PY{n}{co}\PY{p}{[}\PY{k}{end}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZhy{}=} \PY{n}{z}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{*}\PY{n}{co}\PY{p}{[}\PY{k}{end}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}
+            \PY{k}{end}
+            \PY{n}{co}
+        \PY{k}{end}
+        \PY{n+nd}{@show} \PY{n}{typemax}\PY{p}{(}\PY{k+kt}{Int}\PY{p}{)}\PY{p}{,} \PY{n}{typemax}\PY{p}{(}\PY{k+kt}{Int128}\PY{p}{)}
+        \PY{n}{root2coeff}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{20}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(typemax(Int), typemax(Int128)) = (9223372036854775807, 170141183460469231731687303715884105727)
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}4}]:} 21-element Array\{Int64,1\}:
+          2432902008176640000
+         -8752948036761600000
+         -4642984320068847616
+          5575812828558562816
+          8037811822645051776
+         -3599979517947607200
+          1206647803780373360
+          -311333643161390640
+            63030812099294896
+           -10142299865511450
+             1307535010540395
+             -135585182899530
+               11310276995381
+                -756111184500
+                  40171771630
+                  -1672280820
+                     53327946
+                     -1256850
+                        20615
+                         -210
+                            1
+\end{Verbatim}
+            
+    Those numbers are close to \texttt{typemax(Int)}, so integer overflows
+may occur, lets use \texttt{Int128} instead.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{root2coeff}\PY{p}{(}\PY{k+kt}{Int128}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{:}\PY{l+m+mi}{20}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}5}]:} 21-element Array\{Int128,1\}:
+           2432902008176640000
+          -8752948036761600000
+          13803759753640704000
+         -12870931245150988800
+           8037811822645051776
+          -3599979517947607200
+           1206647803780373360
+           -311333643161390640
+             63030812099294896
+            -10142299865511450
+              1307535010540395
+              -135585182899530
+                11310276995381
+                 -756111184500
+                   40171771630
+                   -1672280820
+                      53327946
+                      -1256850
+                         20615
+                          -210
+                             1
+\end{Verbatim}
+            
+    Next, we need to construct a
+\href{https://en.wikipedia.org/wiki/Companion_matrix}{companion matrix}
+and solve for roots. A companion matrix is in the form of \[
+\begin{bmatrix}0&0&\dots &0&-z_{1}\\1&0&\dots &0&-z_{2}\\0&1&\dots &0&-z_{3}\\\vdots &\vdots &\ddots &\vdots &\vdots \\0&0&\dots &1&-z_{n-1}\end{bmatrix}.
+\]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{k}{using} \PY{n}{LinearAlgebra}
+         \PY{k}{function} \PY{n}{poly\PYZus{}roots}\PY{p}{(}\PY{n}{z}\PY{p}{)}
+             \PY{n}{len} \PY{o}{=} \PY{n}{length}\PY{p}{(}\PY{n}{z}\PY{p}{)}
+             \PY{c}{\PYZsh{} construct the ones part}
+             \PY{n}{mat} \PY{o}{=} \PY{n}{diagm}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1} \PY{o}{=\PYZgt{}} \PY{n}{ones}\PY{p}{(}\PY{n}{len}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+             \PY{c}{\PYZsh{} insert coefficients}
+             \PY{n}{mat}\PY{p}{[}\PY{o}{:}\PY{p}{,} \PY{k}{end}\PY{p}{]} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{n}{z}\PY{p}{[}\PY{l+m+mi}{1}\PY{o}{:}\PY{k}{end}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+             \PY{n}{eigvals}\PY{p}{(}\PY{n}{mat}\PY{p}{)}
+         \PY{k}{end}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}18}]:} poly\_roots (generic function with 1 method)
+\end{Verbatim}
+            
+    We have everything ready now. We just need to calculate all the roots
+and plot it.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{k}{using} \PY{n}{Random}
+         \PY{n}{Random}\PY{o}{.}\PY{n}{seed!}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{k}{function} \PY{n}{wilkinson\PYZus{}poly\PYZus{}roots}\PY{p}{(}\PY{n}{n}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{)}
+             \PY{c}{\PYZsh{} original coefficients}
+             \PY{n}{coeff} \PY{o}{=} \PY{n}{root2coeff}\PY{p}{(}\PY{k+kt}{Int128}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{:}\PY{l+m+mi}{20}\PY{p}{)}
+             \PY{n}{rts} \PY{o}{=} \PY{k+kt}{Vector}\PY{p}{\PYZob{}}\PY{k+kt}{Complex}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{\PYZcb{}}\PY{p}{[}\PY{p}{]}
+             \PY{c}{\PYZsh{} add perturbation}
+             \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{n}
+                 \PY{n}{pert\PYZus{}coeff} \PY{o}{=} \PY{n}{coeff}\PY{o}{.*}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{.+} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{21}\PY{p}{)}\PY{o}{*}\PY{l+m+mf}{1e\PYZhy{}10}\PY{p}{)}
+                 \PY{n}{push!}\PY{p}{(}\PY{n}{rts}\PY{p}{,} \PY{n}{poly\PYZus{}roots}\PY{p}{(}\PY{n}{pert\PYZus{}coeff}\PY{p}{)}\PY{p}{)}
+             \PY{k}{end}
+             \PY{n}{rts}
+         \PY{k}{end}
+         \PY{k}{using} \PY{n}{Plots}\PY{p}{;} \PY{n}{gr}\PY{p}{(}\PY{p}{)}
+         \PY{k}{function} \PY{n}{plt\PYZus{}wilkinson\PYZus{}roots}\PY{p}{(}\PY{n}{rts}\PY{p}{)}
+             \PY{c}{\PYZsh{} plot roots without perturbation}
+             \PY{n}{plt} \PY{o}{=} \PY{n}{scatter}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{20}\PY{p}{,} \PY{n}{zeros}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{o}{:}\PY{n}{green}\PY{p}{,} \PY{n}{markersize} \PY{o}{=} \PY{l+m+mi}{5}\PY{p}{,} \PY{n}{legend}\PY{o}{=}\PY{k+kc}{false}\PY{p}{)}
+             \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{n}{eachindex}\PY{p}{(}\PY{n}{rts}\PY{p}{)}
+                 \PY{c}{\PYZsh{} plot roots with perturbation}
+                 \PY{n}{scatter!}\PY{p}{(}\PY{n}{plt}\PY{p}{,} \PY{n}{real}\PY{o}{.}\PY{p}{(}\PY{n}{rts}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{imag}\PY{o}{.}\PY{p}{(}\PY{n}{rts}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{o}{:}\PY{n}{red}\PY{p}{,} \PY{n}{markersize} \PY{o}{=} \PY{o}{.}\PY{l+m+mi}{5}\PY{p}{)}
+             \PY{k}{end}
+             \PY{n}{plt}
+         \PY{k}{end}
+         \PY{n}{wilkinson\PYZus{}poly\PYZus{}roots}\PY{p}{(}\PY{p}{)} \PY{o}{|\PYZgt{}} \PY{n}{plt\PYZus{}wilkinson\PYZus{}roots}
+\end{Verbatim}
+
+\texttt{\color{outcolor}Out[{\color{outcolor}19}]:}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{AdvancedProblemAnswers_files/AdvancedProblemAnswers_11_0.pdf}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
 
 
     % Add a bibliography block to the postdoc

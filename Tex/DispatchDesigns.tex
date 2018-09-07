@@ -15,8 +15,8 @@
     
     
     \usepackage[T1]{fontenc}
-    % Nicer default font than Computer Modern for most use cases
-    \usepackage{palatino}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
 
     % Basic figure setup, for now with no caption control since it's done
     % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
@@ -62,6 +62,7 @@
     \usepackage{hyperref}
     \usepackage{longtable} % longtable support required by pandoc >1.10
     \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
     \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
                                 % normalem makes italics be italics, not underlines
     
@@ -158,73 +159,73 @@
     \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
 \def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
 
-\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
 \expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
-\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
-\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
 \expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
-\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
-\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
-\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
-\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
-\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
-\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
-\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
-\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
-\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
-\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
-\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
-\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
-\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
-\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
-\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
-\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
-\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
-\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
-\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
-\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 
 \def\PYZbs{\char`\\}
 \def\PYZus{\char`\_}
@@ -305,7 +306,7 @@ have things like \texttt{Float64} and \texttt{Int32}. An
 have a dispatch of \texttt{eps(T)} that gives its machine epsilon. An
 \texttt{AbstractArray} is a type that can be indexed like
 \texttt{A{[}i{]}}. An \texttt{AbstractArray} may be mutable, meaning it
-can be ``set'': \texttt{A{[}i{]}=v}.
+can be "set": \texttt{A{[}i{]}=v}.
 
 These abstract types then have actions which abstract from their
 underlying implmentation. \texttt{A.*B} does element-wise
@@ -316,8 +317,8 @@ array on the CPU, but this action is common amongst
 (\texttt{DArray}), then \texttt{A.*B} will work on multiple nodes of a
 cluster. If the user uses a \texttt{GPUArray}, then \texttt{A.*B} will
 be performed on the GPU. Thus, if you don't restrict the usage of your
-algorithm to \texttt{Array}, then your algorithm actually is ``just
-works'' as many different algorithms.
+algorithm to \texttt{Array}, then your algorithm actually is "just
+works" as many different algorithms.
 
 This is all well and good, but this would not be worthwhile if it was
 not performant. Thankfully, Julia has an answer to this. Every function
@@ -328,10 +329,11 @@ something like:
 {\color{incolor}In [{\color{incolor}1}]:} \PY{n}{my\PYZus{}square}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{=} \PY{n}{x}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}1}]:} my\_square (generic function with 1 method)
 \end{Verbatim}
-        
+            
     then we see that this function will be efficient for the types that we
 give it. Looking at the generated code:
 
@@ -339,11 +341,19 @@ give it. Looking at the generated code:
 {\color{incolor}In [{\color{incolor}2}]:} \PY{n+nd}{@code\PYZus{}llvm} \PY{n}{my\PYZus{}square}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
 
-define i64 @julia\_my\_square\_72669(i64) \#0 \{
+; Function my\_square
+; Location: In[1]:1
+define i64 @julia\_my\_square\_36334(i64) \{
 top:
+; Function literal\_pow; \{
+; Location: intfuncs.jl:243
+; Function *; \{
+; Location: int.jl:54
   \%1 = mul i64 \%0, \%0
+;\}\}
   ret i64 \%1
 \}
 
@@ -353,11 +363,19 @@ top:
 {\color{incolor}In [{\color{incolor}3}]:} \PY{n+nd}{@code\PYZus{}llvm} \PY{n}{my\PYZus{}square}\PY{p}{(}\PY{l+m+mf}{1.0}\PY{p}{)}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
 
-define double @julia\_my\_square\_72684(double) \#0 \{
+; Function my\_square
+; Location: In[1]:1
+define double @julia\_my\_square\_36349(double) \{
 top:
+; Function literal\_pow; \{
+; Location: intfuncs.jl:243
+; Function *; \{
+; Location: float.jl:399
   \%1 = fmul double \%0, \%0
+;\}\}
   ret double \%1
 \}
 
@@ -378,10 +396,11 @@ That means that
 {\color{incolor}In [{\color{incolor}4}]:} \PY{n}{my\PYZus{}restricted\PYZus{}square}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{k+kt}{Int}\PY{p}{)} \PY{o}{=} \PY{n}{x}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}4}]:} my\_restricted\_square (generic function with 1 method)
 \end{Verbatim}
-        
+            
     is no more efficient than the version above, and actually generates the
 same exact compiled code:
 
@@ -389,11 +408,19 @@ same exact compiled code:
 {\color{incolor}In [{\color{incolor}5}]:} \PY{n+nd}{@code\PYZus{}llvm} \PY{n}{my\PYZus{}restricted\PYZus{}square}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
 
-define i64 @julia\_my\_restricted\_square\_72686(i64) \#0 \{
+; Function my\_restricted\_square
+; Location: In[4]:1
+define i64 @julia\_my\_restricted\_square\_36359(i64) \{
 top:
+; Function literal\_pow; \{
+; Location: intfuncs.jl:243
+; Function *; \{
+; Location: int.jl:54
   \%1 = mul i64 \%0, \%0
+;\}\}
   ret i64 \%1
 \}
 
@@ -402,8 +429,8 @@ top:
     Thus we can write generic and efficient code by leaving our functions
 unrestricted. This is the practice of duck-typing functions. We just let
 them work on any input types. If the type has the correct actions, the
-function will ``just work''. If it does not have the correct actions,
-for our example above say \texttt{*} is undefined, then a
+function will "just work". If it does not have the correct actions, for
+our example above say \texttt{*} is undefined, then a
 \texttt{MethodError} saying the action is not defined will be thrown.
 
 We can be slightly more conservative by restricting to abstract types.
@@ -413,10 +440,11 @@ For example:
 {\color{incolor}In [{\color{incolor}6}]:} \PY{n}{my\PYZus{}number\PYZus{}restricted\PYZus{}square}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{k+kt}{Number}\PY{p}{)} \PY{o}{=} \PY{n}{x}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}6}]:} my\_number\_restricted\_square (generic function with 1 method)
 \end{Verbatim}
-        
+            
     will allow any \texttt{Number}. There are things which can square which
 aren't \texttt{Number}s for which this will now throw an error (a matrix
 is a simple example). But, this can let us clearly define the interface
@@ -427,10 +455,11 @@ dispatch differently for different type classes. For example:
 {\color{incolor}In [{\color{incolor}7}]:} \PY{n}{my\PYZus{}number\PYZus{}restricted\PYZus{}square}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{k+kt}{AbstractArray}\PY{p}{)} \PY{o}{=} \PY{p}{(}\PY{n}{println}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{;}\PY{n}{x}\PY{o}{.\PYZca{}}\PY{l+m+mi}{2}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}7}]:} my\_number\_restricted\_square (generic function with 2 methods)
 \end{Verbatim}
-        
+            
     Now, \texttt{my\_number\_restricted\_square} calculates \texttt{x\^{}2}
 on a \texttt{Number}, and for an array it will print the array and
 calculate \texttt{x\^{}2} element-wise. Thus we are controlling behavior
@@ -451,43 +480,45 @@ do an action. A good example of this is the range type, for example
 {\color{incolor}In [{\color{incolor}8}]:} \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{10}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}8}]:} 1:10
 \end{Verbatim}
-        
+            
     This type is an abstract array:
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}9}]:} \PY{n}{typeof}\PY{p}{(}\PY{n}{a}\PY{p}{)} \PY{o}{\PYZlt{}:} \PY{k+kt}{AbstractArray}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}9}]:} true
 \end{Verbatim}
-        
+            
     It has actions like an \texttt{Array}
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}10}]:} \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}10}]:} 2
 \end{Verbatim}
-        
+            
     However, it is not an \texttt{Array}. In fact, it's just two numbers. We
 can see this by looking at its fields:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{fieldnames}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{fieldnames}\PY{p}{(}\PY{n}{typeof}\PY{p}{(}\PY{n}{a}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}11}]:} 2-element Array\{Symbol,1\}:
-          :start
-          :stop 
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}9}]:} (:start, :stop)
 \end{Verbatim}
-        
+            
     It is an \texttt{immutable} type which just holds the start and stop
 values. This means that its indexing, \texttt{A{[}i{]}}, is just a
 function. What's nice about this is that means that no array is ever
@@ -497,11 +528,42 @@ created. Creating large arrays can be a costly action:
 {\color{incolor}In [{\color{incolor}12}]:} \PY{n+nd}{@time} \PY{n}{collect}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{10000000}\PY{p}{)}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
-  0.038615 seconds (308 allocations: 76.312 MB, 45.16\% gc time)
+  0.082343 seconds (29 allocations: 76.297 MiB, 13.04\% gc time)
 
     \end{Verbatim}
 
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} 10000000-element Array\{Int64,1\}:
+                 1
+                 2
+                 3
+                 4
+                 5
+                 6
+                 7
+                 8
+                 9
+                10
+                11
+                12
+                13
+                 ⋮
+           9999989
+           9999990
+           9999991
+           9999992
+           9999993
+           9999994
+           9999995
+           9999996
+           9999997
+           9999998
+           9999999
+          10000000
+\end{Verbatim}
+            
     But creating an immutable type of two numbers is essentially free, no
 matter what those two numbers are:
 
@@ -509,17 +571,18 @@ matter what those two numbers are:
 {\color{incolor}In [{\color{incolor}13}]:} \PY{n+nd}{@time} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{10000000}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
-  0.000001 seconds (5 allocations: 192 bytes)
+  0.000004 seconds (5 allocations: 192 bytes)
 
     \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}13}]:} 1:10000000
 \end{Verbatim}
-        
-    The array takes $\mathcal{O}(n)$ memory to store its values while this
-type is $\mathcal{O}(1)$, using a constant 192 bytes (if the start and
+            
+    The array takes \(\mathcal{O}(n)\) memory to store its values while this
+type is \(\mathcal{O}(1)\), using a constant 192 bytes (if the start and
 stop are \texttt{Int64}). Yet, in cases where we just want to index
 values, they act exactly the same.
 
@@ -527,26 +590,28 @@ Another nice example is the \texttt{UniformScaling} operator, which acts
 like an identity matrix without forming an identity matrix.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{println}\PY{p}{(}\PY{n+nb}{I}\PY{p}{[}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{]}\PY{p}{)}
-         \PY{n}{println}\PY{p}{(}\PY{n+nb}{I}\PY{p}{[}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}6}]:} \PY{k}{using} \PY{n}{LinearAlgebra}
+        \PY{n}{println}\PY{p}{(}\PY{n+nb}{I}\PY{p}{[}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{]}\PY{p}{)}
+        \PY{n}{println}\PY{p}{(}\PY{n+nb}{I}\PY{p}{[}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
-1
-0
+true
+false
 
     \end{Verbatim}
 
     This can calculate expressions like \texttt{A-b*I} without ever forming
-the matrix \texttt{eye(n)} which would take $\mathcal{O}(n^2)$ memory.
+the matrix \texttt{eye(n)} which would take \(\mathcal{O}(n^2)\) memory.
 
     This means that a lot of efficiency can be gained by generalizing our
 algorithms to allow for generic typing and organization around actions.
 This means that, while in an object-oriented programming language you
 group by implementation details, in typed-dispatch programming you group
-by actions. \texttt{Number} is an abstract type for ``things which act
-like numbers, i.e.~do things like \texttt{*}'', while
-\texttt{AbstractArray} is for ``things which index and sometimes set''.
+by actions. \texttt{Number} is an abstract type for "things which act
+like numbers, i.e. do things like \texttt{*}", while
+\texttt{AbstractArray} is for "things which index and sometimes set".
 
 This is the key idea to keep in mind when building type hierarchies:
 things which subtype are inheriting behavior. You should setup your
@@ -578,21 +643,23 @@ behavior. For example:
          \PY{k}{end}
 \end{Verbatim}
 
+
     This can be interpreted as follows. At the top we have
-\texttt{AbstractPerson}. Our interface here is ``a Person is someone who
-has a name which can be gotten by \texttt{get\_name}''.
+\texttt{AbstractPerson}. Our interface here is "a Person is someone who
+has a name which can be gotten by \texttt{get\_name}".
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}16}]:} \PY{n}{get\PYZus{}name}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{AbstractPerson}\PY{p}{)} \PY{o}{=} \PY{n}{x}\PY{o}{.}\PY{n}{name}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}16}]:} get\_name (generic function with 1 method)
 \end{Verbatim}
-        
-    Thus codes which are written for an \texttt{AbstractPerson} can ``know''
+            
+    Thus codes which are written for an \texttt{AbstractPerson} can "know"
 (by our informal declaration of the interface) that \texttt{get\_name}
-will ``just work'' for its subtypes. However, notice that
+will "just work" for its subtypes. However, notice that
 \texttt{MusicStudent} doesn't have a \texttt{name} field. This is
 because \texttt{MusicStudent}s just want to be named whatever the
 trendiest band is, so we can just replace the usage of the field by the
@@ -602,17 +669,18 @@ action:
 {\color{incolor}In [{\color{incolor}17}]:} \PY{n}{get\PYZus{}name}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{MusicStudent}\PY{p}{)} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{J}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{B}\PY{l+s}{i}\PY{l+s}{e}\PY{l+s}{b}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{\PYZdq{}}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}17}]:} get\_name (generic function with 2 methods)
 \end{Verbatim}
-        
+            
     In this way, we can use \texttt{get\_name} to get the name, and how it
 was implemented (whether it's pulling something that had to be stored
 from memory, or if it's something magically known in advance) does not
 matter. We can keep refining this: an \texttt{AbstractStudent} has a
 \texttt{get\_hobby}, but a \texttt{MusicStudent}'s hobby is always
 \texttt{Music}, so there's not reason to store that data in the type and
-instead just have its actions implicitly ``know'' this. In non-trivial
+instead just have its actions implicitly "know" this. In non-trivial
 examples (like the range and \texttt{UniformScaling} above), this
 distinction by action and abstraction away from the actual
 implementation of the types allows for full optimization of generic
@@ -634,10 +702,11 @@ generally people like music. This means that:
          \PY{n}{likes\PYZus{}music}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{AbstractPerson}\PY{p}{)} \PY{o}{=} \PY{k+kc}{true}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}18}]:} likes\_music (generic function with 3 methods)
 \end{Verbatim}
-        
+            
     Now how many records would these people buy at a record store? If they
 don't like music, they will buy zero records. If they like music, then
 they will pick up a random number between 1 and 10. If they are a
@@ -657,26 +726,40 @@ student, they will then double that (impulsive Millenials!).
          \PY{k}{end}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}19}]:} number\_of\_records (generic function with 1 method)
 \end{Verbatim}
-        
+            
     Let's check the code that is created:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{n}{x} \PY{o}{=} \PY{n}{Teacher}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{R}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+m+mi}{11}\PY{p}{)}
-        \PY{n}{println}\PY{p}{(}\PY{n}{number\PYZus{}of\PYZus{}records}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
-        \PY{n+nd}{@code\PYZus{}llvm} \PY{n}{number\PYZus{}of\PYZus{}records}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{x} \PY{o}{=} \PY{n}{Teacher}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{R}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+m+mi}{11}\PY{p}{)}
+         \PY{n}{println}\PY{p}{(}\PY{n}{number\PYZus{}of\PYZus{}records}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
+         \PY{n+nd}{@code\PYZus{}llvm} \PY{n}{number\PYZus{}of\PYZus{}records}\PY{p}{(}\PY{n}{x}\PY{p}{)}
 \end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0
+
+; Function number\_of\_records
+; Location: In[19]:2
+define i64 @julia\_number\_of\_records\_36553(\%jl\_value\_t addrspace(10)* nonnull align 8 dereferenceable(16)) \{
+top:
+  ret i64 0
+\}
+
+    \end{Verbatim}
 
     on v0.6, we get:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{; }\DataTypeTok{Function} \NormalTok{Attrs: uwtable}
-\NormalTok{define i64 @julia_number_of_records_}\FloatTok{63848}\NormalTok{(i8** dereferenceable(}\FloatTok{16}\NormalTok{)) }\CommentTok{#0 !dbg !5 \{}
+\NormalTok{; }\DataTypeTok{Function}\NormalTok{ Attrs: uwtable}
+\NormalTok{define i64 @julia_number_of_records_63848(i8** dereferenceable(}\FloatTok{16}\NormalTok{)) }\CommentTok{#0 !dbg !5 \{}
 \NormalTok{top:}
-  \NormalTok{ret i64 }\FloatTok{0}
+\NormalTok{  ret i64 }\FloatTok{0}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -690,23 +773,23 @@ Notice that the entire function compiled away! Then for a music student
 
 \CommentTok{# Output}
 \NormalTok{CodeInfo(:(}\KeywordTok{begin} 
-        \NormalTok{NewvarNode(:(num_records))}
-        \NormalTok{goto }\FloatTok{4} \CommentTok{# line 30:}
+\NormalTok{        NewvarNode(:(num_records))}
+\NormalTok{        goto }\FloatTok{4} \CommentTok{# line 30:}
         \FloatTok{4}\NormalTok{:  }\CommentTok{# line 32:}
-        \NormalTok{$(}\DataTypeTok{Expr}\NormalTok{(:inbounds, false))}
+\NormalTok{        $(}\DataTypeTok{Expr}\NormalTok{(:inbounds, false))}
         \CommentTok{# meta: location random.jl rand 279}
         \CommentTok{# meta: location random.jl rand 278}
         \CommentTok{# meta: location random.jl rand 367}
         \CommentTok{# meta: location random.jl rand 370}
-        \NormalTok{SSAValue(}\FloatTok{1}\NormalTok{) = $(}\DataTypeTok{Expr}\NormalTok{(:foreigncall, :(:jl_alloc_array_}\FloatTok{1}\NormalTok{d), }\DataTypeTok{Array}\NormalTok{\{}\DataTypeTok{Float64}\NormalTok{,}\FloatTok{1}\NormalTok{\}, svec(}\DataTypeTok{Any}\NormalTok{, }\DataTypeTok{Int64}\NormalTok{), }\DataTypeTok{Array}\NormalTok{\{}\DataTypeTok{Float64}\NormalTok{,}\FloatTok{1}\NormalTok{\}, }\FloatTok{0}\NormalTok{, }\FloatTok{10}\NormalTok{, }\FloatTok{0}\NormalTok{))}
+\NormalTok{        SSAValue(}\FloatTok{1}\NormalTok{) = $(}\DataTypeTok{Expr}\NormalTok{(:foreigncall, :(:jl_alloc_array_1d), }\DataTypeTok{Array}\NormalTok{\{}\DataTypeTok{Float64}\NormalTok{,}\FloatTok{1}\NormalTok{\}, svec(}\DataTypeTok{Any}\NormalTok{, }\DataTypeTok{Int64}\NormalTok{), }\DataTypeTok{Array}\NormalTok{\{}\DataTypeTok{Float64}\NormalTok{,}\FloatTok{1}\NormalTok{\}, }\FloatTok{0}\NormalTok{, }\FloatTok{10}\NormalTok{, }\FloatTok{0}\NormalTok{))}
         \CommentTok{# meta: pop location}
         \CommentTok{# meta: pop location}
         \CommentTok{# meta: pop location}
         \CommentTok{# meta: pop location}
-        \NormalTok{$(}\DataTypeTok{Expr}\NormalTok{(:inbounds, :pop))}
-        \NormalTok{num_records = $(}\DataTypeTok{Expr}\NormalTok{(:invoke, MethodInstance }\KeywordTok{for} \NormalTok{rand!(::MersenneTwister, ::}\DataTypeTok{Array}\NormalTok{\{}\DataTypeTok{Float64}\NormalTok{,}\FloatTok{1}\NormalTok{\}, ::}\DataTypeTok{Int64}\NormalTok{, ::}\DataTypeTok{Type}\NormalTok{\{Base.Random.CloseOpen\}), :(Base.Random.rand!), :(Base.Random.GLOBAL_RNG), SSAValue(}\FloatTok{1}\NormalTok{), :((Base.arraylen)(SSAValue(}\FloatTok{1}\NormalTok{))::}\DataTypeTok{Int64}\NormalTok{), :(Base.Random.CloseOpen))) }\CommentTok{# line 33:}
-        \NormalTok{(MusicStudent <: Main.AbstractStudent)::}\DataTypeTok{Bool} \CommentTok{# line 34:}
-        \KeywordTok{return} \NormalTok{$(}\DataTypeTok{Expr}\NormalTok{(:invoke, MethodInstance }\KeywordTok{for} \NormalTok{*(::}\DataTypeTok{Int64}\NormalTok{, ::}\DataTypeTok{Array}\NormalTok{\{}\DataTypeTok{Float64}\NormalTok{,}\FloatTok{1}\NormalTok{\}), :(Main.*), }\FloatTok{2}\NormalTok{, :(num_records))) }\CommentTok{# line 36:}
+\NormalTok{        $(}\DataTypeTok{Expr}\NormalTok{(:inbounds, :pop))}
+\NormalTok{        num_records = $(}\DataTypeTok{Expr}\NormalTok{(:invoke, MethodInstance }\KeywordTok{for}\NormalTok{ rand!(::MersenneTwister, ::}\DataTypeTok{Array}\NormalTok{\{}\DataTypeTok{Float64}\NormalTok{,}\FloatTok{1}\NormalTok{\}, ::}\DataTypeTok{Int64}\NormalTok{, ::}\DataTypeTok{Type}\NormalTok{\{Base.Random.CloseOpen\}), :(Base.Random.rand!), :(Base.Random.GLOBAL_RNG), SSAValue(}\FloatTok{1}\NormalTok{), :((Base.arraylen)(SSAValue(}\FloatTok{1}\NormalTok{))::}\DataTypeTok{Int64}\NormalTok{), :(Base.Random.CloseOpen))) }\CommentTok{# line 33:}
+\NormalTok{        (MusicStudent <: Main.AbstractStudent)::}\DataTypeTok{Bool} \CommentTok{# line 34:}
+        \KeywordTok{return}\NormalTok{ $(}\DataTypeTok{Expr}\NormalTok{(:invoke, MethodInstance }\KeywordTok{for}\NormalTok{ *(::}\DataTypeTok{Int64}\NormalTok{, ::}\DataTypeTok{Array}\NormalTok{\{}\DataTypeTok{Float64}\NormalTok{,}\FloatTok{1}\NormalTok{\}), :(Main.*), }\FloatTok{2}\NormalTok{, :(num_records))) }\CommentTok{# line 36:}
     \KeywordTok{end}\NormalTok{))=>}\DataTypeTok{Array}\NormalTok{\{}\DataTypeTok{Float64}\NormalTok{,}\FloatTok{1}\NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -720,33 +803,33 @@ we get a multiplication by 2, while for a regular person,
 
 \CommentTok{# Output}
 \NormalTok{CodeInfo(:(}\KeywordTok{begin} 
-        \NormalTok{NewvarNode(:(num_records))}
-        \NormalTok{goto }\FloatTok{4} \CommentTok{# line 30:}
+\NormalTok{        NewvarNode(:(num_records))}
+\NormalTok{        goto }\FloatTok{4} \CommentTok{# line 30:}
         \FloatTok{4}\NormalTok{:  }\CommentTok{# line 32:}
-        \NormalTok{$(}\DataTypeTok{Expr}\NormalTok{(:inbounds, false))}
+\NormalTok{        $(}\DataTypeTok{Expr}\NormalTok{(:inbounds, false))}
         \CommentTok{# meta: location random.jl rand 279}
         \CommentTok{# meta: location random.jl rand 278}
         \CommentTok{# meta: location random.jl rand 367}
         \CommentTok{# meta: location random.jl rand 370}
-        \NormalTok{SSAValue(}\FloatTok{1}\NormalTok{) = $(}\DataTypeTok{Expr}\NormalTok{(:foreigncall, :(:jl_alloc_array_}\FloatTok{1}\NormalTok{d), }\DataTypeTok{Array}\NormalTok{\{}\DataTypeTok{Float64}\NormalTok{,}\FloatTok{1}\NormalTok{\}, svec(}\DataTypeTok{Any}\NormalTok{, }\DataTypeTok{Int64}\NormalTok{), }\DataTypeTok{Array}\NormalTok{\{}\DataTypeTok{Float64}\NormalTok{,}\FloatTok{1}\NormalTok{\}, }\FloatTok{0}\NormalTok{, }\FloatTok{10}\NormalTok{, }\FloatTok{0}\NormalTok{))}
+\NormalTok{        SSAValue(}\FloatTok{1}\NormalTok{) = $(}\DataTypeTok{Expr}\NormalTok{(:foreigncall, :(:jl_alloc_array_1d), }\DataTypeTok{Array}\NormalTok{\{}\DataTypeTok{Float64}\NormalTok{,}\FloatTok{1}\NormalTok{\}, svec(}\DataTypeTok{Any}\NormalTok{, }\DataTypeTok{Int64}\NormalTok{), }\DataTypeTok{Array}\NormalTok{\{}\DataTypeTok{Float64}\NormalTok{,}\FloatTok{1}\NormalTok{\}, }\FloatTok{0}\NormalTok{, }\FloatTok{10}\NormalTok{, }\FloatTok{0}\NormalTok{))}
         \CommentTok{# meta: pop location}
         \CommentTok{# meta: pop location}
         \CommentTok{# meta: pop location}
         \CommentTok{# meta: pop location}
-        \NormalTok{$(}\DataTypeTok{Expr}\NormalTok{(:inbounds, :pop))}
-        \NormalTok{num_records = $(}\DataTypeTok{Expr}\NormalTok{(:invoke, MethodInstance }\KeywordTok{for} \NormalTok{rand!(::MersenneTwister, ::}\DataTypeTok{Array}\NormalTok{\{}\DataTypeTok{Float64}\NormalTok{,}\FloatTok{1}\NormalTok{\}, ::}\DataTypeTok{Int64}\NormalTok{, ::}\DataTypeTok{Type}\NormalTok{\{Base.Random.CloseOpen\}), :(Base.Random.rand!), :(Base.Random.GLOBAL_RNG), SSAValue(}\FloatTok{1}\NormalTok{), :((Base.arraylen)(SSAValue(}\FloatTok{1}\NormalTok{))::}\DataTypeTok{Int64}\NormalTok{), :(Base.Random.CloseOpen))) }\CommentTok{# line 33:}
-        \NormalTok{(Person <: Main.AbstractStudent)::}\DataTypeTok{Bool}
-        \NormalTok{goto }\FloatTok{22} \CommentTok{# line 34:}
+\NormalTok{        $(}\DataTypeTok{Expr}\NormalTok{(:inbounds, :pop))}
+\NormalTok{        num_records = $(}\DataTypeTok{Expr}\NormalTok{(:invoke, MethodInstance }\KeywordTok{for}\NormalTok{ rand!(::MersenneTwister, ::}\DataTypeTok{Array}\NormalTok{\{}\DataTypeTok{Float64}\NormalTok{,}\FloatTok{1}\NormalTok{\}, ::}\DataTypeTok{Int64}\NormalTok{, ::}\DataTypeTok{Type}\NormalTok{\{Base.Random.CloseOpen\}), :(Base.Random.rand!), :(Base.Random.GLOBAL_RNG), SSAValue(}\FloatTok{1}\NormalTok{), :((Base.arraylen)(SSAValue(}\FloatTok{1}\NormalTok{))::}\DataTypeTok{Int64}\NormalTok{), :(Base.Random.CloseOpen))) }\CommentTok{# line 33:}
+\NormalTok{        (Person <: Main.AbstractStudent)::}\DataTypeTok{Bool}
+\NormalTok{        goto }\FloatTok{22} \CommentTok{# line 34:}
         \FloatTok{22}\NormalTok{:  }\CommentTok{# line 36:}
-        \KeywordTok{return} \NormalTok{num_records}
+        \KeywordTok{return}\NormalTok{ num_records}
     \KeywordTok{end}\NormalTok{))=>}\DataTypeTok{Array}\NormalTok{\{}\DataTypeTok{Float64}\NormalTok{,}\FloatTok{1}\NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
 we do not get a multiplication by 2.
 
-    But the key thing to see from the typed code is that the ``branches''
-(the \texttt{if} statements) all compiled away. Since types are known at
+    But the key thing to see from the typed code is that the "branches" (the
+\texttt{if} statements) all compiled away. Since types are known at
 compile time (remember, functions specialize on types), the dispatch of
 \texttt{likes\_music} is known at compile-time. But this means, since
 the result is directly inferred from the dispatch, the boolean value
@@ -772,22 +855,22 @@ information. At compile-time, what is known is:
 Note that what cannot be inferred by the compiler is the information in
 fields. Information in fields is strictly runtime information. This is
 easy to see since there is no way for the compiler to know that person's
-name was ``Miguel'': that's ephemeral and part of the type instance we
+name was "Miguel": that's ephemeral and part of the type instance we
 just created.
 
 Thus by putting our information into our functions and dispatches, we
 are actually giving the compiler more information to perform more
-optimizations. Therefore using this ``action-based design'', we are
+optimizations. Therefore using this "action-based design", we are
 actually giving the compiler leeway to perform many extra optimizations
 on our code as long as we define our interfaces by the actions that are
-used. Of course, at the ``very bottom'' our algorithms have to use the
+used. Of course, at the "very bottom" our algorithms have to use the
 fields of the types, but the full interface can then be built up using a
 simple set of functions which in many cases with replace runtime data
 with constants.
 
     \subsection{Traits and THTT}\label{traits-and-thtt}
 
-    What we just saw is a ``trait''. Traits are compile-time designations
+    What we just saw is a "trait". Traits are compile-time designations
 about types which are distinct from their abstract hierarchy.
 \texttt{likes\_music} is a trait which designates which people like
 music, and it could in cases not be defined using the abstract types.
@@ -805,29 +888,31 @@ done by having the return be a type itself. For example, we can create
 music genre types:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}23}]:} \PY{k}{abstract} \PY{k}{type} \PY{n}{MusicGenres} \PY{k}{end}
+{\color{incolor}In [{\color{incolor}21}]:} \PY{k}{abstract} \PY{k}{type} \PY{n}{MusicGenres} \PY{k}{end}
          \PY{k}{abstract} \PY{k}{type} \PY{n}{RockGenre} \PY{o}{\PYZlt{}:} \PY{n}{MusicGenres} \PY{k}{end}
          \PY{n}{struct} \PY{n}{ClassicRock} \PY{o}{\PYZlt{}:} \PY{n}{RockGenre} \PY{k}{end}
          \PY{n}{struct} \PY{n}{AltRock} \PY{o}{\PYZlt{}:} \PY{n}{RockGenre} \PY{k}{end}
          \PY{n}{struct} \PY{n}{Classical} \PY{o}{\PYZlt{}:} \PY{n}{MusicGenres} \PY{k}{end}
 \end{Verbatim}
 
-    These ``simple types'' are known as singleton types. This means that we
+
+    These "simple types" are known as singleton types. This means that we
 can have traits like:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{favorite\PYZus{}genre}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{AbstractPerson}\PY{p}{)} \PY{o}{=} \PY{n}{ClassicRock}\PY{p}{(}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{favorite\PYZus{}genre}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{AbstractPerson}\PY{p}{)} \PY{o}{=} \PY{n}{ClassicRock}\PY{p}{(}\PY{p}{)}
          \PY{n}{favorite\PYZus{}genre}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{MusicStudent}\PY{p}{)} \PY{o}{=} \PY{n}{Classical}\PY{p}{(}\PY{p}{)}
          \PY{n}{favorite\PYZus{}genre}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{AbstractTeacher}\PY{p}{)} \PY{o}{=} \PY{n}{AltRock}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}24}]:} favorite\_genre (generic function with 3 methods)
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}22}]:} favorite\_genre (generic function with 3 methods)
 \end{Verbatim}
-        
+            
     This means that we can do checks like
-\texttt{if typeof(favorite\_genre(x)) \textless{}: RockGenre}, and this
-information will all compile away.
+\texttt{if\ typeof(favorite\_genre(x))\ \textless{}:\ RockGenre}, and
+this information will all compile away.
 
     This gives us all of the tools we need to compile the most efficient
 code, and structure our code around types/actions/dispatch to get high
@@ -844,29 +929,33 @@ implements trait-dispatch is
 allows you to dispatch on a trait \texttt{IsNice} like:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{n+nd}{@traitfn} \PY{n}{ft}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{o}{::}\PY{n}{IsNice}\PY{p}{)} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{V}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{y}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{!}\PY{l+s}{\PYZdq{}}
+{\color{incolor}In [{\color{incolor} }]:} \PY{k}{using} \PY{n}{SimpleTraits}
+        \PY{n+nd}{@traitfn} \PY{n}{ft}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{o}{::}\PY{n}{IsNice}\PY{p}{)} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{V}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{y}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{!}\PY{l+s}{\PYZdq{}}
         \PY{n+nd}{@traitfn} \PY{n}{ft}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{o}{::}\PY{p}{(}\PY{o}{!}\PY{n}{IsNice}\PY{p}{)}\PY{p}{)} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{N}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{ }\PY{l+s}{s}\PY{l+s}{o}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{!}\PY{l+s}{\PYZdq{}}
 \end{Verbatim}
+
 
     \subsection{Composition vs
 Inheritance}\label{composition-vs-inheritance}
 
     The last remark that is needed is a discussion of composition vs
 inheritance. While the previous discussions have all explained why
-``information not in fields'' makes structural relations compile-time
+"information not in fields" makes structural relations compile-time
 information and increases the efficiency. However, there are cases where
 we want to share runtime structure. Thus the great debate of composition
 vs inheritance, comes up.
 
 Composition vs inheritance isn't a Julia issue, it's a long debate in
 object-oriented programming. The idea is that, inheritance is inherently
-(pun-inteded) inflexible. It forces an ``is a'' relation: A inherits
-from B means A is a B, and adds a few things. It copies behavior from
+(pun-inteded) inflexible. It forces an "is a" relation: A inherits from
+B means A is a B, and adds a few things. It copies behavior from
 something defined elsewere. This is a recipe for havoc. Here's a few
 links which discuss this in more detail:
 
 https://softwareengineering.stackexchange.com/questions/134097/why-should-i-prefer-composition-over-inheritance
+
 https://en.wikipedia.org/wiki/Composition\_over\_inheritance
+
 https://www.thoughtworks.com/insights/blog/composition-vs-inheritance-how-choose
 
 So if possible, give composition a try. Say you have \texttt{MyType},
@@ -874,13 +963,14 @@ and it has some function \texttt{f} defined on it. This means that you
 can extend \texttt{MyType} by making it a field in another type:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{n}{mutable} \PY{n}{struct} \PY{n}{MyType2}
-            \PY{n}{mt}\PY{o}{::}\PY{n}{MyType}
-            \PY{o}{.}\PY{o}{.}\PY{o}{.} \PY{c}{\PYZsh{} Other stuff}
-        \PY{k}{end} 
-        
-        \PY{n}{f}\PY{p}{(}\PY{n}{mt2}\PY{o}{::}\PY{n}{MyType2}\PY{p}{)} \PY{o}{=} \PY{n}{f}\PY{p}{(}\PY{n}{mt2}\PY{o}{.}\PY{n}{mt}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{mutable} \PY{n}{struct} \PY{n}{MyType2}
+             \PY{n}{mt}\PY{o}{::}\PY{n}{MyType}
+             \PY{o}{.}\PY{o}{.}\PY{o}{.} \PY{c}{\PYZsh{} Other stuff}
+         \PY{k}{end} 
+         
+         \PY{n}{f}\PY{p}{(}\PY{n}{mt2}\PY{o}{::}\PY{n}{MyType2}\PY{p}{)} \PY{o}{=} \PY{n}{f}\PY{p}{(}\PY{n}{mt2}\PY{o}{.}\PY{n}{mt}\PY{p}{)}
 \end{Verbatim}
+
 
     The pro here is that it's explicit: you've made the choice for each
 extension. The con is that this can require some extra code, though this
@@ -891,72 +981,86 @@ solutions via metaprogramming. One simple solution is the \texttt{@def}
 macro.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}25}]:} \PY{k}{macro} \PY{n}{def}\PY{p}{(}\PY{n}{name}\PY{p}{,} \PY{n}{definition}\PY{p}{)}
-               \PY{k}{return} \PY{k}{quote}
-                   \PY{k}{macro} \PY{o}{\PYZdl{}}\PY{n}{name}\PY{p}{(}\PY{p}{)}
-                       \PY{n}{esc}\PY{p}{(}\PY{o}{\PYZdl{}}\PY{p}{(}\PY{k+kt}{Expr}\PY{p}{(}\PY{o}{:}\PY{k}{quote}\PY{p}{,} \PY{n}{definition}\PY{p}{)}\PY{p}{)}\PY{p}{)}
-                   \PY{k}{end}
-               \PY{k}{end}
-           \PY{k}{end}
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{macro} \PY{n}{def}\PY{p}{(}\PY{n}{name}\PY{p}{,} \PY{n}{definition}\PY{p}{)}
+            \PY{k}{return} \PY{k}{quote}
+                \PY{k}{macro} \PY{o}{\PYZdl{}}\PY{p}{(}\PY{n}{esc}\PY{p}{(}\PY{n}{name}\PY{p}{)}\PY{p}{)}\PY{p}{(}\PY{p}{)}
+                    \PY{n}{esc}\PY{p}{(}\PY{o}{\PYZdl{}}\PY{p}{(}\PY{k+kt}{Expr}\PY{p}{(}\PY{o}{:}\PY{k}{quote}\PY{p}{,} \PY{n}{definition}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+                \PY{k}{end}
+            \PY{k}{end}
+        \PY{k}{end}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}25}]:} @def (macro with 1 method)
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}1}]:} @def (macro with 1 method)
 \end{Verbatim}
-        
+            
     This macro is very simple. What it does is compile-time copy/paste. For
 example:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}26}]:} \PY{n+nd}{@def} \PY{n}{give\PYZus{}it\PYZus{}a\PYZus{}name} \PY{k}{begin}
-           \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{2}
-           \PY{n}{println}\PY{p}{(}\PY{n}{a}\PY{p}{)}
-         \PY{k}{end}
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n+nd}{@def} \PY{n}{give\PYZus{}it\PYZus{}a\PYZus{}name} \PY{k}{begin}
+          \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{2}
+          \PY{n}{println}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+        \PY{k}{end}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}26}]:} @give\_it\_a\_name (macro with 1 method)
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}2}]:} @give\_it\_a\_name (macro with 1 method)
 \end{Verbatim}
-        
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n+nd}{@give\PYZus{}it\PYZus{}a\PYZus{}name}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+2
+
+    \end{Verbatim}
+
     defines a macro \texttt{@give\_it\_a\_name} that will paste in those two
 lines of code wherever it is used. For example, the reused fields of
 Optim.jl's solvers could be put into an \texttt{@def}:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}27}]:} \PY{n+nd}{@def} \PY{n}{add\PYZus{}generic\PYZus{}fields} \PY{k}{begin}
-                 \PY{n}{method\PYZus{}string}\PY{o}{::}\PY{n}{String}
-                 \PY{n}{n}\PY{o}{::}\PY{k+kt}{Int64}
-                 \PY{n}{x}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
-                 \PY{n}{f\PYZus{}x}\PY{o}{::}\PY{n}{T}
-                 \PY{n}{f\PYZus{}calls}\PY{o}{::}\PY{k+kt}{Int64}
-                 \PY{n}{g\PYZus{}calls}\PY{o}{::}\PY{k+kt}{Int64}
-                 \PY{n}{h\PYZus{}calls}\PY{o}{::}\PY{k+kt}{Int64}
-         \PY{k}{end}
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n+nd}{@def} \PY{n}{add\PYZus{}generic\PYZus{}fields} \PY{k}{begin}
+                \PY{n}{method\PYZus{}string}\PY{o}{::}\PY{n}{String}
+                \PY{n}{n}\PY{o}{::}\PY{k+kt}{Int64}
+                \PY{n}{x}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+                \PY{n}{f\PYZus{}x}\PY{o}{::}\PY{n}{T}
+                \PY{n}{f\PYZus{}calls}\PY{o}{::}\PY{k+kt}{Int64}
+                \PY{n}{g\PYZus{}calls}\PY{o}{::}\PY{k+kt}{Int64}
+                \PY{n}{h\PYZus{}calls}\PY{o}{::}\PY{k+kt}{Int64}
+        \PY{k}{end}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}27}]:} @add\_generic\_fields (macro with 1 method)
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}4}]:} @add\_generic\_fields (macro with 1 method)
 \end{Verbatim}
-        
+            
     and those fields can be copied around with
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}28}]:} \PY{n}{mutable} \PY{n}{struct} \PY{n}{LBFGSState}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
-             \PY{n+nd}{@add\PYZus{}generic\PYZus{}fields}
-             \PY{n}{x\PYZus{}previous}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
-             \PY{n}{g}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
-             \PY{n}{g\PYZus{}previous}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
-             \PY{n}{rho}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
-             \PY{c}{\PYZsh{} ... more fields ... }
-         \PY{k}{end}
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{mutable} \PY{n}{struct} \PY{n}{LBFGSState}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+            \PY{n+nd}{@add\PYZus{}generic\PYZus{}fields}
+            \PY{n}{x\PYZus{}previous}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+            \PY{n}{g}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+            \PY{n}{g\PYZus{}previous}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+            \PY{n}{rho}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+            \PY{c}{\PYZsh{} ... more fields ... }
+        \PY{k}{end}
 \end{Verbatim}
 
+
     Because \texttt{@def} works at compile-time, there is no cost associated
-with this. Similar metaprogramming can be used to build an ``inheritance
-feature'' for Julia. One package which does this is
+with this. Similar metaprogramming can be used to build an "inheritance
+feature" for Julia. One package which does this is
 \href{https://github.com/tbreloff/ConcreteAbstractions.jl}{ConcreteAbstractions.jl}
 which allows you to add fields to abstract types and make the child
-types inherit the fields:
+types inherit the fields (note: it is v0.6 only and needs an update!):
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor} }]:} \PY{c}{\PYZsh{} The abstract type}
@@ -973,6 +1077,7 @@ types inherit the fields:
         \PY{k}{end}
 \end{Verbatim}
 
+
     where the \texttt{@extend} macro generates the type-definition:
 
     \begin{Verbatim}[commandchars=\\\{\}]
@@ -984,6 +1089,7 @@ types inherit the fields:
             \PY{n+nb}{e}\PY{o}{::}\PY{n}{T}
         \PY{k}{end}
 \end{Verbatim}
+
 
     But it's just a package? Well, that's the beauty of Julia. Most of Julia
 is written in Julia, and Julia code is first class and performant (here,
@@ -1006,10 +1112,10 @@ and their fields, type-dispatch systems are oriented around the actions
 of types. Using traits, multiple inheritance behavior can be given.
 Using this structure, the compiler can have maximal information, and use
 this to optimize the code. But also, this directly generalizes the vast
-majority of the code to not be ``implementation-dependent'', allowing
-for duck-typed code to be fully performance, with all of the details
-handled by dispatch/traits/abstract types. The end result is flexible,
-generic, and high performance code.
+majority of the code to not be "implementation-dependent", allowing for
+duck-typed code to be fully performance, with all of the details handled
+by dispatch/traits/abstract types. The end result is flexible, generic,
+and high performance code.
 
 
     % Add a bibliography block to the postdoc

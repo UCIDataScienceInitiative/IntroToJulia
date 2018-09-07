@@ -15,8 +15,8 @@
     
     
     \usepackage[T1]{fontenc}
-    % Nicer default font than Computer Modern for most use cases
-    \usepackage{palatino}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
 
     % Basic figure setup, for now with no caption control since it's done
     % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
@@ -62,6 +62,7 @@
     \usepackage{hyperref}
     \usepackage{longtable} % longtable support required by pandoc >1.10
     \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
     \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
                                 % normalem makes italics be italics, not underlines
     
@@ -158,73 +159,73 @@
     \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
 \def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
 
-\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
 \expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
-\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
-\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
 \expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
-\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
-\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
-\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
-\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
-\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
-\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
-\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
-\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
-\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
-\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
-\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
-\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
-\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
-\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
-\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
-\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
-\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
-\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
-\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
-\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 
 \def\PYZbs{\char`\\}
 \def\PYZus{\char`\_}
@@ -287,11 +288,11 @@ scripting language and provides an example of the Julia syntax. So
 before we explain anything, let's just treat it like a scripting
 language, take a head-first dive into Julia, and see what happens.
 
-You'll notice that, given the right syntax, almost everything will
-``just work''. There will be some peculiarities, and these we will be
-the facts which we will study in much more depth. Usually, these
-oddies/differences from other scripting languages are ``the source of
-Julia's power''.
+You'll notice that, given the right syntax, almost everything will "just
+work". There will be some peculiarities, and these we will be the facts
+which we will study in much more depth. Usually, these
+oddies/differences from other scripting languages are "the source of
+Julia's power".
 
     \subsubsection{Problems}\label{problems}
 
@@ -308,26 +309,27 @@ Solve as many or as few problems as you can during these times. Please
 work at your own pace, or with others if that's how you're comfortable!
 
     \subsection{Documentation and
-``Hunting''}\label{documentation-and-hunting}
+"Hunting"}\label{documentation-and-hunting}
 
 The main source of information is the
 \href{http://docs.julialang.org/en/latest/manual/}{Julia Documentation}.
 Julia also provides lots of built-in documentation and ways to find out
-what's going on. The number of tools for ``hunting down what's going on
-/ available'' is too numerous to explain in full detail here, so instead
+what's going on. The number of tools for "hunting down what's going on /
+available" is too numerous to explain in full detail here, so instead
 this will just touch on what's important. For example, the ? gets you to
 the documentation for a type, function, etc.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}2}]:} \PY{o}{?}\PY{n}{copy}
+{\color{incolor}In [{\color{incolor}1}]:} \PY{o}{?}\PY{n}{copy}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
-search: \textbf{c}\textbf{o}\textbf{p}\textbf{y} \textbf{c}\textbf{o}\textbf{p}\textbf{y}! \textbf{c}\textbf{o}\textbf{p}\textbf{y}sign deep\textbf{c}\textbf{o}\textbf{p}\textbf{y} unsafe\_\textbf{c}\textbf{o}\textbf{p}\textbf{y}! \textbf{c}ircc\textbf{o}\textbf{p}\textbf{y}! \textbf{c}\textbf{o}s\textbf{p}i \textbf{c}\textbf{o}m\textbf{p}lex
+search: \textbf{c}\textbf{o}\textbf{p}\textbf{y} \textbf{c}\textbf{o}\textbf{p}\textbf{y}! \textbf{c}\textbf{o}\textbf{p}\textbf{y}to! \textbf{c}\textbf{o}\textbf{p}\textbf{y}sign deep\textbf{c}\textbf{o}\textbf{p}\textbf{y} unsafe\_\textbf{c}\textbf{o}\textbf{p}\textbf{y}to! \textbf{c}ircc\textbf{o}\textbf{p}\textbf{y}! \textbf{c}\textbf{o}s\textbf{p}i
 
 
     \end{Verbatim}
-\texttt{\color{outcolor}Out[{\color{outcolor}2}]:}
+\texttt{\color{outcolor}Out[{\color{outcolor}1}]:}
     
     \begin{verbatim}
 copy(x)
@@ -337,223 +339,238 @@ Create a shallow copy of \texttt{x}: the outer structure is copied, but
 not all internal values. For example, copying an array produces a new
 array with identically-same elements as the original.
 
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\begin{verbatim}
+copy(A::Transpose)
+copy(A::Adjoint)
+\end{verbatim}
+
+Eagerly evaluate the lazy matrix transpose/adjoint. Note that the
+transposition is applied recursively to elements.
+
+This operation is intended for linear algebra usage - for general data
+manipulation see \href{@ref\%20Base.permutedims}{\texttt{permutedims}},
+which is non-recursive.
+
+\section{Examples}\label{examples}
+
+\begin{verbatim}
+julia> A = [1 2im; -3im 4]
+2×2 Array{Complex{Int64},2}:
+ 1+0im  0+2im
+ 0-3im  4+0im
+
+julia> T = transpose(A)
+2×2 Transpose{Complex{Int64},Array{Complex{Int64},2}}:
+ 1+0im  0-3im
+ 0+2im  4+0im
+
+julia> copy(T)
+2×2 Array{Complex{Int64},2}:
+ 1+0im  0-3im
+ 0+2im  4+0im
+\end{verbatim}
+
     
 
     To find out what methods are available, we can use the \texttt{methods}
 function. For example, let's see how \texttt{+} is defined:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}1}]:} \PY{n}{methods}\PY{p}{(}\PY{o}{+}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{methods}\PY{p}{(}\PY{o}{+}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}1}]:} \# 180 methods for generic function "+":
-        +(x::Bool, z::Complex\{Bool\}) in Base at complex.jl:232
-        +(x::Bool, y::Bool) in Base at bool.jl:89
-        +(x::Bool) in Base at bool.jl:86
-        +(x::Bool, y::T) where T<:AbstractFloat in Base at bool.jl:96
-        +(x::Bool, z::Complex) in Base at complex.jl:239
-        +(a::Float16, b::Float16) in Base at float.jl:372
-        +(x::Float32, y::Float32) in Base at float.jl:374
-        +(x::Float64, y::Float64) in Base at float.jl:375
-        +(z::Complex\{Bool\}, x::Bool) in Base at complex.jl:233
-        +(z::Complex\{Bool\}, x::Real) in Base at complex.jl:247
-        +(x::Char, y::Integer) in Base at char.jl:40
-        +(c::BigInt, x::BigFloat) in Base.MPFR at mpfr.jl:312
-        +(a::BigInt, b::BigInt, c::BigInt, d::BigInt, e::BigInt) in Base.GMP at gmp.jl:334
-        +(a::BigInt, b::BigInt, c::BigInt, d::BigInt) in Base.GMP at gmp.jl:327
-        +(a::BigInt, b::BigInt, c::BigInt) in Base.GMP at gmp.jl:321
-        +(x::BigInt, y::BigInt) in Base.GMP at gmp.jl:289
-        +(x::BigInt, c::Union\{UInt16, UInt32, UInt64, UInt8\}) in Base.GMP at gmp.jl:346
-        +(x::BigInt, c::Union\{Int16, Int32, Int64, Int8\}) in Base.GMP at gmp.jl:362
-        +(a::BigFloat, b::BigFloat, c::BigFloat, d::BigFloat, e::BigFloat) in Base.MPFR at mpfr.jl:460
-        +(a::BigFloat, b::BigFloat, c::BigFloat, d::BigFloat) in Base.MPFR at mpfr.jl:453
-        +(a::BigFloat, b::BigFloat, c::BigFloat) in Base.MPFR at mpfr.jl:447
-        +(x::BigFloat, c::BigInt) in Base.MPFR at mpfr.jl:308
-        +(x::BigFloat, y::BigFloat) in Base.MPFR at mpfr.jl:277
-        +(x::BigFloat, c::Union\{UInt16, UInt32, UInt64, UInt8\}) in Base.MPFR at mpfr.jl:284
-        +(x::BigFloat, c::Union\{Int16, Int32, Int64, Int8\}) in Base.MPFR at mpfr.jl:292
-        +(x::BigFloat, c::Union\{Float16, Float32, Float64\}) in Base.MPFR at mpfr.jl:300
-        +(B::BitArray\{2\}, J::UniformScaling) in Base.LinAlg at linalg/uniformscaling.jl:59
-        +(a::Base.Pkg.Resolve.VersionWeights.VWPreBuildItem, b::Base.Pkg.Resolve.VersionWeights.VWPreBuildItem) in Base.Pkg.Resolve.VersionWeights at pkg/resolve/versionweight.jl:87
-        +(a::Base.Pkg.Resolve.VersionWeights.VWPreBuild, b::Base.Pkg.Resolve.VersionWeights.VWPreBuild) in Base.Pkg.Resolve.VersionWeights at pkg/resolve/versionweight.jl:135
-        +(a::Base.Pkg.Resolve.VersionWeights.VersionWeight, b::Base.Pkg.Resolve.VersionWeights.VersionWeight) in Base.Pkg.Resolve.VersionWeights at pkg/resolve/versionweight.jl:197
-        +(a::Base.Pkg.Resolve.MaxSum.FieldValues.FieldValue, b::Base.Pkg.Resolve.MaxSum.FieldValues.FieldValue) in Base.Pkg.Resolve.MaxSum.FieldValues at pkg/resolve/fieldvalue.jl:44
-        +(x::Base.Dates.CompoundPeriod, y::Base.Dates.CompoundPeriod) in Base.Dates at dates/periods.jl:349
-        +(x::Base.Dates.CompoundPeriod, y::Base.Dates.Period) in Base.Dates at dates/periods.jl:347
-        +(x::Base.Dates.CompoundPeriod, y::Base.Dates.TimeType) in Base.Dates at dates/periods.jl:387
-        +(x::Date, y::Base.Dates.Day) in Base.Dates at dates/arithmetic.jl:77
-        +(x::Date, y::Base.Dates.Week) in Base.Dates at dates/arithmetic.jl:75
-        +(dt::Date, z::Base.Dates.Month) in Base.Dates at dates/arithmetic.jl:58
-        +(dt::Date, y::Base.Dates.Year) in Base.Dates at dates/arithmetic.jl:32
-        +(dt::Date, t::Base.Dates.Time) in Base.Dates at dates/arithmetic.jl:20
-        +(t::Base.Dates.Time, dt::Date) in Base.Dates at dates/arithmetic.jl:24
-        +(x::Base.Dates.Time, y::Base.Dates.TimePeriod) in Base.Dates at dates/arithmetic.jl:81
-        +(dt::DateTime, z::Base.Dates.Month) in Base.Dates at dates/arithmetic.jl:52
-        +(dt::DateTime, y::Base.Dates.Year) in Base.Dates at dates/arithmetic.jl:28
-        +(x::DateTime, y::Base.Dates.Period) in Base.Dates at dates/arithmetic.jl:79
-        +(y::AbstractFloat, x::Bool) in Base at bool.jl:98
-        +(x::T, y::T) where T<:Union\{Int128, Int16, Int32, Int64, Int8, UInt128, UInt16, UInt32, UInt64, UInt8\} in Base at int.jl:32
-        +(x::Integer, y::Ptr) in Base at pointer.jl:128
-        +(z::Complex, w::Complex) in Base at complex.jl:221
-        +(z::Complex, x::Bool) in Base at complex.jl:240
-        +(x::Real, z::Complex\{Bool\}) in Base at complex.jl:246
-        +(x::Real, z::Complex) in Base at complex.jl:258
-        +(z::Complex, x::Real) in Base at complex.jl:259
-        +(x::Rational, y::Rational) in Base at rational.jl:245
-        +(x::Integer, y::Char) in Base at char.jl:41
-        +(i::Integer, index::CartesianIndex) in Base.IteratorsMD at multidimensional.jl:110
-        +(c::Union\{UInt16, UInt32, UInt64, UInt8\}, x::BigInt) in Base.GMP at gmp.jl:350
-        +(c::Union\{Int16, Int32, Int64, Int8\}, x::BigInt) in Base.GMP at gmp.jl:363
-        +(c::Union\{UInt16, UInt32, UInt64, UInt8\}, x::BigFloat) in Base.MPFR at mpfr.jl:288
-        +(c::Union\{Int16, Int32, Int64, Int8\}, x::BigFloat) in Base.MPFR at mpfr.jl:296
-        +(c::Union\{Float16, Float32, Float64\}, x::BigFloat) in Base.MPFR at mpfr.jl:304
-        +(x::Irrational, y::Irrational) in Base at irrationals.jl:109
-        +(x::Real, r::Base.Use\_StepRangeLen\_Instead) in Base at deprecated.jl:1232
-        +(x::Number) in Base at operators.jl:399
-        +(x::T, y::T) where T<:Number in Base at promotion.jl:335
-        +(x::Number, y::Number) in Base at promotion.jl:249
-        +(x::Real, r::AbstractUnitRange) in Base at range.jl:721
-        +(x::Number, r::AbstractUnitRange) in Base at range.jl:723
-        +(x::Number, r::StepRangeLen) in Base at range.jl:726
-        +(x::Number, r::LinSpace) in Base at range.jl:730
-        +(x::Number, r::Range) in Base at range.jl:724
-        +(r::Range, x::Number) in Base at range.jl:732
-        +(r1::OrdinalRange, r2::OrdinalRange) in Base at range.jl:882
-        +(r1::LinSpace\{T\}, r2::LinSpace\{T\}) where T in Base at range.jl:889
-        +(r1::StepRangeLen\{T,R,S\} where S, r2::StepRangeLen\{T,R,S\} where S) where \{R<:Base.TwicePrecision, T\} in Base at twiceprecision.jl:300
-        +(r1::StepRangeLen\{T,S,S\} where S, r2::StepRangeLen\{T,S,S\} where S) where \{T, S\} in Base at range.jl:905
-        +(r1::Union\{LinSpace, OrdinalRange, StepRangeLen\}, r2::Union\{LinSpace, OrdinalRange, StepRangeLen\}) in Base at range.jl:897
-        +(x::Base.TwicePrecision, y::Number) in Base at twiceprecision.jl:455
-        +(x::Number, y::Base.TwicePrecision) in Base at twiceprecision.jl:458
-        +(x::Base.TwicePrecision\{T\}, y::Base.TwicePrecision\{T\}) where T in Base at twiceprecision.jl:461
-        +(x::Base.TwicePrecision, y::Base.TwicePrecision) in Base at twiceprecision.jl:465
-        +(x::Ptr, y::Integer) in Base at pointer.jl:126
-        +(A::BitArray, B::BitArray) in Base at bitarray.jl:1177
-        +(A::SymTridiagonal, B::SymTridiagonal) in Base.LinAlg at linalg/tridiag.jl:128
-        +(A::Tridiagonal, B::Tridiagonal) in Base.LinAlg at linalg/tridiag.jl:624
-        +(A::UpperTriangular, B::UpperTriangular) in Base.LinAlg at linalg/triangular.jl:419
-        +(A::LowerTriangular, B::LowerTriangular) in Base.LinAlg at linalg/triangular.jl:420
-        +(A::UpperTriangular, B::Base.LinAlg.UnitUpperTriangular) in Base.LinAlg at linalg/triangular.jl:421
-        +(A::LowerTriangular, B::Base.LinAlg.UnitLowerTriangular) in Base.LinAlg at linalg/triangular.jl:422
-        +(A::Base.LinAlg.UnitUpperTriangular, B::UpperTriangular) in Base.LinAlg at linalg/triangular.jl:423
-        +(A::Base.LinAlg.UnitLowerTriangular, B::LowerTriangular) in Base.LinAlg at linalg/triangular.jl:424
-        +(A::Base.LinAlg.UnitUpperTriangular, B::Base.LinAlg.UnitUpperTriangular) in Base.LinAlg at linalg/triangular.jl:425
-        +(A::Base.LinAlg.UnitLowerTriangular, B::Base.LinAlg.UnitLowerTriangular) in Base.LinAlg at linalg/triangular.jl:426
-        +(A::Base.LinAlg.AbstractTriangular, B::Base.LinAlg.AbstractTriangular) in Base.LinAlg at linalg/triangular.jl:427
-        +(A::Symmetric, x::Bool) in Base.LinAlg at linalg/symmetric.jl:274
-        +(A::Symmetric, x::Number) in Base.LinAlg at linalg/symmetric.jl:276
-        +(A::Hermitian, x::Bool) in Base.LinAlg at linalg/symmetric.jl:274
-        +(A::Hermitian, x::Real) in Base.LinAlg at linalg/symmetric.jl:276
-        +(Da::Diagonal, Db::Diagonal) in Base.LinAlg at linalg/diagonal.jl:140
-        +(A::Bidiagonal, B::Bidiagonal) in Base.LinAlg at linalg/bidiag.jl:330
-        +(UL::UpperTriangular, J::UniformScaling) in Base.LinAlg at linalg/uniformscaling.jl:72
-        +(UL::Base.LinAlg.UnitUpperTriangular, J::UniformScaling) in Base.LinAlg at linalg/uniformscaling.jl:75
-        +(UL::LowerTriangular, J::UniformScaling) in Base.LinAlg at linalg/uniformscaling.jl:72
-        +(UL::Base.LinAlg.UnitLowerTriangular, J::UniformScaling) in Base.LinAlg at linalg/uniformscaling.jl:75
-        +(A::Array, B::SparseMatrixCSC) in Base.SparseArrays at sparse/sparsematrix.jl:1541
-        +(x::Union\{Base.ReshapedArray\{T,1,A,MI\} where MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N\} where N\} where A<:Union\{DenseArray, SubArray\{T,N,P,I,true\} where I<:Tuple\{Union\{Base.Slice, UnitRange\},Vararg\{Any,N\} where N\} where P where N where T\}, DenseArray\{T,1\}, SubArray\{T,1,A,I,L\} where L\} where I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex, Int64, Range\{Int64\}\},N\} where N\} where A<:Union\{Base.ReshapedArray\{T,N,A,MI\} where MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N\} where N\} where A<:Union\{DenseArray, SubArray\{T,N,P,I,true\} where I<:Tuple\{Union\{Base.Slice, UnitRange\},Vararg\{Any,N\} where N\} where P where N where T\} where N where T, DenseArray\} where T, y::AbstractSparseArray\{Tv,Ti,1\} where Ti where Tv) in Base.SparseArrays at sparse/sparsevector.jl:1340
-        +(x::Union\{Base.ReshapedArray\{\#s268,N,A,MI\} where MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N\} where N\} where A<:Union\{DenseArray, SubArray\{T,N,P,I,true\} where I<:Tuple\{Union\{Base.Slice, UnitRange\},Vararg\{Any,N\} where N\} where P where N where T\}, DenseArray\{\#s268,N\}, SubArray\{\#s268,N,A,I,L\} where L\} where I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex, Int64, Range\{Int64\}\},N\} where N\} where A<:Union\{Base.ReshapedArray\{T,N,A,MI\} where MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N\} where N\} where A<:Union\{DenseArray, SubArray\{T,N,P,I,true\} where I<:Tuple\{Union\{Base.Slice, UnitRange\},Vararg\{Any,N\} where N\} where P where N where T\} where N where T, DenseArray\} where N where \#s268<:Union\{Base.Dates.CompoundPeriod, Base.Dates.Period\}) in Base.Dates at dates/periods.jl:358
-        +(A::SparseMatrixCSC, J::UniformScaling) in Base.SparseArrays at sparse/sparsematrix.jl:3608
-        +(A::AbstractArray\{TA,2\}, J::UniformScaling\{TJ\}) where \{TA, TJ\} in Base.LinAlg at linalg/uniformscaling.jl:119
-        +(A::Diagonal, B::Bidiagonal) in Base.LinAlg at linalg/special.jl:113
-        +(A::Bidiagonal, B::Diagonal) in Base.LinAlg at linalg/special.jl:114
-        +(A::Diagonal, B::Tridiagonal) in Base.LinAlg at linalg/special.jl:113
-        +(A::Tridiagonal, B::Diagonal) in Base.LinAlg at linalg/special.jl:114
-        +(A::Diagonal, B::Array\{T,2\} where T) in Base.LinAlg at linalg/special.jl:113
-        +(A::Array\{T,2\} where T, B::Diagonal) in Base.LinAlg at linalg/special.jl:114
-        +(A::Bidiagonal, B::Tridiagonal) in Base.LinAlg at linalg/special.jl:113
-        +(A::Tridiagonal, B::Bidiagonal) in Base.LinAlg at linalg/special.jl:114
-        +(A::Bidiagonal, B::Array\{T,2\} where T) in Base.LinAlg at linalg/special.jl:113
-        +(A::Array\{T,2\} where T, B::Bidiagonal) in Base.LinAlg at linalg/special.jl:114
-        +(A::Tridiagonal, B::Array\{T,2\} where T) in Base.LinAlg at linalg/special.jl:113
-        +(A::Array\{T,2\} where T, B::Tridiagonal) in Base.LinAlg at linalg/special.jl:114
-        +(A::SymTridiagonal, B::Tridiagonal) in Base.LinAlg at linalg/special.jl:122
-        +(A::Tridiagonal, B::SymTridiagonal) in Base.LinAlg at linalg/special.jl:123
-        +(A::SymTridiagonal, B::Array\{T,2\} where T) in Base.LinAlg at linalg/special.jl:122
-        +(A::Array\{T,2\} where T, B::SymTridiagonal) in Base.LinAlg at linalg/special.jl:123
-        +(A::Diagonal, B::SymTridiagonal) in Base.LinAlg at linalg/special.jl:131
-        +(A::SymTridiagonal, B::Diagonal) in Base.LinAlg at linalg/special.jl:132
-        +(A::Bidiagonal, B::SymTridiagonal) in Base.LinAlg at linalg/special.jl:131
-        +(A::SymTridiagonal, B::Bidiagonal) in Base.LinAlg at linalg/special.jl:132
-        +(A::Diagonal, B::UpperTriangular) in Base.LinAlg at linalg/special.jl:143
-        +(A::UpperTriangular, B::Diagonal) in Base.LinAlg at linalg/special.jl:144
-        +(A::Diagonal, B::Base.LinAlg.UnitUpperTriangular) in Base.LinAlg at linalg/special.jl:143
-        +(A::Base.LinAlg.UnitUpperTriangular, B::Diagonal) in Base.LinAlg at linalg/special.jl:144
-        +(A::Diagonal, B::LowerTriangular) in Base.LinAlg at linalg/special.jl:143
-        +(A::LowerTriangular, B::Diagonal) in Base.LinAlg at linalg/special.jl:144
-        +(A::Diagonal, B::Base.LinAlg.UnitLowerTriangular) in Base.LinAlg at linalg/special.jl:143
-        +(A::Base.LinAlg.UnitLowerTriangular, B::Diagonal) in Base.LinAlg at linalg/special.jl:144
-        +(A::Base.LinAlg.AbstractTriangular, B::SymTridiagonal) in Base.LinAlg at linalg/special.jl:150
-        +(A::SymTridiagonal, B::Base.LinAlg.AbstractTriangular) in Base.LinAlg at linalg/special.jl:151
-        +(A::Base.LinAlg.AbstractTriangular, B::Tridiagonal) in Base.LinAlg at linalg/special.jl:150
-        +(A::Tridiagonal, B::Base.LinAlg.AbstractTriangular) in Base.LinAlg at linalg/special.jl:151
-        +(A::Base.LinAlg.AbstractTriangular, B::Bidiagonal) in Base.LinAlg at linalg/special.jl:150
-        +(A::Bidiagonal, B::Base.LinAlg.AbstractTriangular) in Base.LinAlg at linalg/special.jl:151
-        +(A::Base.LinAlg.AbstractTriangular, B::Array\{T,2\} where T) in Base.LinAlg at linalg/special.jl:150
-        +(A::Array\{T,2\} where T, B::Base.LinAlg.AbstractTriangular) in Base.LinAlg at linalg/special.jl:151
-        +(Y::Union\{Base.ReshapedArray\{\#s267,N,A,MI\} where MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N\} where N\} where A<:Union\{DenseArray, SubArray\{T,N,P,I,true\} where I<:Tuple\{Union\{Base.Slice, UnitRange\},Vararg\{Any,N\} where N\} where P where N where T\}, DenseArray\{\#s267,N\}, SubArray\{\#s267,N,A,I,L\} where L\} where I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex, Int64, Range\{Int64\}\},N\} where N\} where A<:Union\{Base.ReshapedArray\{T,N,A,MI\} where MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N\} where N\} where A<:Union\{DenseArray, SubArray\{T,N,P,I,true\} where I<:Tuple\{Union\{Base.Slice, UnitRange\},Vararg\{Any,N\} where N\} where P where N where T\} where N where T, DenseArray\} where N where \#s267<:Union\{Base.Dates.CompoundPeriod, Base.Dates.Period\}, x::Union\{Base.Dates.CompoundPeriod, Base.Dates.Period\}) in Base.Dates at dates/periods.jl:363
-        +(X::Union\{Base.ReshapedArray\{\#s266,N,A,MI\} where MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N\} where N\} where A<:Union\{DenseArray, SubArray\{T,N,P,I,true\} where I<:Tuple\{Union\{Base.Slice, UnitRange\},Vararg\{Any,N\} where N\} where P where N where T\}, DenseArray\{\#s266,N\}, SubArray\{\#s266,N,A,I,L\} where L\} where I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex, Int64, Range\{Int64\}\},N\} where N\} where A<:Union\{Base.ReshapedArray\{T,N,A,MI\} where MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N\} where N\} where A<:Union\{DenseArray, SubArray\{T,N,P,I,true\} where I<:Tuple\{Union\{Base.Slice, UnitRange\},Vararg\{Any,N\} where N\} where P where N where T\} where N where T, DenseArray\} where N where \#s266<:Union\{Base.Dates.CompoundPeriod, Base.Dates.Period\}, Y::Union\{Base.ReshapedArray\{\#s265,N,A,MI\} where MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N\} where N\} where A<:Union\{DenseArray, SubArray\{T,N,P,I,true\} where I<:Tuple\{Union\{Base.Slice, UnitRange\},Vararg\{Any,N\} where N\} where P where N where T\}, DenseArray\{\#s265,N\}, SubArray\{\#s265,N,A,I,L\} where L\} where I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex, Int64, Range\{Int64\}\},N\} where N\} where A<:Union\{Base.ReshapedArray\{T,N,A,MI\} where MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N\} where N\} where A<:Union\{DenseArray, SubArray\{T,N,P,I,true\} where I<:Tuple\{Union\{Base.Slice, UnitRange\},Vararg\{Any,N\} where N\} where P where N where T\} where N where T, DenseArray\} where N where \#s265<:Union\{Base.Dates.CompoundPeriod, Base.Dates.Period\}) in Base.Dates at dates/periods.jl:364
-        +(x::Union\{Base.ReshapedArray\{\#s268,N,A,MI\} where MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N\} where N\} where A<:Union\{DenseArray, SubArray\{T,N,P,I,true\} where I<:Tuple\{Union\{Base.Slice, UnitRange\},Vararg\{Any,N\} where N\} where P where N where T\}, DenseArray\{\#s268,N\}, SubArray\{\#s268,N,A,I,L\} where L\} where I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex, Int64, Range\{Int64\}\},N\} where N\} where A<:Union\{Base.ReshapedArray\{T,N,A,MI\} where MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N\} where N\} where A<:Union\{DenseArray, SubArray\{T,N,P,I,true\} where I<:Tuple\{Union\{Base.Slice, UnitRange\},Vararg\{Any,N\} where N\} where P where N where T\} where N where T, DenseArray\} where N where \#s268<:Union\{Base.Dates.CompoundPeriod, Base.Dates.Period\}, y::Base.Dates.TimeType) in Base.Dates at dates/arithmetic.jl:86
-        +(r::Range\{\#s268\} where \#s268<:Base.Dates.TimeType, x::Base.Dates.Period) in Base.Dates at dates/ranges.jl:47
-        +(A::SparseMatrixCSC, B::SparseMatrixCSC) in Base.SparseArrays at sparse/sparsematrix.jl:1537
-        +(A::SparseMatrixCSC, B::Array) in Base.SparseArrays at sparse/sparsematrix.jl:1540
-        +(x::AbstractSparseArray\{Tv,Ti,1\} where Ti where Tv, y::AbstractSparseArray\{Tv,Ti,1\} where Ti where Tv) in Base.SparseArrays at sparse/sparsevector.jl:1339
-        +(x::AbstractSparseArray\{Tv,Ti,1\} where Ti where Tv, y::Union\{Base.ReshapedArray\{T,1,A,MI\} where MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N\} where N\} where A<:Union\{DenseArray, SubArray\{T,N,P,I,true\} where I<:Tuple\{Union\{Base.Slice, UnitRange\},Vararg\{Any,N\} where N\} where P where N where T\}, DenseArray\{T,1\}, SubArray\{T,1,A,I,L\} where L\} where I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex, Int64, Range\{Int64\}\},N\} where N\} where A<:Union\{Base.ReshapedArray\{T,N,A,MI\} where MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N\} where N\} where A<:Union\{DenseArray, SubArray\{T,N,P,I,true\} where I<:Tuple\{Union\{Base.Slice, UnitRange\},Vararg\{Any,N\} where N\} where P where N where T\} where N where T, DenseArray\} where T) in Base.SparseArrays at sparse/sparsevector.jl:1341
-        +(x::AbstractArray\{\#s45,N\} where N where \#s45<:Number) in Base at abstractarraymath.jl:95
-        +(A::AbstractArray, B::AbstractArray) in Base at arraymath.jl:38
-        +(A::Number, B::AbstractArray) in Base at arraymath.jl:45
-        +(A::AbstractArray, B::Number) in Base at arraymath.jl:48
-        +(index1::CartesianIndex\{N\}, index2::CartesianIndex\{N\}) where N in Base.IteratorsMD at multidimensional.jl:101
-        +(index::CartesianIndex\{N\}, i::Integer) where N in Base.IteratorsMD at multidimensional.jl:111
-        +(J1::UniformScaling, J2::UniformScaling) in Base.LinAlg at linalg/uniformscaling.jl:58
-        +(J::UniformScaling, B::BitArray\{2\}) in Base.LinAlg at linalg/uniformscaling.jl:60
-        +(J::UniformScaling, A::AbstractArray\{T,2\} where T) in Base.LinAlg at linalg/uniformscaling.jl:61
-        +(a::Base.Pkg.Resolve.VersionWeights.HierarchicalValue\{T\}, b::Base.Pkg.Resolve.VersionWeights.HierarchicalValue\{T\}) where T in Base.Pkg.Resolve.VersionWeights at pkg/resolve/versionweight.jl:23
-        +(x::P, y::P) where P<:Base.Dates.Period in Base.Dates at dates/periods.jl:70
-        +(x::Base.Dates.Period, y::Base.Dates.Period) in Base.Dates at dates/periods.jl:346
-        +(y::Base.Dates.Period, x::Base.Dates.CompoundPeriod) in Base.Dates at dates/periods.jl:348
-        +(x::Union\{Base.Dates.CompoundPeriod, Base.Dates.Period\}) in Base.Dates at dates/periods.jl:357
-        +(x::Union\{Base.Dates.CompoundPeriod, Base.Dates.Period\}, Y::Union\{Base.ReshapedArray\{\#s268,N,A,MI\} where MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N\} where N\} where A<:Union\{DenseArray, SubArray\{T,N,P,I,true\} where I<:Tuple\{Union\{Base.Slice, UnitRange\},Vararg\{Any,N\} where N\} where P where N where T\}, DenseArray\{\#s268,N\}, SubArray\{\#s268,N,A,I,L\} where L\} where I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex, Int64, Range\{Int64\}\},N\} where N\} where A<:Union\{Base.ReshapedArray\{T,N,A,MI\} where MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N\} where N\} where A<:Union\{DenseArray, SubArray\{T,N,P,I,true\} where I<:Tuple\{Union\{Base.Slice, UnitRange\},Vararg\{Any,N\} where N\} where P where N where T\} where N where T, DenseArray\} where N where \#s268<:Union\{Base.Dates.CompoundPeriod, Base.Dates.Period\}) in Base.Dates at dates/periods.jl:362
-        +(x::Base.Dates.TimeType) in Base.Dates at dates/arithmetic.jl:8
-        +(a::Base.Dates.TimeType, b::Base.Dates.Period, c::Base.Dates.Period) in Base.Dates at dates/periods.jl:378
-        +(a::Base.Dates.TimeType, b::Base.Dates.Period, c::Base.Dates.Period, d::Base.Dates.Period{\ldots}) in Base.Dates at dates/periods.jl:379
-        +(x::Base.Dates.TimeType, y::Base.Dates.CompoundPeriod) in Base.Dates at dates/periods.jl:382
-        +(x::Base.Dates.Instant) in Base.Dates at dates/arithmetic.jl:4
-        +(y::Base.Dates.Period, x::Base.Dates.TimeType) in Base.Dates at dates/arithmetic.jl:83
-        +(x::AbstractArray\{\#s268,N\} where N where \#s268<:Base.Dates.TimeType, y::Union\{Base.Dates.CompoundPeriod, Base.Dates.Period\}) in Base.Dates at dates/arithmetic.jl:85
-        +(x::Base.Dates.Period, r::Range\{\#s268\} where \#s268<:Base.Dates.TimeType) in Base.Dates at dates/ranges.jl:46
-        +(y::Union\{Base.Dates.CompoundPeriod, Base.Dates.Period\}, x::AbstractArray\{\#s268,N\} where N where \#s268<:Base.Dates.TimeType) in Base.Dates at dates/arithmetic.jl:87
-        +(y::Base.Dates.TimeType, x::Union\{Base.ReshapedArray\{\#s268,N,A,MI\} where MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N\} where N\} where A<:Union\{DenseArray, SubArray\{T,N,P,I,true\} where I<:Tuple\{Union\{Base.Slice, UnitRange\},Vararg\{Any,N\} where N\} where P where N where T\}, DenseArray\{\#s268,N\}, SubArray\{\#s268,N,A,I,L\} where L\} where I<:Tuple\{Vararg\{Union\{Base.AbstractCartesianIndex, Int64, Range\{Int64\}\},N\} where N\} where A<:Union\{Base.ReshapedArray\{T,N,A,MI\} where MI<:Tuple\{Vararg\{Base.MultiplicativeInverses.SignedMultiplicativeInverse\{Int64\},N\} where N\} where A<:Union\{DenseArray, SubArray\{T,N,P,I,true\} where I<:Tuple\{Union\{Base.Slice, UnitRange\},Vararg\{Any,N\} where N\} where P where N where T\} where N where T, DenseArray\} where N where \#s268<:Union\{Base.Dates.CompoundPeriod, Base.Dates.Period\}) in Base.Dates at dates/arithmetic.jl:88
-        +(J::UniformScaling, x::Number) in Base at deprecated.jl:56
-        +(x::Number, J::UniformScaling) in Base at deprecated.jl:56
-        +(a, b, c, xs{\ldots}) in Base at operators.jl:424
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}2}]:} \# 163 methods for generic function "+":
+        [1] +(x::Bool, z::Complex\{Bool\}) in Base at complex.jl:277
+        [2] +(x::Bool, y::Bool) in Base at bool.jl:104
+        [3] +(x::Bool) in Base at bool.jl:101
+        [4] +(x::Bool, y::T) where T<:AbstractFloat in Base at bool.jl:112
+        [5] +(x::Bool, z::Complex) in Base at complex.jl:284
+        [6] +(a::Float16, b::Float16) in Base at float.jl:392
+        [7] +(x::Float32, y::Float32) in Base at float.jl:394
+        [8] +(x::Float64, y::Float64) in Base at float.jl:395
+        [9] +(z::Complex\{Bool\}, x::Bool) in Base at complex.jl:278
+        [10] +(z::Complex\{Bool\}, x::Real) in Base at complex.jl:292
+        [11] +(::Missing, ::Missing) in Base at missing.jl:92
+        [12] +(::Missing) in Base at missing.jl:79
+        [13] +(::Missing, ::Number) in Base at missing.jl:93
+        [14] +(level::Base.CoreLogging.LogLevel, inc::Integer) in Base.CoreLogging at logging.jl:106
+        [15] +(c::BigInt, x::BigFloat) in Base.MPFR at mpfr.jl:353
+        [16] +(a::BigInt, b::BigInt, c::BigInt, d::BigInt, e::BigInt) in Base.GMP at gmp.jl:443
+        [17] +(a::BigInt, b::BigInt, c::BigInt, d::BigInt) in Base.GMP at gmp.jl:442
+        [18] +(a::BigInt, b::BigInt, c::BigInt) in Base.GMP at gmp.jl:441
+        [19] +(x::BigInt, y::BigInt) in Base.GMP at gmp.jl:412
+        [20] +(x::BigInt, c::Union\{UInt16, UInt32, UInt64, UInt8\}) in Base.GMP at gmp.jl:449
+        [21] +(x::BigInt, c::Union\{Int16, Int32, Int64, Int8\}) in Base.GMP at gmp.jl:455
+        [22] +(a::BigFloat, b::BigFloat, c::BigFloat, d::BigFloat, e::BigFloat) in Base.MPFR at mpfr.jl:503
+        [23] +(a::BigFloat, b::BigFloat, c::BigFloat, d::BigFloat) in Base.MPFR at mpfr.jl:496
+        [24] +(a::BigFloat, b::BigFloat, c::BigFloat) in Base.MPFR at mpfr.jl:490
+        [25] +(x::BigFloat, c::BigInt) in Base.MPFR at mpfr.jl:349
+        [26] +(x::BigFloat, y::BigFloat) in Base.MPFR at mpfr.jl:318
+        [27] +(x::BigFloat, c::Union\{UInt16, UInt32, UInt64, UInt8\}) in Base.MPFR at mpfr.jl:325
+        [28] +(x::BigFloat, c::Union\{Int16, Int32, Int64, Int8\}) in Base.MPFR at mpfr.jl:333
+        [29] +(x::BigFloat, c::Union\{Float16, Float32, Float64\}) in Base.MPFR at mpfr.jl:341
+        [30] +(x::Dates.CompoundPeriod, y::Dates.CompoundPeriod) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/periods.jl:349
+        [31] +(x::Dates.CompoundPeriod, y::Dates.Period) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/periods.jl:347
+        [32] +(x::Dates.CompoundPeriod, y::Dates.TimeType) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/periods.jl:385
+        [33] +(x::Dates.Date, y::Dates.Day) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/arithmetic.jl:78
+        [34] +(x::Dates.Date, y::Dates.Week) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/arithmetic.jl:76
+        [35] +(dt::Dates.Date, z::Dates.Month) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/arithmetic.jl:59
+        [36] +(dt::Dates.Date, y::Dates.Year) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/arithmetic.jl:32
+        [37] +(dt::Dates.Date, t::Dates.Time) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/arithmetic.jl:20
+        [38] +(t::Dates.Time, dt::Dates.Date) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/arithmetic.jl:24
+        [39] +(x::Dates.Time, y::Dates.TimePeriod) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/arithmetic.jl:82
+        [40] +(dt::Dates.DateTime, z::Dates.Month) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/arithmetic.jl:52
+        [41] +(dt::Dates.DateTime, y::Dates.Year) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/arithmetic.jl:28
+        [42] +(x::Dates.DateTime, y::Dates.Period) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/arithmetic.jl:80
+        [43] +(B::BitArray\{2\}, J::LinearAlgebra.UniformScaling) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/uniformscaling.jl:88
+        [44] +(a::Pkg.Resolve.VersionWeights.VersionWeight, b::Pkg.Resolve.VersionWeights.VersionWeight) in Pkg.Resolve.VersionWeights at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/resolve/VersionWeights.jl:26
+        [45] +(a::Pkg.Resolve.MaxSum.FieldValues.FieldValue, b::Pkg.Resolve.MaxSum.FieldValues.FieldValue) in Pkg.Resolve.MaxSum.FieldValues at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Pkg/src/resolve/FieldValues.jl:49
+        [46] +(y::AbstractFloat, x::Bool) in Base at bool.jl:114
+        [47] +(x::T, y::T) where T<:Union\{Int128, Int16, Int32, Int64, Int8, UInt128, UInt16, UInt32, UInt64, UInt8\} in Base at int.jl:53
+        [48] +(c::Union\{UInt16, UInt32, UInt64, UInt8\}, x::BigInt) in Base.GMP at gmp.jl:450
+        [49] +(c::Union\{Int16, Int32, Int64, Int8\}, x::BigInt) in Base.GMP at gmp.jl:456
+        [50] +(a::Integer, b::Integer) in Base at int.jl:791
+        [51] +(x::Integer, y::Ptr) in Base at pointer.jl:157
+        [52] +(z::Complex, w::Complex) in Base at complex.jl:266
+        [53] +(z::Complex, x::Bool) in Base at complex.jl:285
+        [54] +(x::Real, z::Complex\{Bool\}) in Base at complex.jl:291
+        [55] +(x::Real, z::Complex) in Base at complex.jl:303
+        [56] +(z::Complex, x::Real) in Base at complex.jl:304
+        [57] +(x::Rational, y::Rational) in Base at rational.jl:248
+        [58] +(x::Integer, y::AbstractChar) in Base at char.jl:208
+        [59] +(c::Union\{UInt16, UInt32, UInt64, UInt8\}, x::BigFloat) in Base.MPFR at mpfr.jl:329
+        [60] +(c::Union\{Int16, Int32, Int64, Int8\}, x::BigFloat) in Base.MPFR at mpfr.jl:337
+        [61] +(c::Union\{Float16, Float32, Float64\}, x::BigFloat) in Base.MPFR at mpfr.jl:345
+        [62] +(x::AbstractIrrational, y::AbstractIrrational) in Base at irrationals.jl:133
+        [63] +(x::Number) in Base at operators.jl:477
+        [64] +(x::T, y::T) where T<:Number in Base at promotion.jl:411
+        [65] +(x::Number, y::Number) in Base at promotion.jl:313
+        [66] +(r1::OrdinalRange, r2::OrdinalRange) in Base at range.jl:978
+        [67] +(r1::LinRange\{T\}, r2::LinRange\{T\}) where T in Base at range.jl:985
+        [68] +(r1::StepRangeLen\{T,R,S\} where S, r2::StepRangeLen\{T,R,S\} where S) where \{R<:TwicePrecision, T\} in Base at twiceprecision.jl:554
+        [69] +(r1::StepRangeLen\{T,S,S1\} where S1, r2::StepRangeLen\{T,S,S1\} where S1) where \{T, S\} in Base at range.jl:1001
+        [70] +(r1::Union\{LinRange, OrdinalRange, StepRangeLen\}, r2::Union\{LinRange, OrdinalRange, StepRangeLen\}) in Base at range.jl:993
+        [71] +(x::Ptr, y::Integer) in Base at pointer.jl:155
+        [72] +(x::Base.TwicePrecision, y::Number) in Base at twiceprecision.jl:265
+        [73] +(x::Number, y::Base.TwicePrecision) in Base at twiceprecision.jl:268
+        [74] +(x::Base.TwicePrecision\{T\}, y::Base.TwicePrecision\{T\}) where T in Base at twiceprecision.jl:271
+        [75] +(x::Base.TwicePrecision, y::Base.TwicePrecision) in Base at twiceprecision.jl:275
+        [76] +(A::Array, Bs::Array{\ldots}) in Base at arraymath.jl:44
+        [77] +(A::BitArray, B::BitArray) in Base at bitarray.jl:1074
+        [78] +(A::Array\{T,2\} where T, B::LinearAlgebra.Diagonal) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:88
+        [79] +(A::Array\{T,2\} where T, B::LinearAlgebra.Bidiagonal) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:88
+        [80] +(A::Array\{T,2\} where T, B::LinearAlgebra.Tridiagonal) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:88
+        [81] +(A::Array\{T,2\} where T, B::LinearAlgebra.SymTridiagonal) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:97
+        [82] +(A::Array\{T,2\} where T, B::LinearAlgebra.AbstractTriangular) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:125
+        [83] +(A::Array, B::SparseArrays.SparseMatrixCSC) in SparseArrays at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/SparseArrays/src/sparsematrix.jl:1563
+        [84] +(x::Union\{DenseArray\{\#s549,N\}, ReinterpretArray\{\#s549,N,S,A\} where S where A<:Union\{SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\}, ReshapedArray\{\#s549,N,A,MI\} where MI<:Tuple\{Vararg\{SignedMultiplicativeInverse\{Int64\},N\} where N\} where A<:Union\{ReinterpretArray\{T,N,S,A\} where S where A<:Union\{SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\} where N where T, SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\}, SubArray\{\#s549,N,A,I,L\} where L where I<:Tuple\{Vararg\{Union\{Int64, AbstractRange\{Int64\}, AbstractCartesianIndex\},N\} where N\} where A<:Union\{ReinterpretArray\{T,N,S,A\} where S where A<:Union\{SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\} where N where T, ReshapedArray\{T,N,A,MI\} where MI<:Tuple\{Vararg\{SignedMultiplicativeInverse\{Int64\},N\} where N\} where A<:Union\{ReinterpretArray\{T,N,S,A\} where S where A<:Union\{SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\} where N where T, SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\} where N where T, DenseArray\}\} where N where \#s549<:Union\{CompoundPeriod, Period\}) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/periods.jl:358
+        [85] +(X::Union\{DenseArray\{\#s549,N\}, ReinterpretArray\{\#s549,N,S,A\} where S where A<:Union\{SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\}, ReshapedArray\{\#s549,N,A,MI\} where MI<:Tuple\{Vararg\{SignedMultiplicativeInverse\{Int64\},N\} where N\} where A<:Union\{ReinterpretArray\{T,N,S,A\} where S where A<:Union\{SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\} where N where T, SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\}, SubArray\{\#s549,N,A,I,L\} where L where I<:Tuple\{Vararg\{Union\{Int64, AbstractRange\{Int64\}, AbstractCartesianIndex\},N\} where N\} where A<:Union\{ReinterpretArray\{T,N,S,A\} where S where A<:Union\{SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\} where N where T, ReshapedArray\{T,N,A,MI\} where MI<:Tuple\{Vararg\{SignedMultiplicativeInverse\{Int64\},N\} where N\} where A<:Union\{ReinterpretArray\{T,N,S,A\} where S where A<:Union\{SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\} where N where T, SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\} where N where T, DenseArray\}\} where N where \#s549<:Union\{CompoundPeriod, Period\}, Y::Union\{DenseArray\{\#s548,N\}, ReinterpretArray\{\#s548,N,S,A\} where S where A<:Union\{SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\}, ReshapedArray\{\#s548,N,A,MI\} where MI<:Tuple\{Vararg\{SignedMultiplicativeInverse\{Int64\},N\} where N\} where A<:Union\{ReinterpretArray\{T,N,S,A\} where S where A<:Union\{SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\} where N where T, SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\}, SubArray\{\#s548,N,A,I,L\} where L where I<:Tuple\{Vararg\{Union\{Int64, AbstractRange\{Int64\}, AbstractCartesianIndex\},N\} where N\} where A<:Union\{ReinterpretArray\{T,N,S,A\} where S where A<:Union\{SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\} where N where T, ReshapedArray\{T,N,A,MI\} where MI<:Tuple\{Vararg\{SignedMultiplicativeInverse\{Int64\},N\} where N\} where A<:Union\{ReinterpretArray\{T,N,S,A\} where S where A<:Union\{SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\} where N where T, SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\} where N where T, DenseArray\}\} where N where \#s548<:Union\{CompoundPeriod, Period\}) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/periods.jl:362
+        [86] +(x::Union\{DenseArray\{\#s549,N\}, ReinterpretArray\{\#s549,N,S,A\} where S where A<:Union\{SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\}, ReshapedArray\{\#s549,N,A,MI\} where MI<:Tuple\{Vararg\{SignedMultiplicativeInverse\{Int64\},N\} where N\} where A<:Union\{ReinterpretArray\{T,N,S,A\} where S where A<:Union\{SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\} where N where T, SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\}, SubArray\{\#s549,N,A,I,L\} where L where I<:Tuple\{Vararg\{Union\{Int64, AbstractRange\{Int64\}, AbstractCartesianIndex\},N\} where N\} where A<:Union\{ReinterpretArray\{T,N,S,A\} where S where A<:Union\{SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\} where N where T, ReshapedArray\{T,N,A,MI\} where MI<:Tuple\{Vararg\{SignedMultiplicativeInverse\{Int64\},N\} where N\} where A<:Union\{ReinterpretArray\{T,N,S,A\} where S where A<:Union\{SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\} where N where T, SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\} where N where T, DenseArray\}\} where N where \#s549<:Union\{CompoundPeriod, Period\}, y::Dates.TimeType) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/arithmetic.jl:87
+        [87] +(r::AbstractRange\{\#s549\} where \#s549<:Dates.TimeType, x::Dates.Period) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/ranges.jl:58
+        [88] +(A::LinearAlgebra.SymTridiagonal, B::LinearAlgebra.SymTridiagonal) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/tridiag.jl:158
+        [89] +(A::LinearAlgebra.Tridiagonal, B::LinearAlgebra.Tridiagonal) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/tridiag.jl:644
+        [90] +(A::LinearAlgebra.UpperTriangular, B::LinearAlgebra.UpperTriangular) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/triangular.jl:487
+        [91] +(A::LinearAlgebra.LowerTriangular, B::LinearAlgebra.LowerTriangular) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/triangular.jl:488
+        [92] +(A::LinearAlgebra.UpperTriangular, B::LinearAlgebra.UnitUpperTriangular) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/triangular.jl:489
+        [93] +(A::LinearAlgebra.LowerTriangular, B::LinearAlgebra.UnitLowerTriangular) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/triangular.jl:490
+        [94] +(A::LinearAlgebra.UnitUpperTriangular, B::LinearAlgebra.UpperTriangular) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/triangular.jl:491
+        [95] +(A::LinearAlgebra.UnitLowerTriangular, B::LinearAlgebra.LowerTriangular) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/triangular.jl:492
+        [96] +(A::LinearAlgebra.UnitUpperTriangular, B::LinearAlgebra.UnitUpperTriangular) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/triangular.jl:493
+        [97] +(A::LinearAlgebra.UnitLowerTriangular, B::LinearAlgebra.UnitLowerTriangular) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/triangular.jl:494
+        [98] +(A::LinearAlgebra.AbstractTriangular, B::LinearAlgebra.AbstractTriangular) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/triangular.jl:495
+        [99] +(Da::LinearAlgebra.Diagonal, Db::LinearAlgebra.Diagonal) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/diagonal.jl:152
+        [100] +(A::LinearAlgebra.Bidiagonal, B::LinearAlgebra.Bidiagonal) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/bidiag.jl:304
+        [101] +(UL::LinearAlgebra.UnitUpperTriangular, J::LinearAlgebra.UniformScaling) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/uniformscaling.jl:104
+        [102] +(UL::LinearAlgebra.UnitLowerTriangular, J::LinearAlgebra.UniformScaling) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/uniformscaling.jl:104
+        [103] +(A::SparseArrays.SparseMatrixCSC, J::LinearAlgebra.UniformScaling) in SparseArrays at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/SparseArrays/src/sparsematrix.jl:3465
+        [104] +(A::AbstractArray\{T,2\} where T, J::LinearAlgebra.UniformScaling) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/uniformscaling.jl:114
+        [105] +(A::LinearAlgebra.Diagonal, B::LinearAlgebra.Bidiagonal) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:87
+        [106] +(A::LinearAlgebra.Bidiagonal, B::LinearAlgebra.Diagonal) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:88
+        [107] +(A::LinearAlgebra.Diagonal, B::LinearAlgebra.Tridiagonal) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:87
+        [108] +(A::LinearAlgebra.Tridiagonal, B::LinearAlgebra.Diagonal) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:88
+        [109] +(A::LinearAlgebra.Diagonal, B::Array\{T,2\} where T) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:87
+        [110] +(A::LinearAlgebra.Bidiagonal, B::LinearAlgebra.Tridiagonal) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:87
+        [111] +(A::LinearAlgebra.Tridiagonal, B::LinearAlgebra.Bidiagonal) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:88
+        [112] +(A::LinearAlgebra.Bidiagonal, B::Array\{T,2\} where T) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:87
+        [113] +(A::LinearAlgebra.Tridiagonal, B::Array\{T,2\} where T) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:87
+        [114] +(A::LinearAlgebra.SymTridiagonal, B::LinearAlgebra.Tridiagonal) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:96
+        [115] +(A::LinearAlgebra.Tridiagonal, B::LinearAlgebra.SymTridiagonal) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:97
+        [116] +(A::LinearAlgebra.SymTridiagonal, B::Array\{T,2\} where T) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:96
+        [117] +(A::LinearAlgebra.Diagonal, B::LinearAlgebra.SymTridiagonal) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:105
+        [118] +(A::LinearAlgebra.SymTridiagonal, B::LinearAlgebra.Diagonal) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:106
+        [119] +(A::LinearAlgebra.Bidiagonal, B::LinearAlgebra.SymTridiagonal) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:105
+        [120] +(A::LinearAlgebra.SymTridiagonal, B::LinearAlgebra.Bidiagonal) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:106
+        [121] +(A::LinearAlgebra.Diagonal, B::LinearAlgebra.UpperTriangular) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:117
+        [122] +(A::LinearAlgebra.UpperTriangular, B::LinearAlgebra.Diagonal) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:118
+        [123] +(A::LinearAlgebra.Diagonal, B::LinearAlgebra.UnitUpperTriangular) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:117
+        [124] +(A::LinearAlgebra.UnitUpperTriangular, B::LinearAlgebra.Diagonal) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:118
+        [125] +(A::LinearAlgebra.Diagonal, B::LinearAlgebra.LowerTriangular) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:117
+        [126] +(A::LinearAlgebra.LowerTriangular, B::LinearAlgebra.Diagonal) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:118
+        [127] +(A::LinearAlgebra.Diagonal, B::LinearAlgebra.UnitLowerTriangular) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:117
+        [128] +(A::LinearAlgebra.UnitLowerTriangular, B::LinearAlgebra.Diagonal) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:118
+        [129] +(A::LinearAlgebra.AbstractTriangular, B::LinearAlgebra.SymTridiagonal) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:124
+        [130] +(A::LinearAlgebra.SymTridiagonal, B::LinearAlgebra.AbstractTriangular) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:125
+        [131] +(A::LinearAlgebra.AbstractTriangular, B::LinearAlgebra.Tridiagonal) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:124
+        [132] +(A::LinearAlgebra.Tridiagonal, B::LinearAlgebra.AbstractTriangular) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:125
+        [133] +(A::LinearAlgebra.AbstractTriangular, B::LinearAlgebra.Bidiagonal) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:124
+        [134] +(A::LinearAlgebra.Bidiagonal, B::LinearAlgebra.AbstractTriangular) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:125
+        [135] +(A::LinearAlgebra.AbstractTriangular, B::Array\{T,2\} where T) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/special.jl:124
+        [136] +(A::SparseArrays.SparseMatrixCSC, B::SparseArrays.SparseMatrixCSC) in SparseArrays at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/SparseArrays/src/sparsematrix.jl:1559
+        [137] +(A::SparseArrays.SparseMatrixCSC, B::Array) in SparseArrays at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/SparseArrays/src/sparsematrix.jl:1562
+        [138] +(x::SparseArrays.AbstractSparseArray\{Tv,Ti,1\} where Ti where Tv, y::SparseArrays.AbstractSparseArray\{Tv,Ti,1\} where Ti where Tv) in SparseArrays at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/SparseArrays/src/sparsevector.jl:1290
+        [139] +(x::AbstractArray\{\#s57,N\} where N where \#s57<:Number) in Base at abstractarraymath.jl:98
+        [140] +(A::AbstractArray, B::AbstractArray) in Base at arraymath.jl:38
+        [141] +(x::T, y::Integer) where T<:AbstractChar in Base at char.jl:207
+        [142] +(index1::CartesianIndex\{N\}, index2::CartesianIndex\{N\}) where N in Base.IteratorsMD at multidimensional.jl:106
+        [143] +(::Number, ::Missing) in Base at missing.jl:94
+        [144] +(x::P, y::P) where P<:Dates.Period in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/periods.jl:69
+        [145] +(x::Dates.Period, y::Dates.Period) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/periods.jl:346
+        [146] +(y::Dates.Period, x::Dates.CompoundPeriod) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/periods.jl:348
+        [147] +(x::Union\{CompoundPeriod, Period\}) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/periods.jl:357
+        [148] +(x::Dates.TimeType) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/arithmetic.jl:8
+        [149] +(a::Dates.TimeType, b::Dates.Period, c::Dates.Period) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/periods.jl:376
+        [150] +(a::Dates.TimeType, b::Dates.Period, c::Dates.Period, d::Dates.Period{\ldots}) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/periods.jl:377
+        [151] +(x::Dates.TimeType, y::Dates.CompoundPeriod) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/periods.jl:380
+        [152] +(x::Dates.Instant) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/arithmetic.jl:4
+        [153] +(y::Dates.Period, x::Dates.TimeType) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/arithmetic.jl:84
+        [154] +(x::AbstractArray\{\#s549,N\} where N where \#s549<:Dates.TimeType, y::Union\{CompoundPeriod, Period\}) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/arithmetic.jl:86
+        [155] +(x::Dates.Period, r::AbstractRange\{\#s549\} where \#s549<:Dates.TimeType) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/ranges.jl:57
+        [156] +(y::Union\{CompoundPeriod, Period\}, x::AbstractArray\{\#s549,N\} where N where \#s549<:Dates.TimeType) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/arithmetic.jl:88
+        [157] +(y::Dates.TimeType, x::Union\{DenseArray\{\#s549,N\}, ReinterpretArray\{\#s549,N,S,A\} where S where A<:Union\{SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\}, ReshapedArray\{\#s549,N,A,MI\} where MI<:Tuple\{Vararg\{SignedMultiplicativeInverse\{Int64\},N\} where N\} where A<:Union\{ReinterpretArray\{T,N,S,A\} where S where A<:Union\{SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\} where N where T, SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\}, SubArray\{\#s549,N,A,I,L\} where L where I<:Tuple\{Vararg\{Union\{Int64, AbstractRange\{Int64\}, AbstractCartesianIndex\},N\} where N\} where A<:Union\{ReinterpretArray\{T,N,S,A\} where S where A<:Union\{SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\} where N where T, ReshapedArray\{T,N,A,MI\} where MI<:Tuple\{Vararg\{SignedMultiplicativeInverse\{Int64\},N\} where N\} where A<:Union\{ReinterpretArray\{T,N,S,A\} where S where A<:Union\{SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\} where N where T, SubArray\{T,N,A,I,true\} where I<:Tuple\{AbstractUnitRange,Vararg\{Any,N\} where N\} where A<:DenseArray where N where T, DenseArray\} where N where T, DenseArray\}\} where N where \#s549<:Union\{CompoundPeriod, Period\}) in Dates at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Dates/src/arithmetic.jl:89
+        [158] +(J::LinearAlgebra.UniformScaling, x::Number) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/uniformscaling.jl:82
+        [159] +(x::Number, J::LinearAlgebra.UniformScaling) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/uniformscaling.jl:83
+        [160] +(J1::LinearAlgebra.UniformScaling, J2::LinearAlgebra.UniformScaling) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/uniformscaling.jl:87
+        [161] +(J::LinearAlgebra.UniformScaling, B::BitArray\{2\}) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/uniformscaling.jl:89
+        [162] +(J::LinearAlgebra.UniformScaling, A::AbstractArray\{T,2\} where T) in LinearAlgebra at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/LinearAlgebra/src/uniformscaling.jl:90
+        [163] +(a, b, c, xs{\ldots}) in Base at operators.jl:502
 \end{Verbatim}
-        
+            
     We can inspect a type by finding its fields with \texttt{fieldnames}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{fieldnames}\PY{p}{(}\PY{k+kt}{LinSpace}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{fieldnames}\PY{p}{(}\PY{k+kt}{UnitRange}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}3}]:} 4-element Array\{Symbol,1\}:
-         :start 
-         :stop  
-         :len   
-         :lendiv
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:} (:start, :stop)
 \end{Verbatim}
-        
+            
     and find out which method was used with the \texttt{@which} macro:
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}4}]:} \PY{n+nd}{@which} \PY{n}{copy}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}4}]:} copy(a::T) where T<:Array in Base at array.jl:139
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}4}]:} copy(a::T) where T<:Array in Base at array.jl:299
 \end{Verbatim}
-        
+            
     Notice that this gives you a link to the source code where the function
 is defined.
 
@@ -565,16 +582,17 @@ function:
         \PY{n}{typeof}\PY{p}{(}\PY{n}{a}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}5}]:} Array\{Int64,1\}
 \end{Verbatim}
-        
+            
     \subsubsection{Array Syntax}\label{array-syntax}
 
 The array syntax is similar to MATLAB's conventions.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{a} \PY{o}{=} \PY{k+kt}{Vector}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)} \PY{c}{\PYZsh{} Create a length 5 Vector (dimension 1 array) of Float64\PYZsq{}s}
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{a} \PY{o}{=} \PY{k+kt}{Vector}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{undef}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)} \PY{c}{\PYZsh{} Create a length 5 Vector (dimension 1 array) of Float64\PYZsq{}s with undefined values}
         
         \PY{n}{a} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{;}\PY{l+m+mi}{2}\PY{p}{;}\PY{l+m+mi}{3}\PY{p}{;}\PY{l+m+mi}{4}\PY{p}{;}\PY{l+m+mi}{5}\PY{p}{]} \PY{c}{\PYZsh{} Create the column vector [1 2 3 4 5]}
         
@@ -582,9 +600,9 @@ The array syntax is similar to MATLAB's conventions.
         
         \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{2} \PY{c}{\PYZsh{} Change the third element of a (using linear indexing) to 2}
         
-        \PY{n}{b} \PY{o}{=} \PY{k+kt}{Matrix}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)} \PY{c}{\PYZsh{} Define a Matrix of Float64\PYZsq{}s of size (4,2)}
+        \PY{n}{b} \PY{o}{=} \PY{k+kt}{Matrix}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{undef}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)} \PY{c}{\PYZsh{} Define a Matrix of Float64\PYZsq{}s of size (4,2) with undefined values}
         
-        \PY{n}{c} \PY{o}{=} \PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{)} \PY{c}{\PYZsh{} Define a (4,5,6,7) array of Float64\PYZsq{}s }
+        \PY{n}{c} \PY{o}{=} \PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{undef}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{)} \PY{c}{\PYZsh{} Define a (4,5,6,7) array of Float64\PYZsq{}s with undefined values}
         
         \PY{n}{mat}    \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1} \PY{l+m+mi}{2} \PY{l+m+mi}{3} \PY{l+m+mi}{4}
                   \PY{l+m+mi}{3} \PY{l+m+mi}{4} \PY{l+m+mi}{5} \PY{l+m+mi}{6}
@@ -596,17 +614,18 @@ The array syntax is similar to MATLAB's conventions.
         \PY{n}{mat}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}6}]:} 4×4 Array\{Int64,2\}:
          1  4  3  4
          3  4  5  6
          4  4  4  6
          3  3  3  3
 \end{Verbatim}
-        
+            
     Note that, in the console (called the REPL), you can use \texttt{;} to
 surpress the output. In a script this is done automatically. Note that
-the ``value'' of an array is its pointer to the memory location. This
+the "value" of an array is its pointer to the memory location. This
 means that arrays which are set equal affect the same values:
 
     \begin{Verbatim}[commandchars=\\\{\}]
@@ -616,13 +635,14 @@ means that arrays which are set equal affect the same values:
         \PY{n}{a}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}7}]:} 3-element Array\{Int64,1\}:
          10
           3
           4
 \end{Verbatim}
-        
+            
     To set an array equal to the values to another array, use copy
 
     \begin{Verbatim}[commandchars=\\\{\}]
@@ -632,26 +652,28 @@ means that arrays which are set equal affect the same values:
         \PY{n}{a}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}8}]:} 3-element Array\{Int64,1\}:
          1
          4
          5
 \end{Verbatim}
-        
+            
     We can also make an array of a similar size and shape via the function
 \texttt{similar}, or make an array of zeros/ones with \texttt{zeros} or
 \texttt{ones} respectively:
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}9}]:} \PY{n}{c} \PY{o}{=} \PY{n}{similar}\PY{p}{(}\PY{n}{a}\PY{p}{)}
-        \PY{n}{d} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{n}{a}\PY{p}{)}
-        \PY{n+nb}{e} \PY{o}{=} \PY{n}{ones}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+        \PY{n}{d} \PY{o}{=} \PY{n}{zero}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+        \PY{n+nb}{e} \PY{o}{=} \PY{n}{similar}\PY{p}{(}\PY{n}{a}\PY{p}{)}\PY{p}{;} \PY{n}{fill!}\PY{p}{(}\PY{n+nb}{e}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
         \PY{n}{println}\PY{p}{(}\PY{n}{c}\PY{p}{)}\PY{p}{;} \PY{n}{println}\PY{p}{(}\PY{n}{d}\PY{p}{)}\PY{p}{;} \PY{n}{println}\PY{p}{(}\PY{n+nb}{e}\PY{p}{)}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
-[0, 92358976733184, 0]
+[140121023541760, 140120897461552, 140120863968816]
 [0, 0, 0]
 [1, 1, 1]
 
@@ -663,31 +685,33 @@ means that arrays which are set equal affect the same values:
 {\color{incolor}In [{\color{incolor}10}]:} \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{2}\PY{p}{]}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}10}]:} 2-element Array\{Int64,1\}:
           1
           4
 \end{Verbatim}
-        
+            
     Arrays can be of any type, specified by the type parameter. One
 interesting thing is that this means that arrays can be of arrays:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{a} \PY{o}{=} \PY{k+kt}{Vector}\PY{p}{\PYZob{}}\PY{k+kt}{Vector}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{a} \PY{o}{=} \PY{k+kt}{Vector}\PY{p}{\PYZob{}}\PY{k+kt}{Vector}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{undef}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}
          \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{;}\PY{l+m+mi}{2}\PY{p}{;}\PY{l+m+mi}{3}\PY{p}{]}
          \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{;}\PY{l+m+mi}{2}\PY{p}{]}
          \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{3}\PY{p}{;}\PY{l+m+mi}{4}\PY{p}{;}\PY{l+m+mi}{5}\PY{p}{]}
          \PY{n}{a}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}11}]:} 3-element Array\{Array\{Float64,1\},1\}:
           [1.0, 2.0, 3.0]
           [1.0, 2.0]     
           [3.0, 4.0, 5.0]
 \end{Verbatim}
-        
-    \begin{center}\rule{3in}{0.4pt}\end{center}
+            
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 \paragraph{Question 1}\label{question-1}
 
@@ -701,14 +725,15 @@ simple rules. (Hint: I have noted all of the rules involved here).
          \PY{n}{a}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}12}]:} 3-element Array\{Array\{Float64,1\},1\}:
           [1.0, 4.0, 5.0]
           [1.0, 2.0]     
           [3.0, 4.0, 5.0]
 \end{Verbatim}
-        
-    \begin{center}\rule{3in}{0.4pt}\end{center}
+            
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 To fix this, there is a recursive copy function: \texttt{deepcopy}
 
@@ -718,32 +743,35 @@ To fix this, there is a recursive copy function: \texttt{deepcopy}
          \PY{n}{a}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}13}]:} 3-element Array\{Array\{Float64,1\},1\}:
           [1.0, 4.0, 5.0]
           [1.0, 2.0]     
           [3.0, 4.0, 5.0]
 \end{Verbatim}
-        
+            
     For high performance, Julia provides mutating functions. These functions
 change the input values that are passed in, instead of returning a new
 value. By convention, mutating functions tend to be defined with a
 \texttt{!} at the end and tend to mutate their first argument. An
-example of a mutating function in \texttt{scale!} which scales an array
-by a scalar (or array)
+example of a mutating function in \texttt{copyto!} which copies the
+values of over to the first array.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{a} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{;}\PY{l+m+mi}{6}\PY{p}{;}\PY{l+m+mi}{8}\PY{p}{]}
-         \PY{n}{scale!}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)} \PY{c}{\PYZsh{} a changes}
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{a} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{;}\PY{l+m+mi}{6}\PY{p}{;}\PY{l+m+mi}{8}\PY{p}{]}
+         \PY{n}{b} \PY{o}{=} \PY{n}{similar}\PY{p}{(}\PY{n}{a}\PY{p}{)} \PY{c}{\PYZsh{} make an array just like a but with undefined values}
+         \PY{n}{copyto!}\PY{p}{(}\PY{n}{b}\PY{p}{,}\PY{n}{a}\PY{p}{)} \PY{c}{\PYZsh{} b changes}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}15}]:} 3-element Array\{Int64,1\}:
-           2
-          12
-          16
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}14}]:} 3-element Array\{Int64,1\}:
+          1
+          6
+          8
 \end{Verbatim}
-        
+            
     The purpose of mutating functions is that they allow one to reduce the
 number of memory allocations which is crucial for achiving high
 performance.
@@ -754,15 +782,24 @@ Control flow in Julia is pretty standard. You have your basic for and
 while loops, and your if statements. There's more in the documentation.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}16}]:} \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{5} \PY{c}{\PYZsh{}for i goes from 1 to 5}
+{\color{incolor}In [{\color{incolor}15}]:} \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{5} \PY{c}{\PYZsh{}for i goes from 1 to 5}
              \PY{n}{println}\PY{p}{(}\PY{n}{i}\PY{p}{)}
          \PY{k}{end}
          
          \PY{n}{t} \PY{o}{=} \PY{l+m+mi}{0}
          \PY{k}{while} \PY{n}{t}\PY{o}{\PYZlt{}}\PY{l+m+mi}{5}
+             \PY{k+kd}{global} \PY{n}{t} \PY{c}{\PYZsh{} Necessary in the REPL}
              \PY{n}{println}\PY{p}{(}\PY{n}{t}\PY{p}{)}
              \PY{n}{t}\PY{o}{+=}\PY{l+m+mi}{1} \PY{c}{\PYZsh{} t = t + 1}
          \PY{k}{end}
+         
+         \PY{k}{function} \PY{n}{f}\PY{p}{(}\PY{n}{t}\PY{p}{)}
+             \PY{k}{while} \PY{n}{t}\PY{o}{\PYZlt{}}\PY{l+m+mi}{5}
+                 \PY{n}{println}\PY{p}{(}\PY{n}{t}\PY{p}{)}
+                 \PY{n}{t}\PY{o}{+=}\PY{l+m+mi}{1} \PY{c}{\PYZsh{} t = t + 1}
+             \PY{k}{end}
+         \PY{k}{end}
+         \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
          
          \PY{n}{school} \PY{o}{=} \PY{o}{:}\PY{n}{UCI}
          
@@ -773,12 +810,18 @@ while loops, and your if statements. There's more in the documentation.
          \PY{k}{end}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
 1
 2
 3
 4
 5
+0
+1
+2
+3
+4
 0
 1
 2
@@ -792,10 +835,11 @@ ZotZotZot
 multiple loops in one line:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}17}]:} \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{j}\PY{o}{=}\PY{l+m+mi}{2}\PY{o}{:}\PY{l+m+mi}{4}
+{\color{incolor}In [{\color{incolor}16}]:} \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{j}\PY{o}{=}\PY{l+m+mi}{2}\PY{o}{:}\PY{l+m+mi}{4}
              \PY{n}{println}\PY{p}{(}\PY{n}{i}\PY{o}{*}\PY{n}{j}\PY{p}{)}
          \PY{k}{end}
 \end{Verbatim}
+
 
     \begin{Verbatim}[commandchars=\\\{\}]
 2
@@ -809,49 +853,54 @@ multiple loops in one line:
 
     \subsection{Problems}\label{problems}
 
-Try problems 1-5 in the Basic Problems.
+Try the Basic Problems. If you need help, start looking through the next
+parts of this tutorial!
 
     \subsection{Function Syntax}\label{function-syntax}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{)} \PY{o}{=} \PY{l+m+mi}{2}\PY{n}{x}\PY{o}{+}\PY{n}{y} \PY{c}{\PYZsh{} Create an inline function}
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{)} \PY{o}{=} \PY{l+m+mi}{2}\PY{n}{x}\PY{o}{+}\PY{n}{y} \PY{c}{\PYZsh{} Create an inline function}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}18}]:} f (generic function with 1 method)
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}17}]:} f (generic function with 2 methods)
 \end{Verbatim}
-        
+            
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)} \PY{c}{\PYZsh{} Call the function}
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)} \PY{c}{\PYZsh{} Call the function}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}19}]:} 4
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}18}]:} 4
 \end{Verbatim}
-        
+            
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}20}]:} \PY{k}{function} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}19}]:} \PY{k}{function} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)}
            \PY{n}{x}\PY{o}{+}\PY{l+m+mi}{2}  
          \PY{k}{end} \PY{c}{\PYZsh{} Long form definition}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}20}]:} f (generic function with 2 methods)
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}19}]:} f (generic function with 2 methods)
 \end{Verbatim}
-        
+            
     By default, Julia functions return the last value computed within them.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}21}]:} 4
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}20}]:} 4
 \end{Verbatim}
-        
+            
     A key feature of Julia is multiple dispatch. Notice here that there is
-``one function'', \texttt{f}, with two methods. Methods are the
-actionable parts of a function. Here, there is one method defined as
+"one function", \texttt{f}, with two methods. Methods are the actionable
+parts of a function. Here, there is one method defined as
 \texttt{(::Any,::Any)} and \texttt{(::Any)}, meaning that if you give
 \texttt{f} two values then it will call the first method, and if you
 give it one value then it will call the second method.
@@ -860,72 +909,79 @@ Multiple dispatch works on types. To define a dispatch on a type, use
 the \texttt{::Type} signifier:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{k+kt}{Int}\PY{p}{,}\PY{n}{y}\PY{o}{::}\PY{k+kt}{Int}\PY{p}{)} \PY{o}{=} \PY{l+m+mi}{3}\PY{n}{x}\PY{o}{+}\PY{l+m+mi}{2}\PY{n}{y}
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{k+kt}{Int}\PY{p}{,}\PY{n}{y}\PY{o}{::}\PY{k+kt}{Int}\PY{p}{)} \PY{o}{=} \PY{l+m+mi}{3}\PY{n}{x}\PY{o}{+}\PY{l+m+mi}{2}\PY{n}{y}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}22}]:} f (generic function with 3 methods)
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}21}]:} f (generic function with 3 methods)
 \end{Verbatim}
-        
+            
     Julia will dispatch onto the strictest acceptible type signature.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}23}]:} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)} \PY{c}{\PYZsh{} 3x+2y}
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)} \PY{c}{\PYZsh{} 3x+2y}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}23}]:} 12
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}22}]:} 12
 \end{Verbatim}
-        
+            
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{f}\PY{p}{(}\PY{l+m+mf}{2.0}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)} \PY{c}{\PYZsh{} 2x+y since 2.0 is not an Int}
+{\color{incolor}In [{\color{incolor}23}]:} \PY{n}{f}\PY{p}{(}\PY{l+m+mf}{2.0}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)} \PY{c}{\PYZsh{} 2x+y since 2.0 is not an Int}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}24}]:} 7.0
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}23}]:} 7.0
 \end{Verbatim}
-        
+            
     Types in signatures can be parametric. For example, we can define a
-method for ``two values are passed in, both Numbers and having the same
-type''. Note that \texttt{\textless{}:} means ``a subtype of''.
+method for "two values are passed in, both Numbers and having the same
+type". Note that \texttt{\textless{}:} means "a subtype of".
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{f}\PY{p}{\PYZob{}}\PY{n}{T}\PY{o}{\PYZlt{}:}\PY{k+kt}{Number}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{T}\PY{p}{,}\PY{n}{y}\PY{o}{::}\PY{n}{T}\PY{p}{)} \PY{o}{=} \PY{l+m+mi}{4}\PY{n}{x}\PY{o}{+}\PY{l+m+mi}{10}\PY{n}{y}
+{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{T}\PY{p}{,}\PY{n}{y}\PY{o}{::}\PY{n}{T}\PY{p}{)} \PY{n}{where} \PY{p}{\PYZob{}}\PY{n}{T}\PY{o}{\PYZlt{}:}\PY{k+kt}{Number}\PY{p}{\PYZcb{}} \PY{o}{=} \PY{l+m+mi}{4}\PY{n}{x}\PY{o}{+}\PY{l+m+mi}{10}\PY{n}{y}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}25}]:} f (generic function with 4 methods)
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}24}]:} f (generic function with 4 methods)
 \end{Verbatim}
-        
+            
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}26}]:} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)} \PY{c}{\PYZsh{} 3x+2y since (::Int,::Int) is stricter}
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)} \PY{c}{\PYZsh{} 3x+2y since (::Int,::Int) is stricter}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}26}]:} 12
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}25}]:} 12
 \end{Verbatim}
-        
+            
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}27}]:} \PY{n}{f}\PY{p}{(}\PY{l+m+mf}{2.0}\PY{p}{,}\PY{l+m+mf}{3.0}\PY{p}{)} \PY{c}{\PYZsh{} 4x+10y}
+{\color{incolor}In [{\color{incolor}26}]:} \PY{n}{f}\PY{p}{(}\PY{l+m+mf}{2.0}\PY{p}{,}\PY{l+m+mf}{3.0}\PY{p}{)} \PY{c}{\PYZsh{} 4x+10y}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}27}]:} 38.0
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}26}]:} 38.0
 \end{Verbatim}
-        
+            
     Note that type parameterizations can have as many types as possible, and
 do not need to declare a supertype. For example, we can say that there
 is an \texttt{x} which must be a Number, while \texttt{y} and \texttt{z}
 must match types:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}28}]:} \PY{n}{f}\PY{p}{\PYZob{}}\PY{n}{T}\PY{o}{\PYZlt{}:}\PY{k+kt}{Number}\PY{p}{,}\PY{n}{T2}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{T}\PY{p}{,}\PY{n}{y}\PY{o}{::}\PY{n}{T2}\PY{p}{,}\PY{n}{z}\PY{o}{::}\PY{n}{T2}\PY{p}{)} \PY{o}{=} \PY{l+m+mi}{5}\PY{n}{x} \PY{o}{+} \PY{l+m+mi}{5}\PY{n}{y} \PY{o}{+} \PY{l+m+mi}{5}\PY{n}{z}
+{\color{incolor}In [{\color{incolor}27}]:} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{T}\PY{p}{,}\PY{n}{y}\PY{o}{::}\PY{n}{T2}\PY{p}{,}\PY{n}{z}\PY{o}{::}\PY{n}{T2}\PY{p}{)} \PY{n}{where} \PY{p}{\PYZob{}}\PY{n}{T}\PY{o}{\PYZlt{}:}\PY{k+kt}{Number}\PY{p}{,}\PY{n}{T2}\PY{p}{\PYZcb{}} \PY{o}{=} \PY{l+m+mi}{5}\PY{n}{x} \PY{o}{+} \PY{l+m+mi}{5}\PY{n}{y} \PY{o}{+} \PY{l+m+mi}{5}\PY{n}{z}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}28}]:} f (generic function with 5 methods)
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}27}]:} f (generic function with 5 methods)
 \end{Verbatim}
-        
+            
     We will go into more depth on multiple dispatch later since this is the
 core design feature of Julia. The key feature is that Julia functions
 specialize on the types of their arguments. This means that \texttt{f}
@@ -933,14 +989,14 @@ is a separately compiled function for each method (and for parametric
 types, each possible method). The first time it is called it will
 compile.
 
-    \begin{center}\rule{3in}{0.4pt}\end{center}
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 \paragraph{Question 2}\label{question-2}
 
 Can you explain these timings?
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}29}]:} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{n}{z}\PY{p}{,}\PY{n}{w}\PY{p}{)} \PY{o}{=} \PY{n}{x}\PY{o}{+}\PY{n}{y}\PY{o}{+}\PY{n}{z}\PY{o}{+}\PY{n}{w}
+{\color{incolor}In [{\color{incolor}28}]:} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{n}{z}\PY{p}{,}\PY{n}{w}\PY{p}{)} \PY{o}{=} \PY{n}{x}\PY{o}{+}\PY{n}{y}\PY{o}{+}\PY{n}{z}\PY{o}{+}\PY{n}{w}
          \PY{n+nd}{@time} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
          \PY{n+nd}{@time} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
          \PY{n+nd}{@time} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
@@ -948,23 +1004,24 @@ Can you explain these timings?
          \PY{n+nd}{@time} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mf}{1.0}\PY{p}{)}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
-  0.006178 seconds (292 allocations: 18.649 KiB)
-  0.000002 seconds (4 allocations: 160 bytes)
-  0.000001 seconds (3 allocations: 144 bytes)
-  0.003005 seconds (832 allocations: 49.289 KiB)
-  0.000001 seconds (5 allocations: 176 bytes)
+  0.002693 seconds (1.08 k allocations: 59.268 KiB)
+  0.000003 seconds (4 allocations: 160 bytes)
+  0.000003 seconds (4 allocations: 160 bytes)
+  0.005481 seconds (5.03 k allocations: 275.235 KiB)
+  0.000002 seconds (5 allocations: 176 bytes)
 
     \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}29}]:} 4.0
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}28}]:} 4.0
 \end{Verbatim}
-        
+            
     Note that functions can also feature optional arguments:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}30}]:} \PY{k}{function} \PY{n}{test\PYZus{}function}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{;}\PY{n}{z}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)} \PY{c}{\PYZsh{}z is an optional argument}
+{\color{incolor}In [{\color{incolor}29}]:} \PY{k}{function} \PY{n}{test\PYZus{}function}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{;}\PY{n}{z}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)} \PY{c}{\PYZsh{}z is an optional argument}
            \PY{k}{if} \PY{n}{z}\PY{o}{==}\PY{l+m+mi}{0}
              \PY{k}{return} \PY{n}{x}\PY{o}{+}\PY{n}{y}\PY{p}{,}\PY{n}{x}\PY{o}{*}\PY{n}{y} \PY{c}{\PYZsh{}Return a tuple}
            \PY{k}{else}
@@ -974,33 +1031,37 @@ Can you explain these timings?
          \PY{k}{end} \PY{c}{\PYZsh{}End function definition}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}30}]:} test\_function (generic function with 1 method)
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}29}]:} test\_function (generic function with 1 method)
 \end{Verbatim}
-        
+            
     Here, if z is not specified, then it's 0.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}31}]:} \PY{n}{x}\PY{p}{,}\PY{n}{y} \PY{o}{=} \PY{n}{test\PYZus{}function}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}30}]:} \PY{n}{x}\PY{p}{,}\PY{n}{y} \PY{o}{=} \PY{n}{test\PYZus{}function}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}31}]:} (3, 2)
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}30}]:} (3, 2)
 \end{Verbatim}
-        
+            
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}32}]:} \PY{n}{x}\PY{p}{,}\PY{n}{y} \PY{o}{=} \PY{n}{test\PYZus{}function}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{;}\PY{n}{z}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}31}]:} \PY{n}{x}\PY{p}{,}\PY{n}{y} \PY{o}{=} \PY{n}{test\PYZus{}function}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{;}\PY{n}{z}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}32}]:} (6, 6)
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}31}]:} (6, 6)
 \end{Verbatim}
-        
+            
     Notice that we also featured multiple return values.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}33}]:} \PY{n}{println}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{;} \PY{n}{println}\PY{p}{(}\PY{n}{y}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}32}]:} \PY{n}{println}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{;} \PY{n}{println}\PY{p}{(}\PY{n}{y}\PY{p}{)}
 \end{Verbatim}
+
 
     \begin{Verbatim}[commandchars=\\\{\}]
 6
@@ -1012,13 +1073,13 @@ Can you explain these timings?
 tuple is \texttt{(x,y,z,...)} or inside of functions you can use the
 shorthand \texttt{x,y,z,...} as shown.
 
-Note that functions in Julia are ``first-class''. This means that
+Note that functions in Julia are "first-class". This means that
 functions are just a type themselves. Therefore functions can make
 functions, you can store functions as variables, pass them as variables,
 etc. For example:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}34}]:} \PY{k}{function} \PY{n}{function\PYZus{}playtime}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{c}{\PYZsh{}z is an optional argument}
+{\color{incolor}In [{\color{incolor}33}]:} \PY{k}{function} \PY{n}{function\PYZus{}playtime}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{c}{\PYZsh{}z is an optional argument}
              \PY{n}{y} \PY{o}{=} \PY{l+m+mi}{2}\PY{o}{+}\PY{n}{x}
              \PY{k}{function} \PY{n}{test}\PY{p}{(}\PY{p}{)}
                  \PY{l+m+mi}{2}\PY{n}{y} \PY{c}{\PYZsh{} y is defined in the previous scope, so it\PYZsq{}s available here}
@@ -1029,18 +1090,20 @@ etc. For example:
          \PY{n}{z}\PY{p}{,}\PY{n}{test} \PY{o}{=} \PY{n}{function\PYZus{}playtime}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}34}]:} (64, test)
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}33}]:} (64, test)
 \end{Verbatim}
-        
+            
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}35}]:} \PY{n}{test}\PY{p}{(}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}34}]:} \PY{n}{test}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}35}]:} 8
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}34}]:} 8
 \end{Verbatim}
-        
+            
     Notice that \texttt{test()} does not get passed in \texttt{y} but knows
 what \texttt{y} is. This is due to the function scoping rules: an inner
 function can know the variables defined in the same scope as the
@@ -1048,44 +1111,47 @@ function. This rule is recursive, leading us to the conclusion that the
 top level scope is global. Yes, that means
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}36}]:} \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{2}
+{\color{incolor}In [{\color{incolor}35}]:} \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{2}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}36}]:} 2
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}35}]:} 2
 \end{Verbatim}
-        
+            
     defines a global variable. We will go into more detail on this.
 
     Lastly we show the anonymous function syntax. This allows you to define
 a function inline.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}37}]:} \PY{n}{g} \PY{o}{=} \PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{)} \PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}} \PY{l+m+mi}{2}\PY{n}{x}\PY{o}{+}\PY{n}{y}
+{\color{incolor}In [{\color{incolor}36}]:} \PY{n}{g} \PY{o}{=} \PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{)} \PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}} \PY{l+m+mi}{2}\PY{n}{x}\PY{o}{+}\PY{n}{y}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}37}]:} (::\#5) (generic function with 1 method)
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}36}]:} \#5 (generic function with 1 method)
 \end{Verbatim}
-        
+            
     Unlike named functions, \texttt{g} is simply a function in a variable
 and can be overwritten at any time:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}38}]:} \PY{n}{g} \PY{o}{=} \PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}} \PY{l+m+mi}{2}\PY{n}{x}
+{\color{incolor}In [{\color{incolor}37}]:} \PY{n}{g} \PY{o}{=} \PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}} \PY{l+m+mi}{2}\PY{n}{x}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}38}]:} (::\#7) (generic function with 1 method)
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}37}]:} \#7 (generic function with 1 method)
 \end{Verbatim}
-        
+            
     An anonymous function cannot have more than 1 dispatch. However, as of
 v0.5, they are compiled and thus do not have any performance
 disadvantages from named functions.
 
     \subsection{Type Declaration Syntax}\label{type-declaration-syntax}
 
-A type is what in many other languages is an ``object''. If that is a
+A type is what in many other languages is an "object". If that is a
 foreign concept, thing of a type as a thing which has named components.
 A type is the idea for what the thing is, while an instantiation of the
 type is a specific one. For example, you can think of a car as having an
@@ -1095,58 +1161,62 @@ car type.
 In Julia, we would define the car type as follows:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}39}]:} \PY{n}{mutable} \PY{n}{struct} \PY{n}{Car}
+{\color{incolor}In [{\color{incolor}38}]:} \PY{n}{mutable} \PY{n}{struct} \PY{n}{Car}
              \PY{n}{make}
              \PY{n}{model}
          \PY{k}{end}
 \end{Verbatim}
 
+
     We could then make the instance of a car as follows:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}40}]:} \PY{n}{mycar} \PY{o}{=} \PY{n}{Car}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{T}\PY{l+s}{o}\PY{l+s}{y}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{R}\PY{l+s}{a}\PY{l+s}{v}\PY{l+s}{4}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}39}]:} \PY{n}{mycar} \PY{o}{=} \PY{n}{Car}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{T}\PY{l+s}{o}\PY{l+s}{y}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{R}\PY{l+s}{a}\PY{l+s}{v}\PY{l+s}{4}\PY{l+s}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}40}]:} Car("Toyota", "Rav4")
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}39}]:} Car("Toyota", "Rav4")
 \end{Verbatim}
-        
-    Here I introduced the string syntax for Julia which uses ``\ldots{}''
-(like most other languages, I'm glaring at you MATLAB). I can grab the
-``fields'' of my type using the \texttt{.} syntax:
+            
+    Here I introduced the string syntax for Julia which uses "..." (like
+most other languages, I'm glaring at you MATLAB). I can grab the
+"fields" of my type using the \texttt{.} syntax:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}41}]:} \PY{n}{mycar}\PY{o}{.}\PY{n}{make}
+{\color{incolor}In [{\color{incolor}40}]:} \PY{n}{mycar}\PY{o}{.}\PY{n}{make}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}41}]:} "Toyota"
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}40}]:} "Toyota"
 \end{Verbatim}
-        
-    To ``enhance Julia's performance'', one usually likes to make the typing
+            
+    To "enhance Julia's performance", one usually likes to make the typing
 stricter. For example, we can define a WorkshopParticipant (notice the
 convention for types is capital letters, CamelCase) as having a name and
 a field. The name will be a string and the field will be a Symbol type,
 (defined by :Symbol, which we will go into plenty more detail later).
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}42}]:} \PY{n}{mutable} \PY{n}{struct} \PY{n}{WorkshopParticipant}
+{\color{incolor}In [{\color{incolor}41}]:} \PY{n}{mutable} \PY{n}{struct} \PY{n}{WorkshopParticipant}
              \PY{n}{name}\PY{o}{::}\PY{n}{String}
              \PY{n}{field}\PY{o}{::}\PY{k+kt}{Symbol}
          \PY{k}{end}
          \PY{n}{tony} \PY{o}{=} \PY{n}{WorkshopParticipant}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{T}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{o}{:}\PY{n}{physics}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}42}]:} WorkshopParticipant("Tony", :physics)
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}41}]:} WorkshopParticipant("Tony", :physics)
 \end{Verbatim}
-        
-    As with functions, types can be set ``parametrically''. For example, we
+            
+    As with functions, types can be set "parametrically". For example, we
 can have an StaffMember have a name and a field, but also an age. We can
 allow this age to be any Number type as follows:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}43}]:} \PY{n}{mutable} \PY{n}{struct} \PY{n}{StaffMember}\PY{p}{\PYZob{}}\PY{n}{T}\PY{o}{\PYZlt{}:}\PY{k+kt}{Number}\PY{p}{\PYZcb{}}
+{\color{incolor}In [{\color{incolor}42}]:} \PY{n}{mutable} \PY{n}{struct} \PY{n}{StaffMember}\PY{p}{\PYZob{}}\PY{n}{T}\PY{o}{\PYZlt{}:}\PY{k+kt}{Number}\PY{p}{\PYZcb{}}
              \PY{n}{name}\PY{o}{::}\PY{n}{String}
              \PY{n}{field}\PY{o}{::}\PY{k+kt}{Symbol}
              \PY{n}{age}\PY{o}{::}\PY{n}{T}
@@ -1154,10 +1224,11 @@ allow this age to be any Number type as follows:
          \PY{n}{ter} \PY{o}{=} \PY{n}{StaffMember}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{T}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{r}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{o}{:}\PY{n}{football}\PY{p}{,}\PY{l+m+mi}{17}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}43}]:} StaffMember\{Int64\}("Terry", :football, 17)
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}42}]:} StaffMember\{Int64\}("Terry", :football, 17)
 \end{Verbatim}
-        
+            
     The rules for parametric typing is the same as for functions. Note that
 most of Julia's types, like Float64 and Int, are natively defined in
 Julia in this manner. This means that there's no limit for user defined
@@ -1171,29 +1242,32 @@ abstract type, Number. We can define one for Person using the Abstract
 keyword
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}44}]:} \PY{k}{abstract} \PY{k}{type} \PY{n}{Person}
+{\color{incolor}In [{\color{incolor}43}]:} \PY{k}{abstract} \PY{k}{type} \PY{n}{Person}
          \PY{k}{end}
 \end{Verbatim}
+
 
     Then we can set types as a subtype of person
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}45}]:} \PY{n}{mutable} \PY{n}{struct} \PY{n}{Student} \PY{o}{\PYZlt{}:} \PY{n}{Person}
+{\color{incolor}In [{\color{incolor}44}]:} \PY{n}{mutable} \PY{n}{struct} \PY{n}{Student} \PY{o}{\PYZlt{}:} \PY{n}{Person}
              \PY{n}{name}
              \PY{n}{grade}
          \PY{k}{end}
 \end{Verbatim}
+
 
     You can define type heirarchies on abstract types. See the beautiful
 explanation at:
 http://docs.julialang.org/en/release-0.5/manual/types/\#abstract-types
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}46}]:} \PY{k}{abstract} \PY{k}{type} \PY{n}{AbstractStudent} \PY{o}{\PYZlt{}:} \PY{n}{Person}
+{\color{incolor}In [{\color{incolor}45}]:} \PY{k}{abstract} \PY{k}{type} \PY{n}{AbstractStudent} \PY{o}{\PYZlt{}:} \PY{n}{Person}
          \PY{k}{end}
 \end{Verbatim}
 
-    Another ``version'' of type is \texttt{immutable}. When one uses
+
+    Another "version" of type is \texttt{immutable}. When one uses
 \texttt{immutable}, the fields of the type cannot be changed. However,
 Julia will automatically stack allocate immutable types, whereas
 standard types are heap allocated. If this is unfamiliar terminology,
@@ -1204,18 +1278,19 @@ built-in Number types are defined as \texttt{immutable} in order to give
 good performance.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}47}]:} \PY{n}{struct} \PY{n}{Field}
+{\color{incolor}In [{\color{incolor}46}]:} \PY{n}{struct} \PY{n}{Field}
              \PY{n}{name}
              \PY{n}{school}
          \PY{k}{end}
          \PY{n}{ds} \PY{o}{=} \PY{n}{Field}\PY{p}{(}\PY{o}{:}\PY{n}{DataScience}\PY{p}{,}\PY{p}{[}\PY{o}{:}\PY{n}{PhysicalScience}\PY{p}{;}\PY{o}{:}\PY{n}{ComputerScience}\PY{p}{]}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}47}]:} Field(:DataScience, Symbol[:PhysicalScience, :ComputerScience])
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}46}]:} Field(:DataScience, Symbol[:PhysicalScience, :ComputerScience])
 \end{Verbatim}
-        
-    \begin{center}\rule{3in}{0.4pt}\end{center}
+            
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 \paragraph{Question 3}\label{question-3}
 
@@ -1223,8 +1298,9 @@ Can you explain this interesting quirk? Thus Field is immutable, meaning
 that \texttt{ds.name} and \texttt{ds.school} cannot be changed:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}48}]:} \PY{n}{ds}\PY{o}{.}\PY{n}{name} \PY{o}{=} \PY{o}{:}\PY{n}{ComputationalStatistics}
+{\color{incolor}In [{\color{incolor}47}]:} \PY{n}{ds}\PY{o}{.}\PY{n}{name} \PY{o}{=} \PY{o}{:}\PY{n}{ComputationalStatistics}
 \end{Verbatim}
+
 
     \begin{Verbatim}[commandchars=\\\{\}]
 
@@ -1232,43 +1308,51 @@ that \texttt{ds.name} and \texttt{ds.school} cannot be changed:
 
         
 
+        Stacktrace:
+
+         [1] setproperty!(::Field, ::Symbol, ::Symbol) at ./sysimg.jl:19
+
+         [2] top-level scope at none:0
+
     \end{Verbatim}
 
     However, the following is allowed:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}49}]:} \PY{n}{push!}\PY{p}{(}\PY{n}{ds}\PY{o}{.}\PY{n}{school}\PY{p}{,}\PY{o}{:}\PY{n}{BiologicalScience}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}48}]:} \PY{n}{push!}\PY{p}{(}\PY{n}{ds}\PY{o}{.}\PY{n}{school}\PY{p}{,}\PY{o}{:}\PY{n}{BiologicalScience}\PY{p}{)}
          \PY{n}{ds}\PY{o}{.}\PY{n}{school}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}49}]:} 3-element Array\{Symbol,1\}:
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}48}]:} 3-element Array\{Symbol,1\}:
           :PhysicalScience  
           :ComputerScience  
           :BiologicalScience
 \end{Verbatim}
-        
+            
     (Hint: recall that an array is not the values itself, but a pointer to
 the memory of the values)
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
     One important detail in Julia is that everything is a type (and every
 piece of code is an Expression type, more on this later). Thus functions
 are also types, which we can access the fields of. Not only is
-everything compiled down to native, but all of the ``native parts'' are
+everything compiled down to native, but all of the "native parts" are
 always accessible. For example, we can, if we so choose, get a function
 pointer:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}51}]:} \PY{n}{foo}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{=} \PY{l+m+mi}{2}\PY{n}{x}
-         \PY{n}{cfunction}\PY{p}{(}\PY{n}{foo}\PY{p}{,} \PY{k+kt}{Int}\PY{p}{,} \PY{k+kt}{Tuple}\PY{p}{\PYZob{}}\PY{k+kt}{Int}\PY{p}{\PYZcb{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}49}]:} \PY{n}{foo}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{=} \PY{l+m+mi}{2}\PY{n}{x}
+         \PY{n+nd}{@cfunction}\PY{p}{(}\PY{n}{foo}\PY{p}{,} \PY{k+kt}{Int}\PY{p}{,} \PY{p}{(}\PY{k+kt}{Int}\PY{p}{,}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}51}]:} Ptr\{Void\} @0x00007f47c5642af0
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}49}]:} Ptr\{Nothing\} @0x00007f7064101520
 \end{Verbatim}
-        
+            
     \subsection{Some Basic Types}\label{some-basic-types}
 
 Julia provides many basic types. Indeed, you will come to know Julia as
@@ -1278,16 +1362,17 @@ types with functions is core to the design.
 \subsubsection{Lazy Iterator Types}\label{lazy-iterator-types}
 
 While MATLAB or Python has easy functions for building arrays, Julia
-tends to side-step the actual ``array'' part with specially made types.
+tends to side-step the actual "array" part with specially made types.
 One such example are ranges. To define a range, use the
 \texttt{start:stepsize:end} syntax. For example:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}52}]:} \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{5}
+{\color{incolor}In [{\color{incolor}50}]:} \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{5}
          \PY{n}{println}\PY{p}{(}\PY{n}{a}\PY{p}{)}
          \PY{n}{b} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{2}\PY{o}{:}\PY{l+m+mi}{10}
          \PY{n}{println}\PY{p}{(}\PY{n}{b}\PY{p}{)}
 \end{Verbatim}
+
 
     \begin{Verbatim}[commandchars=\\\{\}]
 1:5
@@ -1298,8 +1383,9 @@ One such example are ranges. To define a range, use the
     We can use them like any array. For example:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}53}]:} \PY{n}{println}\PY{p}{(}\PY{n}{a}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}\PY{p}{;} \PY{n}{println}\PY{p}{(}\PY{n}{b}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}51}]:} \PY{n}{println}\PY{p}{(}\PY{n}{a}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}\PY{p}{;} \PY{n}{println}\PY{p}{(}\PY{n}{b}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}
 \end{Verbatim}
+
 
     \begin{Verbatim}[commandchars=\\\{\}]
 2
@@ -1310,8 +1396,9 @@ One such example are ranges. To define a range, use the
     But what is \texttt{b}?
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}54}]:} \PY{n}{println}\PY{p}{(}\PY{n}{typeof}\PY{p}{(}\PY{n}{b}\PY{p}{)}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}52}]:} \PY{n}{println}\PY{p}{(}\PY{n}{typeof}\PY{p}{(}\PY{n}{b}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
+
 
     \begin{Verbatim}[commandchars=\\\{\}]
 StepRange\{Int64,Int64\}
@@ -1322,46 +1409,46 @@ StepRange\{Int64,Int64\}
 to act like an array using its fields:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}55}]:} \PY{n}{fieldnames}\PY{p}{(}\PY{k+kt}{StepRange}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}53}]:} \PY{n}{fieldnames}\PY{p}{(}\PY{k+kt}{StepRange}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}55}]:} 3-element Array\{Symbol,1\}:
-          :start
-          :step 
-          :stop 
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}53}]:} (:start, :step, :stop)
 \end{Verbatim}
-        
+            
     Note that at any time we can get the array from these kinds of type via
 the \texttt{collect} function:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}56}]:} \PY{n}{c} \PY{o}{=} \PY{n}{collect}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}54}]:} \PY{n}{c} \PY{o}{=} \PY{n}{collect}\PY{p}{(}\PY{n}{a}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}56}]:} 5-element Array\{Int64,1\}:
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}54}]:} 5-element Array\{Int64,1\}:
           1
           2
           3
           4
           5
 \end{Verbatim}
-        
+            
     The reason why lazy iterator types are preferred is that they do not do
 the computations until it's absolutely necessary, and they take up much
 less space. We can check this with \texttt{@time}:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}57}]:} \PY{n+nd}{@time} \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{100000}
+{\color{incolor}In [{\color{incolor}55}]:} \PY{n+nd}{@time} \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{100000}
          \PY{n+nd}{@time} \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{100}
          \PY{n+nd}{@time} \PY{n}{b} \PY{o}{=} \PY{n}{collect}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{100000}\PY{p}{)}\PY{p}{;}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
-  0.000011 seconds (5 allocations: 192 bytes)
-  0.000007 seconds (5 allocations: 192 bytes)
-  0.000897 seconds (8 allocations: 781.547 KiB)
+  0.000002 seconds (5 allocations: 192 bytes)
+  0.000003 seconds (5 allocations: 192 bytes)
+  0.006841 seconds (7 allocations: 781.516 KiB, 87.98\% gc time)
 
     \end{Verbatim}
 
@@ -1377,10 +1464,11 @@ Another common type is the Dictionary. It allows you to access
 (key,value) pairs in a named manner. For example:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}58}]:} \PY{n}{d} \PY{o}{=} \PY{k+kt}{Dict}\PY{p}{(}\PY{o}{:}\PY{n}{test}\PY{o}{=\PYZgt{}}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{o}{=\PYZgt{}}\PY{o}{:}\PY{n}{suit}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}56}]:} \PY{n}{d} \PY{o}{=} \PY{k+kt}{Dict}\PY{p}{(}\PY{o}{:}\PY{n}{test}\PY{o}{=\PYZgt{}}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{o}{=\PYZgt{}}\PY{o}{:}\PY{n}{suit}\PY{p}{)}
          \PY{n}{println}\PY{p}{(}\PY{n}{d}\PY{p}{[}\PY{o}{:}\PY{n}{test}\PY{p}{]}\PY{p}{)}
          \PY{n}{println}\PY{p}{(}\PY{n}{d}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
 \end{Verbatim}
+
 
     \begin{Verbatim}[commandchars=\\\{\}]
 2
@@ -1396,17 +1484,18 @@ and are the standard return type of functions which return more than one
 object.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}59}]:} \PY{n}{tup} \PY{o}{=} \PY{p}{(}\PY{l+m+mf}{2.}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)} \PY{c}{\PYZsh{} Don\PYZsq{}t have to match types}
+{\color{incolor}In [{\color{incolor}57}]:} \PY{n}{tup} \PY{o}{=} \PY{p}{(}\PY{l+m+mf}{2.}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)} \PY{c}{\PYZsh{} Don\PYZsq{}t have to match types}
          \PY{n}{x}\PY{p}{,}\PY{n}{y} \PY{o}{=} \PY{p}{(}\PY{l+m+mf}{3.0}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{c}{\PYZsh{} Can separate a tuple to multiple variables}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}59}]:} (3.0, "hi")
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}57}]:} (3.0, "hi")
 \end{Verbatim}
-        
+            
     \subsection{Problems}\label{problems}
 
-Try problems 8-11 in the Basic Problems
+Try the rest of the Basic Problems! You should be able to do them all.
 
     \subsection{Metaprogramming}\label{metaprogramming}
 
@@ -1420,11 +1509,11 @@ interesting thing is that symbol comparisons are O(1) while string
 comparisons, like always, are O(n)) is part of this, and macros (the
 weird functions with an \texttt{@}) are functions on expressions.
 
-Thus you can think of metaprogramming as ``code which takes in code and
-outputs code''. One basic example is the \texttt{@time} macro:
+Thus you can think of metaprogramming as "code which takes in code and
+outputs code". One basic example is the \texttt{@time} macro:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}60}]:} \PY{k}{macro} \PY{n}{my\PYZus{}time}\PY{p}{(}\PY{n}{ex}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}59}]:} \PY{k}{macro} \PY{n}{my\PYZus{}time}\PY{p}{(}\PY{n}{ex}\PY{p}{)}
            \PY{k}{return} \PY{k}{quote}
              \PY{k+kd}{local} \PY{n}{t0} \PY{o}{=} \PY{n}{time}\PY{p}{(}\PY{p}{)}
              \PY{k+kd}{local} \PY{n}{val} \PY{o}{=} \PY{o}{\PYZdl{}}\PY{n}{ex}
@@ -1433,24 +1522,32 @@ outputs code''. One basic example is the \texttt{@time} macro:
              \PY{n}{val}
            \PY{k}{end}
          \PY{k}{end}
+         
+         \PY{n+nd}{@my\PYZus{}time} \PY{l+m+mi}{2}\PY{o}{+}\PY{l+m+mi}{2}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}60}]:} @my\_time (macro with 1 method)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+elapsed time: 6.9141387939453125e-6 seconds
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}59}]:} 4
 \end{Verbatim}
-        
+            
     This takes in an expression \texttt{ex}, gets the time before and after
 evaluation, and prints the elapsed time between (the real time macro
 also calculates the allocations as seen earlier). Note that
-\texttt{\$ex} ``interpolates'' the expression into the macro. Going into
+\texttt{\$ex} "interpolates" the expression into the macro. Going into
 detail on metaprogramming is a large step from standard scripting and
 will be a later session.
 
 Why macros? One reason is because it lets you define any syntax you
 want. Since it operates on the expressions themselves, as long as you
-know how to parse the expression into working code, you can ``choose any
-syntax'' to be your syntax. A case study will be shown later. Another
-reason is because these are done at ``parse time'' and those are only
+know how to parse the expression into working code, you can "choose any
+syntax" to be your syntax. A case study will be shown later. Another
+reason is because these are done at "parse time" and those are only
 called once (before the function compilation).
 
     \subsection{Steps for Julia Parsing and
@@ -1458,7 +1555,7 @@ Execution}\label{steps-for-julia-parsing-and-execution}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
-\itemsep1pt\parskip0pt\parsep0pt
+\tightlist
 \item
   The AST after parsing \textless{}- Macros
 \item

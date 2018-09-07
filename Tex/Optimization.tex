@@ -15,8 +15,8 @@
     
     
     \usepackage[T1]{fontenc}
-    % Nicer default font than Computer Modern for most use cases
-    \usepackage{palatino}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
 
     % Basic figure setup, for now with no caption control since it's done
     % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
@@ -62,6 +62,7 @@
     \usepackage{hyperref}
     \usepackage{longtable} % longtable support required by pandoc >1.10
     \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
     \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
                                 % normalem makes italics be italics, not underlines
     
@@ -158,73 +159,73 @@
     \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
 \def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
 
-\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
 \expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
-\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
-\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
 \expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
-\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
-\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
-\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
-\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
-\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
-\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
-\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
-\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
-\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
-\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
-\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
-\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
-\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
-\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
-\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
-\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
-\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
-\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
-\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
-\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 
 \def\PYZbs{\char`\\}
 \def\PYZus{\char`\_}
@@ -296,7 +297,8 @@ minimum in an interval:
         \PY{n}{Optim}\PY{o}{.}\PY{n}{optimize}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{l+m+mf}{0.0}\PY{p}{,}\PY{l+m+mi}{2}\PY{n+nb}{π}\PY{p}{)} \PY{c}{\PYZsh{} Find a minimum between 0 and 2π}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}2}]:} Results of Optimization Algorithm
          * Algorithm: Brent's Method
          * Search Interval: [0.000000, 6.283185]
@@ -306,17 +308,18 @@ minimum in an interval:
          * Convergence: max(|x - x\_upper|, |x - x\_lower|) <= 2*(1.5e-08*|x|+2.2e-16): true
          * Objective Function Calls: 12
 \end{Verbatim}
-        
+            
     If you give it a function which requires vector input with scalar
 output, it will give the vector local minima:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{=} \PY{n}{sin}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{+}\PY{n}{cos}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{+}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{=} \PY{n}{sin}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{+}\PY{n}{cos}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{+}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
         \PY{n}{Optim}\PY{o}{.}\PY{n}{optimize}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{n}{zeros}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)} \PY{c}{\PYZsh{} Find a minimum starting at [0.0,0.0]}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}4}]:} Results of Optimization Algorithm
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:} Results of Optimization Algorithm
          * Algorithm: Nelder-Mead
          * Starting Point: [0.0,0.0]
          * Minimizer: [-1.570684758073873,-1.5708688186478836]
@@ -327,27 +330,28 @@ output, it will give the vector local minima:
            * Reached Maximum Number of Iterations: false
          * Objective Calls: 95
 \end{Verbatim}
-        
+            
     You can refer to Optim's
 \href{http://julianlsolvers.github.io/Optim.jl/latest/}{large library of
 methods} and pass in a method choice to have different properties. Let's
 choose BFGS:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{Optim}\PY{o}{.}\PY{n}{optimize}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{n}{zeros}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,}\PY{n}{BFGS}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{Optim}\PY{o}{.}\PY{n}{optimize}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{n}{zeros}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,}\PY{n}{BFGS}\PY{p}{(}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}5}]:} Results of Optimization Algorithm
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}4}]:} Results of Optimization Algorithm
          * Algorithm: BFGS
          * Starting Point: [0.0,0.0]
          * Minimizer: [-1.5707963314270867,-1.5707963181008544]
          * Minimum: -2.000000e+00
          * Iterations: 6
          * Convergence: true
-           * |x - x'| ≤ 1.0e-32: false 
+           * |x - x'| ≤ 0.0e+00: false 
              |x - x'| = 4.10e-04 
-           * |f(x) - f(x')| ≤ 1.0e-32 |f(x)|: false
+           * |f(x) - f(x')| ≤ 0.0e+00 |f(x)|: false
              |f(x) - f(x')| = -9.67e-08 |f(x)|
            * |g(x)| ≤ 1.0e-08: true 
              |g(x)| = 4.06e-09 
@@ -356,7 +360,7 @@ choose BFGS:
          * Objective Calls: 15
          * Gradient Calls: 15
 \end{Verbatim}
-        
+            
     \subsection{Global Nonlinear Optimization with
 BlackBoxOptim.jl}\label{global-nonlinear-optimization-with-blackboxoptim.jl}
 
@@ -365,7 +369,7 @@ BlackBoxOptim.jl. You have to give it box constraints and tell it the
 size of the input vector:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}7}]:} \PY{k}{using} \PY{n}{BlackBoxOptim}
+{\color{incolor}In [{\color{incolor}6}]:} \PY{k}{using} \PY{n}{BlackBoxOptim}
         
         \PY{k}{function} \PY{n}{rosenbrock2d}\PY{p}{(}\PY{n}{x}\PY{p}{)}
           \PY{k}{return} \PY{p}{(}\PY{l+m+mf}{1.0} \PY{o}{\PYZhy{}} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mf}{100.0} \PY{o}{*} \PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}
@@ -373,16 +377,17 @@ size of the input vector:
         \PY{n}{res} \PY{o}{=} \PY{n}{bboptimize}\PY{p}{(}\PY{n}{rosenbrock2d}\PY{p}{;} \PY{n}{SearchRange} \PY{o}{=} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mf}{5.0}\PY{p}{,} \PY{l+m+mf}{5.0}\PY{p}{)}\PY{p}{,} \PY{n}{NumDimensions} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{)}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
-Starting optimization with optimizer BlackBoxOptim.DiffEvoOpt\{BlackBoxOptim.FitPopulation\{Float64\},BlackBoxOptim.RadiusLimitedSelector,BlackBoxOptim.AdaptiveDiffEvoRandBin\{3\},BlackBoxOptim.RandomBound\{BlackBoxOptim.RangePerDimSearchSpace\}\}
+Starting optimization with optimizer DiffEvoOpt\{FitPopulation\{Float64\},RadiusLimitedSelector,BlackBoxOptim.AdaptiveDiffEvoRandBin\{3\},RandomBound\{RangePerDimSearchSpace\}\}
 0.00 secs, 0 evals, 0 steps
 
-Optimization stopped after 10001 steps and 0.021000146865844727 seconds
+Optimization stopped after 10001 steps and 0.03020501136779785 seconds
 Termination reason: Max number of steps (10000) reached
-Steps per second = 476234.7646370954
-Function evals per second = 482282.3413903112
-Improvements/step = 0.1993
-Total function evaluations = 10128
+Steps per second = 331103.9972215425
+Function evals per second = 334282.2777668148
+Improvements/step = 0.2099
+Total function evaluations = 10097
 
 
 Best candidate found: [1.0, 1.0]
@@ -392,10 +397,10 @@ Fitness: 0.000000000
 
     \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}7}]:} BlackBoxOptim.OptimizationResults("adaptive\_de\_rand\_1\_bin\_radiuslimited", "Max number of steps (10000) reached", 10001, 1.526431919393e9, 0.021000146865844727, BlackBoxOptim.DictChain\{Symbol,Any\}[BlackBoxOptim.DictChain\{Symbol,Any\}[Dict\{Symbol,Any\}(Pair\{Symbol,Any\}(:RngSeed, 1466),Pair\{Symbol,Any\}(:NumDimensions, 2),Pair\{Symbol,Any\}(:SearchRange, (-5.0, 5.0)),Pair\{Symbol,Any\}(:MaxSteps, 10000)),Dict\{Symbol,Any\}()],Dict\{Symbol,Any\}(Pair\{Symbol,Any\}(:FitnessScheme, BlackBoxOptim.ScalarFitnessScheme\{true\}()),Pair\{Symbol,Any\}(:NumDimensions, :NotSpecified),Pair\{Symbol,Any\}(:PopulationSize, 50),Pair\{Symbol,Any\}(:MaxTime, 0.0),Pair\{Symbol,Any\}(:SearchRange, (-1.0, 1.0)),Pair\{Symbol,Any\}(:Method, :adaptive\_de\_rand\_1\_bin\_radiuslimited),Pair\{Symbol,Any\}(:MaxNumStepsWithoutFuncEvals, 100),Pair\{Symbol,Any\}(:RngSeed, 1234),Pair\{Symbol,Any\}(:MaxFuncEvals, 0),Pair\{Symbol,Any\}(:SaveTrace, false)…)], 10128, BlackBoxOptim.ScalarFitnessScheme\{true\}(), BlackBoxOptim.TopListArchiveOutput\{Float64,Array\{Float64,1\}\}(1.755239653260451e-23, [1.0, 1.0]), BlackBoxOptim.PopulationOptimizerOutput\{BlackBoxOptim.FitPopulation\{Float64\}\}(BlackBoxOptim.FitPopulation\{Float64\}([1.0 1.0 … 1.0 1.0; 1.0 1.0 … 1.0 1.0], NaN, [1.61958e-21, 3.34085e-21, 5.68053e-21, 2.31703e-20, 1.09389e-20, 5.71653e-21, 6.68369e-22, 6.89362e-21, 6.52675e-21, 4.057e-21  …  4.30743e-22, 2.6898e-21, 1.26068e-20, 2.27065e-20, 1.24454e-19, 2.36923e-19, 4.26575e-21, 5.41387e-21, 7.61718e-21, 3.85335e-20], 0, BlackBoxOptim.Candidate\{Float64\}[BlackBoxOptim.Candidate\{Float64\}([1.0, 1.0], 24, 1.42957e-21, BlackBoxOptim.AdaptiveDiffEvoRandBin\{3\}(BlackBoxOptim.AdaptiveDiffEvoParameters(BlackBoxOptim.BimodalCauchy(Distributions.Cauchy\{Float64\}(μ=0.65, σ=0.1), Distributions.Cauchy\{Float64\}(μ=1.0, σ=0.1), 0.5, false, true), BlackBoxOptim.BimodalCauchy(Distributions.Cauchy\{Float64\}(μ=0.1, σ=0.1), Distributions.Cauchy\{Float64\}(μ=0.95, σ=0.1), 0.5, false, true), [0.701635, 0.822804, 0.497025, 0.686208, 1.0, 0.588519, 0.922643, 0.497291, 0.494365, 1.0  …  1.0, 0.560735, 0.748291, 0.626623, 0.546719, 1.0, 1.0, 0.950497, 0.911785, 0.80654], [0.73129, 0.0617889, 0.909293, 1.0, 1.0, 0.104108, 1.0, 0.937073, 1.0, 0.980383  …  0.0305664, 0.922521, 0.114515, 0.0876894, 1.0, 0.454371, 0.182781, 0.246594, 1.0, 0.894807])), 0), BlackBoxOptim.Candidate\{Float64\}([1.0, 1.0], 24, 3.43826e-20, BlackBoxOptim.AdaptiveDiffEvoRandBin\{3\}(BlackBoxOptim.AdaptiveDiffEvoParameters(BlackBoxOptim.BimodalCauchy(Distributions.Cauchy\{Float64\}(μ=0.65, σ=0.1), Distributions.Cauchy\{Float64\}(μ=1.0, σ=0.1), 0.5, false, true), BlackBoxOptim.BimodalCauchy(Distributions.Cauchy\{Float64\}(μ=0.1, σ=0.1), Distributions.Cauchy\{Float64\}(μ=0.95, σ=0.1), 0.5, false, true), [0.701635, 0.822804, 0.497025, 0.686208, 1.0, 0.588519, 0.922643, 0.497291, 0.494365, 1.0  …  1.0, 0.560735, 0.748291, 0.626623, 0.546719, 1.0, 1.0, 0.950497, 0.911785, 0.80654], [0.73129, 0.0617889, 0.909293, 1.0, 1.0, 0.104108, 1.0, 0.937073, 1.0, 0.980383  …  0.0305664, 0.922521, 0.114515, 0.0876894, 1.0, 0.454371, 0.182781, 0.246594, 1.0, 0.894807])), 0)])))
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}6}]:} BlackBoxOptim.OptimizationResults("adaptive\_de\_rand\_1\_bin\_radiuslimited", "Max number of steps (10000) reached", 10001, 1.535816160358584e9, 0.03020501136779785, DictChain\{Symbol,Any\}[DictChain\{Symbol,Any\}[Dict\{Symbol,Any\}(:RngSeed=>791001,:NumDimensions=>2,:SearchRange=>(-5.0, 5.0),:MaxSteps=>10000),Dict\{Symbol,Any\}()],Dict\{Symbol,Any\}(:FitnessScheme=>ScalarFitnessScheme\{true\}(),:NumDimensions=>:NotSpecified,:PopulationSize=>50,:MaxTime=>0.0,:SearchRange=>(-1.0, 1.0),:Method=>:adaptive\_de\_rand\_1\_bin\_radiuslimited,:MaxNumStepsWithoutFuncEvals=>100,:RngSeed=>1234,:MaxFuncEvals=>0,:SaveTrace=>false…)], 10097, ScalarFitnessScheme\{true\}(), BlackBoxOptim.TopListArchiveOutput\{Float64,Array\{Float64,1\}\}(4.480626600876763e-24, [1.0, 1.0]), BlackBoxOptim.PopulationOptimizerOutput\{FitPopulation\{Float64\}\}(FitPopulation\{Float64\}([1.0 1.0 … 1.0 1.0; 1.0 1.0 … 1.0 1.0], NaN, [4.84548e-22, 5.50133e-22, 1.0875e-22, 1.67945e-23, 3.7173e-22, 1.07341e-21, 3.5827e-22, 3.902e-23, 7.15037e-21, 2.90994e-22  …  3.3126e-22, 4.37495e-23, 1.34289e-22, 5.37053e-22, 3.82538e-22, 3.52475e-22, 5.34962e-24, 3.22963e-22, 5.87671e-23, 1.09491e-22], 0, BlackBoxOptim.Candidate\{Float64\}[Candidate\{Float64\}([1.0, 1.0], 18, 4.22652e-22, AdaptiveDiffEvoRandBin\{3\}(AdaptiveDiffEvoParameters(BimodalCauchy(Distributions.Cauchy\{Float64\}(μ=0.65, σ=0.1), Distributions.Cauchy\{Float64\}(μ=1.0, σ=0.1), 0.5, false, true), BimodalCauchy(Distributions.Cauchy\{Float64\}(μ=0.1, σ=0.1), Distributions.Cauchy\{Float64\}(μ=0.95, σ=0.1), 0.5, false, true), [0.960677, 0.848476, 0.623459, 0.54989, 0.581819, 1.0, 0.734587, 0.310737, 1.0, 1.0  …  0.935712, 0.537649, 1.0, 0.76622, 0.544867, 0.937488, 0.653021, 0.677084, 1.0, 0.318911], [1.0, 1.0, 0.111826, 0.125661, 1.0, 0.305684, 0.0436158, 0.206936, 0.908871, 0.119306  …  0.54331, 0.777823, 0.921962, 0.830078, 1.0, 1.0, 0.107495, 0.942054, 1.0, 0.686902])), 0), Candidate\{Float64\}([1.0, 1.0], 18, 8.96404e-22, AdaptiveDiffEvoRandBin\{3\}(AdaptiveDiffEvoParameters(BimodalCauchy(Distributions.Cauchy\{Float64\}(μ=0.65, σ=0.1), Distributions.Cauchy\{Float64\}(μ=1.0, σ=0.1), 0.5, false, true), BimodalCauchy(Distributions.Cauchy\{Float64\}(μ=0.1, σ=0.1), Distributions.Cauchy\{Float64\}(μ=0.95, σ=0.1), 0.5, false, true), [0.960677, 0.848476, 0.623459, 0.54989, 0.581819, 1.0, 0.734587, 0.310737, 1.0, 1.0  …  0.935712, 0.537649, 1.0, 0.76622, 0.544867, 0.937488, 0.653021, 0.677084, 1.0, 0.318911], [1.0, 1.0, 0.111826, 0.125661, 1.0, 0.305684, 0.0436158, 0.206936, 0.908871, 0.119306  …  0.54331, 0.777823, 0.921962, 0.830078, 1.0, 1.0, 0.107495, 0.942054, 1.0, 0.686902])), 0)])))
 \end{Verbatim}
-        
+            
     \subsection{JuMP, Convex.jl, NLopt.jl}\label{jump-convex.jl-nlopt.jl}
 
 \href{https://jump.readthedocs.io/en/latest/quickstart.html}{JuMP.jl} is
@@ -420,7 +425,7 @@ Function}. Use the initial condition \texttt{{[}2.0,2.0{]}}.
 
 BlackBoxOptim.jl to find global minima of the
 \href{https://arxiv.org/pdf/1308.4008.pdf}{Adjiman Function} with
-$-1 < x_1 < 2$ and $-1 < x_2 < 1$.
+\(-1 < x_1 < 2\) and \(-1 < x_2 < 1\).
 
 
     % Add a bibliography block to the postdoc

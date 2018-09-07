@@ -36,7 +36,7 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 
 <!-- Loading the mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -58,7 +58,7 @@ if( window.location.search.match( /print-pdf/gi ) ) {
     <!-- End of mathjax configuration -->
 
 <!-- Get Font-awesome from cdn -->
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.css">
 
 <style type="text/css">
     /*!
@@ -67,8 +67,8 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 *
 */
 /*!
- * Bootstrap v3.3.6 (http://getbootstrap.com)
- * Copyright 2011-2015 Twitter, Inc.
+ * Bootstrap v3.3.7 (http://getbootstrap.com)
+ * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
@@ -1163,7 +1163,6 @@ a:focus {
   text-decoration: underline;
 }
 a:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -2592,7 +2591,6 @@ select[size] {
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -3083,7 +3081,6 @@ select[multiple].input-lg {
 .btn.focus,
 .btn:active.focus,
 .btn.active.focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -8814,6 +8811,9 @@ body > #header .header-bar {
     margin-left: 10px;
   }
 }
+[dir="rtl"] #ipython_notebook {
+  float: right !important;
+}
 #noscript {
   width: auto;
   padding-top: 16px;
@@ -9016,8 +9016,14 @@ span#login_widget > .button .badge,
  *
  * Author: Jupyter Development Team
  */
+[dir="rtl"] #tabs li {
+  float: right;
+}
 ul#tabs {
   margin-bottom: 4px;
+}
+[dir="rtl"] ul#tabs {
+  margin-right: 0px;
 }
 ul#tabs a {
   padding-top: 6px;
@@ -9040,6 +9046,16 @@ ul.breadcrumb span {
 }
 .list_toolbar .tree-buttons {
   padding-top: 1px;
+}
+[dir="rtl"] .list_toolbar .tree-buttons {
+  float: left !important;
+}
+[dir="rtl"] .list_toolbar .pull-right {
+  padding-top: 1px;
+  float: left !important;
+}
+[dir="rtl"] .list_toolbar .pull-left {
+  float: right !important;
 }
 .dynamic-buttons {
   padding-top: 3px;
@@ -9176,6 +9192,9 @@ ul.breadcrumb span {
 #tree-selector {
   padding-right: 0px;
 }
+[dir="rtl"] #tree-selector a {
+  float: right;
+}
 #button-select-all {
   min-width: 50px;
 }
@@ -9265,6 +9284,9 @@ ul#new-menu {
   left: auto;
   right: 0;
 }
+[dir="rtl"] #new-menu {
+  text-align: right;
+}
 .kernel-menu-icon {
   padding-right: 12px;
   width: 24px;
@@ -9309,6 +9331,9 @@ ul#new-menu {
 }
 #running .panel-group .panel .panel-body .list_container .list_item:last-child {
   border-bottom: 0px;
+}
+[dir="rtl"] #running .col-sm-8 {
+  float: right !important;
 }
 .delete-button {
   display: none;
@@ -9605,6 +9630,7 @@ div.cell.selected.jupyter-soft-selected {
   }
 }
 div.inner_cell {
+  min-width: 0;
   /* Old browsers */
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -9625,11 +9651,6 @@ div.inner_cell {
   box-flex: 1;
   /* Modern browsers */
   flex: 1;
-}
-@-moz-document url-prefix() {
-  div.inner_cell {
-    overflow-x: hidden;
-  }
 }
 /* input_area and input_prompt must match in top border and margin for alignment */
 div.input_area {
@@ -11300,7 +11321,7 @@ div#pager .ui-resizable-handle::after {
 }
 .shortcut_key {
   display: inline-block;
-  width: 20ex;
+  width: 21ex;
   text-align: right;
   font-family: monospace;
 }
@@ -11612,6 +11633,7 @@ ul.typeahead-list > li > a {
   box-shadow: 0px 0px 12px 1px rgba(87, 87, 87, 0.2);
 }
 .terminal-app .terminal {
+  width: 100%;
   float: left;
   font-family: monospace;
   color: white;
@@ -11625,6 +11647,9 @@ ul.typeahead-list > li > a {
 .terminal-app .terminal dummy-screen {
   line-height: 1em;
   font-size: 14px;
+}
+.terminal-app .terminal .xterm-rows {
+  padding: 10px;
 }
 .terminal-app .terminal-cursor {
   color: black;
@@ -11751,7 +11776,6 @@ ul.typeahead-list > li > a {
 /* Overrides of notebook CSS for static HTML export */
 .reveal {
   font-size: 160%;
-  overflow-y: scroll;
 }
 .reveal pre {
   width: inherit;
@@ -11781,6 +11805,41 @@ ul.typeahead-list > li > a {
 }
 .reveal .progress {
   position: static;
+}
+.reveal .controls .navigate-left,
+.reveal .controls .navigate-left.enabled {
+  border-right-color: #727272;
+}
+.reveal .controls .navigate-left.enabled:hover,
+.reveal .controls .navigate-left.enabled.enabled:hover {
+  border-right-color: #dfdfdf;
+}
+.reveal .controls .navigate-right,
+.reveal .controls .navigate-right.enabled {
+  border-left-color: #727272;
+}
+.reveal .controls .navigate-right.enabled:hover,
+.reveal .controls .navigate-right.enabled.enabled:hover {
+  border-left-color: #dfdfdf;
+}
+.reveal .controls .navigate-up,
+.reveal .controls .navigate-up.enabled {
+  border-bottom-color: #727272;
+}
+.reveal .controls .navigate-up.enabled:hover,
+.reveal .controls .navigate-up.enabled.enabled:hover {
+  border-bottom-color: #dfdfdf;
+}
+.reveal .controls .navigate-down,
+.reveal .controls .navigate-down.enabled {
+  border-top-color: #727272;
+}
+.reveal .controls .navigate-down.enabled:hover,
+.reveal .controls .navigate-down.enabled.enabled:hover {
+  border-top-color: #dfdfdf;
+}
+.reveal .progress span {
+  background: #727272;
 }
 div.input_area {
   padding: 0.06em;
@@ -11815,6 +11874,19 @@ a.anchor-link {
 .rendered_html p {
   text-align: inherit;
 }
+::-webkit-scrollbar
+{
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar *
+{
+  background:transparent;
+}
+::-webkit-scrollbar-thumb
+{
+  background: #727272 !important;
+}
 </style>
 
 <!-- Custom stylesheet, it must be in the same directory as the html file -->
@@ -11829,31 +11901,32 @@ a.anchor-link {
 <div class="reveal">
 <div class="slides">
 <section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Binomial-Model-for-Asset-Pricing">Binomial Model for Asset Pricing<a class="anchor-link" href="#Binomial-Model-for-Asset-Pricing">&#182;</a></h1><p>The binomial model for asset pricing can be used to price financial derivatives, such as options.  While not as widely used as the Black-Scholes model, it is simpler and more intuitive.  Instead of pricing derivatives, in this exercise, we will simply use the binomial model to model stock price movements and find the stock's price distribution.</p>
 <h3 id="One-period-Binomial-Model">One period Binomial Model<a class="anchor-link" href="#One-period-Binomial-Model">&#182;</a></h3><p>Let us first go over a one-period binomial model.  In the binomial model, we construct a tree (technically a recombining tree) in which the nodes represent possible stock prices at various times.  Over a single period, we assume that there are only two possibilites for the stock price at the end of a period: an "up" price and a "down" price. We find these prices using an "up" and "down" multiplier respectively.  If $S$ is the price of the stock at the beginning of the period and $u, d$ denote the up, down multipliers respectively, then the two possible prices at the end of the period are $u \times S = uS$ and $d \times S = dS$. A one period binomial tree would look like:</p>
-$$\begin{array}{c c c}
-& & uS \\
-& \nearrow & \\
-S & & \\
-& \searrow & \\
-& & dS 
-\end{array}$$<h3 id="Multi-period-Binomial-Model">Multi-period Binomial Model<a class="anchor-link" href="#Multi-period-Binomial-Model">&#182;</a></h3><p>For more periods, we continue in the same fashion.  For example, if we are at the node $uS$ then at the end of the second period, there are two possibilites, we either go up to $u^2S$ or down to $duS$.  Notice, that if we are at the node $dS$ and we go up, then we are at the node $udS = duS$ (we are simply doing the multiplication $u \times d \times S$).  This is where the word recombining comes from.  This makes it so the trees we build are not too "bushy".  At the end of the first period, we only have $2$ nodes, at the end of the second period, we have $3$ nodes, at the end of the third period, we have $4$ nodes, and so on.  Here is an example of a two period binomial tree.</p>
-$$\begin{array}{c c c c c}
-& & & & u^2S \\
-& & & {\nearrow}  & \\
-& & uS & & \\
-& \nearrow & &\searrow & \\
-S & & & & udS = duS \\
-& \searrow & & \nearrow & \\
-& & dS & & \\
-& & & \searrow  & \\
-& & & & d^2S \\
-\end{array}$$<h3 id="Modeling-future-stock-prices">Modeling future stock prices<a class="anchor-link" href="#Modeling-future-stock-prices">&#182;</a></h3><p>Now that we know how to make binomial stock price trees, we can use them to model future stock prices.  When our trees have enough periods, say $10,000$, a single path through the tree is a possible path the stock price could take in the future.  How can we choose a path? Instead of building up the whole tree, we can just take it one step at a time; given a current price $S$ we will either choose to go up to $uS$ or down to $dS$ and whatever we choose will be our starting point for the next iteration.  We then repeat the same process from this point.</p>
+<p>$$\begin{array}{c c c}
+&amp; &amp; uS \\
+&amp; \nearrow &amp; \\
+S &amp; &amp; \\
+&amp; \searrow &amp; \\
+&amp; &amp; dS 
+\end{array}$$</p>
+<h3 id="Multi-period-Binomial-Model">Multi-period Binomial Model<a class="anchor-link" href="#Multi-period-Binomial-Model">&#182;</a></h3><p>For more periods, we continue in the same fashion.  For example, if we are at the node $uS$ then at the end of the second period, there are two possibilites, we either go up to $u^2S$ or down to $duS$.  Notice, that if we are at the node $dS$ and we go up, then we are at the node $udS = duS$ (we are simply doing the multiplication $u \times d \times S$).  This is where the word recombining comes from.  This makes it so the trees we build are not too "bushy".  At the end of the first period, we only have $2$ nodes, at the end of the second period, we have $3$ nodes, at the end of the third period, we have $4$ nodes, and so on.  Here is an example of a two period binomial tree.</p>
+<p>$$\begin{array}{c c c c c}
+&amp; &amp; &amp; &amp; u^2S \\
+&amp; &amp; &amp; {\nearrow}  &amp; \\
+&amp; &amp; uS &amp; &amp; \\
+&amp; \nearrow &amp; &amp;\searrow &amp; \\
+S &amp; &amp; &amp; &amp; udS = duS \\
+&amp; \searrow &amp; &amp; \nearrow &amp; \\
+&amp; &amp; dS &amp; &amp; \\
+&amp; &amp; &amp; \searrow  &amp; \\
+&amp; &amp; &amp; &amp; d^2S \\
+\end{array}$$</p>
+<h3 id="Modeling-future-stock-prices">Modeling future stock prices<a class="anchor-link" href="#Modeling-future-stock-prices">&#182;</a></h3><p>Now that we know how to make binomial stock price trees, we can use them to model future stock prices.  When our trees have enough periods, say $10,000$, a single path through the tree is a possible path the stock price could take in the future.  How can we choose a path? Instead of building up the whole tree, we can just take it one step at a time; given a current price $S$ we will either choose to go up to $uS$ or down to $dS$ and whatever we choose will be our starting point for the next iteration.  We then repeat the same process from this point.</p>
 <p>How do we determine if we should choose $uS$ or $dS$? We can use a probability $p^*$, known as the <em>risk-neutral probability</em>. We assume the stock price goes up with probability $p^*$ and down with probability $(1-p^*)$.</p>
 <h4 id="Problem-1">Problem 1<a class="anchor-link" href="#Problem-1">&#182;</a></h4><p>Let's plot a path of possible stock prices as described above.  Here are the notations and formulas we need:</p>
 <ul>
@@ -11869,19 +11942,20 @@ S & & & & udS = duS \\
 </ul>
 <p>a) Assume $S = 100$, $T = 1$, $n = 10,000$, $\sigma = 0.3$, and $r = 0.08$.  Try to plot a single stock price path.  The function <code>rand()</code> generates a random number between $0$ and $1$. You can use the <code>plot</code> function from the <code>Plots</code> library.</p>
 <p>b) Create a function <code>createPath(S::Float64, r::Float64, sigma::Float64, T::Float64, n::Int64)</code> which creates a stock price path given initial parameters.  Use <code>createPath</code> to create $10$ different stock paths and plot them all on the same plot.  You can use the function <code>plot!</code> to modify an existing plot.</p>
-<p>c) (Optional) Parallelize your path generation! See <a href="https://docs.julialang.org/en/stable/manual/parallel-computing">the parallelism documentation</a> for details on how to do this. Try use <code>Threads.@threads</code>, <code>pmap</code>, and <code>@parallel for</code>.</p>
+<p>c) (Optional) Parallelize your path generation! See <a href="https://docs.julialang.org/en/stable/manual/parallel-computing">the parallelism documentation</a> for details on how to do this. Try using <code>Threads.@threads</code>, <code>pmap</code>, and <code>@parallel for</code>.</p>
 <h4 id="Problem-2">Problem 2<a class="anchor-link" href="#Problem-2">&#182;</a></h4><p>Now, lets try and figure out what distribution the stock prices follow when using the binomial model.  In this case, we are only worried about the final prices in our model.  If $150$ is one of the final prices in our model, the question we are trying to answer is: what is the probability that the final stock price will be $150$?  Notice, that the binomial tree is easily adjusted to accomodate probabilities.</p>
-$$\begin{array}{c c c c c}
-& & & & u^2S \\
-& & & \overset{p^*}{\nearrow}  & \\
-& & uS & & \\
-& \overset{p^*}{\nearrow} & &\overset{1 - p^*}{\searrow} & \\
-S & & & & udS \\
-& \overset{1-p^*}{\searrow} & & \overset{p^*}{\nearrow} & \\
-& & dS & & \\
-& & & \overset{1-p^*}{\searrow}  & \\
-& & & & d^2S \\
-\end{array}$$<p>We can find the probability of any node in the tree, simply by following the paths to that node and multiplying the probabilities along the way.  For example, the probability that the final price is $u^2S$ is $p^{*2}$, and the probability that the final price is $udS$ is $2p^*(1-p^*)$.</p>
+<p>$$\begin{array}{c c c c c}
+&amp; &amp; &amp; &amp; u^2S \\
+&amp; &amp; &amp; \overset{p^*}{\nearrow}  &amp; \\
+&amp; &amp; uS &amp; &amp; \\
+&amp; \overset{p^*}{\nearrow} &amp; &amp;\overset{1 - p^*}{\searrow} &amp; \\
+S &amp; &amp; &amp; &amp; udS \\
+&amp; \overset{1-p^*}{\searrow} &amp; &amp; \overset{p^*}{\nearrow} &amp; \\
+&amp; &amp; dS &amp; &amp; \\
+&amp; &amp; &amp; \overset{1-p^*}{\searrow}  &amp; \\
+&amp; &amp; &amp; &amp; d^2S \\
+\end{array}$$</p>
+<p>We can find the probability of any node in the tree, simply by following the paths to that node and multiplying the probabilities along the way.  For example, the probability that the final price is $u^2S$ is $p^{*2}$, and the probability that the final price is $udS$ is $2p^*(1-p^*)$.</p>
 <p>a) Draw a $3$ period binomial tree and find the probability for all four final nodes ($u^3S$, $u^2dS$, $ud^2S$, $d^3S$).  Don't forget to consider <em>all</em> paths to the node!</p>
 <p>Do you notice anything about the probabilities for the final nodes?</p>
 <details>
@@ -11917,8 +11991,7 @@ require(
             progress: true,
             history: true,
 
-            theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-            transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/none
+            transition: "slide",
 
             // Optional libraries used to extend on reveal.js
             dependencies: [
@@ -11938,13 +12011,25 @@ require(
 
         Reveal.addEventListener('slidechanged', update);
 
-        var update_scroll = function(event){
-          $(".reveal").scrollTop(0);
-        };
+        function setScrollingSlide() {
+            var scroll = false
+            if (scroll === true) {
+              var h = $('.reveal').height() * 0.95;
+              $('section.present').find('section')
+                .filter(function() {
+                  return $(this).height() > h;
+                })
+                .css('height', 'calc(95vh)')
+                .css('overflow-y', 'scroll')
+                .css('margin-top', '20px');
+            }
+        }
 
-        Reveal.addEventListener('slidechanged', update_scroll);
+        // check and set the scrolling slide every time the slide change
+        Reveal.addEventListener('slidechanged', setScrollingSlide);
 
     }
+
 );
 </script>
 

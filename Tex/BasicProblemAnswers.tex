@@ -15,8 +15,8 @@
     
     
     \usepackage[T1]{fontenc}
-    % Nicer default font than Computer Modern for most use cases
-    \usepackage{palatino}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
 
     % Basic figure setup, for now with no caption control since it's done
     % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
@@ -62,6 +62,7 @@
     \usepackage{hyperref}
     \usepackage{longtable} % longtable support required by pandoc >1.10
     \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
     \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
                                 % normalem makes italics be italics, not underlines
     
@@ -158,73 +159,73 @@
     \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
 \def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
 
-\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
 \expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
-\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
-\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
 \expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
-\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
-\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
-\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
-\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
-\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
-\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
-\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
-\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
-\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
-\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
-\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
-\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
-\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
-\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
-\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
-\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
-\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
-\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
-\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
-\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 
 \def\PYZbs{\char`\\}
 \def\PYZus{\char`\_}
@@ -284,7 +285,7 @@
     \subsection{Strang Matrix Problem}\label{strang-matrix-problem}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{N} \PY{o}{=} \PY{l+m+mi}{10}
+{\color{incolor}In [{\color{incolor}1}]:} \PY{n}{N} \PY{o}{=} \PY{l+m+mi}{10}
         \PY{n}{A} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{n}{N}\PY{p}{,}\PY{n}{N}\PY{p}{)}
         \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{N}\PY{p}{,} \PY{n}{j} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{N}
             \PY{n}{abs}\PY{p}{(}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{j}\PY{p}{)}\PY{o}{\PYZlt{}=}\PY{l+m+mi}{1} \PY{o}{\PYZam{}\PYZam{}} \PY{p}{(}\PY{n}{A}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{n}{j}\PY{p}{]}\PY{o}{+=}\PY{l+m+mi}{1}\PY{p}{)}
@@ -293,8 +294,9 @@
         \PY{n}{A}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}3}]:} 10×10 Array\{Float64,2\}:
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}1}]:} 10×10 Array\{Float64,2\}:
          -2.0   1.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0
           1.0  -2.0   1.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0
           0.0   1.0  -2.0   1.0   0.0   0.0   0.0   0.0   0.0   0.0
@@ -306,11 +308,11 @@
           0.0   0.0   0.0   0.0   0.0   0.0   0.0   1.0  -2.0   1.0
           0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   1.0  -2.0
 \end{Verbatim}
-        
+            
     \subsection{Factorial Problem}\label{factorial-problem}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{function} \PY{n}{my\PYZus{}factorial}\PY{p}{(}\PY{n}{n}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k}{function} \PY{n}{my\PYZus{}factorial}\PY{p}{(}\PY{n}{n}\PY{p}{)}
             \PY{n}{k} \PY{o}{=} \PY{n}{one}\PY{p}{(}\PY{n}{n}\PY{p}{)}
             \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{n}
                 \PY{n}{k} \PY{o}{*=} \PY{n}{i}
@@ -318,19 +320,27 @@
             \PY{n}{k}
         \PY{k}{end}
         
-        \PY{n}{my\PYZus{}factorial}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{)}
-        \PY{n}{my\PYZus{}factorial}\PY{p}{(}\PY{l+m+mi}{30}\PY{p}{)}
-        \PY{n}{my\PYZus{}factorial}\PY{p}{(}\PY{n}{big}\PY{p}{(}\PY{l+m+mi}{30}\PY{p}{)}\PY{p}{)}
+        \PY{n+nd}{@show} \PY{n}{my\PYZus{}factorial}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{)}
+        \PY{n+nd}{@show} \PY{n}{my\PYZus{}factorial}\PY{p}{(}\PY{l+m+mi}{30}\PY{p}{)}
+        \PY{n+nd}{@show} \PY{n}{my\PYZus{}factorial}\PY{p}{(}\PY{n}{big}\PY{p}{(}\PY{l+m+mi}{30}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}1}]:} 265252859812191058636308480000000
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+my\_factorial(4) = 24
+my\_factorial(30) = -8764578968847253504
+my\_factorial(big(30)) = 265252859812191058636308480000000
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:} 265252859812191058636308480000000
 \end{Verbatim}
-        
+            
     \subsection{Binomial Problem}\label{binomial-problem}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{function} \PY{n}{binomial\PYZus{}rv}\PY{p}{(}\PY{n}{n}\PY{p}{,} \PY{n}{p}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}4}]:} \PY{k}{function} \PY{n}{binomial\PYZus{}rv}\PY{p}{(}\PY{n}{n}\PY{p}{,} \PY{n}{p}\PY{p}{)}
             \PY{n}{count} \PY{o}{=} \PY{n}{zero}\PY{p}{(}\PY{n}{n}\PY{p}{)}
             \PY{n}{U} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{n}{n}\PY{p}{)}
             \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{n}
@@ -342,39 +352,43 @@
         \PY{n}{bs} \PY{o}{=} \PY{p}{[}\PY{n}{binomial\PYZus{}rv}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)} \PY{k}{for} \PY{n}{j} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{10}\PY{p}{]}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}1}]:} 10-element Array\{Int64,1\}:
-         1
-         5
-         6
-         6
-         2
-         4
-         3
-         5
-         5
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}4}]:} 10-element Array\{Int64,1\}:
          8
+         6
+         6
+         4
+         5
+         5
+         3
+         4
+         6
+         5
 \end{Verbatim}
+            
+    \subsection{\texorpdfstring{Monte Carlo \(\pi\)
+Problem}{Monte Carlo \textbackslash{}pi Problem}}\label{monte-carlo-pi-problem}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{n} \PY{o}{=} \PY{l+m+mi}{10000000}
         
-    \subsection{Monte Carlo $\pi$ Problem}\label{monte-carlo-pi-problem}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{n} \PY{o}{=} \PY{l+m+mi}{10000000}
-         
-         \PY{n}{count} \PY{o}{=} \PY{l+m+mi}{0}
-         \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{n}
-             \PY{n}{u}\PY{p}{,} \PY{n}{v} \PY{o}{=} \PY{l+m+mi}{2}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
-             \PY{n}{d} \PY{o}{=} \PY{n}{sqrt}\PY{p}{(}\PY{n}{u}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{v}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{)}  \PY{c}{\PYZsh{} Distance from middle of square}
-             \PY{n}{d} \PY{o}{\PYZlt{}} \PY{l+m+mi}{1} \PY{o}{\PYZam{}\PYZam{}} \PY{p}{(}\PY{n}{count} \PY{o}{+=} \PY{l+m+mi}{1}\PY{p}{)}
-         \PY{k}{end}
-         
-         \PY{n}{area\PYZus{}estimate} \PY{o}{=} \PY{n}{count} \PY{o}{/} \PY{n}{n}
-         
-         \PY{n}{print}\PY{p}{(}\PY{n}{area\PYZus{}estimate} \PY{o}{*} \PY{l+m+mi}{4}\PY{p}{)}  \PY{c}{\PYZsh{} dividing by radius**2}
+        \PY{n}{count} \PY{o}{=} \PY{l+m+mi}{0}
+        \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{n}
+            \PY{k+kd}{global} \PY{n}{count}
+            \PY{n}{u}\PY{p}{,} \PY{n}{v} \PY{o}{=} \PY{l+m+mi}{2}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{.\PYZhy{}}\PY{l+m+mi}{1}
+            \PY{n}{d} \PY{o}{=} \PY{n}{sqrt}\PY{p}{(}\PY{n}{u}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{v}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{)}  \PY{c}{\PYZsh{} Distance from middle of square}
+            \PY{n}{d} \PY{o}{\PYZlt{}} \PY{l+m+mi}{1} \PY{o}{\PYZam{}\PYZam{}} \PY{p}{(}\PY{n}{count} \PY{o}{+=} \PY{l+m+mi}{1}\PY{p}{)}
+        \PY{k}{end}
+        
+        \PY{n}{area\PYZus{}estimate} \PY{o}{=} \PY{n}{count} \PY{o}{/} \PY{n}{n}
+        
+        \PY{n}{print}\PY{p}{(}\PY{n}{area\PYZus{}estimate} \PY{o}{*} \PY{l+m+mi}{4}\PY{p}{)}  \PY{c}{\PYZsh{} dividing by radius**2}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
-3.1417656
+3.1419836
     \end{Verbatim}
 
     \section{Integration Problems}\label{integration-problems}
@@ -383,7 +397,9 @@
 Problem}\label{timeseries-generation-problem}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{alphas} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{,} \PY{l+m+mf}{0.98}\PY{p}{]}
+{\color{incolor}In [{\color{incolor}12}]:} \PY{k}{using} \PY{n}{Plots}\PY{p}{;} \PY{n}{gr}\PY{p}{(}\PY{p}{)}
+         
+         \PY{n}{alphas} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{,} \PY{l+m+mf}{0.98}\PY{p}{]}
          \PY{n}{T} \PY{o}{=} \PY{l+m+mi}{200}
          
          \PY{n}{series} \PY{o}{=} \PY{p}{[}\PY{p}{]}
@@ -402,22 +418,38 @@ Problem}\label{timeseries-generation-problem}
          \PY{n}{plot}\PY{p}{(}\PY{n}{series}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{n}{reshape}\PY{p}{(}\PY{n}{labels}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{length}\PY{p}{(}\PY{n}{labels}\PY{p}{)}\PY{p}{)}\PY{p}{,}\PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
 \end{Verbatim}
 
+\texttt{\color{outcolor}Out[{\color{outcolor}12}]:}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{BasicProblemAnswers_files/BasicProblemAnswers_11_0.pdf}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
     \subsection{Logistic Equation Problem}\label{logistic-equation-problem}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{r} \PY{o}{=} \PY{l+m+mf}{2.9}\PY{o}{:}\PY{o}{.}\PY{l+m+mi}{001}\PY{o}{:}\PY{l+m+mi}{4}\PY{p}{;} \PY{n}{numAttract} \PY{o}{=} \PY{l+m+mi}{100}
-        \PY{n}{steady} \PY{o}{=} \PY{n}{ones}\PY{p}{(}\PY{n}{length}\PY{p}{(}\PY{n}{r}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{o}{.}\PY{l+m+mi}{25}
-        \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{400} \PY{c}{\PYZsh{}\PYZsh{} Get to steady state}
-          \PY{n}{steady} \PY{o}{.=} \PY{n}{r}\PY{o}{.*}\PY{n}{steady}\PY{o}{.*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{steady}\PY{p}{)}
-        \PY{k}{end}
-        \PY{n}{x} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{n}{length}\PY{p}{(}\PY{n}{steady}\PY{p}{)}\PY{p}{,}\PY{n}{numAttract}\PY{p}{)}
-        \PY{n}{x}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{steady}
-        \PY{n+nd}{@inbounds} \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{2}\PY{o}{:}\PY{n}{numAttract} \PY{c}{\PYZsh{}\PYZsh{} Grab values at the attractor}
-          \PY{n}{x}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{r}\PY{o}{.*}\PY{n}{x}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{x}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
-        \PY{k}{end}
-        \PY{k}{using} \PY{n}{Plots}\PY{p}{;} \PY{n}{gr}\PY{p}{(}\PY{p}{)}
-        \PY{n}{plot}\PY{p}{(}\PY{n}{collect}\PY{p}{(}\PY{n}{r}\PY{p}{)}\PY{p}{,}\PY{n}{x}\PY{p}{,}\PY{n}{seriestype}\PY{o}{=}\PY{o}{:}\PY{n}{scatter}\PY{p}{,}\PY{n}{markersize}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{002}\PY{p}{,}\PY{n}{legend}\PY{o}{=}\PY{k+kc}{false}\PY{p}{,}\PY{n}{color}\PY{o}{=}\PY{o}{:}\PY{n}{black}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{r} \PY{o}{=} \PY{l+m+mf}{2.9}\PY{o}{:}\PY{o}{.}\PY{l+m+mi}{001}\PY{o}{:}\PY{l+m+mi}{4}\PY{p}{;} \PY{n}{numAttract} \PY{o}{=} \PY{l+m+mi}{100}
+         \PY{n}{steady} \PY{o}{=} \PY{n}{ones}\PY{p}{(}\PY{n}{length}\PY{p}{(}\PY{n}{r}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{o}{.}\PY{l+m+mi}{25}
+         \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{400} \PY{c}{\PYZsh{}\PYZsh{} Get to steady state}
+           \PY{err}{@}\PY{o}{.} \PY{n}{steady} \PY{o}{=} \PY{n}{r}\PY{o}{*}\PY{n}{steady}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{steady}\PY{p}{)}
+         \PY{k}{end}
+         \PY{n}{x} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{n}{length}\PY{p}{(}\PY{n}{steady}\PY{p}{)}\PY{p}{,}\PY{n}{numAttract}\PY{p}{)}
+         \PY{n}{x}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{steady}
+         \PY{n+nd}{@inbounds} \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{2}\PY{o}{:}\PY{n}{numAttract} \PY{c}{\PYZsh{}\PYZsh{} Grab values at the attractor}
+           \PY{err}{@}\PY{o}{.} \PY{n}{x}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{r}\PY{o}{*}\PY{n}{x}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{x}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{k}{end}
+         \PY{k}{using} \PY{n}{Plots}\PY{p}{;} \PY{n}{gr}\PY{p}{(}\PY{n}{fmt}\PY{o}{=}\PY{o}{:}\PY{n}{png}\PY{p}{)} \PY{c}{\PYZsh{} use a png to make the file size smaller}
+         \PY{n}{plot}\PY{p}{(}\PY{n}{collect}\PY{p}{(}\PY{n}{r}\PY{p}{)}\PY{p}{,}\PY{n}{x}\PY{p}{,}\PY{n}{seriestype}\PY{o}{=}\PY{o}{:}\PY{n}{scatter}\PY{p}{,}\PY{n}{markersize}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{001}\PY{p}{,}\PY{n}{legend}\PY{o}{=}\PY{k+kc}{false}\PY{p}{,}\PY{n}{color}\PY{o}{=}\PY{o}{:}\PY{n}{black}\PY{p}{)}
 \end{Verbatim}
+
+\texttt{\color{outcolor}Out[{\color{outcolor}22}]:}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{BasicProblemAnswers_files/BasicProblemAnswers_13_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
 
 
     % Add a bibliography block to the postdoc

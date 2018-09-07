@@ -15,8 +15,8 @@
     
     
     \usepackage[T1]{fontenc}
-    % Nicer default font than Computer Modern for most use cases
-    \usepackage{palatino}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
 
     % Basic figure setup, for now with no caption control since it's done
     % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
@@ -62,6 +62,7 @@
     \usepackage{hyperref}
     \usepackage{longtable} % longtable support required by pandoc >1.10
     \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
     \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
                                 % normalem makes italics be italics, not underlines
     
@@ -158,73 +159,73 @@
     \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
 \def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
 
-\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
 \expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
-\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
-\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
 \expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
-\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
-\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
-\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
-\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
-\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
-\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
-\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
-\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
-\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
-\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
-\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
-\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
-\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
-\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
-\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
-\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
-\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
-\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
-\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
-\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 
 \def\PYZbs{\char`\\}
 \def\PYZus{\char`\_}
@@ -288,7 +289,7 @@ Problem}\label{myrange-and-mylinspace-problem}
 \subsubsection{Part 1}\label{part-1}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{struct} \PY{n}{MyRange}
+{\color{incolor}In [{\color{incolor}1}]:} \PY{n}{struct} \PY{n}{MyRange}
             \PY{n}{start}
             \PY{n}{step}
             \PY{n}{stop}
@@ -304,115 +305,92 @@ Problem}\label{myrange-and-mylinspace-problem}
         \PY{k}{end}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}8}]:} \_MyRange (generic function with 1 method)
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}1}]:} \_MyRange (generic function with 1 method)
 \end{Verbatim}
-        
+            
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{a} \PY{o}{=} \PY{n}{MyRange}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{a} \PY{o}{=} \PY{n}{MyRange}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{)}
         \PY{n}{\PYZus{}MyRange}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)} \PY{o}{==} \PY{p}{(}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{2}\PY{o}{:}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{]}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}9}]:} true
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}2}]:} true
 \end{Verbatim}
-        
+            
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{Base}\PY{o}{.}\PY{n}{getindex}\PY{p}{(}\PY{n}{a}\PY{o}{::}\PY{n}{MyRange}\PY{p}{,}\PY{n}{i}\PY{o}{::}\PY{k+kt}{Int}\PY{p}{)} \PY{o}{=} \PY{n}{\PYZus{}MyRange}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{i}\PY{p}{)}
-         \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{]}
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{Base}\PY{o}{.}\PY{n}{getindex}\PY{p}{(}\PY{n}{a}\PY{o}{::}\PY{n}{MyRange}\PY{p}{,}\PY{n}{i}\PY{o}{::}\PY{k+kt}{Int}\PY{p}{)} \PY{o}{=} \PY{n}{\PYZus{}MyRange}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{i}\PY{p}{)}
+        \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{]}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}12}]:} 9
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:} 9
 \end{Verbatim}
-        
+            
     \subsubsection{Part 2}\label{part-2}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}13}]:} \PY{o}{?}\PY{n}{linspace}
-\end{Verbatim}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-search: \textbf{l}\textbf{i}\textbf{n}\textbf{s}\textbf{p}\textbf{a}\textbf{c}\textbf{e} \textbf{L}\textbf{i}\textbf{n}\textbf{S}\textbf{p}\textbf{a}\textbf{c}\textbf{e}
-
-
-    \end{Verbatim}
-\texttt{\color{outcolor}Out[{\color{outcolor}13}]:}
-    
-    \begin{verbatim}
-linspace(start, stop, n=50)
-\end{verbatim}
-
-Construct a range of \texttt{n} linearly spaced elements from
-\texttt{start} to \texttt{stop}.
-
-\begin{verbatim}
-julia> linspace(1.3,2.9,9)
-1.3:0.2:2.9
-\end{verbatim}
-
-    
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{struct} \PY{n}{MyLinSpace}
-             \PY{n}{start}
-             \PY{n}{stop}
-             \PY{n}{n}
-         \PY{k}{end}
-         
-         \PY{k}{function} \PY{n}{Base}\PY{o}{.}\PY{n}{getindex}\PY{p}{(}\PY{n}{a}\PY{o}{::}\PY{n}{MyLinSpace}\PY{p}{,}\PY{n}{i}\PY{o}{::}\PY{k+kt}{Int}\PY{p}{)}
-             \PY{n}{dx} \PY{o}{=} \PY{p}{(}\PY{n}{a}\PY{o}{.}\PY{n}{stop}\PY{o}{\PYZhy{}}\PY{n}{a}\PY{o}{.}\PY{n}{start}\PY{p}{)}\PY{o}{/}\PY{n}{a}\PY{o}{.}\PY{n}{n}
-             \PY{n}{a}\PY{o}{.}\PY{n}{start} \PY{o}{+} \PY{n}{dx}\PY{o}{*}\PY{p}{(}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
-         \PY{k}{end}
-\end{Verbatim}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}26}]:} \PY{n}{l} \PY{o}{=} \PY{n}{MyLinSpace}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{50}\PY{p}{)}
-         \PY{n}{l}\PY{p}{[}\PY{l+m+mi}{6}\PY{p}{]}
-\end{Verbatim}
-
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}26}]:} 1.1
-\end{Verbatim}
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{struct} \PY{n}{MyLinSpace}
+            \PY{n}{start}
+            \PY{n}{stop}
+            \PY{n}{n}
+        \PY{k}{end}
         
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}27}]:} \PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{50}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{6}\PY{p}{]}
+        \PY{k}{function} \PY{n}{Base}\PY{o}{.}\PY{n}{getindex}\PY{p}{(}\PY{n}{a}\PY{o}{::}\PY{n}{MyLinSpace}\PY{p}{,}\PY{n}{i}\PY{o}{::}\PY{k+kt}{Int}\PY{p}{)}
+            \PY{n}{dx} \PY{o}{=} \PY{p}{(}\PY{n}{a}\PY{o}{.}\PY{n}{stop}\PY{o}{\PYZhy{}}\PY{n}{a}\PY{o}{.}\PY{n}{start}\PY{p}{)}\PY{o}{/}\PY{n}{a}\PY{o}{.}\PY{n}{n}
+            \PY{n}{a}\PY{o}{.}\PY{n}{start} \PY{o}{+} \PY{n}{dx}\PY{o}{*}\PY{p}{(}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{k}{end}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}27}]:} 1.1020408163265305
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{l} \PY{o}{=} \PY{n}{MyLinSpace}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{50}\PY{p}{)}
+        \PY{n}{l}\PY{p}{[}\PY{l+m+mi}{6}\PY{p}{]}
 \end{Verbatim}
-        
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}6}]:} 1.1
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{stop}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{length}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{6}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}11}]:} 1.1020408163265305
+\end{Verbatim}
+            
     \subsubsection{Part 3}\label{part-3}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}29}]:} \PY{p}{(}\PY{n}{a}\PY{o}{::}\PY{n}{MyRange}\PY{p}{)}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{=} \PY{n}{a}\PY{o}{.}\PY{n}{start} \PY{o}{+} \PY{n}{a}\PY{o}{.}\PY{n}{step}\PY{o}{*}\PY{p}{(}\PY{n}{x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}12}]:} \PY{p}{(}\PY{n}{a}\PY{o}{::}\PY{n}{MyRange}\PY{p}{)}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{=} \PY{n}{a}\PY{o}{.}\PY{n}{start} \PY{o}{+} \PY{n}{a}\PY{o}{.}\PY{n}{step}\PY{o}{*}\PY{p}{(}\PY{n}{x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
          \PY{n}{a} \PY{o}{=} \PY{n}{MyRange}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{)}
          \PY{n}{a}\PY{p}{(}\PY{l+m+mf}{1.1}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}29}]:} 1.2000000000000002
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:} 1.2000000000000002
 \end{Verbatim}
-        
+            
     \subsubsection{Part 4}\label{part-4}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}32}]:} \PY{k}{using} \PY{n}{Unitful}
+{\color{incolor}In [{\color{incolor}17}]:} \PY{k}{using} \PY{n}{Unitful}
          \PY{n}{a} \PY{o}{=} \PY{n}{MyRange}\PY{p}{(}\PY{l+m+mi}{1}\PY{n}{u}\PY{l+s}{\PYZdq{}}\PY{l+s}{k}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+m+mi}{2}\PY{n}{u}\PY{l+s}{\PYZdq{}}\PY{l+s}{k}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+m+mi}{20}\PY{n}{u}\PY{l+s}{\PYZdq{}}\PY{l+s}{k}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{)}
          \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{]}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}32}]:} 9 kg
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}17}]:} 9 kg
 \end{Verbatim}
-        
-    \begin{Verbatim}[commandchars=\\\{\}]
-search: \textbf{e}\textbf{n}\textbf{d} \textbf{e}\textbf{n}\textbf{d}of \textbf{e}\textbf{n}\textbf{d}swith \textbf{E}\textbf{N}\textbf{D}IAN\_BOM s\textbf{e}\textbf{n}\textbf{d} app\textbf{e}\textbf{n}\textbf{d}! Quot\textbf{e}\textbf{N}o\textbf{d}e Rang\textbf{e}I\textbf{n}\textbf{d}ex g\textbf{e}ti\textbf{n}\textbf{d}ex
-
-
-    \end{Verbatim}
-
+            
     \subsection{Operator Problem}\label{operator-problem}
 
     \begin{Verbatim}[commandchars=\\\{\}]
@@ -431,11 +409,13 @@ search: \textbf{e}\textbf{n}\textbf{d} \textbf{e}\textbf{n}\textbf{d}of \textbf{
          \PY{n}{Base}\PY{o}{.}\PY{o}{:}\PY{o}{*}\PY{p}{(}\PY{n}{A}\PY{o}{::}\PY{n}{StrangMatrix}\PY{p}{,}\PY{n}{B}\PY{o}{::}\PY{k+kt}{AbstractVector}\PY{p}{)} \PY{o}{=} \PY{p}{(}\PY{n}{C} \PY{o}{=} \PY{n}{similar}\PY{p}{(}\PY{n}{B}\PY{p}{)}\PY{p}{;} \PY{n}{A\PYZus{}mul\PYZus{}B!}\PY{p}{(}\PY{n}{C}\PY{p}{,}\PY{n}{A}\PY{p}{,}\PY{n}{B}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}38}]:} \PY{n}{A}\PY{o}{*}\PY{n}{ones}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}38}]:} 10-element Array\{Float64,1\}:
           -1.0
            0.0
@@ -448,7 +428,7 @@ search: \textbf{e}\textbf{n}\textbf{d} \textbf{e}\textbf{n}\textbf{d}of \textbf{
            0.0
           -1.0
 \end{Verbatim}
-        
+            
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}64}]:} \PY{n}{struct} \PY{n}{SizedStrangMatrix}
              \PY{n}{size}
@@ -459,11 +439,13 @@ search: \textbf{e}\textbf{n}\textbf{d} \textbf{e}\textbf{n}\textbf{d}of \textbf{
          \PY{n}{Base}\PY{o}{.}\PY{n}{size}\PY{p}{(}\PY{n}{A}\PY{o}{::}\PY{n}{SizedStrangMatrix}\PY{p}{,}\PY{n}{i}\PY{o}{::}\PY{k+kt}{Int}\PY{p}{)} \PY{o}{=} \PY{n}{A}\PY{o}{.}\PY{n}{size}\PY{p}{[}\PY{n}{i}\PY{p}{]}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}65}]:} \PY{n}{b} \PY{o}{=} \PY{n}{sin}\PY{o}{.}\PY{p}{(}\PY{l+m+mi}{0}\PY{o}{:}\PY{l+m+mf}{0.1}\PY{o}{:}\PY{l+m+mi}{2}\PY{n+nb}{π}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}65}]:} 63-element Array\{Float64,1\}:
            0.0      
            0.0998334
@@ -492,7 +474,7 @@ search: \textbf{e}\textbf{n}\textbf{d} \textbf{e}\textbf{n}\textbf{d}of \textbf{
           -0.182163 
           -0.0830894
 \end{Verbatim}
-        
+            
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}66}]:} \PY{n}{A} \PY{o}{=} \PY{n}{SizedStrangMatrix}\PY{p}{(}\PY{p}{(}\PY{n}{length}\PY{p}{(}\PY{n}{b}\PY{p}{)}\PY{p}{,}\PY{n}{length}\PY{p}{(}\PY{n}{b}\PY{p}{)}\PY{p}{)}\PY{p}{)}
          
@@ -507,12 +489,14 @@ search: \textbf{e}\textbf{n}\textbf{d} \textbf{e}\textbf{n}\textbf{d}of \textbf{
          \PY{n}{Base}\PY{o}{.}\PY{o}{:}\PY{o}{*}\PY{p}{(}\PY{n}{A}\PY{o}{::}\PY{n}{SizedStrangMatrix}\PY{p}{,}\PY{n}{B}\PY{o}{::}\PY{k+kt}{AbstractVector}\PY{p}{)} \PY{o}{=} \PY{p}{(}\PY{n}{C} \PY{o}{=} \PY{n}{similar}\PY{p}{(}\PY{n}{B}\PY{p}{)}\PY{p}{;} \PY{n}{A\PYZus{}mul\PYZus{}B!}\PY{p}{(}\PY{n}{C}\PY{p}{,}\PY{n}{A}\PY{p}{,}\PY{n}{B}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}73}]:} \PY{k}{using} \PY{n}{IterativeSolvers}
          \PY{n}{x} \PY{o}{=} \PY{n}{gmres}\PY{p}{(}\PY{n}{A}\PY{p}{,}\PY{n}{b}\PY{p}{,}\PY{n}{tol}\PY{o}{=}\PY{l+m+mf}{1e\PYZhy{}14}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}73}]:} 63-element Array\{Float64,1\}:
             -9.75574
            -19.5118 
@@ -541,12 +525,13 @@ search: \textbf{e}\textbf{n}\textbf{d} \textbf{e}\textbf{n}\textbf{d}of \textbf{
             19.6511 
              9.86787
 \end{Verbatim}
-        
+            
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}75}]:} \PY{n}{A}\PY{o}{*}\PY{n}{x} \PY{o}{\PYZhy{}} \PY{n}{b}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}75}]:} 63-element Array\{Float64,1\}:
           -0.000289122
           -0.000548773
@@ -575,37 +560,87 @@ search: \textbf{e}\textbf{n}\textbf{d} \textbf{e}\textbf{n}\textbf{d}of \textbf{
           -0.000461939
           -0.00158795 
 \end{Verbatim}
-        
+            
     \subsection{Regression Problem}\label{regression-problem}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{c}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{} Prepare Data}
-        
-        \PY{n}{X} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}               \PY{c}{\PYZsh{} feature matrix}
-        \PY{n}{a0} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}                    \PY{c}{\PYZsh{} ground truths}
-        \PY{n}{y} \PY{o}{=} \PY{n}{X} \PY{o}{*} \PY{n}{a0} \PY{o}{+} \PY{l+m+mf}{0.1} \PY{o}{*} \PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{;}  \PY{c}{\PYZsh{} generate response}
-        
-        \PY{n}{X2} \PY{o}{=} \PY{n}{hcat}\PY{p}{(}\PY{n}{X}\PY{p}{,}\PY{n}{ones}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{)}
-        \PY{n}{println}\PY{p}{(}\PY{n}{X2}\PY{o}{\PYZbs{}}\PY{n}{y}\PY{p}{)}
-        
-        \PY{k}{using} \PY{n}{MultivariateStats}
-        \PY{n}{println}\PY{p}{(}\PY{n}{llsq}\PY{p}{(}\PY{n}{X}\PY{p}{,}\PY{n}{y}\PY{p}{)}\PY{p}{)}
-        
-        \PY{k}{using} \PY{n}{DataFrames}\PY{p}{,} \PY{n}{GLM}
-        \PY{n}{data} \PY{o}{=} \PY{n}{DataFrame}\PY{p}{(}\PY{n}{X1}\PY{o}{=}\PY{n}{X}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{X2}\PY{o}{=}\PY{n}{X}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{n}{X3}\PY{o}{=}\PY{n}{X}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{,}\PY{n}{Y}\PY{o}{=}\PY{n}{y}\PY{p}{)}
-        \PY{n}{OLS} \PY{o}{=} \PY{n}{lm}\PY{p}{(}\PY{n+nd}{@formula}\PY{p}{(}\PY{n}{Y} \PY{o}{\PYZti{}} \PY{n}{X1} \PY{o}{+} \PY{n}{X2} \PY{o}{+} \PY{n}{X3}\PY{p}{)}\PY{p}{,} \PY{n}{data}\PY{p}{)}
-        
-        
-        \PY{n}{X} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{;}
-        \PY{n}{y} \PY{o}{=} \PY{l+m+mi}{2}\PY{n}{X}  \PY{o}{+} \PY{l+m+mf}{0.1} \PY{o}{*} \PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{;}
-        
-        \PY{k}{using} \PY{n}{Plots}
-        \PY{n}{b} \PY{o}{=} \PY{n}{X}\PY{o}{\PYZbs{}}\PY{n}{y}
-        \PY{n}{println}\PY{p}{(}\PY{n}{b}\PY{p}{)}
-        \PY{n}{gr}\PY{p}{(}\PY{p}{)}
-        \PY{n}{scatter}\PY{p}{(}\PY{n}{X}\PY{p}{,}\PY{n}{y}\PY{p}{)}
-        \PY{n}{Plots}\PY{o}{.}\PY{n}{abline!}\PY{p}{(}\PY{n}{b}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+m+mf}{0.0}\PY{p}{,} \PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)} \PY{c}{\PYZsh{} Slope,Intercept}
+{\color{incolor}In [{\color{incolor}22}]:} \PY{c}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{} Prepare Data}
+         
+         \PY{n}{X} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}               \PY{c}{\PYZsh{} feature matrix}
+         \PY{n}{a0} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}                    \PY{c}{\PYZsh{} ground truths}
+         \PY{n}{y} \PY{o}{=} \PY{n}{X} \PY{o}{*} \PY{n}{a0} \PY{o}{+} \PY{l+m+mf}{0.1} \PY{o}{*} \PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{;}  \PY{c}{\PYZsh{} generate response}
+         
+         \PY{n}{X2} \PY{o}{=} \PY{n}{hcat}\PY{p}{(}\PY{n}{X}\PY{p}{,}\PY{n}{ones}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{)}
+         \PY{n}{println}\PY{p}{(}\PY{n}{X2}\PY{o}{\PYZbs{}}\PY{n}{y}\PY{p}{)}
+         
+         \PY{k}{using} \PY{n}{MultivariateStats}
+         \PY{n}{println}\PY{p}{(}\PY{n}{llsq}\PY{p}{(}\PY{n}{X}\PY{p}{,}\PY{n}{y}\PY{p}{)}\PY{p}{)}
+         
+         \PY{k}{using} \PY{n}{DataFrames}\PY{p}{,} \PY{n}{GLM}
+         \PY{n}{data} \PY{o}{=} \PY{n}{DataFrame}\PY{p}{(}\PY{n}{X1}\PY{o}{=}\PY{n}{X}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{X2}\PY{o}{=}\PY{n}{X}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{n}{X3}\PY{o}{=}\PY{n}{X}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{,}\PY{n}{Y}\PY{o}{=}\PY{n}{y}\PY{p}{)}
+         \PY{n}{OLS} \PY{o}{=} \PY{n}{lm}\PY{p}{(}\PY{n+nd}{@formula}\PY{p}{(}\PY{n}{Y} \PY{o}{\PYZti{}} \PY{n}{X1} \PY{o}{+} \PY{n}{X2} \PY{o}{+} \PY{n}{X3}\PY{p}{)}\PY{p}{,} \PY{n}{data}\PY{p}{)}
+         
+         
+         \PY{n}{X} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{;}
+         \PY{n}{y} \PY{o}{=} \PY{l+m+mi}{2}\PY{n}{X}  \PY{o}{+} \PY{l+m+mf}{0.1} \PY{o}{*} \PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{;}
+         
+         \PY{k}{using} \PY{n}{Plots}
+         \PY{n}{b} \PY{o}{=} \PY{n}{X}\PY{o}{\PYZbs{}}\PY{n}{y}
+         \PY{n}{println}\PY{p}{(}\PY{n}{b}\PY{p}{)}
+         \PY{n}{gr}\PY{p}{(}\PY{p}{)}
+         \PY{n}{scatter}\PY{p}{(}\PY{n}{X}\PY{p}{,}\PY{n}{y}\PY{p}{)}
+         \PY{n}{Plots}\PY{o}{.}\PY{n}{abline!}\PY{p}{(}\PY{n}{b}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+m+mf}{0.0}\PY{p}{,} \PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)} \PY{c}{\PYZsh{} Slope,Intercept}
 \end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[0.884998, 0.688704, 0.0893688, -0.00223216]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+┌ Info: Precompiling MultivariateStats [6f286f6a-111f-5878-ab1e-185364afe411]
+└ @ Base loading.jl:1186
+ERROR: LoadError: UndefVarError: LinAlg not defined
+Stacktrace:
+ [1] include at ./boot.jl:317 [inlined]
+ [2] include\_relative(::Module, ::String) at ./loading.jl:1038
+ [3] include(::Module, ::String) at ./sysimg.jl:29
+ [4] top-level scope at none:2
+ [5] eval at ./boot.jl:319 [inlined]
+ [6] eval(::Expr) at ./client.jl:389
+ [7] top-level scope at ./none:3
+in expression starting at /home/chrisrackauckas/.julia/packages/MultivariateStats/wGpiN/src/MultivariateStats.jl:8
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        Failed to precompile MultivariateStats [6f286f6a-111f-5878-ab1e-185364afe411] to /home/chrisrackauckas/.julia/compiled/v1.0/MultivariateStats/l7I74.ji.
+
+        
+
+        Stacktrace:
+
+         [1] error(::String) at ./error.jl:33
+
+         [2] macro expansion at ./logging.jl:313 [inlined]
+
+         [3] compilecache(::Base.PkgId, ::String) at ./loading.jl:1184
+
+         [4] macro expansion at ./logging.jl:311 [inlined]
+
+         [5] \_require(::Base.PkgId) at ./loading.jl:941
+
+         [6] require(::Base.PkgId) at ./loading.jl:852
+
+         [7] macro expansion at ./logging.jl:311 [inlined]
+
+         [8] require(::Module, ::Symbol) at ./loading.jl:834
+
+         [9] top-level scope at In[22]:10
+
+    \end{Verbatim}
 
     \subsection{Type Hierarchy Problem}\label{type-hierarchy-problem}
 
@@ -631,13 +666,15 @@ search: \textbf{e}\textbf{n}\textbf{d} \textbf{e}\textbf{n}\textbf{d}of \textbf{
          \PY{n}{person\PYZus{}info}\PY{p}{(}\PY{n}{s}\PY{o}{::}\PY{n}{AbstractStudent}\PY{p}{)} \PY{o}{=} \PY{p}{(}\PY{n}{println}\PY{p}{(}\PY{n}{s}\PY{o}{.}\PY{n}{name}\PY{p}{)}\PY{p}{;} \PY{n}{println}\PY{p}{(}\PY{n}{s}\PY{o}{.}\PY{n}{grade}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}80}]:} person\_info (generic function with 2 methods)
 \end{Verbatim}
-        
+            
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}78}]:} \PY{n}{person\PYZus{}info}\PY{p}{(}\PY{n}{Person}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{o}\PY{l+s}{b}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
+
 
     \begin{Verbatim}[commandchars=\\\{\}]
 Bob
@@ -648,6 +685,7 @@ Bob
 {\color{incolor}In [{\color{incolor}81}]:} \PY{n}{person\PYZus{}info}\PY{p}{(}\PY{n}{Student}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{o}\PY{l+s}{b}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
 Bob
 2
@@ -657,6 +695,7 @@ Bob
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}82}]:} \PY{n}{person\PYZus{}info}\PY{p}{(}\PY{n}{GraduateStudent}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{o}\PY{l+s}{b}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
+
 
     \begin{Verbatim}[commandchars=\\\{\}]
 Bob
@@ -674,23 +713,38 @@ Solution is from:
 https://github.com/joshday/Talks/blob/master/SLG2016\_IntroToJulia/Slides.ipynb
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{k}{function} \PY{n}{myquantile}\PY{p}{(}\PY{n}{d}\PY{o}{::}\PY{n}{UnivariateDistribution}\PY{p}{,} \PY{n}{q}\PY{o}{::}\PY{k+kt}{Number}\PY{p}{)}
-            \PY{n}{θ} \PY{o}{=} \PY{n}{mean}\PY{p}{(}\PY{n}{d}\PY{p}{)}
-            \PY{n}{tol} \PY{o}{=} \PY{n+nb}{Inf}
-            \PY{k}{while} \PY{n}{tol} \PY{o}{\PYZgt{}} \PY{l+m+mf}{1e\PYZhy{}5}
-                \PY{n}{θold} \PY{o}{=} \PY{n}{θ}
-                \PY{n}{θ} \PY{o}{=} \PY{n}{θ} \PY{o}{\PYZhy{}} \PY{p}{(}\PY{n}{cdf}\PY{p}{(}\PY{n}{d}\PY{p}{,} \PY{n}{θ}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{q}\PY{p}{)} \PY{o}{/} \PY{n}{pdf}\PY{p}{(}\PY{n}{d}\PY{p}{,} \PY{n}{θ}\PY{p}{)}
-                \PY{n}{tol} \PY{o}{=} \PY{n}{abs}\PY{p}{(}\PY{n}{θold} \PY{o}{\PYZhy{}} \PY{n}{θ}\PY{p}{)}
-            \PY{k}{end}
-            \PY{n}{θ}
-        \PY{k}{end}
-        
-        \PY{k}{for} \PY{n}{dist} \PY{k+kp}{in} \PY{p}{[}\PY{n}{Gamma}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{Normal}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{Beta}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{]}
-            \PY{n+nd}{@show} \PY{n}{myquantile}\PY{p}{(}\PY{n}{dist}\PY{p}{,} \PY{o}{.}\PY{l+m+mi}{75}\PY{p}{)}
-            \PY{n+nd}{@show} \PY{n}{quantile}\PY{p}{(}\PY{n}{dist}\PY{p}{,} \PY{o}{.}\PY{l+m+mi}{75}\PY{p}{)}
-            \PY{n}{println}\PY{p}{(}\PY{p}{)}
-        \PY{k}{end}
+{\color{incolor}In [{\color{incolor}27}]:} \PY{k}{using} \PY{n}{Distributions}
+         \PY{k}{function} \PY{n}{myquantile}\PY{p}{(}\PY{n}{d}\PY{o}{::}\PY{n}{UnivariateDistribution}\PY{p}{,} \PY{n}{q}\PY{o}{::}\PY{k+kt}{Number}\PY{p}{)}
+             \PY{n}{θ} \PY{o}{=} \PY{n}{mean}\PY{p}{(}\PY{n}{d}\PY{p}{)}
+             \PY{n}{tol} \PY{o}{=} \PY{n+nb}{Inf}
+             \PY{k}{while} \PY{n}{tol} \PY{o}{\PYZgt{}} \PY{l+m+mf}{1e\PYZhy{}5}
+                 \PY{n}{θold} \PY{o}{=} \PY{n}{θ}
+                 \PY{n}{θ} \PY{o}{=} \PY{n}{θ} \PY{o}{\PYZhy{}} \PY{p}{(}\PY{n}{cdf}\PY{p}{(}\PY{n}{d}\PY{p}{,} \PY{n}{θ}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{q}\PY{p}{)} \PY{o}{/} \PY{n}{pdf}\PY{p}{(}\PY{n}{d}\PY{p}{,} \PY{n}{θ}\PY{p}{)}
+                 \PY{n}{tol} \PY{o}{=} \PY{n}{abs}\PY{p}{(}\PY{n}{θold} \PY{o}{\PYZhy{}} \PY{n}{θ}\PY{p}{)}
+             \PY{k}{end}
+             \PY{n}{θ}
+         \PY{k}{end}
+         
+         \PY{k}{for} \PY{n}{dist} \PY{k+kp}{in} \PY{p}{[}\PY{n}{Gamma}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{Normal}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{Beta}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{]}
+             \PY{n+nd}{@show} \PY{n}{myquantile}\PY{p}{(}\PY{n}{dist}\PY{p}{,} \PY{o}{.}\PY{l+m+mi}{75}\PY{p}{)}
+             \PY{n+nd}{@show} \PY{n}{quantile}\PY{p}{(}\PY{n}{dist}\PY{p}{,} \PY{o}{.}\PY{l+m+mi}{75}\PY{p}{)}
+             \PY{n}{println}\PY{p}{(}\PY{p}{)}
+         \PY{k}{end}
 \end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+myquantile(dist, 0.75) = 6.274430698436519
+quantile(dist, 0.75) = 6.2744306984446885
+
+myquantile(dist, 0.75) = 0.6744897501960708
+quantile(dist, 0.75) = 0.6744897501960818
+
+myquantile(dist, 0.75) = 0.45418056477357555
+quantile(dist, 0.75) = 0.4541805647736157
+
+
+    \end{Verbatim}
 
 
     % Add a bibliography block to the postdoc

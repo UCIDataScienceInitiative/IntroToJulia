@@ -15,8 +15,8 @@
     
     
     \usepackage[T1]{fontenc}
-    % Nicer default font than Computer Modern for most use cases
-    \usepackage{palatino}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
 
     % Basic figure setup, for now with no caption control since it's done
     % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
@@ -62,6 +62,7 @@
     \usepackage{hyperref}
     \usepackage{longtable} % longtable support required by pandoc >1.10
     \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
     \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
                                 % normalem makes italics be italics, not underlines
     
@@ -158,73 +159,73 @@
     \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
 \def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
 
-\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
 \expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
-\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
-\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
 \expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
-\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
-\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
-\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
-\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
-\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
-\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
-\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
-\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
-\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
-\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
-\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
-\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
-\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
-\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
-\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
-\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
-\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
-\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
-\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
-\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 
 \def\PYZbs{\char`\\}
 \def\PYZus{\char`\_}
@@ -294,7 +295,8 @@ array. For example, we can apply the anonymous function
 {\color{incolor}In [{\color{incolor}1}]:} \PY{n}{map}\PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{x}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{5}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}1}]:} 5-element Array\{Int64,1\}:
           1
           4
@@ -302,10 +304,10 @@ array. For example, we can apply the anonymous function
          16
          25
 \end{Verbatim}
-        
-    The \texttt{broadcast} operation is similar except it is for ``elements
-which have a shape'' and it will ``broadcast the shaped objects to a
-common size by expanding singleton dimensions''. For example, the
+            
+    The \texttt{broadcast} operation is similar except it is for "elements
+which have a shape" and it will "broadcast the shaped objects to a
+common size by expanding singleton dimensions". For example, the
 following broadcast's \texttt{+} onto \texttt{A} and \texttt{B}:
 
     \begin{Verbatim}[commandchars=\\\{\}]
@@ -318,7 +320,8 @@ following broadcast's \texttt{+} onto \texttt{A} and \texttt{B}:
         \PY{n}{broadcast}\PY{p}{(}\PY{o}{+}\PY{p}{,}\PY{n}{A}\PY{p}{,}\PY{n}{B}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}2}]:} 5×2 Array\{Int64,2\}:
           2   3
           5   6
@@ -326,7 +329,7 @@ following broadcast's \texttt{+} onto \texttt{A} and \texttt{B}:
          11  12
          14  15
 \end{Verbatim}
-        
+            
     If \texttt{A} and \texttt{B} are the same size, then broadcasting is the
 same as mapping.
 
@@ -345,7 +348,8 @@ and broadcast operators by \texttt{.+} and related. For example:
         \PY{n}{A}\PY{o}{.*}\PY{n}{B}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}3}]:} 5-element Array\{Int64,1\}:
           2
           6
@@ -353,12 +357,12 @@ and broadcast operators by \texttt{.+} and related. For example:
          20
          30
 \end{Verbatim}
-        
-    People coming from MATLAB might recognize this as ``element-wise
-multiplication''. If this was a basic introduction to Julia, I'd say
-this was element-wise multiplication and be done with it. However, this
-is the non-trivial introduction. {[}Note: Some of this is not true right
-now (v0.5) but is becoming true\ldots{}{]}.
+            
+    People coming from MATLAB might recognize this as "element-wise
+multiplication". If this was a basic introduction to Julia, I'd say this
+was element-wise multiplication and be done with it. However, this is
+the non-trivial introduction. {[}Note: Some of this is not true right
+now (v0.5) but is becoming true...{]}.
 
 While it looks the same to the user, the implementation is very
 different In MATLAB and earlier versions of Julia, \texttt{.*} was an
@@ -372,7 +376,8 @@ being a function, and \texttt{A.*B} calling this function. However, if
         \PY{n}{A}\PY{o}{.*}\PY{n}{B}\PY{o}{.*}\PY{n}{C}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}4}]:} 5-element Array\{Int64,1\}:
           6
          24
@@ -380,21 +385,21 @@ being a function, and \texttt{A.*B} calling this function. However, if
          40
          30
 \end{Verbatim}
-        
+            
     the operation \texttt{A.*B.*C} actually expands into
 \texttt{.*(A,.*(B,C))}. Let's think of how we'd implement \texttt{.*}.
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
 \paragraph{Question 1}\label{question-1}
 
 How would you implement \texttt{broadcast\_mult} as a function (not
 using broadcast)? Don't peak below!
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{function} \PY{n}{broadcast\PYZus{}mult}\PY{p}{\PYZob{}}\PY{n}{T}\PY{o}{\PYZlt{}:}\PY{k+kt}{Number}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{,}\PY{n}{y}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}5}]:} \PY{k}{function} \PY{n}{broadcast\PYZus{}mult}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{,}\PY{n}{y}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{)} \PY{n}{where} \PY{p}{\PYZob{}}\PY{n}{T}\PY{o}{\PYZlt{}:}\PY{k+kt}{Number}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}
             \PY{n}{output} \PY{o}{=} \PY{n}{similar}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{c}{\PYZsh{} Makes an array of similar size and shape as x}
             \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{n}{eachindex}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{c}{\PYZsh{} Let the iterator choose the fast linear indexing for x}
                 \PY{n}{output}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{p}{[}\PY{n}{i}\PY{p}{]}
@@ -403,10 +408,11 @@ using broadcast)? Don't peak below!
         \PY{k}{end}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}1}]:} broadcast\_mult (generic function with 1 method)
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}5}]:} broadcast\_mult (generic function with 1 method)
 \end{Verbatim}
-        
+            
     Notice that \texttt{broadcast\_mult} creates an array every time it is
 called. Therefore a naive approach where \texttt{.*} is a function
 creates two arrays in the call \texttt{A.*B.*C}. We saw earlier that
@@ -414,7 +420,7 @@ reducing memory allocations leads to vastly improved performance, so a
 better implementation would be to do this all together as one loop:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}2}]:} \PY{k}{function} \PY{n}{broadcast\PYZus{}mult}\PY{p}{\PYZob{}}\PY{n}{T}\PY{o}{\PYZlt{}:}\PY{k+kt}{Number}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{,}\PY{n}{y}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{,}\PY{n}{z}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}6}]:} \PY{k}{function} \PY{n}{broadcast\PYZus{}mult}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{,}\PY{n}{y}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{,}\PY{n}{z}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{)} \PY{n}{where} \PY{p}{\PYZob{}}\PY{n}{T}\PY{o}{\PYZlt{}:}\PY{k+kt}{Number}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}
             \PY{n}{output} \PY{o}{=} \PY{n}{similar}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{c}{\PYZsh{} Makes an array of similar size and shape as x}
             \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{n}{eachindex}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{c}{\PYZsh{} Let the iterator choose the fast linear indexing for x}
                 \PY{n}{output}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{*}\PY{n}{y}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{*}\PY{n}{z}\PY{p}{[}\PY{n}{i}\PY{p}{]}
@@ -423,67 +429,71 @@ better implementation would be to do this all together as one loop:
         \PY{k}{end}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}2}]:} broadcast\_mult (generic function with 2 methods)
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}6}]:} broadcast\_mult (generic function with 2 methods)
 \end{Verbatim}
-        
+            
     (but notice this doesn't really work because now \texttt{.*} isn't a
 binary operator and therefore the inline syntax won't work). This
-optimization is known as ``loop fusing''. Julia does this by searching
-for all of the broadcasts in a line and putting them together into one
+optimization is known as "loop fusing". Julia does this by searching for
+all of the broadcasts in a line and putting them together into one
 broadcast statement during parsing time. Therefore, in Julia
 \texttt{A.*B.*C} creates an anonymous function and broadcasts on it,
 like
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{broadcast}\PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{n}{z}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{x}\PY{o}{*}\PY{n}{y}\PY{o}{*}\PY{n}{z}\PY{p}{,}\PY{n}{A}\PY{p}{,}\PY{n}{B}\PY{p}{,}\PY{n}{C}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{broadcast}\PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{n}{z}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{x}\PY{o}{*}\PY{n}{y}\PY{o}{*}\PY{n}{z}\PY{p}{,}\PY{n}{A}\PY{p}{,}\PY{n}{B}\PY{p}{,}\PY{n}{C}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}6}]:} 5-element Array\{Int64,1\}:
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:} 5-element Array\{Int64,1\}:
           6
          24
          60
          40
          30
 \end{Verbatim}
-        
+            
     Notice that this is equivalent to our 1-loop solution. However, because
 all array-based math uses this broadcasting syntax with a \texttt{.},
 Julia can fuse the broadcasts on all sorts of mathematical expressions
 on arrays:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{A}\PY{o}{.*}\PY{n}{B}\PY{o}{.*}\PY{n}{sin}\PY{o}{.}\PY{p}{(}\PY{n}{C}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{A}\PY{o}{.*}\PY{n}{B}\PY{o}{.*}\PY{n}{sin}\PY{o}{.}\PY{p}{(}\PY{n}{C}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}7}]:} 5-element Array\{Float64,1\}:
-           0.28224
-          -4.54081
-         -11.5071 
-          18.1859 
-          25.2441 
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}8}]:} 5-element Array\{Float64,1\}:
+           0.2822400161197344
+          -4.540814971847569 
+         -11.507091295957661 
+          18.185948536513635 
+          25.244129544236895 
 \end{Verbatim}
-        
+            
     One last thing to note is that we can also broadcast \texttt{=}. This
-would be the same thing is as the loop \texttt{A{[}i{]} = ...} and thus
-requires the array \texttt{A} to already be define. Thus for example, if
-we let
+would be the same thing is as the loop \texttt{A{[}i{]}\ =\ ...} and
+thus requires the array \texttt{A} to already be define. Thus for
+example, if we let
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{D} \PY{o}{=} \PY{n}{similar}\PY{p}{(}\PY{n}{C}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{D} \PY{o}{=} \PY{n}{similar}\PY{p}{(}\PY{n}{C}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}8}]:} 5-element Array\{Int64,1\}:
-         140367029183112
-         140367029182920
-         140367028220392
-         140367028363256
-         140367029820536
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}9}]:} 5-element Array\{Int64,1\}:
+         140629431143280
+         140629431143312
+         140629431143344
+         140629431144592
+         140629431144432
 \end{Verbatim}
-        
+            
     then the operation (Using \texttt{@btime} in BenchmarkTools.jl to get an
 accurate measurement)
 
@@ -492,12 +502,13 @@ accurate measurement)
          \PY{n+nd}{@btime} \PY{n}{D}\PY{o}{.=}\PY{n}{A}\PY{o}{.*}\PY{n}{B}\PY{o}{.*}\PY{n}{C}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
-  358.029 ns (4 allocations: 112 bytes)
+  542.553 ns (4 allocations: 96 bytes)
 
     \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}10}]:} 5-element Array\{Int64,1\}:
            6
           24
@@ -505,7 +516,7 @@ accurate measurement)
           40
           30
 \end{Verbatim}
-        
+            
     does not allocate any arrays. Reducing temporary array allocations is
 one way Julia outperforms other scientific computing languages.
 
@@ -525,13 +536,14 @@ get the first three elements by \texttt{1:3}:
          \PY{n}{A}\PY{p}{[}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{3}\PY{p}{]} \PY{c}{\PYZsh{} Take the top left 3\PYZhy{}3 matrix}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}11}]:} 3×3 Array\{Float64,2\}:
-          0.477756  0.767096  0.555022
-          0.962542  0.474019  0.227217
-          0.431555  0.981847  0.551405
+          0.387462  0.13318   0.355203
+          0.565691  0.881769  0.243633
+          0.281771  0.618909  0.281218
 \end{Verbatim}
-        
+            
     Note that Julia is column-major, meaning that columns come first in both
 indexing order and in the computer's internal representation.
 
@@ -539,25 +551,26 @@ indexing order and in the computer's internal representation.
 
 Notice that \texttt{A{[}1:3,1:3{]}} returned an array. Where did this
 array come from? Well, since there was no 3x3 array before,
-\texttt{A{[}1:3,1:3{]}} created an array (i.e.~it had to allocate
+\texttt{A{[}1:3,1:3{]}} created an array (i.e. it had to allocate
 memory)
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}12}]:} \PY{n+nd}{@time} \PY{n}{A}\PY{p}{[}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{3}\PY{p}{]}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
-  0.000010 seconds (7 allocations: 384 bytes)
+  0.000006 seconds (7 allocations: 384 bytes)
 
     \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}12}]:} 3×3 Array\{Float64,2\}:
-          0.477756  0.767096  0.555022
-          0.962542  0.474019  0.227217
-          0.431555  0.981847  0.551405
+          0.387462  0.13318   0.355203
+          0.565691  0.881769  0.243633
+          0.281771  0.618909  0.281218
 \end{Verbatim}
-        
+            
     Do you always have to allocate memory when making new arrays? We saw
 before this wasn't the case when dealing with references. Recall the
 example where modifying one array modified another:
@@ -570,19 +583,20 @@ example where modifying one array modified another:
          \PY{n+nd}{@time} \PY{n}{c} \PY{o}{=} \PY{n}{copy}\PY{p}{(}\PY{n}{a}\PY{p}{)}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
-  0.000005 seconds (5 allocations: 208 bytes)
-  0.005950 seconds (97 allocations: 6.967 KiB)
+  0.000001 seconds (4 allocations: 192 bytes)
+  0.001286 seconds (28 allocations: 1.828 KiB)
 
     \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}13}]:} 3-element Array\{Int64,1\}:
            1
           10
            5
 \end{Verbatim}
-        
+            
     Notice that in the first case making \texttt{b} didn't allocate an
 array: it just made an object with a pointer (an Int64), and had that
 pointer point to the same array as \texttt{a}. To better understand this
@@ -591,31 +605,32 @@ distinction. The array itself is the memory layout. For Julia arrays,
 this is actually a C-pointer to a contiguous 1-dimensional slot of
 memory. The \texttt{Array} type in Julia (and thus \texttt{Vector} and
 \texttt{Matrix} which are type-alises for \texttt{Array\{T,1\}} and
-\texttt{Array\{T,2\}} respectively) is a ``view'' to to that actual
-array. A view is a type which points to an array, and has a
-compatibility layer that changes how things like the indexing works. For
-example: if we define the matrix
+\texttt{Array\{T,2\}} respectively) is a "view" to to that actual array.
+A view is a type which points to an array, and has a compatibility layer
+that changes how things like the indexing works. For example: if we
+define the matrix
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}14}]:} \PY{n}{A} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
+
+\begin{Verbatim}[commandchars=\\\{\}]
 {\color{outcolor}Out[{\color{outcolor}14}]:} 4×4 Array\{Float64,2\}:
-          0.018712  0.00978789  0.580567  0.194657
-          0.901197  0.247349    0.650729  0.403426
-          0.805088  0.277707    0.81981   0.576702
-          0.672966  0.569978    0.57837   0.48308 
+          0.854392   0.201331  0.437573  0.973475
+          0.463982   0.690305  0.581859  0.630324
+          0.370376   0.110284  0.893183  0.267128
+          0.0583479  0.246125  0.944985  0.10474 
 \end{Verbatim}
-        
+            
     then the array that we made is actually a 16-number long sequence (of
 64-bit Floats) in memory, and \texttt{A} is a view to that array which
-makes it index ``like'' it was 2-dimensional (reading down the columns).
+makes it index "like" it was 2-dimensional (reading down the columns).
 This tells us one thing already: looping through the columns is faster
 than looping through the rows. Indeed we can easily test this:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}23}]:} \PY{k}{function} \PY{n}{testloops}\PY{p}{(}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}15}]:} \PY{k}{function} \PY{n}{testloops}\PY{p}{(}\PY{p}{)}
              \PY{n}{b} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{,}\PY{l+m+mi}{1000}\PY{p}{)}
              \PY{n}{c} \PY{o}{=} \PY{l+m+mi}{0} \PY{c}{\PYZsh{} Need this so that way the compiler doesn\PYZsq{}t optimize away the loop!}
              \PY{n+nd}{@time} \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{1000}\PY{p}{,} \PY{n}{j} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{1000}
@@ -632,43 +647,46 @@ than looping through the rows. Indeed we can easily test this:
          \PY{n}{testloops}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
-  0.038866 seconds (3.00 M allocations: 45.776 MiB, 9.93\% gc time)
-  0.030133 seconds (3.00 M allocations: 45.776 MiB, 10.89\% gc time)
-  0.027543 seconds (3.00 M allocations: 45.776 MiB, 14.82\% gc time)
+  0.000839 seconds
+  0.000281 seconds
+  0.000287 seconds
 
     \end{Verbatim}
 
     One should normally use the \texttt{eachindex} function since this will
-return the indices in the ``fast'' order for general iterator types.
+return the indices in the "fast" order for general iterator types.
 
 In this terminology \texttt{A{[}1:3,1:3{]}} isn't a view to the same
 memory. We can check this by noticing that it doesn't mutate the
 original array:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{println}\PY{p}{(}\PY{n}{A}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{println}\PY{p}{(}\PY{n}{A}\PY{p}{)}
          \PY{n}{B} \PY{o}{=} \PY{n}{A}\PY{p}{[}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{3}\PY{p}{]}
          \PY{n}{B}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{=}\PY{l+m+mi}{100}
          \PY{n}{println}\PY{p}{(}\PY{n}{A}\PY{p}{)}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
-[0.018712 0.00978789 0.580567 0.194657; 0.901197 0.247349 0.650729 0.403426; 0.805088 0.277707 0.81981 0.576702; 0.672966 0.569978 0.57837 0.48308]
-[0.018712 0.00978789 0.580567 0.194657; 0.901197 0.247349 0.650729 0.403426; 0.805088 0.277707 0.81981 0.576702; 0.672966 0.569978 0.57837 0.48308]
+[0.854392 0.201331 0.437573 0.973475; 0.463982 0.690305 0.581859 0.630324; 0.370376 0.110284 0.893183 0.267128; 0.0583479 0.246125 0.944985 0.10474]
+[0.854392 0.201331 0.437573 0.973475; 0.463982 0.690305 0.581859 0.630324; 0.370376 0.110284 0.893183 0.267128; 0.0583479 0.246125 0.944985 0.10474]
 
     \end{Verbatim}
 
     If we instead want a view, then we can use the \texttt{view} function:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{B} \PY{o}{=} \PY{n}{view}\PY{p}{(}\PY{n}{A}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{3}\PY{p}{)} \PY{c}{\PYZsh{} No copy involved}
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{B} \PY{o}{=} \PY{n}{view}\PY{p}{(}\PY{n}{A}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{3}\PY{p}{)} \PY{c}{\PYZsh{} No copy involved}
          \PY{n}{B}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{100} \PY{c}{\PYZsh{} Will mutate A}
          \PY{n}{println}\PY{p}{(}\PY{n}{A}\PY{p}{)}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
-[100.0 0.00978789 0.580567 0.194657; 0.901197 0.247349 0.650729 0.403426; 0.805088 0.277707 0.81981 0.576702; 0.672966 0.569978 0.57837 0.48308]
+[100.0 0.201331 0.437573 0.973475; 0.463982 0.690305 0.581859 0.630324; 0.370376 0.110284 0.893183 0.267128; 0.0583479 0.246125 0.944985 0.10474]
 
     \end{Verbatim}
 
@@ -682,29 +700,30 @@ sending a view to the original array which is simply the column:
 builds a view in a different shape. For example:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{C} \PY{o}{=} \PY{n}{vec}\PY{p}{(}\PY{n}{A}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{C} \PY{o}{=} \PY{n}{vec}\PY{p}{(}\PY{n}{A}\PY{p}{)}
          \PY{n}{println}\PY{p}{(}\PY{n}{C}\PY{p}{)}
          \PY{n}{C} \PY{o}{=} \PY{n}{reshape}\PY{p}{(}\PY{n}{A}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)} \PY{c}{\PYZsh{} C is an 8x2 matrix}
          \PY{n}{C}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
-[100.0, 0.901197, 0.805088, 0.672966, 0.00978789, 0.247349, 0.277707, 0.569978, 0.580567, 0.650729, 0.81981, 0.57837, 0.194657, 0.403426, 0.576702, 0.48308]
+[100.0, 0.463982, 0.370376, 0.0583479, 0.201331, 0.690305, 0.110284, 0.246125, 0.437573, 0.581859, 0.893183, 0.944985, 0.973475, 0.630324, 0.267128, 0.10474]
 
     \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}20}]:} 8×2 Array\{Float64,2\}:
-          100.0         0.580567
-            0.901197    0.650729
-            0.805088    0.81981 
-            0.672966    0.57837 
-            0.00978789  0.194657
-            0.247349    0.403426
-            0.277707    0.576702
-            0.569978    0.48308 
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}18}]:} 8×2 Array\{Float64,2\}:
+          100.0        0.437573
+            0.463982   0.581859
+            0.370376   0.893183
+            0.0583479  0.944985
+            0.201331   0.973475
+            0.690305   0.630324
+            0.110284   0.267128
+            0.246125   0.10474 
 \end{Verbatim}
-        
+            
     Since these operations do not copy the array, they are very cheap and
 can be used without worrying about performance issues.
 
@@ -717,44 +736,46 @@ program known as OpenBLAS so that way \texttt{*} is an optimized
 multithreaded operation. For example:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{A} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{;} \PY{n}{B} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{A} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{;} \PY{n}{B} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}
          \PY{n}{C} \PY{o}{=} \PY{n}{A}\PY{o}{*}\PY{n}{B} \PY{c}{\PYZsh{} Matrix Multiplication}
          \PY{n}{D} \PY{o}{=} \PY{n}{A}\PY{o}{.*}\PY{n}{B} \PY{c}{\PYZsh{} Element\PYZhy{}wise Multiplication}
          \PY{n}{C}\PY{o}{\PYZhy{}}\PY{n}{D} \PY{c}{\PYZsh{} Not zero}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}24}]:} 4×4 Array\{Float64,2\}:
-          0.76219   0.569967  0.818689  0.578922
-          0.404203  0.204554  0.30552   0.427527
-          0.38402   0.29275   0.159849  0.71353 
-          0.698901  0.655951  0.640823  1.01684 
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}19}]:} 4×4 Array\{Float64,2\}:
+           1.01454     0.375748  0.701068  0.510709
+           1.2425      0.390314  0.209259  0.605257
+           1.01146    -0.354076  0.699519  1.03447 
+          -0.0732094   0.322778  0.272802  0.359256
 \end{Verbatim}
-        
+            
     A common operation is to solve the linear system \texttt{Ax=b}. In Julia
 this is done by \texttt{A\textbackslash{}b}:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{b} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{4}
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{b} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{4}
          \PY{n}{A}\PY{o}{\PYZbs{}}\PY{n}{b}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}25}]:} 4-element Array\{Float64,1\}:
-          -39.3027
-          -58.4907
-           27.0498
-           44.3226
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}20}]:} 4-element Array\{Float64,1\}:
+           8.223195873659511 
+           3.5244223769596212
+           6.512869490976016 
+          -5.568282770563026 
 \end{Verbatim}
-        
+            
     Note that this uses a direct solver. Iterative solvers for linear
 equations can be found in IterativeSolvers.jl hosted by the JuliaMath
 organization.
 
     \subsection{A note about
-``Vectorization''}\label{a-note-about-vectorization}
+"Vectorization"}\label{a-note-about-vectorization}
 
-In MATLAB/Python/R you're told to ``vectorize'' your options, i.e.~use
+In MATLAB/Python/R you're told to "vectorize" your options, i.e. use
 \texttt{apply} or these \texttt{.*} operations, in order to speed up
 computations. This is because these operations call C programs which
 will be faster than any interpreted MATLAB/Python/R loop. In Julia,
@@ -762,17 +783,27 @@ that's not the case: as long as your functions are type-stable, you will
 get maximal performance. Thus vectorization does not improve
 performance.
 
-In fact, vectorization can reduce performance by creating ``temporary
-arrays''. Those are the intermediate array allocations that come up with
-doing operations like \texttt{C{[}i,:{]} = A{[}i,:{]} .* B{[}i,:{]}}. In
-general, for the best performance one should avoid vectorized calls or
-be careful to use the broadcast/view syntax to define a statement
-without temporaries:
+In fact, vectorization can reduce performance by creating "temporary
+arrays". Those are the intermediate array allocations that come up with
+doing operations like
+\texttt{C{[}i,:{]}\ =\ A{[}i,:{]}\ .*\ B{[}i,:{]}}. In general, for the
+best performance one should avoid vectorized calls or be careful to use
+the broadcast/view syntax to define a statement without temporaries:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{n}{C}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{o}{:}\PY{p}{]} \PY{o}{.=} \PY{n}{view}\PY{p}{(}\PY{n}{A}\PY{p}{,}\PY{n}{i}\PY{p}{,}\PY{o}{:}\PY{p}{)} \PY{o}{.*} \PY{n}{view}\PY{p}{(}\PY{n}{B}\PY{p}{,}\PY{n}{i}\PY{p}{,}\PY{o}{:}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{2}
+         \PY{n}{C}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{o}{:}\PY{p}{]} \PY{o}{.=} \PY{n}{view}\PY{p}{(}\PY{n}{A}\PY{p}{,}\PY{n}{i}\PY{p}{,}\PY{o}{:}\PY{p}{)} \PY{o}{.*} \PY{n}{view}\PY{p}{(}\PY{n}{B}\PY{p}{,}\PY{n}{i}\PY{p}{,}\PY{o}{:}\PY{p}{)}
 \end{Verbatim}
 
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}21}]:} 4-element view(::Array\{Float64,2\}, 2, :) with eltype Float64:
+          0.00992595816308215 
+          0.006518944651236117
+          0.4009196761009102  
+          0.6813548253594051  
+\end{Verbatim}
+            
     Note the odd quirk: array indexing is a view when on the left-hand side
 
 \paragraph{Discussion: why is this the
@@ -780,43 +811,47 @@ case?}\label{discussion-why-is-this-the-case}
 
     \subsection{Sprase Matrices}\label{sprase-matrices}
 
-Sprase Matrix capabilities are provided by SuiteSparse. Note that these
-are saved in a table format, where there are triplets (i,j,value) which
-denote the existance of a non-zero element at \texttt{(i,j)} of value
-\texttt{value}. A sparse matrix can be created through the
-\texttt{sparse} command:
+Sprase Matrix capabilities are provided by SuiteSparse in the
+SparseArrays standard library. Note that these are saved in a table
+format, where there are triplets (i,j,value) which denote the existance
+of a non-zero element at \texttt{(i,j)} of value \texttt{value}. A
+sparse matrix can be created through the \texttt{sparse} command:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}27}]:} \PY{n}{A} \PY{o}{=} \PY{n}{sparse}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{;}\PY{l+m+mi}{2}\PY{p}{;}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{;}\PY{l+m+mi}{2}\PY{p}{;}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{;}\PY{l+m+mi}{4}\PY{p}{;}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}22}]:} \PY{k}{using} \PY{n}{SparseArrays} \PY{c}{\PYZsh{} from the standard library, no installation required}
+         \PY{n}{A} \PY{o}{=} \PY{n}{sparse}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{;}\PY{l+m+mi}{2}\PY{p}{;}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{;}\PY{l+m+mi}{2}\PY{p}{;}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{;}\PY{l+m+mi}{4}\PY{p}{;}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}27}]:} 3×2 SparseMatrixCSC\{Int64,Int64\} with 3 stored entries:
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}22}]:} 3×2 SparseMatrixCSC\{Int64,Int64\} with 3 stored entries:
            [3, 1]  =  5
            [1, 2]  =  3
            [2, 2]  =  4
 \end{Verbatim}
-        
-    They can be converted into a dense matrix with the \texttt{full} command
+            
+    They can be converted into a dense matrix with the \texttt{Array}
+command
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}28}]:} \PY{n}{full}\PY{p}{(}\PY{n}{A}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}23}]:} \PY{k+kt}{Array}\PY{p}{(}\PY{n}{A}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}28}]:} 3×2 Array\{Int64,2\}:
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}23}]:} 3×2 Array\{Int64,2\}:
           0  3
           0  4
           5  0
 \end{Verbatim}
-        
+            
     The documentation shows a lot more that you can do.
 
     \subsection{Special Matrix Types}\label{special-matrix-types}
 
-    Like the rest of Julia, types and multiple dispatch is used to
-``secretly enhance performance''. There are many matrix types, so I will
-just show a few and leave the rest to the documentation.
+    Like the rest of Julia, types and multiple dispatch is used to "secretly
+enhance performance". There are many matrix types, so I will just show a
+few and leave the rest to the documentation.
 
 \subsubsection{Matrix Forms}\label{matrix-forms}
 
@@ -825,71 +860,67 @@ has special types for these common matrix forms. For example, we can
 define a \texttt{Tridiagonal} by giving it three vectors:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}29}]:} \PY{n}{A} \PY{o}{=} \PY{k+kt}{Tridiagonal}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{:}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{4}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}24}]:} \PY{k}{using} \PY{n}{LinearAlgebra} \PY{c}{\PYZsh{} from the standard library, no install required}
+         \PY{n}{A} \PY{o}{=} \PY{k+kt}{Tridiagonal}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{:}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{4}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}29}]:} 5×5 Tridiagonal\{Int64\}:
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}24}]:} 5×5 Tridiagonal\{Int64,UnitRange\{Int64\}\}:
           1  1  ⋅  ⋅  ⋅
           2  2  2  ⋅  ⋅
           ⋅  3  3  3  ⋅
           ⋅  ⋅  4  4  4
           ⋅  ⋅  ⋅  5  5
 \end{Verbatim}
-        
+            
     We can inspect it to see its internal form:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}30}]:} \PY{n}{fieldnames}\PY{p}{(}\PY{n}{A}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{fieldnames}\PY{p}{(}\PY{n}{typeof}\PY{p}{(}\PY{n}{A}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}30}]:} 4-element Array\{Symbol,1\}:
-          :dl 
-          :d  
-          :du 
-          :du2
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}25}]:} (:dl, :d, :du, :du2)
 \end{Verbatim}
-        
+            
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}31}]:} \PY{n}{A}\PY{o}{.}\PY{n}{d}
+{\color{incolor}In [{\color{incolor}26}]:} \PY{n}{A}\PY{o}{.}\PY{n}{d}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}31}]:} 5-element Array\{Int64,1\}:
-          1
-          2
-          3
-          4
-          5
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}26}]:} 1:5
 \end{Verbatim}
-        
+            
     Notice that what the array stores is the vectors for the diagonals
 themselves. It's clear to see that this gives a memory enhancement over
 a dense matrix, and it gives a performance advantage because a dense
 matrix would have an extra operation for each \texttt{0}. However, it's
 also faster than a sprase matrix since a sparse matrix is stored as a
 table \texttt{(i,j,value)} and retriving from the table has a bit of
-overhead, while this is stored as 3 (actually 4\ldots{}) contiguous
-arrays. Therefore you get a performance boost by using a special matrix
-form like \texttt{Tridiagonal} whenever one is available. Note that
-these special matrix forms are outfitted with dispatches so that
-operations on them work seamlessly like with normal matrices. For
-example, we can multiply a Tridiagonal by a dense matrix:
+overhead, while this is stored as 3 (actually 4...) contiguous arrays.
+Therefore you get a performance boost by using a special matrix form
+like \texttt{Tridiagonal} whenever one is available. Note that these
+special matrix forms are outfitted with dispatches so that operations on
+them work seamlessly like with normal matrices. For example, we can
+multiply a Tridiagonal by a dense matrix:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}32}]:} \PY{n}{A}\PY{o}{*}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}27}]:} \PY{n}{A}\PY{o}{*}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}32}]:} 5×5 Array\{Float64,2\}:
-          1.02345  1.24593  1.22701  0.923725  0.174128
-          3.02457  2.68779  3.31618  3.71978   1.53963 
-          3.63319  3.36634  5.10534  4.98842   2.42633 
-          3.65838  2.58564  5.3866   7.67081   5.04129 
-          2.12879  2.74221  4.57785  4.9077    3.32318 
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}27}]:} 5×5 Array\{Float64,2\}:
+          0.824599  1.88436  0.949077  1.01088  0.965401
+          3.43658   4.1803   3.34217   2.12367  3.44722 
+          5.49236   5.77771  6.49373   3.01978  7.17158 
+          5.37533   4.84002  9.97901   2.68598  7.48032 
+          2.2507    5.0211   8.86374   3.10273  5.55935 
 \end{Verbatim}
-        
+            
     \subsubsection{The UniformScaling
 Operator}\label{the-uniformscaling-operator}
 
@@ -902,19 +933,33 @@ scalar \texttt{λ} from a matrix \texttt{A} we use the notation
 We can do this naturally with the \texttt{I} operator:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}33}]:} \PY{n}{λ} \PY{o}{=} \PY{l+m+mi}{2}
+{\color{incolor}In [{\color{incolor}28}]:} \PY{n}{λ} \PY{o}{=} \PY{l+m+mi}{2}
+         \PY{n}{A} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}
+         \PY{n}{display}\PY{p}{(}\PY{n}{A}\PY{p}{)}
          \PY{n}{A} \PY{o}{\PYZhy{}} \PY{n}{λ}\PY{o}{*}\PY{n+nb}{I}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}33}]:} 5×5 Tridiagonal\{Int64\}:
-          -1  1  ⋅  ⋅  ⋅
-           2  0  2  ⋅  ⋅
-           ⋅  3  1  3  ⋅
-           ⋅  ⋅  4  2  4
-           ⋅  ⋅  ⋅  5  3
+
+    
+    \begin{verbatim}
+5×5 Array{Float64,2}:
+ 0.476364  0.469814   0.279262  0.818725  0.839773
+ 0.1453    0.475616   0.727647  0.791016  0.117332
+ 0.811776  0.0556756  0.639435  0.729035  0.770168
+ 0.202052  0.262302   0.562247  0.995452  0.711246
+ 0.647824  0.940714   0.535921  0.5515    0.988451
+    \end{verbatim}
+
+    
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}28}]:} 5×5 Array\{Float64,2\}:
+          -1.52364    0.469814    0.279262   0.818725   0.839773
+           0.1453    -1.52438     0.727647   0.791016   0.117332
+           0.811776   0.0556756  -1.36056    0.729035   0.770168
+           0.202052   0.262302    0.562247  -1.00455    0.711246
+           0.647824   0.940714    0.535921   0.5515    -1.01155 
 \end{Verbatim}
-        
+            
     The MATLAB or NumPy way would be to create the identity matrix via a
 command like \texttt{eye(5)}, but notice this prevents the allocation of
 a 5x5 array. For large matrices, this operation is huge and thus this
@@ -929,54 +974,70 @@ have to remember how this is done. For example, we can use a QR
 factorization to solve a linear system like:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}34}]:} \PY{n}{b} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{5}
+{\color{incolor}In [{\color{incolor}29}]:} \PY{n}{b} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{5}
          \PY{n}{A} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}
          \PY{n}{Q}\PY{p}{,}\PY{n}{R} \PY{o}{=} \PY{n}{qr}\PY{p}{(}\PY{n}{A}\PY{p}{)}
          \PY{n}{println}\PY{p}{(}\PY{n}{A}\PY{o}{\PYZbs{}}\PY{n}{b}\PY{p}{)}
          \PY{n}{println}\PY{p}{(}\PY{n}{inv}\PY{p}{(}\PY{n}{R}\PY{p}{)}\PY{o}{*}\PY{n}{Q}\PY{o}{\PYZsq{}}\PY{o}{*}\PY{n}{b}\PY{p}{)}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
-[278.582, 83.2806, -210.387, -176.288, 71.6258]
-[278.582, 83.2806, -210.387, -176.288, 71.6258]
+[2.59566, 4.60946, 3.79659, -4.36565, -0.832022]
+[2.59566, 4.60946, 3.79659, -4.36565, -0.832022]
 
     \end{Verbatim}
 
     Thus we can save the variables \texttt{Q} and \texttt{R} and use
-\texttt{inv(R)*Q'*b} instead of \texttt{A\textbackslash{}b} and get
-better performance. This is the NumPy/MATLAB way. However, that requires
-remembering the details of the factorization. Instead, we can have Julia
-return a factorization type:
+\texttt{inv(R)*Q\textquotesingle{}*b} instead of
+\texttt{A\textbackslash{}b} and get better performance. This is the
+NumPy/MATLAB way. However, that requires remembering the details of the
+factorization. Instead, we can have Julia return a factorization type:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}35}]:} \PY{n}{q} \PY{o}{=} \PY{n}{qrfact}\PY{p}{(}\PY{n}{A}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}30}]:} \PY{n}{q} \PY{o}{=} \PY{n}{qr}\PY{p}{(}\PY{n}{A}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}35}]:} Base.LinAlg.QRCompactWY\{Float64,Array\{Float64,2\}\} with factors Q and R:
-         [-0.605569 0.228049 … 0.439742 -0.597013; -0.186034 -0.451705 … -0.675901 -0.528686; … ; -0.355752 0.0705326 … -0.390601 0.33145; -0.419395 -0.745107 … 0.350345 0.367664]
-         [-0.965209 -0.680789 … -1.12482 -0.664075; 0.0 -0.565101 … -0.420464 -0.0936588; … ; 0.0 0.0 … -0.245942 -0.626841; 0.0 0.0 … 0.0 0.0355285]
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}30}]:} LinearAlgebra.QRCompactWY\{Float64,Array\{Float64,2\}\}
+         Q factor:
+         5×5 LinearAlgebra.QRCompactWYQ\{Float64,Array\{Float64,2\}\}:
+          -0.255204    0.0591112  -0.793036    0.461912    0.29851  
+          -0.337281   -0.114899   -0.254293   -0.0274575  -0.898677 
+          -0.0272034   0.883421   -0.187797   -0.426877   -0.0365569
+          -0.640822    0.318025    0.517295    0.468059    0.039169 
+          -0.640094   -0.318955   -0.0597274  -0.620145    0.31686  
+         R factor:
+         5×5 Array\{Float64,2\}:
+          -1.48729  -0.630203  -1.17066   -0.894171  -0.638356 
+           0.0       0.727183   0.346293   0.581096  -0.0325812
+           0.0       0.0       -0.337679  -0.176147  -0.503067 
+           0.0       0.0        0.0        0.446083   0.185906 
+           0.0       0.0        0.0        0.0       -0.159206 
 \end{Verbatim}
-        
-    What this does is it internally stores \texttt{Qt} (\texttt{Qt = Q'})
-and \texttt{Rinv} (\texttt{Rinv = inv(R)}). There is a dispatch defined
-for this type on ~which makes the \texttt{QRCompactWY} type perform the
-fast algorithm \texttt{Rinv*Qt*b}, giving you the performance without
-having to remember anything:
+            
+    What this does is it internally stores \texttt{Qt}
+(\texttt{Qt\ =\ Q\textquotesingle{}}) and \texttt{Rinv}
+(\texttt{Rinv\ =\ inv(R)}). There is a dispatch defined for this type on
+~which makes the \texttt{QRCompactWY} type perform the fast algorithm
+\texttt{Rinv*Qt*b}, giving you the performance without having to
+remember anything:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}36}]:} \PY{n}{q}\PY{o}{\PYZbs{}}\PY{n}{b}
+{\color{incolor}In [{\color{incolor}31}]:} \PY{n}{q}\PY{o}{\PYZbs{}}\PY{n}{b}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}36}]:} 5-element Array\{Float64,1\}:
-           278.582 
-            83.2806
-          -210.387 
-          -176.288 
-            71.6258
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}31}]:} 5-element Array\{Float64,1\}:
+           2.595657162607796 
+           4.609460214631678 
+           3.7965882930591857
+          -4.3656495522506535
+          -0.8320217248698547
 \end{Verbatim}
-        
+            
     The result is fast algorithms with clean code.
 
     \subsection{Random Numbers}\label{random-numbers}
@@ -986,46 +1047,49 @@ generated by the \texttt{rand} function, while normal random numbers are
 generated by the \texttt{randn} function.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}37}]:} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}32}]:} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}37}]:} 5-element Array\{Float64,1\}:
-          0.807563
-          0.816094
-          0.700426
-          0.143112
-          0.850222
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}32}]:} 5-element Array\{Float64,1\}:
+          0.37140995537373   
+          0.9442228213799317 
+          0.10136688108233693
+          0.15088132142777   
+          0.34463385676227265
 \end{Verbatim}
-        
+            
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}38}]:} \PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}33}]:} \PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}38}]:} 5×5 Array\{Float64,2\}:
-          -1.09988    0.749767   -0.903473   -1.41094   -1.46029 
-          -0.130691  -0.301776    0.0920583  -0.657685   0.165837
-          -0.78635   -0.0241995   0.475994   -0.511755   0.191074
-           0.701819  -1.53829    -0.397952   -0.627364   0.555426
-           0.90149   -1.90167     0.762773    0.832047  -0.959216
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}33}]:} 5×5 Array\{Float64,2\}:
+           0.201459    1.45915    -0.11018    0.516898  -0.563854
+           2.369      -0.365038   -1.98576   -1.2159     0.182033
+          -0.645141    0.59947     0.440944  -0.249403   1.41426 
+           0.521324    0.0435694   1.07846   -1.08035   -0.344328
+          -0.0253791   1.20466     1.0353    -1.93638    0.201323
 \end{Verbatim}
-        
+            
     The argument is the size of the array. You can make random numbers which
 match another array with the \texttt{size} function:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}39}]:} \PY{n}{a} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1} \PY{l+m+mi}{2}
+{\color{incolor}In [{\color{incolor}34}]:} \PY{n}{a} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1} \PY{l+m+mi}{2}
               \PY{l+m+mi}{3} \PY{l+m+mi}{4}\PY{p}{]}
          \PY{n}{randn}\PY{p}{(}\PY{n}{size}\PY{p}{(}\PY{n}{a}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}39}]:} 2×2 Array\{Float64,2\}:
-          -0.859275  -0.645734
-          -0.117098   0.562239
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}34}]:} 2×2 Array\{Float64,2\}:
+          -0.952776  -0.78011
+          -0.953679  -1.06923
 \end{Verbatim}
-        
+            
 
     % Add a bibliography block to the postdoc
     

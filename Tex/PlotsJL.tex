@@ -15,8 +15,8 @@
     
     
     \usepackage[T1]{fontenc}
-    % Nicer default font than Computer Modern for most use cases
-    \usepackage{palatino}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
 
     % Basic figure setup, for now with no caption control since it's done
     % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
@@ -62,6 +62,7 @@
     \usepackage{hyperref}
     \usepackage{longtable} % longtable support required by pandoc >1.10
     \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
     \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
                                 % normalem makes italics be italics, not underlines
     
@@ -158,73 +159,73 @@
     \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
 \def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
 
-\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
 \expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
-\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
-\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
 \expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
-\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
 \expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
-\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
-\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
-\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
-\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
-\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
-\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
-\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
-\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
-\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
-\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
-\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
-\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
-\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
-\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
-\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
-\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
-\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
-\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
-\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
-\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
-\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
-\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
 \expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
-\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
-\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
-\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
 
 \def\PYZbs{\char`\\}
 \def\PYZus{\char`\_}
@@ -287,10 +288,9 @@ Plots.jl}\label{an-introduction-to-plots.jl}
 Plots.jl is a non-traditional plotting library
 
 \begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
+\tightlist
 \item
-  It does not implement a ``plotting backend'' itself, it's a plotting
-  API
+  It does not implement a "plotting backend" itself, it's a plotting API
 \item
   The API is easily extendable via recipes
 \end{itemize}
@@ -300,7 +300,7 @@ Plots.jl is a non-traditional plotting library
 Plots.jl uses other plotting libraries as backends
 
 \begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
+\tightlist
 \item
   PyPlot (matplotlib): Slow but dependable
 \item
@@ -319,20 +319,81 @@ To switch backends, you simply use the name of the library:
 https://juliaplots.github.io/backends/
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}2}]:} \PY{k}{using} \PY{n}{Plots}
-        \PY{n}{pyplot}\PY{p}{(}\PY{p}{)} \PY{c}{\PYZsh{} Turns on the PyPlot backend}
+{\color{incolor}In [{\color{incolor}12}]:} \PY{k}{using} \PY{n}{Plots}
+         \PY{n}{pyplot}\PY{p}{(}\PY{p}{)} \PY{c}{\PYZsh{} Turns on the PyPlot backend}
+         \PY{n}{plot}\PY{p}{(}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+\texttt{\color{outcolor}Out[{\color{outcolor}12}]:}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{PlotsJL_files/PlotsJL_4_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{gr}\PY{p}{(}\PY{p}{)}
         \PY{n}{plot}\PY{p}{(}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
+\texttt{\color{outcolor}Out[{\color{outcolor}2}]:}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{PlotsJL_files/PlotsJL_5_0.pdf}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{gr}\PY{p}{(}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{plotly}\PY{p}{(}\PY{p}{)}
         \PY{n}{plot}\PY{p}{(}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{plotly}\PY{p}{(}\PY{p}{)}
-        \PY{n}{plot}\PY{p}{(}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
-\end{Verbatim}
+
+        UndefVarError: plotattributes not defined
+
+        
+
+        Stacktrace:
+
+         [1] plotly\_series(::Plots.Plot\{Plots.PlotlyBackend\}, ::Plots.Series) at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/backends/plotly.jl:576
+
+         [2] plotly\_series(::Plots.Plot\{Plots.PlotlyBackend\}) at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/backends/plotly.jl:875
+
+         [3] plotly\_series\_json at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/backends/plotly.jl:881 [inlined]
+
+         [4] html\_body(::Plots.Plot\{Plots.PlotlyBackend\}, ::Nothing) at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/backends/plotly.jl:899
+
+         [5] html\_body at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/backends/plotly.jl:894 [inlined]
+
+         [6] \_show(::Base.GenericIOBuffer\{Array\{UInt8,1\}\}, ::MIME\{Symbol("text/html")\}, ::Plots.Plot\{Plots.PlotlyBackend\}) at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/backends/plotly.jl:921
+
+         [7] show(::Base.GenericIOBuffer\{Array\{UInt8,1\}\}, ::MIME\{Symbol("text/html")\}, ::Plots.Plot\{Plots.PlotlyBackend\}) at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/output.jl:201
+
+         [8] \#sprint\#325(::Nothing, ::Int64, ::Function, ::Function, ::MIME\{Symbol("text/html")\}, ::Vararg\{Any,N\} where N) at ./strings/io.jl:101
+
+         [9] sprint(::Function, ::MIME\{Symbol("text/html")\}, ::Vararg\{Any,N\} where N) at ./strings/io.jl:97
+
+         [10] display\_dict(::Plots.Plot\{Plots.PlotlyBackend\}) at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/init.jl:76
+
+         [11] \#invokelatest\#1 at ./essentials.jl:686 [inlined]
+
+         [12] invokelatest at ./essentials.jl:685 [inlined]
+
+         [13] execute\_request(::ZMQ.Socket, ::IJulia.Msg) at /home/chrisrackauckas/.julia/packages/IJulia/fDY4W/src/execute\_request.jl:221
+
+         [14] \#invokelatest\#1 at ./essentials.jl:686 [inlined]
+
+         [15] invokelatest at ./essentials.jl:685 [inlined]
+
+         [16] eventloop(::ZMQ.Socket) at /home/chrisrackauckas/.julia/packages/IJulia/fDY4W/src/eventloop.jl:8
+
+         [17] (::getfield(IJulia, Symbol("\#\#13\#16")))() at ./task.jl:259
+
+    \end{Verbatim}
 
     \subsection{Attributes}\label{attributes}
 
@@ -346,30 +407,93 @@ I find it easiest to use this page to find the right attributes:
 https://juliaplots.github.io/examples/pyplot/
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{pyplot}\PY{p}{(}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{pyplot}\PY{p}{(}\PY{p}{)}
          \PY{n}{plot}\PY{p}{(}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{,}\PY{n}{title}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{T}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{ }\PY{l+s}{T}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{n}{label}\PY{o}{=}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{F}\PY{l+s}{i}\PY{l+s}{r}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{\PYZdq{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{e}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{\PYZdq{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{T}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{r}\PY{l+s}{d}\PY{l+s}{\PYZdq{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{F}\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{r}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
 \end{Verbatim}
 
+\texttt{\color{outcolor}Out[{\color{outcolor}13}]:}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{PlotsJL_files/PlotsJL_8_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{gr}\PY{p}{(}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{gr}\PY{p}{(}\PY{p}{)}
          \PY{n}{plot}\PY{p}{(}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{,}\PY{n}{title}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{T}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{ }\PY{l+s}{T}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{n}{label}\PY{o}{=}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{F}\PY{l+s}{i}\PY{l+s}{r}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{\PYZdq{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{e}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{\PYZdq{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{T}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{r}\PY{l+s}{d}\PY{l+s}{\PYZdq{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{F}\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{r}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
 \end{Verbatim}
 
+\texttt{\color{outcolor}Out[{\color{outcolor}14}]:}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{PlotsJL_files/PlotsJL_9_0.pdf}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{plotly}\PY{p}{(}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{plotly}\PY{p}{(}\PY{p}{)}
          \PY{n}{plot}\PY{p}{(}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{,}\PY{n}{title}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{T}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{ }\PY{l+s}{T}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{n}{label}\PY{o}{=}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{F}\PY{l+s}{i}\PY{l+s}{r}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{\PYZdq{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{e}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{\PYZdq{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{T}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{r}\PY{l+s}{d}\PY{l+s}{\PYZdq{}} \PY{l+s}{\PYZdq{}}\PY{l+s}{F}\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{r}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
 \end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        UndefVarError: plotattributes not defined
+
+        
+
+        Stacktrace:
+
+         [1] plotly\_series(::Plots.Plot\{Plots.PlotlyBackend\}, ::Plots.Series) at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/backends/plotly.jl:576
+
+         [2] plotly\_series(::Plots.Plot\{Plots.PlotlyBackend\}) at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/backends/plotly.jl:875
+
+         [3] plotly\_series\_json at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/backends/plotly.jl:881 [inlined]
+
+         [4] html\_body(::Plots.Plot\{Plots.PlotlyBackend\}, ::Nothing) at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/backends/plotly.jl:899
+
+         [5] html\_body at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/backends/plotly.jl:894 [inlined]
+
+         [6] \_show(::Base.GenericIOBuffer\{Array\{UInt8,1\}\}, ::MIME\{Symbol("text/html")\}, ::Plots.Plot\{Plots.PlotlyBackend\}) at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/backends/plotly.jl:921
+
+         [7] show(::Base.GenericIOBuffer\{Array\{UInt8,1\}\}, ::MIME\{Symbol("text/html")\}, ::Plots.Plot\{Plots.PlotlyBackend\}) at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/output.jl:201
+
+         [8] \#sprint\#325(::Nothing, ::Int64, ::Function, ::Function, ::MIME\{Symbol("text/html")\}, ::Vararg\{Any,N\} where N) at ./strings/io.jl:101
+
+         [9] sprint(::Function, ::MIME\{Symbol("text/html")\}, ::Vararg\{Any,N\} where N) at ./strings/io.jl:97
+
+         [10] display\_dict(::Plots.Plot\{Plots.PlotlyBackend\}) at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/init.jl:76
+
+         [11] \#invokelatest\#1 at ./essentials.jl:686 [inlined]
+
+         [12] invokelatest at ./essentials.jl:685 [inlined]
+
+         [13] execute\_request(::ZMQ.Socket, ::IJulia.Msg) at /home/chrisrackauckas/.julia/packages/IJulia/fDY4W/src/execute\_request.jl:221
+
+         [14] \#invokelatest\#1 at ./essentials.jl:686 [inlined]
+
+         [15] invokelatest at ./essentials.jl:685 [inlined]
+
+         [16] eventloop(::ZMQ.Socket) at /home/chrisrackauckas/.julia/packages/IJulia/fDY4W/src/eventloop.jl:8
+
+         [17] (::getfield(IJulia, Symbol("\#\#13\#16")))() at ./task.jl:259
+
+    \end{Verbatim}
 
     \subsection{Animations}\label{animations}
 
 Any plot can be animated
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}15}]:} \PY{c}{\PYZsh{} initialize the attractor}
+{\color{incolor}In [{\color{incolor}19}]:} \PY{c}{\PYZsh{} initialize the attractor}
          \PY{n}{n} \PY{o}{=} \PY{l+m+mi}{1500}
          \PY{n}{dt} \PY{o}{=} \PY{l+m+mf}{0.02}
          \PY{n}{σ}\PY{p}{,} \PY{n}{ρ}\PY{p}{,} \PY{n}{β} \PY{o}{=} \PY{l+m+mf}{10.}\PY{p}{,} \PY{l+m+mf}{28.}\PY{p}{,} \PY{l+m+mi}{8}\PY{o}{/}\PY{l+m+mi}{3}
          \PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z} \PY{o}{=} \PY{l+m+mf}{1.}\PY{p}{,} \PY{l+m+mf}{1.}\PY{p}{,} \PY{l+m+mf}{1.}
+         
+         \PY{n}{gr}\PY{p}{(}\PY{p}{)}
          
          \PY{c}{\PYZsh{} initialize a 3D plot with 1 empty series}
          \PY{n}{plt} \PY{o}{=} \PY{n}{path3d}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{xlim}\PY{o}{=}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{25}\PY{p}{,}\PY{l+m+mi}{25}\PY{p}{)}\PY{p}{,} \PY{n}{ylim}\PY{o}{=}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{25}\PY{p}{,}\PY{l+m+mi}{25}\PY{p}{)}\PY{p}{,} \PY{n}{zlim}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{50}\PY{p}{)}\PY{p}{,}
@@ -378,6 +502,7 @@ Any plot can be animated
          
          \PY{c}{\PYZsh{} build an animated gif, saving every 10th frame}
          \PY{n+nd}{@gif} \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{:}\PY{n}{n}
+             \PY{k+kd}{global} \PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{,}\PY{n}{z}
              \PY{n}{dx} \PY{o}{=} \PY{n}{σ}\PY{o}{*}\PY{p}{(}\PY{n}{y} \PY{o}{\PYZhy{}} \PY{n}{x}\PY{p}{)}     \PY{p}{;} \PY{n}{x} \PY{o}{+=} \PY{n}{dt} \PY{o}{*} \PY{n}{dx}
              \PY{n}{dy} \PY{o}{=} \PY{n}{x}\PY{o}{*}\PY{p}{(}\PY{n}{ρ} \PY{o}{\PYZhy{}} \PY{n}{z}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{y} \PY{p}{;} \PY{n}{y} \PY{o}{+=} \PY{n}{dt} \PY{o}{*} \PY{n}{dy}
              \PY{n}{dz} \PY{o}{=} \PY{n}{x}\PY{o}{*}\PY{n}{y} \PY{o}{\PYZhy{}} \PY{n}{β}\PY{o}{*}\PY{n}{z}     \PY{p}{;} \PY{n}{z} \PY{o}{+=} \PY{n}{dt} \PY{o}{*} \PY{n}{dz}
@@ -385,22 +510,54 @@ Any plot can be animated
          \PY{k}{end} \PY{n}{every} \PY{l+m+mi}{10}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
-INFO: Saved animation to C:\textbackslash{}Users\textbackslash{}Chris\textbackslash{}.julia\textbackslash{}v0.5\textbackslash{}IntroToJulia\textbackslash{}notebooks\textbackslash{}tmp.gif
+
+        IOError: could not spawn `ffmpeg -v 0 -i /tmp/tmpXDOAL9/\%06d.png -vf palettegen=stats\_mode=diff -y /tmp/tmpXDOAL9/palette.bmp`: no such file or directory (ENOENT)
+
+        
+
+        Stacktrace:
+
+         [1] \_jl\_spawn(::String, ::Array\{String,1\}, ::Cmd, ::Tuple\{RawFD,RawFD,RawFD\}) at ./process.jl:367
+
+         [2] (::getfield(Base, Symbol("\#\#495\#496"))\{Cmd\})(::Tuple\{RawFD,RawFD,RawFD\}) at ./process.jl:509
+
+         [3] setup\_stdio(::getfield(Base, Symbol("\#\#495\#496"))\{Cmd\}, ::Tuple\{RawFD,RawFD,RawFD\}) at ./process.jl:490
+
+         [4] \#\_spawn\#494(::Nothing, ::Function, ::Cmd, ::Tuple\{RawFD,RawFD,RawFD\}) at ./process.jl:508
+
+         [5] \_spawn at ./process.jl:504 [inlined]
+
+         [6] \#run\#505(::Bool, ::Function, ::Cmd) at ./process.jl:652
+
+         [7] run at ./process.jl:651 [inlined]
+
+         [8] \#buildanimation\#228(::Int64, ::Int64, ::Bool, ::Bool, ::Function, ::String, ::String, ::Bool) at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/animation.jl:82
+
+         [9] buildanimation at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/animation.jl:73 [inlined] (repeats 2 times)
+
+         [10] \#gif\#225 at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/animation.jl:63 [inlined]
+
+         [11] gif at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/animation.jl:63 [inlined] (repeats 2 times)
+
+         [12] macro expansion at ./In[19]:16 [inlined]
+
+         [13] macro expansion at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/animation.jl:155 [inlined]
+
+         [14] top-level scope at ./In[19]:15 [inlined]
+
+         [15] top-level scope at ./none:0
 
     \end{Verbatim}
 
-            \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}15}]:} Plots.AnimatedGif("C:\textbackslash{}\textbackslash{}Users\textbackslash{}\textbackslash{}Chris\textbackslash{}\textbackslash{}.julia\textbackslash{}\textbackslash{}v0.5\textbackslash{}\textbackslash{}IntroToJulia\textbackslash{}\textbackslash{}notebooks\textbackslash{}\textbackslash{}tmp.gif")
-\end{Verbatim}
-        
     \subsection{Recipes}\label{recipes}
 
-Recipes are abstract instructions for how to ``build a plot'' from data.
+Recipes are abstract instructions for how to "build a plot" from data.
 There are multiple kinds of recipes. In execution order:
 
 \begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
+\tightlist
 \item
   User Recipes: Provides dispatches to plotting
 \item
@@ -409,8 +566,8 @@ There are multiple kinds of recipes. In execution order:
   Plot Recipes: A pre-processing recipe which builds a set of series
   plots and defaults
 \item
-  Series Recipes: What most would think of as a ``type of plot'',
-  i.e.~scatter, histogram, etc.
+  Series Recipes: What most would think of as a "type of plot", i.e.
+  scatter, histogram, etc.
 \end{itemize}
 
 Since these extend Plots.jl itself, all of Plots.jl is accessible from
@@ -426,16 +583,25 @@ Ecosystem!}
     \subsection{Type Recipe Example}\label{type-recipe-example}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}24}]:} \PY{k}{using} \PY{n}{DifferentialEquations}
-         \PY{n}{sol} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{n}{prob\PYZus{}ode\PYZus{}linear}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}21}]:} \PY{k}{using} \PY{n}{DifferentialEquations}
+         \PY{n}{prob} \PY{o}{=} \PY{n}{ODEProblem}\PY{p}{(}\PY{p}{(}\PY{n}{u}\PY{p}{,}\PY{n}{p}\PY{p}{,}\PY{n}{t}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{l+m+mf}{1.01}\PY{n}{u}\PY{p}{,}\PY{l+m+mf}{0.5}\PY{p}{,}\PY{p}{(}\PY{l+m+mf}{0.0}\PY{p}{,}\PY{l+m+mf}{1.0}\PY{p}{)}\PY{p}{)}
+         \PY{n}{sol} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{n}{prob}\PY{p}{)}
          \PY{n+nd}{@show} \PY{n}{typeof}\PY{p}{(}\PY{n}{sol}\PY{p}{)}
          \PY{n}{plot}\PY{p}{(}\PY{n}{sol}\PY{p}{,}\PY{n}{title}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{T}\PY{l+s}{h}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{A}\PY{l+s}{t}\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{b}\PY{l+s}{u}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{ }\PY{l+s}{S}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{ }\PY{l+s}{W}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{k}\PY{l+s}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
-typeof(sol) = DifferentialEquations.ODESolution
+typeof(sol) = OrdinaryDiffEq.ODECompositeSolution\{Float64,1,Array\{Float64,1\},Nothing,Nothing,Array\{Float64,1\},Array\{Array\{Float64,1\},1\},ODEProblem\{Float64,Tuple\{Float64,Float64\},false,Nothing,ODEFunction\{false,getfield(Main, Symbol("\#\#3\#4")),LinearAlgebra.UniformScaling\{Bool\},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing\},Nothing,DiffEqBase.StandardODEProblem\},CompositeAlgorithm\{Tuple\{Tsit5,Rosenbrock23\{0,false,LinSolveFactorize\{typeof(LinearAlgebra.lu!)\},DataType\}\},AutoSwitch\{Tsit5,Rosenbrock23\{0,false,LinSolveFactorize\{typeof(LinearAlgebra.lu!)\},DataType\},Rational\{Int64\},Float64\}\},OrdinaryDiffEq.CompositeInterpolationData\{ODEFunction\{false,getfield(Main, Symbol("\#\#3\#4")),LinearAlgebra.UniformScaling\{Bool\},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing\},Array\{Float64,1\},Array\{Float64,1\},Array\{Array\{Float64,1\},1\},OrdinaryDiffEq.CompositeCache\{Tuple\{OrdinaryDiffEq.Tsit5ConstantCache\{Float64,Float64\},OrdinaryDiffEq.Rosenbrock23ConstantCache\{Float64,DiffEqDiffTools.TimeDerivativeWrapper\{ODEFunction\{false,getfield(Main, Symbol("\#\#3\#4")),LinearAlgebra.UniformScaling\{Bool\},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing\},Float64,Nothing\},DiffEqDiffTools.UDerivativeWrapper\{ODEFunction\{false,getfield(Main, Symbol("\#\#3\#4")),LinearAlgebra.UniformScaling\{Bool\},Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing,Nothing\},Float64,Nothing\}\}\},AutoSwitch\{Tsit5,Rosenbrock23\{0,false,LinSolveFactorize\{typeof(LinearAlgebra.lu!)\},DataType\},Rational\{Int64\},Float64\}\}\}\}
 
     \end{Verbatim}
+\texttt{\color{outcolor}Out[{\color{outcolor}21}]:}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{PlotsJL_files/PlotsJL_15_1.pdf}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
 
     \subsection{Plot and Type Recipes
 Together}\label{plot-and-type-recipes-together}
@@ -445,30 +611,124 @@ series recipe \texttt{marginalhist} which puts together histograms into
 a cohesive larger plot
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}2}]:} \PY{k}{using} \PY{n}{RDatasets}\PY{p}{,} \PY{n}{StatPlots}\PY{p}{,} \PY{n}{Plots}
-        \PY{n}{iris} \PY{o}{=} \PY{n}{dataset}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{i}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{)}
-        \PY{n}{marginalhist}\PY{p}{(}\PY{n}{iris}\PY{p}{,} \PY{o}{:}\PY{n}{PetalLength}\PY{p}{,} \PY{o}{:}\PY{n}{PetalWidth}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}28}]:} \PY{k}{using} \PY{n}{RDatasets}\PY{p}{,} \PY{n}{StatPlots}\PY{p}{,} \PY{n}{Plots}
+         \PY{n}{iris} \PY{o}{=} \PY{n}{dataset}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{i}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{marginalhist}\PY{p}{(}\PY{n}{iris}\PY{p}{,} \PY{o}{:}\PY{n}{PetalLength}\PY{p}{,} \PY{o}{:}\PY{n}{PetalWidth}\PY{p}{)}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
-WARNING: using Plots.PyPlot in module Main conflicts with an existing identifier.
+┌ Info: Precompiling StatPlots [60ddc479-9b66-56df-82fc-76a74619b69c]
+└ @ Base loading.jl:1186
+┌ Info: Precompiling IterableTables [1c8ee90f-4401-5389-894e-7a04a3dc0f4d]
+└ @ Base loading.jl:1186
+┌ Info: Precompiling KernelDensity [5ab0869b-81aa-558d-bb23-cbf5423bbe9b]
+└ @ Base loading.jl:1186
+WARNING: could not import LinearAlgebra.gradient into Interpolations
 
     \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{M} \PY{o}{=} \PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}
-        \PY{n}{M}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{+=} \PY{l+m+mf}{0.8}\PY{n}{sqrt}\PY{p}{(}\PY{n}{abs}\PY{p}{(}\PY{n}{M}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{l+m+mf}{0.5}\PY{n}{M}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]} \PY{o}{+} \PY{l+m+mi}{5}
-        \PY{n}{M}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]} \PY{o}{\PYZhy{}=} \PY{l+m+mf}{0.7}\PY{n}{M}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mi}{2}
-        \PY{n}{corrplot}\PY{p}{(}\PY{n}{M}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{x}\PY{l+s+si}{\PYZdl{}i}\PY{l+s}{\PYZdq{}} \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
-\end{Verbatim}
+
+        No user recipe defined for DataFrame
+
+        
+
+        Stacktrace:
+
+         [1] error(::String) at ./error.jl:33
+
+         [2] convertToAnyVector(::DataFrame, ::Dict\{Symbol,Any\}) at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/series.jl:14
+
+         [3] macro expansion at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/series.jl:131 [inlined]
+
+         [4] apply\_recipe(::Dict\{Symbol,Any\}, ::Type\{Plots.SliceIt\}, ::DataFrame, ::Symbol, ::Symbol) at /home/chrisrackauckas/.julia/packages/RecipesBase/Uz5AO/src/RecipesBase.jl:275
+
+         [5] \_process\_userrecipes(::Plots.Plot\{Plots.GRBackend\}, ::Dict\{Symbol,Any\}, ::Tuple\{DataFrame,Symbol,Symbol\}) at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/pipeline.jl:83
+
+         [6] macro expansion at ./logging.jl:307 [inlined]
+
+         [7] \_plot!(::Plots.Plot\{Plots.GRBackend\}, ::Dict\{Symbol,Any\}, ::Tuple\{DataFrame,Symbol,Symbol\}) at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/plot.jl:171
+
+         [8] \#plot\#132(::Base.Iterators.Pairs\{Symbol,Symbol,Tuple\{Symbol\},NamedTuple\{(:seriestype,),Tuple\{Symbol\}\}\}, ::Function, ::DataFrame, ::Vararg\{Any,N\} where N) at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/plot.jl:57
+
+         [9] (::getfield(RecipesBase, Symbol("\#kw\#\#plot")))(::NamedTuple\{(:seriestype,),Tuple\{Symbol\}\}, ::typeof(plot), ::DataFrame, ::Symbol, ::Vararg\{Symbol,N\} where N) at ./none:0
+
+         [10] \#marginalhist\#66(::Base.Iterators.Pairs\{Union\{\},Union\{\},Tuple\{\},NamedTuple\{(),Tuple\{\}\}\}, ::Function, ::DataFrame, ::Vararg\{Any,N\} where N) at /home/chrisrackauckas/.julia/packages/RecipesBase/Uz5AO/src/RecipesBase.jl:368
+
+         [11] marginalhist(::DataFrame, ::Vararg\{Any,N\} where N) at /home/chrisrackauckas/.julia/packages/RecipesBase/Uz5AO/src/RecipesBase.jl:368
+
+         [12] top-level scope at In[28]:3
+
+    \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}14}]:} \PY{k}{import} \PY{n}{RDatasets}
+{\color{incolor}In [{\color{incolor}29}]:} \PY{n}{M} \PY{o}{=} \PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}
+         \PY{n}{M}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{+=} \PY{l+m+mf}{0.8}\PY{n}{sqrt}\PY{p}{(}\PY{n}{abs}\PY{p}{(}\PY{n}{M}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{l+m+mf}{0.5}\PY{n}{M}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]} \PY{o}{+} \PY{l+m+mi}{5}
+         \PY{n}{M}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]} \PY{o}{\PYZhy{}=} \PY{l+m+mf}{0.7}\PY{n}{M}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mi}{2}
+         \PY{n}{corrplot}\PY{p}{(}\PY{n}{M}\PY{p}{,} \PY{n}{label} \PY{o}{=} \PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{x}\PY{l+s+si}{\PYZdl{}i}\PY{l+s}{\PYZdq{}} \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        MethodError: no method matching abs(::Array\{Float64,1\})
+    Closest candidates are:
+      abs(!Matched::Bool) at bool.jl:91
+      abs(!Matched::Float16) at float.jl:517
+      abs(!Matched::Float32) at float.jl:518
+      {\ldots}
+
+        
+
+        Stacktrace:
+
+         [1] top-level scope at In[29]:2
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{k}{import} \PY{n}{RDatasets}
          \PY{n}{pyplot}\PY{p}{(}\PY{p}{)}
          \PY{n}{singers} \PY{o}{=} \PY{n}{RDatasets}\PY{o}{.}\PY{n}{dataset}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{\PYZdq{}}\PY{p}{)}
          \PY{n}{violin}\PY{p}{(}\PY{n}{singers}\PY{p}{,}\PY{o}{:}\PY{n}{VoicePart}\PY{p}{,}\PY{o}{:}\PY{n}{Height}\PY{p}{,}\PY{n}{marker}\PY{o}{=}\PY{p}{(}\PY{l+m+mf}{0.2}\PY{p}{,}\PY{o}{:}\PY{n}{blue}\PY{p}{,}\PY{n}{stroke}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{)}
          \PY{n}{boxplot!}\PY{p}{(}\PY{n}{singers}\PY{p}{,}\PY{o}{:}\PY{n}{VoicePart}\PY{p}{,}\PY{o}{:}\PY{n}{Height}\PY{p}{,}\PY{n}{marker}\PY{o}{=}\PY{p}{(}\PY{l+m+mf}{0.3}\PY{p}{,}\PY{o}{:}\PY{n}{orange}\PY{p}{,}\PY{n}{stroke}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        No user recipe defined for DataFrame
+
+        
+
+        Stacktrace:
+
+         [1] error(::String) at ./error.jl:33
+
+         [2] convertToAnyVector(::DataFrame, ::Dict\{Symbol,Any\}) at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/series.jl:14
+
+         [3] macro expansion at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/series.jl:131 [inlined]
+
+         [4] apply\_recipe(::Dict\{Symbol,Any\}, ::Type\{Plots.SliceIt\}, ::DataFrame, ::Symbol, ::Symbol) at /home/chrisrackauckas/.julia/packages/RecipesBase/Uz5AO/src/RecipesBase.jl:275
+
+         [5] \_process\_userrecipes(::Plots.Plot\{Plots.PyPlotBackend\}, ::Dict\{Symbol,Any\}, ::Tuple\{DataFrame,Symbol,Symbol\}) at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/pipeline.jl:83
+
+         [6] macro expansion at ./logging.jl:307 [inlined]
+
+         [7] \_plot!(::Plots.Plot\{Plots.PyPlotBackend\}, ::Dict\{Symbol,Any\}, ::Tuple\{DataFrame,Symbol,Symbol\}) at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/plot.jl:171
+
+         [8] \#plot\#132(::Base.Iterators.Pairs\{Symbol,Any,Tuple\{Symbol,Symbol\},NamedTuple\{(:marker, :seriestype),Tuple\{Tuple\{Float64,Symbol,Plots.Stroke\},Symbol\}\}\}, ::Function, ::DataFrame, ::Vararg\{Any,N\} where N) at /home/chrisrackauckas/.julia/packages/Plots/MnXMC/src/plot.jl:57
+
+         [9] (::getfield(RecipesBase, Symbol("\#kw\#\#plot")))(::NamedTuple\{(:marker, :seriestype),Tuple\{Tuple\{Float64,Symbol,Plots.Stroke\},Symbol\}\}, ::typeof(plot), ::DataFrame, ::Symbol, ::Vararg\{Symbol,N\} where N) at ./none:0
+
+         [10] \#violin\#362(::Base.Iterators.Pairs\{Symbol,Tuple\{Float64,Symbol,Plots.Stroke\},Tuple\{Symbol\},NamedTuple\{(:marker,),Tuple\{Tuple\{Float64,Symbol,Plots.Stroke\}\}\}\}, ::Function, ::DataFrame, ::Vararg\{Any,N\} where N) at /home/chrisrackauckas/.julia/packages/RecipesBase/Uz5AO/src/RecipesBase.jl:368
+
+         [11] (::getfield(Plots, Symbol("\#kw\#\#violin")))(::NamedTuple\{(:marker,),Tuple\{Tuple\{Float64,Symbol,Plots.Stroke\}\}\}, ::typeof(violin), ::DataFrame, ::Vararg\{Any,N\} where N) at ./none:0
+
+         [12] top-level scope at In[30]:4
+
+    \end{Verbatim}
 
     \subsection{Series Type}\label{series-type}
 
@@ -476,20 +736,46 @@ A series type allows you to define an entirely new way of visualizing
 data into backends.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{groupedbar}\PY{p}{(}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{,} \PY{n}{bar\PYZus{}position} \PY{o}{=} \PY{o}{:}\PY{n}{dodge}\PY{p}{,} \PY{n}{bar\PYZus{}width}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{groupedbar}\PY{p}{(}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{,} \PY{n}{bar\PYZus{}position} \PY{o}{=} \PY{o}{:}\PY{n}{dodge}\PY{p}{,} \PY{n}{bar\PYZus{}width}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{)}
 \end{Verbatim}
 
+
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{gr}\PY{p}{(}\PY{p}{)}
+
+        UndefVarError: groupedbar not defined
+
+        
+
+        Stacktrace:
+
+         [1] top-level scope at In[24]:1
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{gr}\PY{p}{(}\PY{p}{)}
          \PY{n}{groupedbar}\PY{p}{(}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{,} \PY{n}{bar\PYZus{}position} \PY{o}{=} \PY{o}{:}\PY{n}{dodge}\PY{p}{,} \PY{n}{bar\PYZus{}width}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{)}
 \end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        UndefVarError: groupedbar not defined
+
+        
+
+        Stacktrace:
+
+         [1] top-level scope at In[25]:2
+
+    \end{Verbatim}
 
     \subsection{Project: Regression Plot}\label{project-regression-plot}
 
 Make a beautiful plot of your regression:
 
 \begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
+\tightlist
 \item
   Plot the values as a scatter plot
 \item
