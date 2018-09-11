@@ -5,9 +5,9 @@ jupyter-nbconvert Notebooks/Index.ipynb --reveal-prefix=reveal.js
 mv Notebooks/Index.html  index.html
 
 cd Notebooks
-arr=(*.ipynb)
-cd ..
-for f in "${arr[@]}"; do
+for f in *ipynb; do
+
+   cd ..
    # Chop off the extension
    filename=$(basename "$f")
    extension="${filename##*.}"
@@ -41,6 +41,8 @@ for f in "${arr[@]}"; do
    mv "$filename".pdf  ../Pdfs/"$filename".pdf
    rm "$filename".ipynb
    cd ..
+
+   cd Notebooks
 done
 
 # Push the updates to gh-pages

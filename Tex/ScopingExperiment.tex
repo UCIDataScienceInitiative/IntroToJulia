@@ -304,7 +304,7 @@ access to the values of the outer function. For example:
     However, what is happening here, and why?
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}5}]:} \PY{k}{using} \PY{n}{Distributed}
+{\color{incolor}In [{\color{incolor}6}]:} \PY{k}{using} \PY{n}{Distributed}
         \PY{n}{addprocs}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
         \PY{k}{function} \PY{n}{f1}\PY{p}{(}\PY{p}{)}
           \PY{n+nd}{@distributed} \PY{k}{for} \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{100}
@@ -330,14 +330,14 @@ access to the values of the outer function. For example:
 
          [1] macro expansion at /buildworker/worker/package\_linux64/build/usr/share/julia/stdlib/v1.0/Distributed/src/macros.jl:337 [inlined]
 
-         [2] f1() at ./In[5]:4
+         [2] f1() at ./In[6]:4
 
-         [3] top-level scope at In[5]:13
+         [3] top-level scope at In[6]:13
 
     \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}6}]:} \PY{k}{function} \PY{n}{f2}\PY{p}{(}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}7}]:} \PY{k}{function} \PY{n}{f2}\PY{p}{(}\PY{p}{)}
           \PY{n+nd}{@distributed} \PY{k}{for} \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{100}
             \PY{n}{x} \PY{o}{=} \PY{l+m+mi}{10}
             \PY{k}{if} \PY{n}{x} \PY{o}{\PYZlt{}} \PY{l+m+mi}{100}
@@ -351,7 +351,7 @@ access to the values of the outer function. For example:
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}6}]:} 5
+{\color{outcolor}Out[{\color{outcolor}7}]:} 5
 \end{Verbatim}
             
 

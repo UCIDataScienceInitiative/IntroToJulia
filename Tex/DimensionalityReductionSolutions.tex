@@ -291,7 +291,8 @@ Task}\label{dimensionality-reduction-task}
 \item
   Use PCA from
   \href{https://github.com/JuliaStats/MultivariateStats.jl}{MultivariateStats.jl},
-  to reduce 100 dimensional word embedding down to 3,2 and 1 dimensions.
+  to reduce 300 dimensional word embedding down to 3, 2 and 1
+  dimensions.
 \item
   Plot these using
   \href{https://github.com/tbreloff/Plots.jl}{Plots.jl}, coloring
@@ -318,117 +319,329 @@ Task}\label{dimensionality-reduction-task}
 
     \section{First we loadup some data}\label{first-we-loadup-some-data}
 
-For the the example presented here, we will use a subhset of Word
-Embedding, trained using
-\href{https://github.com/tanmaykm/Word2Vec.jl}{Word2Vec.jl}. These are
-100 dimensional vectors, which encode syntactic and semantic information
-about words.
-
-You can download the datased from
-\href{http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ForwardDiff}{here},
-and load it up with \href{https://github.com/JuliaIO/JLD.jl}{JLD} as
-shown below. (or just load it directly if you have cloned the notebooks)
+For the the example presented here, we will use a subset of some
+pretrained word2vec word embedding, using the
+\href{https://github.com/JuliaText/Embeddings.jl/}{Embeddings.jl}
+package. These are 300 dimentional vectors, which encode syntactic and
+semantic information about words.
 
 Example code for the loading, together with the words sorted into their
 original classes is below.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{using} \PY{n}{JLD}
-        \PY{n}{countries} \PY{o}{=} \PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{a}\PY{l+s}{f}\PY{l+s}{g}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{g}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{b}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{g}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{a}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{b}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{d}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{h}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{b}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{z}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{b}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{c}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{c}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{o}\PY{l+s}{m}\PY{l+s}{b}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{e}\PY{l+s}{g}\PY{l+s}{y}\PY{l+s}{p}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{p}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{f}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{g}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{g}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{i}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{i}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{q}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{i}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{j}\PY{l+s}{a}\PY{l+s}{p}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{k}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{y}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{k}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{g}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{c}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{y}\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{x}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{m}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{c}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{m}\PY{l+s}{o}\PY{l+s}{z}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{b}\PY{l+s}{i}\PY{l+s}{q}\PY{l+s}{u}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{m}\PY{l+s}{y}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{n}\PY{l+s}{e}\PY{l+s}{p}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{g}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{p}\PY{l+s}{a}\PY{l+s}{k}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{p}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{u}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{p}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{p}\PY{l+s}{p}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{p}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{r}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{s}\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{s}\PY{l+s}{p}\PY{l+s}{a}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{s}\PY{l+s}{u}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{z}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{u}\PY{l+s}{g}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{u}\PY{l+s}{k}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{u}\PY{l+s}{z}\PY{l+s}{b}\PY{l+s}{e}\PY{l+s}{k}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{v}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{e}\PY{l+s}{z}\PY{l+s}{u}\PY{l+s}{e}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{v}\PY{l+s}{i}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{w}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{y}\PY{l+s}{e}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{]}
-        \PY{n}{usa\PYZus{}cities} \PY{o}{=} \PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{b}\PY{l+s}{u}\PY{l+s}{q}\PY{l+s}{u}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{q}\PY{l+s}{u}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{a}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{b}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{m}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{b}\PY{l+s}{o}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{c}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{l}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{c}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{a}\PY{l+s}{g}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{u}\PY{l+s}{m}\PY{l+s}{b}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{d}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{v}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{d}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{f}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{c}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{f}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{n}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{h}\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{p}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{j}\PY{l+s}{a}\PY{l+s}{c}\PY{l+s}{k}\PY{l+s}{s}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{v}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{l}\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{v}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{m}\PY{l+s}{p}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{m}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{w}\PY{l+s}{a}\PY{l+s}{u}\PY{l+s}{k}\PY{l+s}{e}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{h}\PY{l+s}{v}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{o}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{p}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{d}\PY{l+s}{e}\PY{l+s}{l}\PY{l+s}{p}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{p}\PY{l+s}{h}\PY{l+s}{o}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{x}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{p}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{t}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{i}\PY{l+s}{g}\PY{l+s}{h}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{s}\PY{l+s}{a}\PY{l+s}{c}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{s}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{s}\PY{l+s}{e}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{t}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{t}\PY{l+s}{u}\PY{l+s}{c}\PY{l+s}{s}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{v}\PY{l+s}{e}\PY{l+s}{g}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{w}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{]}
-        \PY{n}{world\PYZus{}capitals} \PY{o}{=} \PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{a}\PY{l+s}{c}\PY{l+s}{c}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{g}\PY{l+s}{i}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{k}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{v}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{b}\PY{l+s}{a}\PY{l+s}{g}\PY{l+s}{h}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{b}\PY{l+s}{a}\PY{l+s}{k}\PY{l+s}{u}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{b}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{k}\PY{l+s}{o}\PY{l+s}{k}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{b}\PY{l+s}{e}\PY{l+s}{i}\PY{l+s}{j}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{b}\PY{l+s}{e}\PY{l+s}{i}\PY{l+s}{r}\PY{l+s}{u}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{b}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{b}\PY{l+s}{o}\PY{l+s}{g}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{á}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{b}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{í}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{b}\PY{l+s}{u}\PY{l+s}{c}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{b}\PY{l+s}{u}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{p}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{c}\PY{l+s}{a}\PY{l+s}{i}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{c}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{c}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{c}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{d}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{k}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{o}\PY{l+s}{i}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{v}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{j}\PY{l+s}{a}\PY{l+s}{k}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{k}\PY{l+s}{a}\PY{l+s}{b}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{k}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{p}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{k}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{m}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{k}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{s}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{k}\PY{l+s}{y}\PY{l+s}{i}\PY{l+s}{v}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{l}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{l}\PY{l+s}{u}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{d}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{m}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{s}\PY{l+s}{k}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{m}\PY{l+s}{o}\PY{l+s}{s}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{w}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{i}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{b}\PY{l+s}{i}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{p}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{p}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{p}\PY{l+s}{y}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{y}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{q}\PY{l+s}{u}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{b}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{y}\PY{l+s}{a}\PY{l+s}{d}\PY{l+s}{h}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{s}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{g}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{s}\PY{l+s}{e}\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{a}\PY{l+s}{p}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{c}\PY{l+s}{k}\PY{l+s}{h}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{m}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{i}\PY{l+s}{p}\PY{l+s}{e}\PY{l+s}{i}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{h}\PY{l+s}{k}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{h}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{k}\PY{l+s}{y}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{v}\PY{l+s}{i}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{w}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{s}\PY{l+s}{a}\PY{l+s}{w}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{y}\PY{l+s}{a}\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{é}\PY{l+s}{\PYZdq{}}\PY{p}{]}
-        \PY{n}{animals} \PY{o}{=} \PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{p}\PY{l+s}{a}\PY{l+s}{c}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{c}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{l}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{c}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{t}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{d}\PY{l+s}{o}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{d}\PY{l+s}{o}\PY{l+s}{v}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{d}\PY{l+s}{u}\PY{l+s}{c}\PY{l+s}{k}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{f}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{g}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{d}\PY{l+s}{f}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{h}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{g}\PY{l+s}{o}\PY{l+s}{o}\PY{l+s}{s}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{g}\PY{l+s}{u}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{e}\PY{l+s}{a}\PY{l+s}{f}\PY{l+s}{o}\PY{l+s}{w}\PY{l+s}{l}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{m}\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{p}\PY{l+s}{i}\PY{l+s}{g}\PY{l+s}{e}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{y}\PY{l+s}{a}\PY{l+s}{k}\PY{l+s}{\PYZdq{}}\PY{p}{]}
+{\color{incolor}In [{\color{incolor}2}]:} \PY{k}{using} \PY{n}{Embeddings}
+        \PY{n}{countries} \PY{o}{=} \PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{f}\PY{l+s}{g}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{l}\PY{l+s}{g}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{b}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{r}\PY{l+s}{g}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{d}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{h}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{z}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{C}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{C}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{C}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{o}\PY{l+s}{m}\PY{l+s}{b}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{C}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{E}\PY{l+s}{g}\PY{l+s}{y}\PY{l+s}{p}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{E}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{E}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{p}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{F}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{G}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{G}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{I}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{I}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{I}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{I}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{q}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{I}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{I}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{J}\PY{l+s}{a}\PY{l+s}{p}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{K}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{y}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{K}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{M}\PY{l+s}{a}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{g}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{c}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{M}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{y}\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{M}\PY{l+s}{e}\PY{l+s}{x}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{M}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{c}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{M}\PY{l+s}{o}\PY{l+s}{z}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{b}\PY{l+s}{i}\PY{l+s}{q}\PY{l+s}{u}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{M}\PY{l+s}{y}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{N}\PY{l+s}{e}\PY{l+s}{p}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{N}\PY{l+s}{i}\PY{l+s}{g}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{a}\PY{l+s}{k}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{u}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{p}\PY{l+s}{p}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{R}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{p}\PY{l+s}{a}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{u}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{T}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{z}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{T}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{U}\PY{l+s}{g}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{U}\PY{l+s}{k}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{U}\PY{l+s}{s}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{U}\PY{l+s}{z}\PY{l+s}{b}\PY{l+s}{e}\PY{l+s}{k}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{V}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{e}\PY{l+s}{z}\PY{l+s}{u}\PY{l+s}{e}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{V}\PY{l+s}{i}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{W}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Y}\PY{l+s}{e}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{]}
+        \PY{n}{usa\PYZus{}cities} \PY{o}{=} \PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{l}\PY{l+s}{b}\PY{l+s}{u}\PY{l+s}{q}\PY{l+s}{u}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{q}\PY{l+s}{u}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{t}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{m}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{o}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{C}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{l}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{C}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{a}\PY{l+s}{g}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{C}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{u}\PY{l+s}{m}\PY{l+s}{b}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{D}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{D}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{v}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{D}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{F}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{c}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{F}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{n}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{H}\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{I}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{p}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{J}\PY{l+s}{a}\PY{l+s}{c}\PY{l+s}{k}\PY{l+s}{s}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{v}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{L}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{L}\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{v}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{M}\PY{l+s}{e}\PY{l+s}{m}\PY{l+s}{p}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{M}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{M}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{w}\PY{l+s}{a}\PY{l+s}{u}\PY{l+s}{k}\PY{l+s}{e}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{N}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{h}\PY{l+s}{v}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{O}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{d}\PY{l+s}{e}\PY{l+s}{l}\PY{l+s}{p}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{h}\PY{l+s}{o}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{x}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{t}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{R}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{i}\PY{l+s}{g}\PY{l+s}{h}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{a}\PY{l+s}{c}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{e}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{t}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{T}\PY{l+s}{u}\PY{l+s}{c}\PY{l+s}{s}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{V}\PY{l+s}{e}\PY{l+s}{g}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{W}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{]}
+        \PY{n}{world\PYZus{}capitals} \PY{o}{=} \PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{c}\PY{l+s}{c}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{l}\PY{l+s}{g}\PY{l+s}{i}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{m}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{n}\PY{l+s}{k}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{v}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{a}\PY{l+s}{g}\PY{l+s}{h}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{a}\PY{l+s}{k}\PY{l+s}{u}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{k}\PY{l+s}{o}\PY{l+s}{k}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{e}\PY{l+s}{i}\PY{l+s}{j}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{e}\PY{l+s}{i}\PY{l+s}{r}\PY{l+s}{u}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{o}\PY{l+s}{g}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{á}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{í}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{u}\PY{l+s}{c}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{u}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{p}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{C}\PY{l+s}{a}\PY{l+s}{i}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{C}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{c}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{D}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{c}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{D}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{k}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{H}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{o}\PY{l+s}{i}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{H}\PY{l+s}{a}\PY{l+s}{v}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{J}\PY{l+s}{a}\PY{l+s}{k}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{K}\PY{l+s}{a}\PY{l+s}{b}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{K}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{p}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{K}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{m}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{K}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{s}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{K}\PY{l+s}{y}\PY{l+s}{i}\PY{l+s}{v}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{L}\PY{l+s}{i}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{L}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{L}\PY{l+s}{u}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{M}\PY{l+s}{a}\PY{l+s}{d}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{M}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{M}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{s}\PY{l+s}{k}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{M}\PY{l+s}{o}\PY{l+s}{s}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{w}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{N}\PY{l+s}{a}\PY{l+s}{i}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{b}\PY{l+s}{i}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{y}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{y}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Q}\PY{l+s}{u}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{R}\PY{l+s}{a}\PY{l+s}{b}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{R}\PY{l+s}{i}\PY{l+s}{y}\PY{l+s}{a}\PY{l+s}{d}\PY{l+s}{h}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{R}\PY{l+s}{o}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{g}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{e}\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{a}\PY{l+s}{p}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{c}\PY{l+s}{k}\PY{l+s}{h}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{m}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{T}\PY{l+s}{a}\PY{l+s}{i}\PY{l+s}{p}\PY{l+s}{e}\PY{l+s}{i}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{T}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{h}\PY{l+s}{k}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{T}\PY{l+s}{e}\PY{l+s}{h}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{T}\PY{l+s}{o}\PY{l+s}{k}\PY{l+s}{y}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{V}\PY{l+s}{i}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{W}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{s}\PY{l+s}{a}\PY{l+s}{w}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Y}\PY{l+s}{a}\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{é}\PY{l+s}{\PYZdq{}}\PY{p}{]}
+        \PY{n}{animals} \PY{o}{=} \PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{p}\PY{l+s}{a}\PY{l+s}{c}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{c}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{l}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{c}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{t}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{d}\PY{l+s}{o}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{d}\PY{l+s}{o}\PY{l+s}{v}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{d}\PY{l+s}{u}\PY{l+s}{c}\PY{l+s}{k}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{f}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{g}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{d}\PY{l+s}{f}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{h}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{g}\PY{l+s}{o}\PY{l+s}{o}\PY{l+s}{s}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{m}\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{p}\PY{l+s}{i}\PY{l+s}{g}\PY{l+s}{e}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{y}\PY{l+s}{a}\PY{l+s}{k}\PY{l+s}{\PYZdq{}}\PY{p}{]}
         \PY{n}{sports} \PY{o}{=} \PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{c}\PY{l+s}{h}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{b}\PY{l+s}{a}\PY{l+s}{d}\PY{l+s}{m}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{b}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{k}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{b}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{b}\PY{l+s}{o}\PY{l+s}{x}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{c}\PY{l+s}{y}\PY{l+s}{c}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{d}\PY{l+s}{i}\PY{l+s}{v}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{e}\PY{l+s}{q}\PY{l+s}{u}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{f}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{c}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{f}\PY{l+s}{i}\PY{l+s}{e}\PY{l+s}{l}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{f}\PY{l+s}{o}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{b}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{g}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{f}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{g}\PY{l+s}{y}\PY{l+s}{m}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{b}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{h}\PY{l+s}{o}\PY{l+s}{c}\PY{l+s}{k}\PY{l+s}{e}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{j}\PY{l+s}{u}\PY{l+s}{d}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{k}\PY{l+s}{a}\PY{l+s}{y}\PY{l+s}{a}\PY{l+s}{k}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{p}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{l}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{p}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{w}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{r}\PY{l+s}{u}\PY{l+s}{g}\PY{l+s}{b}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{s}\PY{l+s}{a}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{s}\PY{l+s}{h}\PY{l+s}{o}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{s}\PY{l+s}{o}\PY{l+s}{c}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{s}\PY{l+s}{w}\PY{l+s}{i}\PY{l+s}{m}\PY{l+s}{m}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{e}\PY{l+s}{k}\PY{l+s}{w}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{l}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{v}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{y}\PY{l+s}{b}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{w}\PY{l+s}{e}\PY{l+s}{i}\PY{l+s}{g}\PY{l+s}{h}\PY{l+s}{t}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{f}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{w}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{]}
         
-        
         \PY{n}{words\PYZus{}by\PYZus{}class} \PY{o}{=} \PY{p}{[}\PY{n}{countries}\PY{p}{,} \PY{n}{usa\PYZus{}cities}\PY{p}{,} \PY{n}{world\PYZus{}capitals}\PY{p}{,} \PY{n}{animals}\PY{p}{,} \PY{n}{sports}\PY{p}{]}
-        \PY{n}{all\PYZus{}words} \PY{o}{=} \PY{n}{vcat}\PY{p}{(}\PY{n}{words\PYZus{}by\PYZus{}class}\PY{o}{.}\PY{o}{.}\PY{o}{.}\PY{p}{)}
-        \PY{n}{classes} \PY{o}{=} \PY{n}{vcat}\PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{5}\PY{p}{)} \PY{o}{.*} \PY{n}{ones}\PY{o}{.}\PY{p}{(}\PY{n}{length}\PY{o}{.}\PY{p}{(}\PY{n}{words\PYZus{}by\PYZus{}class}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{o}{.}\PY{o}{.}\PY{p}{)}\PY{p}{;}
-        \PY{n}{embeddings} \PY{o}{=} \PY{n}{load}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{.}\PY{l+s}{.}\PY{l+s}{/}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{s}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{s}\PY{l+s}{/}\PY{l+s}{C}\PY{l+s}{l}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{A}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{D}\PY{l+s}{i}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{y}\PY{l+s}{R}\PY{l+s}{e}\PY{l+s}{d}\PY{l+s}{u}\PY{l+s}{c}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{.}\PY{l+s}{j}\PY{l+s}{l}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{e}\PY{l+s}{m}\PY{l+s}{b}\PY{l+s}{e}\PY{l+s}{d}\PY{l+s}{d}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{all\PYZus{}words} \PY{o}{=} \PY{n}{reduce}\PY{p}{(}\PY{n}{vcat}\PY{p}{,} \PY{n}{words\PYZus{}by\PYZus{}class}\PY{p}{)}
+        \PY{n}{embedding\PYZus{}table} \PY{o}{=} \PY{n}{load\PYZus{}embeddings}\PY{p}{(}\PY{n}{Word2Vec}\PY{p}{;} \PY{n}{keep\PYZus{}words} \PY{o}{=} \PY{n}{all\PYZus{}words}\PY{p}{)} 
+        \PY{n+nd}{@assert} \PY{k+kt}{Set}\PY{p}{(}\PY{n}{all\PYZus{}words}\PY{p}{)} \PY{o}{==} \PY{k+kt}{Set}\PY{p}{(}\PY{n}{embedding\PYZus{}table}\PY{o}{.}\PY{n}{vocab}\PY{p}{)}
+        
+        \PY{n}{embeddings} \PY{o}{=} \PY{n}{embedding\PYZus{}table}\PY{o}{.}\PY{n}{embeddings}
+        \PY{n}{all\PYZus{}words} \PY{o}{=} \PY{n}{embedding\PYZus{}table}\PY{o}{.}\PY{n}{vocab}
+        \PY{n}{classes} \PY{o}{=} \PY{n}{map}\PY{p}{(}\PY{n}{all\PYZus{}words}\PY{p}{)} \PY{k}{do} \PY{n}{word}
+            \PY{n}{findfirst}\PY{p}{(}\PY{n}{col} \PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}} \PY{n}{word} \PY{o}{∈} \PY{n}{col}\PY{p}{,} \PY{p}{[}\PY{n}{countries}\PY{p}{,} \PY{n}{usa\PYZus{}cities}\PY{p}{,} \PY{n}{world\PYZus{}capitals}\PY{p}{,} \PY{n}{animals}\PY{p}{,} \PY{n}{sports}\PY{p}{]}\PY{p}{)}
+        \PY{k}{end}\PY{p}{;}
 \end{Verbatim}
 
 
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}1}]:} Dict\{String,Array\{Float32,1\}\} with 185 entries:
-          "ferret"       => Float32[0.0945707,-0.435267,0.0109875,-0.107674,0.169001,-0…
-          "gymnastics"   => Float32[-0.269173,-0.343412,-0.00603042,-0.186179,0.0342606…
-          "vegas"        => Float32[-0.00530534,-0.264874,0.0167432,-0.289836,-0.14033,…
-          "archery"      => Float32[0.0279714,-0.485648,0.105468,-0.0696941,0.182807,-0…
-          "jacksonville" => Float32[-0.418758,-0.0284594,0.00847164,-0.0989162,0.098186…
-          "ankara"       => Float32[-0.139109,0.0872892,0.749557,-0.0308427,-0.0936718,…
-          "pentathlon"   => Float32[-0.357405,-0.379595,-0.134314,-0.31008,-0.0245871,-…
-          "seoul"        => Float32[0.0274904,-0.153844,-0.0936614,-0.0269344,-0.091449…
-          "china"        => Float32[0.132423,-0.515862,-0.0381339,-0.287565,-0.285202,-…
-          "korea"        => Float32[0.236904,-0.128355,-0.0816942,-0.0702621,-0.148426,…
-          "argentina"    => Float32[-0.113967,-0.437523,-0.226014,-0.439572,-0.230062,-…
-          "mozambique"   => Float32[0.309411,-0.13457,-0.632055,-0.309943,0.040591,0.11…
-          "iraq"         => Float32[-0.260673,0.0356129,0.104878,0.103836,-0.17918,-0.3…
-          "baku"         => Float32[0.182572,0.156322,0.225807,-0.0933851,-0.246997,-0.…
-          "jakarta"      => Float32[0.13052,-0.408592,-0.0138496,-0.415052,0.21523,-0.0…
-          "bogotá"       => Float32[-0.26368,-0.292844,-0.338501,-0.278793,-0.0690988,0…
-          "sacramento"   => Float32[-0.217914,-0.116757,-0.213111,-0.13627,-0.0241341,-…
-          "dhaka"        => Float32[-0.0264262,-0.256298,0.0922423,-0.711511,-0.329286,…
-          "kyiv"         => Float32[-0.0527193,0.219892,-0.298013,-0.594799,-0.452732,-…
-          "houston"      => Float32[-0.301442,-0.133911,-0.17504,-0.0391225,-0.0525875,…
-          "italy"        => Float32[0.246153,-0.0510639,-0.143408,-0.149572,-0.229163,-…
-          "francisco"    => Float32[-0.342338,-0.200734,-0.347174,-0.228947,-0.125513,-…
-          "baghdad"      => Float32[-0.309163,0.00524779,0.287937,0.0294381,-0.173093,-…
-          "dog"          => Float32[0.0509182,-0.479764,0.0209584,-0.0409415,0.0650602,…
-          "kabul"        => Float32[-0.0282727,-0.108688,0.249284,0.119064,-0.163644,-0…
-          ⋮              => ⋮
-\end{Verbatim}
-            
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}2}]:} \PY{k}{using} \PY{n}{MultivariateStats}
+{\color{incolor}In [{\color{incolor} }]:} \PY{k}{using} \PY{n}{MultivariateStats}
         \PY{k}{using} \PY{n}{Plots}
         \PY{n}{plotly}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 
 
-    
-    
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}2}]:} Plots.PlotlyBackend()
-\end{Verbatim}
-            
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{embeddings\PYZus{}mat} \PY{o}{=} \PY{n}{hcat}\PY{p}{(}\PY{n}{getindex}\PY{o}{.}\PY{p}{(}\PY{p}{[}\PY{n}{embeddings}\PY{p}{]}\PY{p}{,} \PY{n}{all\PYZus{}words}\PY{p}{)}\PY{o}{.}\PY{o}{.}\PY{o}{.}\PY{p}{)}
-\end{Verbatim}
+┌ Info: Precompiling MultivariateStats [6f286f6a-111f-5878-ab1e-185364afe411]
+└ @ Base loading.jl:1187
+WARNING: Base.LinAlg is deprecated, run `using LinearAlgebra` instead
+  likely near /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/MultivariateStats.jl:8
+┌ Warning: Deprecated syntax `parametric method syntax fullmean\{T\}(d::Int, mv::Vector\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/common.jl:23.
+│ Use `fullmean(d::Int, mv::Vector\{T\}) where T` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/common.jl:23
+┌ Warning: Deprecated syntax `parametric method syntax preprocess\_mean\{T <: AbstractFloat\}(X::Matrix\{T\}, m)` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/common.jl:25.
+│ Use `preprocess\_mean(X::Matrix\{T\}, m) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/common.jl:25
+┌ Warning: Deprecated syntax `parametric method syntax extract\_kv\{T\}(fac::Factorization\{T\}, ord::AbstractVector\{Int\}, k::Int)` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/common.jl:34.
+│ Use `extract\_kv(fac::Factorization\{T\}, ord::AbstractVector\{Int\}, k::Int) where T` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/common.jl:34
+WARNING: importing deprecated binding Base.Factorization into MultivariateStats.
+WARNING: Base.Factorization is deprecated: it has been moved to the standard library package `LinearAlgebra`.
+Add `using LinearAlgebra` to your imports.
+  likely near /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/common.jl:33
+┌ Warning: Deprecated syntax `parametric method syntax regularize\_symmat!\{T <: AbstractFloat\}(A::Matrix\{T\}, lambda::Real)` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/common.jl:102.
+│ Use `regularize\_symmat!(A::Matrix\{T\}, lambda::Real) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/common.jl:102
+┌ Warning: Deprecated syntax `parametric method syntax lrsoltype\{T\}(::DenseVector\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/lreg.jl:13.
+│ Use `lrsoltype(\#unused\#::DenseVector\{T\}) where T` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/lreg.jl:13
+┌ Warning: Deprecated syntax `parametric method syntax lrsoltype\{T\}(::DenseMatrix\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/lreg.jl:14.
+│ Use `lrsoltype(\#unused\#::DenseMatrix\{T\}) where T` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/lreg.jl:14
+┌ Warning: Deprecated syntax `parametric method syntax \_vaug\{T\}(X::DenseMatrix\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/lreg.jl:16.
+│ Use `\_vaug(X::DenseMatrix\{T\}) where T` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/lreg.jl:16
+┌ Warning: Deprecated syntax `parametric method syntax \_haug\{T\}(X::DenseMatrix\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/lreg.jl:17.
+│ Use `\_haug(X::DenseMatrix\{T\}) where T` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/lreg.jl:17
+┌ Warning: Deprecated syntax `parametric method syntax llsq\{T <: AbstractFloat\}(X::DenseMatrix\{T\}, Y::DenseVecOrMat\{T\}; trans::Bool = false, bias::Bool = true)` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/lreg.jl:24.
+│ Use `llsq(X::DenseMatrix\{T\}, Y::DenseVecOrMat\{T\}; trans::Bool = false, bias::Bool = true) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/lreg.jl:24
+┌ Warning: Deprecated syntax `parametric method syntax ridge\{T <: AbstractFloat\}(X::DenseMatrix\{T\}, Y::DenseVecOrMat\{T\}, r::Real; trans::Bool = false, bias::Bool = true)` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/lreg.jl:40.
+│ Use `ridge(X::DenseMatrix\{T\}, Y::DenseVecOrMat\{T\}, r::Real; trans::Bool = false, bias::Bool = true) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/lreg.jl:40
+┌ Warning: Deprecated syntax `parametric method syntax ridge\{T <: AbstractFloat\}(X::DenseMatrix\{T\}, Y::DenseVecOrMat\{T\}, r::DenseVector\{T\}; trans::Bool = false, bias::Bool = true)` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/lreg.jl:47.
+│ Use `ridge(X::DenseMatrix\{T\}, Y::DenseVecOrMat\{T\}, r::DenseVector\{T\}; trans::Bool = false, bias::Bool = true) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/lreg.jl:47
+┌ Warning: Deprecated syntax `parametric method syntax ridge\{T <: AbstractFloat\}(X::DenseMatrix\{T\}, Y::DenseVecOrMat\{T\}, r::DenseMatrix\{T\}; trans::Bool = false, bias::Bool = true)` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/lreg.jl:54.
+│ Use `ridge(X::DenseMatrix\{T\}, Y::DenseVecOrMat\{T\}, r::DenseMatrix\{T\}; trans::Bool = false, bias::Bool = true) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/lreg.jl:54
+┌ Warning: Deprecated syntax `parametric method syntax \_ridge\{T <: AbstractFloat\}(X::DenseMatrix\{T\}, Y::DenseVecOrMat\{T\}, r::Union\{Real, DenseVecOrMat\}, trans::Bool, bias::Bool)` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/lreg.jl:63.
+│ Use `\_ridge(X::DenseMatrix\{T\}, Y::DenseVecOrMat\{T\}, r::Union\{Real, DenseVecOrMat\}, trans::Bool, bias::Bool) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/lreg.jl:63
+┌ Warning: Deprecated syntax `immutable` at /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/whiten.jl:24.
+│ Use `struct` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/whiten.jl:24
+┌ Warning: Deprecated syntax `parametric method syntax cov\_whitening\{T <: AbstractFloat\}(C::Cholesky\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/whiten.jl:8.
+│ Use `cov\_whitening(C::Cholesky\{T\}) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/whiten.jl:8
+┌ Warning: Deprecated syntax `parametric method syntax cov\_whitening!\{T <: AbstractFloat\}(C::DenseMatrix\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/whiten.jl:12.
+│ Use `cov\_whitening!(C::DenseMatrix\{T\}) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/whiten.jl:12
+┌ Warning: Deprecated syntax `parametric method syntax cov\_whitening\{T <: AbstractFloat\}(C::DenseMatrix\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/whiten.jl:13.
+│ Use `cov\_whitening(C::DenseMatrix\{T\}) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/whiten.jl:13
+┌ Warning: Deprecated syntax `parametric method syntax cov\_whitening!\{T <: AbstractFloat\}(C::DenseMatrix\{T\}, regcoef::Real)` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/whiten.jl:15.
+│ Use `cov\_whitening!(C::DenseMatrix\{T\}, regcoef::Real) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/whiten.jl:15
+┌ Warning: Deprecated syntax `parametric method syntax cov\_whitening\{T <: AbstractFloat\}(C::DenseMatrix\{T\}, regcoef::Real)` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/whiten.jl:18.
+│ Use `cov\_whitening(C::DenseMatrix\{T\}, regcoef::Real) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/whiten.jl:18
+┌ Warning: Deprecated syntax `parametric method syntax (::Type\{Whitening\{T\}\})\{T\}(mean::Vector\{T\}, W::Matrix\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/whiten.jl:28.
+│ Use `(::Type\{Whitening\{T\}\})(mean::Vector\{T\}, W::Matrix\{T\}) where T` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/whiten.jl:28
+┌ Warning: Deprecated syntax `parametric method syntax (::Type\{Whitening\})\{T <: AbstractFloat\}(mean::Vector\{T\}, W::Matrix\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/whiten.jl:35.
+│ Use `(::Type\{Whitening\})(mean::Vector\{T\}, W::Matrix\{T\}) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/whiten.jl:35
+WARNING: Base.mean is deprecated: it has been moved to the standard library package `Statistics`.
+Add `using Statistics` to your imports.
+  likely near /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/whiten.jl:39
+┌ Warning: Deprecated syntax `parametric method syntax fit\{T <: AbstractFloat\}(::Type\{Whitening\}, X::DenseMatrix\{T\}; mean = nothing, regcoef::Real = zero(T))` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/whiten.jl:47.
+│ Use `fit(\#s20::Type\{Whitening\}, X::DenseMatrix\{T\}; mean = nothing, regcoef::Real = zero(T)) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/whiten.jl:47
+┌ Warning: Deprecated syntax `parametric method syntax \_invsqrtm!\{T <: AbstractFloat\}(C::Matrix\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/whiten.jl:58.
+│ Use `\_invsqrtm!(C::Matrix\{T\}) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/whiten.jl:58
+┌ Warning: Deprecated syntax `parametric method syntax invsqrtm\{T <: AbstractFloat\}(C::DenseMatrix\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/whiten.jl:70.
+│ Use `invsqrtm(C::DenseMatrix\{T\}) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/whiten.jl:70
+┌ Warning: Deprecated syntax `type` at /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/pca.jl:5.
+│ Use `mutable struct` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/pca.jl:5
+┌ Warning: Deprecated syntax `parametric method syntax PCA\{T <: AbstractFloat\}(mean::Vector\{T\}, proj::Matrix\{T\}, pvars::Vector\{T\}, tvar::T)` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/pca.jl:16.
+│ Use `PCA(mean::Vector\{T\}, proj::Matrix\{T\}, pvars::Vector\{T\}, tvar::T) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/pca.jl:16
+WARNING: Base.mean is deprecated: it has been moved to the standard library package `Statistics`.
+Add `using Statistics` to your imports.
+  likely near /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/pca.jl:31
+┌ Warning: Deprecated syntax `parametric method syntax transform\{T <: AbstractFloat\}(M::PCA\{T\}, x::AbstractVecOrMat\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/pca.jl:46.
+│ Use `transform(M::PCA\{T\}, x::AbstractVecOrMat\{T\}) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/pca.jl:46
+┌ Warning: Deprecated syntax `parametric method syntax reconstruct\{T <: AbstractFloat\}(M::PCA\{T\}, y::AbstractVecOrMat\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/pca.jl:47.
+│ Use `reconstruct(M::PCA\{T\}, y::AbstractVecOrMat\{T\}) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/pca.jl:47
+WARNING: importing deprecated binding Base.@sprintf into MultivariateStats.
+WARNING: Base.@sprintf is deprecated: it has been moved to the standard library package `Printf`.
+Add `using Printf` to your imports.
+  likely near /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/pca.jl:51
+┌ Warning: Deprecated syntax `parametric method syntax check\_pcaparams\{T <: AbstractFloat\}(d::Int, mean::Vector\{T\}, md::Int, pr::AbstractFloat)` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/pca.jl:78.
+│ Use `check\_pcaparams(d::Int, mean::Vector\{T\}, md::Int, pr::AbstractFloat) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/pca.jl:78
+┌ Warning: Deprecated syntax `parametric method syntax choose\_pcadim\{T <: AbstractFloat\}(v::AbstractVector\{T\}, ord::Vector\{Int\}, vsum::T, md::Int, pr::AbstractFloat)` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/pca.jl:86.
+│ Use `choose\_pcadim(v::AbstractVector\{T\}, ord::Vector\{Int\}, vsum::T, md::Int, pr::AbstractFloat) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/pca.jl:86
+┌ Warning: Deprecated syntax `parametric method syntax pcacov\{T <: AbstractFloat\}(C::DenseMatrix\{T\}, mean::Vector\{T\}; maxoutdim::Int = size(C, 1), pratio::AbstractFloat = default\_pca\_pratio)` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/pca.jl:103.
+│ Use `pcacov(C::DenseMatrix\{T\}, mean::Vector\{T\}; maxoutdim::Int = size(C, 1), pratio::AbstractFloat = default\_pca\_pratio) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/pca.jl:103
+┌ Warning: Deprecated syntax `parametric method syntax pcasvd\{T <: AbstractFloat\}(Z::DenseMatrix\{T\}, mean::Vector\{T\}, tw::Real; maxoutdim::Int = min(size(Z){\ldots}), pratio::AbstractFloat = default\_pca\_pratio)` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/pca.jl:117.
+│ Use `pcasvd(Z::DenseMatrix\{T\}, mean::Vector\{T\}, tw::Real; maxoutdim::Int = min(size(Z){\ldots}), pratio::AbstractFloat = default\_pca\_pratio) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/pca.jl:117
+┌ Warning: Deprecated syntax `parametric method syntax fit\{T <: AbstractFloat\}(::Type\{PCA\}, X::DenseMatrix\{T\}; method::Symbol = :auto, maxoutdim::Int = size(X, 1), pratio::AbstractFloat = default\_pca\_pratio, mean = nothing)` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/pca.jl:139.
+│ Use `fit(\#s20::Type\{PCA\}, X::DenseMatrix\{T\}; method::Symbol = :auto, maxoutdim::Int = size(X, 1), pratio::AbstractFloat = default\_pca\_pratio, mean = nothing) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/pca.jl:139
+┌ Warning: Deprecated syntax `immutable` at /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/ppca.jl:4.
+│ Use `struct` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/ppca.jl:4
+WARNING: Base.mean is deprecated: it has been moved to the standard library package `Statistics`.
+Add `using Statistics` to your imports.
+  likely near /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/ppca.jl:15
+WARNING: Base.var is deprecated: it has been moved to the standard library package `Statistics`.
+Add `using Statistics` to your imports.
+  likely near /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/ppca.jl:17
+┌ Warning: Deprecated syntax `parametric method syntax transform\{T <: AbstractFloat\}(m::PPCA\{T\}, x::AbstractVecOrMat\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/ppca.jl:23.
+│ Use `transform(m::PPCA\{T\}, x::AbstractVecOrMat\{T\}) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/ppca.jl:23
+┌ Warning: Deprecated syntax `parametric method syntax reconstruct\{T <: AbstractFloat\}(m::PPCA\{T\}, z::AbstractVecOrMat\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/ppca.jl:30.
+│ Use `reconstruct(m::PPCA\{T\}, z::AbstractVecOrMat\{T\}) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/ppca.jl:30
+┌ Warning: Deprecated syntax `parametric method syntax ppcaml\{T <: AbstractFloat\}(Z::DenseMatrix\{T\}, mean::Vector\{T\}; maxoutdim::Int = (size(Z, 1) - 1), tol::Real = 1e-06)` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/ppca.jl:48.
+│ Use `ppcaml(Z::DenseMatrix\{T\}, mean::Vector\{T\}; maxoutdim::Int = (size(Z, 1) - 1), tol::Real = 1e-06) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/ppca.jl:48
+┌ Warning: Deprecated syntax `parametric method syntax ppcaem\{T <: AbstractFloat\}(S::DenseMatrix\{T\}, mean::Vector\{T\}, n::Int; maxoutdim::Int = (size(S, 1) - 1), tol::Real = 1e-06, tot::Integer = 1000)` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/ppca.jl:81.
+│ Use `ppcaem(S::DenseMatrix\{T\}, mean::Vector\{T\}, n::Int; maxoutdim::Int = (size(S, 1) - 1), tol::Real = 1e-06, tot::Integer = 1000) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/ppca.jl:81
+┌ Warning: Deprecated syntax `parametric method syntax bayespca\{T <: AbstractFloat\}(S::DenseMatrix\{T\}, mean::Vector\{T\}, n::Int; maxoutdim::Int = (size(S, 1) - 1), tol::Real = 1e-06, tot::Integer = 1000)` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/ppca.jl:125.
+│ Use `bayespca(S::DenseMatrix\{T\}, mean::Vector\{T\}, n::Int; maxoutdim::Int = (size(S, 1) - 1), tol::Real = 1e-06, tot::Integer = 1000) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/ppca.jl:125
+┌ Warning: Deprecated syntax `parametric method syntax fit\{T <: AbstractFloat\}(::Type\{PPCA\}, X::DenseMatrix\{T\}; method::Symbol = :ml, maxoutdim::Int = (size(X, 1) - 1), mean = nothing, tol::Real = 1e-06, tot::Integer = 1000)` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/ppca.jl:181.
+│ Use `fit(\#s40::Type\{PPCA\}, X::DenseMatrix\{T\}; method::Symbol = :ml, maxoutdim::Int = (size(X, 1) - 1), mean = nothing, tol::Real = 1e-06, tot::Integer = 1000) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/ppca.jl:181
+┌ Warning: Deprecated syntax `immutable` at /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/kpca.jl:4.
+│ Use `struct` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/kpca.jl:4
+┌ Warning: Deprecated syntax `immutable` at /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/kpca.jl:30.
+│ Use `struct` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/kpca.jl:30
+┌ Warning: Deprecated syntax `parametric method syntax fit\{T <: AbstractFloat\}(::Type\{KernelCenter\}, K::AbstractMatrix\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/kpca.jl:11.
+│ Use `fit(\#unused\#::Type\{KernelCenter\}, K::AbstractMatrix\{T\}) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/kpca.jl:11
+┌ Warning: Deprecated syntax `parametric method syntax transform!\{T <: AbstractFloat\}(C::KernelCenter\{T\}, K::AbstractMatrix\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/kpca.jl:18.
+│ Use `transform!(C::KernelCenter\{T\}, K::AbstractMatrix\{T\}) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/kpca.jl:18
+┌ Warning: Deprecated syntax `parametric method syntax transform\{T <: AbstractFloat\}(M::KernelPCA\{T\}, x::AbstractVecOrMat\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/kpca.jl:51.
+│ Use `transform(M::KernelPCA\{T\}, x::AbstractVecOrMat\{T\}) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/kpca.jl:51
+┌ Warning: Deprecated syntax `parametric method syntax transform\{T <: AbstractFloat\}(M::KernelPCA\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/kpca.jl:57.
+│ Use `transform(M::KernelPCA\{T\}) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/kpca.jl:57
+┌ Warning: Deprecated syntax `parametric method syntax reconstruct\{T <: AbstractFloat\}(M::KernelPCA\{T\}, y::AbstractVecOrMat\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/kpca.jl:62.
+│ Use `reconstruct(M::KernelPCA\{T\}, y::AbstractVecOrMat\{T\}) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/kpca.jl:62
+┌ Warning: Deprecated syntax `parametric method syntax pairwise!\{T <: AbstractFloat\}(K::AbstractVecOrMat\{T\}, kernel::Function, X::AbstractVecOrMat\{T\}, Y::AbstractVecOrMat\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/kpca.jl:80.
+│ Use `pairwise!(K::AbstractVecOrMat\{T\}, kernel::Function, X::AbstractVecOrMat\{T\}, Y::AbstractVecOrMat\{T\}) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/kpca.jl:80
+┌ Warning: Deprecated syntax `parametric method syntax pairwise!\{T <: AbstractFloat\}(K::AbstractVecOrMat\{T\}, kernel::Function, X::AbstractVecOrMat\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/kpca.jl:94.
+│ Use `pairwise!(K::AbstractVecOrMat\{T\}, kernel::Function, X::AbstractVecOrMat\{T\}) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/kpca.jl:94
+┌ Warning: Deprecated syntax `parametric method syntax pairwise\{T <: AbstractFloat\}(kernel::Function, X::AbstractVecOrMat\{T\}, Y::AbstractVecOrMat\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/kpca.jl:98.
+│ Use `pairwise(kernel::Function, X::AbstractVecOrMat\{T\}, Y::AbstractVecOrMat\{T\}) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/kpca.jl:98
+┌ Warning: Deprecated syntax `parametric method syntax pairwise\{T <: AbstractFloat\}(kernel::Function, X::AbstractVecOrMat\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/kpca.jl:104.
+│ Use `pairwise(kernel::Function, X::AbstractVecOrMat\{T\}) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/kpca.jl:104
+┌ Warning: Deprecated syntax `parametric method syntax fit\{T <: AbstractFloat\}(::Type\{KernelPCA\}, X::AbstractMatrix\{T\}; kernel = (x, y) -> begin
+│     \# /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/kpca.jl, line 110
+│     (x' * y)
+│ end, maxoutdim::Int = min(size(X){\ldots}), remove\_zero\_eig::Bool = false, atol::Real = 1e-10, solver::Symbol = :eig, inverse::Bool = false, β::Real = 1, tol::Real = 0, maxiter::Real = 300)` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/kpca.jl:116.
+│ Use `fit(\#s44::Type\{KernelPCA\}, X::AbstractMatrix\{T\}; kernel = (x, y) -> begin
+│     \# /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/kpca.jl, line 110
+│     (x' * y)
+│ end, maxoutdim::Int = min(size(X){\ldots}), remove\_zero\_eig::Bool = false, atol::Real = 1e-10, solver::Symbol = :eig, inverse::Bool = false, β::Real = 1, tol::Real = 0, maxiter::Real = 300) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/kpca.jl:116
+┌ Warning: Deprecated syntax `type` at /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/cca.jl:5.
+│ Use `mutable struct` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/cca.jl:5
+┌ Warning: Deprecated syntax `parametric method syntax xtransform\{T <: Real\}(M::CCA, X::AbstractVecOrMat\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/cca.jl:53.
+│ Use `xtransform(M::CCA, X::AbstractVecOrMat\{T\}) where T <: Real` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/cca.jl:53
+┌ Warning: Deprecated syntax `parametric method syntax ytransform\{T <: Real\}(M::CCA, Y::AbstractVecOrMat\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/cca.jl:54.
+│ Use `ytransform(M::CCA, Y::AbstractVecOrMat\{T\}) where T <: Real` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/cca.jl:54
+┌ Warning: Deprecated syntax `parametric method syntax gram2dmat!\{DT\}(D::AbstractMatrix\{DT\}, G::AbstractMatrix)` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/cmds.jl:7.
+│ Use `gram2dmat!(D::AbstractMatrix\{DT\}, G::AbstractMatrix) where DT` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/cmds.jl:7
+┌ Warning: Deprecated syntax `parametric method syntax gram2dmat\{T <: Real\}(G::AbstractMatrix\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/cmds.jl:26.
+│ Use `gram2dmat(G::AbstractMatrix\{T\}) where T <: Real` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/cmds.jl:26
+┌ Warning: Deprecated syntax `parametric method syntax dmat2gram!\{GT\}(G::AbstractMatrix\{GT\}, D::AbstractMatrix)` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/cmds.jl:32.
+│ Use `dmat2gram!(G::AbstractMatrix\{GT\}, D::AbstractMatrix) where GT` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/cmds.jl:32
+┌ Warning: Deprecated syntax `parametric method syntax dmat2gram\{T <: Real\}(D::AbstractMatrix\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/cmds.jl:55.
+│ Use `dmat2gram(D::AbstractMatrix\{T\}) where T <: Real` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/cmds.jl:55
+┌ Warning: Deprecated syntax `parametric method syntax classical\_mds\{T <: Real\}(D::AbstractMatrix\{T\}, p::Int; dowarn::Bool = true)` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/cmds.jl:62.
+│ Use `classical\_mds(D::AbstractMatrix\{T\}, p::Int; dowarn::Bool = true) where T <: Real` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/cmds.jl:62
+┌ Warning: Deprecated syntax `1./` at /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/lda.jl:262.
+│ Use `1 ./` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/lda.jl:262
+WARNING: Base.mean is deprecated: it has been moved to the standard library package `Statistics`.
+Add `using Statistics` to your imports.
+  likely near /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/lda.jl:73
+WARNING: Base.mean is deprecated: it has been moved to the standard library package `Statistics`.
+Add `using Statistics` to your imports.
+  likely near /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/lda.jl:128
+WARNING: Base.mean is deprecated: it has been moved to the standard library package `Statistics`.
+Add `using Statistics` to your imports.
+  likely near /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/lda.jl:215
+WARNING: Base.mean is deprecated: it has been moved to the standard library package `Statistics`.
+Add `using Statistics` to your imports.
+  likely near /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/ica.jl:12
+WARNING: importing deprecated binding Base.@printf into MultivariateStats.
+WARNING: Base.@printf is deprecated: it has been moved to the standard library package `Printf`.
+Add `using Printf` to your imports.
+  likely near /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/ica.jl:58
+WARNING: Base.@printf is deprecated: it has been moved to the standard library package `Printf`.
+Add `using Printf` to your imports.
+  likely near /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/ica.jl:58
+┌ Warning: Deprecated syntax `immutable` at /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/fa.jl:4.
+│ Use `struct` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/fa.jl:4
+┌ Warning: Deprecated syntax `1./` at /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/fa.jl:24.
+│ Use `1 ./` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/fa.jl:24
+┌ Warning: Deprecated syntax `1./` at /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/fa.jl:59.
+│ Use `1 ./` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/fa.jl:59
+┌ Warning: Deprecated syntax `1./` at /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/fa.jl:68.
+│ Use `1 ./` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/fa.jl:68
+┌ Warning: Deprecated syntax `1./` at /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/fa.jl:105.
+│ Use `1 ./` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/fa.jl:105
+┌ Warning: Deprecated syntax `1./` at /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/fa.jl:128.
+│ Use `1 ./` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/fa.jl:128
+┌ Warning: Deprecated syntax `1./` at /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/fa.jl:139.
+│ Use `1 ./` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/fa.jl:139
+WARNING: Base.mean is deprecated: it has been moved to the standard library package `Statistics`.
+Add `using Statistics` to your imports.
+  likely near /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/fa.jl:13
+WARNING: Base.cov is deprecated: it has been moved to the standard library package `Statistics`.
+Add `using Statistics` to your imports.
+  likely near /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/fa.jl:15
+WARNING: Base.var is deprecated: it has been moved to the standard library package `Statistics`.
+Add `using Statistics` to your imports.
+  likely near /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/fa.jl:16
+┌ Warning: Deprecated syntax `parametric method syntax transform\{T <: AbstractFloat\}(m::FactorAnalysis\{T\}, x::AbstractVecOrMat\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/fa.jl:22.
+│ Use `transform(m::FactorAnalysis\{T\}, x::AbstractVecOrMat\{T\}) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/fa.jl:22
+┌ Warning: Deprecated syntax `parametric method syntax reconstruct\{T <: AbstractFloat\}(m::FactorAnalysis\{T\}, z::AbstractVecOrMat\{T\})` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/fa.jl:29.
+│ Use `reconstruct(m::FactorAnalysis\{T\}, z::AbstractVecOrMat\{T\}) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/fa.jl:29
+┌ Warning: Deprecated syntax `parametric method syntax faem\{T <: AbstractFloat\}(S::DenseMatrix\{T\}, mv::Vector\{T\}, n::Int; maxoutdim::Int = (size(X, 1) - 1), tol::Real = 1e-06, tot::Integer = 1000)` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/fa.jl:51.
+│ Use `faem(S::DenseMatrix\{T\}, mv::Vector\{T\}, n::Int; maxoutdim::Int = (size(X, 1) - 1), tol::Real = 1e-06, tot::Integer = 1000) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/fa.jl:51
+┌ Warning: Deprecated syntax `parametric method syntax facm\{T <: AbstractFloat\}(S::DenseMatrix\{T\}, mv::Vector\{T\}, n::Int; maxoutdim::Int = (size(X, 1) - 1), tol::Real = 1e-06, tot::Integer = 1000, η = tol)` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/fa.jl:92.
+│ Use `facm(S::DenseMatrix\{T\}, mv::Vector\{T\}, n::Int; maxoutdim::Int = (size(X, 1) - 1), tol::Real = 1e-06, tot::Integer = 1000, η = tol) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/fa.jl:92
+┌ Warning: Deprecated syntax `parametric method syntax fit\{T <: AbstractFloat\}(::Type\{FactorAnalysis\}, X::DenseMatrix\{T\}; method::Symbol = :cm, maxoutdim::Int = (size(X, 1) - 1), mean = nothing, tol::Real = 1e-06, tot::Integer = 1000, η = tol)` around /home/wheel/oxinabox/.julia/packages/MultivariateStats/wGpiN/src/fa.jl:164.
+│ Use `fit(\#s111::Type\{FactorAnalysis\}, X::DenseMatrix\{T\}; method::Symbol = :cm, maxoutdim::Int = (size(X, 1) - 1), mean = nothing, tol::Real = 1e-06, tot::Integer = 1000, η = tol) where T <: AbstractFloat` instead.
+└ @ \textasciitilde{}/.julia/packages/MultivariateStats/wGpiN/src/fa.jl:164
+┌ Info: Precompiling Plots [91a5bcdd-55d7-5caf-9e0b-520d859cae80]
+└ @ Base loading.jl:1187
 
+    \end{Verbatim}
 
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}3}]:} 100×185 Array\{Float32,2\}:
-          0.0386423   -0.0747454   …  -0.194131    -0.0949871   0.0184777
-         -0.0707636    0.00147601     -0.521243    -0.540243   -0.0992318
-          0.122178    -0.030897        0.0806444    0.0674903   0.343439 
-          0.187411    -0.201719       -0.237717    -0.0968779  -0.113297 
-         -0.215721    -0.181733        0.125805     0.277859    0.254373 
-         -0.33405     -0.0827407   …  -0.202835     0.153194    0.359169 
-          0.198505     0.356985       -0.194464    -0.0815657   0.332574 
-          0.290666     0.204581       -0.210431    -0.253662   -0.548761 
-         -0.264896    -0.240784        0.11638      0.295445    0.0797238
-         -0.370904    -0.276216        0.0468465    0.0898132  -0.0984195
-         -0.140316    -0.1886      …   0.180491    -0.147654    0.090978 
-         -0.0271654   -0.336009        0.00966041   0.116254    0.163717 
-         -0.245324    -0.002544       -0.381931    -0.646284   -0.321171 
-          ⋮                        ⋱                                     
-         -0.426754    -0.0195873      -0.581407    -0.29744    -0.684529 
-          0.194271    -0.265007       -0.319806    -0.430182    0.167392 
-          0.0785286    0.14811     …   0.0619313    0.179959   -0.0968675
-         -0.401404    -0.247286        0.122847     0.146193   -0.17439  
-          0.00592929  -0.063444       -0.0992176    0.211413   -0.111647 
-          0.305375     0.0234759       0.00376886   0.0932082   0.0302637
-         -0.176298    -0.0396247      -0.103947    -0.0945107  -0.260385 
-          0.0360829   -0.372389    …  -0.291512    -0.261196    0.148431 
-          0.0877882    0.0802952       0.044897     0.347259    0.079031 
-         -0.0831292   -0.18574        -0.127575    -0.0358119  -0.459085 
-          0.0365798   -0.154143       -0.393261    -0.215115   -0.0123871
-          0.11823     -0.0554525       0.588549     0.334955    0.198312 
-\end{Verbatim}
-            
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}4}]:} \PY{c}{\PYZsh{}Direct projection \PYZhy{}\PYZhy{} no DR \PYZhy{}\PYZhy{} just throw away the information in the other axies}
-        \PY{n}{xs}\PY{o}{=}\PY{n}{embeddings\PYZus{}mat}
+{\color{incolor}In [{\color{incolor} }]:} \PY{c}{\PYZsh{}Direct projection \PYZhy{}\PYZhy{} no DR \PYZhy{}\PYZhy{} just throw away the information in the other axies}
+        \PY{n}{xs}\PY{o}{=}\PY{n}{embeddings}
         \PY{n}{scatter}\PY{p}{(}\PY{n}{xs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{:}\PY{p}{]}\PY{p}{,} \PY{n}{xs}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{o}{:}\PY{p}{]}\PY{p}{,} \PY{n}{xs}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{,}\PY{o}{:}\PY{p}{]}\PY{p}{;} \PY{n}{hover}\PY{o}{=}\PY{n}{all\PYZus{}words}\PY{p}{,} \PY{n}{zcolor}\PY{o}{=}\PY{n}{classes}\PY{p}{)}
 \end{Verbatim}
 
@@ -436,22 +649,22 @@ original classes is below.
     \subsubsection{PCA}\label{pca}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{M} \PY{o}{=} \PY{n}{fit}\PY{p}{(}\PY{n}{PCA}\PY{p}{,} \PY{n}{embeddings\PYZus{}mat}\PY{p}{;} \PY{n}{maxoutdim}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
-        \PY{n}{xs} \PY{o}{=} \PY{n}{transform}\PY{p}{(}\PY{n}{M}\PY{p}{,} \PY{n}{embeddings\PYZus{}mat}\PY{p}{)}
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{M} \PY{o}{=} \PY{n}{fit}\PY{p}{(}\PY{n}{PCA}\PY{p}{,} \PY{n}{embeddings}\PY{p}{;} \PY{n}{maxoutdim}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
+        \PY{n}{xs} \PY{o}{=} \PY{n}{transform}\PY{p}{(}\PY{n}{M}\PY{p}{,} \PY{n}{embeddings}\PY{p}{)}
         \PY{n}{scatter}\PY{p}{(}\PY{n}{xs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{:}\PY{p}{]}\PY{p}{,} \PY{n}{xs}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{o}{:}\PY{p}{]}\PY{p}{,} \PY{n}{xs}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{,}\PY{o}{:}\PY{p}{]}\PY{p}{;} \PY{n}{hover}\PY{o}{=}\PY{n}{all\PYZus{}words}\PY{p}{,} \PY{n}{zcolor}\PY{o}{=}\PY{n}{classes}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{M} \PY{o}{=} \PY{n}{fit}\PY{p}{(}\PY{n}{PCA}\PY{p}{,} \PY{n}{embeddings\PYZus{}mat}\PY{p}{;} \PY{n}{maxoutdim}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{M} \PY{o}{=} \PY{n}{fit}\PY{p}{(}\PY{n}{PCA}\PY{p}{,} \PY{n}{embeddings}\PY{p}{;} \PY{n}{maxoutdim}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
         \PY{n}{xs} \PY{o}{=} \PY{n}{transform}\PY{p}{(}\PY{n}{M}\PY{p}{,} \PY{n}{embeddings\PYZus{}mat}\PY{p}{)}
         \PY{n}{scatter}\PY{p}{(}\PY{n}{xs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{:}\PY{p}{]}\PY{p}{,} \PY{n}{xs}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{o}{:}\PY{p}{]}\PY{p}{;} \PY{n}{hover}\PY{o}{=}\PY{n}{all\PYZus{}words}\PY{p}{,} \PY{n}{zcolor}\PY{o}{=}\PY{n}{classes}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{M} \PY{o}{=} \PY{n}{fit}\PY{p}{(}\PY{n}{PCA}\PY{p}{,} \PY{n}{embeddings\PYZus{}mat}\PY{p}{;} \PY{n}{maxoutdim}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
-        \PY{n}{xs} \PY{o}{=} \PY{n}{transform}\PY{p}{(}\PY{n}{M}\PY{p}{,} \PY{n}{embeddings\PYZus{}mat}\PY{p}{)}
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{M} \PY{o}{=} \PY{n}{fit}\PY{p}{(}\PY{n}{PCA}\PY{p}{,} \PY{n}{embeddings}\PY{p}{;} \PY{n}{maxoutdim}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{xs} \PY{o}{=} \PY{n}{transform}\PY{p}{(}\PY{n}{M}\PY{p}{,} \PY{n}{embeddings}\PY{p}{)}
         \PY{n}{scatter}\PY{p}{(}\PY{n}{xs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{:}\PY{p}{]}\PY{p}{,} \PY{n}{ones}\PY{p}{(}\PY{n}{length}\PY{p}{(}\PY{n}{xs}\PY{p}{)}\PY{p}{)}\PY{p}{;} \PY{n}{hover}\PY{o}{=}\PY{n}{all\PYZus{}words}\PY{p}{,} \PY{n}{zcolor}\PY{o}{=}\PY{n}{classes}\PY{p}{)}
 \end{Verbatim}
 
@@ -459,24 +672,9 @@ original classes is below.
     \section{ICA}\label{ica}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{embeddings\PYZus{}mat\PYZus{}f64} \PY{o}{=} \PY{n}{convert}\PY{p}{(}\PY{k+kt}{Matrix}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{n}{embeddings\PYZus{}mat}\PY{p}{)}
-        
-        \PY{n}{M} \PY{o}{=} \PY{n}{fit}\PY{p}{(}\PY{n}{ICA}\PY{p}{,} \PY{k+kt}{Float64}\PY{o}{.}\PY{p}{(}\PY{n}{embeddings\PYZus{}mat\PYZus{}f64}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}
-        \PY{n}{xs} \PY{o}{=} \PY{n}{transform}\PY{p}{(}\PY{n}{M}\PY{p}{,} \PY{n}{embeddings\PYZus{}mat\PYZus{}f64}\PY{p}{)}
-\end{Verbatim}
-
-
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}8}]:} 5×185 Array\{Float64,2\}:
-         -0.449666   0.0614239  -0.0577035  …   2.71363     3.16895     1.36657 
-          0.15085    1.48484     2.47812       -0.382752    0.0210489  -0.613272
-          1.64663    1.68168    -0.381274      -0.0461585   0.0635969  -0.377507
-          0.667897   0.0681079  -0.802374      -0.18597     0.436981    0.401189
-          0.839049  -0.145083   -0.0118368     -0.381903   -0.159733   -0.789554
-\end{Verbatim}
-            
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{scatter}\PY{p}{(}\PY{n}{xs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{:}\PY{p}{]}\PY{p}{,} \PY{n}{xs}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{o}{:}\PY{p}{]}\PY{p}{,} \PY{n}{xs}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{,}\PY{o}{:}\PY{p}{]}\PY{p}{;} \PY{n}{hover}\PY{o}{=}\PY{n}{all\PYZus{}words}\PY{p}{,} \PY{n}{zcolor}\PY{o}{=}\PY{n}{classes}\PY{p}{)}
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{M} \PY{o}{=} \PY{n}{fit}\PY{p}{(}\PY{n}{ICA}\PY{p}{,} \PY{n}{embeddings}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}
+        \PY{n}{xs} \PY{o}{=} \PY{n}{transform}\PY{p}{(}\PY{n}{M}\PY{p}{,} \PY{n}{embeddings}\PY{p}{)}
+        \PY{n}{scatter}\PY{p}{(}\PY{n}{xs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{:}\PY{p}{]}\PY{p}{,} \PY{n}{xs}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{o}{:}\PY{p}{]}\PY{p}{,} \PY{n}{xs}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{,}\PY{o}{:}\PY{p}{]}\PY{p}{;} \PY{n}{hover}\PY{o}{=}\PY{n}{all\PYZus{}words}\PY{p}{,} \PY{n}{zcolor}\PY{o}{=}\PY{n}{classes}\PY{p}{)}
 \end{Verbatim}
 
 
@@ -490,10 +688,8 @@ original classes is below.
 \end{itemize}
 
 T-SNE is another popluar DR method.\\
-However, the \href{https://github.com/lejon/TSne.jl}{TSne.jl} package is
-not registered.\\
-It is mostly maintained though. Be warned: it is sideways -\/- it is row
-major, so tanspose the inputs and outputs
+Be warned: it is sideways -\/- it is row major, so tanspose the inputs
+and outputs
 
 You may have to play with the perplexity to get it to work well.
 
@@ -501,162 +697,17 @@ If you look at the resulting plots, you may note that countries are
 often paired uo with their captical city.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}10}]:} \PY{k}{using} \PY{n}{TSne}
+{\color{incolor}In [{\color{incolor} }]:} \PY{k}{using} \PY{n}{TSne}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{xs} \PY{o}{=} \PY{n}{tsne}\PY{p}{(}\PY{n}{embeddings\PYZus{}mat}\PY{o}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{500}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mf}{20.0}\PY{p}{)}\PY{o}{\PYZsq{}}
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{xs} \PY{o}{=} \PY{n}{tsne}\PY{p}{(}\PY{n}{embeddings}\PY{o}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{500}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mf}{20.0}\PY{p}{)}\PY{o}{\PYZsq{}}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-Computing point perplexities100\%|███████████████████████| Time: 0:00:00
-    \end{Verbatim}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-WARNING: could not attach metadata for @simd loop.
-WARNING: could not attach metadata for @simd loop.
-
-    \end{Verbatim}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-Computing t-SNE  0\%|                                    |  ETA: 0:05:31\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE  1\%|█                                   |  ETA: 0:00:41}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE  2\%|█                                   |  ETA: 0:00:27}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE  4\%|█                                   |  ETA: 0:00:22}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE  4\%|█                                   |  ETA: 0:00:22}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE  4\%|██                                  |  ETA: 0:00:23}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE  5\%|██                                  |  ETA: 0:00:23}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE  6\%|██                                  |  ETA: 0:00:20}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE  7\%|███                                 |  ETA: 0:00:18}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE  8\%|███                                 |  ETA: 0:00:17}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE  9\%|███                                 |  ETA: 0:00:16}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 10\%|████                                |  ETA: 0:00:15}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 11\%|████                                |  ETA: 0:00:14}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 12\%|████                                |  ETA: 0:00:14}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 13\%|█████                               |  ETA: 0:00:14}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 13\%|█████                               |  ETA: 0:00:15}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 13\%|█████                               |  ETA: 0:00:15}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 14\%|█████                               |  ETA: 0:00:15}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 14\%|█████                               |  ETA: 0:00:15}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 14\%|█████                               |  ETA: 0:00:16}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 15\%|█████                               |  ETA: 0:00:16}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 15\%|█████                               |  ETA: 0:00:16}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 16\%|██████                              |  ETA: 0:00:16}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 16\%|██████                              |  ETA: 0:00:16}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 16\%|██████                              |  ETA: 0:00:16}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 17\%|██████                              |  ETA: 0:00:16}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 18\%|██████                              |  ETA: 0:00:16}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 19\%|███████                             |  ETA: 0:00:16}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 20\%|███████                             |  ETA: 0:00:15}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 20\%|███████                             |  ETA: 0:00:15}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 21\%|████████                            |  ETA: 0:00:15}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 21\%|████████                            |  ETA: 0:00:15}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 22\%|████████                            |  ETA: 0:00:15}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 23\%|████████                            |  ETA: 0:00:14}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 24\%|█████████                           |  ETA: 0:00:14}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 25\%|█████████                           |  ETA: 0:00:13}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 26\%|█████████                           |  ETA: 0:00:13}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 27\%|██████████                          |  ETA: 0:00:13}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 28\%|██████████                          |  ETA: 0:00:12}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 29\%|██████████                          |  ETA: 0:00:12}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 30\%|███████████                         |  ETA: 0:00:12}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 31\%|███████████                         |  ETA: 0:00:12}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 32\%|███████████                         |  ETA: 0:00:11}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 33\%|████████████                        |  ETA: 0:00:11}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 34\%|████████████                        |  ETA: 0:00:11}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 35\%|█████████████                       |  ETA: 0:00:10}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 36\%|█████████████                       |  ETA: 0:00:10}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 37\%|█████████████                       |  ETA: 0:00:10}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 38\%|██████████████                      |  ETA: 0:00:10}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 39\%|██████████████                      |  ETA: 0:00:10}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 40\%|██████████████                      |  ETA: 0:00:09}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 41\%|███████████████                     |  ETA: 0:00:09}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 42\%|███████████████                     |  ETA: 0:00:09}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 42\%|███████████████                     |  ETA: 0:00:09}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 43\%|████████████████                    |  ETA: 0:00:09}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 44\%|████████████████                    |  ETA: 0:00:08}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 45\%|████████████████                    |  ETA: 0:00:08}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 46\%|█████████████████                   |  ETA: 0:00:08}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 47\%|█████████████████                   |  ETA: 0:00:08}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 48\%|█████████████████                   |  ETA: 0:00:08}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 49\%|██████████████████                  |  ETA: 0:00:08}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 50\%|██████████████████                  |  ETA: 0:00:07}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 51\%|██████████████████                  |  ETA: 0:00:07}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 52\%|███████████████████                 |  ETA: 0:00:07}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 53\%|███████████████████                 |  ETA: 0:00:07}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 54\%|███████████████████                 |  ETA: 0:00:07}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 55\%|████████████████████                |  ETA: 0:00:07}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 55\%|████████████████████                |  ETA: 0:00:06}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 56\%|████████████████████                |  ETA: 0:00:06}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 56\%|████████████████████                |  ETA: 0:00:06}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 57\%|█████████████████████               |  ETA: 0:00:06}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 58\%|█████████████████████               |  ETA: 0:00:06}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 58\%|█████████████████████               |  ETA: 0:00:06}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 59\%|█████████████████████               |  ETA: 0:00:06}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 59\%|█████████████████████               |  ETA: 0:00:06}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 59\%|█████████████████████               |  ETA: 0:00:06}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 60\%|█████████████████████               |  ETA: 0:00:06}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 60\%|██████████████████████              |  ETA: 0:00:06}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 60\%|██████████████████████              |  ETA: 0:00:06}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 61\%|██████████████████████              |  ETA: 0:00:06}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 62\%|██████████████████████              |  ETA: 0:00:06}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 62\%|██████████████████████              |  ETA: 0:00:06}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 63\%|███████████████████████             |  ETA: 0:00:06}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 64\%|███████████████████████             |  ETA: 0:00:06}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 65\%|███████████████████████             |  ETA: 0:00:05}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 66\%|████████████████████████            |  ETA: 0:00:05}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 67\%|████████████████████████            |  ETA: 0:00:05}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 68\%|████████████████████████            |  ETA: 0:00:05}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 69\%|█████████████████████████           |  ETA: 0:00:05}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 70\%|█████████████████████████           |  ETA: 0:00:05}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 70\%|█████████████████████████           |  ETA: 0:00:04}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 72\%|██████████████████████████          |  ETA: 0:00:04}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 72\%|██████████████████████████          |  ETA: 0:00:04}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 73\%|██████████████████████████          |  ETA: 0:00:04}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 74\%|███████████████████████████         |  ETA: 0:00:04}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 75\%|███████████████████████████         |  ETA: 0:00:04}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 76\%|████████████████████████████        |  ETA: 0:00:03}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 77\%|████████████████████████████        |  ETA: 0:00:03}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 78\%|████████████████████████████        |  ETA: 0:00:03}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 80\%|█████████████████████████████       |  ETA: 0:00:03}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 80\%|█████████████████████████████       |  ETA: 0:00:03}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 82\%|█████████████████████████████       |  ETA: 0:00:03}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 83\%|██████████████████████████████      |  ETA: 0:00:02}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 84\%|██████████████████████████████      |  ETA: 0:00:02}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 85\%|██████████████████████████████      |  ETA: 0:00:02}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 86\%|███████████████████████████████     |  ETA: 0:00:02}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 87\%|███████████████████████████████     |  ETA: 0:00:02}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 88\%|████████████████████████████████    |  ETA: 0:00:02}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 89\%|████████████████████████████████    |  ETA: 0:00:02}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 90\%|████████████████████████████████    |  ETA: 0:00:01}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 91\%|█████████████████████████████████   |  ETA: 0:00:01}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 92\%|█████████████████████████████████   |  ETA: 0:00:01}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 93\%|██████████████████████████████████  |  ETA: 0:00:01}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 94\%|██████████████████████████████████  |  ETA: 0:00:01}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 95\%|██████████████████████████████████  |  ETA: 0:00:01}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 95\%|██████████████████████████████████  |  ETA: 0:00:01}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 96\%|██████████████████████████████████  |  ETA: 0:00:01}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 97\%|███████████████████████████████████ |  ETA: 0:00:00}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 98\%|███████████████████████████████████ |  ETA: 0:00:00}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE 99\%|███████████████████████████████████ |  ETA: 0:00:00}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE100\%|████████████████████████████████████|  ETA: 0:00:00}}\textcolor{ansi-blue-intense}{\textbf{
-Computing t-SNE100\%|████████████████████████████████████| Time: 0:00:14}}\textcolor{ansi-blue-intense}{\textbf{
-  KL\_divergence:  0.1303015908453813}}
-
-    \end{Verbatim}
-
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}12}]:} 3×185 Array\{Float64,2\}:
-          18.5321  -3.90908  -25.9997     2.78249  …   18.8778   35.9635    30.5813
-          34.581   16.4268    -0.117784  34.6205       15.4415   -1.16452  -25.0301
-          30.7113  36.721     54.6548    40.7141      -50.6902  -49.7441   -38.8731
-\end{Verbatim}
-            
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{scatter}\PY{p}{(}\PY{n}{xs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{:}\PY{p}{]}\PY{p}{,} \PY{n}{xs}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{o}{:}\PY{p}{]}\PY{p}{,} \PY{n}{xs}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{,}\PY{o}{:}\PY{p}{]}\PY{p}{;} \PY{n}{hover}\PY{o}{=}\PY{n}{all\PYZus{}words}\PY{p}{,} \PY{n}{zcolor}\PY{o}{=}\PY{n}{classes}\PY{p}{)}
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{scatter}\PY{p}{(}\PY{n}{xs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{:}\PY{p}{]}\PY{p}{,} \PY{n}{xs}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{o}{:}\PY{p}{]}\PY{p}{,} \PY{n}{xs}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{,}\PY{o}{:}\PY{p}{]}\PY{p}{;} \PY{n}{hover}\PY{o}{=}\PY{n}{all\PYZus{}words}\PY{p}{,} \PY{n}{zcolor}\PY{o}{=}\PY{n}{classes}\PY{p}{)}
 \end{Verbatim}
 
 

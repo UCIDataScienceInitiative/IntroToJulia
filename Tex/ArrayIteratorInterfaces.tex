@@ -327,17 +327,14 @@ One usage example is in DifferentialEquations.jl. When you solve a
 differential equation, the solution returns a specialized solution type.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}5}]:} \PY{k}{using} \PY{n}{DifferentialEquations}
-        \PY{n}{f}\PY{p}{(}\PY{n}{u}\PY{p}{,}\PY{n}{p}\PY{p}{,}\PY{n}{t}\PY{p}{)} \PY{o}{=} \PY{l+m+mf}{1.01}\PY{n}{u}
-        \PY{n}{p} \PY{o}{=} \PY{n+nb}{nothing}
-        \PY{n}{tspan} \PY{o}{=} \PY{p}{(}\PY{l+m+mf}{0.0}\PY{p}{,}\PY{l+m+mf}{1.0}\PY{p}{)}
-        \PY{n}{u} \PY{o}{=} \PY{l+m+mf}{0.5}
-        \PY{n}{sol} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{n}{ODEProblem}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{n}{u}\PY{p}{,}\PY{n}{tspan}\PY{p}{,}\PY{n}{p}\PY{p}{)}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{using} \PY{n}{DifferentialEquations}
+        \PY{n}{prob} \PY{o}{=} \PY{n}{ODEProblem}\PY{p}{(}\PY{p}{(}\PY{n}{u}\PY{p}{,}\PY{n}{p}\PY{p}{,}\PY{n}{t}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{l+m+mf}{1.01}\PY{n}{u}\PY{p}{,}\PY{l+m+mf}{0.5}\PY{p}{,}\PY{p}{(}\PY{l+m+mf}{0.0}\PY{p}{,}\PY{l+m+mf}{1.0}\PY{p}{)}\PY{p}{)}
+        \PY{n}{sol} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{n}{prob}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}5}]:} retcode: Success
+{\color{outcolor}Out[{\color{outcolor}1}]:} retcode: Success
         Interpolation: 3rd order Hermite
         t: 5-element Array\{Float64,1\}:
          0.0                
@@ -357,7 +354,7 @@ differential equation, the solution returns a specialized solution type.
 of a given analytical solution:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{println}\PY{p}{(}\PY{n}{sol}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{println}\PY{p}{(}\PY{n}{sol}\PY{p}{)}
 \end{Verbatim}
 
 
@@ -374,7 +371,7 @@ traditional solution: i.e. as an array of the numerically computed
 values:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{println}\PY{p}{(}\PY{n}{sol}\PY{o}{.}\PY{n}{t}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)} \PY{c}{\PYZsh{} The third timestep}
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{println}\PY{p}{(}\PY{n}{sol}\PY{o}{.}\PY{n}{t}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)} \PY{c}{\PYZsh{} The third timestep}
         \PY{n}{sol}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]} \PY{c}{\PYZsh{} The value at the third timestep}
 \end{Verbatim}
 
@@ -385,7 +382,7 @@ values:
     \end{Verbatim}
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}7}]:} 0.7089380797962724
+{\color{outcolor}Out[{\color{outcolor}3}]:} 0.7089380797962724
 \end{Verbatim}
             
     An entire Julia organization, JuliaArrays, is devoted to making fast,

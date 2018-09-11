@@ -68,9 +68,9 @@ Optim.optimize(f,zeros(2),BFGS())
      * Minimum: -2.000000e+00
      * Iterations: 6
      * Convergence: true
-       * |x - x'| ≤ 1.0e-32: false 
+       * |x - x'| ≤ 0.0e+00: false 
          |x - x'| = 4.10e-04 
-       * |f(x) - f(x')| ≤ 1.0e-32 |f(x)|: false
+       * |f(x) - f(x')| ≤ 0.0e+00 |f(x)|: false
          |f(x) - f(x')| = -9.67e-08 |f(x)|
        * |g(x)| ≤ 1.0e-08: true 
          |g(x)| = 4.06e-09 
@@ -95,15 +95,15 @@ end
 res = bboptimize(rosenbrock2d; SearchRange = (-5.0, 5.0), NumDimensions = 2)
 ```
 
-    Starting optimization with optimizer BlackBoxOptim.DiffEvoOpt{BlackBoxOptim.FitPopulation{Float64},BlackBoxOptim.RadiusLimitedSelector,BlackBoxOptim.AdaptiveDiffEvoRandBin{3},BlackBoxOptim.RandomBound{BlackBoxOptim.RangePerDimSearchSpace}}
+    Starting optimization with optimizer DiffEvoOpt{FitPopulation{Float64},RadiusLimitedSelector,BlackBoxOptim.AdaptiveDiffEvoRandBin{3},RandomBound{RangePerDimSearchSpace}}
     0.00 secs, 0 evals, 0 steps
     
-    Optimization stopped after 10001 steps and 0.021000146865844727 seconds
+    Optimization stopped after 10001 steps and 0.013683080673217773 seconds
     Termination reason: Max number of steps (10000) reached
-    Steps per second = 476234.7646370954
-    Function evals per second = 482282.3413903112
-    Improvements/step = 0.1993
-    Total function evaluations = 10128
+    Steps per second = 730902.6555383248
+    Function evals per second = 738722.5319649422
+    Improvements/step = 0.2172
+    Total function evaluations = 10108
     
     
     Best candidate found: [1.0, 1.0]
@@ -115,7 +115,7 @@ res = bboptimize(rosenbrock2d; SearchRange = (-5.0, 5.0), NumDimensions = 2)
 
 
 
-    BlackBoxOptim.OptimizationResults("adaptive_de_rand_1_bin_radiuslimited", "Max number of steps (10000) reached", 10001, 1.526431919393e9, 0.021000146865844727, BlackBoxOptim.DictChain{Symbol,Any}[BlackBoxOptim.DictChain{Symbol,Any}[Dict{Symbol,Any}(Pair{Symbol,Any}(:RngSeed, 1466),Pair{Symbol,Any}(:NumDimensions, 2),Pair{Symbol,Any}(:SearchRange, (-5.0, 5.0)),Pair{Symbol,Any}(:MaxSteps, 10000)),Dict{Symbol,Any}()],Dict{Symbol,Any}(Pair{Symbol,Any}(:FitnessScheme, BlackBoxOptim.ScalarFitnessScheme{true}()),Pair{Symbol,Any}(:NumDimensions, :NotSpecified),Pair{Symbol,Any}(:PopulationSize, 50),Pair{Symbol,Any}(:MaxTime, 0.0),Pair{Symbol,Any}(:SearchRange, (-1.0, 1.0)),Pair{Symbol,Any}(:Method, :adaptive_de_rand_1_bin_radiuslimited),Pair{Symbol,Any}(:MaxNumStepsWithoutFuncEvals, 100),Pair{Symbol,Any}(:RngSeed, 1234),Pair{Symbol,Any}(:MaxFuncEvals, 0),Pair{Symbol,Any}(:SaveTrace, false)…)], 10128, BlackBoxOptim.ScalarFitnessScheme{true}(), BlackBoxOptim.TopListArchiveOutput{Float64,Array{Float64,1}}(1.755239653260451e-23, [1.0, 1.0]), BlackBoxOptim.PopulationOptimizerOutput{BlackBoxOptim.FitPopulation{Float64}}(BlackBoxOptim.FitPopulation{Float64}([1.0 1.0 … 1.0 1.0; 1.0 1.0 … 1.0 1.0], NaN, [1.61958e-21, 3.34085e-21, 5.68053e-21, 2.31703e-20, 1.09389e-20, 5.71653e-21, 6.68369e-22, 6.89362e-21, 6.52675e-21, 4.057e-21  …  4.30743e-22, 2.6898e-21, 1.26068e-20, 2.27065e-20, 1.24454e-19, 2.36923e-19, 4.26575e-21, 5.41387e-21, 7.61718e-21, 3.85335e-20], 0, BlackBoxOptim.Candidate{Float64}[BlackBoxOptim.Candidate{Float64}([1.0, 1.0], 24, 1.42957e-21, BlackBoxOptim.AdaptiveDiffEvoRandBin{3}(BlackBoxOptim.AdaptiveDiffEvoParameters(BlackBoxOptim.BimodalCauchy(Distributions.Cauchy{Float64}(μ=0.65, σ=0.1), Distributions.Cauchy{Float64}(μ=1.0, σ=0.1), 0.5, false, true), BlackBoxOptim.BimodalCauchy(Distributions.Cauchy{Float64}(μ=0.1, σ=0.1), Distributions.Cauchy{Float64}(μ=0.95, σ=0.1), 0.5, false, true), [0.701635, 0.822804, 0.497025, 0.686208, 1.0, 0.588519, 0.922643, 0.497291, 0.494365, 1.0  …  1.0, 0.560735, 0.748291, 0.626623, 0.546719, 1.0, 1.0, 0.950497, 0.911785, 0.80654], [0.73129, 0.0617889, 0.909293, 1.0, 1.0, 0.104108, 1.0, 0.937073, 1.0, 0.980383  …  0.0305664, 0.922521, 0.114515, 0.0876894, 1.0, 0.454371, 0.182781, 0.246594, 1.0, 0.894807])), 0), BlackBoxOptim.Candidate{Float64}([1.0, 1.0], 24, 3.43826e-20, BlackBoxOptim.AdaptiveDiffEvoRandBin{3}(BlackBoxOptim.AdaptiveDiffEvoParameters(BlackBoxOptim.BimodalCauchy(Distributions.Cauchy{Float64}(μ=0.65, σ=0.1), Distributions.Cauchy{Float64}(μ=1.0, σ=0.1), 0.5, false, true), BlackBoxOptim.BimodalCauchy(Distributions.Cauchy{Float64}(μ=0.1, σ=0.1), Distributions.Cauchy{Float64}(μ=0.95, σ=0.1), 0.5, false, true), [0.701635, 0.822804, 0.497025, 0.686208, 1.0, 0.588519, 0.922643, 0.497291, 0.494365, 1.0  …  1.0, 0.560735, 0.748291, 0.626623, 0.546719, 1.0, 1.0, 0.950497, 0.911785, 0.80654], [0.73129, 0.0617889, 0.909293, 1.0, 1.0, 0.104108, 1.0, 0.937073, 1.0, 0.980383  …  0.0305664, 0.922521, 0.114515, 0.0876894, 1.0, 0.454371, 0.182781, 0.246594, 1.0, 0.894807])), 0)])))
+    BlackBoxOptim.OptimizationResults("adaptive_de_rand_1_bin_radiuslimited", "Max number of steps (10000) reached", 10001, 1.536689117938819e9, 0.013683080673217773, DictChain{Symbol,Any}[DictChain{Symbol,Any}[Dict{Symbol,Any}(:RngSeed=>189964,:NumDimensions=>2,:SearchRange=>(-5.0, 5.0),:MaxSteps=>10000),Dict{Symbol,Any}()],Dict{Symbol,Any}(:FitnessScheme=>ScalarFitnessScheme{true}(),:NumDimensions=>:NotSpecified,:PopulationSize=>50,:MaxTime=>0.0,:SearchRange=>(-1.0, 1.0),:Method=>:adaptive_de_rand_1_bin_radiuslimited,:MaxNumStepsWithoutFuncEvals=>100,:RngSeed=>1234,:MaxFuncEvals=>0,:SaveTrace=>false…)], 10108, ScalarFitnessScheme{true}(), BlackBoxOptim.TopListArchiveOutput{Float64,Array{Float64,1}}(7.794981123521699e-27, [1.0, 1.0]), BlackBoxOptim.PopulationOptimizerOutput{FitPopulation{Float64}}(FitPopulation{Float64}([1.0 1.0 … 1.0 1.0; 1.0 1.0 … 1.0 1.0], NaN, [1.27603e-23, 3.92402e-23, 1.60016e-23, 1.61726e-23, 2.00834e-23, 6.01524e-23, 2.16747e-22, 4.2942e-23, 3.83008e-23, 8.03423e-23  …  6.35954e-25, 1.22529e-24, 1.60825e-25, 9.94304e-25, 1.41704e-24, 6.42558e-24, 3.93374e-24, 8.25185e-24, 1.89228e-23, 1.44361e-23], 0, BlackBoxOptim.Candidate{Float64}[Candidate{Float64}([1.0, 1.0], 10, 8.03423e-23, AdaptiveDiffEvoRandBin{3}(AdaptiveDiffEvoParameters(BimodalCauchy(Distributions.Cauchy{Float64}(μ=0.65, σ=0.1), Distributions.Cauchy{Float64}(μ=1.0, σ=0.1), 0.5, false, true), BimodalCauchy(Distributions.Cauchy{Float64}(μ=0.1, σ=0.1), Distributions.Cauchy{Float64}(μ=0.95, σ=0.1), 0.5, false, true), [0.697891, 0.720263, 0.88478, 0.809857, 0.434573, 0.280839, 1.0, 0.653261, 0.990107, 0.54517  …  0.829696, 0.680993, 0.96154, 1.0, 0.917572, 1.0, 0.835965, 1.0, 0.996137, 0.999622], [0.830166, 0.160064, 0.153951, 1.0, 0.78871, 0.256191, 0.139636, 1.0, 0.986488, 0.229464  …  0.932861, 0.0857158, 0.0022386, 0.595109, 0.980229, 0.122564, 0.39074, 1.0, 0.848218, 0.913758])), 0), Candidate{Float64}([1.0, 1.0], 10, 8.63425e-22, AdaptiveDiffEvoRandBin{3}(AdaptiveDiffEvoParameters(BimodalCauchy(Distributions.Cauchy{Float64}(μ=0.65, σ=0.1), Distributions.Cauchy{Float64}(μ=1.0, σ=0.1), 0.5, false, true), BimodalCauchy(Distributions.Cauchy{Float64}(μ=0.1, σ=0.1), Distributions.Cauchy{Float64}(μ=0.95, σ=0.1), 0.5, false, true), [0.697891, 0.720263, 0.88478, 0.809857, 0.434573, 0.280839, 1.0, 0.653261, 0.990107, 0.54517  …  0.829696, 0.680993, 0.96154, 1.0, 0.917572, 1.0, 0.835965, 1.0, 0.996137, 0.999622], [0.830166, 0.160064, 0.153951, 1.0, 0.78871, 0.256191, 0.139636, 1.0, 0.986488, 0.229464  …  0.932861, 0.0857158, 0.0022386, 0.595109, 0.980229, 0.122564, 0.39074, 1.0, 0.848218, 0.913758])), 0)])))
 
 
 

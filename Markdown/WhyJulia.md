@@ -61,7 +61,9 @@ Type stability is the idea that there is only 1 possible type which can be outpu
 ```
 
     
-    define i64 @"jlsys_*_56568"(i64, i64) #0 !dbg !5 {
+    ; Function *
+    ; Location: int.jl:54
+    define i64 @"julia_*_33751"(i64, i64) {
     top:
       %2 = mul i64 %1, %0
       ret i64 %2
@@ -76,15 +78,13 @@ This output is saying that a floating point multiplication operation is performe
 ```
 
     	.text
-    Filename: int.jl
-    	pushq	%rbp
-    	movq	%rsp, %rbp
-    Source line: 33
+    ; Function * {
+    ; Location: int.jl:54
     	imulq	%rsi, %rdi
     	movq	%rdi, %rax
-    	popq	%rbp
     	retq
-    	nopl	(%rax)
+    	nopl	(%rax,%rax)
+    ;}
 
 
 This shows us that the `*` function has compiled down to exactly the same operation as what happens in C/Fortran, meaning it achieves the same performance (even though it's defined in Julia). Thus it is possible to not just get "close" to C, but actually get the same C code out. In what cases does this happen?
@@ -113,17 +113,10 @@ The upside is that Julia's functions, when type stable, are essentially C/Fortra
 ```
 
 
-    DomainError:
-    Cannot raise an integer x to a negative power -n. 
-    Make x a float by adding a zero decimal (e.g. 2.0^-n instead of 2^-n), or write 1/x^n, float(x)^-n, or (x//1)^-n.
 
-    
 
-    Stacktrace:
+    0.03125
 
-     [1] power_by_squaring(::Int64, ::Int64) at ./intfuncs.jl:173
-
-     [2] literal_pow(::Base.#^, ::Int64, ::Type{Val{-5}}) at ./intfuncs.jl:208
 
 
 Here we get an error. In order to guarantee to the compiler that `^` will give an Int64 back, it has to throw an error. If you do this in MATLAB, Python, or R, it will not throw an error. That is because those languages do not have their entire language built around type stability.
@@ -136,14 +129,15 @@ What happens when we don't have type stability? Let's inspect this code:
 ```
 
     	.text
-    Filename: intfuncs.jl
-    	pushq	%rbp
-    	movq	%rsp, %rbp
-    Source line: 197
-    	callq	power_by_squaring
-    	popq	%rbp
+    ; Function ^ {
+    ; Location: intfuncs.jl:220
+    	pushq	%rax
+    	movabsq	$power_by_squaring, %rax
+    	callq	*%rax
+    	popq	%rcx
     	retq
-    	nopl	(%rax,%rax)
+    	nop
+    ;}
 
 
 Now let's define our own exponentiation on integers. Let's make it "safe" like the form seen in other scripting languages:
@@ -194,61 +188,59 @@ What happens if we inspect this code?
 ```
 
     	.text
-    Filename: In[8]
-    	pushq	%rbp
-    	movq	%rsp, %rbp
+    ; Function expo {
+    ; Location: In[8]:2
     	pushq	%rbx
-    	subq	$24, %rsp
     	movq	%rdi, %rbx
-    Source line: 2
+    ; Function >; {
+    ; Location: operators.jl:286
+    ; Function <; {
+    ; Location: int.jl:49
     	testq	%rdx, %rdx
-    	jle	L42
-    Source line: 3
+    ;}}
+    	jle	L36
+    ; Location: In[8]:3
+    ; Function ^; {
+    ; Location: intfuncs.jl:220
     	movabsq	$power_by_squaring, %rax
     	movq	%rsi, %rdi
     	movq	%rdx, %rsi
     	callq	*%rax
-    	movb	$1, %dl
+    ;}
     	movq	%rax, (%rbx)
-    	jmp	L106
-    Source line: 5
-    L42:
-    	vxorps	%xmm1, %xmm1, %xmm1
-    	vcvtsi2sdq	%rsi, %xmm1, %xmm0
-    Source line: 701
-    	vmovsd	%xmm0, -24(%rbp)
-    	vcvtsi2sdq	%rdx, %xmm1, %xmm1
-    Source line: 699
-    	vmovsd	%xmm1, -16(%rbp)
-    	movabsq	$pow, %rax
-    	callq	*%rax
-    	vmovsd	-16(%rbp), %xmm1        # xmm1 = mem[0],zero
-    	vaddsd	-24(%rbp), %xmm1, %xmm1
-    Source line: 300
-    	vucomisd	%xmm1, %xmm1
-    	jp	L100
-    	vucomisd	%xmm0, %xmm0
-    	jp	L116
-    Source line: 6
-    L100:
     	movb	$2, %dl
-    	vmovsd	%xmm0, (%rbx)
-    Source line: 3
-    L106:
-    	movq	%rbx, %rax
-    	addq	$24, %rsp
+    	xorl	%eax, %eax
     	popq	%rbx
-    	popq	%rbp
     	retq
-    Source line: 300
-    L116:
-    	movabsq	$jl_throw, %rax
-    	movabsq	$140181784264784, %rdi  # imm = 0x7F7E9D748050
+    ; Location: In[8]:5
+    ; Function convert; {
+    ; Location: number.jl:7
+    ; Function Type; {
+    ; Location: float.jl:60
+    L36:
+    	vcvtsi2sdq	%rsi, %xmm0, %xmm0
+    ;}}
+    ; Location: In[8]:6
+    ; Function ^; {
+    ; Location: math.jl:780
+    ; Function Type; {
+    ; Location: float.jl:60
+    	vcvtsi2sdq	%rdx, %xmm1, %xmm1
+    	movabsq	$__pow, %rax
+    ;}
     	callq	*%rax
-    	nopw	(%rax,%rax)
+    ;}
+    	vmovsd	%xmm0, (%rbx)
+    	movb	$1, %dl
+    	xorl	%eax, %eax
+    ; Location: In[8]:3
+    	popq	%rbx
+    	retq
+    	nopw	%cs:(%rax,%rax)
+    ;}
 
 
-That's a very visual demonstration on why Julia achieves such higher performance than other scripting languages.
+That's a very visual demonstration on why Julia achieves such higher performance than other scripting languages by how it uses type inference.
 
 # Core Idea: Multiple Dispatch + Type Stability => Speed + Readability
 
@@ -286,7 +278,11 @@ test1()
 
     Stacktrace:
 
-     [1] test1() at ./In[11]:4
+     [1] setindex! at ./array.jl:769 [inlined]
+
+     [2] test1() at ./In[11]:4
+
+     [3] top-level scope at In[11]:7
 
 
 However, Julia allows you to turn this off using the `@inbounds` macro:
@@ -310,7 +306,7 @@ Type-stability is not the only necessity. You also need strict typing. In Python
 
 
 ```julia
-a = Vector{Any}(3)
+a = Vector{Any}(undef,3)
 a[1] = 1.0
 a[2] = "hi!"
 a[3] = :Symbolic
@@ -331,7 +327,7 @@ A less extreme form of an abstract type is a Union type, which is just what it s
 
 
 ```julia
-a = Vector{Union{Float64,Int}}(3)
+a = Vector{Union{Float64,Int}}(undef,3)
 a[1] = 1.0
 a[2] = 3
 a[3] = 1/4
@@ -369,15 +365,9 @@ Since type-stability is so essential, Julia gives you tools to check that your f
 @code_warntype 2^5
 ```
 
-    Variables:
-      #self# <optimized out>
-      x::Int64
-      p::Int64
-    
-    Body:
-      begin 
-          return $(Expr(:invoke, MethodInstance for power_by_squaring(::Int64, ::Int64), :(Base.power_by_squaring), :(x), :(p)))
-      end::Int64
+    Body[36m::Int64[39m
+    [90m[77G│[1G[39m[90m220 [39m1 ─ %1 = invoke Base.power_by_squaring(_2::Int64, _3::Int64)[36m::Int64[39m
+    [90m[77G│[1G[39m[90m    [39m└──      return %1
 
 
 Notice that it shows all of the variables in the function as strictly typed. What about in our `expo`?
@@ -387,42 +377,44 @@ Notice that it shows all of the variables in the function as strictly typed. Wha
 @code_warntype expo(2,5)
 ```
 
-    Variables:
-      #self# <optimized out>
-      x@_2::Int64
-      y::Int64
-      x@_4[1m[91m::Union{Float64, Int64}[39m[22m
-      #temp#::Float64
-    
-    Body:
-      begin 
-          x@_4[1m[91m::Union{Float64, Int64}[39m[22m = x@_2::Int64
-          unless (Base.slt_int)(0, y::Int64)::Bool goto 5 # line 3:
-          return $(Expr(:invoke, MethodInstance for power_by_squaring(::Int64, ::Int64), :(Base.power_by_squaring), :(x@_4::Int64), :(y)))
-          5:  # line 5:
-          x@_4[1m[91m::Union{Float64, Int64}[39m[22m = (Base.sitofp)(Float64, x@_4::Int64)::Float64 # line 6:
-          $(Expr(:inbounds, false))
-          # meta: location math.jl ^ 701
-          SSAValue(0) = (Base.sitofp)(Float64, y::Int64)::Float64
-          # meta: location math.jl ^ 699
-          SSAValue(3) = $(Expr(:foreigncall, "llvm.pow.f64", Float64, svec(Float64, Float64), :(x@_4::Float64), 0, SSAValue(0), 0, :($(Expr(:llvmcall)))))
-          SSAValue(4) = (Base.add_float)(x@_4::Float64, SSAValue(0))::Float64
-          # meta: location math.jl nan_dom_err 300
-          unless (Base.and_int)((Base.ne_float)(SSAValue(3), SSAValue(3))::Bool, (Base.not_int)((Base.ne_float)(SSAValue(4), SSAValue(4))::Bool)::Bool)::Bool goto 19
-          #temp#::Float64 = (Base.Math.throw)($(QuoteNode(DomainError())))[1m[91m::Union{}[39m[22m
-          goto 21
-          19: 
-          #temp#::Float64 = SSAValue(3)
-          21: 
-          # meta: pop location
-          # meta: pop location
-          # meta: pop location
-          $(Expr(:inbounds, :pop))
-          return #temp#::Float64
-      end[1m[91m::Union{Float64, Int64}[39m[22m
+    Body[91m[1m::Union{Float64, Int64}[22m[39m
+    [90m[69G│╻╷ >[1G[39m[90m2 [39m1 ─ %1  = (Base.slt_int)(0, y)[36m::Bool[39m
+    [90m[69G│  [1G[39m[90m  [39m└──       goto #3 if not %1
+    [90m[69G│  [1G[39m[90m3 [39m2 ─ %3  = π (x, [36mInt64[39m)
+    [90m[69G│╻  ^[1G[39m[90m  [39m│   %4  = invoke Base.power_by_squaring(%3::Int64, _3::Int64)[36m::Int64[39m
+    [90m[69G│  [1G[39m[90m  [39m└──       return %4
+    [90m[69G│  [1G[39m[90m5 [39m3 ─ %6  = π (x, [36mInt64[39m)
+    [90m[69G││╻  Type[1G[39m[90m  [39m│   %7  = (Base.sitofp)(Float64, %6)[36m::Float64[39m
+    [90m[69G│  [1G[39m[90m6 [39m│   %8  = π (%7, [36mFloat64[39m)
+    [90m[69G│╻  ^[1G[39m[90m  [39m│   %9  = (Base.sitofp)(Float64, y)[36m::Float64[39m
+    [90m[69G││ [1G[39m[90m  [39m│   %10 = $(Expr(:foreigncall, "llvm.pow.f64", Float64, svec(Float64, Float64), :(:llvmcall), 2, :(%8), :(%9), :(%9), :(%8)))[36m::Float64[39m
+    [90m[69G│  [1G[39m[90m  [39m└──       return %10
 
 
-Notice that it has to make a temporary variable `x@_4` which is translates our int at the beginning of the function, and then do type-checking in order to find the right function, and then its output type is the non-strict `Union{Float64,Int64}`. The quick way to read this is to see that `x@_4::ANY` has a non-strict type, indicating a type-instability. This gives you a tool to know how to optimize.
+Notice that possible returns are the temporary `%4` and `%10` which are different types, and so the return type is inferred as `Union{Float64,Int64}`. To trace exactly to where this instability occurs, we can use Traceur.jl:
+
+
+```julia
+using Traceur
+@trace expo(2,5)
+```
+
+    ┌ Warning: x is assigned as Int64
+    └ @ In[8]:2
+    ┌ Warning: x is assigned as Float64
+    └ @ In[8]:5
+    ┌ Warning: expo returns Union{Float64, Int64}
+    └ @ In[8]:2
+
+
+
+
+
+    32
+
+
+
+This tells us that on line 2 `x` is assigned to an `Int` while on line 5 it's assigned to a `Float64`, and so it's inferred as `Union{Float64, Int64}`. Line 5 is where we put the explicit `convert` call, so this identified exactly the issue for us.
 
 ## Dealing With Necessary Type-Instabilities
 
@@ -432,7 +424,7 @@ So let's say that we have `a` as a `Vector{Union{Float64,Int}}`. We may run into
 
 
 ```julia
-function foo{T,N}(array::Array{T,N})
+function foo(array)
   for i in eachindex(array)
     val = array[i]
     # do algorithm X on val
@@ -451,7 +443,7 @@ However, we can fix this with multiple dispatch. We can write a dispatch on elem
 
 
 ```julia
-function inner_foo{T<:Number}(val::T)
+function inner_foo(val)
   # Do algorithm X on val
 end
 ```
@@ -467,7 +459,7 @@ and instead define foo as:
 
 
 ```julia
-function foo2{T,N}(array::Array{T,N})
+function foo2(array::Array)
   for i in eachindex(array)
     inner_foo(array[i])
   end
@@ -531,20 +523,16 @@ const a_cons = 3
 function badidea()
     a_cons + 2
 end
-a_cons = 4 # Works
-a_cons = 3.0 # Fails
 ```
 
-    WARNING: redefining constant a_cons
 
 
 
-    invalid redefinition of constant a_cons
-
-    
+    badidea (generic function with 1 method)
 
 
-Because `const` is about types, it acts slightly differently than one would expect. `const` is a declaration that the type of `a` will be constant, not the value. Therefore we can change `a` from 3 to 4 since it goes from an `Int` to an `Int`. However, trying to change `a` to `3.0` fails because it cannot change to a Float64.
+
+Beware that functions will specialize using the value of the constants, so they should go unchanged after being set.
 
 This will show up when trying to do benchmarks. The most common human error to see is for newcomers to benchmark Julia like:
 
@@ -552,6 +540,7 @@ This will show up when trying to do benchmarks. The most common human error to s
 ```julia
 a = 3.0
 @time for i = 1:4
+    global a
     a += i
 end
 ```
@@ -573,7 +562,7 @@ timetest() # First time compiles
 timetest()
 ```
 
-      0.000000 seconds
+      0.000001 seconds
       0.000000 seconds
 
 

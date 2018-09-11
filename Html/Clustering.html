@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>Clustering</title>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Clustering</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -13,8 +11,8 @@
 *
 */
 /*!
- * Bootstrap v3.3.6 (http://getbootstrap.com)
- * Copyright 2011-2015 Twitter, Inc.
+ * Bootstrap v3.3.7 (http://getbootstrap.com)
+ * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
@@ -1109,7 +1107,6 @@ a:focus {
   text-decoration: underline;
 }
 a:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -2538,7 +2535,6 @@ select[size] {
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -3029,7 +3025,6 @@ select[multiple].input-lg {
 .btn.focus,
 .btn:active.focus,
 .btn.active.focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -8760,6 +8755,9 @@ body > #header .header-bar {
     margin-left: 10px;
   }
 }
+[dir="rtl"] #ipython_notebook {
+  float: right !important;
+}
 #noscript {
   width: auto;
   padding-top: 16px;
@@ -8962,8 +8960,14 @@ span#login_widget > .button .badge,
  *
  * Author: Jupyter Development Team
  */
+[dir="rtl"] #tabs li {
+  float: right;
+}
 ul#tabs {
   margin-bottom: 4px;
+}
+[dir="rtl"] ul#tabs {
+  margin-right: 0px;
 }
 ul#tabs a {
   padding-top: 6px;
@@ -8986,6 +8990,16 @@ ul.breadcrumb span {
 }
 .list_toolbar .tree-buttons {
   padding-top: 1px;
+}
+[dir="rtl"] .list_toolbar .tree-buttons {
+  float: left !important;
+}
+[dir="rtl"] .list_toolbar .pull-right {
+  padding-top: 1px;
+  float: left !important;
+}
+[dir="rtl"] .list_toolbar .pull-left {
+  float: right !important;
 }
 .dynamic-buttons {
   padding-top: 3px;
@@ -9122,6 +9136,9 @@ ul.breadcrumb span {
 #tree-selector {
   padding-right: 0px;
 }
+[dir="rtl"] #tree-selector a {
+  float: right;
+}
 #button-select-all {
   min-width: 50px;
 }
@@ -9211,6 +9228,9 @@ ul#new-menu {
   left: auto;
   right: 0;
 }
+[dir="rtl"] #new-menu {
+  text-align: right;
+}
 .kernel-menu-icon {
   padding-right: 12px;
   width: 24px;
@@ -9255,6 +9275,9 @@ ul#new-menu {
 }
 #running .panel-group .panel .panel-body .list_container .list_item:last-child {
   border-bottom: 0px;
+}
+[dir="rtl"] #running .col-sm-8 {
+  float: right !important;
 }
 .delete-button {
   display: none;
@@ -9551,6 +9574,7 @@ div.cell.selected.jupyter-soft-selected {
   }
 }
 div.inner_cell {
+  min-width: 0;
   /* Old browsers */
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -9571,11 +9595,6 @@ div.inner_cell {
   box-flex: 1;
   /* Modern browsers */
   flex: 1;
-}
-@-moz-document url-prefix() {
-  div.inner_cell {
-    overflow-x: hidden;
-  }
 }
 /* input_area and input_prompt must match in top border and margin for alignment */
 div.input_area {
@@ -11246,7 +11265,7 @@ div#pager .ui-resizable-handle::after {
 }
 .shortcut_key {
   display: inline-block;
-  width: 20ex;
+  width: 21ex;
   text-align: right;
   font-family: monospace;
 }
@@ -11558,6 +11577,7 @@ ul.typeahead-list > li > a {
   box-shadow: 0px 0px 12px 1px rgba(87, 87, 87, 0.2);
 }
 .terminal-app .terminal {
+  width: 100%;
   float: left;
   font-family: monospace;
   color: white;
@@ -11571,6 +11591,9 @@ ul.typeahead-list > li > a {
 .terminal-app .terminal dummy-screen {
   line-height: 1em;
   font-size: 14px;
+}
+.terminal-app .terminal .xterm-rows {
+  padding: 10px;
 }
 .terminal-app .terminal-cursor {
   color: black;
@@ -11703,9 +11726,7 @@ body {
 div#notebook {
   overflow: visible;
   border-top: none;
-}
-
-@media print {
+}@media print {
   div.cell {
     display: block;
     page-break-inside: avoid;
@@ -11726,7 +11747,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -11750,8 +11771,7 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11759,8 +11779,7 @@ div#notebook {
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11787,7 +11806,11 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stderr output_text">
 <pre><span class="ansi-cyan-intense-fg ansi-bold">INFO: </span><span class="ansi-cyan-fg">Package RDatasets is already installed
 </span><span class="ansi-cyan-intense-fg ansi-bold">INFO: </span><span class="ansi-cyan-fg">METADATA is out-of-date — you may not have the latest version of RDatasets
@@ -11796,7 +11819,11 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_area"><div class="prompt output_prompt">Out[24]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[24]:</div>
+
+
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <table class="data-frame"><thead><tr><th></th><th>SepalLength</th><th>SepalWidth</th><th>PetalLength</th><th>PetalWidth</th><th>Species</th></tr></thead><tbody><tr><th>1</th><td>5.1</td><td>3.5</td><td>1.4</td><td>0.2</td><td>setosa</td></tr><tr><th>2</th><td>4.9</td><td>3.0</td><td>1.4</td><td>0.2</td><td>setosa</td></tr><tr><th>3</th><td>4.7</td><td>3.2</td><td>1.3</td><td>0.2</td><td>setosa</td></tr><tr><th>4</th><td>4.6</td><td>3.1</td><td>1.5</td><td>0.2</td><td>setosa</td></tr><tr><th>5</th><td>5.0</td><td>3.6</td><td>1.4</td><td>0.2</td><td>setosa</td></tr><tr><th>6</th><td>5.4</td><td>3.9</td><td>1.7</td><td>0.4</td><td>setosa</td></tr><tr><th>7</th><td>4.6</td><td>3.4</td><td>1.4</td><td>0.3</td><td>setosa</td></tr><tr><th>8</th><td>5.0</td><td>3.4</td><td>1.5</td><td>0.2</td><td>setosa</td></tr><tr><th>9</th><td>4.4</td><td>2.9</td><td>1.4</td><td>0.2</td><td>setosa</td></tr><tr><th>10</th><td>4.9</td><td>3.1</td><td>1.5</td><td>0.1</td><td>setosa</td></tr><tr><th>11</th><td>5.4</td><td>3.7</td><td>1.5</td><td>0.2</td><td>setosa</td></tr><tr><th>12</th><td>4.8</td><td>3.4</td><td>1.6</td><td>0.2</td><td>setosa</td></tr><tr><th>13</th><td>4.8</td><td>3.0</td><td>1.4</td><td>0.1</td><td>setosa</td></tr><tr><th>14</th><td>4.3</td><td>3.0</td><td>1.1</td><td>0.1</td><td>setosa</td></tr><tr><th>15</th><td>5.8</td><td>4.0</td><td>1.2</td><td>0.2</td><td>setosa</td></tr><tr><th>16</th><td>5.7</td><td>4.4</td><td>1.5</td><td>0.4</td><td>setosa</td></tr><tr><th>17</th><td>5.4</td><td>3.9</td><td>1.3</td><td>0.4</td><td>setosa</td></tr><tr><th>18</th><td>5.1</td><td>3.5</td><td>1.4</td><td>0.3</td><td>setosa</td></tr><tr><th>19</th><td>5.7</td><td>3.8</td><td>1.7</td><td>0.3</td><td>setosa</td></tr><tr><th>20</th><td>5.1</td><td>3.8</td><td>1.5</td><td>0.3</td><td>setosa</td></tr><tr><th>21</th><td>5.4</td><td>3.4</td><td>1.7</td><td>0.2</td><td>setosa</td></tr><tr><th>22</th><td>5.1</td><td>3.7</td><td>1.5</td><td>0.4</td><td>setosa</td></tr><tr><th>23</th><td>4.6</td><td>3.6</td><td>1.0</td><td>0.2</td><td>setosa</td></tr><tr><th>24</th><td>5.1</td><td>3.3</td><td>1.7</td><td>0.5</td><td>setosa</td></tr><tr><th>25</th><td>4.8</td><td>3.4</td><td>1.9</td><td>0.2</td><td>setosa</td></tr><tr><th>26</th><td>5.0</td><td>3.0</td><td>1.6</td><td>0.2</td><td>setosa</td></tr><tr><th>27</th><td>5.0</td><td>3.4</td><td>1.6</td><td>0.4</td><td>setosa</td></tr><tr><th>28</th><td>5.2</td><td>3.5</td><td>1.5</td><td>0.2</td><td>setosa</td></tr><tr><th>29</th><td>5.2</td><td>3.4</td><td>1.4</td><td>0.2</td><td>setosa</td></tr><tr><th>30</th><td>4.7</td><td>3.2</td><td>1.6</td><td>0.2</td><td>setosa</td></tr><tr><th>&vellip;</th><td>&vellip;</td><td>&vellip;</td><td>&vellip;</td><td>&vellip;</td><td>&vellip;</td></tr></tbody></table>
@@ -11808,8 +11835,7 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11819,8 +11845,7 @@ div#notebook {
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11835,8 +11860,23 @@ These are 100 dimentional vectors, which encode syntactic and semantic informati
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">JLD</span>
-<span class="n">embeddings</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s">&quot;../assets/ClusteringAndDimentionalityReduction.jld&quot;</span><span class="p">,</span> <span class="s">&quot;embeddings&quot;</span><span class="p">)</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">Embeddings</span>
+<span class="n">countries</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Afghanistan&quot;</span><span class="p">,</span> <span class="s">&quot;Algeria&quot;</span><span class="p">,</span> <span class="s">&quot;Angola&quot;</span><span class="p">,</span> <span class="s">&quot;Arabia&quot;</span><span class="p">,</span> <span class="s">&quot;Argentina&quot;</span><span class="p">,</span> <span class="s">&quot;Australia&quot;</span><span class="p">,</span> <span class="s">&quot;Bangladesh&quot;</span><span class="p">,</span> <span class="s">&quot;Brazil&quot;</span><span class="p">,</span> <span class="s">&quot;Britain&quot;</span><span class="p">,</span> <span class="s">&quot;Canada&quot;</span><span class="p">,</span> <span class="s">&quot;China&quot;</span><span class="p">,</span> <span class="s">&quot;Colombia&quot;</span><span class="p">,</span> <span class="s">&quot;Congo&quot;</span><span class="p">,</span> <span class="s">&quot;Egypt&quot;</span><span class="p">,</span> <span class="s">&quot;England&quot;</span><span class="p">,</span> <span class="s">&quot;Ethiopia&quot;</span><span class="p">,</span> <span class="s">&quot;France&quot;</span><span class="p">,</span> <span class="s">&quot;Germany&quot;</span><span class="p">,</span> <span class="s">&quot;Ghana&quot;</span><span class="p">,</span> <span class="s">&quot;India&quot;</span><span class="p">,</span> <span class="s">&quot;Indonesia&quot;</span><span class="p">,</span> <span class="s">&quot;Iran&quot;</span><span class="p">,</span> <span class="s">&quot;Iraq&quot;</span><span class="p">,</span> <span class="s">&quot;Ireland&quot;</span><span class="p">,</span> <span class="s">&quot;Italy&quot;</span><span class="p">,</span> <span class="s">&quot;Japan&quot;</span><span class="p">,</span> <span class="s">&quot;Kenya&quot;</span><span class="p">,</span> <span class="s">&quot;Korea&quot;</span><span class="p">,</span> <span class="s">&quot;Madagascar&quot;</span><span class="p">,</span> <span class="s">&quot;Malaysia&quot;</span><span class="p">,</span> <span class="s">&quot;Mexico&quot;</span><span class="p">,</span> <span class="s">&quot;Morocco&quot;</span><span class="p">,</span> <span class="s">&quot;Mozambique&quot;</span><span class="p">,</span> <span class="s">&quot;Myanmar&quot;</span><span class="p">,</span> <span class="s">&quot;Nepal&quot;</span><span class="p">,</span> <span class="s">&quot;Nigeria&quot;</span><span class="p">,</span> <span class="s">&quot;Pakistan&quot;</span><span class="p">,</span> <span class="s">&quot;Peru&quot;</span><span class="p">,</span> <span class="s">&quot;Philippines&quot;</span><span class="p">,</span> <span class="s">&quot;Poland&quot;</span><span class="p">,</span> <span class="s">&quot;Russia&quot;</span><span class="p">,</span> <span class="s">&quot;South&quot;</span><span class="p">,</span> <span class="s">&quot;Spain&quot;</span><span class="p">,</span> <span class="s">&quot;Sudan&quot;</span><span class="p">,</span> <span class="s">&quot;Tanzania&quot;</span><span class="p">,</span> <span class="s">&quot;Thailand&quot;</span><span class="p">,</span> <span class="s">&quot;Uganda&quot;</span><span class="p">,</span> <span class="s">&quot;Ukraine&quot;</span><span class="p">,</span> <span class="s">&quot;Usa&quot;</span><span class="p">,</span> <span class="s">&quot;Uzbekistan&quot;</span><span class="p">,</span> <span class="s">&quot;Venezuela&quot;</span><span class="p">,</span> <span class="s">&quot;Vietnam&quot;</span><span class="p">,</span> <span class="s">&quot;Wales&quot;</span><span class="p">,</span> <span class="s">&quot;Yemen&quot;</span><span class="p">]</span>
+<span class="n">usa_cities</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Albuquerque&quot;</span><span class="p">,</span> <span class="s">&quot;Atlanta&quot;</span><span class="p">,</span> <span class="s">&quot;Austin&quot;</span><span class="p">,</span> <span class="s">&quot;Baltimore&quot;</span><span class="p">,</span> <span class="s">&quot;Boston&quot;</span><span class="p">,</span> <span class="s">&quot;Charlotte&quot;</span><span class="p">,</span> <span class="s">&quot;Chicago&quot;</span><span class="p">,</span> <span class="s">&quot;Columbus&quot;</span><span class="p">,</span> <span class="s">&quot;Dallas&quot;</span><span class="p">,</span> <span class="s">&quot;Denver&quot;</span><span class="p">,</span> <span class="s">&quot;Detroit&quot;</span><span class="p">,</span> <span class="s">&quot;Francisco&quot;</span><span class="p">,</span> <span class="s">&quot;Fresno&quot;</span><span class="p">,</span> <span class="s">&quot;Houston&quot;</span><span class="p">,</span> <span class="s">&quot;Indianapolis&quot;</span><span class="p">,</span> <span class="s">&quot;Jacksonville&quot;</span><span class="p">,</span> <span class="s">&quot;Las&quot;</span><span class="p">,</span> <span class="s">&quot;Louisville&quot;</span><span class="p">,</span> <span class="s">&quot;Memphis&quot;</span><span class="p">,</span> <span class="s">&quot;Mesa&quot;</span><span class="p">,</span> <span class="s">&quot;Milwaukee&quot;</span><span class="p">,</span> <span class="s">&quot;Nashville&quot;</span><span class="p">,</span> <span class="s">&quot;Omaha&quot;</span><span class="p">,</span> <span class="s">&quot;Philadelphia&quot;</span><span class="p">,</span> <span class="s">&quot;Phoenix&quot;</span><span class="p">,</span> <span class="s">&quot;Portland&quot;</span><span class="p">,</span> <span class="s">&quot;Raleigh&quot;</span><span class="p">,</span> <span class="s">&quot;Sacramento&quot;</span><span class="p">,</span> <span class="s">&quot;San&quot;</span><span class="p">,</span> <span class="s">&quot;Seattle&quot;</span><span class="p">,</span> <span class="s">&quot;Tucson&quot;</span><span class="p">,</span> <span class="s">&quot;Vegas&quot;</span><span class="p">,</span> <span class="s">&quot;Washington&quot;</span><span class="p">]</span>
+<span class="n">world_capitals</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Accra&quot;</span><span class="p">,</span> <span class="s">&quot;Algiers&quot;</span><span class="p">,</span> <span class="s">&quot;Amman&quot;</span><span class="p">,</span> <span class="s">&quot;Ankara&quot;</span><span class="p">,</span> <span class="s">&quot;Antananarivo&quot;</span><span class="p">,</span> <span class="s">&quot;Athens&quot;</span><span class="p">,</span> <span class="s">&quot;Baghdad&quot;</span><span class="p">,</span> <span class="s">&quot;Baku&quot;</span><span class="p">,</span> <span class="s">&quot;Bangkok&quot;</span><span class="p">,</span> <span class="s">&quot;Beijing&quot;</span><span class="p">,</span> <span class="s">&quot;Beirut&quot;</span><span class="p">,</span> <span class="s">&quot;Berlin&quot;</span><span class="p">,</span> <span class="s">&quot;Bogotá&quot;</span><span class="p">,</span> <span class="s">&quot;Brasília&quot;</span><span class="p">,</span> <span class="s">&quot;Bucharest&quot;</span><span class="p">,</span> <span class="s">&quot;Budapest&quot;</span><span class="p">,</span> <span class="s">&quot;Cairo&quot;</span><span class="p">,</span> <span class="s">&quot;Caracas&quot;</span><span class="p">,</span> <span class="s">&quot;Damascus&quot;</span><span class="p">,</span> <span class="s">&quot;Dhaka&quot;</span><span class="p">,</span> <span class="s">&quot;Hanoi&quot;</span><span class="p">,</span> <span class="s">&quot;Havana&quot;</span><span class="p">,</span> <span class="s">&quot;Jakarta&quot;</span><span class="p">,</span> <span class="s">&quot;Kabul&quot;</span><span class="p">,</span> <span class="s">&quot;Kampala&quot;</span><span class="p">,</span> <span class="s">&quot;Khartoum&quot;</span><span class="p">,</span> <span class="s">&quot;Kinshasa&quot;</span><span class="p">,</span> <span class="s">&quot;Kyiv&quot;</span><span class="p">,</span> <span class="s">&quot;Lima&quot;</span><span class="p">,</span> <span class="s">&quot;London&quot;</span><span class="p">,</span> <span class="s">&quot;Luanda&quot;</span><span class="p">,</span> <span class="s">&quot;Madrid&quot;</span><span class="p">,</span> <span class="s">&quot;Manila&quot;</span><span class="p">,</span> <span class="s">&quot;Minsk&quot;</span><span class="p">,</span> <span class="s">&quot;Moscow&quot;</span><span class="p">,</span> <span class="s">&quot;Nairobi&quot;</span><span class="p">,</span> <span class="s">&quot;Paris&quot;</span><span class="p">,</span> <span class="s">&quot;Pretoria&quot;</span><span class="p">,</span> <span class="s">&quot;Pyongyang&quot;</span><span class="p">,</span> <span class="s">&quot;Quito&quot;</span><span class="p">,</span> <span class="s">&quot;Rabat&quot;</span><span class="p">,</span> <span class="s">&quot;Riyadh&quot;</span><span class="p">,</span> <span class="s">&quot;Rome&quot;</span><span class="p">,</span> <span class="s">&quot;Santiago&quot;</span><span class="p">,</span> <span class="s">&quot;Seoul&quot;</span><span class="p">,</span> <span class="s">&quot;Singapore&quot;</span><span class="p">,</span> <span class="s">&quot;Stockholm&quot;</span><span class="p">,</span> <span class="s">&quot;Taipei&quot;</span><span class="p">,</span> <span class="s">&quot;Tashkent&quot;</span><span class="p">,</span> <span class="s">&quot;Tehran&quot;</span><span class="p">,</span> <span class="s">&quot;Tokyo&quot;</span><span class="p">,</span> <span class="s">&quot;Vienna&quot;</span><span class="p">,</span> <span class="s">&quot;Warsaw&quot;</span><span class="p">,</span> <span class="s">&quot;Yaoundé&quot;</span><span class="p">]</span>
+<span class="n">animals</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;alpaca&quot;</span><span class="p">,</span><span class="s">&quot;camel&quot;</span><span class="p">,</span><span class="s">&quot;cattle&quot;</span><span class="p">,</span><span class="s">&quot;dog&quot;</span><span class="p">,</span><span class="s">&quot;dove&quot;</span><span class="p">,</span><span class="s">&quot;duck&quot;</span><span class="p">,</span><span class="s">&quot;ferret&quot;</span><span class="p">,</span><span class="s">&quot;goldfish&quot;</span><span class="p">,</span><span class="s">&quot;goose&quot;</span><span class="p">,</span><span class="s">&quot;rat&quot;</span><span class="p">,</span><span class="s">&quot;llama&quot;</span><span class="p">,</span><span class="s">&quot;mouse&quot;</span><span class="p">,</span><span class="s">&quot;pigeon&quot;</span><span class="p">,</span><span class="s">&quot;yak&quot;</span><span class="p">]</span>
+<span class="n">sports</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;archery&quot;</span><span class="p">,</span><span class="s">&quot;badminton&quot;</span><span class="p">,</span><span class="s">&quot;basketball&quot;</span><span class="p">,</span><span class="s">&quot;boxing&quot;</span><span class="p">,</span><span class="s">&quot;cycling&quot;</span><span class="p">,</span><span class="s">&quot;diving&quot;</span><span class="p">,</span><span class="s">&quot;equestrian&quot;</span><span class="p">,</span><span class="s">&quot;fencing&quot;</span><span class="p">,</span><span class="s">&quot;field&quot;</span><span class="p">,</span><span class="s">&quot;football&quot;</span><span class="p">,</span><span class="s">&quot;golf&quot;</span><span class="p">,</span><span class="s">&quot;gymnastics&quot;</span><span class="p">,</span><span class="s">&quot;handball&quot;</span><span class="p">,</span><span class="s">&quot;hockey&quot;</span><span class="p">,</span><span class="s">&quot;judo&quot;</span><span class="p">,</span><span class="s">&quot;kayak&quot;</span><span class="p">,</span><span class="s">&quot;pentathlon&quot;</span><span class="p">,</span><span class="s">&quot;polo&quot;</span><span class="p">,</span><span class="s">&quot;rowing&quot;</span><span class="p">,</span><span class="s">&quot;rugby&quot;</span><span class="p">,</span><span class="s">&quot;sailing&quot;</span><span class="p">,</span><span class="s">&quot;shooting&quot;</span><span class="p">,</span><span class="s">&quot;soccer&quot;</span><span class="p">,</span><span class="s">&quot;swimming&quot;</span><span class="p">,</span><span class="s">&quot;taekwondo&quot;</span><span class="p">,</span><span class="s">&quot;tennis&quot;</span><span class="p">,</span><span class="s">&quot;triathlon&quot;</span><span class="p">,</span><span class="s">&quot;volleyball&quot;</span><span class="p">,</span><span class="s">&quot;weightlifting&quot;</span><span class="p">,</span><span class="s">&quot;wrestling&quot;</span><span class="p">]</span>
+
+<span class="n">words_by_class</span> <span class="o">=</span> <span class="p">[</span><span class="n">countries</span><span class="p">,</span> <span class="n">usa_cities</span><span class="p">,</span> <span class="n">world_capitals</span><span class="p">,</span> <span class="n">animals</span><span class="p">,</span> <span class="n">sports</span><span class="p">]</span>
+<span class="n">all_words</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="n">vcat</span><span class="p">,</span> <span class="n">words_by_class</span><span class="p">)</span>
+<span class="n">embedding_table</span> <span class="o">=</span> <span class="n">load_embeddings</span><span class="p">(</span><span class="n">Word2Vec</span><span class="p">;</span> <span class="n">keep_words</span> <span class="o">=</span> <span class="n">all_words</span><span class="p">)</span> 
+<span class="nd">@assert</span> <span class="kt">Set</span><span class="p">(</span><span class="n">all_words</span><span class="p">)</span> <span class="o">==</span> <span class="kt">Set</span><span class="p">(</span><span class="n">embedding_table</span><span class="o">.</span><span class="n">vocab</span><span class="p">)</span>
+
+<span class="n">embeddings</span> <span class="o">=</span> <span class="n">embedding_table</span><span class="o">.</span><span class="n">embeddings</span>
+<span class="n">all_words</span> <span class="o">=</span> <span class="n">embedding_table</span><span class="o">.</span><span class="n">vocab</span>
+<span class="n">classes</span> <span class="o">=</span> <span class="n">map</span><span class="p">(</span><span class="n">all_words</span><span class="p">)</span> <span class="k">do</span> <span class="n">word</span>
+    <span class="n">findfirst</span><span class="p">(</span><span class="n">col</span> <span class="o">-&gt;</span> <span class="n">word</span> <span class="o">∈</span> <span class="n">col</span><span class="p">,</span> <span class="p">[</span><span class="n">countries</span><span class="p">,</span> <span class="n">usa_cities</span><span class="p">,</span> <span class="n">world_capitals</span><span class="p">,</span> <span class="n">animals</span><span class="p">,</span> <span class="n">sports</span><span class="p">])</span>
+<span class="k">end</span><span class="p">;</span>
 </pre></div>
 
 </div>
@@ -11844,8 +11884,7 @@ These are 100 dimentional vectors, which encode syntactic and semantic informati
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11868,4 +11907,8 @@ These are 100 dimentional vectors, which encode syntactic and semantic informati
     </div>
   </div>
 </body>
+
+ 
+
+
 </html>

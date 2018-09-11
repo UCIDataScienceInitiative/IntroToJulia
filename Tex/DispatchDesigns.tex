@@ -346,7 +346,7 @@ give it. Looking at the generated code:
 
 ; Function my\_square
 ; Location: In[1]:1
-define i64 @julia\_my\_square\_36334(i64) \{
+define i64 @julia\_my\_square\_36373(i64) \{
 top:
 ; Function literal\_pow; \{
 ; Location: intfuncs.jl:243
@@ -368,7 +368,7 @@ top:
 
 ; Function my\_square
 ; Location: In[1]:1
-define double @julia\_my\_square\_36349(double) \{
+define double @julia\_my\_square\_36389(double) \{
 top:
 ; Function literal\_pow; \{
 ; Location: intfuncs.jl:243
@@ -405,7 +405,7 @@ That means that
 same exact compiled code:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}5}]:} \PY{n+nd}{@code\PYZus{}llvm} \PY{n}{my\PYZus{}restricted\PYZus{}square}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}30}]:} \PY{n+nd}{@code\PYZus{}llvm} \PY{n}{my\PYZus{}restricted\PYZus{}square}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
 \end{Verbatim}
 
 
@@ -413,7 +413,7 @@ same exact compiled code:
 
 ; Function my\_restricted\_square
 ; Location: In[4]:1
-define i64 @julia\_my\_restricted\_square\_36359(i64) \{
+define i64 @julia\_my\_restricted\_square\_36665(i64) \{
 top:
 ; Function literal\_pow; \{
 ; Location: intfuncs.jl:243
@@ -511,12 +511,12 @@ do an action. A good example of this is the range type, for example
 can see this by looking at its fields:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{fieldnames}\PY{p}{(}\PY{n}{typeof}\PY{p}{(}\PY{n}{a}\PY{p}{)}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{fieldnames}\PY{p}{(}\PY{n}{typeof}\PY{p}{(}\PY{n}{a}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}9}]:} (:start, :stop)
+{\color{outcolor}Out[{\color{outcolor}12}]:} (:start, :stop)
 \end{Verbatim}
             
     It is an \texttt{immutable} type which just holds the start and stop
@@ -525,17 +525,17 @@ function. What's nice about this is that means that no array is ever
 created. Creating large arrays can be a costly action:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}12}]:} \PY{n+nd}{@time} \PY{n}{collect}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{10000000}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n+nd}{@time} \PY{n}{collect}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{10000000}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-  0.082343 seconds (29 allocations: 76.297 MiB, 13.04\% gc time)
+  0.085446 seconds (29 allocations: 76.297 MiB, 12.31\% gc time)
 
     \end{Verbatim}
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}12}]:} 10000000-element Array\{Int64,1\}:
+{\color{outcolor}Out[{\color{outcolor}13}]:} 10000000-element Array\{Int64,1\}:
                  1
                  2
                  3
@@ -568,17 +568,17 @@ created. Creating large arrays can be a costly action:
 matter what those two numbers are:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}13}]:} \PY{n+nd}{@time} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{10000000}
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n+nd}{@time} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{10000000}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-  0.000004 seconds (5 allocations: 192 bytes)
+  0.000006 seconds (5 allocations: 192 bytes)
 
     \end{Verbatim}
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}13}]:} 1:10000000
+{\color{outcolor}Out[{\color{outcolor}14}]:} 1:10000000
 \end{Verbatim}
             
     The array takes \(\mathcal{O}(n)\) memory to store its values while this
@@ -590,9 +590,9 @@ Another nice example is the \texttt{UniformScaling} operator, which acts
 like an identity matrix without forming an identity matrix.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}6}]:} \PY{k}{using} \PY{n}{LinearAlgebra}
-        \PY{n}{println}\PY{p}{(}\PY{n+nb}{I}\PY{p}{[}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{]}\PY{p}{)}
-        \PY{n}{println}\PY{p}{(}\PY{n+nb}{I}\PY{p}{[}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}16}]:} \PY{k}{using} \PY{n}{LinearAlgebra}
+         \PY{n}{println}\PY{p}{(}\PY{n+nb}{I}\PY{p}{[}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{]}\PY{p}{)}
+         \PY{n}{println}\PY{p}{(}\PY{n+nb}{I}\PY{p}{[}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
 \end{Verbatim}
 
 
@@ -619,7 +619,7 @@ things which subtype are inheriting behavior. You should setup your
 behavior. For example:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}15}]:} \PY{k}{abstract} \PY{k}{type} \PY{n}{AbstractPerson} \PY{k}{end}
+{\color{incolor}In [{\color{incolor}17}]:} \PY{k}{abstract} \PY{k}{type} \PY{n}{AbstractPerson} \PY{k}{end}
          \PY{k}{abstract} \PY{k}{type} \PY{n}{AbstractStudent} \PY{o}{\PYZlt{}:} \PY{n}{AbstractPerson} \PY{k}{end}
          \PY{k}{abstract} \PY{k}{type} \PY{n}{AbstractTeacher} \PY{o}{\PYZlt{}:} \PY{n}{AbstractPerson} \PY{k}{end}
          
@@ -649,12 +649,12 @@ behavior. For example:
 has a name which can be gotten by \texttt{get\_name}".
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{get\PYZus{}name}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{AbstractPerson}\PY{p}{)} \PY{o}{=} \PY{n}{x}\PY{o}{.}\PY{n}{name}
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{get\PYZus{}name}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{AbstractPerson}\PY{p}{)} \PY{o}{=} \PY{n}{x}\PY{o}{.}\PY{n}{name}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}16}]:} get\_name (generic function with 1 method)
+{\color{outcolor}Out[{\color{outcolor}18}]:} get\_name (generic function with 1 method)
 \end{Verbatim}
             
     Thus codes which are written for an \texttt{AbstractPerson} can "know"
@@ -666,12 +666,12 @@ trendiest band is, so we can just replace the usage of the field by the
 action:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{get\PYZus{}name}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{MusicStudent}\PY{p}{)} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{J}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{B}\PY{l+s}{i}\PY{l+s}{e}\PY{l+s}{b}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{\PYZdq{}}
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{get\PYZus{}name}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{MusicStudent}\PY{p}{)} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{J}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{B}\PY{l+s}{i}\PY{l+s}{e}\PY{l+s}{b}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{\PYZdq{}}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}17}]:} get\_name (generic function with 2 methods)
+{\color{outcolor}Out[{\color{outcolor}19}]:} get\_name (generic function with 2 methods)
 \end{Verbatim}
             
     In this way, we can use \texttt{get\_name} to get the name, and how it
@@ -697,14 +697,14 @@ are old and don't like music, while students do like music. But
 generally people like music. This means that:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{likes\PYZus{}music}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{AbstractTeacher}\PY{p}{)} \PY{o}{=} \PY{k+kc}{false}
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{likes\PYZus{}music}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{AbstractTeacher}\PY{p}{)} \PY{o}{=} \PY{k+kc}{false}
          \PY{n}{likes\PYZus{}music}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{AbstractStudent}\PY{p}{)} \PY{o}{=} \PY{k+kc}{true}
          \PY{n}{likes\PYZus{}music}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{AbstractPerson}\PY{p}{)} \PY{o}{=} \PY{k+kc}{true}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}18}]:} likes\_music (generic function with 3 methods)
+{\color{outcolor}Out[{\color{outcolor}20}]:} likes\_music (generic function with 3 methods)
 \end{Verbatim}
             
     Now how many records would these people buy at a record store? If they
@@ -713,7 +713,7 @@ they will pick up a random number between 1 and 10. If they are a
 student, they will then double that (impulsive Millenials!).
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}19}]:} \PY{k}{function} \PY{n}{number\PYZus{}of\PYZus{}records}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{AbstractPerson}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}21}]:} \PY{k}{function} \PY{n}{number\PYZus{}of\PYZus{}records}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{AbstractPerson}\PY{p}{)}
              \PY{k}{if} \PY{o}{!}\PY{n}{likes\PYZus{}music}\PY{p}{(}\PY{n}{x}\PY{p}{)} 
                \PY{k}{return} \PY{l+m+mi}{0}
              \PY{k}{end}
@@ -728,13 +728,13 @@ student, they will then double that (impulsive Millenials!).
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}19}]:} number\_of\_records (generic function with 1 method)
+{\color{outcolor}Out[{\color{outcolor}21}]:} number\_of\_records (generic function with 1 method)
 \end{Verbatim}
             
     Let's check the code that is created:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{x} \PY{o}{=} \PY{n}{Teacher}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{R}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+m+mi}{11}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{x} \PY{o}{=} \PY{n}{Teacher}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{R}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+m+mi}{11}\PY{p}{)}
          \PY{n}{println}\PY{p}{(}\PY{n}{number\PYZus{}of\PYZus{}records}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
          \PY{n+nd}{@code\PYZus{}llvm} \PY{n}{number\PYZus{}of\PYZus{}records}\PY{p}{(}\PY{n}{x}\PY{p}{)}
 \end{Verbatim}
@@ -744,8 +744,8 @@ student, they will then double that (impulsive Millenials!).
 0
 
 ; Function number\_of\_records
-; Location: In[19]:2
-define i64 @julia\_number\_of\_records\_36553(\%jl\_value\_t addrspace(10)* nonnull align 8 dereferenceable(16)) \{
+; Location: In[21]:2
+define i64 @julia\_number\_of\_records\_36634(\%jl\_value\_t addrspace(10)* nonnull align 8 dereferenceable(16)) \{
 top:
   ret i64 0
 \}
@@ -888,7 +888,7 @@ done by having the return be a type itself. For example, we can create
 music genre types:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}21}]:} \PY{k}{abstract} \PY{k}{type} \PY{n}{MusicGenres} \PY{k}{end}
+{\color{incolor}In [{\color{incolor}23}]:} \PY{k}{abstract} \PY{k}{type} \PY{n}{MusicGenres} \PY{k}{end}
          \PY{k}{abstract} \PY{k}{type} \PY{n}{RockGenre} \PY{o}{\PYZlt{}:} \PY{n}{MusicGenres} \PY{k}{end}
          \PY{n}{struct} \PY{n}{ClassicRock} \PY{o}{\PYZlt{}:} \PY{n}{RockGenre} \PY{k}{end}
          \PY{n}{struct} \PY{n}{AltRock} \PY{o}{\PYZlt{}:} \PY{n}{RockGenre} \PY{k}{end}
@@ -900,14 +900,14 @@ music genre types:
 can have traits like:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{favorite\PYZus{}genre}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{AbstractPerson}\PY{p}{)} \PY{o}{=} \PY{n}{ClassicRock}\PY{p}{(}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{favorite\PYZus{}genre}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{AbstractPerson}\PY{p}{)} \PY{o}{=} \PY{n}{ClassicRock}\PY{p}{(}\PY{p}{)}
          \PY{n}{favorite\PYZus{}genre}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{MusicStudent}\PY{p}{)} \PY{o}{=} \PY{n}{Classical}\PY{p}{(}\PY{p}{)}
          \PY{n}{favorite\PYZus{}genre}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{AbstractTeacher}\PY{p}{)} \PY{o}{=} \PY{n}{AltRock}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}22}]:} favorite\_genre (generic function with 3 methods)
+{\color{outcolor}Out[{\color{outcolor}24}]:} favorite\_genre (generic function with 3 methods)
 \end{Verbatim}
             
     This means that we can do checks like
@@ -929,8 +929,7 @@ implements trait-dispatch is
 allows you to dispatch on a trait \texttt{IsNice} like:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{k}{using} \PY{n}{SimpleTraits}
-        \PY{n+nd}{@traitfn} \PY{n}{ft}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{o}{::}\PY{n}{IsNice}\PY{p}{)} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{V}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{y}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{!}\PY{l+s}{\PYZdq{}}
+{\color{incolor}In [{\color{incolor} }]:} \PY{n+nd}{@traitfn} \PY{n}{ft}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{o}{::}\PY{n}{IsNice}\PY{p}{)} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{V}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{y}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{!}\PY{l+s}{\PYZdq{}}
         \PY{n+nd}{@traitfn} \PY{n}{ft}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{o}{::}\PY{p}{(}\PY{o}{!}\PY{n}{IsNice}\PY{p}{)}\PY{p}{)} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{N}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{ }\PY{l+s}{s}\PY{l+s}{o}\PY{l+s}{ }\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{!}\PY{l+s}{\PYZdq{}}
 \end{Verbatim}
 
@@ -953,9 +952,7 @@ something defined elsewere. This is a recipe for havoc. Here's a few
 links which discuss this in more detail:
 
 https://softwareengineering.stackexchange.com/questions/134097/why-should-i-prefer-composition-over-inheritance
-
 https://en.wikipedia.org/wiki/Composition\_over\_inheritance
-
 https://www.thoughtworks.com/insights/blog/composition-vs-inheritance-how-choose
 
 So if possible, give composition a try. Say you have \texttt{MyType},
@@ -963,12 +960,12 @@ and it has some function \texttt{f} defined on it. This means that you
 can extend \texttt{MyType} by making it a field in another type:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{mutable} \PY{n}{struct} \PY{n}{MyType2}
-             \PY{n}{mt}\PY{o}{::}\PY{n}{MyType}
-             \PY{o}{.}\PY{o}{.}\PY{o}{.} \PY{c}{\PYZsh{} Other stuff}
-         \PY{k}{end} 
-         
-         \PY{n}{f}\PY{p}{(}\PY{n}{mt2}\PY{o}{::}\PY{n}{MyType2}\PY{p}{)} \PY{o}{=} \PY{n}{f}\PY{p}{(}\PY{n}{mt2}\PY{o}{.}\PY{n}{mt}\PY{p}{)}
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{mutable} \PY{n}{struct} \PY{n}{MyType2}
+            \PY{n}{mt}\PY{o}{::}\PY{n}{MyType}
+            \PY{o}{.}\PY{o}{.}\PY{o}{.} \PY{c}{\PYZsh{} Other stuff}
+        \PY{k}{end} 
+        
+        \PY{n}{f}\PY{p}{(}\PY{n}{mt2}\PY{o}{::}\PY{n}{MyType2}\PY{p}{)} \PY{o}{=} \PY{n}{f}\PY{p}{(}\PY{n}{mt2}\PY{o}{.}\PY{n}{mt}\PY{p}{)}
 \end{Verbatim}
 
 
@@ -981,77 +978,67 @@ solutions via metaprogramming. One simple solution is the \texttt{@def}
 macro.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{macro} \PY{n}{def}\PY{p}{(}\PY{n}{name}\PY{p}{,} \PY{n}{definition}\PY{p}{)}
-            \PY{k}{return} \PY{k}{quote}
-                \PY{k}{macro} \PY{o}{\PYZdl{}}\PY{p}{(}\PY{n}{esc}\PY{p}{(}\PY{n}{name}\PY{p}{)}\PY{p}{)}\PY{p}{(}\PY{p}{)}
-                    \PY{n}{esc}\PY{p}{(}\PY{o}{\PYZdl{}}\PY{p}{(}\PY{k+kt}{Expr}\PY{p}{(}\PY{o}{:}\PY{k}{quote}\PY{p}{,} \PY{n}{definition}\PY{p}{)}\PY{p}{)}\PY{p}{)}
-                \PY{k}{end}
-            \PY{k}{end}
-        \PY{k}{end}
+{\color{incolor}In [{\color{incolor}27}]:} \PY{k}{macro} \PY{n}{def}\PY{p}{(}\PY{n}{name}\PY{p}{,} \PY{n}{definition}\PY{p}{)}
+           \PY{k}{return} \PY{k}{quote}
+               \PY{k}{macro} \PY{o}{\PYZdl{}}\PY{p}{(}\PY{n}{esc}\PY{p}{(}\PY{n}{name}\PY{p}{)}\PY{p}{)}\PY{p}{(}\PY{p}{)}
+                   \PY{n}{esc}\PY{p}{(}\PY{o}{\PYZdl{}}\PY{p}{(}\PY{k+kt}{Expr}\PY{p}{(}\PY{o}{:}\PY{k}{quote}\PY{p}{,} \PY{n}{definition}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+               \PY{k}{end}
+           \PY{k}{end}
+         \PY{k}{end}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}1}]:} @def (macro with 1 method)
+{\color{outcolor}Out[{\color{outcolor}27}]:} @def (macro with 1 method)
 \end{Verbatim}
             
     This macro is very simple. What it does is compile-time copy/paste. For
 example:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}2}]:} \PY{n+nd}{@def} \PY{n}{give\PYZus{}it\PYZus{}a\PYZus{}name} \PY{k}{begin}
-          \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{2}
-          \PY{n}{println}\PY{p}{(}\PY{n}{a}\PY{p}{)}
-        \PY{k}{end}
+{\color{incolor}In [{\color{incolor}28}]:} \PY{n+nd}{@def} \PY{n}{give\PYZus{}it\PYZus{}a\PYZus{}name} \PY{k}{begin}
+           \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{2}
+           \PY{n}{println}\PY{p}{(}\PY{n}{a}\PY{p}{)}
+         \PY{k}{end}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}2}]:} @give\_it\_a\_name (macro with 1 method)
+{\color{outcolor}Out[{\color{outcolor}28}]:} @give\_it\_a\_name (macro with 1 method)
 \end{Verbatim}
             
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}3}]:} \PY{n+nd}{@give\PYZus{}it\PYZus{}a\PYZus{}name}
-\end{Verbatim}
-
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-2
-
-    \end{Verbatim}
-
     defines a macro \texttt{@give\_it\_a\_name} that will paste in those two
 lines of code wherever it is used. For example, the reused fields of
 Optim.jl's solvers could be put into an \texttt{@def}:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}4}]:} \PY{n+nd}{@def} \PY{n}{add\PYZus{}generic\PYZus{}fields} \PY{k}{begin}
-                \PY{n}{method\PYZus{}string}\PY{o}{::}\PY{n}{String}
-                \PY{n}{n}\PY{o}{::}\PY{k+kt}{Int64}
-                \PY{n}{x}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
-                \PY{n}{f\PYZus{}x}\PY{o}{::}\PY{n}{T}
-                \PY{n}{f\PYZus{}calls}\PY{o}{::}\PY{k+kt}{Int64}
-                \PY{n}{g\PYZus{}calls}\PY{o}{::}\PY{k+kt}{Int64}
-                \PY{n}{h\PYZus{}calls}\PY{o}{::}\PY{k+kt}{Int64}
-        \PY{k}{end}
+{\color{incolor}In [{\color{incolor}29}]:} \PY{n+nd}{@def} \PY{n}{add\PYZus{}generic\PYZus{}fields} \PY{k}{begin}
+                 \PY{n}{method\PYZus{}string}\PY{o}{::}\PY{n}{String}
+                 \PY{n}{n}\PY{o}{::}\PY{k+kt}{Int64}
+                 \PY{n}{x}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+                 \PY{n}{f\PYZus{}x}\PY{o}{::}\PY{n}{T}
+                 \PY{n}{f\PYZus{}calls}\PY{o}{::}\PY{k+kt}{Int64}
+                 \PY{n}{g\PYZus{}calls}\PY{o}{::}\PY{k+kt}{Int64}
+                 \PY{n}{h\PYZus{}calls}\PY{o}{::}\PY{k+kt}{Int64}
+         \PY{k}{end}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}4}]:} @add\_generic\_fields (macro with 1 method)
+{\color{outcolor}Out[{\color{outcolor}29}]:} @add\_generic\_fields (macro with 1 method)
 \end{Verbatim}
             
     and those fields can be copied around with
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{mutable} \PY{n}{struct} \PY{n}{LBFGSState}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
-            \PY{n+nd}{@add\PYZus{}generic\PYZus{}fields}
-            \PY{n}{x\PYZus{}previous}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
-            \PY{n}{g}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
-            \PY{n}{g\PYZus{}previous}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
-            \PY{n}{rho}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
-            \PY{c}{\PYZsh{} ... more fields ... }
-        \PY{k}{end}
+{\color{incolor}In [{\color{incolor}28}]:} \PY{n}{mutable} \PY{n}{struct} \PY{n}{LBFGSState}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+             \PY{n+nd}{@add\PYZus{}generic\PYZus{}fields}
+             \PY{n}{x\PYZus{}previous}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+             \PY{n}{g}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+             \PY{n}{g\PYZus{}previous}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+             \PY{n}{rho}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{\PYZcb{}}
+             \PY{c}{\PYZsh{} ... more fields ... }
+         \PY{k}{end}
 \end{Verbatim}
 
 
@@ -1060,7 +1047,7 @@ with this. Similar metaprogramming can be used to build an "inheritance
 feature" for Julia. One package which does this is
 \href{https://github.com/tbreloff/ConcreteAbstractions.jl}{ConcreteAbstractions.jl}
 which allows you to add fields to abstract types and make the child
-types inherit the fields (note: it is v0.6 only and needs an update!):
+types inherit the fields:
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor} }]:} \PY{c}{\PYZsh{} The abstract type}

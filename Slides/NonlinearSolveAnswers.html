@@ -11919,7 +11919,7 @@ a.anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">Roots</span>
@@ -11937,7 +11937,7 @@ a.anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[1]:</div>
+<div class="prompt output_prompt">Out[3]:</div>
 
 
 
@@ -11962,10 +11962,10 @@ a.anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">f!</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">f!</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="n">dx</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
   <span class="n">dx</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>   <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>   <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span><span class="mi">12</span>
   <span class="n">dx</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>   <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>   <span class="o">-</span> <span class="mi">2</span>
   <span class="n">dx</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>   <span class="o">-</span> <span class="mi">1</span>
@@ -11973,7 +11973,7 @@ a.anchor-link {
 <span class="k">using</span> <span class="n">NLsolve</span>
 <span class="n">res</span> <span class="o">=</span> <span class="n">nlsolve</span><span class="p">(</span><span class="n">f!</span><span class="p">,[</span><span class="mf">1.0</span><span class="p">;</span><span class="mf">1.0</span><span class="p">;</span><span class="mf">1.0</span><span class="p">])</span>
 <span class="n">res</span><span class="o">.</span><span class="n">zero</span>
-<span class="n">res</span> <span class="o">=</span> <span class="n">nlsolve</span><span class="p">(</span><span class="n">f!</span><span class="p">,[</span><span class="mf">1.0</span><span class="p">;</span><span class="mf">1.0</span><span class="p">;</span><span class="mf">1.0</span><span class="p">],</span><span class="n">autodiff</span><span class="o">=:</span><span class="n">forward</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">nlsolve</span><span class="p">(</span><span class="n">f!</span><span class="p">,[</span><span class="mf">1.0</span><span class="p">;</span><span class="mf">1.0</span><span class="p">;</span><span class="mf">1.0</span><span class="p">],</span><span class="n">autodiff</span><span class="o">=</span><span class="kc">true</span><span class="p">)</span>
 <span class="n">res</span><span class="o">.</span><span class="n">zero</span>
 </pre></div>
 
@@ -11987,7 +11987,7 @@ a.anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[2]:</div>
+<div class="prompt output_prompt">Out[5]:</div>
 
 
 

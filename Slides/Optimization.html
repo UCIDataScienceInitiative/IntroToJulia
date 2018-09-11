@@ -11912,7 +11912,7 @@ a.anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">Optim</span>
@@ -11930,7 +11930,7 @@ a.anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[2]:</div>
+<div class="prompt output_prompt">Out[6]:</div>
 
 
 
@@ -11963,7 +11963,7 @@ a.anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
@@ -11980,7 +11980,7 @@ a.anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[3]:</div>
+<div class="prompt output_prompt">Out[7]:</div>
 
 
 
@@ -12015,7 +12015,7 @@ a.anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">Optim</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="n">BFGS</span><span class="p">())</span>
@@ -12031,7 +12031,7 @@ a.anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[4]:</div>
+<div class="prompt output_prompt">Out[8]:</div>
 
 
 
@@ -12073,7 +12073,7 @@ a.anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">BlackBoxOptim</span>
@@ -12101,12 +12101,12 @@ a.anchor-link {
 <pre>Starting optimization with optimizer DiffEvoOpt{FitPopulation{Float64},RadiusLimitedSelector,BlackBoxOptim.AdaptiveDiffEvoRandBin{3},RandomBound{RangePerDimSearchSpace}}
 0.00 secs, 0 evals, 0 steps
 
-Optimization stopped after 10001 steps and 0.03020501136779785 seconds
+Optimization stopped after 10001 steps and 0.013683080673217773 seconds
 Termination reason: Max number of steps (10000) reached
-Steps per second = 331103.9972215425
-Function evals per second = 334282.2777668148
-Improvements/step = 0.2099
-Total function evaluations = 10097
+Steps per second = 730902.6555383248
+Function evals per second = 738722.5319649422
+Improvements/step = 0.2172
+Total function evaluations = 10108
 
 
 Best candidate found: [1.0, 1.0]
@@ -12119,13 +12119,13 @@ Fitness: 0.000000000
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[6]:</div>
+<div class="prompt output_prompt">Out[9]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>BlackBoxOptim.OptimizationResults(&#34;adaptive_de_rand_1_bin_radiuslimited&#34;, &#34;Max number of steps (10000) reached&#34;, 10001, 1.535816160358584e9, 0.03020501136779785, DictChain{Symbol,Any}[DictChain{Symbol,Any}[Dict{Symbol,Any}(:RngSeed=&gt;791001,:NumDimensions=&gt;2,:SearchRange=&gt;(-5.0, 5.0),:MaxSteps=&gt;10000),Dict{Symbol,Any}()],Dict{Symbol,Any}(:FitnessScheme=&gt;ScalarFitnessScheme{true}(),:NumDimensions=&gt;:NotSpecified,:PopulationSize=&gt;50,:MaxTime=&gt;0.0,:SearchRange=&gt;(-1.0, 1.0),:Method=&gt;:adaptive_de_rand_1_bin_radiuslimited,:MaxNumStepsWithoutFuncEvals=&gt;100,:RngSeed=&gt;1234,:MaxFuncEvals=&gt;0,:SaveTrace=&gt;false…)], 10097, ScalarFitnessScheme{true}(), BlackBoxOptim.TopListArchiveOutput{Float64,Array{Float64,1}}(4.480626600876763e-24, [1.0, 1.0]), BlackBoxOptim.PopulationOptimizerOutput{FitPopulation{Float64}}(FitPopulation{Float64}([1.0 1.0 … 1.0 1.0; 1.0 1.0 … 1.0 1.0], NaN, [4.84548e-22, 5.50133e-22, 1.0875e-22, 1.67945e-23, 3.7173e-22, 1.07341e-21, 3.5827e-22, 3.902e-23, 7.15037e-21, 2.90994e-22  …  3.3126e-22, 4.37495e-23, 1.34289e-22, 5.37053e-22, 3.82538e-22, 3.52475e-22, 5.34962e-24, 3.22963e-22, 5.87671e-23, 1.09491e-22], 0, BlackBoxOptim.Candidate{Float64}[Candidate{Float64}([1.0, 1.0], 18, 4.22652e-22, AdaptiveDiffEvoRandBin{3}(AdaptiveDiffEvoParameters(BimodalCauchy(Distributions.Cauchy{Float64}(μ=0.65, σ=0.1), Distributions.Cauchy{Float64}(μ=1.0, σ=0.1), 0.5, false, true), BimodalCauchy(Distributions.Cauchy{Float64}(μ=0.1, σ=0.1), Distributions.Cauchy{Float64}(μ=0.95, σ=0.1), 0.5, false, true), [0.960677, 0.848476, 0.623459, 0.54989, 0.581819, 1.0, 0.734587, 0.310737, 1.0, 1.0  …  0.935712, 0.537649, 1.0, 0.76622, 0.544867, 0.937488, 0.653021, 0.677084, 1.0, 0.318911], [1.0, 1.0, 0.111826, 0.125661, 1.0, 0.305684, 0.0436158, 0.206936, 0.908871, 0.119306  …  0.54331, 0.777823, 0.921962, 0.830078, 1.0, 1.0, 0.107495, 0.942054, 1.0, 0.686902])), 0), Candidate{Float64}([1.0, 1.0], 18, 8.96404e-22, AdaptiveDiffEvoRandBin{3}(AdaptiveDiffEvoParameters(BimodalCauchy(Distributions.Cauchy{Float64}(μ=0.65, σ=0.1), Distributions.Cauchy{Float64}(μ=1.0, σ=0.1), 0.5, false, true), BimodalCauchy(Distributions.Cauchy{Float64}(μ=0.1, σ=0.1), Distributions.Cauchy{Float64}(μ=0.95, σ=0.1), 0.5, false, true), [0.960677, 0.848476, 0.623459, 0.54989, 0.581819, 1.0, 0.734587, 0.310737, 1.0, 1.0  …  0.935712, 0.537649, 1.0, 0.76622, 0.544867, 0.937488, 0.653021, 0.677084, 1.0, 0.318911], [1.0, 1.0, 0.111826, 0.125661, 1.0, 0.305684, 0.0436158, 0.206936, 0.908871, 0.119306  …  0.54331, 0.777823, 0.921962, 0.830078, 1.0, 1.0, 0.107495, 0.942054, 1.0, 0.686902])), 0)])))</pre>
+<pre>BlackBoxOptim.OptimizationResults(&#34;adaptive_de_rand_1_bin_radiuslimited&#34;, &#34;Max number of steps (10000) reached&#34;, 10001, 1.536689117938819e9, 0.013683080673217773, DictChain{Symbol,Any}[DictChain{Symbol,Any}[Dict{Symbol,Any}(:RngSeed=&gt;189964,:NumDimensions=&gt;2,:SearchRange=&gt;(-5.0, 5.0),:MaxSteps=&gt;10000),Dict{Symbol,Any}()],Dict{Symbol,Any}(:FitnessScheme=&gt;ScalarFitnessScheme{true}(),:NumDimensions=&gt;:NotSpecified,:PopulationSize=&gt;50,:MaxTime=&gt;0.0,:SearchRange=&gt;(-1.0, 1.0),:Method=&gt;:adaptive_de_rand_1_bin_radiuslimited,:MaxNumStepsWithoutFuncEvals=&gt;100,:RngSeed=&gt;1234,:MaxFuncEvals=&gt;0,:SaveTrace=&gt;false…)], 10108, ScalarFitnessScheme{true}(), BlackBoxOptim.TopListArchiveOutput{Float64,Array{Float64,1}}(7.794981123521699e-27, [1.0, 1.0]), BlackBoxOptim.PopulationOptimizerOutput{FitPopulation{Float64}}(FitPopulation{Float64}([1.0 1.0 … 1.0 1.0; 1.0 1.0 … 1.0 1.0], NaN, [1.27603e-23, 3.92402e-23, 1.60016e-23, 1.61726e-23, 2.00834e-23, 6.01524e-23, 2.16747e-22, 4.2942e-23, 3.83008e-23, 8.03423e-23  …  6.35954e-25, 1.22529e-24, 1.60825e-25, 9.94304e-25, 1.41704e-24, 6.42558e-24, 3.93374e-24, 8.25185e-24, 1.89228e-23, 1.44361e-23], 0, BlackBoxOptim.Candidate{Float64}[Candidate{Float64}([1.0, 1.0], 10, 8.03423e-23, AdaptiveDiffEvoRandBin{3}(AdaptiveDiffEvoParameters(BimodalCauchy(Distributions.Cauchy{Float64}(μ=0.65, σ=0.1), Distributions.Cauchy{Float64}(μ=1.0, σ=0.1), 0.5, false, true), BimodalCauchy(Distributions.Cauchy{Float64}(μ=0.1, σ=0.1), Distributions.Cauchy{Float64}(μ=0.95, σ=0.1), 0.5, false, true), [0.697891, 0.720263, 0.88478, 0.809857, 0.434573, 0.280839, 1.0, 0.653261, 0.990107, 0.54517  …  0.829696, 0.680993, 0.96154, 1.0, 0.917572, 1.0, 0.835965, 1.0, 0.996137, 0.999622], [0.830166, 0.160064, 0.153951, 1.0, 0.78871, 0.256191, 0.139636, 1.0, 0.986488, 0.229464  …  0.932861, 0.0857158, 0.0022386, 0.595109, 0.980229, 0.122564, 0.39074, 1.0, 0.848218, 0.913758])), 0), Candidate{Float64}([1.0, 1.0], 10, 8.63425e-22, AdaptiveDiffEvoRandBin{3}(AdaptiveDiffEvoParameters(BimodalCauchy(Distributions.Cauchy{Float64}(μ=0.65, σ=0.1), Distributions.Cauchy{Float64}(μ=1.0, σ=0.1), 0.5, false, true), BimodalCauchy(Distributions.Cauchy{Float64}(μ=0.1, σ=0.1), Distributions.Cauchy{Float64}(μ=0.95, σ=0.1), 0.5, false, true), [0.697891, 0.720263, 0.88478, 0.809857, 0.434573, 0.280839, 1.0, 0.653261, 0.990107, 0.54517  …  0.829696, 0.680993, 0.96154, 1.0, 0.917572, 1.0, 0.835965, 1.0, 0.996137, 0.999622], [0.830166, 0.160064, 0.153951, 1.0, 0.78871, 0.256191, 0.139636, 1.0, 0.986488, 0.229464  …  0.932861, 0.0857158, 0.0022386, 0.595109, 0.980229, 0.122564, 0.39074, 1.0, 0.848218, 0.913758])), 0)])))</pre>
 </div>
 
 </div>

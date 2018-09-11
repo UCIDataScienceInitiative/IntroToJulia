@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>Optimization</title>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Optimization</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -13,8 +11,8 @@
 *
 */
 /*!
- * Bootstrap v3.3.6 (http://getbootstrap.com)
- * Copyright 2011-2015 Twitter, Inc.
+ * Bootstrap v3.3.7 (http://getbootstrap.com)
+ * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
@@ -1109,7 +1107,6 @@ a:focus {
   text-decoration: underline;
 }
 a:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -2538,7 +2535,6 @@ select[size] {
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -3029,7 +3025,6 @@ select[multiple].input-lg {
 .btn.focus,
 .btn:active.focus,
 .btn.active.focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -8760,6 +8755,9 @@ body > #header .header-bar {
     margin-left: 10px;
   }
 }
+[dir="rtl"] #ipython_notebook {
+  float: right !important;
+}
 #noscript {
   width: auto;
   padding-top: 16px;
@@ -8962,8 +8960,14 @@ span#login_widget > .button .badge,
  *
  * Author: Jupyter Development Team
  */
+[dir="rtl"] #tabs li {
+  float: right;
+}
 ul#tabs {
   margin-bottom: 4px;
+}
+[dir="rtl"] ul#tabs {
+  margin-right: 0px;
 }
 ul#tabs a {
   padding-top: 6px;
@@ -8986,6 +8990,16 @@ ul.breadcrumb span {
 }
 .list_toolbar .tree-buttons {
   padding-top: 1px;
+}
+[dir="rtl"] .list_toolbar .tree-buttons {
+  float: left !important;
+}
+[dir="rtl"] .list_toolbar .pull-right {
+  padding-top: 1px;
+  float: left !important;
+}
+[dir="rtl"] .list_toolbar .pull-left {
+  float: right !important;
 }
 .dynamic-buttons {
   padding-top: 3px;
@@ -9122,6 +9136,9 @@ ul.breadcrumb span {
 #tree-selector {
   padding-right: 0px;
 }
+[dir="rtl"] #tree-selector a {
+  float: right;
+}
 #button-select-all {
   min-width: 50px;
 }
@@ -9211,6 +9228,9 @@ ul#new-menu {
   left: auto;
   right: 0;
 }
+[dir="rtl"] #new-menu {
+  text-align: right;
+}
 .kernel-menu-icon {
   padding-right: 12px;
   width: 24px;
@@ -9255,6 +9275,9 @@ ul#new-menu {
 }
 #running .panel-group .panel .panel-body .list_container .list_item:last-child {
   border-bottom: 0px;
+}
+[dir="rtl"] #running .col-sm-8 {
+  float: right !important;
 }
 .delete-button {
   display: none;
@@ -9551,6 +9574,7 @@ div.cell.selected.jupyter-soft-selected {
   }
 }
 div.inner_cell {
+  min-width: 0;
   /* Old browsers */
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -9571,11 +9595,6 @@ div.inner_cell {
   box-flex: 1;
   /* Modern browsers */
   flex: 1;
-}
-@-moz-document url-prefix() {
-  div.inner_cell {
-    overflow-x: hidden;
-  }
 }
 /* input_area and input_prompt must match in top border and margin for alignment */
 div.input_area {
@@ -11246,7 +11265,7 @@ div#pager .ui-resizable-handle::after {
 }
 .shortcut_key {
   display: inline-block;
-  width: 20ex;
+  width: 21ex;
   text-align: right;
   font-family: monospace;
 }
@@ -11558,6 +11577,7 @@ ul.typeahead-list > li > a {
   box-shadow: 0px 0px 12px 1px rgba(87, 87, 87, 0.2);
 }
 .terminal-app .terminal {
+  width: 100%;
   float: left;
   font-family: monospace;
   color: white;
@@ -11571,6 +11591,9 @@ ul.typeahead-list > li > a {
 .terminal-app .terminal dummy-screen {
   line-height: 1em;
   font-size: 14px;
+}
+.terminal-app .terminal .xterm-rows {
+  padding: 10px;
 }
 .terminal-app .terminal-cursor {
   color: black;
@@ -11703,9 +11726,7 @@ body {
 div#notebook {
   overflow: visible;
   border-top: none;
-}
-
-@media print {
+}@media print {
   div.cell {
     display: block;
     page-break-inside: avoid;
@@ -11726,7 +11747,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -11750,8 +11771,7 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11762,7 +11782,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">Optim</span>
@@ -11778,7 +11798,11 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[2]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[6]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -11798,8 +11822,7 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11810,7 +11833,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
@@ -11825,7 +11848,11 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[7]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -11847,8 +11874,7 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11859,7 +11885,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">Optim</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="n">BFGS</span><span class="p">())</span>
@@ -11873,7 +11899,11 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[8]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -11884,9 +11914,9 @@ div#notebook {
  * Minimum: -2.000000e+00
  * Iterations: 6
  * Convergence: true
-   * |x - x&#39;| ≤ 1.0e-32: false 
+   * |x - x&#39;| ≤ 0.0e+00: false 
      |x - x&#39;| = 4.10e-04 
-   * |f(x) - f(x&#39;)| ≤ 1.0e-32 |f(x)|: false
+   * |f(x) - f(x&#39;)| ≤ 0.0e+00 |f(x)|: false
      |f(x) - f(x&#39;)| = -9.67e-08 |f(x)|
    * |g(x)| ≤ 1.0e-08: true 
      |g(x)| = 4.06e-09 
@@ -11902,8 +11932,7 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11914,7 +11943,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">BlackBoxOptim</span>
@@ -11933,17 +11962,21 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Starting optimization with optimizer BlackBoxOptim.DiffEvoOpt{BlackBoxOptim.FitPopulation{Float64},BlackBoxOptim.RadiusLimitedSelector,BlackBoxOptim.AdaptiveDiffEvoRandBin{3},BlackBoxOptim.RandomBound{BlackBoxOptim.RangePerDimSearchSpace}}
+<pre>Starting optimization with optimizer DiffEvoOpt{FitPopulation{Float64},RadiusLimitedSelector,BlackBoxOptim.AdaptiveDiffEvoRandBin{3},RandomBound{RangePerDimSearchSpace}}
 0.00 secs, 0 evals, 0 steps
 
-Optimization stopped after 10001 steps and 0.021000146865844727 seconds
+Optimization stopped after 10001 steps and 0.013683080673217773 seconds
 Termination reason: Max number of steps (10000) reached
-Steps per second = 476234.7646370954
-Function evals per second = 482282.3413903112
-Improvements/step = 0.1993
-Total function evaluations = 10128
+Steps per second = 730902.6555383248
+Function evals per second = 738722.5319649422
+Improvements/step = 0.2172
+Total function evaluations = 10108
 
 
 Best candidate found: [1.0, 1.0]
@@ -11954,11 +11987,15 @@ Fitness: 0.000000000
 </div>
 </div>
 
-<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[9]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>BlackBoxOptim.OptimizationResults(&#34;adaptive_de_rand_1_bin_radiuslimited&#34;, &#34;Max number of steps (10000) reached&#34;, 10001, 1.526431919393e9, 0.021000146865844727, BlackBoxOptim.DictChain{Symbol,Any}[BlackBoxOptim.DictChain{Symbol,Any}[Dict{Symbol,Any}(Pair{Symbol,Any}(:RngSeed, 1466),Pair{Symbol,Any}(:NumDimensions, 2),Pair{Symbol,Any}(:SearchRange, (-5.0, 5.0)),Pair{Symbol,Any}(:MaxSteps, 10000)),Dict{Symbol,Any}()],Dict{Symbol,Any}(Pair{Symbol,Any}(:FitnessScheme, BlackBoxOptim.ScalarFitnessScheme{true}()),Pair{Symbol,Any}(:NumDimensions, :NotSpecified),Pair{Symbol,Any}(:PopulationSize, 50),Pair{Symbol,Any}(:MaxTime, 0.0),Pair{Symbol,Any}(:SearchRange, (-1.0, 1.0)),Pair{Symbol,Any}(:Method, :adaptive_de_rand_1_bin_radiuslimited),Pair{Symbol,Any}(:MaxNumStepsWithoutFuncEvals, 100),Pair{Symbol,Any}(:RngSeed, 1234),Pair{Symbol,Any}(:MaxFuncEvals, 0),Pair{Symbol,Any}(:SaveTrace, false)…)], 10128, BlackBoxOptim.ScalarFitnessScheme{true}(), BlackBoxOptim.TopListArchiveOutput{Float64,Array{Float64,1}}(1.755239653260451e-23, [1.0, 1.0]), BlackBoxOptim.PopulationOptimizerOutput{BlackBoxOptim.FitPopulation{Float64}}(BlackBoxOptim.FitPopulation{Float64}([1.0 1.0 … 1.0 1.0; 1.0 1.0 … 1.0 1.0], NaN, [1.61958e-21, 3.34085e-21, 5.68053e-21, 2.31703e-20, 1.09389e-20, 5.71653e-21, 6.68369e-22, 6.89362e-21, 6.52675e-21, 4.057e-21  …  4.30743e-22, 2.6898e-21, 1.26068e-20, 2.27065e-20, 1.24454e-19, 2.36923e-19, 4.26575e-21, 5.41387e-21, 7.61718e-21, 3.85335e-20], 0, BlackBoxOptim.Candidate{Float64}[BlackBoxOptim.Candidate{Float64}([1.0, 1.0], 24, 1.42957e-21, BlackBoxOptim.AdaptiveDiffEvoRandBin{3}(BlackBoxOptim.AdaptiveDiffEvoParameters(BlackBoxOptim.BimodalCauchy(Distributions.Cauchy{Float64}(μ=0.65, σ=0.1), Distributions.Cauchy{Float64}(μ=1.0, σ=0.1), 0.5, false, true), BlackBoxOptim.BimodalCauchy(Distributions.Cauchy{Float64}(μ=0.1, σ=0.1), Distributions.Cauchy{Float64}(μ=0.95, σ=0.1), 0.5, false, true), [0.701635, 0.822804, 0.497025, 0.686208, 1.0, 0.588519, 0.922643, 0.497291, 0.494365, 1.0  …  1.0, 0.560735, 0.748291, 0.626623, 0.546719, 1.0, 1.0, 0.950497, 0.911785, 0.80654], [0.73129, 0.0617889, 0.909293, 1.0, 1.0, 0.104108, 1.0, 0.937073, 1.0, 0.980383  …  0.0305664, 0.922521, 0.114515, 0.0876894, 1.0, 0.454371, 0.182781, 0.246594, 1.0, 0.894807])), 0), BlackBoxOptim.Candidate{Float64}([1.0, 1.0], 24, 3.43826e-20, BlackBoxOptim.AdaptiveDiffEvoRandBin{3}(BlackBoxOptim.AdaptiveDiffEvoParameters(BlackBoxOptim.BimodalCauchy(Distributions.Cauchy{Float64}(μ=0.65, σ=0.1), Distributions.Cauchy{Float64}(μ=1.0, σ=0.1), 0.5, false, true), BlackBoxOptim.BimodalCauchy(Distributions.Cauchy{Float64}(μ=0.1, σ=0.1), Distributions.Cauchy{Float64}(μ=0.95, σ=0.1), 0.5, false, true), [0.701635, 0.822804, 0.497025, 0.686208, 1.0, 0.588519, 0.922643, 0.497291, 0.494365, 1.0  …  1.0, 0.560735, 0.748291, 0.626623, 0.546719, 1.0, 1.0, 0.950497, 0.911785, 0.80654], [0.73129, 0.0617889, 0.909293, 1.0, 1.0, 0.104108, 1.0, 0.937073, 1.0, 0.980383  …  0.0305664, 0.922521, 0.114515, 0.0876894, 1.0, 0.454371, 0.182781, 0.246594, 1.0, 0.894807])), 0)])))</pre>
+<pre>BlackBoxOptim.OptimizationResults(&#34;adaptive_de_rand_1_bin_radiuslimited&#34;, &#34;Max number of steps (10000) reached&#34;, 10001, 1.536689117938819e9, 0.013683080673217773, DictChain{Symbol,Any}[DictChain{Symbol,Any}[Dict{Symbol,Any}(:RngSeed=&gt;189964,:NumDimensions=&gt;2,:SearchRange=&gt;(-5.0, 5.0),:MaxSteps=&gt;10000),Dict{Symbol,Any}()],Dict{Symbol,Any}(:FitnessScheme=&gt;ScalarFitnessScheme{true}(),:NumDimensions=&gt;:NotSpecified,:PopulationSize=&gt;50,:MaxTime=&gt;0.0,:SearchRange=&gt;(-1.0, 1.0),:Method=&gt;:adaptive_de_rand_1_bin_radiuslimited,:MaxNumStepsWithoutFuncEvals=&gt;100,:RngSeed=&gt;1234,:MaxFuncEvals=&gt;0,:SaveTrace=&gt;false…)], 10108, ScalarFitnessScheme{true}(), BlackBoxOptim.TopListArchiveOutput{Float64,Array{Float64,1}}(7.794981123521699e-27, [1.0, 1.0]), BlackBoxOptim.PopulationOptimizerOutput{FitPopulation{Float64}}(FitPopulation{Float64}([1.0 1.0 … 1.0 1.0; 1.0 1.0 … 1.0 1.0], NaN, [1.27603e-23, 3.92402e-23, 1.60016e-23, 1.61726e-23, 2.00834e-23, 6.01524e-23, 2.16747e-22, 4.2942e-23, 3.83008e-23, 8.03423e-23  …  6.35954e-25, 1.22529e-24, 1.60825e-25, 9.94304e-25, 1.41704e-24, 6.42558e-24, 3.93374e-24, 8.25185e-24, 1.89228e-23, 1.44361e-23], 0, BlackBoxOptim.Candidate{Float64}[Candidate{Float64}([1.0, 1.0], 10, 8.03423e-23, AdaptiveDiffEvoRandBin{3}(AdaptiveDiffEvoParameters(BimodalCauchy(Distributions.Cauchy{Float64}(μ=0.65, σ=0.1), Distributions.Cauchy{Float64}(μ=1.0, σ=0.1), 0.5, false, true), BimodalCauchy(Distributions.Cauchy{Float64}(μ=0.1, σ=0.1), Distributions.Cauchy{Float64}(μ=0.95, σ=0.1), 0.5, false, true), [0.697891, 0.720263, 0.88478, 0.809857, 0.434573, 0.280839, 1.0, 0.653261, 0.990107, 0.54517  …  0.829696, 0.680993, 0.96154, 1.0, 0.917572, 1.0, 0.835965, 1.0, 0.996137, 0.999622], [0.830166, 0.160064, 0.153951, 1.0, 0.78871, 0.256191, 0.139636, 1.0, 0.986488, 0.229464  …  0.932861, 0.0857158, 0.0022386, 0.595109, 0.980229, 0.122564, 0.39074, 1.0, 0.848218, 0.913758])), 0), Candidate{Float64}([1.0, 1.0], 10, 8.63425e-22, AdaptiveDiffEvoRandBin{3}(AdaptiveDiffEvoParameters(BimodalCauchy(Distributions.Cauchy{Float64}(μ=0.65, σ=0.1), Distributions.Cauchy{Float64}(μ=1.0, σ=0.1), 0.5, false, true), BimodalCauchy(Distributions.Cauchy{Float64}(μ=0.1, σ=0.1), Distributions.Cauchy{Float64}(μ=0.95, σ=0.1), 0.5, false, true), [0.697891, 0.720263, 0.88478, 0.809857, 0.434573, 0.280839, 1.0, 0.653261, 0.990107, 0.54517  …  0.829696, 0.680993, 0.96154, 1.0, 0.917572, 1.0, 0.835965, 1.0, 0.996137, 0.999622], [0.830166, 0.160064, 0.153951, 1.0, 0.78871, 0.256191, 0.139636, 1.0, 0.986488, 0.229464  …  0.932861, 0.0857158, 0.0022386, 0.595109, 0.980229, 0.122564, 0.39074, 1.0, 0.848218, 0.913758])), 0)])))</pre>
 </div>
 
 </div>
@@ -11967,8 +12004,7 @@ Fitness: 0.000000000
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11977,13 +12013,12 @@ Fitness: 0.000000000
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Problem-1">Problem 1<a class="anchor-link" href="#Problem-1">&#182;</a></h2><p>Use Optim.jl to optimize <a href="http://al-roomi.org/benchmarks/unconstrained/2-dimensions/58-hosaki-s-function">Hosaki's Function</a>. Use the initial condition <code>[2.0,2.0]</code>.</p>
-<h2 id="Problem-2">Problem 2<a class="anchor-link" href="#Problem-2">&#182;</a></h2><p>BlackBoxOptim.jl to find global minima of the <a href="https://arxiv.org/pdf/1308.4008.pdf">Adjiman Function</a> with $-1 < x_1 < 2$ and $-1 < x_2 < 1$.</p>
+<h2 id="Problem-2">Problem 2<a class="anchor-link" href="#Problem-2">&#182;</a></h2><p>BlackBoxOptim.jl to find global minima of the <a href="https://arxiv.org/pdf/1308.4008.pdf">Adjiman Function</a> with $-1 &lt; x_1 &lt; 2$ and $-1 &lt; x_2 &lt; 1$.</p>
 
 </div>
 </div>
@@ -11991,4 +12026,8 @@ Fitness: 0.000000000
     </div>
   </div>
 </body>
+
+ 
+
+
 </html>

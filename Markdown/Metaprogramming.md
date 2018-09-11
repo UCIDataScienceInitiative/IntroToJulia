@@ -36,10 +36,11 @@ is the following:
 
 
 ```julia
-f = (t,u,du) -> begin
- du[1] = 10.0(u[2]-u[1])
- du[2] = u[1]*(28.0-u[3]) - u[2]
- du[3] = u[1]*u[2] - (8/3)*u[3]
+f = (du,u,p,t) -> begin
+ σ, ρ, β = p
+ du[1] = σ*(u[2]-u[1])
+ du[2] = u[1]*(ρ-u[3]) - u[2]
+ du[3] = u[1]*u[2] - β*u[3]
 end
 ```
 
@@ -51,7 +52,7 @@ g = @ode_def begin
   dx = σ*(y-x)
   dy = x*(ρ-z) - y
   dz = x*y - β*z
-end σ=>10. ρ=>28. β=>2.66
+end σ ρ β
 ```
 
 ### JuMP.jl

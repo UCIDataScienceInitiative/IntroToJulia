@@ -106,7 +106,7 @@ How would you implement `broadcast_mult` as a function (not using broadcast)? Do
 
 
 ```julia
-function broadcast_mult{T<:Number,N}(x::Array{T,N},y::Array{T,N})
+function broadcast_mult(x,y)
     output = similar(x) # Makes an array of similar size and shape as x
     for i in eachindex(x) # Let the iterator choose the fast linear indexing for x
         output[i] = x[i]*y[i]
@@ -118,7 +118,7 @@ end
 
 
 
-    broadcast_mult (generic function with 1 method)
+    broadcast_mult (generic function with 3 methods)
 
 
 
@@ -126,7 +126,7 @@ Notice that `broadcast_mult` creates an array every time it is called. Therefore
 
 
 ```julia
-function broadcast_mult{T<:Number,N}(x::Array{T,N},y::Array{T,N},z::Array{T,N})
+function broadcast_mult(x,y,z)
     output = similar(x) # Makes an array of similar size and shape as x
     for i in eachindex(x) # Let the iterator choose the fast linear indexing for x
         output[i] = x[i]*y[i]*z[i]
@@ -138,7 +138,7 @@ end
 
 
 
-    broadcast_mult (generic function with 2 methods)
+    broadcast_mult (generic function with 4 methods)
 
 
 
@@ -172,11 +172,11 @@ A.*B.*sin.(C)
 
 
     5-element Array{Float64,1}:
-       0.28224
-      -4.54081
-     -11.5071 
-      18.1859 
-      25.2441 
+       0.2822400161197344
+      -4.540814971847569 
+     -11.507091295957661 
+      18.185948536513635 
+      25.244129544236895 
 
 
 
@@ -191,11 +191,11 @@ D = similar(C)
 
 
     5-element Array{Int64,1}:
-     140367029183112
-     140367029182920
-     140367028220392
-     140367028363256
-     140367029820536
+     139768703295680
+     139768703295616
+     139768864023840
+     139768862959040
+     139768703295488
 
 
 
@@ -207,7 +207,7 @@ using BenchmarkTools
 @btime D.=A.*B.*C
 ```
 
-      358.029 ns (4 allocations: 112 bytes)
+      518.325 ns (4 allocations: 96 bytes)
 
 
 
@@ -240,9 +240,9 @@ A[1:3,1:3] # Take the top left 3-3 matrix
 
 
     3×3 Array{Float64,2}:
-     0.477756  0.767096  0.555022
-     0.962542  0.474019  0.227217
-     0.431555  0.981847  0.551405
+     0.152913   0.858814  0.554534
+     0.0951324  0.124213  0.982151
+     0.451213   0.238936  0.610605
 
 
 
@@ -257,16 +257,16 @@ Notice that `A[1:3,1:3]` returned an array. Where did this array come from? Well
 @time A[1:3,1:3]
 ```
 
-      0.000010 seconds (7 allocations: 384 bytes)
+      0.000006 seconds (7 allocations: 384 bytes)
 
 
 
 
 
     3×3 Array{Float64,2}:
-     0.477756  0.767096  0.555022
-     0.962542  0.474019  0.227217
-     0.431555  0.981847  0.551405
+     0.152913   0.858814  0.554534
+     0.0951324  0.124213  0.982151
+     0.451213   0.238936  0.610605
 
 
 
@@ -281,8 +281,8 @@ a
 @time c = copy(a)
 ```
 
-      0.000005 seconds (5 allocations: 208 bytes)
-      0.005950 seconds (97 allocations: 6.967 KiB)
+      0.000002 seconds (5 allocations: 208 bytes)
+      0.002538 seconds (28 allocations: 1.828 KiB)
 
 
 
@@ -306,10 +306,10 @@ A = rand(4,4)
 
 
     4×4 Array{Float64,2}:
-     0.018712  0.00978789  0.580567  0.194657
-     0.901197  0.247349    0.650729  0.403426
-     0.805088  0.277707    0.81981   0.576702
-     0.672966  0.569978    0.57837   0.48308 
+     0.426805  0.244754     0.760274  0.0776648
+     0.263629  0.992725     0.663553  0.642327 
+     0.220796  0.000123405  0.41826   0.344501 
+     0.502755  0.604712     0.868655  0.245527 
 
 
 
@@ -334,9 +334,9 @@ end
 testloops()
 ```
 
-      0.038866 seconds (3.00 M allocations: 45.776 MiB, 9.93% gc time)
-      0.030133 seconds (3.00 M allocations: 45.776 MiB, 10.89% gc time)
-      0.027543 seconds (3.00 M allocations: 45.776 MiB, 14.82% gc time)
+      0.001181 seconds
+      0.000354 seconds
+      0.000264 seconds
 
 
 One should normally use the `eachindex` function since this will return the indices in the "fast" order for general iterator types.
@@ -351,8 +351,8 @@ B[1,1]=100
 println(A)
 ```
 
-    [0.018712 0.00978789 0.580567 0.194657; 0.901197 0.247349 0.650729 0.403426; 0.805088 0.277707 0.81981 0.576702; 0.672966 0.569978 0.57837 0.48308]
-    [0.018712 0.00978789 0.580567 0.194657; 0.901197 0.247349 0.650729 0.403426; 0.805088 0.277707 0.81981 0.576702; 0.672966 0.569978 0.57837 0.48308]
+    [0.426805 0.244754 0.760274 0.0776648; 0.263629 0.992725 0.663553 0.642327; 0.220796 0.000123405 0.41826 0.344501; 0.502755 0.604712 0.868655 0.245527]
+    [0.426805 0.244754 0.760274 0.0776648; 0.263629 0.992725 0.663553 0.642327; 0.220796 0.000123405 0.41826 0.344501; 0.502755 0.604712 0.868655 0.245527]
 
 
 If we instead want a view, then we can use the `view` function:
@@ -364,7 +364,7 @@ B[1,1] = 100 # Will mutate A
 println(A)
 ```
 
-    [100.0 0.00978789 0.580567 0.194657; 0.901197 0.247349 0.650729 0.403426; 0.805088 0.277707 0.81981 0.576702; 0.672966 0.569978 0.57837 0.48308]
+    [100.0 0.244754 0.760274 0.0776648; 0.263629 0.992725 0.663553 0.642327; 0.220796 0.000123405 0.41826 0.344501; 0.502755 0.604712 0.868655 0.245527]
 
 
 There are many cases where you might want to use a view. For example, if a function needs the `i`th column, you may naively think of doing `f(A[i,:])`. But, if `A` won't be changed in the loop, we can avoid the memory allocation (and thus make things faster) by sending a view to the original array which is simply the column: `f(view(A,i,:))`. Two functions can be used to give common views. `vec` gives a view of the array as a Vector and `reshape` builds a view in a different shape. For example:
@@ -377,21 +377,21 @@ C = reshape(A,8,2) # C is an 8x2 matrix
 C
 ```
 
-    [100.0, 0.901197, 0.805088, 0.672966, 0.00978789, 0.247349, 0.277707, 0.569978, 0.580567, 0.650729, 0.81981, 0.57837, 0.194657, 0.403426, 0.576702, 0.48308]
+    [100.0, 0.263629, 0.220796, 0.502755, 0.244754, 0.992725, 0.000123405, 0.604712, 0.760274, 0.663553, 0.41826, 0.868655, 0.0776648, 0.642327, 0.344501, 0.245527]
 
 
 
 
 
     8×2 Array{Float64,2}:
-     100.0         0.580567
-       0.901197    0.650729
-       0.805088    0.81981 
-       0.672966    0.57837 
-       0.00978789  0.194657
-       0.247349    0.403426
-       0.277707    0.576702
-       0.569978    0.48308 
+     100.0          0.760274 
+       0.263629     0.663553 
+       0.220796     0.41826  
+       0.502755     0.868655 
+       0.244754     0.0776648
+       0.992725     0.642327 
+       0.000123405  0.344501 
+       0.604712     0.245527 
 
 
 
@@ -413,10 +413,10 @@ C-D # Not zero
 
 
     4×4 Array{Float64,2}:
-     0.76219   0.569967  0.818689  0.578922
-     0.404203  0.204554  0.30552   0.427527
-     0.38402   0.29275   0.159849  0.71353 
-     0.698901  0.655951  0.640823  1.01684 
+      1.34143   1.16673   0.467808  1.40722 
+      0.524589  1.26758   0.180655  1.63217 
+      1.69161   1.22343   0.607505  1.16599 
+     -0.118427  0.475244  0.160007  0.636878
 
 
 
@@ -432,10 +432,10 @@ A\b
 
 
     4-element Array{Float64,1}:
-     -39.3027
-     -58.4907
-      27.0498
-      44.3226
+       9.356335977910366
+      12.159190681773488
+     -34.20454880191792 
+       9.715477816124533
 
 
 
@@ -449,8 +449,20 @@ In fact, vectorization can reduce performance by creating "temporary arrays". Th
 
 
 ```julia
+i = 1
 C[i,:] .= view(A,i,:) .* view(B,i,:)
 ```
+
+
+
+
+    4-element view(::Array{Float64,2}, 1, :) with eltype Float64:
+     0.01517038709424138 
+     0.2386832186363507  
+     0.024709948145356094
+     0.5974524955186336  
+
+
 
 Note the odd quirk: array indexing is a view when on the left-hand side 
 
@@ -462,6 +474,7 @@ Sprase Matrix capabilities are provided by SuiteSparse. Note that these are save
 
 
 ```julia
+using SparseArrays
 A = sparse([1;2;3],[2;2;1],[3;4;5])
 ```
 
@@ -475,11 +488,11 @@ A = sparse([1;2;3],[2;2;1],[3;4;5])
 
 
 
-They can be converted into a dense matrix with the `full` command
+They can be converted into a dense matrix with the `Array` command
 
 
 ```julia
-full(A)
+Array(A)
 ```
 
 
@@ -504,13 +517,14 @@ Many matrices follow specific forms: diagonal, tridiagonal, etc. Julia has speci
 
 
 ```julia
+using LinearAlgebra
 A = Tridiagonal(2:5,1:5,1:4)
 ```
 
 
 
 
-    5×5 Tridiagonal{Int64}:
+    5×5 Tridiagonal{Int64,UnitRange{Int64}}:
      1  1  ⋅  ⋅  ⋅
      2  2  2  ⋅  ⋅
      ⋅  3  3  3  ⋅
@@ -523,17 +537,13 @@ We can inspect it to see its internal form:
 
 
 ```julia
-fieldnames(A)
+fieldnames(typeof(A))
 ```
 
 
 
 
-    4-element Array{Symbol,1}:
-     :dl 
-     :d  
-     :du 
-     :du2
+    (:dl, :d, :du, :du2)
 
 
 
@@ -545,12 +555,7 @@ A.d
 
 
 
-    5-element Array{Int64,1}:
-     1
-     2
-     3
-     4
-     5
+    1:5
 
 
 
@@ -565,11 +570,11 @@ A*rand(5,5)
 
 
     5×5 Array{Float64,2}:
-     1.02345  1.24593  1.22701  0.923725  0.174128
-     3.02457  2.68779  3.31618  3.71978   1.53963 
-     3.63319  3.36634  5.10534  4.98842   2.42633 
-     3.65838  2.58564  5.3866   7.67081   5.04129 
-     2.12879  2.74221  4.57785  4.9077    3.32318 
+     0.496473  1.01384  0.973241  1.67338  0.684759
+     1.86855   2.58954  2.4101    3.41502  2.01966 
+     2.89199   5.67443  2.91435   3.38253  2.52367 
+     4.46756   6.01644  2.68273   1.98607  5.28988 
+     3.39544   6.11589  2.19438   2.31193  4.98701 
 
 
 
@@ -581,6 +586,7 @@ We can do this naturally with the `I` operator:
 
 
 ```julia
+A = rand(5,5)
 λ = 2
 A - λ*I
 ```
@@ -588,12 +594,12 @@ A - λ*I
 
 
 
-    5×5 Tridiagonal{Int64}:
-     -1  1  ⋅  ⋅  ⋅
-      2  0  2  ⋅  ⋅
-      ⋅  3  1  3  ⋅
-      ⋅  ⋅  4  2  4
-      ⋅  ⋅  ⋅  5  3
+    5×5 Array{Float64,2}:
+     -1.56585    0.907288    0.00306355   0.728916     0.240867
+      0.810397  -1.60421     0.129275     0.00162653   0.840859
+      0.609112   0.0177244  -1.65993      0.511456     0.97296 
+      0.175652   0.409159    0.611265    -1.48017      0.15766 
+      0.313506   0.375135    0.141591     0.539388    -1.72274 
 
 
 
@@ -612,23 +618,35 @@ println(A\b)
 println(inv(R)*Q'*b)
 ```
 
-    [278.582, 83.2806, -210.387, -176.288, 71.6258]
-    [278.582, 83.2806, -210.387, -176.288, 71.6258]
+    [3.2111, 0.194886, -3.45612, -0.380946, 3.49735]
+    [3.2111, 0.194886, -3.45612, -0.380946, 3.49735]
 
 
 Thus we can save the variables `Q` and `R` and use `inv(R)*Q'*b` instead of `A\b` and get better performance. This is the NumPy/MATLAB way. However, that requires remembering the details of the factorization. Instead, we can have Julia return a factorization type:
 
 
 ```julia
-q = qrfact(A)
+q = qr(A)
 ```
 
 
 
 
-    Base.LinAlg.QRCompactWY{Float64,Array{Float64,2}} with factors Q and R:
-    [-0.605569 0.228049 … 0.439742 -0.597013; -0.186034 -0.451705 … -0.675901 -0.528686; … ; -0.355752 0.0705326 … -0.390601 0.33145; -0.419395 -0.745107 … 0.350345 0.367664]
-    [-0.965209 -0.680789 … -1.12482 -0.664075; 0.0 -0.565101 … -0.420464 -0.0936588; … ; 0.0 0.0 … -0.245942 -0.626841; 0.0 0.0 … 0.0 0.0355285]
+    LinearAlgebra.QRCompactWY{Float64,Array{Float64,2}}
+    Q factor:
+    5×5 LinearAlgebra.QRCompactWYQ{Float64,Array{Float64,2}}:
+     -0.459412   0.419128   0.705041  -0.110726  -0.32238 
+     -0.148085  -0.682807   0.512443   0.39177    0.309457
+     -0.420809  -0.566188  -0.220962  -0.504135  -0.446513
+     -0.555282   0.160027  -0.165325  -0.29989    0.740802
+     -0.530654   0.109219  -0.405169   0.700121  -0.228355
+    R factor:
+    5×5 Array{Float64,2}:
+     -1.25445  -0.656222  -0.629968   -1.02671   -1.51678 
+      0.0      -0.462833   0.0543968  -0.314465  -0.371835
+      0.0       0.0        0.65199     0.830083   0.27148 
+      0.0       0.0        0.0         0.275926   0.447929
+      0.0       0.0        0.0         0.0        0.222577
 
 
 
@@ -643,11 +661,11 @@ q\b
 
 
     5-element Array{Float64,1}:
-      278.582 
-       83.2806
-     -210.387 
-     -176.288 
-       71.6258
+      3.211102680104207  
+      0.1948859185810493 
+     -3.4561161435917    
+     -0.38094578267516777
+      3.497350976874699  
 
 
 
@@ -666,11 +684,11 @@ rand(5)
 
 
     5-element Array{Float64,1}:
-     0.807563
-     0.816094
-     0.700426
-     0.143112
-     0.850222
+     0.5481921969929076 
+     0.9319266861112498 
+     0.48822004014222653
+     0.6741427500410946 
+     0.25974192551299624
 
 
 
@@ -683,11 +701,11 @@ randn(5,5)
 
 
     5×5 Array{Float64,2}:
-     -1.09988    0.749767   -0.903473   -1.41094   -1.46029 
-     -0.130691  -0.301776    0.0920583  -0.657685   0.165837
-     -0.78635   -0.0241995   0.475994   -0.511755   0.191074
-      0.701819  -1.53829    -0.397952   -0.627364   0.555426
-      0.90149   -1.90167     0.762773    0.832047  -0.959216
+     -1.00122    0.244247     1.33512   -0.777973    1.03879 
+      2.39675    0.00128483  -0.604522  -0.0707705   0.282255
+     -0.694438   0.68408      0.178648   0.320393   -1.12351 
+      0.760748  -2.19305      0.315202  -0.0435269   0.124363
+      1.41287   -0.142549     0.142544  -0.460031   -1.38784 
 
 
 
@@ -704,7 +722,7 @@ randn(size(a))
 
 
     2×2 Array{Float64,2}:
-     -0.859275  -0.645734
-     -0.117098   0.562239
+     -1.63844   0.1087 
+     -0.751702  1.11514
 
 

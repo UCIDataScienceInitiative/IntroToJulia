@@ -33,9 +33,16 @@ then we see that this function will be efficient for the types that we give it. 
 ```
 
     
-    define i64 @julia_my_square_72669(i64) #0 {
+    ; Function my_square
+    ; Location: In[1]:1
+    define i64 @julia_my_square_36373(i64) {
     top:
+    ; Function literal_pow; {
+    ; Location: intfuncs.jl:243
+    ; Function *; {
+    ; Location: int.jl:54
       %1 = mul i64 %0, %0
+    ;}}
       ret i64 %1
     }
 
@@ -46,9 +53,16 @@ then we see that this function will be efficient for the types that we give it. 
 ```
 
     
-    define double @julia_my_square_72684(double) #0 {
+    ; Function my_square
+    ; Location: In[1]:1
+    define double @julia_my_square_36389(double) {
     top:
+    ; Function literal_pow; {
+    ; Location: intfuncs.jl:243
+    ; Function *; {
+    ; Location: float.jl:399
       %1 = fmul double %0, %0
+    ;}}
       ret double %1
     }
 
@@ -77,9 +91,16 @@ is no more efficient than the version above, and actually generates the same exa
 ```
 
     
-    define i64 @julia_my_restricted_square_72686(i64) #0 {
+    ; Function my_restricted_square
+    ; Location: In[4]:1
+    define i64 @julia_my_restricted_square_36665(i64) {
     top:
+    ; Function literal_pow; {
+    ; Location: intfuncs.jl:243
+    ; Function *; {
+    ; Location: int.jl:54
       %1 = mul i64 %0, %0
+    ;}}
       ret i64 %1
     }
 
@@ -166,15 +187,13 @@ However, it is not an `Array`. In fact, it's just two numbers. We can see this b
 
 
 ```julia
-fieldnames(a)
+fieldnames(typeof(a))
 ```
 
 
 
 
-    2-element Array{Symbol,1}:
-     :start
-     :stop 
+    (:start, :stop)
 
 
 
@@ -185,7 +204,40 @@ It is an `immutable` type which just holds the start and stop values. This means
 @time collect(1:10000000)
 ```
 
-      0.038615 seconds (308 allocations: 76.312 MB, 45.16% gc time)
+      0.085446 seconds (29 allocations: 76.297 MiB, 12.31% gc time)
+
+
+
+
+
+    10000000-element Array{Int64,1}:
+            1
+            2
+            3
+            4
+            5
+            6
+            7
+            8
+            9
+           10
+           11
+           12
+           13
+            ⋮
+      9999989
+      9999990
+      9999991
+      9999992
+      9999993
+      9999994
+      9999995
+      9999996
+      9999997
+      9999998
+      9999999
+     10000000
+
 
 
 But creating an immutable type of two numbers is essentially free, no matter what those two numbers are:
@@ -195,7 +247,7 @@ But creating an immutable type of two numbers is essentially free, no matter wha
 @time 1:10000000
 ```
 
-      0.000001 seconds (5 allocations: 192 bytes)
+      0.000006 seconds (5 allocations: 192 bytes)
 
 
 
@@ -211,12 +263,13 @@ Another nice example is the `UniformScaling` operator, which acts like an identi
 
 
 ```julia
+using LinearAlgebra
 println(I[10,10])
 println(I[10,2])
 ```
 
-    1
-    0
+    true
+    false
 
 
 This can calculate expressions like `A-b*I` without ever forming the matrix `eye(n)` which would take $\mathcal{O}(n^2)$ memory. 
@@ -331,6 +384,16 @@ x = Teacher("Randy",11)
 println(number_of_records(x))
 @code_llvm number_of_records(x)
 ```
+
+    0
+    
+    ; Function number_of_records
+    ; Location: In[21]:2
+    define i64 @julia_number_of_records_36634(%jl_value_t addrspace(10)* nonnull align 8 dereferenceable(16)) {
+    top:
+      ret i64 0
+    }
+
 
 on v0.6, we get:
 
@@ -485,13 +548,13 @@ What if you really really really want inheritance of fields? There are solutions
 
 
 ```julia
-  macro def(name, definition)
-      return quote
-          macro $name()
-              esc($(Expr(:quote, definition)))
-          end
+macro def(name, definition)
+  return quote
+      macro $(esc(name))()
+          esc($(Expr(:quote, definition)))
       end
   end
+end
 ```
 
 

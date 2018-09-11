@@ -285,20 +285,20 @@
     \subsubsection{Solution to Problem 1}\label{solution-to-problem-1}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{using} \PY{n}{Roots}
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k}{using} \PY{n}{Roots}
         \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{=} \PY{l+m+mi}{10} \PY{o}{\PYZhy{}} \PY{n}{x} \PY{o}{+} \PY{n}{exp}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{sin}\PY{p}{(}\PY{n}{x}\PY{p}{)}
         \PY{n}{fzero}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{k+kt}{BigFloat}\PY{p}{(}\PY{l+m+mf}{2.0}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}1}]:} 9.579933542259600850706664022606528199400333915466167486112544651727603280614496
+{\color{outcolor}Out[{\color{outcolor}3}]:} 9.579933542259600850706664022606528199400333915466167486112544651727603280614496
 \end{Verbatim}
             
     \subsubsection{Solution to Problem 2}\label{solution-to-problem-2}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}2}]:} \PY{k}{function} \PY{n}{f!}\PY{p}{(}\PY{n}{dx}\PY{p}{,}\PY{n}{x}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{f!} \PY{o}{=} \PY{k}{function} \PY{p}{(}\PY{n}{dx}\PY{p}{,}\PY{n}{x}\PY{p}{)}
           \PY{n}{dx}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}   \PY{o}{+} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}   \PY{o}{+} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}}\PY{l+m+mi}{12}
           \PY{n}{dx}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}   \PY{o}{+} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}   \PY{o}{\PYZhy{}} \PY{l+m+mi}{2}
           \PY{n}{dx}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{2}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}  \PY{o}{\PYZhy{}} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}   \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}
@@ -306,13 +306,13 @@
         \PY{k}{using} \PY{n}{NLsolve}
         \PY{n}{res} \PY{o}{=} \PY{n}{nlsolve}\PY{p}{(}\PY{n}{f!}\PY{p}{,}\PY{p}{[}\PY{l+m+mf}{1.0}\PY{p}{;}\PY{l+m+mf}{1.0}\PY{p}{;}\PY{l+m+mf}{1.0}\PY{p}{]}\PY{p}{)}
         \PY{n}{res}\PY{o}{.}\PY{n}{zero}
-        \PY{n}{res} \PY{o}{=} \PY{n}{nlsolve}\PY{p}{(}\PY{n}{f!}\PY{p}{,}\PY{p}{[}\PY{l+m+mf}{1.0}\PY{p}{;}\PY{l+m+mf}{1.0}\PY{p}{;}\PY{l+m+mf}{1.0}\PY{p}{]}\PY{p}{,}\PY{n}{autodiff}\PY{o}{=}\PY{o}{:}\PY{n}{forward}\PY{p}{)}
+        \PY{n}{res} \PY{o}{=} \PY{n}{nlsolve}\PY{p}{(}\PY{n}{f!}\PY{p}{,}\PY{p}{[}\PY{l+m+mf}{1.0}\PY{p}{;}\PY{l+m+mf}{1.0}\PY{p}{;}\PY{l+m+mf}{1.0}\PY{p}{]}\PY{p}{,}\PY{n}{autodiff}\PY{o}{=}\PY{k+kc}{true}\PY{p}{)}
         \PY{n}{res}\PY{o}{.}\PY{n}{zero}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}2}]:} 3-element Array\{Float64,1\}:
+{\color{outcolor}Out[{\color{outcolor}5}]:} 3-element Array\{Float64,1\}:
          1.0000000021270776
          2.000000001120045 
          2.9999999994843582

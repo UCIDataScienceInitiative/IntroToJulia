@@ -11919,7 +11919,7 @@ a.anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">struct</span> <span class="n">MyRange</span>
@@ -11948,7 +11948,7 @@ a.anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[1]:</div>
+<div class="prompt output_prompt">Out[4]:</div>
 
 
 
@@ -11965,7 +11965,7 @@ a.anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">MyRange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
@@ -11982,7 +11982,7 @@ a.anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[2]:</div>
+<div class="prompt output_prompt">Out[5]:</div>
 
 
 
@@ -11999,7 +11999,7 @@ a.anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">Base</span><span class="o">.</span><span class="n">getindex</span><span class="p">(</span><span class="n">a</span><span class="o">::</span><span class="n">MyRange</span><span class="p">,</span><span class="n">i</span><span class="o">::</span><span class="kt">Int</span><span class="p">)</span> <span class="o">=</span> <span class="n">_MyRange</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
@@ -12016,7 +12016,7 @@ a.anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[3]:</div>
+<div class="prompt output_prompt">Out[6]:</div>
 
 
 
@@ -12041,7 +12041,7 @@ a.anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">struct</span> <span class="n">MyLinSpace</span>
@@ -12063,7 +12063,7 @@ a.anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="n">MyLinSpace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
@@ -12080,7 +12080,7 @@ a.anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[6]:</div>
+<div class="prompt output_prompt">Out[8]:</div>
 
 
 
@@ -12097,7 +12097,7 @@ a.anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">stop</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">length</span><span class="o">=</span><span class="mi">50</span><span class="p">)[</span><span class="mi">6</span><span class="p">]</span>
@@ -12113,7 +12113,7 @@ a.anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[11]:</div>
+<div class="prompt output_prompt">Out[10]:</div>
 
 
 
@@ -12138,7 +12138,7 @@ a.anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="p">(</span><span class="n">a</span><span class="o">::</span><span class="n">MyRange</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">start</span> <span class="o">+</span> <span class="n">a</span><span class="o">.</span><span class="n">step</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
@@ -12156,7 +12156,7 @@ a.anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[12]:</div>
+<div class="prompt output_prompt">Out[11]:</div>
 
 
 
@@ -12181,7 +12181,7 @@ a.anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">Unitful</span>
@@ -12199,7 +12199,7 @@ a.anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[17]:</div>
+<div class="prompt output_prompt">Out[12]:</div>
 
 
 
@@ -12224,13 +12224,14 @@ a.anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[56]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">struct</span> <span class="n">StrangMatrix</span> <span class="k">end</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">StrangMatrix</span><span class="p">()</span>
 
-<span class="k">function</span> <span class="n">Base</span><span class="o">.</span><span class="n">A_mul_B!</span><span class="p">(</span><span class="n">C</span><span class="p">,</span><span class="n">A</span><span class="o">::</span><span class="n">StrangMatrix</span><span class="p">,</span><span class="n">B</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="p">)</span>
+<span class="k">using</span> <span class="n">LinearAlgebra</span>
+<span class="k">function</span> <span class="n">LinearAlgebra</span><span class="o">.</span><span class="n">mul!</span><span class="p">(</span><span class="n">C</span><span class="p">,</span><span class="n">A</span><span class="o">::</span><span class="n">StrangMatrix</span><span class="p">,</span><span class="n">B</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="kp">in</span> <span class="mi">2</span><span class="o">:</span><span class="n">length</span><span class="p">(</span><span class="n">B</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
         <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">end</span>
@@ -12239,7 +12240,7 @@ a.anchor-link {
     <span class="n">C</span>
 <span class="k">end</span>
 
-<span class="n">Base</span><span class="o">.:*</span><span class="p">(</span><span class="n">A</span><span class="o">::</span><span class="n">StrangMatrix</span><span class="p">,</span><span class="n">B</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">C</span> <span class="o">=</span> <span class="n">similar</span><span class="p">(</span><span class="n">B</span><span class="p">);</span> <span class="n">A_mul_B!</span><span class="p">(</span><span class="n">C</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">))</span>
+<span class="n">Base</span><span class="o">.:*</span><span class="p">(</span><span class="n">A</span><span class="o">::</span><span class="n">StrangMatrix</span><span class="p">,</span><span class="n">B</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">C</span> <span class="o">=</span> <span class="n">similar</span><span class="p">(</span><span class="n">B</span><span class="p">);</span> <span class="n">mul!</span><span class="p">(</span><span class="n">C</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -12249,7 +12250,7 @@ a.anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">A</span><span class="o">*</span><span class="n">ones</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -12265,7 +12266,7 @@ a.anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[38]:</div>
+<div class="prompt output_prompt">Out[20]:</div>
 
 
 
@@ -12292,7 +12293,7 @@ a.anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[64]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">struct</span> <span class="n">SizedStrangMatrix</span>
@@ -12311,7 +12312,7 @@ a.anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[65]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="mi">0</span><span class="o">:</span><span class="mf">0.1</span><span class="o">:</span><span class="mi">2</span><span class="nb">π</span><span class="p">)</span>
@@ -12327,39 +12328,39 @@ a.anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[65]:</div>
+<div class="prompt output_prompt">Out[22]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
 <pre>63-element Array{Float64,1}:
-  0.0      
-  0.0998334
-  0.198669 
-  0.29552  
-  0.389418 
-  0.479426 
-  0.564642 
-  0.644218 
-  0.717356 
-  0.783327 
-  0.841471 
-  0.891207 
-  0.932039 
-  ⋮        
- -0.925815 
- -0.883455 
- -0.832267 
- -0.772764 
- -0.70554  
- -0.631267 
- -0.550686 
- -0.464602 
- -0.373877 
- -0.279415 
- -0.182163 
- -0.0830894</pre>
+  0.0                
+  0.09983341664682815
+  0.19866933079506122
+  0.2955202066613396 
+  0.3894183423086505 
+  0.479425538604203  
+  0.5646424733950355 
+  0.6442176872376911 
+  0.7173560908995228 
+  0.7833269096274834 
+  0.8414709848078965 
+  0.8912073600614354 
+  0.9320390859672264 
+  ⋮                  
+ -0.9258146823277321 
+ -0.8834546557201531 
+ -0.8322674422239008 
+ -0.7727644875559871 
+ -0.7055403255703919 
+ -0.6312666378723208 
+ -0.5506855425976376 
+ -0.4646021794137566 
+ -0.373876664830236  
+ -0.27941549819892586
+ -0.18216250427209502
+ -0.0830894028174964 </pre>
 </div>
 
 </div>
@@ -12370,12 +12371,12 @@ a.anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[66]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">SizedStrangMatrix</span><span class="p">((</span><span class="n">length</span><span class="p">(</span><span class="n">b</span><span class="p">),</span><span class="n">length</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span>
 
-<span class="k">function</span> <span class="n">Base</span><span class="o">.</span><span class="n">A_mul_B!</span><span class="p">(</span><span class="n">C</span><span class="p">,</span><span class="n">A</span><span class="o">::</span><span class="n">SizedStrangMatrix</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+<span class="k">function</span> <span class="n">LinearAlgebra</span><span class="o">.</span><span class="n">mul!</span><span class="p">(</span><span class="n">C</span><span class="p">,</span><span class="n">A</span><span class="o">::</span><span class="n">SizedStrangMatrix</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="kp">in</span> <span class="mi">2</span><span class="o">:</span><span class="n">length</span><span class="p">(</span><span class="n">B</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
         <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">end</span>
@@ -12383,7 +12384,7 @@ a.anchor-link {
     <span class="n">C</span><span class="p">[</span><span class="k">end</span><span class="p">]</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="n">B</span><span class="p">[</span><span class="k">end</span><span class="p">]</span>
     <span class="n">C</span>
 <span class="k">end</span>
-<span class="n">Base</span><span class="o">.:*</span><span class="p">(</span><span class="n">A</span><span class="o">::</span><span class="n">SizedStrangMatrix</span><span class="p">,</span><span class="n">B</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">C</span> <span class="o">=</span> <span class="n">similar</span><span class="p">(</span><span class="n">B</span><span class="p">);</span> <span class="n">A_mul_B!</span><span class="p">(</span><span class="n">C</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">))</span>
+<span class="n">Base</span><span class="o">.:*</span><span class="p">(</span><span class="n">A</span><span class="o">::</span><span class="n">SizedStrangMatrix</span><span class="p">,</span><span class="n">B</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">C</span> <span class="o">=</span> <span class="n">similar</span><span class="p">(</span><span class="n">B</span><span class="p">);</span> <span class="n">mul!</span><span class="p">(</span><span class="n">C</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -12393,7 +12394,7 @@ a.anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[73]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">IterativeSolvers</span>
@@ -12410,39 +12411,39 @@ a.anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[73]:</div>
+<div class="prompt output_prompt">Out[29]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
 <pre>63-element Array{Float64,1}:
-   -9.75574
-  -19.5118 
-  -29.1685 
-  -38.6273 
-  -47.7917 
-  -56.5679 
-  -64.8662 
-  -72.6018 
-  -79.6955 
-  -86.0744 
-  -91.6729 
-  -96.4332 
- -100.306  
-    ⋮      
-   92.7311 
-   88.6305 
-   83.6451 
-   77.8263 
-   71.2334 
-   63.934  
-   56.0017 
-   47.5193 
-   38.5723 
-   29.2516 
-   19.6511 
-    9.86787</pre>
+   -9.755738784527166
+  -19.511766690859723
+  -29.168509953717926
+  -38.62733151652308 
+  -47.79172939964289 
+  -56.567920000176755
+  -64.86624757504093 
+  -72.60180867498484 
+  -79.69549984767762 
+  -86.07440664159829 
+  -91.67293002909796 
+  -96.43316292771152 
+ -100.30568365156476 
+    ⋮                
+   92.73105600644514 
+   88.6304815198612  
+   83.64512976504756 
+   77.82628337498842 
+   71.23343662444809 
+   63.93401241944272 
+   56.00167853409517 
+   47.51925322977693 
+   38.572331686261165
+   29.25162537589525 
+   19.65105899819377 
+    9.867868177542748</pre>
 </div>
 
 </div>
@@ -12453,7 +12454,7 @@ a.anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[75]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">A</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="n">b</span>
@@ -12469,39 +12470,39 @@ a.anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[75]:</div>
+<div class="prompt output_prompt">Out[30]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
 <pre>63-element Array{Float64,1}:
- -0.000289122
- -0.000548773
- -0.000747631
- -0.00109653 
- -0.00121106 
- -0.00156251 
- -0.001876   
- -0.00234776 
- -0.00257171 
- -0.0029435  
- -0.0031805  
- -0.00349519 
- -0.00378336 
-  ⋮          
- -0.00139662 
- -0.00132261 
- -0.00122719 
- -0.00123587 
- -0.00103713 
- -0.00164304 
-  0.000594124
-  0.00010594 
-  9.1898e-5  
- -0.000444569
- -0.000461939
- -0.00158795 </pre>
+ -0.00028912180539109045
+ -0.0005487731724762024 
+ -0.0007476307420101191 
+ -0.0010965269760021545 
+ -0.0012110597227052433 
+ -0.0015625129345115951 
+ -0.0018759984747689362 
+ -0.00234775998656922   
+ -0.0025717121273999277 
+ -0.002943503206488285  
+ -0.0031804959217944795 
+ -0.00349518530111137   
+ -0.00378335609624314   
+  ⋮                     
+ -0.001396616777037063  
+ -0.0013226125095587848 
+ -0.001227193021585582  
+ -0.0012358729252088807 
+ -0.0010371288946419144 
+ -0.0016430424698667956 
+  0.0005941236269499939 
+  0.00010594021623389072
+  9.189798008585326e-5  
+ -0.0004445691366434801 
+ -0.000461938677442153  
+ -0.001587954074231443  </pre>
 </div>
 
 </div>
@@ -12520,7 +12521,7 @@ a.anchor-link {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="c">#### Prepare Data</span>
@@ -12565,7 +12566,7 @@ a.anchor-link {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[0.884998, 0.688704, 0.0893688, -0.00223216]
+<pre>[0.400269, 0.834389, 0.0869948, -0.00661511]
 </pre>
 </div>
 </div>
@@ -12610,7 +12611,7 @@ Stacktrace:
  [6] require(::Base.PkgId) at ./loading.jl:852
  [7] macro expansion at ./logging.jl:311 [inlined]
  [8] require(::Module, ::Symbol) at ./loading.jl:834
- [9] top-level scope at In[22]:10</pre>
+ [9] top-level scope at In[33]:10</pre>
 </div>
 </div>
 
@@ -12628,7 +12629,7 @@ Stacktrace:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[80]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="k">abstract</span> <span class="k">type</span> <span class="n">AbstractPerson</span> <span class="k">end</span>
@@ -12662,7 +12663,7 @@ Stacktrace:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[80]:</div>
+<div class="prompt output_prompt">Out[34]:</div>
 
 
 
@@ -12679,7 +12680,7 @@ Stacktrace:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[78]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">person_info</span><span class="p">(</span><span class="n">Person</span><span class="p">(</span><span class="s">&quot;Bob&quot;</span><span class="p">))</span>
@@ -12710,7 +12711,7 @@ Stacktrace:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[81]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">person_info</span><span class="p">(</span><span class="n">Student</span><span class="p">(</span><span class="s">&quot;Bob&quot;</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
@@ -12742,7 +12743,7 @@ Stacktrace:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[82]:</div>
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">person_info</span><span class="p">(</span><span class="n">GraduateStudent</span><span class="p">(</span><span class="s">&quot;Bob&quot;</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
@@ -12784,7 +12785,7 @@ Stacktrace:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">Distributions</span>

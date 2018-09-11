@@ -667,15 +667,25 @@ means that arrays which are set equal affect the same values:
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}9}]:} \PY{n}{c} \PY{o}{=} \PY{n}{similar}\PY{p}{(}\PY{n}{a}\PY{p}{)}
         \PY{n}{d} \PY{o}{=} \PY{n}{zero}\PY{p}{(}\PY{n}{a}\PY{p}{)}
-        \PY{n+nb}{e} \PY{o}{=} \PY{n}{similar}\PY{p}{(}\PY{n}{a}\PY{p}{)}\PY{p}{;} \PY{n}{fill!}\PY{p}{(}\PY{n+nb}{e}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n+nb}{e} \PY{o}{=} \PY{n}{ones}\PY{p}{(}\PY{n}{a}\PY{p}{)}
         \PY{n}{println}\PY{p}{(}\PY{n}{c}\PY{p}{)}\PY{p}{;} \PY{n}{println}\PY{p}{(}\PY{n}{d}\PY{p}{)}\PY{p}{;} \PY{n}{println}\PY{p}{(}\PY{n+nb}{e}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-[140121023541760, 140120897461552, 140120863968816]
-[0, 0, 0]
-[1, 1, 1]
+
+        MethodError: no method matching ones(::Array\{Int64,1\})
+    Closest candidates are:
+      ones(!Matched::Union\{Integer, AbstractUnitRange\}{\ldots}) at array.jl:463
+      ones(!Matched::Type\{T\}, !Matched::Union\{Integer, AbstractUnitRange\}{\ldots}) where T at array.jl:464
+      ones(!Matched::Tuple\{Vararg\{Union\{Integer, AbstractUnitRange\},N\} where N\}) at array.jl:465
+      {\ldots}
+
+        
+
+        Stacktrace:
+
+         [1] top-level scope at In[9]:3
 
     \end{Verbatim}
 
@@ -788,18 +798,9 @@ while loops, and your if statements. There's more in the documentation.
          
          \PY{n}{t} \PY{o}{=} \PY{l+m+mi}{0}
          \PY{k}{while} \PY{n}{t}\PY{o}{\PYZlt{}}\PY{l+m+mi}{5}
-             \PY{k+kd}{global} \PY{n}{t} \PY{c}{\PYZsh{} Necessary in the REPL}
              \PY{n}{println}\PY{p}{(}\PY{n}{t}\PY{p}{)}
              \PY{n}{t}\PY{o}{+=}\PY{l+m+mi}{1} \PY{c}{\PYZsh{} t = t + 1}
          \PY{k}{end}
-         
-         \PY{k}{function} \PY{n}{f}\PY{p}{(}\PY{n}{t}\PY{p}{)}
-             \PY{k}{while} \PY{n}{t}\PY{o}{\PYZlt{}}\PY{l+m+mi}{5}
-                 \PY{n}{println}\PY{p}{(}\PY{n}{t}\PY{p}{)}
-                 \PY{n}{t}\PY{o}{+=}\PY{l+m+mi}{1} \PY{c}{\PYZsh{} t = t + 1}
-             \PY{k}{end}
-         \PY{k}{end}
-         \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
          
          \PY{n}{school} \PY{o}{=} \PY{o}{:}\PY{n}{UCI}
          
@@ -817,11 +818,6 @@ while loops, and your if statements. There's more in the documentation.
 3
 4
 5
-0
-1
-2
-3
-4
 0
 1
 2
@@ -853,8 +849,8 @@ multiple loops in one line:
 
     \subsection{Problems}\label{problems}
 
-Try the Basic Problems. If you need help, start looking through the next
-parts of this tutorial!
+Try the Starter Problems. If you need help, start looking through the
+next parts of this tutorial!
 
     \subsection{Function Syntax}\label{function-syntax}
 
@@ -864,7 +860,7 @@ parts of this tutorial!
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}17}]:} f (generic function with 2 methods)
+{\color{outcolor}Out[{\color{outcolor}17}]:} f (generic function with 1 method)
 \end{Verbatim}
             
     \begin{Verbatim}[commandchars=\\\{\}]
@@ -942,14 +938,22 @@ method for "two values are passed in, both Numbers and having the same
 type". Note that \texttt{\textless{}:} means "a subtype of".
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{T}\PY{p}{,}\PY{n}{y}\PY{o}{::}\PY{n}{T}\PY{p}{)} \PY{n}{where} \PY{p}{\PYZob{}}\PY{n}{T}\PY{o}{\PYZlt{}:}\PY{k+kt}{Number}\PY{p}{\PYZcb{}} \PY{o}{=} \PY{l+m+mi}{4}\PY{n}{x}\PY{o}{+}\PY{l+m+mi}{10}\PY{n}{y}
+{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{f}\PY{p}{\PYZob{}}\PY{n}{T}\PY{o}{\PYZlt{}:}\PY{k+kt}{Number}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{x}\PY{o}{::}\PY{n}{T}\PY{p}{,}\PY{n}{y}\PY{o}{::}\PY{n}{T}\PY{p}{)} \PY{o}{=} \PY{l+m+mi}{4}\PY{n}{x}\PY{o}{+}\PY{l+m+mi}{10}\PY{n}{y}
 \end{Verbatim}
 
 
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}24}]:} f (generic function with 4 methods)
-\end{Verbatim}
-            
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        UndefVarError: T not defined
+
+        
+
+        Stacktrace:
+
+         [1] top-level scope at In[24]:1
+
+    \end{Verbatim}
+
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}25}]:} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)} \PY{c}{\PYZsh{} 3x+2y since (::Int,::Int) is stricter}
 \end{Verbatim}
@@ -965,7 +969,7 @@ type". Note that \texttt{\textless{}:} means "a subtype of".
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}26}]:} 38.0
+{\color{outcolor}Out[{\color{outcolor}26}]:} 7.0
 \end{Verbatim}
             
     Note that type parameterizations can have as many types as possible, and
@@ -979,7 +983,7 @@ must match types:
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}27}]:} f (generic function with 5 methods)
+{\color{outcolor}Out[{\color{outcolor}27}]:} f (generic function with 4 methods)
 \end{Verbatim}
             
     We will go into more depth on multiple dispatch later since this is the
@@ -1006,11 +1010,11 @@ Can you explain these timings?
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-  0.002693 seconds (1.08 k allocations: 59.268 KiB)
-  0.000003 seconds (4 allocations: 160 bytes)
-  0.000003 seconds (4 allocations: 160 bytes)
-  0.005481 seconds (5.03 k allocations: 275.235 KiB)
-  0.000002 seconds (5 allocations: 176 bytes)
+  0.002646 seconds (1.08 k allocations: 59.268 KiB)
+  0.000005 seconds (4 allocations: 160 bytes)
+  0.000002 seconds (4 allocations: 160 bytes)
+  0.004057 seconds (5.03 k allocations: 275.235 KiB)
+  0.000015 seconds (5 allocations: 176 bytes)
 
     \end{Verbatim}
 
@@ -1312,7 +1316,7 @@ that \texttt{ds.name} and \texttt{ds.school} cannot be changed:
 
          [1] setproperty!(::Field, ::Symbol, ::Symbol) at ./sysimg.jl:19
 
-         [2] top-level scope at none:0
+         [2] top-level scope at In[47]:1
 
     \end{Verbatim}
 
@@ -1345,14 +1349,22 @@ pointer:
 
     \begin{Verbatim}[commandchars=\\\{\}]
 {\color{incolor}In [{\color{incolor}49}]:} \PY{n}{foo}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{=} \PY{l+m+mi}{2}\PY{n}{x}
-         \PY{n+nd}{@cfunction}\PY{p}{(}\PY{n}{foo}\PY{p}{,} \PY{k+kt}{Int}\PY{p}{,} \PY{p}{(}\PY{k+kt}{Int}\PY{p}{,}\PY{p}{)}\PY{p}{)}
+         \PY{n}{cfunction}\PY{p}{(}\PY{n}{foo}\PY{p}{,} \PY{k+kt}{Int}\PY{p}{,} \PY{k+kt}{Tuple}\PY{p}{\PYZob{}}\PY{k+kt}{Int}\PY{p}{\PYZcb{}}\PY{p}{)}
 \end{Verbatim}
 
 
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}49}]:} Ptr\{Nothing\} @0x00007f7064101520
-\end{Verbatim}
-            
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        UndefVarError: cfunction not defined
+
+        
+
+        Stacktrace:
+
+         [1] top-level scope at In[49]:2
+
+    \end{Verbatim}
+
     \subsection{Some Basic Types}\label{some-basic-types}
 
 Julia provides many basic types. Indeed, you will come to know Julia as
@@ -1446,9 +1458,9 @@ less space. We can check this with \texttt{@time}:
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-  0.000002 seconds (5 allocations: 192 bytes)
+  0.000004 seconds (5 allocations: 192 bytes)
   0.000003 seconds (5 allocations: 192 bytes)
-  0.006841 seconds (7 allocations: 781.516 KiB, 87.98\% gc time)
+  0.001093 seconds (7 allocations: 781.516 KiB)
 
     \end{Verbatim}
 
@@ -1495,7 +1507,7 @@ object.
             
     \subsection{Problems}\label{problems}
 
-Try the rest of the Basic Problems! You should be able to do them all.
+Try problems 8-11 in the Basic Problems
 
     \subsection{Metaprogramming}\label{metaprogramming}
 
@@ -1513,7 +1525,7 @@ Thus you can think of metaprogramming as "code which takes in code and
 outputs code". One basic example is the \texttt{@time} macro:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}59}]:} \PY{k}{macro} \PY{n}{my\PYZus{}time}\PY{p}{(}\PY{n}{ex}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}58}]:} \PY{k}{macro} \PY{n}{my\PYZus{}time}\PY{p}{(}\PY{n}{ex}\PY{p}{)}
            \PY{k}{return} \PY{k}{quote}
              \PY{k+kd}{local} \PY{n}{t0} \PY{o}{=} \PY{n}{time}\PY{p}{(}\PY{p}{)}
              \PY{k+kd}{local} \PY{n}{val} \PY{o}{=} \PY{o}{\PYZdl{}}\PY{n}{ex}
@@ -1522,18 +1534,11 @@ outputs code". One basic example is the \texttt{@time} macro:
              \PY{n}{val}
            \PY{k}{end}
          \PY{k}{end}
-         
-         \PY{n+nd}{@my\PYZus{}time} \PY{l+m+mi}{2}\PY{o}{+}\PY{l+m+mi}{2}
 \end{Verbatim}
 
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-elapsed time: 6.9141387939453125e-6 seconds
-
-    \end{Verbatim}
-
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}59}]:} 4
+{\color{outcolor}Out[{\color{outcolor}58}]:} @my\_time (macro with 1 method)
 \end{Verbatim}
             
     This takes in an expression \texttt{ex}, gets the time before and after

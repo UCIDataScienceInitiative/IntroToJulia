@@ -11906,9 +11906,9 @@ a.anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Intermediate-Problems">Intermediate Problems<a class="anchor-link" href="#Intermediate-Problems">&#182;</a></h1><h2 id="MyRange-and-LinSpace-Problem">MyRange and LinSpace Problem<a class="anchor-link" href="#MyRange-and-LinSpace-Problem">&#182;</a></h2><h6 id="Part-1">Part 1<a class="anchor-link" href="#Part-1">&#182;</a></h6><p>Let's create our own implementation of the range type. The <code>Range</code> type is what you get from <code>1:2:20</code>. It's form is <code>start:step:stop</code>. If you know <code>start</code>, <code>step</code>, and <code>stop</code>, how do you calculate the <code>i</code>th value? Create a type <code>MyRange</code> which stores <code>start</code>, <code>step</code>, and <code>stop</code>. Can you create a function <code>_MyRange(a,i)</code> which for <code>a</code> being a <code>MyRange</code>, it returns what <code>a[i]</code> should be? After getting this correct, use the <a href="https://docs.julialang.org/en/stable/manual/interfaces/#Indexing-1">Julia array interface</a> in order to define the function for the <code>a[i]</code> syntax on your type.</p>
-<h6 id="Part-2">Part 2<a class="anchor-link" href="#Part-2">&#182;</a></h6><p>A <code>LinSpace</code> takes in a start, stop, and number of points and builds a lazy array for this so that <code>A[i]</code> is the <code>i</code>th value between <code>start</code> to <code>stop</code>. Make your own LinSpace object using the array interface.</p>
+<h6 id="Part-2">Part 2<a class="anchor-link" href="#Part-2">&#182;</a></h6><p>A LinSpace object is a lazy representation of <code>N</code> values from <code>start</code> to <code>stop</code>. Use the Array interface to implement a lazy version of the LinSpace. Test against <code>range(start,stop=stop,length=N)</code>.</p>
 <p><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces">http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces</a></p>
-<p>(Note, <code>linspace</code> has extra accuracy enhancing changes. Just do the "simple" implementation"). Test against <code>range(start,stop=x,length=k)</code></p>
+<p>(Note, Base's range type has extra accuracy enhancing changes. Just do the "simple" implementation")</p>
 <h5 id="Part-3">Part 3<a class="anchor-link" href="#Part-3">&#182;</a></h5><p>Check out the call overloading notebook:</p>
 <p><a href="http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading">http://ucidatascienceinitiative.github.io/IntroToJulia/Html/CallOverloading</a></p>
 <p>Overload the call on the UnitStepRange to give an interpolated value at intermediate points, i.e. if <code>a=1:2:10</code>, then <code>a(1.5)=2</code>.</p>
@@ -11931,7 +11931,7 @@ a.anchor-link {
  &amp;  &amp;  &amp; 1 &amp; -2
 \end{array}\right] $$</p>
 <p>Define a type <code>StrangMatrix</code> and define a dispatch such that <code>A*x</code> acts like a Strang matrix on a vector.</p>
-<h3 id="Advanced-Bonus">Advanced Bonus<a class="anchor-link" href="#Advanced-Bonus">&#182;</a></h3><p>Iterative solvers solve <code>Ax=b</code> and only require the definition of matrix multiplication. Thus utilize IterativeSolvers.jl to solve <code>Ax=b</code> for <code>b=rand(100)</code> using your lazy matrix type. Hint: you will need to define <code>A_mul_B!</code>. You will also need to define a different version of your Strang matrix which holds a size and has <code>Base.eltype</code> defined.</p>
+<h3 id="Advanced-Bonus">Advanced Bonus<a class="anchor-link" href="#Advanced-Bonus">&#182;</a></h3><p>Iterative solvers solve <code>Ax=b</code> and only require the definition of matrix multiplication. Thus utilize IterativeSolvers.jl to solve <code>Ax=b</code> for <code>b=rand(100)</code> using your lazy matrix type. Hint: you will need to define <code>mul!</code> from <code>LinearAlgebra</code> (standard library). You will also need to define a different version of your Strang matrix which holds a size and has <code>Base.eltype</code> defined.</p>
 
 </div>
 </div>

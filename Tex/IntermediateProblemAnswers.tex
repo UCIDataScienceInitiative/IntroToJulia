@@ -289,7 +289,7 @@ Problem}\label{myrange-and-mylinspace-problem}
 \subsubsection{Part 1}\label{part-1}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}1}]:} \PY{n}{struct} \PY{n}{MyRange}
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{struct} \PY{n}{MyRange}
             \PY{n}{start}
             \PY{n}{step}
             \PY{n}{stop}
@@ -307,33 +307,33 @@ Problem}\label{myrange-and-mylinspace-problem}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}1}]:} \_MyRange (generic function with 1 method)
+{\color{outcolor}Out[{\color{outcolor}4}]:} \_MyRange (generic function with 1 method)
 \end{Verbatim}
             
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{a} \PY{o}{=} \PY{n}{MyRange}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{a} \PY{o}{=} \PY{n}{MyRange}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{)}
         \PY{n}{\PYZus{}MyRange}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)} \PY{o}{==} \PY{p}{(}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{2}\PY{o}{:}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{]}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}2}]:} true
+{\color{outcolor}Out[{\color{outcolor}5}]:} true
 \end{Verbatim}
             
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{Base}\PY{o}{.}\PY{n}{getindex}\PY{p}{(}\PY{n}{a}\PY{o}{::}\PY{n}{MyRange}\PY{p}{,}\PY{n}{i}\PY{o}{::}\PY{k+kt}{Int}\PY{p}{)} \PY{o}{=} \PY{n}{\PYZus{}MyRange}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{i}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{Base}\PY{o}{.}\PY{n}{getindex}\PY{p}{(}\PY{n}{a}\PY{o}{::}\PY{n}{MyRange}\PY{p}{,}\PY{n}{i}\PY{o}{::}\PY{k+kt}{Int}\PY{p}{)} \PY{o}{=} \PY{n}{\PYZus{}MyRange}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{i}\PY{p}{)}
         \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{]}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}3}]:} 9
+{\color{outcolor}Out[{\color{outcolor}6}]:} 9
 \end{Verbatim}
             
     \subsubsection{Part 2}\label{part-2}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{struct} \PY{n}{MyLinSpace}
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{struct} \PY{n}{MyLinSpace}
             \PY{n}{start}
             \PY{n}{stop}
             \PY{n}{n}
@@ -347,57 +347,58 @@ Problem}\label{myrange-and-mylinspace-problem}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{l} \PY{o}{=} \PY{n}{MyLinSpace}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{50}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{l} \PY{o}{=} \PY{n}{MyLinSpace}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{50}\PY{p}{)}
         \PY{n}{l}\PY{p}{[}\PY{l+m+mi}{6}\PY{p}{]}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}6}]:} 1.1
+{\color{outcolor}Out[{\color{outcolor}8}]:} 1.1
 \end{Verbatim}
             
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{stop}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{length}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{6}\PY{p}{]}
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{stop}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{length}\PY{o}{=}\PY{l+m+mi}{50}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{6}\PY{p}{]}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}11}]:} 1.1020408163265305
+{\color{outcolor}Out[{\color{outcolor}10}]:} 1.1020408163265305
 \end{Verbatim}
             
     \subsubsection{Part 3}\label{part-3}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}12}]:} \PY{p}{(}\PY{n}{a}\PY{o}{::}\PY{n}{MyRange}\PY{p}{)}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{=} \PY{n}{a}\PY{o}{.}\PY{n}{start} \PY{o}{+} \PY{n}{a}\PY{o}{.}\PY{n}{step}\PY{o}{*}\PY{p}{(}\PY{n}{x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}11}]:} \PY{p}{(}\PY{n}{a}\PY{o}{::}\PY{n}{MyRange}\PY{p}{)}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{=} \PY{n}{a}\PY{o}{.}\PY{n}{start} \PY{o}{+} \PY{n}{a}\PY{o}{.}\PY{n}{step}\PY{o}{*}\PY{p}{(}\PY{n}{x}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
          \PY{n}{a} \PY{o}{=} \PY{n}{MyRange}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{)}
          \PY{n}{a}\PY{p}{(}\PY{l+m+mf}{1.1}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}12}]:} 1.2000000000000002
+{\color{outcolor}Out[{\color{outcolor}11}]:} 1.2000000000000002
 \end{Verbatim}
             
     \subsubsection{Part 4}\label{part-4}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}17}]:} \PY{k}{using} \PY{n}{Unitful}
+{\color{incolor}In [{\color{incolor}12}]:} \PY{k}{using} \PY{n}{Unitful}
          \PY{n}{a} \PY{o}{=} \PY{n}{MyRange}\PY{p}{(}\PY{l+m+mi}{1}\PY{n}{u}\PY{l+s}{\PYZdq{}}\PY{l+s}{k}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+m+mi}{2}\PY{n}{u}\PY{l+s}{\PYZdq{}}\PY{l+s}{k}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+m+mi}{20}\PY{n}{u}\PY{l+s}{\PYZdq{}}\PY{l+s}{k}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{)}
          \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{]}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}17}]:} 9 kg
+{\color{outcolor}Out[{\color{outcolor}12}]:} 9 kg
 \end{Verbatim}
             
     \subsection{Operator Problem}\label{operator-problem}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}56}]:} \PY{n}{struct} \PY{n}{StrangMatrix} \PY{k}{end}
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{struct} \PY{n}{StrangMatrix} \PY{k}{end}
          \PY{n}{A} \PY{o}{=} \PY{n}{StrangMatrix}\PY{p}{(}\PY{p}{)}
          
-         \PY{k}{function} \PY{n}{Base}\PY{o}{.}\PY{n}{A\PYZus{}mul\PYZus{}B!}\PY{p}{(}\PY{n}{C}\PY{p}{,}\PY{n}{A}\PY{o}{::}\PY{n}{StrangMatrix}\PY{p}{,}\PY{n}{B}\PY{o}{::}\PY{k+kt}{AbstractVector}\PY{p}{)}
+         \PY{k}{using} \PY{n}{LinearAlgebra}
+         \PY{k}{function} \PY{n}{LinearAlgebra}\PY{o}{.}\PY{n}{mul!}\PY{p}{(}\PY{n}{C}\PY{p}{,}\PY{n}{A}\PY{o}{::}\PY{n}{StrangMatrix}\PY{p}{,}\PY{n}{B}\PY{o}{::}\PY{k+kt}{AbstractVector}\PY{p}{)}
              \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{2}\PY{o}{:}\PY{n}{length}\PY{p}{(}\PY{n}{B}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
                  \PY{n}{C}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{B}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{l+m+mi}{2}\PY{n}{B}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{+} \PY{n}{B}\PY{p}{[}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}
              \PY{k}{end}
@@ -406,17 +407,17 @@ Problem}\label{myrange-and-mylinspace-problem}
              \PY{n}{C}
          \PY{k}{end}
          
-         \PY{n}{Base}\PY{o}{.}\PY{o}{:}\PY{o}{*}\PY{p}{(}\PY{n}{A}\PY{o}{::}\PY{n}{StrangMatrix}\PY{p}{,}\PY{n}{B}\PY{o}{::}\PY{k+kt}{AbstractVector}\PY{p}{)} \PY{o}{=} \PY{p}{(}\PY{n}{C} \PY{o}{=} \PY{n}{similar}\PY{p}{(}\PY{n}{B}\PY{p}{)}\PY{p}{;} \PY{n}{A\PYZus{}mul\PYZus{}B!}\PY{p}{(}\PY{n}{C}\PY{p}{,}\PY{n}{A}\PY{p}{,}\PY{n}{B}\PY{p}{)}\PY{p}{)}
+         \PY{n}{Base}\PY{o}{.}\PY{o}{:}\PY{o}{*}\PY{p}{(}\PY{n}{A}\PY{o}{::}\PY{n}{StrangMatrix}\PY{p}{,}\PY{n}{B}\PY{o}{::}\PY{k+kt}{AbstractVector}\PY{p}{)} \PY{o}{=} \PY{p}{(}\PY{n}{C} \PY{o}{=} \PY{n}{similar}\PY{p}{(}\PY{n}{B}\PY{p}{)}\PY{p}{;} \PY{n}{mul!}\PY{p}{(}\PY{n}{C}\PY{p}{,}\PY{n}{A}\PY{p}{,}\PY{n}{B}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}38}]:} \PY{n}{A}\PY{o}{*}\PY{n}{ones}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{A}\PY{o}{*}\PY{n}{ones}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}38}]:} 10-element Array\{Float64,1\}:
+{\color{outcolor}Out[{\color{outcolor}20}]:} 10-element Array\{Float64,1\}:
           -1.0
            0.0
            0.0
@@ -430,7 +431,7 @@ Problem}\label{myrange-and-mylinspace-problem}
 \end{Verbatim}
             
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}64}]:} \PY{n}{struct} \PY{n}{SizedStrangMatrix}
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{struct} \PY{n}{SizedStrangMatrix}
              \PY{n}{size}
          \PY{k}{end}
          
@@ -441,44 +442,44 @@ Problem}\label{myrange-and-mylinspace-problem}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}65}]:} \PY{n}{b} \PY{o}{=} \PY{n}{sin}\PY{o}{.}\PY{p}{(}\PY{l+m+mi}{0}\PY{o}{:}\PY{l+m+mf}{0.1}\PY{o}{:}\PY{l+m+mi}{2}\PY{n+nb}{π}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{b} \PY{o}{=} \PY{n}{sin}\PY{o}{.}\PY{p}{(}\PY{l+m+mi}{0}\PY{o}{:}\PY{l+m+mf}{0.1}\PY{o}{:}\PY{l+m+mi}{2}\PY{n+nb}{π}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}65}]:} 63-element Array\{Float64,1\}:
-           0.0      
-           0.0998334
-           0.198669 
-           0.29552  
-           0.389418 
-           0.479426 
-           0.564642 
-           0.644218 
-           0.717356 
-           0.783327 
-           0.841471 
-           0.891207 
-           0.932039 
-           ⋮        
-          -0.925815 
-          -0.883455 
-          -0.832267 
-          -0.772764 
-          -0.70554  
-          -0.631267 
-          -0.550686 
-          -0.464602 
-          -0.373877 
-          -0.279415 
-          -0.182163 
-          -0.0830894
+{\color{outcolor}Out[{\color{outcolor}22}]:} 63-element Array\{Float64,1\}:
+           0.0                
+           0.09983341664682815
+           0.19866933079506122
+           0.2955202066613396 
+           0.3894183423086505 
+           0.479425538604203  
+           0.5646424733950355 
+           0.6442176872376911 
+           0.7173560908995228 
+           0.7833269096274834 
+           0.8414709848078965 
+           0.8912073600614354 
+           0.9320390859672264 
+           ⋮                  
+          -0.9258146823277321 
+          -0.8834546557201531 
+          -0.8322674422239008 
+          -0.7727644875559871 
+          -0.7055403255703919 
+          -0.6312666378723208 
+          -0.5506855425976376 
+          -0.4646021794137566 
+          -0.373876664830236  
+          -0.27941549819892586
+          -0.18216250427209502
+          -0.0830894028174964 
 \end{Verbatim}
             
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}66}]:} \PY{n}{A} \PY{o}{=} \PY{n}{SizedStrangMatrix}\PY{p}{(}\PY{p}{(}\PY{n}{length}\PY{p}{(}\PY{n}{b}\PY{p}{)}\PY{p}{,}\PY{n}{length}\PY{p}{(}\PY{n}{b}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{A} \PY{o}{=} \PY{n}{SizedStrangMatrix}\PY{p}{(}\PY{p}{(}\PY{n}{length}\PY{p}{(}\PY{n}{b}\PY{p}{)}\PY{p}{,}\PY{n}{length}\PY{p}{(}\PY{n}{b}\PY{p}{)}\PY{p}{)}\PY{p}{)}
          
-         \PY{k}{function} \PY{n}{Base}\PY{o}{.}\PY{n}{A\PYZus{}mul\PYZus{}B!}\PY{p}{(}\PY{n}{C}\PY{p}{,}\PY{n}{A}\PY{o}{::}\PY{n}{SizedStrangMatrix}\PY{p}{,}\PY{n}{B}\PY{p}{)}
+         \PY{k}{function} \PY{n}{LinearAlgebra}\PY{o}{.}\PY{n}{mul!}\PY{p}{(}\PY{n}{C}\PY{p}{,}\PY{n}{A}\PY{o}{::}\PY{n}{SizedStrangMatrix}\PY{p}{,}\PY{n}{B}\PY{p}{)}
              \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{2}\PY{o}{:}\PY{n}{length}\PY{p}{(}\PY{n}{B}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
                  \PY{n}{C}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{B}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{l+m+mi}{2}\PY{n}{B}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{+} \PY{n}{B}\PY{p}{[}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}
              \PY{k}{end}
@@ -486,85 +487,85 @@ Problem}\label{myrange-and-mylinspace-problem}
              \PY{n}{C}\PY{p}{[}\PY{k}{end}\PY{p}{]} \PY{o}{=} \PY{n}{B}\PY{p}{[}\PY{k}{end}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{l+m+mi}{2}\PY{n}{B}\PY{p}{[}\PY{k}{end}\PY{p}{]}
              \PY{n}{C}
          \PY{k}{end}
-         \PY{n}{Base}\PY{o}{.}\PY{o}{:}\PY{o}{*}\PY{p}{(}\PY{n}{A}\PY{o}{::}\PY{n}{SizedStrangMatrix}\PY{p}{,}\PY{n}{B}\PY{o}{::}\PY{k+kt}{AbstractVector}\PY{p}{)} \PY{o}{=} \PY{p}{(}\PY{n}{C} \PY{o}{=} \PY{n}{similar}\PY{p}{(}\PY{n}{B}\PY{p}{)}\PY{p}{;} \PY{n}{A\PYZus{}mul\PYZus{}B!}\PY{p}{(}\PY{n}{C}\PY{p}{,}\PY{n}{A}\PY{p}{,}\PY{n}{B}\PY{p}{)}\PY{p}{)}
+         \PY{n}{Base}\PY{o}{.}\PY{o}{:}\PY{o}{*}\PY{p}{(}\PY{n}{A}\PY{o}{::}\PY{n}{SizedStrangMatrix}\PY{p}{,}\PY{n}{B}\PY{o}{::}\PY{k+kt}{AbstractVector}\PY{p}{)} \PY{o}{=} \PY{p}{(}\PY{n}{C} \PY{o}{=} \PY{n}{similar}\PY{p}{(}\PY{n}{B}\PY{p}{)}\PY{p}{;} \PY{n}{mul!}\PY{p}{(}\PY{n}{C}\PY{p}{,}\PY{n}{A}\PY{p}{,}\PY{n}{B}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}73}]:} \PY{k}{using} \PY{n}{IterativeSolvers}
+{\color{incolor}In [{\color{incolor}29}]:} \PY{k}{using} \PY{n}{IterativeSolvers}
          \PY{n}{x} \PY{o}{=} \PY{n}{gmres}\PY{p}{(}\PY{n}{A}\PY{p}{,}\PY{n}{b}\PY{p}{,}\PY{n}{tol}\PY{o}{=}\PY{l+m+mf}{1e\PYZhy{}14}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}73}]:} 63-element Array\{Float64,1\}:
-            -9.75574
-           -19.5118 
-           -29.1685 
-           -38.6273 
-           -47.7917 
-           -56.5679 
-           -64.8662 
-           -72.6018 
-           -79.6955 
-           -86.0744 
-           -91.6729 
-           -96.4332 
-          -100.306  
-             ⋮      
-            92.7311 
-            88.6305 
-            83.6451 
-            77.8263 
-            71.2334 
-            63.934  
-            56.0017 
-            47.5193 
-            38.5723 
-            29.2516 
-            19.6511 
-             9.86787
+{\color{outcolor}Out[{\color{outcolor}29}]:} 63-element Array\{Float64,1\}:
+            -9.755738784527166
+           -19.511766690859723
+           -29.168509953717926
+           -38.62733151652308 
+           -47.79172939964289 
+           -56.567920000176755
+           -64.86624757504093 
+           -72.60180867498484 
+           -79.69549984767762 
+           -86.07440664159829 
+           -91.67293002909796 
+           -96.43316292771152 
+          -100.30568365156476 
+             ⋮                
+            92.73105600644514 
+            88.6304815198612  
+            83.64512976504756 
+            77.82628337498842 
+            71.23343662444809 
+            63.93401241944272 
+            56.00167853409517 
+            47.51925322977693 
+            38.572331686261165
+            29.25162537589525 
+            19.65105899819377 
+             9.867868177542748
 \end{Verbatim}
             
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}75}]:} \PY{n}{A}\PY{o}{*}\PY{n}{x} \PY{o}{\PYZhy{}} \PY{n}{b}
+{\color{incolor}In [{\color{incolor}30}]:} \PY{n}{A}\PY{o}{*}\PY{n}{x} \PY{o}{\PYZhy{}} \PY{n}{b}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}75}]:} 63-element Array\{Float64,1\}:
-          -0.000289122
-          -0.000548773
-          -0.000747631
-          -0.00109653 
-          -0.00121106 
-          -0.00156251 
-          -0.001876   
-          -0.00234776 
-          -0.00257171 
-          -0.0029435  
-          -0.0031805  
-          -0.00349519 
-          -0.00378336 
-           ⋮          
-          -0.00139662 
-          -0.00132261 
-          -0.00122719 
-          -0.00123587 
-          -0.00103713 
-          -0.00164304 
-           0.000594124
-           0.00010594 
-           9.1898e-5  
-          -0.000444569
-          -0.000461939
-          -0.00158795 
+{\color{outcolor}Out[{\color{outcolor}30}]:} 63-element Array\{Float64,1\}:
+          -0.00028912180539109045
+          -0.0005487731724762024 
+          -0.0007476307420101191 
+          -0.0010965269760021545 
+          -0.0012110597227052433 
+          -0.0015625129345115951 
+          -0.0018759984747689362 
+          -0.00234775998656922   
+          -0.0025717121273999277 
+          -0.002943503206488285  
+          -0.0031804959217944795 
+          -0.00349518530111137   
+          -0.00378335609624314   
+           ⋮                     
+          -0.001396616777037063  
+          -0.0013226125095587848 
+          -0.001227193021585582  
+          -0.0012358729252088807 
+          -0.0010371288946419144 
+          -0.0016430424698667956 
+           0.0005941236269499939 
+           0.00010594021623389072
+           9.189798008585326e-5  
+          -0.0004445691366434801 
+          -0.000461938677442153  
+          -0.001587954074231443  
 \end{Verbatim}
             
     \subsection{Regression Problem}\label{regression-problem}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}22}]:} \PY{c}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{} Prepare Data}
+{\color{incolor}In [{\color{incolor}33}]:} \PY{c}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{} Prepare Data}
          
          \PY{n}{X} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}               \PY{c}{\PYZsh{} feature matrix}
          \PY{n}{a0} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}                    \PY{c}{\PYZsh{} ground truths}
@@ -594,7 +595,7 @@ Problem}\label{myrange-and-mylinspace-problem}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-[0.884998, 0.688704, 0.0893688, -0.00223216]
+[0.400269, 0.834389, 0.0869948, -0.00661511]
 
     \end{Verbatim}
 
@@ -638,14 +639,14 @@ in expression starting at /home/chrisrackauckas/.julia/packages/MultivariateStat
 
          [8] require(::Module, ::Symbol) at ./loading.jl:834
 
-         [9] top-level scope at In[22]:10
+         [9] top-level scope at In[33]:10
 
     \end{Verbatim}
 
     \subsection{Type Hierarchy Problem}\label{type-hierarchy-problem}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}80}]:} \PY{k}{abstract} \PY{k}{type} \PY{n}{AbstractPerson} \PY{k}{end}
+{\color{incolor}In [{\color{incolor}34}]:} \PY{k}{abstract} \PY{k}{type} \PY{n}{AbstractPerson} \PY{k}{end}
          \PY{k}{abstract} \PY{k}{type} \PY{n}{AbstractStudent} \PY{o}{\PYZlt{}:} \PY{n}{AbstractPerson} \PY{k}{end}
          
          \PY{n}{struct} \PY{n}{Person} \PY{o}{\PYZlt{}:} \PY{n}{AbstractPerson}
@@ -668,11 +669,11 @@ in expression starting at /home/chrisrackauckas/.julia/packages/MultivariateStat
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}80}]:} person\_info (generic function with 2 methods)
+{\color{outcolor}Out[{\color{outcolor}34}]:} person\_info (generic function with 2 methods)
 \end{Verbatim}
             
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}78}]:} \PY{n}{person\PYZus{}info}\PY{p}{(}\PY{n}{Person}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{o}\PY{l+s}{b}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}35}]:} \PY{n}{person\PYZus{}info}\PY{p}{(}\PY{n}{Person}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{o}\PY{l+s}{b}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
 
@@ -682,7 +683,7 @@ Bob
     \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}81}]:} \PY{n}{person\PYZus{}info}\PY{p}{(}\PY{n}{Student}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{o}\PY{l+s}{b}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}36}]:} \PY{n}{person\PYZus{}info}\PY{p}{(}\PY{n}{Student}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{o}\PY{l+s}{b}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
 
@@ -693,7 +694,7 @@ Bob
     \end{Verbatim}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}82}]:} \PY{n}{person\PYZus{}info}\PY{p}{(}\PY{n}{GraduateStudent}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{o}\PY{l+s}{b}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}37}]:} \PY{n}{person\PYZus{}info}\PY{p}{(}\PY{n}{GraduateStudent}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{o}\PY{l+s}{b}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
 
@@ -713,7 +714,7 @@ Solution is from:
 https://github.com/joshday/Talks/blob/master/SLG2016\_IntroToJulia/Slides.ipynb
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}27}]:} \PY{k}{using} \PY{n}{Distributions}
+{\color{incolor}In [{\color{incolor}39}]:} \PY{k}{using} \PY{n}{Distributions}
          \PY{k}{function} \PY{n}{myquantile}\PY{p}{(}\PY{n}{d}\PY{o}{::}\PY{n}{UnivariateDistribution}\PY{p}{,} \PY{n}{q}\PY{o}{::}\PY{k+kt}{Number}\PY{p}{)}
              \PY{n}{θ} \PY{o}{=} \PY{n}{mean}\PY{p}{(}\PY{n}{d}\PY{p}{)}
              \PY{n}{tol} \PY{o}{=} \PY{n+nb}{Inf}

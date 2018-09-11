@@ -436,7 +436,7 @@ and solve for roots. A companion matrix is in the form of \[
 \]
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}18}]:} \PY{k}{using} \PY{n}{LinearAlgebra}
+{\color{incolor}In [{\color{incolor}15}]:} \PY{k}{using} \PY{n}{LinearAlgebra}
          \PY{k}{function} \PY{n}{poly\PYZus{}roots}\PY{p}{(}\PY{n}{z}\PY{p}{)}
              \PY{n}{len} \PY{o}{=} \PY{n}{length}\PY{p}{(}\PY{n}{z}\PY{p}{)}
              \PY{c}{\PYZsh{} construct the ones part}
@@ -449,14 +449,14 @@ and solve for roots. A companion matrix is in the form of \[
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}18}]:} poly\_roots (generic function with 1 method)
+{\color{outcolor}Out[{\color{outcolor}15}]:} poly\_roots (generic function with 1 method)
 \end{Verbatim}
             
     We have everything ready now. We just need to calculate all the roots
 and plot it.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}19}]:} \PY{k}{using} \PY{n}{Random}
+{\color{incolor}In [{\color{incolor}16}]:} \PY{k}{using} \PY{n}{Random}
          \PY{n}{Random}\PY{o}{.}\PY{n}{seed!}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
          \PY{k}{function} \PY{n}{wilkinson\PYZus{}poly\PYZus{}roots}\PY{p}{(}\PY{n}{n}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{)}
              \PY{c}{\PYZsh{} original coefficients}
@@ -482,7 +482,7 @@ and plot it.
          \PY{n}{wilkinson\PYZus{}poly\PYZus{}roots}\PY{p}{(}\PY{p}{)} \PY{o}{|\PYZgt{}} \PY{n}{plt\PYZus{}wilkinson\PYZus{}roots}
 \end{Verbatim}
 
-\texttt{\color{outcolor}Out[{\color{outcolor}19}]:}
+\texttt{\color{outcolor}Out[{\color{outcolor}16}]:}
     
     \begin{center}
     \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{AdvancedProblemAnswers_files/AdvancedProblemAnswers_11_0.pdf}

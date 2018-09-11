@@ -9,11 +9,11 @@ Let's create our own implementation of the range type. The `Range` type is what 
 
 ######  Part 2
 
-Do ?linspace. Make your own LinSpace object using the array interface. 
+A LinSpace object is a lazy representation of `N` values from `start` to `stop`. Use the Array interface to implement a lazy version of the LinSpace. Test against `range(start,stop=stop,length=N)`.
 
 http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces
 
-(Note, `linspace` has extra accuracy enhancing changes. Just do the "simple" implementation")
+(Note, Base's range type has extra accuracy enhancing changes. Just do the "simple" implementation")
 
 ##### Part 3
 
@@ -43,10 +43,9 @@ $$ \left[\begin{array}{ccccc}
 
 Define a type `StrangMatrix` and define a dispatch such that `A*x` acts like a Strang matrix on a vector. 
 
-
 ### Advanced Bonus
 
-Iterative solvers solve `Ax=b` and only require the definition of matrix multiplication. Thus utilize IterativeSolvers.jl to solve `Ax=b` for `b=rand(100)` using your lazy matrix type. Hint: you will need to define `A_mul_B!`. You will also need to define a different version of your Strang matrix which holds a size and has `Base.eltype` defined.
+Iterative solvers solve `Ax=b` and only require the definition of matrix multiplication. Thus utilize IterativeSolvers.jl to solve `Ax=b` for `b=rand(100)` using your lazy matrix type. Hint: you will need to define `mul!` from `LinearAlgebra` (standard library). You will also need to define a different version of your Strang matrix which holds a size and has `Base.eltype` defined.
 
 ## Regression Problem
 

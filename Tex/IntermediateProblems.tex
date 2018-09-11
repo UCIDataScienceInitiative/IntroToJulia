@@ -301,16 +301,15 @@ array interface} in order to define the function for the
 
 Part 2
 
-A \texttt{LinSpace} takes in a start, stop, and number of points and
-builds a lazy array for this so that \texttt{A{[}i{]}} is the
-\texttt{i}th value between \texttt{start} to \texttt{stop}. Make your
-own LinSpace object using the array interface.
+A LinSpace object is a lazy representation of \texttt{N} values from
+\texttt{start} to \texttt{stop}. Use the Array interface to implement a
+lazy version of the LinSpace. Test against
+\texttt{range(start,stop=stop,length=N)}.
 
 http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArrayIteratorInterfaces
 
-(Note, \texttt{linspace} has extra accuracy enhancing changes. Just do
-the "simple" implementation"). Test against
-\texttt{range(start,stop=x,length=k)}
+(Note, Base's range type has extra accuracy enhancing changes. Just do
+the "simple" implementation")
 
 \subparagraph{Part 3}\label{part-3}
 
@@ -354,9 +353,10 @@ Define a type \texttt{StrangMatrix} and define a dispatch such that
 Iterative solvers solve \texttt{Ax=b} and only require the definition of
 matrix multiplication. Thus utilize IterativeSolvers.jl to solve
 \texttt{Ax=b} for \texttt{b=rand(100)} using your lazy matrix type.
-Hint: you will need to define \texttt{A\_mul\_B!}. You will also need to
-define a different version of your Strang matrix which holds a size and
-has \texttt{Base.eltype} defined.
+Hint: you will need to define \texttt{mul!} from \texttt{LinearAlgebra}
+(standard library). You will also need to define a different version of
+your Strang matrix which holds a size and has \texttt{Base.eltype}
+defined.
 
     \subsection{Regression Problem}\label{regression-problem}
 

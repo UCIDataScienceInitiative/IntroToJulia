@@ -162,10 +162,11 @@ $$
 
 
 ```julia
+using LinearAlgebra
 function poly_roots(z)
     len = length(z)
     # construct the ones part
-    mat = diagm(ones(len-2), -1)
+    mat = diagm(-1 => ones(len-2))
     # insert coefficients
     mat[:, end] = -z[1:end-1]
     eigvals(mat)
@@ -183,14 +184,15 @@ We have everything ready now. We just need to calculate all the roots and plot i
 
 
 ```julia
-srand(1)
+using Random
+Random.seed!(1)
 function wilkinson_poly_roots(n=100)
     # original coefficients
     coeff = root2coeff(Int128(1):20)
     rts = Vector{Complex{Float64}}[]
     # add perturbation
     for i in 1:n
-        pert_coeff = coeff.*(1+rand(21)*1e-10)
+        pert_coeff = coeff.*(1 .+ rand(21)*1e-10)
         push!(rts, poly_roots(pert_coeff))
     end
     rts

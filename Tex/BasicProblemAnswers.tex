@@ -312,7 +312,7 @@
     \subsection{Factorial Problem}\label{factorial-problem}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}3}]:} \PY{k}{function} \PY{n}{my\PYZus{}factorial}\PY{p}{(}\PY{n}{n}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}2}]:} \PY{k}{function} \PY{n}{my\PYZus{}factorial}\PY{p}{(}\PY{n}{n}\PY{p}{)}
             \PY{n}{k} \PY{o}{=} \PY{n}{one}\PY{p}{(}\PY{n}{n}\PY{p}{)}
             \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{n}
                 \PY{n}{k} \PY{o}{*=} \PY{n}{i}
@@ -320,27 +320,20 @@
             \PY{n}{k}
         \PY{k}{end}
         
-        \PY{n+nd}{@show} \PY{n}{my\PYZus{}factorial}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{)}
-        \PY{n+nd}{@show} \PY{n}{my\PYZus{}factorial}\PY{p}{(}\PY{l+m+mi}{30}\PY{p}{)}
-        \PY{n+nd}{@show} \PY{n}{my\PYZus{}factorial}\PY{p}{(}\PY{n}{big}\PY{p}{(}\PY{l+m+mi}{30}\PY{p}{)}\PY{p}{)}
+        \PY{n}{my\PYZus{}factorial}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{)}
+        \PY{n}{my\PYZus{}factorial}\PY{p}{(}\PY{l+m+mi}{30}\PY{p}{)}
+        \PY{n}{my\PYZus{}factorial}\PY{p}{(}\PY{n}{big}\PY{p}{(}\PY{l+m+mi}{30}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-my\_factorial(4) = 24
-my\_factorial(30) = -8764578968847253504
-my\_factorial(big(30)) = 265252859812191058636308480000000
-
-    \end{Verbatim}
-
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}3}]:} 265252859812191058636308480000000
+{\color{outcolor}Out[{\color{outcolor}2}]:} 265252859812191058636308480000000
 \end{Verbatim}
             
     \subsection{Binomial Problem}\label{binomial-problem}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}4}]:} \PY{k}{function} \PY{n}{binomial\PYZus{}rv}\PY{p}{(}\PY{n}{n}\PY{p}{,} \PY{n}{p}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k}{function} \PY{n}{binomial\PYZus{}rv}\PY{p}{(}\PY{n}{n}\PY{p}{,} \PY{n}{p}\PY{p}{)}
             \PY{n}{count} \PY{o}{=} \PY{n}{zero}\PY{p}{(}\PY{n}{n}\PY{p}{)}
             \PY{n}{U} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{n}{n}\PY{p}{)}
             \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{n}
@@ -354,17 +347,17 @@ my\_factorial(big(30)) = 265252859812191058636308480000000
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}4}]:} 10-element Array\{Int64,1\}:
-         8
-         6
-         6
+{\color{outcolor}Out[{\color{outcolor}3}]:} 10-element Array\{Int64,1\}:
+         5
+         5
+         1
+         5
+         5
+         2
          4
          5
-         5
-         3
-         4
+         7
          6
-         5
 \end{Verbatim}
             
     \subsection{\texorpdfstring{Monte Carlo \(\pi\)
@@ -376,7 +369,7 @@ Problem}{Monte Carlo \textbackslash{}pi Problem}}\label{monte-carlo-pi-problem}
         \PY{n}{count} \PY{o}{=} \PY{l+m+mi}{0}
         \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{n}
             \PY{k+kd}{global} \PY{n}{count}
-            \PY{n}{u}\PY{p}{,} \PY{n}{v} \PY{o}{=} \PY{l+m+mi}{2}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{.\PYZhy{}}\PY{l+m+mi}{1}
+            \PY{n}{u}\PY{p}{,} \PY{n}{v} \PY{o}{=} \PY{l+m+mi}{2}\PY{n}{rand}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{.\PYZhy{}} \PY{l+m+mi}{1}
             \PY{n}{d} \PY{o}{=} \PY{n}{sqrt}\PY{p}{(}\PY{n}{u}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{v}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{)}  \PY{c}{\PYZsh{} Distance from middle of square}
             \PY{n}{d} \PY{o}{\PYZlt{}} \PY{l+m+mi}{1} \PY{o}{\PYZam{}\PYZam{}} \PY{p}{(}\PY{n}{count} \PY{o}{+=} \PY{l+m+mi}{1}\PY{p}{)}
         \PY{k}{end}
@@ -388,7 +381,7 @@ Problem}{Monte Carlo \textbackslash{}pi Problem}}\label{monte-carlo-pi-problem}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-3.1419836
+3.1420112
     \end{Verbatim}
 
     \section{Integration Problems}\label{integration-problems}
@@ -397,31 +390,33 @@ Problem}{Monte Carlo \textbackslash{}pi Problem}}\label{monte-carlo-pi-problem}
 Problem}\label{timeseries-generation-problem}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}12}]:} \PY{k}{using} \PY{n}{Plots}\PY{p}{;} \PY{n}{gr}\PY{p}{(}\PY{p}{)}
-         
-         \PY{n}{alphas} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{,} \PY{l+m+mf}{0.98}\PY{p}{]}
-         \PY{n}{T} \PY{o}{=} \PY{l+m+mi}{200}
-         
-         \PY{n}{series} \PY{o}{=} \PY{p}{[}\PY{p}{]}
-         \PY{n}{labels} \PY{o}{=} \PY{p}{[}\PY{p}{]}
-         
-         \PY{k}{for} \PY{n}{alpha} \PY{k+kp}{in} \PY{n}{alphas}
-             \PY{n}{x} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{n}{T} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}
-             \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{l+m+mf}{0.0}
-             \PY{k}{for} \PY{n}{t} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{T}
-                 \PY{n}{x}\PY{p}{[}\PY{n}{t}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{alpha} \PY{o}{*} \PY{n}{x}\PY{p}{[}\PY{n}{t}\PY{p}{]} \PY{o}{+} \PY{n}{randn}\PY{p}{(}\PY{p}{)}
-             \PY{k}{end}
-             \PY{n}{push!}\PY{p}{(}\PY{n}{series}\PY{p}{,} \PY{n}{x}\PY{p}{)}
-             \PY{n}{push!}\PY{p}{(}\PY{n}{labels}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{p}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{ }\PY{l+s}{=}\PY{l+s}{ }\PY{l+s+si}{\PYZdl{}alpha}\PY{l+s}{\PYZdq{}}\PY{p}{)}
-         \PY{k}{end}
-         
-         \PY{n}{plot}\PY{p}{(}\PY{n}{series}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{n}{reshape}\PY{p}{(}\PY{n}{labels}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{length}\PY{p}{(}\PY{n}{labels}\PY{p}{)}\PY{p}{)}\PY{p}{,}\PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}8}]:} \PY{k}{using} \PY{n}{Plots}\PY{p}{;} \PY{n}{gr}\PY{p}{(}\PY{p}{)}
+        
+        \PY{n}{alphas} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.0}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{,} \PY{l+m+mf}{0.98}\PY{p}{]}
+        \PY{n}{T} \PY{o}{=} \PY{l+m+mi}{200}
+        
+        \PY{n}{series} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+        \PY{n}{labels} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+        
+        \PY{k}{for} \PY{n}{alpha} \PY{k+kp}{in} \PY{n}{alphas}
+            \PY{n}{x} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{n}{T} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}
+            \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{l+m+mf}{0.0}
+            \PY{k}{for} \PY{n}{t} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{T}
+                \PY{n}{x}\PY{p}{[}\PY{n}{t}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{alpha} \PY{o}{*} \PY{n}{x}\PY{p}{[}\PY{n}{t}\PY{p}{]} \PY{o}{+} \PY{n}{randn}\PY{p}{(}\PY{p}{)}
+            \PY{k}{end}
+            \PY{n}{push!}\PY{p}{(}\PY{n}{series}\PY{p}{,} \PY{n}{x}\PY{p}{)}
+            \PY{n}{push!}\PY{p}{(}\PY{n}{labels}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{p}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{ }\PY{l+s}{=}\PY{l+s}{ }\PY{l+s+si}{\PYZdl{}alpha}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+        \PY{k}{end}
+        
+        \PY{n}{plot}\PY{p}{(}\PY{n}{series}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{n}{reshape}\PY{p}{(}\PY{n}{labels}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{length}\PY{p}{(}\PY{n}{labels}\PY{p}{)}\PY{p}{)}\PY{p}{,}\PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
 \end{Verbatim}
 
-\texttt{\color{outcolor}Out[{\color{outcolor}12}]:}
+
+    
+    \texttt{\color{outcolor}Out[{\color{outcolor}8}]:}
     
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{BasicProblemAnswers_files/BasicProblemAnswers_11_0.pdf}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{BasicProblemAnswers_files/BasicProblemAnswers_11_1.pdf}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -429,21 +424,21 @@ Problem}\label{timeseries-generation-problem}
     \subsection{Logistic Equation Problem}\label{logistic-equation-problem}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{r} \PY{o}{=} \PY{l+m+mf}{2.9}\PY{o}{:}\PY{o}{.}\PY{l+m+mi}{001}\PY{o}{:}\PY{l+m+mi}{4}\PY{p}{;} \PY{n}{numAttract} \PY{o}{=} \PY{l+m+mi}{100}
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{r} \PY{o}{=} \PY{l+m+mf}{2.9}\PY{o}{:}\PY{o}{.}\PY{l+m+mi}{001}\PY{o}{:}\PY{l+m+mi}{4}\PY{p}{;} \PY{n}{numAttract} \PY{o}{=} \PY{l+m+mi}{100}
          \PY{n}{steady} \PY{o}{=} \PY{n}{ones}\PY{p}{(}\PY{n}{length}\PY{p}{(}\PY{n}{r}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{o}{.}\PY{l+m+mi}{25}
          \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{400} \PY{c}{\PYZsh{}\PYZsh{} Get to steady state}
-           \PY{err}{@}\PY{o}{.} \PY{n}{steady} \PY{o}{=} \PY{n}{r}\PY{o}{*}\PY{n}{steady}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{steady}\PY{p}{)}
+           \PY{err}{@}\PY{o}{.} \PY{n}{steady} \PY{o}{=} \PY{n}{r}\PY{o}{*}\PY{n}{steady}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{steady}\PY{p}{)}
          \PY{k}{end}
          \PY{n}{x} \PY{o}{=} \PY{n}{zeros}\PY{p}{(}\PY{n}{length}\PY{p}{(}\PY{n}{steady}\PY{p}{)}\PY{p}{,}\PY{n}{numAttract}\PY{p}{)}
          \PY{n}{x}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{steady}
          \PY{n+nd}{@inbounds} \PY{k}{for} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{2}\PY{o}{:}\PY{n}{numAttract} \PY{c}{\PYZsh{}\PYZsh{} Grab values at the attractor}
-           \PY{err}{@}\PY{o}{.} \PY{n}{x}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{r}\PY{o}{*}\PY{n}{x}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{x}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+           \PY{err}{@}\PY{o}{.} \PY{n}{x}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{r}\PY{o}{*}\PY{n}{x}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{x}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
          \PY{k}{end}
-         \PY{k}{using} \PY{n}{Plots}\PY{p}{;} \PY{n}{gr}\PY{p}{(}\PY{n}{fmt}\PY{o}{=}\PY{o}{:}\PY{n}{png}\PY{p}{)} \PY{c}{\PYZsh{} use a png to make the file size smaller}
-         \PY{n}{plot}\PY{p}{(}\PY{n}{collect}\PY{p}{(}\PY{n}{r}\PY{p}{)}\PY{p}{,}\PY{n}{x}\PY{p}{,}\PY{n}{seriestype}\PY{o}{=}\PY{o}{:}\PY{n}{scatter}\PY{p}{,}\PY{n}{markersize}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{001}\PY{p}{,}\PY{n}{legend}\PY{o}{=}\PY{k+kc}{false}\PY{p}{,}\PY{n}{color}\PY{o}{=}\PY{o}{:}\PY{n}{black}\PY{p}{)}
+         \PY{k}{using} \PY{n}{Plots}\PY{p}{;} \PY{n}{gr}\PY{p}{(}\PY{n}{fmt}\PY{o}{=}\PY{o}{:}\PY{n}{png}\PY{p}{)}
+         \PY{n}{plot}\PY{p}{(}\PY{n}{collect}\PY{p}{(}\PY{n}{r}\PY{p}{)}\PY{p}{,}\PY{n}{x}\PY{p}{,}\PY{n}{seriestype}\PY{o}{=}\PY{o}{:}\PY{n}{scatter}\PY{p}{,}\PY{n}{markersize}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{002}\PY{p}{,}\PY{n}{legend}\PY{o}{=}\PY{k+kc}{false}\PY{p}{,}\PY{n}{color}\PY{o}{=}\PY{o}{:}\PY{n}{black}\PY{p}{)}
 \end{Verbatim}
 
-\texttt{\color{outcolor}Out[{\color{outcolor}22}]:}
+\texttt{\color{outcolor}Out[{\color{outcolor}13}]:}
     
     \begin{center}
     \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{BasicProblemAnswers_files/BasicProblemAnswers_13_0.png}

@@ -286,133 +286,104 @@ Task}\label{solutions-to-the-clustering-task}
 \subsection{Problem 1}\label{problem-1}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}3}]:} \PY{k}{using} \PY{n}{RDatasets}
+{\color{incolor}In [{\color{incolor}1}]:} \PY{n}{Pkg}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{R}\PY{l+s}{D}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+        \PY{k}{using} \PY{n}{RDatasets}
         \PY{n}{iris} \PY{o}{=} \PY{n}{dataset}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{i}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 
 
+    \begin{Verbatim}[commandchars=\\\{\}]
+\textcolor{ansi-cyan-intense}{\textbf{INFO: }}\textcolor{ansi-cyan}{Package RDatasets is already installed
+}\textcolor{ansi-cyan-intense}{\textbf{INFO: }}\textcolor{ansi-cyan}{METADATA is out-of-date — you may not have the latest version of RDatasets
+}\textcolor{ansi-cyan-intense}{\textbf{INFO: }}\textcolor{ansi-cyan}{Use `Pkg.update()` to get the latest versions of your packages
+}
+    \end{Verbatim}
+
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}3}]:} 150×5 DataFrame
-        │ Row │ SepalLength │ SepalWidth │ PetalLength │ PetalWidth │ Species   │
-        ├─────┼─────────────┼────────────┼─────────────┼────────────┼───────────┤
-        │ 1   │ 5.1         │ 3.5        │ 1.4         │ 0.2        │ setosa    │
-        │ 2   │ 4.9         │ 3.0        │ 1.4         │ 0.2        │ setosa    │
-        │ 3   │ 4.7         │ 3.2        │ 1.3         │ 0.2        │ setosa    │
-        │ 4   │ 4.6         │ 3.1        │ 1.5         │ 0.2        │ setosa    │
-        │ 5   │ 5.0         │ 3.6        │ 1.4         │ 0.2        │ setosa    │
-        │ 6   │ 5.4         │ 3.9        │ 1.7         │ 0.4        │ setosa    │
-        │ 7   │ 4.6         │ 3.4        │ 1.4         │ 0.3        │ setosa    │
-        │ 8   │ 5.0         │ 3.4        │ 1.5         │ 0.2        │ setosa    │
-        │ 9   │ 4.4         │ 2.9        │ 1.4         │ 0.2        │ setosa    │
-        │ 10  │ 4.9         │ 3.1        │ 1.5         │ 0.1        │ setosa    │
-        │ 11  │ 5.4         │ 3.7        │ 1.5         │ 0.2        │ setosa    │
+{\color{outcolor}Out[{\color{outcolor}1}]:} 150×5 DataFrames.DataFrame
+        │ Row │ SepalLength │ SepalWidth │ PetalLength │ PetalWidth │ Species     │
+        ├─────┼─────────────┼────────────┼─────────────┼────────────┼─────────────┤
+        │ 1   │ 5.1         │ 3.5        │ 1.4         │ 0.2        │ "setosa"    │
+        │ 2   │ 4.9         │ 3.0        │ 1.4         │ 0.2        │ "setosa"    │
+        │ 3   │ 4.7         │ 3.2        │ 1.3         │ 0.2        │ "setosa"    │
+        │ 4   │ 4.6         │ 3.1        │ 1.5         │ 0.2        │ "setosa"    │
+        │ 5   │ 5.0         │ 3.6        │ 1.4         │ 0.2        │ "setosa"    │
+        │ 6   │ 5.4         │ 3.9        │ 1.7         │ 0.4        │ "setosa"    │
+        │ 7   │ 4.6         │ 3.4        │ 1.4         │ 0.3        │ "setosa"    │
+        │ 8   │ 5.0         │ 3.4        │ 1.5         │ 0.2        │ "setosa"    │
+        │ 9   │ 4.4         │ 2.9        │ 1.4         │ 0.2        │ "setosa"    │
+        │ 10  │ 4.9         │ 3.1        │ 1.5         │ 0.1        │ "setosa"    │
+        │ 11  │ 5.4         │ 3.7        │ 1.5         │ 0.2        │ "setosa"    │
         ⋮
-        │ 139 │ 6.0         │ 3.0        │ 4.8         │ 1.8        │ virginica │
-        │ 140 │ 6.9         │ 3.1        │ 5.4         │ 2.1        │ virginica │
-        │ 141 │ 6.7         │ 3.1        │ 5.6         │ 2.4        │ virginica │
-        │ 142 │ 6.9         │ 3.1        │ 5.1         │ 2.3        │ virginica │
-        │ 143 │ 5.8         │ 2.7        │ 5.1         │ 1.9        │ virginica │
-        │ 144 │ 6.8         │ 3.2        │ 5.9         │ 2.3        │ virginica │
-        │ 145 │ 6.7         │ 3.3        │ 5.7         │ 2.5        │ virginica │
-        │ 146 │ 6.7         │ 3.0        │ 5.2         │ 2.3        │ virginica │
-        │ 147 │ 6.3         │ 2.5        │ 5.0         │ 1.9        │ virginica │
-        │ 148 │ 6.5         │ 3.0        │ 5.2         │ 2.0        │ virginica │
-        │ 149 │ 6.2         │ 3.4        │ 5.4         │ 2.3        │ virginica │
-        │ 150 │ 5.9         │ 3.0        │ 5.1         │ 1.8        │ virginica │
+        │ 139 │ 6.0         │ 3.0        │ 4.8         │ 1.8        │ "virginica" │
+        │ 140 │ 6.9         │ 3.1        │ 5.4         │ 2.1        │ "virginica" │
+        │ 141 │ 6.7         │ 3.1        │ 5.6         │ 2.4        │ "virginica" │
+        │ 142 │ 6.9         │ 3.1        │ 5.1         │ 2.3        │ "virginica" │
+        │ 143 │ 5.8         │ 2.7        │ 5.1         │ 1.9        │ "virginica" │
+        │ 144 │ 6.8         │ 3.2        │ 5.9         │ 2.3        │ "virginica" │
+        │ 145 │ 6.7         │ 3.3        │ 5.7         │ 2.5        │ "virginica" │
+        │ 146 │ 6.7         │ 3.0        │ 5.2         │ 2.3        │ "virginica" │
+        │ 147 │ 6.3         │ 2.5        │ 5.0         │ 1.9        │ "virginica" │
+        │ 148 │ 6.5         │ 3.0        │ 5.2         │ 2.0        │ "virginica" │
+        │ 149 │ 6.2         │ 3.4        │ 5.4         │ 2.3        │ "virginica" │
+        │ 150 │ 5.9         │ 3.0        │ 5.1         │ 1.8        │ "virginica" │
 \end{Verbatim}
             
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}13}]:} \PY{k}{using} \PY{n}{Clustering}
-         \PY{n}{features} \PY{o}{=} \PY{n}{copy}\PY{p}{(}\PY{n}{convert}\PY{p}{(}\PY{k+kt}{Array}\PY{p}{,}\PY{n}{iris}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{o}{\PYZsq{}}\PY{p}{)} \PY{c}{\PYZsh{} The copy is to make the adjoint non\PYZhy{}lazy!}
-         \PY{n}{result} \PY{o}{=} \PY{n}{kmeans}\PY{p}{(} \PY{n}{features}\PY{p}{,} \PY{l+m+mi}{3} \PY{p}{)}
+{\color{incolor}In [{\color{incolor}4}]:} \PY{k}{using} \PY{n}{Clustering}
+        \PY{n}{features} \PY{o}{=} \PY{k+kt}{Array}\PY{p}{(}\PY{n}{iris}\PY{p}{[}\PY{o}{:}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{o}{\PYZsq{}}
+        \PY{n}{result} \PY{o}{=} \PY{n}{kmeans}\PY{p}{(} \PY{n}{features}\PY{p}{,} \PY{l+m+mi}{3} \PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}13}]:} KmeansResult\{Float64\}([6.81 5.006 5.89667; 5.7075 1.462 4.37167; 2.075 0.246 1.41], [2, 2, 2, 2, 2, 2, 2, 2, 2, 2  …  1, 1, 3, 1, 1, 1, 1, 1, 1, 3], [0.014796, 0.017196, 0.121996, 0.168396, 0.005996, 0.235596, 0.171596, 0.003596, 0.373196, 0.033996  …  0.129281, 0.427781, 0.779914, 0.0877813, 0.192781, 0.320281, 0.791281, 0.359281, 0.517281, 0.682581], [40, 50, 60], [40.0, 50.0, 60.0], 63.484116666666445, 12, true)
+{\color{outcolor}Out[{\color{outcolor}4}]:} Clustering.KmeansResult\{Float64\}([6.81 5.006 5.89667; 5.7075 1.462 4.37167; 2.075 0.246 1.41], [2, 2, 2, 2, 2, 2, 2, 2, 2, 2  …  1, 1, 3, 1, 1, 1, 1, 1, 1, 3], [0.014796, 0.017196, 0.121996, 0.168396, 0.005996, 0.235596, 0.171596, 0.003596, 0.373196, 0.033996  …  0.129281, 0.427781, 0.779914, 0.0877813, 0.192781, 0.320281, 0.791281, 0.359281, 0.517281, 0.682581], [40, 50, 60], [40.0, 50.0, 60.0], 63.484116666666814, 10, true)
 \end{Verbatim}
             
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{features}\PY{o}{\PYZsq{}}
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{features}\PY{o}{\PYZsq{}}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}15}]:} 150×3 LinearAlgebra.Adjoint\{Float64,Array\{Float64,2\}\}:
-          5.1  1.4  0.2
-          4.9  1.4  0.2
-          4.7  1.3  0.2
-          4.6  1.5  0.2
-          5.0  1.4  0.2
-          5.4  1.7  0.4
-          4.6  1.4  0.3
-          5.0  1.5  0.2
-          4.4  1.4  0.2
-          4.9  1.5  0.1
-          5.4  1.5  0.2
-          4.8  1.6  0.2
-          4.8  1.4  0.1
-          ⋮            
-          6.0  4.8  1.8
-          6.9  5.4  2.1
-          6.7  5.6  2.4
-          6.9  5.1  2.3
-          5.8  5.1  1.9
-          6.8  5.9  2.3
-          6.7  5.7  2.5
-          6.7  5.2  2.3
-          6.3  5.0  1.9
-          6.5  5.2  2.0
-          6.2  5.4  2.3
-          5.9  5.1  1.8
+{\color{outcolor}Out[{\color{outcolor}9}]:} 150×3 Array\{Float64,2\}:
+         5.1  1.4  0.2
+         4.9  1.4  0.2
+         4.7  1.3  0.2
+         4.6  1.5  0.2
+         5.0  1.4  0.2
+         5.4  1.7  0.4
+         4.6  1.4  0.3
+         5.0  1.5  0.2
+         4.4  1.4  0.2
+         4.9  1.5  0.1
+         5.4  1.5  0.2
+         4.8  1.6  0.2
+         4.8  1.4  0.1
+         ⋮            
+         6.0  4.8  1.8
+         6.9  5.4  2.1
+         6.7  5.6  2.4
+         6.9  5.1  2.3
+         5.8  5.1  1.9
+         6.8  5.9  2.3
+         6.7  5.7  2.5
+         6.7  5.2  2.3
+         6.3  5.0  1.9
+         6.5  5.2  2.0
+         6.2  5.4  2.3
+         5.9  5.1  1.8
 \end{Verbatim}
             
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{copy}\PY{p}{(}\PY{n}{features}\PY{o}{\PYZsq{}}\PY{p}{)}
-\end{Verbatim}
-
-
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}16}]:} 150×3 Array\{Float64,2\}:
-          5.1  1.4  0.2
-          4.9  1.4  0.2
-          4.7  1.3  0.2
-          4.6  1.5  0.2
-          5.0  1.4  0.2
-          5.4  1.7  0.4
-          4.6  1.4  0.3
-          5.0  1.5  0.2
-          4.4  1.4  0.2
-          4.9  1.5  0.1
-          5.4  1.5  0.2
-          4.8  1.6  0.2
-          4.8  1.4  0.1
-          ⋮            
-          6.0  4.8  1.8
-          6.9  5.4  2.1
-          6.7  5.6  2.4
-          6.9  5.1  2.3
-          5.8  5.1  1.9
-          6.8  5.9  2.3
-          6.7  5.7  2.5
-          6.7  5.2  2.3
-          6.3  5.0  1.9
-          6.5  5.2  2.0
-          6.2  5.4  2.3
-          5.9  5.1  1.8
-\end{Verbatim}
-            
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}17}]:} \PY{k}{using} \PY{n}{Plots}\PY{p}{;} \PY{n}{gr}\PY{p}{(}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}20}]:} \PY{k}{using} \PY{n}{Plots}\PY{p}{;} \PY{n}{gr}\PY{p}{(}\PY{p}{)}
          \PY{n}{scatter}\PY{p}{(}\PY{n}{features}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{:}\PY{p}{]}\PY{p}{,} \PY{n}{features}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{o}{:}\PY{p}{]}\PY{p}{,} \PY{n}{features}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{,}\PY{o}{:}\PY{p}{]}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{n}{result}\PY{o}{.}\PY{n}{assignments}\PY{p}{)}
 \end{Verbatim}
 
-
-    
-    \texttt{\color{outcolor}Out[{\color{outcolor}17}]:}
+\texttt{\color{outcolor}Out[{\color{outcolor}20}]:}
     
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{ClusteringSolutions_files/ClusteringSolutions_5_1.pdf}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{ClusteringSolutions_files/ClusteringSolutions_4_0.pdf}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -447,115 +418,100 @@ Embedding, trained using
 about words.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{using} \PY{n}{JLD}
-        \PY{n}{embeddings} \PY{o}{=} \PY{n}{load}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{.}\PY{l+s}{.}\PY{l+s}{/}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{s}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{s}\PY{l+s}{/}\PY{l+s}{C}\PY{l+s}{l}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{A}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{D}\PY{l+s}{i}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{y}\PY{l+s}{R}\PY{l+s}{e}\PY{l+s}{d}\PY{l+s}{u}\PY{l+s}{c}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{.}\PY{l+s}{j}\PY{l+s}{l}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{e}\PY{l+s}{m}\PY{l+s}{b}\PY{l+s}{e}\PY{l+s}{d}\PY{l+s}{d}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{using} \PY{n}{Embeddings}
+        \PY{n}{countries} \PY{o}{=} \PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{f}\PY{l+s}{g}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{l}\PY{l+s}{g}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{b}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{r}\PY{l+s}{g}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{d}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{h}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{z}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{C}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{C}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{C}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{o}\PY{l+s}{m}\PY{l+s}{b}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{C}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{E}\PY{l+s}{g}\PY{l+s}{y}\PY{l+s}{p}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{E}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{E}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{p}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{F}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{G}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{G}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{I}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{I}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{I}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{I}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{q}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{I}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{I}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{J}\PY{l+s}{a}\PY{l+s}{p}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{K}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{y}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{K}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{M}\PY{l+s}{a}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{g}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{c}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{M}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{y}\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{M}\PY{l+s}{e}\PY{l+s}{x}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{M}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{c}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{M}\PY{l+s}{o}\PY{l+s}{z}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{b}\PY{l+s}{i}\PY{l+s}{q}\PY{l+s}{u}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{M}\PY{l+s}{y}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{N}\PY{l+s}{e}\PY{l+s}{p}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{N}\PY{l+s}{i}\PY{l+s}{g}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{a}\PY{l+s}{k}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{u}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{p}\PY{l+s}{p}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{R}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{p}\PY{l+s}{a}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{u}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{T}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{z}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{T}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{U}\PY{l+s}{g}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{U}\PY{l+s}{k}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{U}\PY{l+s}{s}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{U}\PY{l+s}{z}\PY{l+s}{b}\PY{l+s}{e}\PY{l+s}{k}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{V}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{e}\PY{l+s}{z}\PY{l+s}{u}\PY{l+s}{e}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{V}\PY{l+s}{i}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{W}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Y}\PY{l+s}{e}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{]}
+        \PY{n}{usa\PYZus{}cities} \PY{o}{=} \PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{l}\PY{l+s}{b}\PY{l+s}{u}\PY{l+s}{q}\PY{l+s}{u}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{q}\PY{l+s}{u}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{t}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{m}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{o}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{C}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{l}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{C}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{a}\PY{l+s}{g}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{C}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{u}\PY{l+s}{m}\PY{l+s}{b}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{D}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{D}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{v}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{D}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{F}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{c}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{F}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{n}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{H}\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{I}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{p}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{J}\PY{l+s}{a}\PY{l+s}{c}\PY{l+s}{k}\PY{l+s}{s}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{v}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{L}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{L}\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{v}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{M}\PY{l+s}{e}\PY{l+s}{m}\PY{l+s}{p}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{M}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{M}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{w}\PY{l+s}{a}\PY{l+s}{u}\PY{l+s}{k}\PY{l+s}{e}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{N}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{h}\PY{l+s}{v}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{O}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{d}\PY{l+s}{e}\PY{l+s}{l}\PY{l+s}{p}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{h}\PY{l+s}{o}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{x}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{t}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{R}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{i}\PY{l+s}{g}\PY{l+s}{h}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{a}\PY{l+s}{c}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{e}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{t}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{T}\PY{l+s}{u}\PY{l+s}{c}\PY{l+s}{s}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{V}\PY{l+s}{e}\PY{l+s}{g}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{W}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{]}
+        \PY{n}{world\PYZus{}capitals} \PY{o}{=} \PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{c}\PY{l+s}{c}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{l}\PY{l+s}{g}\PY{l+s}{i}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{m}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{n}\PY{l+s}{k}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{v}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{a}\PY{l+s}{g}\PY{l+s}{h}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{a}\PY{l+s}{k}\PY{l+s}{u}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{k}\PY{l+s}{o}\PY{l+s}{k}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{e}\PY{l+s}{i}\PY{l+s}{j}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{e}\PY{l+s}{i}\PY{l+s}{r}\PY{l+s}{u}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{o}\PY{l+s}{g}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{á}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{í}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{u}\PY{l+s}{c}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{u}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{p}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{C}\PY{l+s}{a}\PY{l+s}{i}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{C}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{c}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{D}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{c}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{D}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{k}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{H}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{o}\PY{l+s}{i}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{H}\PY{l+s}{a}\PY{l+s}{v}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{J}\PY{l+s}{a}\PY{l+s}{k}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{K}\PY{l+s}{a}\PY{l+s}{b}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{K}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{p}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{K}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{m}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{K}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{s}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{K}\PY{l+s}{y}\PY{l+s}{i}\PY{l+s}{v}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{L}\PY{l+s}{i}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{L}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{L}\PY{l+s}{u}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{M}\PY{l+s}{a}\PY{l+s}{d}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{M}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{M}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{s}\PY{l+s}{k}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{M}\PY{l+s}{o}\PY{l+s}{s}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{w}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{N}\PY{l+s}{a}\PY{l+s}{i}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{b}\PY{l+s}{i}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{y}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{y}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Q}\PY{l+s}{u}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{R}\PY{l+s}{a}\PY{l+s}{b}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{R}\PY{l+s}{i}\PY{l+s}{y}\PY{l+s}{a}\PY{l+s}{d}\PY{l+s}{h}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{R}\PY{l+s}{o}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{g}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{e}\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{a}\PY{l+s}{p}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{c}\PY{l+s}{k}\PY{l+s}{h}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{m}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{T}\PY{l+s}{a}\PY{l+s}{i}\PY{l+s}{p}\PY{l+s}{e}\PY{l+s}{i}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{T}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{h}\PY{l+s}{k}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{T}\PY{l+s}{e}\PY{l+s}{h}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{T}\PY{l+s}{o}\PY{l+s}{k}\PY{l+s}{y}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{V}\PY{l+s}{i}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{W}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{s}\PY{l+s}{a}\PY{l+s}{w}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Y}\PY{l+s}{a}\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{é}\PY{l+s}{\PYZdq{}}\PY{p}{]}
+        \PY{n}{animals} \PY{o}{=} \PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{p}\PY{l+s}{a}\PY{l+s}{c}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{c}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{l}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{c}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{t}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{d}\PY{l+s}{o}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{d}\PY{l+s}{o}\PY{l+s}{v}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{d}\PY{l+s}{u}\PY{l+s}{c}\PY{l+s}{k}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{f}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{g}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{d}\PY{l+s}{f}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{h}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{g}\PY{l+s}{o}\PY{l+s}{o}\PY{l+s}{s}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{m}\PY{l+s}{o}\PY{l+s}{u}\PY{l+s}{s}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{p}\PY{l+s}{i}\PY{l+s}{g}\PY{l+s}{e}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{y}\PY{l+s}{a}\PY{l+s}{k}\PY{l+s}{\PYZdq{}}\PY{p}{]}
+        \PY{n}{sports} \PY{o}{=} \PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{c}\PY{l+s}{h}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{b}\PY{l+s}{a}\PY{l+s}{d}\PY{l+s}{m}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{b}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{k}\PY{l+s}{e}\PY{l+s}{t}\PY{l+s}{b}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{b}\PY{l+s}{o}\PY{l+s}{x}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{c}\PY{l+s}{y}\PY{l+s}{c}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{d}\PY{l+s}{i}\PY{l+s}{v}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{e}\PY{l+s}{q}\PY{l+s}{u}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{f}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{c}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{f}\PY{l+s}{i}\PY{l+s}{e}\PY{l+s}{l}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{f}\PY{l+s}{o}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{b}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{g}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{f}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{g}\PY{l+s}{y}\PY{l+s}{m}\PY{l+s}{n}\PY{l+s}{a}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{h}\PY{l+s}{a}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{b}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{h}\PY{l+s}{o}\PY{l+s}{c}\PY{l+s}{k}\PY{l+s}{e}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{j}\PY{l+s}{u}\PY{l+s}{d}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{k}\PY{l+s}{a}\PY{l+s}{y}\PY{l+s}{a}\PY{l+s}{k}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{p}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{l}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{p}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{w}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{r}\PY{l+s}{u}\PY{l+s}{g}\PY{l+s}{b}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{s}\PY{l+s}{a}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{s}\PY{l+s}{h}\PY{l+s}{o}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{s}\PY{l+s}{o}\PY{l+s}{c}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{s}\PY{l+s}{w}\PY{l+s}{i}\PY{l+s}{m}\PY{l+s}{m}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{e}\PY{l+s}{k}\PY{l+s}{w}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{d}\PY{l+s}{o}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{l}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{v}\PY{l+s}{o}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{y}\PY{l+s}{b}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{l}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{w}\PY{l+s}{e}\PY{l+s}{i}\PY{l+s}{g}\PY{l+s}{h}\PY{l+s}{t}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{f}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{w}\PY{l+s}{r}\PY{l+s}{e}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{]}
+        
+        \PY{n}{words\PYZus{}by\PYZus{}class} \PY{o}{=} \PY{p}{[}\PY{n}{countries}\PY{p}{,} \PY{n}{usa\PYZus{}cities}\PY{p}{,} \PY{n}{world\PYZus{}capitals}\PY{p}{,} \PY{n}{animals}\PY{p}{,} \PY{n}{sports}\PY{p}{]}
+        \PY{n}{all\PYZus{}words} \PY{o}{=} \PY{n}{reduce}\PY{p}{(}\PY{n}{vcat}\PY{p}{,} \PY{n}{words\PYZus{}by\PYZus{}class}\PY{p}{)}
+        \PY{n}{embedding\PYZus{}table} \PY{o}{=} \PY{n}{load\PYZus{}embeddings}\PY{p}{(}\PY{n}{Word2Vec}\PY{p}{;} \PY{n}{keep\PYZus{}words} \PY{o}{=} \PY{n}{all\PYZus{}words}\PY{p}{)} 
+        \PY{n+nd}{@assert} \PY{k+kt}{Set}\PY{p}{(}\PY{n}{all\PYZus{}words}\PY{p}{)} \PY{o}{==} \PY{k+kt}{Set}\PY{p}{(}\PY{n}{embedding\PYZus{}table}\PY{o}{.}\PY{n}{vocab}\PY{p}{)}
+        
+        \PY{n}{embeddings} \PY{o}{=} \PY{n}{embedding\PYZus{}table}\PY{o}{.}\PY{n}{embeddings}
+        \PY{n}{all\PYZus{}words} \PY{o}{=} \PY{n}{embedding\PYZus{}table}\PY{o}{.}\PY{n}{vocab}
+        \PY{n}{classes} \PY{o}{=} \PY{n}{map}\PY{p}{(}\PY{n}{all\PYZus{}words}\PY{p}{)} \PY{k}{do} \PY{n}{word}
+            \PY{n}{findfirst}\PY{p}{(}\PY{n}{col} \PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}} \PY{n}{word} \PY{o}{∈} \PY{n}{col}\PY{p}{,} \PY{p}{[}\PY{n}{countries}\PY{p}{,} \PY{n}{usa\PYZus{}cities}\PY{p}{,} \PY{n}{world\PYZus{}capitals}\PY{p}{,} \PY{n}{animals}\PY{p}{,} \PY{n}{sports}\PY{p}{]}\PY{p}{)}
+        \PY{k}{end}\PY{p}{;}
 \end{Verbatim}
 
 
-\begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}1}]:} Dict\{String,Array\{Float32,1\}\} with 185 entries:
-          "ferret"       => Float32[0.0945707,-0.435267,0.0109875,-0.107674,0.169001,-0…
-          "gymnastics"   => Float32[-0.269173,-0.343412,-0.00603042,-0.186179,0.0342606…
-          "vegas"        => Float32[-0.00530534,-0.264874,0.0167432,-0.289836,-0.14033,…
-          "archery"      => Float32[0.0279714,-0.485648,0.105468,-0.0696941,0.182807,-0…
-          "jacksonville" => Float32[-0.418758,-0.0284594,0.00847164,-0.0989162,0.098186…
-          "ankara"       => Float32[-0.139109,0.0872892,0.749557,-0.0308427,-0.0936718,…
-          "pentathlon"   => Float32[-0.357405,-0.379595,-0.134314,-0.31008,-0.0245871,-…
-          "seoul"        => Float32[0.0274904,-0.153844,-0.0936614,-0.0269344,-0.091449…
-          "china"        => Float32[0.132423,-0.515862,-0.0381339,-0.287565,-0.285202,-…
-          "korea"        => Float32[0.236904,-0.128355,-0.0816942,-0.0702621,-0.148426,…
-          "argentina"    => Float32[-0.113967,-0.437523,-0.226014,-0.439572,-0.230062,-…
-          "mozambique"   => Float32[0.309411,-0.13457,-0.632055,-0.309943,0.040591,0.11…
-          "iraq"         => Float32[-0.260673,0.0356129,0.104878,0.103836,-0.17918,-0.3…
-          "baku"         => Float32[0.182572,0.156322,0.225807,-0.0933851,-0.246997,-0.…
-          "jakarta"      => Float32[0.13052,-0.408592,-0.0138496,-0.415052,0.21523,-0.0…
-          "bogotá"       => Float32[-0.26368,-0.292844,-0.338501,-0.278793,-0.0690988,0…
-          "sacramento"   => Float32[-0.217914,-0.116757,-0.213111,-0.13627,-0.0241341,-…
-          "dhaka"        => Float32[-0.0264262,-0.256298,0.0922423,-0.711511,-0.329286,…
-          "kyiv"         => Float32[-0.0527193,0.219892,-0.298013,-0.594799,-0.452732,-…
-          "houston"      => Float32[-0.301442,-0.133911,-0.17504,-0.0391225,-0.0525875,…
-          "italy"        => Float32[0.246153,-0.0510639,-0.143408,-0.149572,-0.229163,-…
-          "francisco"    => Float32[-0.342338,-0.200734,-0.347174,-0.228947,-0.125513,-…
-          "baghdad"      => Float32[-0.309163,0.00524779,0.287937,0.0294381,-0.173093,-…
-          "dog"          => Float32[0.0509182,-0.479764,0.0209584,-0.0409415,0.0650602,…
-          "kabul"        => Float32[-0.0282727,-0.108688,0.249284,0.119064,-0.163644,-0…
-          ⋮              => ⋮
-\end{Verbatim}
-            
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{all\PYZus{}words} \PY{o}{=} \PY{n}{collect}\PY{p}{(}\PY{n}{keys}\PY{p}{(}\PY{n}{embeddings}\PY{p}{)}\PY{p}{)}
-        \PY{n}{display}\PY{p}{(}\PY{n}{all\PYZus{}words}\PY{p}{)}
-        \PY{n}{embeddings\PYZus{}mat} \PY{o}{=} \PY{n}{hcat}\PY{p}{(}\PY{n}{getindex}\PY{o}{.}\PY{p}{(}\PY{p}{[}\PY{n}{embeddings}\PY{p}{]}\PY{p}{,} \PY{n}{all\PYZus{}words}\PY{p}{)}\PY{o}{.}\PY{o}{.}\PY{o}{.}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{display}\PY{p}{(}\PY{n}{all\PYZus{}words}\PY{p}{)}
+        \PY{n}{embeddings}
 \end{Verbatim}
 
 
     
     \begin{verbatim}
 185-element Array{String,1}:
- "ferret"      
- "gymnastics"  
- "vegas"       
- "archery"     
- "jacksonville"
- "ankara"      
- "pentathlon"  
- "seoul"       
- "china"       
- "korea"       
- "argentina"   
- "mozambique"  
- "iraq"        
+ "China"       
+ "field"       
+ "Iraq"        
+ "Washington"  
+ "India"       
+ "South"       
+ "football"    
+ "Canada"      
+ "London"      
+ "England"     
+ "Australia"   
+ "Japan"       
+ "Pakistan"    
  ⋮             
- "volleyball"  
- "luanda"      
- "ghana"       
- "warsaw"      
- "accra"       
- "indianapolis"
- "las"         
- "russia"      
- "columbus"    
- "thailand"    
- "mesa"        
- "goose"       
+ "taekwondo"   
+ "goldfish"    
+ "Las"         
+ "llama"       
+ "pentathlon"  
+ "alpaca"      
+ "Bogotá"      
+ "yak"         
+ "Antananarivo"
+ "Brasília"    
+ "Usa"         
+ "Yaoundé"     
     \end{verbatim}
 
     
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}2}]:} 100×185 Array\{Float32,2\}:
-          0.0945707   -0.269173    …   0.0859109  -0.215521     0.118283 
-         -0.435267    -0.343412       -0.185847   -0.0846722   -0.40088  
-          0.0109875   -0.00603042      0.131935   -0.452262     0.0091058
-         -0.107674    -0.186179       -0.221565   -0.115309     0.0121521
-          0.169001     0.0342606      -0.0558827  -0.373113    -0.0509757
-         -0.0564122   -0.137685    …  -0.0252548  -0.264813    -0.24657  
-         -0.249841    -0.162321        0.0430546   0.0958876    0.0397347
-         -0.115424    -0.253833        0.161854   -0.274667    -0.120246 
-         -0.302291     0.0844513      -0.263644   -0.158253    -0.0829336
-         -0.0232056    0.138056       -0.476437   -0.1159       0.0935187
-         -0.0826832    0.0510365   …  -0.190116   -0.00022561  -0.338357 
-         -0.11338      0.0767575      -0.0493041  -0.252975    -0.0785137
-         -0.255015    -0.591677        0.0772709   0.180385    -0.134259 
-          ⋮                        ⋱                                     
-         -0.191331    -0.290943       -0.164481   -0.0834075    0.182234 
-          0.0188895   -0.594902       -0.365009    0.0104588    0.205071 
-         -0.1854       0.169166    …  -0.175704   -0.00672958  -0.047146 
-         -0.0505824    0.251584       -0.468982    0.257763    -0.0606379
-         -0.169504     0.189358       -0.0463411  -0.0674982   -0.222475 
-          0.00213797  -0.113193        0.0145402  -0.192454    -0.087933 
-         -0.0281012   -0.07121         0.158821   -0.00851574  -0.51206  
-         -0.064161    -0.132502    …  -0.439959   -0.512601    -0.186174 
-         -0.161479    -0.0524493       0.170235   -0.123051     0.0789853
-          0.0849455   -0.178514       -0.0547684  -0.578576     0.154197 
-          0.0256315   -0.154586        0.0279115  -0.28596      0.0913349
-         -0.0626861    0.312328        0.338198    0.0463355   -0.14829  
+{\color{outcolor}Out[{\color{outcolor}3}]:} 300×185 Array\{Float32,2\}:
+         -0.0269732   -0.129657    0.0646846    …  -0.0523314    0.0111792  
+          0.0499904    0.0643991   0.042243         0.0302394    0.0545651  
+          0.0401002    0.0540952  -0.0221116        0.132239     0.0819807  
+          0.0305697   -0.128798    0.0202965       -0.0261657    0.099548   
+         -0.0471133    0.0152411  -0.0963669        0.00556217   0.0638811  
+         -0.0837969   -0.143395   -0.0346525    …  -0.011281    -0.0351346  
+          0.0557447    0.0097672   0.0396028       -0.0651793   -0.0915629  
+         -0.0168133   -0.129657   -0.118808        -0.0783405   -0.0460476  
+         -0.0240961    0.0119675  -0.0321773       -0.0463776   -0.0883688  
+          0.0126774    0.0403568   0.0676548        0.0152764    0.0282141  
+         -0.0517886    0.115918    0.0103132    …  -0.0523314   -0.0294119  
+         -0.00867639  -0.0755616  -0.00198014       0.100903     0.077722   
+          0.0906301    0.0807135  -0.000959131     -0.0927551    0.00367649 
+          ⋮                                     ⋱                           
+          0.00429324   0.0414301   0.105608        -0.0357232   -0.0670751  
+          0.0697708   -0.0157778   0.0295371        0.0457508   -0.0417889  
+          0.0517886    0.0328435  -0.0339924    …   0.0305528   -0.0117781  
+          0.0321881    0.104327   -0.0260719        0.0288293    0.000827626
+          0.0561044   -0.139961   -0.041583        -0.0927551   -0.0123104  
+          0.0293109    0.0202857   0.0653447       -0.0460642   -0.0129758  
+          0.00233768   0.0880121  -0.0518137       -0.0399536   -0.0243547  
+         -0.0139362    0.0244717   0.0301972    …  -0.055465     0.0377963  
+         -0.0676129    0.0547392  -0.0587442       -0.0311795   -0.097951   
+          0.0507097   -0.0328435  -0.0184813       -0.0463776   -0.0351346  
+          0.0345258   -0.0139531   0.102307         0.0429306   -0.0473785  
+         -0.0293109    0.0377808   0.0358076        0.0374467    0.0686722  
 \end{Verbatim}
             
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}3}]:} \PY{k}{using} \PY{n}{Clustering}
+{\color{incolor}In [{\color{incolor}6}]:} \PY{k}{using} \PY{n}{Clustering}
         \PY{k}{using} \PY{n}{Distances}
+        \PY{k}{using} \PY{n}{LinearAlgebra}
         
-        \PY{n}{similarity} \PY{o}{=} \PY{l+m+mf}{1f0} \PY{o}{\PYZhy{}} \PY{n}{pairwise}\PY{p}{(}\PY{n}{CosineDist}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{embeddings\PYZus{}mat}\PY{p}{)}
+        \PY{n}{similarity} \PY{o}{=} \PY{l+m+mf}{1f0} \PY{o}{.\PYZhy{}} \PY{n}{pairwise}\PY{p}{(}\PY{n}{CosineDist}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{embeddings}\PY{p}{)}
         \PY{n}{availability} \PY{o}{=} \PY{l+m+mf}{0.01}\PY{o}{*}\PY{n}{ones}\PY{p}{(}\PY{n}{size}\PY{p}{(}\PY{n}{similarity}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)} 
         \PY{c}{\PYZsh{} tweaking availability is how you control number of clusters}
         \PY{c}{\PYZsh{} it is the diagonal of the similarity matrix}
@@ -565,14 +521,14 @@ about words.
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}3}]:} Clustering.AffinityPropResult([10,17,24,49,77,84,87,88,91,107,136,148,161,165,174,182],[3,12,2,12,16,6,12,1,1,1  …  14,11,14,16,2,8,16,4,2,3],[9,12,14,9,7,14,7,8,15,7,5,20,5,19,10,24],46,true)
+{\color{outcolor}Out[{\color{outcolor}6}]:} AffinityPropResult([10, 28, 29, 34, 40, 52, 56, 62, 63, 77  …  114, 123, 124, 139, 143, 145, 146, 165, 167, 177], [7, 5, 3, 4, 10, 8, 5, 8, 1, 1  …  14, 22, 19, 22, 14, 22, 20, 20, 7, 20], [5, 13, 8, 8, 12, 7, 11, 12, 4, 6  …  7, 11, 10, 7, 3, 10, 10, 11, 6, 6], 47, true)
 \end{Verbatim}
             
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}4}]:} \PY{k}{for} \PY{p}{(}\PY{n}{cluster\PYZus{}ii}\PY{p}{,} \PY{n}{examplar\PYZus{}ind}\PY{p}{)} \PY{k+kp}{in} \PY{n}{enumerate}\PY{p}{(}\PY{n}{aprop}\PY{o}{.}\PY{n}{exemplars}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}8}]:} \PY{k}{for} \PY{p}{(}\PY{n}{cluster\PYZus{}ii}\PY{p}{,} \PY{n}{examplar\PYZus{}ind}\PY{p}{)} \PY{k+kp}{in} \PY{n}{enumerate}\PY{p}{(}\PY{n}{aprop}\PY{o}{.}\PY{n}{exemplars}\PY{p}{)}
             \PY{n}{println}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZhy{}}\PY{l+s}{\PYZdq{}}\PY{o}{\PYZca{}}\PY{l+m+mi}{32}\PY{p}{)}
             \PY{n}{println}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{E}\PY{l+s}{x}\PY{l+s}{e}\PY{l+s}{m}\PY{l+s}{p}\PY{l+s}{l}\PY{l+s}{a}\PY{l+s}{r}\PY{l+s}{:}\PY{l+s}{ }\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{all\PYZus{}words}\PY{p}{[}\PY{n}{examplar\PYZus{}ind}\PY{p}{]}\PY{p}{)}
-            \PY{n}{cluster\PYZus{}member\PYZus{}inds} \PY{o}{=} \PY{n}{find}\PY{p}{(}\PY{n}{assignments}\PY{p}{(}\PY{n}{aprop}\PY{p}{)}\PY{o}{.==}\PY{n}{cluster\PYZus{}ii}\PY{p}{)}
+            \PY{n}{cluster\PYZus{}member\PYZus{}inds} \PY{o}{=} \PY{n}{findall}\PY{p}{(}\PY{n}{assignments}\PY{p}{(}\PY{n}{aprop}\PY{p}{)}\PY{o}{.==}\PY{n}{cluster\PYZus{}ii}\PY{p}{)}
             \PY{n}{println}\PY{p}{(}\PY{n}{join}\PY{p}{(}\PY{n}{getindex}\PY{o}{.}\PY{p}{(}\PY{p}{[}\PY{n}{all\PYZus{}words}\PY{p}{]}\PY{p}{,} \PY{n}{cluster\PYZus{}member\PYZus{}inds}\PY{p}{)}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{,}\PY{l+s}{ }\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
         \PY{k}{end}
 \end{Verbatim}
@@ -580,53 +536,71 @@ about words.
 
     \begin{Verbatim}[commandchars=\\\{\}]
 --------------------------------
-Exemplar: korea
-seoul, china, korea, pyongyang, japan, vietnam, tokyo, hanoi, taipei
+Exemplar: England
+London, England, Britain, Ireland, Wales
 --------------------------------
-Exemplar: sacramento
-vegas, sacramento, francisco, tucson, seattle, san, albuquerque, denver, portland, fresno, las, mesa
+Exemplar: Atlanta
+Detroit, Houston, Atlanta, Philadelphia, Dallas, Charlotte, Indianapolis, Memphis, Columbus, Nashville, Louisville, Jacksonville, Raleigh
 --------------------------------
-Exemplar: dog
-ferret, dog, goldfish, cattle, dove, yak, duck, llama, mouse, alpaca, pigeon, guineafowl, camel, goose
+Exemplar: Baghdad
+Iraq, Afghanistan, Baghdad, Kabul, Cairo, Beirut, Riyadh, Amman
 --------------------------------
-Exemplar: indonesia
-jakarta, bangkok, myanmar, indonesia, manila, malaysia, philippines, singapore, thailand
+Exemplar: Seattle
+Washington, Chicago, Boston, Seattle, Baltimore, Portland, Milwaukee, Sacramento
 --------------------------------
-Exemplar: iran
-iraq, kabul, uzbekistan, tehran, iran, yemen, afghanistan
+Exemplar: soccer
+field, football, basketball, golf, soccer, hockey, tennis, rugby, wrestling, volleyball, handball, polo
 --------------------------------
-Exemplar: cairo
-ankara, baghdad, algiers, khartoum, rabat, beirut, cairo, algeria, morocco, damascus, amman, egypt, arabia, riyadh
+Exemplar: Moscow
+Russia, Moscow, Ukraine, Baku, Minsk, Kyiv, Tashkent
 --------------------------------
-Exemplar: vienna
-italy, rome, berlin, vienna, stockholm, budapest, paris
+Exemplar: Thailand
+China, Japan, Singapore, Vietnam, Indonesia, Thailand, Malaysia, Philippines, Myanmar, Bangkok, Usa
 --------------------------------
-Exemplar: moscow
-baku, kyiv, bucharest, tashkent, moscow, minsk, ukraine, russia
+Exemplar: Argentina
+South, Canada, Australia, Germany, Spain, Italy, Brazil, Argentina, Venezuela, Colombia, Peru, Angola
 --------------------------------
-Exemplar: colombia
-argentina, bogotá, lima, madrid, venezuela, havana, peru, colombia, brazil, brasília, quito, mexico, santiago, spain, caracas
+Exemplar: Tehran
+Iran, Tehran, Damascus, Ankara
 --------------------------------
-Exemplar: wales
-australia, england, london, wales, britain, rugby, ireland
+Exemplar: Bangladesh
+India, Pakistan, Bangladesh, Nepal, Uzbekistan, Dhaka
 --------------------------------
-Exemplar: poland
-south, france, germany, poland, warsaw
+Exemplar: Seoul
+Beijing, Tokyo, Korea, Seoul, Pyongyang, Jakarta, Taipei, Hanoi
 --------------------------------
-Exemplar: weightlifting
-gymnastics, archery, pentathlon, shooting, diving, swimming, fencing, rowing, taekwondo, cycling, judo, beijing, kayak, wrestling, triathlon, sailing, weightlifting, boxing, equestrian, athens
+Exemplar: Uganda
+Nigeria, Sudan, Kenya, Ghana, Uganda, Ethiopia, Tanzania, Nairobi, Mozambique, Kampala
 --------------------------------
-Exemplar: bangladesh
-dhaka, nepal, pakistan, india, bangladesh
+Exemplar: Morocco
+France, Egypt, Yemen, Algeria, Morocco, Arabia, Rabat
 --------------------------------
-Exemplar: uganda
-mozambique, madagascar, congo, yaoundé, pretoria, sudan, tanzania, angola, nigeria, kenya, kinshasa, antananarivo, kampala, nairobi, ethiopia, uganda, luanda, ghana, accra
+Exemplar: Santiago
+Madrid, Manila, Santiago, Havana, Lima, Francisco, San, Caracas, Quito, Las, Bogotá
 --------------------------------
-Exemplar: volleyball
-basketball, handball, polo, tennis, football, golf, hockey, soccer, badminton, volleyball
+Exemplar: Albuquerque
+Mexico, Denver, Phoenix, Austin, Fresno, Tucson, Omaha, Mesa, Vegas, Albuquerque
 --------------------------------
-Exemplar: columbus
-jacksonville, houston, nashville, raleigh, phoenix, washington, detroit, milwaukee, canada, chicago, usa, austin, field, charlotte, dallas, omaha, memphis, baltimore, atlanta, louisville, philadelphia, boston, indianapolis, columbus
+Exemplar: rat
+mouse, duck, rat, goose, pigeon, ferret, goldfish
+--------------------------------
+Exemplar: dove
+shooting, diving, dove
+--------------------------------
+Exemplar: Budapest
+Paris, Poland, Rome, Berlin, Athens, Vienna, Stockholm, Warsaw, Budapest, Bucharest
+--------------------------------
+Exemplar: rowing
+swimming, cycling, sailing, fencing, gymnastics, rowing, equestrian, triathlon, kayak, pentathlon
+--------------------------------
+Exemplar: Kinshasa
+Congo, Khartoum, Pretoria, Accra, Madagascar, Algiers, Luanda, Kinshasa, Antananarivo, Brasília, Yaoundé
+--------------------------------
+Exemplar: judo
+boxing, archery, badminton, weightlifting, judo, taekwondo
+--------------------------------
+Exemplar: llama
+dog, cattle, camel, llama, alpaca, yak
 
     \end{Verbatim}
 

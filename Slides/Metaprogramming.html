@@ -11952,10 +11952,11 @@ $$</p>
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">f</span><span class="p">(</span><span class="n">du</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">t</span><span class="p">)</span> 
- <span class="n">du</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
- <span class="n">du</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mf">28.0</span><span class="o">-</span><span class="n">u</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="o">-</span> <span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
- <span class="n">du</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="mi">8</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="p">(</span><span class="n">du</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">t</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">begin</span>
+ <span class="n">σ</span><span class="p">,</span> <span class="n">ρ</span><span class="p">,</span> <span class="n">β</span> <span class="o">=</span> <span class="n">p</span>
+ <span class="n">du</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">σ</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+ <span class="n">du</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">ρ</span><span class="o">-</span><span class="n">u</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="o">-</span> <span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+ <span class="n">du</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">β</span><span class="o">*</span><span class="n">u</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
 <span class="k">end</span>
 </pre></div>
 
@@ -11982,7 +11983,7 @@ $$</p>
   <span class="n">dx</span> <span class="o">=</span> <span class="n">σ</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
   <span class="n">dy</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="n">ρ</span><span class="o">-</span><span class="n">z</span><span class="p">)</span> <span class="o">-</span> <span class="n">y</span>
   <span class="n">dz</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="n">β</span><span class="o">*</span><span class="n">z</span>
-<span class="k">end</span> <span class="n">σ</span><span class="o">=&gt;</span><span class="mf">10.</span> <span class="n">ρ</span><span class="o">=&gt;</span><span class="mf">28.</span> <span class="n">β</span><span class="o">=&gt;</span><span class="mf">2.66</span>
+<span class="k">end</span> <span class="n">σ</span> <span class="n">ρ</span> <span class="n">β</span>
 </pre></div>
 
 </div>
@@ -12036,7 +12037,7 @@ $$</p>
 <li>Write a macro, make it work (in the REPL)</li>
 <li>Later, quote it and interpolate in the value</li>
 </ul>
-<p>The Julia manual is very complete on Metaprogramming: <a href="https://docs.julialang.org/en/v1/manual/metaprogramming/">https://docs.julialang.org/en/v1/manual/metaprogramming/</a></p>
+<p>The Julia manual is very complete on Metaprogramming: <a href="http://docs.julialang.org/en/release-0.5/manual/metaprogramming/">http://docs.julialang.org/en/release-0.5/manual/metaprogramming/</a></p>
 <p>One fact that it misses: How to interpolate an expression as an expression (not as a value) into another expression.</p>
 
 </div>

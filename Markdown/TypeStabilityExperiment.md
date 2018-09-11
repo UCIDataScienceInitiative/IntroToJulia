@@ -60,3 +60,20 @@ x=1
 x = 1.0
 @time typestable2(x)
 ```
+
+      0.010574 seconds (15.99 k allocations: 843.985 KiB)
+      0.007988 seconds (13.76 k allocations: 726.462 KiB)
+      0.020086 seconds (217.46 k allocations: 3.943 MiB)
+      0.013769 seconds (203.31 k allocations: 3.225 MiB)
+      0.016915 seconds (17.05 k allocations: 896.674 KiB)
+      0.003922 seconds (1.71 k allocations: 88.008 KiB)
+      0.009934 seconds (15.54 k allocations: 829.981 KiB)
+      0.002742 seconds (524 allocations: 32.446 KiB)
+
+
+
+
+
+    50006.16136107734
+
+

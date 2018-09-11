@@ -60,32 +60,6 @@ a[5]
 
 
 ```julia
-?linspace
-```
-
-    search: [1ml[22m[1mi[22m[1mn[22m[1ms[22m[1mp[22m[1ma[22m[1mc[22m[1me[22m [1mL[22m[1mi[22m[1mn[22m[1mS[22m[1mp[22m[1ma[22m[1mc[22m[1me[22m
-    
-
-
-
-
-
-```
-linspace(start, stop, n=50)
-```
-
-Construct a range of `n` linearly spaced elements from `start` to `stop`.
-
-```jldoctest
-julia> linspace(1.3,2.9,9)
-1.3:0.2:2.9
-```
-
-
-
-
-
-```julia
 struct MyLinSpace
     start
     stop
@@ -113,7 +87,7 @@ l[6]
 
 
 ```julia
-linspace(1,2,50)[6]
+range(1,stop=2,length=50)[6]
 ```
 
 
@@ -155,10 +129,6 @@ a[5]
 
 
 
-    search: [1me[22m[1mn[22m[1md[22m [1me[22m[1mn[22m[1md[22mof [1me[22m[1mn[22m[1md[22mswith [1mE[22m[1mN[22m[1mD[22mIAN_BOM s[1me[22m[1mn[22m[1md[22m app[1me[22m[1mn[22m[1md[22m! Quot[1me[22m[1mN[22mo[1md[22me Rang[1me[22mI[1mn[22m[1md[22mex g[1me[22mti[1mn[22m[1md[22mex
-    
-
-
 ## Operator Problem
 
 
@@ -166,7 +136,8 @@ a[5]
 struct StrangMatrix end
 A = StrangMatrix()
 
-function Base.A_mul_B!(C,A::StrangMatrix,B::AbstractVector)
+using LinearAlgebra
+function LinearAlgebra.mul!(C,A::StrangMatrix,B::AbstractVector)
     for i in 2:length(B)-1
         C[i] = B[i-1] - 2B[i] + B[i+1]
     end
@@ -175,7 +146,7 @@ function Base.A_mul_B!(C,A::StrangMatrix,B::AbstractVector)
     C
 end
 
-Base.:*(A::StrangMatrix,B::AbstractVector) = (C = similar(B); A_mul_B!(C,A,B))
+Base.:*(A::StrangMatrix,B::AbstractVector) = (C = similar(B); mul!(C,A,B))
 ```
 
 
@@ -220,32 +191,32 @@ b = sin.(0:0.1:2π)
 
 
     63-element Array{Float64,1}:
-      0.0      
-      0.0998334
-      0.198669 
-      0.29552  
-      0.389418 
-      0.479426 
-      0.564642 
-      0.644218 
-      0.717356 
-      0.783327 
-      0.841471 
-      0.891207 
-      0.932039 
-      ⋮        
-     -0.925815 
-     -0.883455 
-     -0.832267 
-     -0.772764 
-     -0.70554  
-     -0.631267 
-     -0.550686 
-     -0.464602 
-     -0.373877 
-     -0.279415 
-     -0.182163 
-     -0.0830894
+      0.0                
+      0.09983341664682815
+      0.19866933079506122
+      0.2955202066613396 
+      0.3894183423086505 
+      0.479425538604203  
+      0.5646424733950355 
+      0.6442176872376911 
+      0.7173560908995228 
+      0.7833269096274834 
+      0.8414709848078965 
+      0.8912073600614354 
+      0.9320390859672264 
+      ⋮                  
+     -0.9258146823277321 
+     -0.8834546557201531 
+     -0.8322674422239008 
+     -0.7727644875559871 
+     -0.7055403255703919 
+     -0.6312666378723208 
+     -0.5506855425976376 
+     -0.4646021794137566 
+     -0.373876664830236  
+     -0.27941549819892586
+     -0.18216250427209502
+     -0.0830894028174964 
 
 
 
@@ -253,7 +224,7 @@ b = sin.(0:0.1:2π)
 ```julia
 A = SizedStrangMatrix((length(b),length(b)))
 
-function Base.A_mul_B!(C,A::SizedStrangMatrix,B)
+function LinearAlgebra.mul!(C,A::SizedStrangMatrix,B)
     for i in 2:length(B)-1
         C[i] = B[i-1] - 2B[i] + B[i+1]
     end
@@ -261,7 +232,7 @@ function Base.A_mul_B!(C,A::SizedStrangMatrix,B)
     C[end] = B[end-1] - 2B[end]
     C
 end
-Base.:*(A::SizedStrangMatrix,B::AbstractVector) = (C = similar(B); A_mul_B!(C,A,B))
+Base.:*(A::SizedStrangMatrix,B::AbstractVector) = (C = similar(B); mul!(C,A,B))
 ```
 
 
@@ -274,32 +245,32 @@ x = gmres(A,b,tol=1e-14)
 
 
     63-element Array{Float64,1}:
-       -9.75574
-      -19.5118 
-      -29.1685 
-      -38.6273 
-      -47.7917 
-      -56.5679 
-      -64.8662 
-      -72.6018 
-      -79.6955 
-      -86.0744 
-      -91.6729 
-      -96.4332 
-     -100.306  
-        ⋮      
-       92.7311 
-       88.6305 
-       83.6451 
-       77.8263 
-       71.2334 
-       63.934  
-       56.0017 
-       47.5193 
-       38.5723 
-       29.2516 
-       19.6511 
-        9.86787
+       -9.755738784527166
+      -19.511766690859723
+      -29.168509953717926
+      -38.62733151652308 
+      -47.79172939964289 
+      -56.567920000176755
+      -64.86624757504093 
+      -72.60180867498484 
+      -79.69549984767762 
+      -86.07440664159829 
+      -91.67293002909796 
+      -96.43316292771152 
+     -100.30568365156476 
+        ⋮                
+       92.73105600644514 
+       88.6304815198612  
+       83.64512976504756 
+       77.82628337498842 
+       71.23343662444809 
+       63.93401241944272 
+       56.00167853409517 
+       47.51925322977693 
+       38.572331686261165
+       29.25162537589525 
+       19.65105899819377 
+        9.867868177542748
 
 
 
@@ -312,32 +283,32 @@ A*x - b
 
 
     63-element Array{Float64,1}:
-     -0.000289122
-     -0.000548773
-     -0.000747631
-     -0.00109653 
-     -0.00121106 
-     -0.00156251 
-     -0.001876   
-     -0.00234776 
-     -0.00257171 
-     -0.0029435  
-     -0.0031805  
-     -0.00349519 
-     -0.00378336 
-      ⋮          
-     -0.00139662 
-     -0.00132261 
-     -0.00122719 
-     -0.00123587 
-     -0.00103713 
-     -0.00164304 
-      0.000594124
-      0.00010594 
-      9.1898e-5  
-     -0.000444569
-     -0.000461939
-     -0.00158795 
+     -0.00028912180539109045
+     -0.0005487731724762024 
+     -0.0007476307420101191 
+     -0.0010965269760021545 
+     -0.0012110597227052433 
+     -0.0015625129345115951 
+     -0.0018759984747689362 
+     -0.00234775998656922   
+     -0.0025717121273999277 
+     -0.002943503206488285  
+     -0.0031804959217944795 
+     -0.00349518530111137   
+     -0.00378335609624314   
+      ⋮                     
+     -0.001396616777037063  
+     -0.0013226125095587848 
+     -0.001227193021585582  
+     -0.0012358729252088807 
+     -0.0010371288946419144 
+     -0.0016430424698667956 
+      0.0005941236269499939 
+      0.00010594021623389072
+      9.189798008585326e-5  
+     -0.0004445691366434801 
+     -0.000461938677442153  
+     -0.001587954074231443  
 
 
 
@@ -372,6 +343,49 @@ gr()
 scatter(X,y)
 Plots.abline!(b[1],0.0, lw=3) # Slope,Intercept
 ```
+
+    [0.400269, 0.834389, 0.0869948, -0.00661511]
+
+
+    ┌ Info: Precompiling MultivariateStats [6f286f6a-111f-5878-ab1e-185364afe411]
+    └ @ Base loading.jl:1186
+    ERROR: LoadError: UndefVarError: LinAlg not defined
+    Stacktrace:
+     [1] include at ./boot.jl:317 [inlined]
+     [2] include_relative(::Module, ::String) at ./loading.jl:1038
+     [3] include(::Module, ::String) at ./sysimg.jl:29
+     [4] top-level scope at none:2
+     [5] eval at ./boot.jl:319 [inlined]
+     [6] eval(::Expr) at ./client.jl:389
+     [7] top-level scope at ./none:3
+    in expression starting at /home/chrisrackauckas/.julia/packages/MultivariateStats/wGpiN/src/MultivariateStats.jl:8
+
+
+
+    Failed to precompile MultivariateStats [6f286f6a-111f-5878-ab1e-185364afe411] to /home/chrisrackauckas/.julia/compiled/v1.0/MultivariateStats/l7I74.ji.
+
+    
+
+    Stacktrace:
+
+     [1] error(::String) at ./error.jl:33
+
+     [2] macro expansion at ./logging.jl:313 [inlined]
+
+     [3] compilecache(::Base.PkgId, ::String) at ./loading.jl:1184
+
+     [4] macro expansion at ./logging.jl:311 [inlined]
+
+     [5] _require(::Base.PkgId) at ./loading.jl:941
+
+     [6] require(::Base.PkgId) at ./loading.jl:852
+
+     [7] macro expansion at ./logging.jl:311 [inlined]
+
+     [8] require(::Module, ::Symbol) at ./loading.jl:834
+
+     [9] top-level scope at In[33]:10
+
 
 ## Type Hierarchy Problem
 
@@ -439,6 +453,7 @@ Solution is from: https://github.com/joshday/Talks/blob/master/SLG2016_IntroToJu
 
 
 ```julia
+using Distributions
 function myquantile(d::UnivariateDistribution, q::Number)
     θ = mean(d)
     tol = Inf
@@ -456,3 +471,14 @@ for dist in [Gamma(5, 1), Normal(0, 1), Beta(2, 4)]
     println()
 end
 ```
+
+    myquantile(dist, 0.75) = 6.274430698436519
+    quantile(dist, 0.75) = 6.2744306984446885
+    
+    myquantile(dist, 0.75) = 0.6744897501960708
+    quantile(dist, 0.75) = 0.6744897501960818
+    
+    myquantile(dist, 0.75) = 0.45418056477357555
+    quantile(dist, 0.75) = 0.4541805647736157
+    
+

@@ -76,10 +76,11 @@ The badges on a Github repository show you the current state of the repo. From l
 
 ### Adding a Package
 
-Julia's package manager functions are mirror the Git functions. Julia's package system is similar to R/Python in that a large number of packages are freely available. You search for them in places like [Julia's Package Genie](http://genieframework.com/packages), or from the [Julia Package Listing](http://pkg.julialang.org/). Let's take a look at the [Plots.jl package by Tom Breloff](https://github.com/tbreloff/Plots.jl). To add a package, use `Pkg.add`
+Julia's package manager functions are mirror the Git functions. Julia's package system is similar to R/Python in that a large number of packages are freely available. You search for them in places like [Julia Observer](https://juliaobserver.com/), or from the [Julia Package Listing](http://pkg.julialang.org/). Let's take a look at the [Plots.jl package by Tom Breloff](https://github.com/tbreloff/Plots.jl). To add a package, use `Pkg.add`
 
 
 ```julia
+using Pkg
 Pkg.update() # You may need to update your local packages first
 Pkg.add("Plots")
 ```
@@ -144,15 +145,3 @@ Pkg.checkout("Plots","dev")
 ```
 
 This is not advised if you don't know what you're doing (i.e. talk to the developer or read the pull requests (PR)), but this is common if you talk to a developer and they say "yes, I already implemented that. Checkout the dev branch and use `plot(...)`).
-
-## Easter Egg Hunt
-
-There is an Easter egg hidden in the repository. To find it, checkout the "Easter" branch of the workshop repository (https://github.com/UCIDataScienceInitiative/IntroToJulia) and use the commands:
-
-
-```julia
-using IntroToJulia
-find_easter()
-```
-
-This will give you instructions for how to hunt down the Easter egg.

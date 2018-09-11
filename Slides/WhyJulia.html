@@ -12436,7 +12436,7 @@ L36:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>That's a very visual demonstration on why Julia achieves such higher performance than other scripting languages.</p>
+<p>That's a very visual demonstration on why Julia achieves such higher performance than other scripting languages by how it uses type inference.</p>
 
 </div>
 </div>
@@ -12561,7 +12561,7 @@ Stacktrace:
 </div></div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="kt">Vector</span><span class="p">{</span><span class="kt">Any</span><span class="p">}(</span><span class="n">undef</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
@@ -12581,7 +12581,7 @@ Stacktrace:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[25]:</div>
+<div class="prompt output_prompt">Out[14]:</div>
 
 
 
@@ -12610,7 +12610,7 @@ Stacktrace:
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="kt">Vector</span><span class="p">{</span><span class="kt">Union</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="kt">Int</span><span class="p">}}(</span><span class="n">undef</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
@@ -12630,7 +12630,7 @@ Stacktrace:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[26]:</div>
+<div class="prompt output_prompt">Out[15]:</div>
 
 
 
@@ -12652,7 +12652,7 @@ Stacktrace:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This will only accept floating point numbers and integers. However, it is still an abstract type. A function which is called on an abstract type cannot know the type of any element (since, in this example, any element can be either a float or an integer). Thus the optimization that was achieved by multiple-dispatch, knowing the type each step of the way, is no longer present. Therefore the optimizations are gone and Julia will slow down to the speed of other scripting languages. Note that small Union types have special optimizations which make them do okay even though they aren't strictly typed!</p>
+<p>This will only accept floating point numbers and integers. However, it is still an abstract type. A function which is called on an abstract type cannot know the type of any element (since, in this example, any element can be either a float or an integer). Thus the optimization that was achieved by multiple-dispatch, knowing the type each step of the way, is no longer present. Therefore the optimizations are gone and Julia will slow down to the speed of other scripting languages.</p>
 <p>This leads to the performance principle: use strict typing whenever possible. There are other advantages: a strictly typed <code>Vector{Float64}</code> is actually byte-compatible with C/Fortran, and so it can be used directly by C/Fortran programs without conversion.</p>
 
 </div>
@@ -12687,7 +12687,7 @@ Stacktrace:
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="nd">@code_warntype</span> <span class="mi">2</span><span class="o">^</span><span class="mi">5</span>
@@ -12729,11 +12729,10 @@ Stacktrace:
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="nd">@code_warntype</span> <span class="n">expo</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="nd">@code_warntype</span> <span class="n">expo</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12774,33 +12773,69 @@ Stacktrace:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Notice that it has to make a temporary variable <code>%4</code> to return an <code>Int64</code> when the exponent is positive, but it needs to return <code>%10</code> which is a <code>Float64</code> when the exponent is negative, and so the output type is the non-strict <code>Union{Float64,Int64}</code>.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>A nice package which helps for identifying such issues is Traceur.jl. Here's an example of using it on our <code>expo</code> function:</p>
+<p>Notice that possible returns are the temporary <code>%4</code> and <code>%10</code> which are different types, and so the return type is inferred as <code>Union{Float64,Int64}</code>. To trace exactly to where this instability occurs, we can use Traceur.jl:</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">Traceur</span>
-<span class="nd">@trace</span> <span class="n">expo</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="nd">@trace</span> <span class="n">expo</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>┌ Warning: x is assigned as Int64
+└ @ In[8]:2
+┌ Warning: x is assigned as Float64
+└ @ In[8]:5
+┌ Warning: expo returns Union{Float64, Int64}
+└ @ In[8]:2
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[19]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>32</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This tells us that on line 2 <code>x</code> is assigned to an <code>Int</code> while on line 5 it's assigned to a <code>Float64</code>, and so it's inferred as <code>Union{Float64, Int64}</code>. Line 5 is where we put the explicit <code>convert</code> call, so this identified exactly the issue for us.</p>
+
+</div>
+</div>
 </div></div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
@@ -12814,10 +12849,10 @@ Stacktrace:
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">foo</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">}(</span><span class="n">array</span><span class="o">::</span><span class="kt">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">})</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">foo</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
   <span class="k">for</span> <span class="n">i</span> <span class="kp">in</span> <span class="n">eachindex</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
     <span class="n">val</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="c"># do algorithm X on val</span>
@@ -12826,6 +12861,26 @@ Stacktrace:
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[17]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>foo (generic function with 1 method)</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -12841,15 +12896,35 @@ Stacktrace:
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">inner_foo</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="kt">Number</span><span class="p">}(</span><span class="n">val</span><span class="o">::</span><span class="n">T</span><span class="p">)</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">inner_foo</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
   <span class="c"># Do algorithm X on val</span>
 <span class="k">end</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[18]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>inner_foo (generic function with 1 method)</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -12865,10 +12940,10 @@ Stacktrace:
 </div></div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">foo2</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">}(</span><span class="n">array</span><span class="o">::</span><span class="kt">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">})</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">foo2</span><span class="p">(</span><span class="n">array</span><span class="o">::</span><span class="kt">Array</span><span class="p">)</span>
   <span class="k">for</span> <span class="n">i</span> <span class="kp">in</span> <span class="n">eachindex</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
     <span class="n">inner_foo</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
   <span class="k">end</span>
@@ -12876,6 +12951,26 @@ Stacktrace:
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[20]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>foo2 (generic function with 1 method)</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -12908,7 +13003,7 @@ Stacktrace:
 </div></div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">test</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -12930,7 +13025,7 @@ Stacktrace:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[33]:</div>
+<div class="prompt output_prompt">Out[21]:</div>
 
 
 
@@ -12956,7 +13051,7 @@ Stacktrace:
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">3</span>
@@ -12964,7 +13059,6 @@ Stacktrace:
     <span class="n">a</span> <span class="o">+</span> <span class="mi">2</span>
 <span class="k">end</span>
 <span class="n">a</span> <span class="o">=</span> <span class="mf">3.0</span>
-<span class="n">badidea</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -12977,13 +13071,13 @@ Stacktrace:
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[3]:</div>
+<div class="prompt output_prompt">Out[22]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>5.0</pre>
+<pre>3.0</pre>
 </div>
 
 </div>
@@ -13003,14 +13097,13 @@ Stacktrace:
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="kd">const</span> <span class="n">a_cons</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="k">function</span> <span class="n">badidea</span><span class="p">()</span>
     <span class="n">a_cons</span> <span class="o">+</span> <span class="mi">2</span>
 <span class="k">end</span>
-<span class="n">a_cons</span> <span class="o">=</span> <span class="mf">3.0</span> <span class="c"># Fails</span>
 </pre></div>
 
 </div>
@@ -13023,27 +13116,15 @@ Stacktrace:
 
 <div class="output_area">
 
-<div class="prompt"></div>
+<div class="prompt output_prompt">Out[23]:</div>
 
 
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>WARNING: redefining constant a_cons
-</pre>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>badidea (generic function with 1 method)</pre>
 </div>
-</div>
 
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-invalid redefinition of constant a_cons
-
-Stacktrace:
- [1] top-level scope at In[1]:6</pre>
-</div>
 </div>
 
 </div>
@@ -13054,7 +13135,7 @@ Stacktrace:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Julia specializes on the type and value of the constant, so this should not be changed after being defined. Julia will give you a warning if you re-define it: use caution if you see this warning since the output of functions which have specialized on this could be wrong.</p>
+<p>Beware that functions will specialize using the value of the constants, so they should go unchanged after being set.</p>
 <p>This will show up when trying to do benchmarks. The most common human error to see is for newcomers to benchmark Julia like:</p>
 
 </div>
@@ -13062,7 +13143,7 @@ Stacktrace:
 </div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mf">3.0</span>
@@ -13086,7 +13167,7 @@ Stacktrace:
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>  0.000018 seconds (4 allocations: 64 bytes)
+<pre>  0.000006 seconds (4 allocations: 64 bytes)
 </pre>
 </div>
 </div>
@@ -13106,7 +13187,7 @@ Stacktrace:
 </div></div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">timetest</span><span class="p">()</span>
@@ -13134,7 +13215,7 @@ Stacktrace:
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>  0.000001 seconds
-  0.000001 seconds
+  0.000000 seconds
 </pre>
 </div>
 </div>

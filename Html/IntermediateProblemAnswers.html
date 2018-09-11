@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>IntermediateProblemAnswers</title>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>IntermediateProblemAnswers</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -13,8 +11,8 @@
 *
 */
 /*!
- * Bootstrap v3.3.6 (http://getbootstrap.com)
- * Copyright 2011-2015 Twitter, Inc.
+ * Bootstrap v3.3.7 (http://getbootstrap.com)
+ * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
@@ -1109,7 +1107,6 @@ a:focus {
   text-decoration: underline;
 }
 a:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -2538,7 +2535,6 @@ select[size] {
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -3029,7 +3025,6 @@ select[multiple].input-lg {
 .btn.focus,
 .btn:active.focus,
 .btn.active.focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -8760,6 +8755,9 @@ body > #header .header-bar {
     margin-left: 10px;
   }
 }
+[dir="rtl"] #ipython_notebook {
+  float: right !important;
+}
 #noscript {
   width: auto;
   padding-top: 16px;
@@ -8962,8 +8960,14 @@ span#login_widget > .button .badge,
  *
  * Author: Jupyter Development Team
  */
+[dir="rtl"] #tabs li {
+  float: right;
+}
 ul#tabs {
   margin-bottom: 4px;
+}
+[dir="rtl"] ul#tabs {
+  margin-right: 0px;
 }
 ul#tabs a {
   padding-top: 6px;
@@ -8986,6 +8990,16 @@ ul.breadcrumb span {
 }
 .list_toolbar .tree-buttons {
   padding-top: 1px;
+}
+[dir="rtl"] .list_toolbar .tree-buttons {
+  float: left !important;
+}
+[dir="rtl"] .list_toolbar .pull-right {
+  padding-top: 1px;
+  float: left !important;
+}
+[dir="rtl"] .list_toolbar .pull-left {
+  float: right !important;
 }
 .dynamic-buttons {
   padding-top: 3px;
@@ -9122,6 +9136,9 @@ ul.breadcrumb span {
 #tree-selector {
   padding-right: 0px;
 }
+[dir="rtl"] #tree-selector a {
+  float: right;
+}
 #button-select-all {
   min-width: 50px;
 }
@@ -9211,6 +9228,9 @@ ul#new-menu {
   left: auto;
   right: 0;
 }
+[dir="rtl"] #new-menu {
+  text-align: right;
+}
 .kernel-menu-icon {
   padding-right: 12px;
   width: 24px;
@@ -9255,6 +9275,9 @@ ul#new-menu {
 }
 #running .panel-group .panel .panel-body .list_container .list_item:last-child {
   border-bottom: 0px;
+}
+[dir="rtl"] #running .col-sm-8 {
+  float: right !important;
 }
 .delete-button {
   display: none;
@@ -9551,6 +9574,7 @@ div.cell.selected.jupyter-soft-selected {
   }
 }
 div.inner_cell {
+  min-width: 0;
   /* Old browsers */
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -9571,11 +9595,6 @@ div.inner_cell {
   box-flex: 1;
   /* Modern browsers */
   flex: 1;
-}
-@-moz-document url-prefix() {
-  div.inner_cell {
-    overflow-x: hidden;
-  }
 }
 /* input_area and input_prompt must match in top border and margin for alignment */
 div.input_area {
@@ -11246,7 +11265,7 @@ div#pager .ui-resizable-handle::after {
 }
 .shortcut_key {
   display: inline-block;
-  width: 20ex;
+  width: 21ex;
   text-align: right;
   font-family: monospace;
 }
@@ -11558,6 +11577,7 @@ ul.typeahead-list > li > a {
   box-shadow: 0px 0px 12px 1px rgba(87, 87, 87, 0.2);
 }
 .terminal-app .terminal {
+  width: 100%;
   float: left;
   font-family: monospace;
   color: white;
@@ -11571,6 +11591,9 @@ ul.typeahead-list > li > a {
 .terminal-app .terminal dummy-screen {
   line-height: 1em;
   font-size: 14px;
+}
+.terminal-app .terminal .xterm-rows {
+  padding: 10px;
 }
 .terminal-app .terminal-cursor {
   color: black;
@@ -11703,9 +11726,7 @@ body {
 div#notebook {
   overflow: visible;
   border-top: none;
-}
-
-@media print {
+}@media print {
   div.cell {
     display: block;
     page-break-inside: avoid;
@@ -11726,7 +11747,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -11750,8 +11771,7 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11759,8 +11779,7 @@ div#notebook {
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11770,7 +11789,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">struct</span> <span class="n">MyRange</span>
@@ -11797,7 +11816,11 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[4]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -11812,7 +11835,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">MyRange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
@@ -11827,7 +11850,11 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[9]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[5]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -11842,7 +11869,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">Base</span><span class="o">.</span><span class="n">getindex</span><span class="p">(</span><span class="n">a</span><span class="o">::</span><span class="n">MyRange</span><span class="p">,</span><span class="n">i</span><span class="o">::</span><span class="kt">Int</span><span class="p">)</span> <span class="o">=</span> <span class="n">_MyRange</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
@@ -11857,7 +11884,11 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[12]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[6]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -11870,8 +11901,7 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11881,50 +11911,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="o">?</span><span class="n">linspace</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>search: <span class="ansi-bold">l</span><span class="ansi-bold">i</span><span class="ansi-bold">n</span><span class="ansi-bold">s</span><span class="ansi-bold">p</span><span class="ansi-bold">a</span><span class="ansi-bold">c</span><span class="ansi-bold">e</span> <span class="ansi-bold">L</span><span class="ansi-bold">i</span><span class="ansi-bold">n</span><span class="ansi-bold">S</span><span class="ansi-bold">p</span><span class="ansi-bold">a</span><span class="ansi-bold">c</span><span class="ansi-bold">e</span>
-
-</pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
-
-<div class="output_markdown rendered_html output_subarea output_execute_result">
-
-<pre><code>linspace(start, stop, n=50)</code></pre>
-<p>Construct a range of <code>n</code> linearly spaced elements from <code>start</code> to <code>stop</code>.</p>
-
-<pre><code>jldoctest
-julia&gt; linspace(1.3,2.9,9)
-1.3:0.2:2.9</code></pre>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">struct</span> <span class="n">MyLinSpace</span>
@@ -11946,7 +11933,7 @@ julia&gt; linspace(1.3,2.9,9)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="n">MyLinSpace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
@@ -11961,7 +11948,11 @@ julia&gt; linspace(1.3,2.9,9)
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[26]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[8]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -11976,10 +11967,10 @@ julia&gt; linspace(1.3,2.9,9)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">50</span><span class="p">)[</span><span class="mi">6</span><span class="p">]</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">stop</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">length</span><span class="o">=</span><span class="mi">50</span><span class="p">)[</span><span class="mi">6</span><span class="p">]</span>
 </pre></div>
 
 </div>
@@ -11990,7 +11981,11 @@ julia&gt; linspace(1.3,2.9,9)
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[27]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[10]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12003,8 +11998,7 @@ julia&gt; linspace(1.3,2.9,9)
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12014,7 +12008,7 @@ julia&gt; linspace(1.3,2.9,9)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="p">(</span><span class="n">a</span><span class="o">::</span><span class="n">MyRange</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">start</span> <span class="o">+</span> <span class="n">a</span><span class="o">.</span><span class="n">step</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
@@ -12030,7 +12024,11 @@ julia&gt; linspace(1.3,2.9,9)
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[29]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[11]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12043,8 +12041,7 @@ julia&gt; linspace(1.3,2.9,9)
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12054,7 +12051,7 @@ julia&gt; linspace(1.3,2.9,9)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">Unitful</span>
@@ -12070,7 +12067,11 @@ julia&gt; linspace(1.3,2.9,9)
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[32]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[12]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12079,20 +12080,11 @@ julia&gt; linspace(1.3,2.9,9)
 
 </div>
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>search: <span class="ansi-bold">e</span><span class="ansi-bold">n</span><span class="ansi-bold">d</span> <span class="ansi-bold">e</span><span class="ansi-bold">n</span><span class="ansi-bold">d</span>of <span class="ansi-bold">e</span><span class="ansi-bold">n</span><span class="ansi-bold">d</span>swith <span class="ansi-bold">E</span><span class="ansi-bold">N</span><span class="ansi-bold">D</span>IAN_BOM s<span class="ansi-bold">e</span><span class="ansi-bold">n</span><span class="ansi-bold">d</span> app<span class="ansi-bold">e</span><span class="ansi-bold">n</span><span class="ansi-bold">d</span>! Quot<span class="ansi-bold">e</span><span class="ansi-bold">N</span>o<span class="ansi-bold">d</span>e Rang<span class="ansi-bold">e</span>I<span class="ansi-bold">n</span><span class="ansi-bold">d</span>ex g<span class="ansi-bold">e</span>ti<span class="ansi-bold">n</span><span class="ansi-bold">d</span>ex
-
-</pre>
 </div>
 </div>
 
 </div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12102,13 +12094,14 @@ julia&gt; linspace(1.3,2.9,9)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[56]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">struct</span> <span class="n">StrangMatrix</span> <span class="k">end</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">StrangMatrix</span><span class="p">()</span>
 
-<span class="k">function</span> <span class="n">Base</span><span class="o">.</span><span class="n">A_mul_B!</span><span class="p">(</span><span class="n">C</span><span class="p">,</span><span class="n">A</span><span class="o">::</span><span class="n">StrangMatrix</span><span class="p">,</span><span class="n">B</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="p">)</span>
+<span class="k">using</span> <span class="n">LinearAlgebra</span>
+<span class="k">function</span> <span class="n">LinearAlgebra</span><span class="o">.</span><span class="n">mul!</span><span class="p">(</span><span class="n">C</span><span class="p">,</span><span class="n">A</span><span class="o">::</span><span class="n">StrangMatrix</span><span class="p">,</span><span class="n">B</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="kp">in</span> <span class="mi">2</span><span class="o">:</span><span class="n">length</span><span class="p">(</span><span class="n">B</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
         <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">end</span>
@@ -12117,7 +12110,7 @@ julia&gt; linspace(1.3,2.9,9)
     <span class="n">C</span>
 <span class="k">end</span>
 
-<span class="n">Base</span><span class="o">.:*</span><span class="p">(</span><span class="n">A</span><span class="o">::</span><span class="n">StrangMatrix</span><span class="p">,</span><span class="n">B</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">C</span> <span class="o">=</span> <span class="n">similar</span><span class="p">(</span><span class="n">B</span><span class="p">);</span> <span class="n">A_mul_B!</span><span class="p">(</span><span class="n">C</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">))</span>
+<span class="n">Base</span><span class="o">.:*</span><span class="p">(</span><span class="n">A</span><span class="o">::</span><span class="n">StrangMatrix</span><span class="p">,</span><span class="n">B</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">C</span> <span class="o">=</span> <span class="n">similar</span><span class="p">(</span><span class="n">B</span><span class="p">);</span> <span class="n">mul!</span><span class="p">(</span><span class="n">C</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -12127,7 +12120,7 @@ julia&gt; linspace(1.3,2.9,9)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">A</span><span class="o">*</span><span class="n">ones</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -12141,7 +12134,11 @@ julia&gt; linspace(1.3,2.9,9)
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[38]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[20]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12166,7 +12163,7 @@ julia&gt; linspace(1.3,2.9,9)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[64]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">struct</span> <span class="n">SizedStrangMatrix</span>
@@ -12185,7 +12182,7 @@ julia&gt; linspace(1.3,2.9,9)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[65]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="mi">0</span><span class="o">:</span><span class="mf">0.1</span><span class="o">:</span><span class="mi">2</span><span class="nb">π</span><span class="p">)</span>
@@ -12199,37 +12196,41 @@ julia&gt; linspace(1.3,2.9,9)
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[65]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[22]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
 <pre>63-element Array{Float64,1}:
-  0.0      
-  0.0998334
-  0.198669 
-  0.29552  
-  0.389418 
-  0.479426 
-  0.564642 
-  0.644218 
-  0.717356 
-  0.783327 
-  0.841471 
-  0.891207 
-  0.932039 
-  ⋮        
- -0.925815 
- -0.883455 
- -0.832267 
- -0.772764 
- -0.70554  
- -0.631267 
- -0.550686 
- -0.464602 
- -0.373877 
- -0.279415 
- -0.182163 
- -0.0830894</pre>
+  0.0                
+  0.09983341664682815
+  0.19866933079506122
+  0.2955202066613396 
+  0.3894183423086505 
+  0.479425538604203  
+  0.5646424733950355 
+  0.6442176872376911 
+  0.7173560908995228 
+  0.7833269096274834 
+  0.8414709848078965 
+  0.8912073600614354 
+  0.9320390859672264 
+  ⋮                  
+ -0.9258146823277321 
+ -0.8834546557201531 
+ -0.8322674422239008 
+ -0.7727644875559871 
+ -0.7055403255703919 
+ -0.6312666378723208 
+ -0.5506855425976376 
+ -0.4646021794137566 
+ -0.373876664830236  
+ -0.27941549819892586
+ -0.18216250427209502
+ -0.0830894028174964 </pre>
 </div>
 
 </div>
@@ -12240,12 +12241,12 @@ julia&gt; linspace(1.3,2.9,9)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[66]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">SizedStrangMatrix</span><span class="p">((</span><span class="n">length</span><span class="p">(</span><span class="n">b</span><span class="p">),</span><span class="n">length</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span>
 
-<span class="k">function</span> <span class="n">Base</span><span class="o">.</span><span class="n">A_mul_B!</span><span class="p">(</span><span class="n">C</span><span class="p">,</span><span class="n">A</span><span class="o">::</span><span class="n">SizedStrangMatrix</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+<span class="k">function</span> <span class="n">LinearAlgebra</span><span class="o">.</span><span class="n">mul!</span><span class="p">(</span><span class="n">C</span><span class="p">,</span><span class="n">A</span><span class="o">::</span><span class="n">SizedStrangMatrix</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="kp">in</span> <span class="mi">2</span><span class="o">:</span><span class="n">length</span><span class="p">(</span><span class="n">B</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
         <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">end</span>
@@ -12253,7 +12254,7 @@ julia&gt; linspace(1.3,2.9,9)
     <span class="n">C</span><span class="p">[</span><span class="k">end</span><span class="p">]</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="n">B</span><span class="p">[</span><span class="k">end</span><span class="p">]</span>
     <span class="n">C</span>
 <span class="k">end</span>
-<span class="n">Base</span><span class="o">.:*</span><span class="p">(</span><span class="n">A</span><span class="o">::</span><span class="n">SizedStrangMatrix</span><span class="p">,</span><span class="n">B</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">C</span> <span class="o">=</span> <span class="n">similar</span><span class="p">(</span><span class="n">B</span><span class="p">);</span> <span class="n">A_mul_B!</span><span class="p">(</span><span class="n">C</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">))</span>
+<span class="n">Base</span><span class="o">.:*</span><span class="p">(</span><span class="n">A</span><span class="o">::</span><span class="n">SizedStrangMatrix</span><span class="p">,</span><span class="n">B</span><span class="o">::</span><span class="kt">AbstractVector</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">C</span> <span class="o">=</span> <span class="n">similar</span><span class="p">(</span><span class="n">B</span><span class="p">);</span> <span class="n">mul!</span><span class="p">(</span><span class="n">C</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -12263,7 +12264,7 @@ julia&gt; linspace(1.3,2.9,9)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[73]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">IterativeSolvers</span>
@@ -12278,37 +12279,41 @@ julia&gt; linspace(1.3,2.9,9)
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[73]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[29]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
 <pre>63-element Array{Float64,1}:
-   -9.75574
-  -19.5118 
-  -29.1685 
-  -38.6273 
-  -47.7917 
-  -56.5679 
-  -64.8662 
-  -72.6018 
-  -79.6955 
-  -86.0744 
-  -91.6729 
-  -96.4332 
- -100.306  
-    ⋮      
-   92.7311 
-   88.6305 
-   83.6451 
-   77.8263 
-   71.2334 
-   63.934  
-   56.0017 
-   47.5193 
-   38.5723 
-   29.2516 
-   19.6511 
-    9.86787</pre>
+   -9.755738784527166
+  -19.511766690859723
+  -29.168509953717926
+  -38.62733151652308 
+  -47.79172939964289 
+  -56.567920000176755
+  -64.86624757504093 
+  -72.60180867498484 
+  -79.69549984767762 
+  -86.07440664159829 
+  -91.67293002909796 
+  -96.43316292771152 
+ -100.30568365156476 
+    ⋮                
+   92.73105600644514 
+   88.6304815198612  
+   83.64512976504756 
+   77.82628337498842 
+   71.23343662444809 
+   63.93401241944272 
+   56.00167853409517 
+   47.51925322977693 
+   38.572331686261165
+   29.25162537589525 
+   19.65105899819377 
+    9.867868177542748</pre>
 </div>
 
 </div>
@@ -12319,7 +12324,7 @@ julia&gt; linspace(1.3,2.9,9)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[75]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">A</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="n">b</span>
@@ -12333,37 +12338,41 @@ julia&gt; linspace(1.3,2.9,9)
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[75]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[30]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
 <pre>63-element Array{Float64,1}:
- -0.000289122
- -0.000548773
- -0.000747631
- -0.00109653 
- -0.00121106 
- -0.00156251 
- -0.001876   
- -0.00234776 
- -0.00257171 
- -0.0029435  
- -0.0031805  
- -0.00349519 
- -0.00378336 
-  ⋮          
- -0.00139662 
- -0.00132261 
- -0.00122719 
- -0.00123587 
- -0.00103713 
- -0.00164304 
-  0.000594124
-  0.00010594 
-  9.1898e-5  
- -0.000444569
- -0.000461939
- -0.00158795 </pre>
+ -0.00028912180539109045
+ -0.0005487731724762024 
+ -0.0007476307420101191 
+ -0.0010965269760021545 
+ -0.0012110597227052433 
+ -0.0015625129345115951 
+ -0.0018759984747689362 
+ -0.00234775998656922   
+ -0.0025717121273999277 
+ -0.002943503206488285  
+ -0.0031804959217944795 
+ -0.00349518530111137   
+ -0.00378335609624314   
+  ⋮                     
+ -0.001396616777037063  
+ -0.0013226125095587848 
+ -0.001227193021585582  
+ -0.0012358729252088807 
+ -0.0010371288946419144 
+ -0.0016430424698667956 
+  0.0005941236269499939 
+  0.00010594021623389072
+  9.189798008585326e-5  
+ -0.0004445691366434801 
+ -0.000461938677442153  
+ -0.001587954074231443  </pre>
 </div>
 
 </div>
@@ -12372,8 +12381,7 @@ julia&gt; linspace(1.3,2.9,9)
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12383,7 +12391,7 @@ julia&gt; linspace(1.3,2.9,9)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="c">#### Prepare Data</span>
@@ -12418,9 +12426,70 @@ julia&gt; linspace(1.3,2.9,9)
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[0.400269, 0.834389, 0.0869948, -0.00661511]
+</pre>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+</div>
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>┌ Info: Precompiling MultivariateStats [6f286f6a-111f-5878-ab1e-185364afe411]
+└ @ Base loading.jl:1186
+ERROR: LoadError: UndefVarError: LinAlg not defined
+Stacktrace:
+ [1] include at ./boot.jl:317 [inlined]
+ [2] include_relative(::Module, ::String) at ./loading.jl:1038
+ [3] include(::Module, ::String) at ./sysimg.jl:29
+ [4] top-level scope at none:2
+ [5] eval at ./boot.jl:319 [inlined]
+ [6] eval(::Expr) at ./client.jl:389
+ [7] top-level scope at ./none:3
+in expression starting at /home/chrisrackauckas/.julia/packages/MultivariateStats/wGpiN/src/MultivariateStats.jl:8
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+Failed to precompile MultivariateStats [6f286f6a-111f-5878-ab1e-185364afe411] to /home/chrisrackauckas/.julia/compiled/v1.0/MultivariateStats/l7I74.ji.
+
+Stacktrace:
+ [1] error(::String) at ./error.jl:33
+ [2] macro expansion at ./logging.jl:313 [inlined]
+ [3] compilecache(::Base.PkgId, ::String) at ./loading.jl:1184
+ [4] macro expansion at ./logging.jl:311 [inlined]
+ [5] _require(::Base.PkgId) at ./loading.jl:941
+ [6] require(::Base.PkgId) at ./loading.jl:852
+ [7] macro expansion at ./logging.jl:311 [inlined]
+ [8] require(::Module, ::Symbol) at ./loading.jl:834
+ [9] top-level scope at In[33]:10</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12430,7 +12499,7 @@ julia&gt; linspace(1.3,2.9,9)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[80]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="k">abstract</span> <span class="k">type</span> <span class="n">AbstractPerson</span> <span class="k">end</span>
@@ -12462,7 +12531,11 @@ julia&gt; linspace(1.3,2.9,9)
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[80]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[34]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12477,7 +12550,7 @@ julia&gt; linspace(1.3,2.9,9)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[78]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">person_info</span><span class="p">(</span><span class="n">Person</span><span class="p">(</span><span class="s">&quot;Bob&quot;</span><span class="p">))</span>
@@ -12491,7 +12564,11 @@ julia&gt; linspace(1.3,2.9,9)
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Bob
 </pre>
@@ -12504,7 +12581,7 @@ julia&gt; linspace(1.3,2.9,9)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[81]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">person_info</span><span class="p">(</span><span class="n">Student</span><span class="p">(</span><span class="s">&quot;Bob&quot;</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
@@ -12518,7 +12595,11 @@ julia&gt; linspace(1.3,2.9,9)
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Bob
 2
@@ -12532,7 +12613,7 @@ julia&gt; linspace(1.3,2.9,9)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[82]:</div>
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">person_info</span><span class="p">(</span><span class="n">GraduateStudent</span><span class="p">(</span><span class="s">&quot;Bob&quot;</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
@@ -12546,7 +12627,11 @@ julia&gt; linspace(1.3,2.9,9)
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Bob
 2
@@ -12558,8 +12643,7 @@ julia&gt; linspace(1.3,2.9,9)
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12571,10 +12655,11 @@ julia&gt; linspace(1.3,2.9,9)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">myquantile</span><span class="p">(</span><span class="n">d</span><span class="o">::</span><span class="n">UnivariateDistribution</span><span class="p">,</span> <span class="n">q</span><span class="o">::</span><span class="kt">Number</span><span class="p">)</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">Distributions</span>
+<span class="k">function</span> <span class="n">myquantile</span><span class="p">(</span><span class="n">d</span><span class="o">::</span><span class="n">UnivariateDistribution</span><span class="p">,</span> <span class="n">q</span><span class="o">::</span><span class="kt">Number</span><span class="p">)</span>
     <span class="n">θ</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
     <span class="n">tol</span> <span class="o">=</span> <span class="nb">Inf</span>
     <span class="k">while</span> <span class="n">tol</span> <span class="o">&gt;</span> <span class="mf">1e-5</span>
@@ -12596,8 +12681,38 @@ julia&gt; linspace(1.3,2.9,9)
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>myquantile(dist, 0.75) = 6.274430698436519
+quantile(dist, 0.75) = 6.2744306984446885
+
+myquantile(dist, 0.75) = 0.6744897501960708
+quantile(dist, 0.75) = 0.6744897501960818
+
+myquantile(dist, 0.75) = 0.45418056477357555
+quantile(dist, 0.75) = 0.4541805647736157
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
     </div>
   </div>
 </body>
+
+ 
+
+
 </html>

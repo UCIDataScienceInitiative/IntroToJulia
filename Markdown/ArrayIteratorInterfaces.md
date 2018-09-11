@@ -23,8 +23,9 @@ One usage example is in DifferentialEquations.jl. When you solve a differential 
 
 
 ```julia
-using DifferentialEquations, DiffEqProblemLibrary
-sol = solve(prob_ode_linear)
+using DifferentialEquations
+prob = ODEProblem((u,p,t)->1.01u,0.5,(0.0,1.0))
+sol = solve(prob)
 ```
 
 
@@ -33,17 +34,17 @@ sol = solve(prob_ode_linear)
     retcode: Success
     Interpolation: 3rd order Hermite
     t: 5-element Array{Float64,1}:
-     0.0      
-     0.0996426
-     0.345703 
-     0.677692 
-     1.0      
+     0.0                
+     0.09964258706516003
+     0.3457030604980719 
+     0.6776923233260352 
+     1.0                
     u: 5-element Array{Float64,1}:
-     0.5     
-     0.552939
-     0.708938
-     0.99136 
-     1.3728  
+     0.5               
+     0.552938681151017 
+     0.7089380797962724
+     0.9913595829297396
+     1.3728004409038075
 
 
 

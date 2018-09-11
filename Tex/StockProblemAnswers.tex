@@ -283,7 +283,7 @@
     \subsection{Problem 1 a)}\label{problem-1-a}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}2}]:} \PY{k}{using} \PY{n}{Plots}
+{\color{incolor}In [{\color{incolor}6}]:} \PY{k}{using} \PY{n}{Plots}
         
         \PY{n}{S} \PY{o}{=} \PY{l+m+mi}{100}
         \PY{n}{r} \PY{o}{=} \PY{l+m+mf}{0.08}
@@ -297,7 +297,7 @@
         
         \PY{n}{p\PYZus{}star} \PY{o}{=} \PY{p}{(}\PY{n}{exp}\PY{p}{(}\PY{n}{r}\PY{o}{*}\PY{n}{h}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{d}\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{n}{u} \PY{o}{\PYZhy{}} \PY{n}{d}\PY{p}{)}
         
-        \PY{n}{path} \PY{o}{=} \PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{undef}\PY{p}{,} \PY{n}{n} \PY{o}{+} \PY{l+m+mi}{2}\PY{p}{)}
+        \PY{n}{path} \PY{o}{=} \PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{undef}\PY{p}{,}\PY{n}{n} \PY{o}{+} \PY{l+m+mi}{2}\PY{p}{)}
         
         \PY{c}{\PYZsh{}add in the starting price}
         \PY{n}{path}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{S}
@@ -314,7 +314,7 @@
         \PY{n}{plot}\PY{p}{(}\PY{n}{path}\PY{p}{)}
 \end{Verbatim}
 
-\texttt{\color{outcolor}Out[{\color{outcolor}2}]:}
+\texttt{\color{outcolor}Out[{\color{outcolor}6}]:}
     
     \begin{center}
     \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{StockProblemAnswers_files/StockProblemAnswers_1_0.pdf}
@@ -325,7 +325,7 @@
     \subsection{Problem 1 b)}\label{problem-1-b}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}9}]:} \PY{k}{using} \PY{n}{Plots}
+{\color{incolor}In [{\color{incolor}8}]:} \PY{k}{using} \PY{n}{Plots}
         
         \PY{k}{function} \PY{n}{createPath}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{n}{r}\PY{p}{,} \PY{n}{sigma}\PY{p}{,} \PY{n}{T}\PY{p}{,} \PY{n}{n}\PY{p}{)}
             \PY{n}{h} \PY{o}{=} \PY{n}{T} \PY{o}{/} \PY{n}{n}
@@ -359,7 +359,7 @@
         \PY{n}{p}
 \end{Verbatim}
 
-\texttt{\color{outcolor}Out[{\color{outcolor}9}]:}
+\texttt{\color{outcolor}Out[{\color{outcolor}8}]:}
     
     \begin{center}
     \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{StockProblemAnswers_files/StockProblemAnswers_3_0.pdf}
@@ -370,25 +370,25 @@
     \subsection{1 c) (Optional)}\label{c-optional}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}10}]:} \PY{c}{\PYZsh{} Threads}
-         \PY{c}{\PYZsh{} This will work on shared memory (multicore) machines}
-         
-         \PY{n}{paths} \PY{o}{=} \PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{undef}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}
-         
-         \PY{n}{Threads}\PY{o}{.}\PY{n+nd}{@threads} \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{10}
-             \PY{n}{paths}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{createPath}\PY{p}{(}\PY{l+m+mf}{100.0}\PY{p}{,} \PY{l+m+mf}{0.08}\PY{p}{,} \PY{l+m+mf}{0.3}\PY{p}{,} \PY{l+m+mf}{1.0}\PY{p}{,} \PY{l+m+mi}{10000}\PY{p}{)}
-         \PY{k}{end}
-         
-         \PY{n}{p} \PY{o}{=} \PY{n}{plot}\PY{p}{(}\PY{n}{paths}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{;}
-         \PY{n}{plot!}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{c}\PY{l+s}{k}\PY{l+s}{ }\PY{l+s}{P}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{P}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{xlabel}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{ylabel}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{legend}\PY{o}{=}\PY{k+kc}{false}\PY{p}{)}
-         
-         \PY{k}{for} \PY{n}{k} \PY{k+kp}{in} \PY{l+m+mi}{2}\PY{o}{:}\PY{l+m+mi}{10}
-             \PY{n}{plot!}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{paths}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{p}{)}
-         \PY{k}{end}
-         \PY{n}{p}
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c}{\PYZsh{} Threads}
+        \PY{c}{\PYZsh{} This will work on shared memory (multicore) machines}
+        
+        \PY{n}{paths} \PY{o}{=} \PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{undef}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}
+        
+        \PY{n}{Threads}\PY{o}{.}\PY{n+nd}{@threads} \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{10}
+            \PY{n}{paths}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{createPath}\PY{p}{(}\PY{l+m+mf}{100.0}\PY{p}{,} \PY{l+m+mf}{0.08}\PY{p}{,} \PY{l+m+mf}{0.3}\PY{p}{,} \PY{l+m+mf}{1.0}\PY{p}{,} \PY{l+m+mi}{10000}\PY{p}{)}
+        \PY{k}{end}
+        
+        \PY{n}{p} \PY{o}{=} \PY{n}{plot}\PY{p}{(}\PY{n}{paths}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{;}
+        \PY{n}{plot!}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{c}\PY{l+s}{k}\PY{l+s}{ }\PY{l+s}{P}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{P}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{xlabel}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{ylabel}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{legend}\PY{o}{=}\PY{k+kc}{false}\PY{p}{)}
+        
+        \PY{k}{for} \PY{n}{k} \PY{k+kp}{in} \PY{l+m+mi}{2}\PY{o}{:}\PY{l+m+mi}{10}
+            \PY{n}{plot!}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{paths}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{p}{)}
+        \PY{k}{end}
+        \PY{n}{p}
 \end{Verbatim}
 
-\texttt{\color{outcolor}Out[{\color{outcolor}10}]:}
+\texttt{\color{outcolor}Out[{\color{outcolor}4}]:}
     
     \begin{center}
     \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{StockProblemAnswers_files/StockProblemAnswers_5_0.pdf}
@@ -397,51 +397,53 @@
     
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}14}]:} \PY{c}{\PYZsh{} Distributed parallelism}
-         \PY{c}{\PYZsh{} This will work across multiple computers and multiple nodes of a cluster}
-         
-         \PY{k}{using} \PY{n}{Distributed}
-         
-         \PY{n+nd}{@everywhere} \PY{k}{function} \PY{n}{createPath}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{n}{r}\PY{p}{,} \PY{n}{sigma}\PY{p}{,} \PY{n}{T}\PY{p}{,} \PY{n}{n}\PY{p}{)}
-             \PY{n}{h} \PY{o}{=} \PY{n}{T} \PY{o}{/} \PY{n}{n}
-             \PY{n}{u} \PY{o}{=} \PY{n}{exp}\PY{p}{(}\PY{n}{r}\PY{o}{*}\PY{n}{h} \PY{o}{+} \PY{n}{sigma} \PY{o}{*} \PY{n}{sqrt}\PY{p}{(}\PY{n}{h}\PY{p}{)}\PY{p}{)}
-             \PY{n}{d} \PY{o}{=} \PY{n}{exp}\PY{p}{(}\PY{n}{r}\PY{o}{*}\PY{n}{h} \PY{o}{\PYZhy{}} \PY{n}{sigma} \PY{o}{*} \PY{n}{sqrt}\PY{p}{(}\PY{n}{h}\PY{p}{)}\PY{p}{)}
-         
-             \PY{n}{p\PYZus{}star} \PY{o}{=} \PY{p}{(}\PY{n}{exp}\PY{p}{(}\PY{n}{r}\PY{o}{*}\PY{n}{h}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{d}\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{n}{u} \PY{o}{\PYZhy{}} \PY{n}{d}\PY{p}{)}
-         
-             \PY{n}{path} \PY{o}{=} \PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{undef}\PY{p}{,} \PY{n}{n} \PY{o}{+} \PY{l+m+mi}{2}\PY{p}{)}
-         
-             \PY{c}{\PYZsh{}add in the starting price}
-             \PY{n}{path}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{S}
-         
-             \PY{k}{for} \PY{n}{k} \PY{k+kp}{in} \PY{l+m+mi}{2}\PY{o}{:}\PY{n}{n}\PY{o}{+}\PY{l+m+mi}{2}
-                 \PY{k}{if} \PY{n}{rand}\PY{p}{(}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{n}{p\PYZus{}star}
-                     \PY{c}{\PYZsh{}then we go up}
-                     \PY{n}{path}\PY{p}{[}\PY{n}{k}\PY{p}{]} \PY{o}{=} \PY{n}{path}\PY{p}{[}\PY{n}{k}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{*} \PY{n}{u}
-                 \PY{k}{else}
-                     \PY{n}{path}\PY{p}{[}\PY{n}{k}\PY{p}{]} \PY{o}{=} \PY{n}{path}\PY{p}{[}\PY{n}{k}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{*} \PY{n}{d}
-                 \PY{k}{end}
-             \PY{k}{end}
-             \PY{n}{path}
-         \PY{k}{end}
-         
-         \PY{n}{f} \PY{o}{=} \PY{p}{(}\PY{n}{i}\PY{p}{)} \PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}} \PY{n}{createPath}\PY{p}{(}\PY{l+m+mf}{100.0}\PY{p}{,} \PY{l+m+mf}{0.08}\PY{p}{,} \PY{l+m+mf}{0.3}\PY{p}{,} \PY{l+m+mf}{1.0}\PY{p}{,} \PY{l+m+mi}{10000}\PY{p}{)}
-         \PY{n}{addprocs}\PY{p}{(}\PY{p}{)}
-         \PY{n}{paths} \PY{o}{=} \PY{n}{pmap}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{10}\PY{p}{)}
-         
-         \PY{n}{p} \PY{o}{=} \PY{n}{plot}\PY{p}{(}\PY{n}{paths}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{;}
-         \PY{n}{plot!}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{c}\PY{l+s}{k}\PY{l+s}{ }\PY{l+s}{P}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{P}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{xlabel}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{ylabel}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{legend}\PY{o}{=}\PY{k+kc}{false}\PY{p}{)}
-         
-         \PY{k}{for} \PY{n}{k} \PY{k+kp}{in} \PY{l+m+mi}{2}\PY{o}{:}\PY{l+m+mi}{10}
-             \PY{n}{plot!}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{paths}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{p}{)}
-         \PY{k}{end}
-         \PY{n}{p}
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c}{\PYZsh{} Distributed parallelism}
+        \PY{c}{\PYZsh{} This will work across multiple computers and multiple nodes of a cluster}
+        
+        \PY{k}{using} \PY{n}{Distributed}
+        \PY{n}{addprocs}\PY{p}{(}\PY{p}{)}
+        \PY{n+nd}{@everywhere} \PY{k}{function} \PY{n}{createPath}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{n}{r}\PY{p}{,} \PY{n}{sigma}\PY{p}{,} \PY{n}{T}\PY{p}{,} \PY{n}{n}\PY{p}{)}
+            \PY{n}{h} \PY{o}{=} \PY{n}{T} \PY{o}{/} \PY{n}{n}
+            \PY{n}{u} \PY{o}{=} \PY{n}{exp}\PY{p}{(}\PY{n}{r}\PY{o}{*}\PY{n}{h} \PY{o}{+} \PY{n}{sigma} \PY{o}{*} \PY{n}{sqrt}\PY{p}{(}\PY{n}{h}\PY{p}{)}\PY{p}{)}
+            \PY{n}{d} \PY{o}{=} \PY{n}{exp}\PY{p}{(}\PY{n}{r}\PY{o}{*}\PY{n}{h} \PY{o}{\PYZhy{}} \PY{n}{sigma} \PY{o}{*} \PY{n}{sqrt}\PY{p}{(}\PY{n}{h}\PY{p}{)}\PY{p}{)}
+        
+            \PY{n}{p\PYZus{}star} \PY{o}{=} \PY{p}{(}\PY{n}{exp}\PY{p}{(}\PY{n}{r}\PY{o}{*}\PY{n}{h}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{d}\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{n}{u} \PY{o}{\PYZhy{}} \PY{n}{d}\PY{p}{)}
+        
+            \PY{n}{path} \PY{o}{=} \PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{undef}\PY{p}{,}\PY{n}{n} \PY{o}{+} \PY{l+m+mi}{2}\PY{p}{)}
+        
+            \PY{c}{\PYZsh{}add in the starting price}
+            \PY{n}{path}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{S}
+        
+            \PY{k}{for} \PY{n}{k} \PY{k+kp}{in} \PY{l+m+mi}{2}\PY{o}{:}\PY{n}{n}\PY{o}{+}\PY{l+m+mi}{2}
+                \PY{k}{if} \PY{n}{rand}\PY{p}{(}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{n}{p\PYZus{}star}
+                    \PY{c}{\PYZsh{}then we go up}
+                    \PY{n}{path}\PY{p}{[}\PY{n}{k}\PY{p}{]} \PY{o}{=} \PY{n}{path}\PY{p}{[}\PY{n}{k}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{*} \PY{n}{u}
+                \PY{k}{else}
+                    \PY{n}{path}\PY{p}{[}\PY{n}{k}\PY{p}{]} \PY{o}{=} \PY{n}{path}\PY{p}{[}\PY{n}{k}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{*} \PY{n}{d}
+                \PY{k}{end}
+            \PY{k}{end}
+            \PY{n}{path}
+        \PY{k}{end}
+        
+        \PY{n}{f} \PY{o}{=} \PY{p}{(}\PY{n}{i}\PY{p}{)} \PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}} \PY{n}{createPath}\PY{p}{(}\PY{l+m+mf}{100.0}\PY{p}{,} \PY{l+m+mf}{0.08}\PY{p}{,} \PY{l+m+mf}{0.3}\PY{p}{,} \PY{l+m+mf}{1.0}\PY{p}{,} \PY{l+m+mi}{10000}\PY{p}{)}
+        \PY{n}{paths} \PY{o}{=} \PY{n}{pmap}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{10}\PY{p}{)}
+        
+        \PY{k}{using} \PY{n}{Plots}
+        \PY{n}{p} \PY{o}{=} \PY{n}{plot}\PY{p}{(}\PY{n}{paths}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{;}
+        \PY{n}{plot!}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{c}\PY{l+s}{k}\PY{l+s}{ }\PY{l+s}{P}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{P}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{xlabel}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{d}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{ylabel}\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{legend}\PY{o}{=}\PY{k+kc}{false}\PY{p}{)}
+        
+        \PY{k}{for} \PY{n}{k} \PY{k+kp}{in} \PY{l+m+mi}{2}\PY{o}{:}\PY{l+m+mi}{10}
+            \PY{n}{plot!}\PY{p}{(}\PY{n}{p}\PY{p}{,} \PY{n}{paths}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{p}{)}
+        \PY{k}{end}
+        \PY{n}{p}
 \end{Verbatim}
 
-\texttt{\color{outcolor}Out[{\color{outcolor}14}]:}
+
+    
+    \texttt{\color{outcolor}Out[{\color{outcolor}2}]:}
     
     \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{StockProblemAnswers_files/StockProblemAnswers_6_0.pdf}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{StockProblemAnswers_files/StockProblemAnswers_6_1.pdf}
     \end{center}
     { \hspace*{\fill} \\}
     
@@ -458,31 +460,31 @@ final price.
 for \(n = 100\)
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}16}]:} \PY{k}{function} \PY{n}{computeDistribution}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{n}{r}\PY{p}{,} \PY{n}{sigma}\PY{p}{,} \PY{n}{T}\PY{p}{,} \PY{n}{n}\PY{p}{)}
-         
-             \PY{n}{h} \PY{o}{=} \PY{n}{T} \PY{o}{/} \PY{n}{n}
-             \PY{n}{u} \PY{o}{=} \PY{n}{exp}\PY{p}{(}\PY{n}{r}\PY{o}{*}\PY{n}{h} \PY{o}{+} \PY{n}{sigma} \PY{o}{*} \PY{n}{sqrt}\PY{p}{(}\PY{n}{h}\PY{p}{)}\PY{p}{)}
-             \PY{n}{d} \PY{o}{=} \PY{n}{exp}\PY{p}{(}\PY{n}{r}\PY{o}{*}\PY{n}{h} \PY{o}{\PYZhy{}} \PY{n}{sigma} \PY{o}{*} \PY{n}{sqrt}\PY{p}{(}\PY{n}{h}\PY{p}{)}\PY{p}{)}
-         
-             \PY{n}{p\PYZus{}star} \PY{o}{=} \PY{p}{(}\PY{n}{exp}\PY{p}{(}\PY{n}{r}\PY{o}{*}\PY{n}{h}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{d}\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{n}{u} \PY{o}{\PYZhy{}} \PY{n}{d}\PY{p}{)}
-         
-             \PY{n}{prices} \PY{o}{=} \PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{undef}\PY{p}{,} \PY{n}{n} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}
-             \PY{n}{probs} \PY{o}{=} \PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{undef}\PY{p}{,} \PY{n}{n} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}
-             \PY{k}{for} \PY{n}{k} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{n}\PY{o}{+}\PY{l+m+mi}{1}
-                 \PY{n}{prices}\PY{p}{[}\PY{n}{k}\PY{p}{]} \PY{o}{=} \PY{n}{S} \PY{o}{*} \PY{p}{(}\PY{n}{u} \PY{o}{\PYZca{}} \PY{p}{(}\PY{n}{n}\PY{o}{\PYZhy{}}\PY{n}{k}\PY{p}{)}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{n}{d} \PY{o}{\PYZca{}} \PY{n}{k}\PY{p}{)}
-                 \PY{n}{probs}\PY{p}{[}\PY{n}{k}\PY{p}{]} \PY{o}{=} \PY{n}{binomial}\PY{p}{(}\PY{k+kt}{BigInt}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{,} \PY{k+kt}{BigInt}\PY{p}{(}\PY{n}{k}\PY{p}{)}\PY{p}{)} \PY{o}{*} \PY{n}{p\PYZus{}star}\PY{o}{\PYZca{}}\PY{p}{(}\PY{n}{n}\PY{o}{\PYZhy{}}\PY{n}{k}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{p\PYZus{}star}\PY{p}{)}\PY{o}{\PYZca{}}\PY{n}{k}
-             \PY{k}{end}
-         
-             \PY{n}{scatter}\PY{p}{(}\PY{n}{prices}\PY{p}{,} \PY{n}{probs}\PY{p}{)}
-             \PY{n}{title} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{D}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{b}\PY{l+s}{u}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{f}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{ }\PY{l+s}{B}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{o}\PY{l+s}{m}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{ }\PY{l+s}{M}\PY{l+s}{o}\PY{l+s}{d}\PY{l+s}{e}\PY{l+s}{l}\PY{l+s}{ }\PY{l+s}{w}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{ }\PY{l+s+si}{\PYZdl{}n}\PY{l+s}{ }\PY{l+s}{p}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{d}\PY{l+s}{s}\PY{l+s}{ }\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{ }\PY{l+s}{S}\PY{l+s}{ }\PY{l+s}{=}\PY{l+s}{ }\PY{l+s+si}{\PYZdl{}S}\PY{l+s}{,}\PY{l+s}{ }\PY{l+s}{r}\PY{l+s}{ }\PY{l+s}{=}\PY{l+s}{ }\PY{l+s+si}{\PYZdl{}r}\PY{l+s}{,}\PY{l+s}{ }\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{g}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{ }\PY{l+s}{=}\PY{l+s}{ }\PY{l+s+si}{\PYZdl{}sigma}\PY{l+s}{\PYZdq{}}
-         
-             \PY{n}{scatter!}\PY{p}{(}\PY{n}{title} \PY{o}{=} \PY{n}{title}\PY{p}{,} \PY{n}{xlabel}\PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{c}\PY{l+s}{k}\PY{l+s}{ }\PY{l+s}{P}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{ylabel} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{b}\PY{l+s}{a}\PY{l+s}{b}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{legend} \PY{o}{=} \PY{k+kc}{false}\PY{p}{)}
-         \PY{k}{end}
-         
-         \PY{n}{computeDistribution}\PY{p}{(}\PY{l+m+mf}{100.0}\PY{p}{,} \PY{l+m+mf}{0.08}\PY{p}{,} \PY{l+m+mf}{0.3}\PY{p}{,} \PY{l+m+mf}{1.0}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k}{function} \PY{n}{computeDistribution}\PY{p}{(}\PY{n}{S}\PY{p}{,} \PY{n}{r}\PY{p}{,} \PY{n}{sigma}\PY{p}{,} \PY{n}{T}\PY{p}{,} \PY{n}{n}\PY{p}{)}
+        
+            \PY{n}{h} \PY{o}{=} \PY{n}{T} \PY{o}{/} \PY{n}{n}
+            \PY{n}{u} \PY{o}{=} \PY{n}{exp}\PY{p}{(}\PY{n}{r}\PY{o}{*}\PY{n}{h} \PY{o}{+} \PY{n}{sigma} \PY{o}{*} \PY{n}{sqrt}\PY{p}{(}\PY{n}{h}\PY{p}{)}\PY{p}{)}
+            \PY{n}{d} \PY{o}{=} \PY{n}{exp}\PY{p}{(}\PY{n}{r}\PY{o}{*}\PY{n}{h} \PY{o}{\PYZhy{}} \PY{n}{sigma} \PY{o}{*} \PY{n}{sqrt}\PY{p}{(}\PY{n}{h}\PY{p}{)}\PY{p}{)}
+        
+            \PY{n}{p\PYZus{}star} \PY{o}{=} \PY{p}{(}\PY{n}{exp}\PY{p}{(}\PY{n}{r}\PY{o}{*}\PY{n}{h}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{d}\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{n}{u} \PY{o}{\PYZhy{}} \PY{n}{d}\PY{p}{)}
+        
+            \PY{n}{prices} \PY{o}{=} \PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{undef}\PY{p}{,} \PY{n}{n} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}
+            \PY{n}{probs} \PY{o}{=} \PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{undef}\PY{p}{,} \PY{n}{n} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}
+            \PY{k}{for} \PY{n}{k} \PY{k+kp}{in} \PY{l+m+mi}{1}\PY{o}{:}\PY{n}{n}\PY{o}{+}\PY{l+m+mi}{1}
+                \PY{n}{prices}\PY{p}{[}\PY{n}{k}\PY{p}{]} \PY{o}{=} \PY{n}{S} \PY{o}{*} \PY{p}{(}\PY{n}{u} \PY{o}{\PYZca{}} \PY{p}{(}\PY{n}{n}\PY{o}{\PYZhy{}}\PY{n}{k}\PY{p}{)}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{n}{d} \PY{o}{\PYZca{}} \PY{n}{k}\PY{p}{)}
+                \PY{n}{probs}\PY{p}{[}\PY{n}{k}\PY{p}{]} \PY{o}{=} \PY{n}{binomial}\PY{p}{(}\PY{k+kt}{BigInt}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{,} \PY{k+kt}{BigInt}\PY{p}{(}\PY{n}{k}\PY{p}{)}\PY{p}{)} \PY{o}{*} \PY{n}{p\PYZus{}star}\PY{o}{\PYZca{}}\PY{p}{(}\PY{n}{n}\PY{o}{\PYZhy{}}\PY{n}{k}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{p\PYZus{}star}\PY{p}{)}\PY{o}{\PYZca{}}\PY{n}{k}
+            \PY{k}{end}
+        
+            \PY{n}{scatter}\PY{p}{(}\PY{n}{prices}\PY{p}{,} \PY{n}{probs}\PY{p}{)}
+            \PY{n}{title} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{D}\PY{l+s}{i}\PY{l+s}{s}\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{b}\PY{l+s}{u}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{f}\PY{l+s}{o}\PY{l+s}{r}\PY{l+s}{ }\PY{l+s}{B}\PY{l+s}{i}\PY{l+s}{n}\PY{l+s}{o}\PY{l+s}{m}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{l}\PY{l+s}{ }\PY{l+s}{M}\PY{l+s}{o}\PY{l+s}{d}\PY{l+s}{e}\PY{l+s}{l}\PY{l+s}{ }\PY{l+s}{w}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{ }\PY{l+s+si}{\PYZdl{}n}\PY{l+s}{ }\PY{l+s}{p}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{d}\PY{l+s}{s}\PY{l+s}{ }\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{ }\PY{l+s}{S}\PY{l+s}{ }\PY{l+s}{=}\PY{l+s}{ }\PY{l+s+si}{\PYZdl{}S}\PY{l+s}{,}\PY{l+s}{ }\PY{l+s}{r}\PY{l+s}{ }\PY{l+s}{=}\PY{l+s}{ }\PY{l+s+si}{\PYZdl{}r}\PY{l+s}{,}\PY{l+s}{ }\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{g}\PY{l+s}{m}\PY{l+s}{a}\PY{l+s}{ }\PY{l+s}{=}\PY{l+s}{ }\PY{l+s+si}{\PYZdl{}sigma}\PY{l+s}{\PYZdq{}}
+        
+            \PY{n}{scatter!}\PY{p}{(}\PY{n}{title} \PY{o}{=} \PY{n}{title}\PY{p}{,} \PY{n}{xlabel}\PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{S}\PY{l+s}{t}\PY{l+s}{o}\PY{l+s}{c}\PY{l+s}{k}\PY{l+s}{ }\PY{l+s}{P}\PY{l+s}{r}\PY{l+s}{i}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{ylabel} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{b}\PY{l+s}{a}\PY{l+s}{b}\PY{l+s}{i}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{legend} \PY{o}{=} \PY{k+kc}{false}\PY{p}{)}
+        \PY{k}{end}
+        
+        \PY{n}{computeDistribution}\PY{p}{(}\PY{l+m+mf}{100.0}\PY{p}{,} \PY{l+m+mf}{0.08}\PY{p}{,} \PY{l+m+mf}{0.3}\PY{p}{,} \PY{l+m+mf}{1.0}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
 \end{Verbatim}
 
-\texttt{\color{outcolor}Out[{\color{outcolor}16}]:}
+\texttt{\color{outcolor}Out[{\color{outcolor}3}]:}
     
     \begin{center}
     \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{StockProblemAnswers_files/StockProblemAnswers_9_0.pdf}

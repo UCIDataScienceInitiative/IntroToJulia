@@ -15,10 +15,9 @@
    - and putting a tooltip on each point, according to the string array `all_words`
 
 # First we loadup some data
-For the the example presented here, we will use a subhset of Word Embedding, trained using [Word2Vec.jl](https://github.com/tanmaykm/Word2Vec.jl).
-These are 100 dimentional vectors, which encode syntactic and semantic information about words.
+For the the example presented here, we will use a subset of some pretrained word2vec word embedding, using the [Embeddings.jl](https://github.com/JuliaText/Embeddings.jl/) package.
+These are 300 dimentional vectors, which encode syntactic and semantic information about words.
 
-You can download the datased from [here](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ForwardDiff), and load it up with [JLD](https://github.com/JuliaIO/JLD.jl) as shown below. (or just load it directly if you have cloned the notebooks)
 
 Example code for the loading,
 together with the words sorted into their original classes is below.
@@ -26,18 +25,23 @@ together with the words sorted into their original classes is below.
 
 
 ```julia
-using JLD
-countries = ["afghanistan","algeria","angola","arabia","argentina","australia","bangladesh","brazil","britain","canada","china","colombia","congo","egypt","england","ethiopia","france","germany","ghana","india","indonesia","iran","iraq","ireland","italy","japan","kenya","korea","madagascar","malaysia","mexico","morocco","mozambique","myanmar","nepal","nigeria","pakistan","peru","philippines","poland","russia","south","spain","sudan","tanzania","thailand","uganda","ukraine","usa","uzbekistan","venezuela","vietnam","wales","yemen"]
-usa_cities = ["albuquerque","atlanta","austin","baltimore","boston","charlotte","chicago","columbus","dallas","denver","detroit","francisco","fresno","houston","indianapolis","jacksonville","las","louisville","memphis","mesa","milwaukee","nashville","omaha","philadelphia","phoenix","portland","raleigh","sacramento","san","seattle","tucson","vegas","washington"]
-world_capitals = ["accra","algiers","amman","ankara","antananarivo","athens","baghdad","baku","bangkok","beijing","beirut","berlin","bogotá","brasília","bucharest","budapest","cairo","caracas","damascus","dhaka","hanoi","havana","jakarta","kabul","kampala","khartoum","kinshasa","kyiv","lima","london","luanda","madrid","manila","minsk","moscow","nairobi","paris","pretoria","pyongyang","quito","rabat","riyadh","rome","santiago","seoul","singapore","stockholm","taipei","tashkent","tehran","tokyo","vienna","warsaw","yaoundé"]
-animals = ["alpaca","camel","cattle","dog","dove","duck","ferret","goldfish","goose","guineafowl","llama","mouse","pigeon","yak"]
+using Embeddings
+countries = ["Afghanistan", "Algeria", "Angola", "Arabia", "Argentina", "Australia", "Bangladesh", "Brazil", "Britain", "Canada", "China", "Colombia", "Congo", "Egypt", "England", "Ethiopia", "France", "Germany", "Ghana", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Italy", "Japan", "Kenya", "Korea", "Madagascar", "Malaysia", "Mexico", "Morocco", "Mozambique", "Myanmar", "Nepal", "Nigeria", "Pakistan", "Peru", "Philippines", "Poland", "Russia", "South", "Spain", "Sudan", "Tanzania", "Thailand", "Uganda", "Ukraine", "Usa", "Uzbekistan", "Venezuela", "Vietnam", "Wales", "Yemen"]
+usa_cities = ["Albuquerque", "Atlanta", "Austin", "Baltimore", "Boston", "Charlotte", "Chicago", "Columbus", "Dallas", "Denver", "Detroit", "Francisco", "Fresno", "Houston", "Indianapolis", "Jacksonville", "Las", "Louisville", "Memphis", "Mesa", "Milwaukee", "Nashville", "Omaha", "Philadelphia", "Phoenix", "Portland", "Raleigh", "Sacramento", "San", "Seattle", "Tucson", "Vegas", "Washington"]
+world_capitals = ["Accra", "Algiers", "Amman", "Ankara", "Antananarivo", "Athens", "Baghdad", "Baku", "Bangkok", "Beijing", "Beirut", "Berlin", "Bogotá", "Brasília", "Bucharest", "Budapest", "Cairo", "Caracas", "Damascus", "Dhaka", "Hanoi", "Havana", "Jakarta", "Kabul", "Kampala", "Khartoum", "Kinshasa", "Kyiv", "Lima", "London", "Luanda", "Madrid", "Manila", "Minsk", "Moscow", "Nairobi", "Paris", "Pretoria", "Pyongyang", "Quito", "Rabat", "Riyadh", "Rome", "Santiago", "Seoul", "Singapore", "Stockholm", "Taipei", "Tashkent", "Tehran", "Tokyo", "Vienna", "Warsaw", "Yaoundé"]
+animals = ["alpaca","camel","cattle","dog","dove","duck","ferret","goldfish","goose","rat","llama","mouse","pigeon","yak"]
 sports = ["archery","badminton","basketball","boxing","cycling","diving","equestrian","fencing","field","football","golf","gymnastics","handball","hockey","judo","kayak","pentathlon","polo","rowing","rugby","sailing","shooting","soccer","swimming","taekwondo","tennis","triathlon","volleyball","weightlifting","wrestling"]
 
-
 words_by_class = [countries, usa_cities, world_capitals, animals, sports]
-all_words = vcat(words_by_class...)
-classes = vcat(((1:5) .* ones.(length.(words_by_class)))...);
-embeddings = load("../assets/ClusteringAndDimentionalityReduction.jld", "embeddings")
+all_words = reduce(vcat, words_by_class)
+embedding_table = load_embeddings(Word2Vec; keep_words = all_words) 
+@assert Set(all_words) == Set(embedding_table.vocab)
+
+embeddings = embedding_table.embeddings
+all_words = embedding_table.vocab
+classes = map(all_words) do word
+    findfirst(col -> word ∈ col, [countries, usa_cities, world_capitals, animals, sports])
+end;
 ```
 
 # Extension: T-SNE
@@ -45,9 +49,9 @@ embeddings = load("../assets/ClusteringAndDimentionalityReduction.jld", "embeddi
  - Use [TSne.jl](https://github.com/lejon/TSne.jl), to perform similar dimentionality reduction, and to produce plots.
 
 T-SNE is another popluar DR method.  
-It is mostly maintained though.
 Be warned: it is sideways -- it is row major, so tanspose the inputs and outputs
 
 You may have to play with the perplexity to get it to work well.
+
 
 If you look at the resulting plots, you may note that countries are often paired uo with their captical city.

@@ -25,9 +25,10 @@ However, what is happening here, and why?
 
 
 ```julia
+using Distributed
 addprocs(1)
 function f1()
-  @parallel for i = 1:100
+  @distributed for i = 1:100
     x = 10
     if x < 100
       x = x + 1
@@ -39,28 +40,24 @@ end
 f1()
 ```
 
-    WARNING: Method definition f1() in module Main at In[36]:3 overwritten at In[37]:3.
 
-
-
-    LoadError: UndefVarError: x not defined
-    while loading In[37], in expression starting on line 12
+    UndefVarError: x not defined
 
     
 
-     in f1() at ./In[37]:3
+    Stacktrace:
 
-     in execute_request(::ZMQ.Socket, ::IJulia.Msg) at /home/crackauc/.julia/v0.5/IJulia/src/execute_request.jl:169
+     [1] macro expansion at /buildworker/worker/package_linux64/build/usr/share/julia/stdlib/v1.0/Distributed/src/macros.jl:337 [inlined]
 
-     in eventloop(::ZMQ.Socket) at /home/crackauc/.julia/v0.5/IJulia/src/eventloop.jl:8
+     [2] f1() at ./In[6]:4
 
-     in (::IJulia.##9#15)() at ./task.jl:360
+     [3] top-level scope at In[6]:13
 
 
 
 ```julia
 function f2()
-  @parallel for i = 1:100
+  @distributed for i = 1:100
     x = 10
     if x < 100
       x = x + 1
@@ -70,9 +67,6 @@ function f2()
 end
 f2()
 ```
-
-    WARNING: Method definition f2() in module Main at In[35]:2 overwritten at In[38]:2.
-
 
 
 

@@ -292,14 +292,14 @@ you give it a univariate function it uses Brent's method to find the
 minimum in an interval:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}2}]:} \PY{k}{using} \PY{n}{Optim}
+{\color{incolor}In [{\color{incolor}6}]:} \PY{k}{using} \PY{n}{Optim}
         \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{=} \PY{n}{sin}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{o}{+}\PY{n}{cos}\PY{p}{(}\PY{n}{x}\PY{p}{)}
         \PY{n}{Optim}\PY{o}{.}\PY{n}{optimize}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{l+m+mf}{0.0}\PY{p}{,}\PY{l+m+mi}{2}\PY{n+nb}{π}\PY{p}{)} \PY{c}{\PYZsh{} Find a minimum between 0 and 2π}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}2}]:} Results of Optimization Algorithm
+{\color{outcolor}Out[{\color{outcolor}6}]:} Results of Optimization Algorithm
          * Algorithm: Brent's Method
          * Search Interval: [0.000000, 6.283185]
          * Minimizer: 3.926991e+00
@@ -313,13 +313,13 @@ minimum in an interval:
 output, it will give the vector local minima:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{=} \PY{n}{sin}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{+}\PY{n}{cos}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{+}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{=} \PY{n}{sin}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{+}\PY{n}{cos}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{+}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
         \PY{n}{Optim}\PY{o}{.}\PY{n}{optimize}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{n}{zeros}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)} \PY{c}{\PYZsh{} Find a minimum starting at [0.0,0.0]}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}3}]:} Results of Optimization Algorithm
+{\color{outcolor}Out[{\color{outcolor}7}]:} Results of Optimization Algorithm
          * Algorithm: Nelder-Mead
          * Starting Point: [0.0,0.0]
          * Minimizer: [-1.570684758073873,-1.5708688186478836]
@@ -337,12 +337,12 @@ methods} and pass in a method choice to have different properties. Let's
 choose BFGS:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{Optim}\PY{o}{.}\PY{n}{optimize}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{n}{zeros}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,}\PY{n}{BFGS}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{Optim}\PY{o}{.}\PY{n}{optimize}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{n}{zeros}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,}\PY{n}{BFGS}\PY{p}{(}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}4}]:} Results of Optimization Algorithm
+{\color{outcolor}Out[{\color{outcolor}8}]:} Results of Optimization Algorithm
          * Algorithm: BFGS
          * Starting Point: [0.0,0.0]
          * Minimizer: [-1.5707963314270867,-1.5707963181008544]
@@ -369,7 +369,7 @@ BlackBoxOptim.jl. You have to give it box constraints and tell it the
 size of the input vector:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}6}]:} \PY{k}{using} \PY{n}{BlackBoxOptim}
+{\color{incolor}In [{\color{incolor}9}]:} \PY{k}{using} \PY{n}{BlackBoxOptim}
         
         \PY{k}{function} \PY{n}{rosenbrock2d}\PY{p}{(}\PY{n}{x}\PY{p}{)}
           \PY{k}{return} \PY{p}{(}\PY{l+m+mf}{1.0} \PY{o}{\PYZhy{}} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{l+m+mf}{100.0} \PY{o}{*} \PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}
@@ -382,12 +382,12 @@ size of the input vector:
 Starting optimization with optimizer DiffEvoOpt\{FitPopulation\{Float64\},RadiusLimitedSelector,BlackBoxOptim.AdaptiveDiffEvoRandBin\{3\},RandomBound\{RangePerDimSearchSpace\}\}
 0.00 secs, 0 evals, 0 steps
 
-Optimization stopped after 10001 steps and 0.03020501136779785 seconds
+Optimization stopped after 10001 steps and 0.013683080673217773 seconds
 Termination reason: Max number of steps (10000) reached
-Steps per second = 331103.9972215425
-Function evals per second = 334282.2777668148
-Improvements/step = 0.2099
-Total function evaluations = 10097
+Steps per second = 730902.6555383248
+Function evals per second = 738722.5319649422
+Improvements/step = 0.2172
+Total function evaluations = 10108
 
 
 Best candidate found: [1.0, 1.0]
@@ -398,7 +398,7 @@ Fitness: 0.000000000
     \end{Verbatim}
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}6}]:} BlackBoxOptim.OptimizationResults("adaptive\_de\_rand\_1\_bin\_radiuslimited", "Max number of steps (10000) reached", 10001, 1.535816160358584e9, 0.03020501136779785, DictChain\{Symbol,Any\}[DictChain\{Symbol,Any\}[Dict\{Symbol,Any\}(:RngSeed=>791001,:NumDimensions=>2,:SearchRange=>(-5.0, 5.0),:MaxSteps=>10000),Dict\{Symbol,Any\}()],Dict\{Symbol,Any\}(:FitnessScheme=>ScalarFitnessScheme\{true\}(),:NumDimensions=>:NotSpecified,:PopulationSize=>50,:MaxTime=>0.0,:SearchRange=>(-1.0, 1.0),:Method=>:adaptive\_de\_rand\_1\_bin\_radiuslimited,:MaxNumStepsWithoutFuncEvals=>100,:RngSeed=>1234,:MaxFuncEvals=>0,:SaveTrace=>false…)], 10097, ScalarFitnessScheme\{true\}(), BlackBoxOptim.TopListArchiveOutput\{Float64,Array\{Float64,1\}\}(4.480626600876763e-24, [1.0, 1.0]), BlackBoxOptim.PopulationOptimizerOutput\{FitPopulation\{Float64\}\}(FitPopulation\{Float64\}([1.0 1.0 … 1.0 1.0; 1.0 1.0 … 1.0 1.0], NaN, [4.84548e-22, 5.50133e-22, 1.0875e-22, 1.67945e-23, 3.7173e-22, 1.07341e-21, 3.5827e-22, 3.902e-23, 7.15037e-21, 2.90994e-22  …  3.3126e-22, 4.37495e-23, 1.34289e-22, 5.37053e-22, 3.82538e-22, 3.52475e-22, 5.34962e-24, 3.22963e-22, 5.87671e-23, 1.09491e-22], 0, BlackBoxOptim.Candidate\{Float64\}[Candidate\{Float64\}([1.0, 1.0], 18, 4.22652e-22, AdaptiveDiffEvoRandBin\{3\}(AdaptiveDiffEvoParameters(BimodalCauchy(Distributions.Cauchy\{Float64\}(μ=0.65, σ=0.1), Distributions.Cauchy\{Float64\}(μ=1.0, σ=0.1), 0.5, false, true), BimodalCauchy(Distributions.Cauchy\{Float64\}(μ=0.1, σ=0.1), Distributions.Cauchy\{Float64\}(μ=0.95, σ=0.1), 0.5, false, true), [0.960677, 0.848476, 0.623459, 0.54989, 0.581819, 1.0, 0.734587, 0.310737, 1.0, 1.0  …  0.935712, 0.537649, 1.0, 0.76622, 0.544867, 0.937488, 0.653021, 0.677084, 1.0, 0.318911], [1.0, 1.0, 0.111826, 0.125661, 1.0, 0.305684, 0.0436158, 0.206936, 0.908871, 0.119306  …  0.54331, 0.777823, 0.921962, 0.830078, 1.0, 1.0, 0.107495, 0.942054, 1.0, 0.686902])), 0), Candidate\{Float64\}([1.0, 1.0], 18, 8.96404e-22, AdaptiveDiffEvoRandBin\{3\}(AdaptiveDiffEvoParameters(BimodalCauchy(Distributions.Cauchy\{Float64\}(μ=0.65, σ=0.1), Distributions.Cauchy\{Float64\}(μ=1.0, σ=0.1), 0.5, false, true), BimodalCauchy(Distributions.Cauchy\{Float64\}(μ=0.1, σ=0.1), Distributions.Cauchy\{Float64\}(μ=0.95, σ=0.1), 0.5, false, true), [0.960677, 0.848476, 0.623459, 0.54989, 0.581819, 1.0, 0.734587, 0.310737, 1.0, 1.0  …  0.935712, 0.537649, 1.0, 0.76622, 0.544867, 0.937488, 0.653021, 0.677084, 1.0, 0.318911], [1.0, 1.0, 0.111826, 0.125661, 1.0, 0.305684, 0.0436158, 0.206936, 0.908871, 0.119306  …  0.54331, 0.777823, 0.921962, 0.830078, 1.0, 1.0, 0.107495, 0.942054, 1.0, 0.686902])), 0)])))
+{\color{outcolor}Out[{\color{outcolor}9}]:} BlackBoxOptim.OptimizationResults("adaptive\_de\_rand\_1\_bin\_radiuslimited", "Max number of steps (10000) reached", 10001, 1.536689117938819e9, 0.013683080673217773, DictChain\{Symbol,Any\}[DictChain\{Symbol,Any\}[Dict\{Symbol,Any\}(:RngSeed=>189964,:NumDimensions=>2,:SearchRange=>(-5.0, 5.0),:MaxSteps=>10000),Dict\{Symbol,Any\}()],Dict\{Symbol,Any\}(:FitnessScheme=>ScalarFitnessScheme\{true\}(),:NumDimensions=>:NotSpecified,:PopulationSize=>50,:MaxTime=>0.0,:SearchRange=>(-1.0, 1.0),:Method=>:adaptive\_de\_rand\_1\_bin\_radiuslimited,:MaxNumStepsWithoutFuncEvals=>100,:RngSeed=>1234,:MaxFuncEvals=>0,:SaveTrace=>false…)], 10108, ScalarFitnessScheme\{true\}(), BlackBoxOptim.TopListArchiveOutput\{Float64,Array\{Float64,1\}\}(7.794981123521699e-27, [1.0, 1.0]), BlackBoxOptim.PopulationOptimizerOutput\{FitPopulation\{Float64\}\}(FitPopulation\{Float64\}([1.0 1.0 … 1.0 1.0; 1.0 1.0 … 1.0 1.0], NaN, [1.27603e-23, 3.92402e-23, 1.60016e-23, 1.61726e-23, 2.00834e-23, 6.01524e-23, 2.16747e-22, 4.2942e-23, 3.83008e-23, 8.03423e-23  …  6.35954e-25, 1.22529e-24, 1.60825e-25, 9.94304e-25, 1.41704e-24, 6.42558e-24, 3.93374e-24, 8.25185e-24, 1.89228e-23, 1.44361e-23], 0, BlackBoxOptim.Candidate\{Float64\}[Candidate\{Float64\}([1.0, 1.0], 10, 8.03423e-23, AdaptiveDiffEvoRandBin\{3\}(AdaptiveDiffEvoParameters(BimodalCauchy(Distributions.Cauchy\{Float64\}(μ=0.65, σ=0.1), Distributions.Cauchy\{Float64\}(μ=1.0, σ=0.1), 0.5, false, true), BimodalCauchy(Distributions.Cauchy\{Float64\}(μ=0.1, σ=0.1), Distributions.Cauchy\{Float64\}(μ=0.95, σ=0.1), 0.5, false, true), [0.697891, 0.720263, 0.88478, 0.809857, 0.434573, 0.280839, 1.0, 0.653261, 0.990107, 0.54517  …  0.829696, 0.680993, 0.96154, 1.0, 0.917572, 1.0, 0.835965, 1.0, 0.996137, 0.999622], [0.830166, 0.160064, 0.153951, 1.0, 0.78871, 0.256191, 0.139636, 1.0, 0.986488, 0.229464  …  0.932861, 0.0857158, 0.0022386, 0.595109, 0.980229, 0.122564, 0.39074, 1.0, 0.848218, 0.913758])), 0), Candidate\{Float64\}([1.0, 1.0], 10, 8.63425e-22, AdaptiveDiffEvoRandBin\{3\}(AdaptiveDiffEvoParameters(BimodalCauchy(Distributions.Cauchy\{Float64\}(μ=0.65, σ=0.1), Distributions.Cauchy\{Float64\}(μ=1.0, σ=0.1), 0.5, false, true), BimodalCauchy(Distributions.Cauchy\{Float64\}(μ=0.1, σ=0.1), Distributions.Cauchy\{Float64\}(μ=0.95, σ=0.1), 0.5, false, true), [0.697891, 0.720263, 0.88478, 0.809857, 0.434573, 0.280839, 1.0, 0.653261, 0.990107, 0.54517  …  0.829696, 0.680993, 0.96154, 1.0, 0.917572, 1.0, 0.835965, 1.0, 0.996137, 0.999622], [0.830166, 0.160064, 0.153951, 1.0, 0.78871, 0.256191, 0.139636, 1.0, 0.986488, 0.229464  …  0.932861, 0.0857158, 0.0022386, 0.595109, 0.980229, 0.122564, 0.39074, 1.0, 0.848218, 0.913758])), 0)])))
 \end{Verbatim}
             
     \subsection{JuMP, Convex.jl, NLopt.jl}\label{jump-convex.jl-nlopt.jl}

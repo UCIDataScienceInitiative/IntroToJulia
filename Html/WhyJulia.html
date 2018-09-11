@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>WhyJulia</title>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>WhyJulia</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -13,8 +11,8 @@
 *
 */
 /*!
- * Bootstrap v3.3.6 (http://getbootstrap.com)
- * Copyright 2011-2015 Twitter, Inc.
+ * Bootstrap v3.3.7 (http://getbootstrap.com)
+ * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
@@ -1109,7 +1107,6 @@ a:focus {
   text-decoration: underline;
 }
 a:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -2538,7 +2535,6 @@ select[size] {
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -3029,7 +3025,6 @@ select[multiple].input-lg {
 .btn.focus,
 .btn:active.focus,
 .btn.active.focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -8760,6 +8755,9 @@ body > #header .header-bar {
     margin-left: 10px;
   }
 }
+[dir="rtl"] #ipython_notebook {
+  float: right !important;
+}
 #noscript {
   width: auto;
   padding-top: 16px;
@@ -8962,8 +8960,14 @@ span#login_widget > .button .badge,
  *
  * Author: Jupyter Development Team
  */
+[dir="rtl"] #tabs li {
+  float: right;
+}
 ul#tabs {
   margin-bottom: 4px;
+}
+[dir="rtl"] ul#tabs {
+  margin-right: 0px;
 }
 ul#tabs a {
   padding-top: 6px;
@@ -8986,6 +8990,16 @@ ul.breadcrumb span {
 }
 .list_toolbar .tree-buttons {
   padding-top: 1px;
+}
+[dir="rtl"] .list_toolbar .tree-buttons {
+  float: left !important;
+}
+[dir="rtl"] .list_toolbar .pull-right {
+  padding-top: 1px;
+  float: left !important;
+}
+[dir="rtl"] .list_toolbar .pull-left {
+  float: right !important;
 }
 .dynamic-buttons {
   padding-top: 3px;
@@ -9122,6 +9136,9 @@ ul.breadcrumb span {
 #tree-selector {
   padding-right: 0px;
 }
+[dir="rtl"] #tree-selector a {
+  float: right;
+}
 #button-select-all {
   min-width: 50px;
 }
@@ -9211,6 +9228,9 @@ ul#new-menu {
   left: auto;
   right: 0;
 }
+[dir="rtl"] #new-menu {
+  text-align: right;
+}
 .kernel-menu-icon {
   padding-right: 12px;
   width: 24px;
@@ -9255,6 +9275,9 @@ ul#new-menu {
 }
 #running .panel-group .panel .panel-body .list_container .list_item:last-child {
   border-bottom: 0px;
+}
+[dir="rtl"] #running .col-sm-8 {
+  float: right !important;
 }
 .delete-button {
   display: none;
@@ -9551,6 +9574,7 @@ div.cell.selected.jupyter-soft-selected {
   }
 }
 div.inner_cell {
+  min-width: 0;
   /* Old browsers */
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -9571,11 +9595,6 @@ div.inner_cell {
   box-flex: 1;
   /* Modern browsers */
   flex: 1;
-}
-@-moz-document url-prefix() {
-  div.inner_cell {
-    overflow-x: hidden;
-  }
 }
 /* input_area and input_prompt must match in top border and margin for alignment */
 div.input_area {
@@ -11246,7 +11265,7 @@ div#pager .ui-resizable-handle::after {
 }
 .shortcut_key {
   display: inline-block;
-  width: 20ex;
+  width: 21ex;
   text-align: right;
   font-family: monospace;
 }
@@ -11558,6 +11577,7 @@ ul.typeahead-list > li > a {
   box-shadow: 0px 0px 12px 1px rgba(87, 87, 87, 0.2);
 }
 .terminal-app .terminal {
+  width: 100%;
   float: left;
   font-family: monospace;
   color: white;
@@ -11571,6 +11591,9 @@ ul.typeahead-list > li > a {
 .terminal-app .terminal dummy-screen {
   line-height: 1em;
   font-size: 14px;
+}
+.terminal-app .terminal .xterm-rows {
+  padding: 10px;
 }
 .terminal-app .terminal-cursor {
   color: black;
@@ -11703,9 +11726,7 @@ body {
 div#notebook {
   overflow: visible;
   border-top: none;
-}
-
-@media print {
+}@media print {
   div.cell {
     display: block;
     page-break-inside: avoid;
@@ -11726,7 +11747,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -11750,8 +11771,7 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11771,8 +11791,7 @@ div#notebook {
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11802,7 +11821,11 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[4.0, 1.33333, 1.0, 20.0]
 </pre>
@@ -11813,8 +11836,7 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11841,7 +11863,11 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[2]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[2]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -11854,8 +11880,7 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11880,10 +11905,16 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>
-define i64 @&#34;jlsys_*_56568&#34;(i64, i64) #0 !dbg !5 {
+; Function *
+; Location: int.jl:54
+define i64 @&#34;julia_*_33751&#34;(i64, i64) {
 top:
   %2 = mul i64 %1, %0
   ret i64 %2
@@ -11896,8 +11927,7 @@ top:
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11922,18 +11952,20 @@ top:
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>	.text
-Filename: int.jl
-	pushq	%rbp
-	movq	%rsp, %rbp
-Source line: 33
+; Function * {
+; Location: int.jl:54
 	imulq	%rsi, %rdi
 	movq	%rdi, %rax
-	popq	%rbp
 	retq
-	nopl	(%rax)
+	nopl	(%rax,%rax)
+;}
 </pre>
 </div>
 </div>
@@ -11942,8 +11974,7 @@ Source line: 33
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11970,7 +12001,11 @@ Source line: 33
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[5]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -11999,25 +12034,24 @@ Source line: 33
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_error">
-<pre>
-DomainError:
-Cannot raise an integer x to a negative power -n. 
-Make x a float by adding a zero decimal (e.g. 2.0^-n instead of 2^-n), or write 1/x^n, float(x)^-n, or (x//1)^-n.
+<div class="output_area">
 
-Stacktrace:
- [1] <span class="ansi-bold">power_by_squaring</span><span class="ansi-bold">(</span>::Int64, ::Int64<span class="ansi-bold">)</span> at <span class="ansi-bold">./intfuncs.jl:173</span>
- [2] <span class="ansi-bold">literal_pow</span><span class="ansi-bold">(</span>::Base.#^, ::Int64, ::Type{Val{-5}}<span class="ansi-bold">)</span> at <span class="ansi-bold">./intfuncs.jl:208</span></pre>
-</div>
+<div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.03125</pre>
 </div>
 
 </div>
+
+</div>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12026,8 +12060,7 @@ Stacktrace:
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12052,17 +12085,22 @@ Stacktrace:
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>	.text
-Filename: intfuncs.jl
-	pushq	%rbp
-	movq	%rsp, %rbp
-Source line: 197
-	callq	power_by_squaring
-	popq	%rbp
+; Function ^ {
+; Location: intfuncs.jl:220
+	pushq	%rax
+	movabsq	$power_by_squaring, %rax
+	callq	*%rax
+	popq	%rcx
 	retq
-	nopl	(%rax,%rax)
+	nop
+;}
 </pre>
 </div>
 </div>
@@ -12071,8 +12109,7 @@ Source line: 197
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12104,7 +12141,11 @@ Source line: 197
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[8]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12117,8 +12158,7 @@ Source line: 197
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12144,14 +12184,22 @@ Source line: 197
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>32
 </pre>
 </div>
 </div>
 
-<div class="output_area"><div class="prompt output_prompt">Out[9]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[9]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12164,8 +12212,7 @@ Source line: 197
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12190,61 +12237,63 @@ Source line: 197
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>	.text
-Filename: In[8]
-	pushq	%rbp
-	movq	%rsp, %rbp
+; Function expo {
+; Location: In[8]:2
 	pushq	%rbx
-	subq	$24, %rsp
 	movq	%rdi, %rbx
-Source line: 2
+; Function &gt;; {
+; Location: operators.jl:286
+; Function &lt;; {
+; Location: int.jl:49
 	testq	%rdx, %rdx
-	jle	L42
-Source line: 3
+;}}
+	jle	L36
+; Location: In[8]:3
+; Function ^; {
+; Location: intfuncs.jl:220
 	movabsq	$power_by_squaring, %rax
 	movq	%rsi, %rdi
 	movq	%rdx, %rsi
 	callq	*%rax
-	movb	$1, %dl
+;}
 	movq	%rax, (%rbx)
-	jmp	L106
-Source line: 5
-L42:
-	vxorps	%xmm1, %xmm1, %xmm1
-	vcvtsi2sdq	%rsi, %xmm1, %xmm0
-Source line: 701
-	vmovsd	%xmm0, -24(%rbp)
-	vcvtsi2sdq	%rdx, %xmm1, %xmm1
-Source line: 699
-	vmovsd	%xmm1, -16(%rbp)
-	movabsq	$pow, %rax
-	callq	*%rax
-	vmovsd	-16(%rbp), %xmm1        # xmm1 = mem[0],zero
-	vaddsd	-24(%rbp), %xmm1, %xmm1
-Source line: 300
-	vucomisd	%xmm1, %xmm1
-	jp	L100
-	vucomisd	%xmm0, %xmm0
-	jp	L116
-Source line: 6
-L100:
 	movb	$2, %dl
-	vmovsd	%xmm0, (%rbx)
-Source line: 3
-L106:
-	movq	%rbx, %rax
-	addq	$24, %rsp
+	xorl	%eax, %eax
 	popq	%rbx
-	popq	%rbp
 	retq
-Source line: 300
-L116:
-	movabsq	$jl_throw, %rax
-	movabsq	$140181784264784, %rdi  # imm = 0x7F7E9D748050
+; Location: In[8]:5
+; Function convert; {
+; Location: number.jl:7
+; Function Type; {
+; Location: float.jl:60
+L36:
+	vcvtsi2sdq	%rsi, %xmm0, %xmm0
+;}}
+; Location: In[8]:6
+; Function ^; {
+; Location: math.jl:780
+; Function Type; {
+; Location: float.jl:60
+	vcvtsi2sdq	%rdx, %xmm1, %xmm1
+	movabsq	$__pow, %rax
+;}
 	callq	*%rax
-	nopw	(%rax,%rax)
+;}
+	vmovsd	%xmm0, (%rbx)
+	movb	$1, %dl
+	xorl	%eax, %eax
+; Location: In[8]:3
+	popq	%rbx
+	retq
+	nopw	%cs:(%rax,%rax)
+;}
 </pre>
 </div>
 </div>
@@ -12253,18 +12302,16 @@ L116:
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>That's a very visual demonstration on why Julia achieves such higher performance than other scripting languages.</p>
+<p>That's a very visual demonstration on why Julia achieves such higher performance than other scripting languages by how it uses type inference.</p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12275,8 +12322,7 @@ L116:
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12309,13 +12355,19 @@ L116:
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 <div class="output_subarea output_text output_error">
 <pre>
-<span class="ansi-red-intense-fg">BoundsError: attempt to access 3-element Array{Float64,1} at index [4]</span>
+BoundsError: attempt to access 3-element Array{Float64,1} at index [4]
 
 Stacktrace:
- [1] <span class="ansi-bold">test1</span><span class="ansi-bold">(</span><span class="ansi-bold">)</span> at <span class="ansi-bold">./In[11]:4</span></pre>
+ [1] setindex! at ./array.jl:769 [inlined]
+ [2] test1() at ./In[11]:4
+ [3] top-level scope at In[11]:7</pre>
 </div>
 </div>
 
@@ -12323,8 +12375,7 @@ Stacktrace:
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12352,8 +12403,7 @@ Stacktrace:
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12362,8 +12412,7 @@ Stacktrace:
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12371,8 +12420,7 @@ Stacktrace:
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12383,10 +12431,10 @@ Stacktrace:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="kt">Vector</span><span class="p">{</span><span class="kt">Any</span><span class="p">}(</span><span class="mi">3</span><span class="p">)</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="kt">Vector</span><span class="p">{</span><span class="kt">Any</span><span class="p">}(</span><span class="n">undef</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;hi!&quot;</span>
 <span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="o">:</span><span class="n">Symbolic</span>
@@ -12401,7 +12449,11 @@ Stacktrace:
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[14]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12417,8 +12469,7 @@ Stacktrace:
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12429,10 +12480,10 @@ Stacktrace:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="kt">Vector</span><span class="p">{</span><span class="kt">Union</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="kt">Int</span><span class="p">}}(</span><span class="mi">3</span><span class="p">)</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="kt">Vector</span><span class="p">{</span><span class="kt">Union</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="kt">Int</span><span class="p">}}(</span><span class="n">undef</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span>
@@ -12447,7 +12498,11 @@ Stacktrace:
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[15]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12463,8 +12518,7 @@ Stacktrace:
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12474,8 +12528,7 @@ Stacktrace:
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12484,8 +12537,7 @@ Stacktrace:
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12494,8 +12546,7 @@ Stacktrace:
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12506,7 +12557,7 @@ Stacktrace:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="nd">@code_warntype</span> <span class="mi">2</span><span class="o">^</span><span class="mi">5</span>
@@ -12520,17 +12571,15 @@ Stacktrace:
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Variables:
-  #self# &lt;optimized out&gt;
-  x::Int64
-  p::Int64
+<div class="output_area">
 
-Body:
-  begin 
-      return $(Expr(:invoke, MethodInstance for power_by_squaring(::Int64, ::Int64), :(Base.power_by_squaring), :(x), :(p)))
-  end::Int64
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Body<span class="ansi-cyan-fg">::Int64</span>
+<span class="ansi-black-intense-fg">│</span><span class="ansi-black-intense-fg">220 </span>1 ─ %1 = invoke Base.power_by_squaring(_2::Int64, _3::Int64)<span class="ansi-cyan-fg">::Int64</span>
+<span class="ansi-black-intense-fg">│</span><span class="ansi-black-intense-fg">    </span>└──      return %1
 </pre>
 </div>
 </div>
@@ -12539,8 +12588,7 @@ Body:
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12551,7 +12599,7 @@ Body:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="nd">@code_warntype</span> <span class="n">expo</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
@@ -12565,41 +12613,24 @@ Body:
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Variables:
-  #self# &lt;optimized out&gt;
-  x@_2::Int64
-  y::Int64
-  x@_4<span class="ansi-red-intense-fg ansi-bold">::Union{Float64, Int64}</span>
-  #temp#::Float64
+<div class="output_area">
 
-Body:
-  begin 
-      x@_4<span class="ansi-red-intense-fg ansi-bold">::Union{Float64, Int64}</span> = x@_2::Int64
-      unless (Base.slt_int)(0, y::Int64)::Bool goto 5 # line 3:
-      return $(Expr(:invoke, MethodInstance for power_by_squaring(::Int64, ::Int64), :(Base.power_by_squaring), :(x@_4::Int64), :(y)))
-      5:  # line 5:
-      x@_4<span class="ansi-red-intense-fg ansi-bold">::Union{Float64, Int64}</span> = (Base.sitofp)(Float64, x@_4::Int64)::Float64 # line 6:
-      $(Expr(:inbounds, false))
-      # meta: location math.jl ^ 701
-      SSAValue(0) = (Base.sitofp)(Float64, y::Int64)::Float64
-      # meta: location math.jl ^ 699
-      SSAValue(3) = $(Expr(:foreigncall, &#34;llvm.pow.f64&#34;, Float64, svec(Float64, Float64), :(x@_4::Float64), 0, SSAValue(0), 0, :($(Expr(:llvmcall)))))
-      SSAValue(4) = (Base.add_float)(x@_4::Float64, SSAValue(0))::Float64
-      # meta: location math.jl nan_dom_err 300
-      unless (Base.and_int)((Base.ne_float)(SSAValue(3), SSAValue(3))::Bool, (Base.not_int)((Base.ne_float)(SSAValue(4), SSAValue(4))::Bool)::Bool)::Bool goto 19
-      #temp#::Float64 = (Base.Math.throw)($(QuoteNode(DomainError())))<span class="ansi-red-intense-fg ansi-bold">::Union{}</span>
-      goto 21
-      19: 
-      #temp#::Float64 = SSAValue(3)
-      21: 
-      # meta: pop location
-      # meta: pop location
-      # meta: pop location
-      $(Expr(:inbounds, :pop))
-      return #temp#::Float64
-  end<span class="ansi-red-intense-fg ansi-bold">::Union{Float64, Int64}</span>
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Body<span class="ansi-red-intense-fg ansi-bold">::Union{Float64, Int64}</span>
+<span class="ansi-black-intense-fg">│╻╷ &gt;</span><span class="ansi-black-intense-fg">2 </span>1 ─ %1  = (Base.slt_int)(0, y)<span class="ansi-cyan-fg">::Bool</span>
+<span class="ansi-black-intense-fg">│  </span><span class="ansi-black-intense-fg">  </span>└──       goto #3 if not %1
+<span class="ansi-black-intense-fg">│  </span><span class="ansi-black-intense-fg">3 </span>2 ─ %3  = π (x, <span class="ansi-cyan-fg">Int64</span>)
+<span class="ansi-black-intense-fg">│╻  ^</span><span class="ansi-black-intense-fg">  </span>│   %4  = invoke Base.power_by_squaring(%3::Int64, _3::Int64)<span class="ansi-cyan-fg">::Int64</span>
+<span class="ansi-black-intense-fg">│  </span><span class="ansi-black-intense-fg">  </span>└──       return %4
+<span class="ansi-black-intense-fg">│  </span><span class="ansi-black-intense-fg">5 </span>3 ─ %6  = π (x, <span class="ansi-cyan-fg">Int64</span>)
+<span class="ansi-black-intense-fg">││╻  Type</span><span class="ansi-black-intense-fg">  </span>│   %7  = (Base.sitofp)(Float64, %6)<span class="ansi-cyan-fg">::Float64</span>
+<span class="ansi-black-intense-fg">│  </span><span class="ansi-black-intense-fg">6 </span>│   %8  = π (%7, <span class="ansi-cyan-fg">Float64</span>)
+<span class="ansi-black-intense-fg">│╻  ^</span><span class="ansi-black-intense-fg">  </span>│   %9  = (Base.sitofp)(Float64, y)<span class="ansi-cyan-fg">::Float64</span>
+<span class="ansi-black-intense-fg">││ </span><span class="ansi-black-intense-fg">  </span>│   %10 = $(Expr(:foreigncall, &#34;llvm.pow.f64&#34;, Float64, svec(Float64, Float64), :(:llvmcall), 2, :(%8), :(%9), :(%9), :(%8)))<span class="ansi-cyan-fg">::Float64</span>
+<span class="ansi-black-intense-fg">│  </span><span class="ansi-black-intense-fg">  </span>└──       return %10
 </pre>
 </div>
 </div>
@@ -12608,18 +12639,75 @@ Body:
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Notice that it has to make a temporary variable <code>x@_4</code> which is translates our int at the beginning of the function, and then do type-checking in order to find the right function, and then its output type is the non-strict <code>Union{Float64,Int64}</code>. The quick way to read this is to see that <code>x@_4::ANY</code> has a non-strict type, indicating a type-instability. This gives you a tool to know how to optimize.</p>
+<p>Notice that possible returns are the temporary <code>%4</code> and <code>%10</code> which are different types, and so the return type is inferred as <code>Union{Float64,Int64}</code>. To trace exactly to where this instability occurs, we can use Traceur.jl:</p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">Traceur</span>
+<span class="nd">@trace</span> <span class="n">expo</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>┌ Warning: x is assigned as Int64
+└ @ In[8]:2
+┌ Warning: x is assigned as Float64
+└ @ In[8]:5
+┌ Warning: expo returns Union{Float64, Int64}
+└ @ In[8]:2
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[19]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>32</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This tells us that on line 2 <code>x</code> is assigned to an <code>Int</code> while on line 5 it's assigned to a <code>Float64</code>, and so it's inferred as <code>Union{Float64, Int64}</code>. Line 5 is where we put the explicit <code>convert</code> call, so this identified exactly the issue for us.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12634,7 +12722,7 @@ Body:
 <div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">foo</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">}(</span><span class="n">array</span><span class="o">::</span><span class="kt">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">})</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">foo</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
   <span class="k">for</span> <span class="n">i</span> <span class="kp">in</span> <span class="n">eachindex</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
     <span class="n">val</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="c"># do algorithm X on val</span>
@@ -12650,7 +12738,11 @@ Body:
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[17]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[17]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12663,8 +12755,7 @@ Body:
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12678,7 +12769,7 @@ Body:
 <div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">inner_foo</span><span class="p">{</span><span class="n">T</span><span class="o">&lt;:</span><span class="kt">Number</span><span class="p">}(</span><span class="n">val</span><span class="o">::</span><span class="n">T</span><span class="p">)</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">inner_foo</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
   <span class="c"># Do algorithm X on val</span>
 <span class="k">end</span>
 </pre></div>
@@ -12691,7 +12782,11 @@ Body:
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[18]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[18]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12704,8 +12799,7 @@ Body:
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12716,10 +12810,10 @@ Body:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">foo2</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">}(</span><span class="n">array</span><span class="o">::</span><span class="kt">Array</span><span class="p">{</span><span class="n">T</span><span class="p">,</span><span class="n">N</span><span class="p">})</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">foo2</span><span class="p">(</span><span class="n">array</span><span class="o">::</span><span class="kt">Array</span><span class="p">)</span>
   <span class="k">for</span> <span class="n">i</span> <span class="kp">in</span> <span class="n">eachindex</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
     <span class="n">inner_foo</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
   <span class="k">end</span>
@@ -12734,7 +12828,11 @@ Body:
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[19]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[20]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12747,8 +12845,7 @@ Body:
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12757,8 +12854,7 @@ Body:
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12766,8 +12862,7 @@ Body:
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12778,7 +12873,7 @@ Body:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">test</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -12798,7 +12893,11 @@ Body:
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[20]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[21]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12811,8 +12910,7 @@ Body:
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12823,7 +12921,7 @@ Body:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">3</span>
@@ -12841,7 +12939,11 @@ Body:
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[21]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[22]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12854,8 +12956,7 @@ Body:
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12866,15 +12967,13 @@ Body:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="kd">const</span> <span class="n">a_cons</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="k">function</span> <span class="n">badidea</span><span class="p">()</span>
     <span class="n">a_cons</span> <span class="o">+</span> <span class="mi">2</span>
 <span class="k">end</span>
-<span class="n">a_cons</span> <span class="o">=</span> <span class="mi">4</span> <span class="c"># Works</span>
-<span class="n">a_cons</span> <span class="o">=</span> <span class="mf">3.0</span> <span class="c"># Fails</span>
 </pre></div>
 
 </div>
@@ -12885,31 +12984,28 @@ Body:
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>WARNING: redefining constant a_cons
-</pre>
-</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[23]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>badidea (generic function with 1 method)</pre>
 </div>
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-intense-fg">invalid redefinition of constant a_cons</span>
-</pre>
-</div>
 </div>
 
 </div>
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Because <code>const</code> is about types, it acts slightly differently than one would expect. <code>const</code> is a declaration that the type of <code>a</code> will be constant, not the value. Therefore we can change <code>a</code> from 3 to 4 since it goes from an <code>Int</code> to an <code>Int</code>. However, trying to change <code>a</code> to <code>3.0</code> fails because it cannot change to a Float64.</p>
+<p>Beware that functions will specialize using the value of the constants, so they should go unchanged after being set.</p>
 <p>This will show up when trying to do benchmarks. The most common human error to see is for newcomers to benchmark Julia like:</p>
 
 </div>
@@ -12922,6 +13018,7 @@ Body:
     <div class="input_area">
 <div class=" highlight hl-julia"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mf">3.0</span>
 <span class="nd">@time</span> <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="mi">4</span>
+    <span class="kd">global</span> <span class="n">a</span>
     <span class="n">a</span> <span class="o">+=</span> <span class="n">i</span>
 <span class="k">end</span>
 </pre></div>
@@ -12934,7 +13031,11 @@ Body:
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>  0.000006 seconds (4 allocations: 64 bytes)
 </pre>
@@ -12945,8 +13046,7 @@ Body:
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12978,9 +13078,13 @@ Body:
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>  0.000000 seconds
+<pre>  0.000001 seconds
   0.000000 seconds
 </pre>
 </div>
@@ -12990,8 +13094,7 @@ Body:
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13000,8 +13103,7 @@ Body:
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13014,4 +13116,8 @@ Body:
     </div>
   </div>
 </body>
+
+ 
+
+
 </html>

@@ -285,25 +285,25 @@
 \subsection{Problem 1}\label{problem-1}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{=} \PY{n}{x}\PY{o}{\PYZca{}}\PY{l+m+mi}{5} \PY{o}{+} \PY{l+m+mi}{3}\PY{n}{x}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}
+{\color{incolor}In [{\color{incolor}1}]:} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{=} \PY{n}{x}\PY{o}{\PYZca{}}\PY{l+m+mi}{5} \PY{o}{+} \PY{l+m+mi}{3}\PY{n}{x}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}
         \PY{k}{using} \PY{n}{ForwardDiff}
         \PY{n}{fprime}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{=} \PY{n}{ForwardDiff}\PY{o}{.}\PY{n}{derivative}\PY{p}{(}\PY{n}{f}\PY{p}{,}\PY{n}{x}\PY{p}{)}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}4}]:} fprime (generic function with 1 method)
+{\color{outcolor}Out[{\color{outcolor}1}]:} fprime (generic function with 1 method)
 \end{Verbatim}
             
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}5}]:} \PY{k}{using} \PY{n}{Plots}\PY{p}{;} \PY{n}{gr}\PY{p}{(}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}2}]:} \PY{k}{using} \PY{n}{Plots}\PY{p}{;} \PY{n}{gr}\PY{p}{(}\PY{p}{)}
         \PY{n}{x} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{5}\PY{o}{:}\PY{l+m+mf}{0.1}\PY{o}{:}\PY{l+m+mi}{5}
         \PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{fprime}\PY{o}{.}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
 
     
-    \texttt{\color{outcolor}Out[{\color{outcolor}5}]:}
+    \texttt{\color{outcolor}Out[{\color{outcolor}2}]:}
     
     \begin{center}
     \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{ForwardDiffAnswers_files/ForwardDiffAnswers_2_1.pdf}
@@ -312,10 +312,10 @@
     
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{plot!}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{l+m+mi}{5}\PY{n}{x}\PY{o}{.\PYZca{}}\PY{l+m+mi}{4}\PY{o}{+}\PY{l+m+mi}{6}\PY{n}{x}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{plot!}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{l+m+mi}{5}\PY{n}{x}\PY{o}{.\PYZca{}}\PY{l+m+mi}{4}\PY{o}{+}\PY{l+m+mi}{6}\PY{n}{x}\PY{p}{)}
 \end{Verbatim}
 
-\texttt{\color{outcolor}Out[{\color{outcolor}6}]:}
+\texttt{\color{outcolor}Out[{\color{outcolor}3}]:}
     
     \begin{center}
     \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{ForwardDiffAnswers_files/ForwardDiffAnswers_3_0.pdf}
@@ -326,8 +326,7 @@
     \subsection{Problem 2}\label{problem-2}
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}9}]:} \PY{k}{using} \PY{n}{LinearAlgebra}
-        
+{\color{incolor}In [{\color{incolor}5}]:} \PY{k}{using} \PY{n}{LinearAlgebra}
         \PY{k}{function} \PY{n}{spherical2Cartesian}\PY{p}{(}\PY{n}{coordinates}\PY{p}{)}
             \PY{n}{r}\PY{p}{,} \PY{n}{θ}\PY{p}{,} \PY{n}{ϕ} \PY{o}{=} \PY{n}{coordinates}
             \PY{n}{x} \PY{o}{=} \PY{n}{r}\PY{o}{*}\PY{n}{sin}\PY{p}{(}\PY{n}{θ}\PY{p}{)}\PY{o}{*}\PY{n}{cos}\PY{p}{(}\PY{n}{ϕ}\PY{p}{)}
@@ -347,7 +346,7 @@
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}9}]:} true
+{\color{outcolor}Out[{\color{outcolor}5}]:} true
 \end{Verbatim}
             
 

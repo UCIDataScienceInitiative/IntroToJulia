@@ -592,7 +592,8 @@ L36:
     \end{Verbatim}
 
     That's a very visual demonstration on why Julia achieves such higher
-performance than other scripting languages.
+performance than other scripting languages by how it uses type
+inference.
 
     \section{Core Idea: Multiple Dispatch + Type Stability =\textgreater{}
 Speed +
@@ -735,7 +736,7 @@ name). Therefore, if you need it, you can create a
 \texttt{Vector\{Any\}}. For example:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{a} \PY{o}{=} \PY{k+kt}{Vector}\PY{p}{\PYZob{}}\PY{k+kt}{Any}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{undef}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{a} \PY{o}{=} \PY{k+kt}{Vector}\PY{p}{\PYZob{}}\PY{k+kt}{Any}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{undef}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}
          \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{l+m+mf}{1.0}
          \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{h}\PY{l+s}{i}\PY{l+s}{!}\PY{l+s}{\PYZdq{}}
          \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]} \PY{o}{=} \PY{o}{:}\PY{n}{Symbolic}
@@ -744,7 +745,7 @@ name). Therefore, if you need it, you can create a
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}25}]:} 3-element Array\{Any,1\}:
+{\color{outcolor}Out[{\color{outcolor}14}]:} 3-element Array\{Any,1\}:
           1.0       
            "hi!"    
            :Symbolic
@@ -754,7 +755,7 @@ name). Therefore, if you need it, you can create a
 what it sounds like. For example:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}26}]:} \PY{n}{a} \PY{o}{=} \PY{k+kt}{Vector}\PY{p}{\PYZob{}}\PY{k+kt}{Union}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{,}\PY{k+kt}{Int}\PY{p}{\PYZcb{}}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{undef}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{a} \PY{o}{=} \PY{k+kt}{Vector}\PY{p}{\PYZob{}}\PY{k+kt}{Union}\PY{p}{\PYZob{}}\PY{k+kt}{Float64}\PY{p}{,}\PY{k+kt}{Int}\PY{p}{\PYZcb{}}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{undef}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}
          \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{l+m+mf}{1.0}
          \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{3}
          \PY{n}{a}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{4}
@@ -763,7 +764,7 @@ what it sounds like. For example:
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}26}]:} 3-element Array\{Union\{Float64, Int64\},1\}:
+{\color{outcolor}Out[{\color{outcolor}15}]:} 3-element Array\{Union\{Float64, Int64\},1\}:
           1.0 
           3   
           0.25
@@ -775,9 +776,7 @@ type cannot know the type of any element (since, in this example, any
 element can be either a float or an integer). Thus the optimization that
 was achieved by multiple-dispatch, knowing the type each step of the
 way, is no longer present. Therefore the optimizations are gone and
-Julia will slow down to the speed of other scripting languages. Note
-that small Union types have special optimizations which make them do
-okay even though they aren't strictly typed!
+Julia will slow down to the speed of other scripting languages.
 
 This leads to the performance principle: use strict typing whenever
 possible. There are other advantages: a strictly typed
@@ -809,7 +808,7 @@ that your functions are type stable. The most important is the
 function:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}15}]:} \PY{n+nd}{@code\PYZus{}warntype} \PY{l+m+mi}{2}\PY{o}{\PYZca{}}\PY{l+m+mi}{5}
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n+nd}{@code\PYZus{}warntype} \PY{l+m+mi}{2}\PY{o}{\PYZca{}}\PY{l+m+mi}{5}
 \end{Verbatim}
 
 
@@ -824,8 +823,7 @@ Body\textcolor{ansi-cyan}{::Int64}
 typed. What about in our \texttt{expo}?
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}29}]:} \PY{n}{x} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{;} \PY{n}{y} \PY{o}{=} \PY{l+m+mi}{5}
-         \PY{n+nd}{@code\PYZus{}warntype} \PY{n}{expo}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n+nd}{@code\PYZus{}warntype} \PY{n}{expo}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}
 \end{Verbatim}
 
 
@@ -845,20 +843,36 @@ Body\textcolor{ansi-red-intense}{\textbf{::Union\{Float64, Int64\}}}
 
     \end{Verbatim}
 
-    Notice that it has to make a temporary variable \texttt{\%4} to return
-an \texttt{Int64} when the exponent is positive, but it needs to return
-\texttt{\%10} which is a \texttt{Float64} when the exponent is negative,
-and so the output type is the non-strict
-\texttt{Union\{Float64,Int64\}}.
-
-    A nice package which helps for identifying such issues is Traceur.jl.
-Here's an example of using it on our \texttt{expo} function:
+    Notice that possible returns are the temporary \texttt{\%4} and
+\texttt{\%10} which are different types, and so the return type is
+inferred as \texttt{Union\{Float64,Int64\}}. To trace exactly to where
+this instability occurs, we can use Traceur.jl:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{k}{using} \PY{n}{Traceur}
-        \PY{n+nd}{@trace} \PY{n}{expo}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}19}]:} \PY{k}{using} \PY{n}{Traceur}
+         \PY{n+nd}{@trace} \PY{n}{expo}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}
 \end{Verbatim}
 
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+┌ Warning: x is assigned as Int64
+└ @ In[8]:2
+┌ Warning: x is assigned as Float64
+└ @ In[8]:5
+┌ Warning: expo returns Union\{Float64, Int64\}
+└ @ In[8]:2
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}19}]:} 32
+\end{Verbatim}
+            
+    This tells us that on line 2 \texttt{x} is assigned to an \texttt{Int}
+while on line 5 it's assigned to a \texttt{Float64}, and so it's
+inferred as \texttt{Union\{Float64,\ Int64\}}. Line 5 is where we put
+the explicit \texttt{convert} call, so this identified exactly the issue
+for us.
 
     \subsection{Dealing With Necessary
 Type-Instabilities}\label{dealing-with-necessary-type-instabilities}
@@ -881,36 +895,48 @@ a \texttt{Vector\{Union\{Float64,Int\}\}}, they will not be known in a
 function like:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{k}{function} \PY{n}{foo}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{array}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{)}
-          \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{n}{eachindex}\PY{p}{(}\PY{n}{array}\PY{p}{)}
-            \PY{n}{val} \PY{o}{=} \PY{n}{array}\PY{p}{[}\PY{n}{i}\PY{p}{]}
-            \PY{c}{\PYZsh{} do algorithm X on val}
-          \PY{k}{end}
-        \PY{k}{end}
+{\color{incolor}In [{\color{incolor}17}]:} \PY{k}{function} \PY{n}{foo}\PY{p}{(}\PY{n}{array}\PY{p}{)}
+           \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{n}{eachindex}\PY{p}{(}\PY{n}{array}\PY{p}{)}
+             \PY{n}{val} \PY{o}{=} \PY{n}{array}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+             \PY{c}{\PYZsh{} do algorithm X on val}
+           \PY{k}{end}
+         \PY{k}{end}
 \end{Verbatim}
 
 
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}17}]:} foo (generic function with 1 method)
+\end{Verbatim}
+            
     However, we can fix this with multiple dispatch. We can write a dispatch
 on elements:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{k}{function} \PY{n}{inner\PYZus{}foo}\PY{p}{\PYZob{}}\PY{n}{T}\PY{o}{\PYZlt{}:}\PY{k+kt}{Number}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{val}\PY{o}{::}\PY{n}{T}\PY{p}{)}
-          \PY{c}{\PYZsh{} Do algorithm X on val}
-        \PY{k}{end}
+{\color{incolor}In [{\color{incolor}18}]:} \PY{k}{function} \PY{n}{inner\PYZus{}foo}\PY{p}{(}\PY{n}{val}\PY{p}{)}
+           \PY{c}{\PYZsh{} Do algorithm X on val}
+         \PY{k}{end}
 \end{Verbatim}
 
 
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}18}]:} inner\_foo (generic function with 1 method)
+\end{Verbatim}
+            
     and instead define foo as:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{k}{function} \PY{n}{foo2}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{(}\PY{n}{array}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{\PYZob{}}\PY{n}{T}\PY{p}{,}\PY{n}{N}\PY{p}{\PYZcb{}}\PY{p}{)}
-          \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{n}{eachindex}\PY{p}{(}\PY{n}{array}\PY{p}{)}
-            \PY{n}{inner\PYZus{}foo}\PY{p}{(}\PY{n}{array}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
-          \PY{k}{end}
-        \PY{k}{end}
+{\color{incolor}In [{\color{incolor}20}]:} \PY{k}{function} \PY{n}{foo2}\PY{p}{(}\PY{n}{array}\PY{o}{::}\PY{k+kt}{Array}\PY{p}{)}
+           \PY{k}{for} \PY{n}{i} \PY{k+kp}{in} \PY{n}{eachindex}\PY{p}{(}\PY{n}{array}\PY{p}{)}
+             \PY{n}{inner\PYZus{}foo}\PY{p}{(}\PY{n}{array}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+           \PY{k}{end}
+         \PY{k}{end}
 \end{Verbatim}
 
 
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}20}]:} foo2 (generic function with 1 method)
+\end{Verbatim}
+            
     Since types are checked for dispatch, the function \texttt{inner\_foo}
 is strictly typed. Thus if \texttt{inner\_foo} is type-stable, then we
 can achieve high performance by allowing it to specialize within
@@ -932,7 +958,7 @@ function, then the inner function has all of the variables of the outer
 function.
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}33}]:} \PY{k}{function} \PY{n}{test}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}21}]:} \PY{k}{function} \PY{n}{test}\PY{p}{(}\PY{n}{x}\PY{p}{)}
              \PY{n}{y} \PY{o}{=} \PY{n}{x}\PY{o}{+}\PY{l+m+mi}{2}
              \PY{k}{function} \PY{n}{test2}\PY{p}{(}\PY{p}{)}
                  \PY{n}{y}\PY{o}{+}\PY{l+m+mi}{3}
@@ -943,7 +969,7 @@ function.
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}33}]:} test (generic function with 1 method)
+{\color{outcolor}Out[{\color{outcolor}21}]:} test (generic function with 1 method)
 \end{Verbatim}
             
     In \texttt{test2}, \texttt{y} is known because it is defined in
@@ -953,17 +979,16 @@ function.
 highest scope (and thus effectively the global scope):
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{3}
-        \PY{k}{function} \PY{n}{badidea}\PY{p}{(}\PY{p}{)}
-            \PY{n}{a} \PY{o}{+} \PY{l+m+mi}{2}
-        \PY{k}{end}
-        \PY{n}{a} \PY{o}{=} \PY{l+m+mf}{3.0}
-        \PY{n}{badidea}\PY{p}{(}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{3}
+         \PY{k}{function} \PY{n}{badidea}\PY{p}{(}\PY{p}{)}
+             \PY{n}{a} \PY{o}{+} \PY{l+m+mi}{2}
+         \PY{k}{end}
+         \PY{n}{a} \PY{o}{=} \PY{l+m+mf}{3.0}
 \end{Verbatim}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-{\color{outcolor}Out[{\color{outcolor}3}]:} 5.0
+{\color{outcolor}Out[{\color{outcolor}22}]:} 3.0
 \end{Verbatim}
             
     Because no dispatch is used to specialize \texttt{badidea}, and we can
@@ -973,50 +998,34 @@ of \texttt{a} is unknown during compile time. However, Julia allows us
 to specify variables as constant:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kd}{const} \PY{n}{a\PYZus{}cons} \PY{o}{=} \PY{l+m+mi}{3}
-        \PY{k}{function} \PY{n}{badidea}\PY{p}{(}\PY{p}{)}
-            \PY{n}{a\PYZus{}cons} \PY{o}{+} \PY{l+m+mi}{2}
-        \PY{k}{end}
-        \PY{n}{a\PYZus{}cons} \PY{o}{=} \PY{l+m+mf}{3.0} \PY{c}{\PYZsh{} Fails}
+{\color{incolor}In [{\color{incolor}23}]:} \PY{k+kd}{const} \PY{n}{a\PYZus{}cons} \PY{o}{=} \PY{l+m+mi}{3}
+         \PY{k}{function} \PY{n}{badidea}\PY{p}{(}\PY{p}{)}
+             \PY{n}{a\PYZus{}cons} \PY{o}{+} \PY{l+m+mi}{2}
+         \PY{k}{end}
 \end{Verbatim}
 
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-WARNING: redefining constant a\_cons
-
-    \end{Verbatim}
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-
-        invalid redefinition of constant a\_cons
-
-        
-
-        Stacktrace:
-
-         [1] top-level scope at In[1]:6
-
-    \end{Verbatim}
-
-    Julia specializes on the type and value of the constant, so this should
-not be changed after being defined. Julia will give you a warning if you
-re-define it: use caution if you see this warning since the output of
-functions which have specialized on this could be wrong.
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}23}]:} badidea (generic function with 1 method)
+\end{Verbatim}
+            
+    Beware that functions will specialize using the value of the constants,
+so they should go unchanged after being set.
 
 This will show up when trying to do benchmarks. The most common human
 error to see is for newcomers to benchmark Julia like:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{a} \PY{o}{=} \PY{l+m+mf}{3.0}
-        \PY{n+nd}{@time} \PY{k}{for} \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{4}
-            \PY{k+kd}{global} \PY{n}{a}
-            \PY{n}{a} \PY{o}{+=} \PY{n}{i}
-        \PY{k}{end}
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{a} \PY{o}{=} \PY{l+m+mf}{3.0}
+         \PY{n+nd}{@time} \PY{k}{for} \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{4}
+             \PY{k+kd}{global} \PY{n}{a}
+             \PY{n}{a} \PY{o}{+=} \PY{n}{i}
+         \PY{k}{end}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
-  0.000018 seconds (4 allocations: 64 bytes)
+  0.000006 seconds (4 allocations: 64 bytes)
 
     \end{Verbatim}
 
@@ -1024,20 +1033,20 @@ error to see is for newcomers to benchmark Julia like:
 will optimize away the loop and stick in the answer)
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}1}]:} \PY{k}{function} \PY{n}{timetest}\PY{p}{(}\PY{p}{)}
-            \PY{n}{a} \PY{o}{=} \PY{l+m+mf}{3.0}
-            \PY{n+nd}{@time} \PY{k}{for} \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{4}
-                \PY{n}{a} \PY{o}{+=} \PY{n}{i}
-            \PY{k}{end}
-        \PY{k}{end}
-        \PY{n}{timetest}\PY{p}{(}\PY{p}{)} \PY{c}{\PYZsh{} First time compiles}
-        \PY{n}{timetest}\PY{p}{(}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}26}]:} \PY{k}{function} \PY{n}{timetest}\PY{p}{(}\PY{p}{)}
+             \PY{n}{a} \PY{o}{=} \PY{l+m+mf}{3.0}
+             \PY{n+nd}{@time} \PY{k}{for} \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{:}\PY{l+m+mi}{4}
+                 \PY{n}{a} \PY{o}{+=} \PY{n}{i}
+             \PY{k}{end}
+         \PY{k}{end}
+         \PY{n}{timetest}\PY{p}{(}\PY{p}{)} \PY{c}{\PYZsh{} First time compiles}
+         \PY{n}{timetest}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 
 
     \begin{Verbatim}[commandchars=\\\{\}]
   0.000001 seconds
-  0.000001 seconds
+  0.000000 seconds
 
     \end{Verbatim}
 
