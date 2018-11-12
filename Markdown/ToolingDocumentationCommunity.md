@@ -33,12 +33,12 @@ To install Jupyter notebooks (IJulia), use the following commands in the REPL:
 
 
 ```julia
-using Pkg
-Pkg.add("IJulia") # This will install the package
-Pkg.clone("https://github.com/UCIDataScienceInitiative/IntroToJulia") # Clone the IntroToJulia Repo
-### Next commands you run each time you open the REPL
+using LibGit2
+# Download the notebooks into the folder IntroToJulia
+LibGit2.clone("https://github.com/UCIDataScienceInitiative/IntroToJulia", "IntroToJulia")
+# Open up IJulia at this location
 using IJulia
-notebook(detached=true,dir=Pkg.dir("IntroToJulia/Notebooks"))
+notebook(detached=true,dir=joinpath(pwd(),"IntroToJulia"))
 ```
 
 ### Installing Juno
@@ -79,8 +79,8 @@ The Juno documentation can be found at http://docs.junolab.org/latest/
 
 The following documentation pages are good pages to read in full:
 
-- [Noteworthy Differences from Other Languages](http://docs.julialang.org/en/release-0.5/manual/noteworthy-differences/)
-- [Performance Tips](http://docs.julialang.org/en/release-0.5/manual/performance-tips/)
+- [Noteworthy Differences from Other Languages](https://docs.julialang.org/en/v1/manual/noteworthy-differences/)
+- [Performance Tips](https://docs.julialang.org/en/v1/manual/performance-tips/)
 - [MATLAB, Python, Julia Syntax Comparison](http://cheatsheets.quantecon.org/)
 
 ## Community

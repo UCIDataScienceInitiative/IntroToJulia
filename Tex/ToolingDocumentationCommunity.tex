@@ -343,12 +343,12 @@ To install Jupyter notebooks (IJulia), use the following commands in the
 REPL:
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{k}{using} \PY{n}{Pkg}
-        \PY{n}{Pkg}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{I}\PY{l+s}{J}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{c}{\PYZsh{} This will install the package}
-        \PY{n}{Pkg}\PY{o}{.}\PY{n}{clone}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{h}\PY{l+s}{t}\PY{l+s}{t}\PY{l+s}{p}\PY{l+s}{s}\PY{l+s}{:}\PY{l+s}{/}\PY{l+s}{/}\PY{l+s}{g}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{u}\PY{l+s}{b}\PY{l+s}{.}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{m}\PY{l+s}{/}\PY{l+s}{U}\PY{l+s}{C}\PY{l+s}{I}\PY{l+s}{D}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{S}\PY{l+s}{c}\PY{l+s}{i}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{I}\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{v}\PY{l+s}{e}\PY{l+s}{/}\PY{l+s}{I}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{T}\PY{l+s}{o}\PY{l+s}{J}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{)} \PY{c}{\PYZsh{} Clone the IntroToJulia Repo}
-        \PY{c}{\PYZsh{}\PYZsh{}\PYZsh{} Next commands you run each time you open the REPL}
+{\color{incolor}In [{\color{incolor} }]:} \PY{k}{using} \PY{n}{LibGit2}
+        \PY{c}{\PYZsh{} Download the notebooks into the folder IntroToJulia}
+        \PY{n}{LibGit2}\PY{o}{.}\PY{n}{clone}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{h}\PY{l+s}{t}\PY{l+s}{t}\PY{l+s}{p}\PY{l+s}{s}\PY{l+s}{:}\PY{l+s}{/}\PY{l+s}{/}\PY{l+s}{g}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{h}\PY{l+s}{u}\PY{l+s}{b}\PY{l+s}{.}\PY{l+s}{c}\PY{l+s}{o}\PY{l+s}{m}\PY{l+s}{/}\PY{l+s}{U}\PY{l+s}{C}\PY{l+s}{I}\PY{l+s}{D}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{a}\PY{l+s}{S}\PY{l+s}{c}\PY{l+s}{i}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{I}\PY{l+s}{n}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{v}\PY{l+s}{e}\PY{l+s}{/}\PY{l+s}{I}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{T}\PY{l+s}{o}\PY{l+s}{J}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{I}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{T}\PY{l+s}{o}\PY{l+s}{J}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+        \PY{c}{\PYZsh{} Open up IJulia at this location}
         \PY{k}{using} \PY{n}{IJulia}
-        \PY{n}{notebook}\PY{p}{(}\PY{n}{detached}\PY{o}{=}\PY{k+kc}{true}\PY{p}{,}\PY{n}{dir}\PY{o}{=}\PY{n}{Pkg}\PY{o}{.}\PY{n}{dir}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{I}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{T}\PY{l+s}{o}\PY{l+s}{J}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{/}\PY{l+s}{N}\PY{l+s}{o}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{b}\PY{l+s}{o}\PY{l+s}{o}\PY{l+s}{k}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+        \PY{n}{notebook}\PY{p}{(}\PY{n}{detached}\PY{o}{=}\PY{k+kc}{true}\PY{p}{,}\PY{n}{dir}\PY{o}{=}\PY{n}{joinpath}\PY{p}{(}\PY{n}{pwd}\PY{p}{(}\PY{p}{)}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{I}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{r}\PY{l+s}{o}\PY{l+s}{T}\PY{l+s}{o}\PY{l+s}{J}\PY{l+s}{u}\PY{l+s}{l}\PY{l+s}{i}\PY{l+s}{a}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
 \end{Verbatim}
 
 
@@ -418,10 +418,10 @@ The following documentation pages are good pages to read in full:
 \begin{itemize}
 \tightlist
 \item
-  \href{http://docs.julialang.org/en/release-0.5/manual/noteworthy-differences/}{Noteworthy
+  \href{https://docs.julialang.org/en/v1/manual/noteworthy-differences/}{Noteworthy
   Differences from Other Languages}
 \item
-  \href{http://docs.julialang.org/en/release-0.5/manual/performance-tips/}{Performance
+  \href{https://docs.julialang.org/en/v1/manual/performance-tips/}{Performance
   Tips}
 \item
   \href{http://cheatsheets.quantecon.org/}{MATLAB, Python, Julia Syntax

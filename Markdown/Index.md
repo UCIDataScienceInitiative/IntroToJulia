@@ -43,9 +43,9 @@ To get started, see the [Tooling, Documentation, and Community notebook](http://
 - [A Basic Introduction to Julia](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/BasicIntroduction)
 - [Why Julia?](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/WhyJulia)
 - [More Details on Arrays and Matrices - How to get Fortran Speeds in Linear Algebra](http://ucidatascienceinitiative.github.io/IntroToJulia/Html/ArraysAndMatrices)
-- [The Julia Manual](https://docs.julialang.org/en/stable/)
+- [The Julia Manual](https://docs.julialang.org/en/v1.0/)
 - [The Julia Wikibook](https://en.wikibooks.org/wiki/Introducing_Julia)
-- [Noteworthy Differences from Other Languages (Julia's Manual)](https://docs.julialang.org/en/stable/manual/noteworthy-differences/)
+- [Noteworthy Differences from Other Languages (Julia's Manual)](https://docs.julialang.org/en/v1/manual/noteworthy-differences/)
 - [Julia Cheatsheet Reference (with MATLAB and Python)](https://cheatsheets.quantecon.org/)
 
 ### General Problems

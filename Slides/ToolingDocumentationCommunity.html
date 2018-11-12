@@ -11961,12 +11961,12 @@ a.anchor-link {
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">Pkg</span>
-<span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;IJulia&quot;</span><span class="p">)</span> <span class="c"># This will install the package</span>
-<span class="n">Pkg</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="s">&quot;https://github.com/UCIDataScienceInitiative/IntroToJulia&quot;</span><span class="p">)</span> <span class="c"># Clone the IntroToJulia Repo</span>
-<span class="c">### Next commands you run each time you open the REPL</span>
+<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">LibGit2</span>
+<span class="c"># Download the notebooks into the folder IntroToJulia</span>
+<span class="n">LibGit2</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="s">&quot;https://github.com/UCIDataScienceInitiative/IntroToJulia&quot;</span><span class="p">,</span> <span class="s">&quot;IntroToJulia&quot;</span><span class="p">)</span>
+<span class="c"># Open up IJulia at this location</span>
 <span class="k">using</span> <span class="n">IJulia</span>
-<span class="n">notebook</span><span class="p">(</span><span class="n">detached</span><span class="o">=</span><span class="kc">true</span><span class="p">,</span><span class="n">dir</span><span class="o">=</span><span class="n">Pkg</span><span class="o">.</span><span class="n">dir</span><span class="p">(</span><span class="s">&quot;IntroToJulia/Notebooks&quot;</span><span class="p">))</span>
+<span class="n">notebook</span><span class="p">(</span><span class="n">detached</span><span class="o">=</span><span class="kc">true</span><span class="p">,</span><span class="n">dir</span><span class="o">=</span><span class="n">joinpath</span><span class="p">(</span><span class="n">pwd</span><span class="p">(),</span><span class="s">&quot;IntroToJulia&quot;</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -12022,8 +12022,8 @@ a.anchor-link {
 <p>The Juno documentation can be found at <a href="http://docs.junolab.org/latest/">http://docs.junolab.org/latest/</a></p>
 <h3 id="Good-Pages-to-Read">Good Pages to Read<a class="anchor-link" href="#Good-Pages-to-Read">&#182;</a></h3><p>The following documentation pages are good pages to read in full:</p>
 <ul>
-<li><a href="http://docs.julialang.org/en/release-0.5/manual/noteworthy-differences/">Noteworthy Differences from Other Languages</a></li>
-<li><a href="http://docs.julialang.org/en/release-0.5/manual/performance-tips/">Performance Tips</a></li>
+<li><a href="https://docs.julialang.org/en/v1/manual/noteworthy-differences/">Noteworthy Differences from Other Languages</a></li>
+<li><a href="https://docs.julialang.org/en/v1/manual/performance-tips/">Performance Tips</a></li>
 <li><a href="http://cheatsheets.quantecon.org/">MATLAB, Python, Julia Syntax Comparison</a></li>
 </ul>
 
