@@ -90,7 +90,6 @@ plot(t,W',color=:red,xlabel="t",ylabel="W(t)")
 ## Main Reasons to Not Use Julia
 
 - You need low latency (game programming)
-- You need stability. i.e. you are a company and need a large code-base to run without modifications next year
 - It is more complex than other scripting languages: there is a lot you can know
 
 ## The Julia Community: Who is a user?
