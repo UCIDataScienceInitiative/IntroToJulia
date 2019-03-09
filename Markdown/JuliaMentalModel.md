@@ -131,7 +131,7 @@ No matter who you are, some of the terminology will be familiar, while other par
 ## A Mental Model for Python/R/MATLAB: Talking to a Politician
 
 - These scripting languages were developed to "be easy".
-- You tell them something, and they try to give you want you want.
+- You tell them something, and they try to give you what you want.
 - There may be some things hidden behind the scenes to make everything "work better".
 - They may not give you the fastest reply.
 
