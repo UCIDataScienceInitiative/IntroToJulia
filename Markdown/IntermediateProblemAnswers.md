@@ -67,7 +67,7 @@ struct MyLinSpace
 end
 
 function Base.getindex(a::MyLinSpace,i::Int)
-    dx = (a.stop-a.start)/a.n
+    dx = (a.stop-a.start)/(a.n-1)
     a.start + dx*(i-1)
 end
 ```
@@ -81,7 +81,7 @@ l[6]
 
 
 
-    1.1
+    1.1020408163265305
 
 
 
